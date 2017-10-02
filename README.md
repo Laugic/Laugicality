@@ -1,2 +1,0 @@
-# Laugicality
-The Enigma Mod

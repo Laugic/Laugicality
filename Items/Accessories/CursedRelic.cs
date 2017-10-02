@@ -37,6 +37,7 @@ namespace Laugicality.Items.Accessories
             player.manaRegenBonus += 25;
             player.magicDamage += 0.20f;
             player.kbBuff = true;
+            player.enemySpawns = true;
             if (player.thorns < 1f)
             {
                 player.thorns = 0.333333343f;

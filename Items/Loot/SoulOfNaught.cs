@@ -11,7 +11,7 @@ namespace Laugicality.Items.Loot
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Soul of Naught");
-			Tooltip.SetDefault("'The essence of the Void'");
+			Tooltip.SetDefault("'The essence of null'");
 			// ticksperframe, frameCount
 			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
 			ItemID.Sets.AnimatesAsSoul[item.type] = true;

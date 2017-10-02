@@ -11,7 +11,7 @@ namespace Laugicality.Items.Loot
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Soul of Thought");
-			Tooltip.SetDefault("'The essence of smart creatures'");
+			Tooltip.SetDefault("'The essence of intelligence'");
 			// ticksperframe, frameCount
 			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
 			ItemID.Sets.AnimatesAsSoul[item.type] = true;

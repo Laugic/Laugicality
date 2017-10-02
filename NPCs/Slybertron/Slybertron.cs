@@ -85,7 +85,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.lavaImmune = true;
             npc.noGravity = false;
             npc.noTileCollide = false;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RockItForMe");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Dramophone");
             damage = 40;
 
         }

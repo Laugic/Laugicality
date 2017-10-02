@@ -7,7 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Ranged damage \n20% Chance to not use ammo \nIncreases knockback, magic damage, and mana regen");
+            Tooltip.SetDefault("+10% Ranged damage \n20% Chance to not use ammo \nIncreases knockback, magic damage, and mana regen \nIncreased Enemy Spawns");
         }
 
         public override void SetDefaults()
@@ -28,6 +28,7 @@ namespace Laugicality.Items.Accessories
             player.AddBuff(108, 2);
             player.ammoCost80 = true;
             player.rangedDamage += 0.10f;
+            player.enemySpawns = true;
         }
 
         public override void AddRecipes()

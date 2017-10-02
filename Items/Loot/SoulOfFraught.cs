@@ -11,7 +11,7 @@ namespace Laugicality.Items.Loot
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Soul of Fraught");
-			Tooltip.SetDefault("'The essence of fearful creatures'");
+			Tooltip.SetDefault("'The essence of fear'");
 			// ticksperframe, frameCount
 			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
 			ItemID.Sets.AnimatesAsSoul[item.type] = true;

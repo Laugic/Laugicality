@@ -1,0 +1,6 @@
+bin
+obj
+*.user
+.sin/
+.vs/
+

@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
         public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Melee attacks inflict 'On Fire!' \n+12% Ranged, Summon, Magic, and Throwing damage\n+100% Mystic Damage and Duration");
+			Tooltip.SetDefault("Melee attacks inflict 'On Fire!' \n+12% Ranged, Summon, Magic, Throwing, and Mystic Damage");
 		}
 
 		public override void SetDefaults()
@@ -34,8 +34,8 @@ namespace Laugicality.Items.Armor
             player.rangedDamage += 0.12f;
             player.magicDamage += 0.12f;
             player.minionDamage += 0.12f;
-            modPlayer.mysticDamage += 1f; //+100% Mystic damage and duration
-            modPlayer.mysticDuration += 1f;
+            modPlayer.mysticDamage += 0.12f;
+            //modPlayer.mysticDuration += 1f;
         }
 
         public override void UpdateArmorSet(Player player)
