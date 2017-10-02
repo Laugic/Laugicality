@@ -29,7 +29,6 @@ namespace Laugicality.Items.Accessories
             player.detectCreature = true;
             player.dangerSense = true;
             player.maxMinions++;
-            player.calmed = true;
             player.resistCold = true;
             player.lifeMagnet = true;
             player.statLifeMax2 += (player.statLifeMax + player.statLifeMax2) / 5 / 20 * 20 - (player.statLifeMax / 5 / 20 * 20);

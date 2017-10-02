@@ -20,6 +20,8 @@ namespace Laugicality
         public static bool downedSlybertron = false;
         public static bool downedSteamTrain = false;
         public static bool downedDuneSharkron = false;
+        public static int obsidiumTiles = 0;
+        public static bool obEnf = false; //obsidiumEnfused
 
         public override void Initialize()
         {
@@ -27,18 +29,31 @@ namespace Laugicality
             downedSlybertron = false;
             downedSteamTrain = false;
             downedDuneSharkron = false;
+            obEnf = false;
+        }
+
+        public override void PostUpdate()
+        {
+            if(obEnf == false && NPC.downedBoss2)
+            {
+                obEnf = true;
+                Main.NewText("Fury runs through the Obsidium Caverns.", 150, 50, 50);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+            }
         }
 
         public override TagCompound Save()
         {
             var downed = new List<string>();
+            bool obs = false;
             if (downedAnnihilator) downed.Add("annihilator");
             if (downedSlybertron) downed.Add("slybertron");
             if (downedSteamTrain) downed.Add("steamtrain");
             if (downedDuneSharkron) downed.Add("dunesharkron");
+            if (obEnf) obs = true; 
 
             return new TagCompound {
-                {"downed", downed}
+                {"downed", downed},
+                {"obsidium", obs }
             };
         }
 
@@ -49,6 +64,17 @@ namespace Laugicality
             downedSlybertron = downed.Contains("slybertron");
             downedSteamTrain = downed.Contains("steamtrain");
             downedDuneSharkron = downed.Contains("dunesharkron");
+            obEnf = tag.GetBool("obsidium");
+        }
+
+        public override void ResetNearbyTileEffects()
+        {
+            obsidiumTiles = 0;
+        }
+
+        public override void TileCountsAvailable(int[] tileCounts)
+        {
+            obsidiumTiles = tileCounts[56];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
@@ -60,30 +86,116 @@ namespace Laugicality
             }
             tasks.Insert(genIndex + 1, new PassLegacy("Generating Obsidian Cavern", delegate (GenerationProgress progress)
             {
-                progress.Message = "Generating Obsidian Cavern";
-                for (int i = 0; i < 1; i++)       //900 is how many biomes. the bigger is the number = less biomes
+                progress.Message = "Obsidification";
+                for (int i = 0; i < 1; i++)       
                 {
-                    int X = 150;        //WorldGen.genRand.Next(1, Main.maxTilesX - 300);
-                    int Y = WorldGen.genRand.Next((int)WorldGen.rockLayer - 100, (int)WorldGen.rockLayer + 100);
-                    int TileType = 56;     //this is the tile u want to use for the biome , if u want to use a vanilla tile then its int TileType = 56; 56 is obsidian block
+                    int X = 150;       
+                    int Y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 100, (int)WorldGen.rockLayer + 150);
+                    int TileType = 56;     
 
-                    WorldGen.TileRunner(X, Y, 350, WorldGen.genRand.Next(100, 200), TileType, false, 0f, 0f, true, true);  //350 is how big is the biome     100, 200 this changes how random it looks.
+                    WorldGen.TileRunner(X, Y, 1000, WorldGen.genRand.Next(300, 600), TileType, false, 0f, 0f, true, true);  
                     
-                    //add this under public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
-                    for (int k = 0; k < 750; k++)                     //750 is the ore spawn rate. the bigger is the number = more ore spawns
+                    for (int k = 0; k < 1000; k++)                
                     {
-                        int Xore = Main.rand.Next(0, 300);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 100, Main.maxTilesY - 200);
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)   //this is the tile where the ore will spawn
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY );
+                        if (Main.tile[Xore, Yore].type == TileID.Obsidian) 
                         {
 
                             {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(5, 10), WorldGen.genRand.Next(5, 10), mod.TileType("ObsidiumOreBlock"), false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(6, 12), WorldGen.genRand.Next(6, 12), mod.TileType("ObsidiumOreBlock"), false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
                             }
                         }
                     }
-                }
+                
+                    //progress.Message = "To Ashes";
+                
+                    for (int k = 0; k < 300; k++)              
+                    {
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
+                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
+                        {
 
+                            {
+                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 57, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                            }
+                        }
+                    }
+                    for (int k = 0; k < 300; k++)          
+                    {
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
+                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
+                        {
+
+                            {
+                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 123, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                            }
+                        }
+                    }
+                    for (int k = 0; k < 300; k++)               
+                    {
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
+                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
+                        {
+
+                            {
+                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 119, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                            }
+                        }
+                    }
+                    for (int k = 0; k < 300; k++)
+                    {
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
+                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)
+                        {
+
+                            {
+                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 369, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                            }
+                        }
+                    }
+                    for (int k = 0; k < 100; k++)
+                    {
+                        int Xore = Main.rand.Next(0, 600);
+                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
+                        WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(12, 20), WorldGen.genRand.Next(15, 40), 273, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                            
+                        }
+                    }
+                for(int k = 0; k < 1500; k++)
+                {
+                    for(int l = 0; l < Main.maxTilesY; l++)
+                    {
+                        if (Main.tile[k, l].type == 273)
+                            WorldGen.KillTile(k, l);
+                    }
+                }
+                    for (int k = 0; k < 600; k++)
+                    {
+                        int Xsize = Main.rand.Next(16, 42);
+                        int Ysize = Main.rand.Next(16, 42);
+                        int Xwal = Main.rand.Next(100, 500);
+                        int Ywal = WorldGen.genRand.Next((int)WorldGen.rockLayer - 100, Main.maxTilesY - 300);
+                        int type = 79;
+                        int radius = 15;
+                        for (int x = Xwal - Xsize; x <= Xwal + Xsize; x++)
+                            for (int y = Ywal - Ysize; y <= Ywal + Ysize; y++)
+                            {
+                                if (Vector2.Distance(new Vector2(Xwal, Ywal), new Vector2(x, y)) <= Xsize)
+                                {
+                                    if (Main.rand.Next(6) != 0) WorldGen.PlaceWall(x, y, type);
+                                }
+                                if (Vector2.Distance(new Vector2(Xwal, Ywal), new Vector2(x, y)) <= Ysize)
+                                {
+                                    if (Main.rand.Next(6) != 0) WorldGen.PlaceWall(x, y, type);
+                                }
+                            }
+                    }
+                
             }));
 
             

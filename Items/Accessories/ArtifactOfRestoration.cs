@@ -7,7 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+600 Max Life \n+160 Mana \nNo Potion Sickness");
+            Tooltip.SetDefault("+600 Max Life \n+160 Mana \nNo longer gives Potion Sickness");
         }
 
         public override void SetDefaults()

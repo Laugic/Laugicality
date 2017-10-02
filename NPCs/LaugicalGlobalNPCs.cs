@@ -10,6 +10,7 @@ namespace Laugicality.NPCs
     {
         public bool eFied = false;//Electrified
         public bool mFied = false;//Mystified
+        public bool hermes = false;
         public float mysticDamage = 1f;
         public int mysticCrit = 4;
 
@@ -17,9 +18,10 @@ namespace Laugicality.NPCs
         {
             eFied = false;
             mFied = false;
+            hermes = false;
             mysticCrit = 4;
     }
-
+        
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             if (eFied)//Electrified
@@ -29,6 +31,18 @@ namespace Laugicality.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= (int)(8);// * mysticDamage);
+                if (damage < 8)
+                {
+                    damage = (8);// * mysticDamage);
+                }
+            }
+            if (hermes)//Electrified
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 8;// * mysticDamage);
                 if (damage < 8)
                 {
                     damage = (8);// * mysticDamage);
@@ -75,6 +89,22 @@ namespace Laugicality.NPCs
                 if (Main.rand.Next(4) < 3)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Lightning"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
+            }
+            if (hermes)
+            {
+                if (Main.rand.Next(4) < 3)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Hermes"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;

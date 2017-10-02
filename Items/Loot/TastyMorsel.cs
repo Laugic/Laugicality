@@ -8,7 +8,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons Dune Sharkron \n\'Mmm... Looks delicious.\'");
+            Tooltip.SetDefault("Summons Dune Sharkron in the daylight \n\'Mmm... Looks delicious.\'");
         }
         public override void SetDefaults()
 		{
@@ -20,10 +20,10 @@ namespace Laugicality.Items.Loot
 			item.useTime = 45;
 			item.useStyle = 4;
 			item.UseSound = SoundID.Item44;
-			item.consumable = false;
+			item.consumable = true;
 			item.shoot = mod.ProjectileType("DuneSharkronSpawn");
 		}
-        /*
+        
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
@@ -42,6 +42,6 @@ namespace Laugicality.Items.Loot
             Arecipe.AddTile(26);
             Arecipe.SetResult(this);
             Arecipe.AddRecipe();
-        }*/
+        }
 	}
 }

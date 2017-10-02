@@ -16,8 +16,8 @@ namespace Laugicality.Projectiles.Mystic
         {
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 12;
+            projectile.height = 12;
             projectile.friendly = true;
             projectile.penetrate = 4;
             projectile.timeLeft = 600;

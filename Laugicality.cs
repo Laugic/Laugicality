@@ -27,6 +27,9 @@ namespace Laugicality
 {
     class Laugicality : Mod
     {
+        internal static ModHotKey ToggleMystic;
+        private double pressedHotkeyTime;
+
         public Laugicality()
         {
             Properties = new ModProperties()
@@ -72,7 +75,23 @@ namespace Laugicality
             }
         }
         
+        //Hotkeys
+        public override void Load()
+        {
+            ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
+        }
 
+        public override void UpdateMusic(ref int music)
+        {
+            if(Main.myPlayer != -1 && !Main.gameMenu)
+            {
+                if(Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
+                {
+                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+                }
+
+            }
+        }
     }
 
 }

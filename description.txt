@@ -2,14 +2,22 @@
 Current features:
 =========
 A new level-up system in the form of the Soul Stone
+A new class- The Mystic Class!
 4 Boss fights
 Over 175 new Items, including a new way to use Potions
 A new biome
 2 new Armor sets
 And lots more planned features!
 -----
+v 0.8
+Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
+-----
+v0.7
+Added Mystic weapons to PreHM! More will be coming to both PreHM and Hardmode, so be on the lookout for new updates every Sunday!
+Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
+-----
 v0.6
-Dune Fishron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
+Dune Sharkron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
 Mystic is coming...
 -----
 v0.5

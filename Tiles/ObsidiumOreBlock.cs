@@ -17,7 +17,7 @@ namespace Laugicality.Tiles
             Main.tileLighted[Type] = true;
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Ore");
-            AddMapEntry(new Color(50, 50, 50), name);
+            AddMapEntry(new Color(150, 50, 50), name);
             mineResist = 1f;
             minPick = 60;
             drop = mod.ItemType("ObsidiumOre");
