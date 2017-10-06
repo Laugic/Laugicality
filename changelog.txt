@@ -1,5 +1,5 @@
 Change gem stations- Alchemy station be an empty table, Crystaline & Mineral to be 2x2, and Ancient to be 2x3, and placeable on tables
 fix obsidium spawn rates, and add more obsidium stuffs
 fix Soul Stone in multiplayer
-change duke fishron's summon item to not summon in the daytime
+change dune sharkron's summon item to not summon in the daytime
 list music in desription
