@@ -23,7 +23,7 @@ using Terraria.ID;
 using Terraria.UI.Chat;
 using Terraria.ModLoader;
 
-namespace Laugicality
+namespace Laugicality //Laugicality.cs
 {
     class Laugicality : Mod
     {
