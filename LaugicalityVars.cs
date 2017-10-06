@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Laugicality
 {
-    class LaugicalityVars
+    class LaugicalityVars //A list of all of the important vars!
     {
         public enum ClassType
         {
