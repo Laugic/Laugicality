@@ -5,20 +5,16 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
+using System.Linq;
+using static Laugicality.LaugicalityVars;
 
 namespace Laugicality.Items.SoulStone
 {
     public class SoulStone : ModItem
     {
-        public static int Class = 0; 
-                                    /* 
-                                        Melee: 1  = Warrior(Dmg), 2 = Tank(Def), 3 = Paladin(Util/Survivability)
-                                        Magic: 4  = Warlock(Dmg), 5 = Wizard(Mana), 6 = Mage(Util/Survivability)
-                                        Range: 7  = Sharpshooter(Dmg), 8 = Rogue(Mobility), 9 = Hunter(Util/Survivability)
-                                        Summn: 10 = Necromancer(Dmg), 11 = Sorcerer(Minions & Mana), 12 = Shaman(Util/Survivability)
-                                        Throw: 13 = Assasin(Dmg), 14 = Ninja(Vel & Sp & Mobility), 15 = Thief(Util/Survivability) 
-                                        Mystc: 16 = Destructionist(Dmg), 17 = Illusionist(BuffDur & Mobility), 18 = Conjurer(Util/Survivability)
-                                    */
+        
+        public static int Class = (int)ClassType.Undefined; 
+
         //Throwing
         string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:+1 Max Minion]"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
         //Mystic
@@ -70,36 +66,26 @@ namespace Laugicality.Items.SoulStone
             Class = modPlayer.Class;
             if (NPC.downedSlimeKing)
             {
-                if(modPlayer.Class ==  13 || modPlayer.Class == 14 || modPlayer.Class == 15)
-                {
+                if (SlimeThrow.Contains(Class))
                     player.thrownDamage += 0.1f;
-                }
 
-                if (modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 8 || modPlayer.Class == 14 || modPlayer.Class == 17)
-                {
+                if (SlimeJump.Contains(Class))
                     player.jumpSpeedBoost += 5.0f;
-                }
 
-                if (modPlayer.Class == 1 || modPlayer.Class == 3 || modPlayer.Class == 4 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 7 || modPlayer.Class == 9 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 16 || modPlayer.Class == 18)
-                {
+                if (SlimeMinion.Contains(Class))
                     player.maxMinions += 1;
-                }
 
-                if (modPlayer.Class == 13 || modPlayer.Class == 15)
-                {
+                if (SlimeVelocity.Contains(Class))
                     player.thrownVelocity += .2f;
-                }
             }
             if (NPC.downedBoss1)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 10 || modPlayer.Class == 15 || modPlayer.Class == 16)
-                {
+                if (Boss1Thorns.Contains(Class))
                     player.thorns += 0.333333343f;
-                }
-                if (modPlayer.Class == 2 || modPlayer.Class == 5 || modPlayer.Class == 8 || modPlayer.Class == 12 || modPlayer.Class == 14 || modPlayer.Class == 17)
-                {
+
+                if (Boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
-                }
+
                 if (modPlayer.Class == 3 || modPlayer.Class == 6 || modPlayer.Class == 9 || modPlayer.Class == 11 || modPlayer.Class == 13 || modPlayer.Class == 18)
                 {
                     player.detectCreature = true;
