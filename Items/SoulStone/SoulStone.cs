@@ -12,8 +12,6 @@ namespace Laugicality.Items.SoulStone
 {
     public class SoulStone : ModItem
     {
-        
-        public static int Class = (int)ClassType.Undefined; 
 
         //Throwing
         string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:+1 Max Minion]"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
@@ -62,8 +60,8 @@ namespace Laugicality.Items.SoulStone
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            Class = modPlayer.Class;
+            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var Class = mPlayer.Class;
             if (NPC.downedSlimeKing)
             {
                 if (SlimeThrow.Contains(Class))
@@ -86,198 +84,179 @@ namespace Laugicality.Items.SoulStone
                 if (Boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
 
-                if (modPlayer.Class == 3 || modPlayer.Class == 6 || modPlayer.Class == 9 || modPlayer.Class == 11 || modPlayer.Class == 13 || modPlayer.Class == 18)
-                {
+                if (Boss1Detect.Contains(Class))
                     player.detectCreature = true;
-                }
-                if (modPlayer.Class ==  16 || modPlayer.Class == 17 || modPlayer.Class == 18)
+
+                if (Boss1Damage.Contains(Class))
                 {
-                    modPlayer.destructionDamage += 0.05f;
-                    modPlayer.conjurationDamage += 0.05f;
-                    modPlayer.mysticDuration += 0.1f;
+                    mPlayer.destructionDamage += 0.05f;
+                    mPlayer.conjurationDamage += 0.05f;
+                    mPlayer.mysticDuration += 0.1f;
                 }
             }
             if (NPC.downedBoss2)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 10 || modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 16)
-                {
-                    modPlayer.bRage = true;
-                }
-                if (modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 8 || modPlayer.Class == 12 || modPlayer.Class == 17)
+                if (Boss2Rage.Contains(Class))
+                    mPlayer.bRage = true;
+
+                if (Boss2Defence.Contains(Class))
                 {
                     player.statDefense += 4;
                     player.statLifeMax2 += 20;
                 }
-                if (modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 9 || modPlayer.Class == 11 || modPlayer.Class == 15 || modPlayer.Class == 18)
+                if (Boss2Regen.Contains(Class))
                 {
                     player.lifeRegen += 1;
                     player.statManaMax2 += 20;
                 }
-                if (modPlayer.Class == 4 || modPlayer.Class == 5 || modPlayer.Class == 6 )
-                {
+                if (Boss2RBonus.Contains(Class))
                     player.manaRegenBonus += 15;
-                }
+
             }
             if (NPC.downedQueenBee)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 16)
-                {
-                    modPlayer.qB = true;
-                }
-                if (modPlayer.Class ==  2 || modPlayer.Class == 3 || modPlayer.Class == 4 || modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 15 || modPlayer.Class == 18)
-                {
+                if (BeeTrue.Contains(Class))
+                    mPlayer.qB = true;
+
+                if (BeeRegen.Contains(Class))
                     player.lifeRegen += 2;
-                }
-                if (modPlayer.Class ==  5 || modPlayer.Class == 6 || modPlayer.Class == 9 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 17)
-                {
+
+                if (BeeMinions.Contains(Class))
                     player.maxMinions += 1;
-                }
-                if (modPlayer.Class ==  10 || modPlayer.Class == 11 || modPlayer.Class == 12)
-                {
+
+                if (BeeMDamage.Contains(Class))
                     player.minionDamage += .1f;
-                }
+
             }
             if (NPC.downedBoss3)
             {
-                if (modPlayer.Class ==  1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 10 || modPlayer.Class == 13 || modPlayer.Class == 16)
+                if (Boss3Damage.Contains(Class))
                 {
                     player.thrownDamage += 0.05f;
                     player.rangedDamage += 0.05f;
                     player.magicDamage += 0.05f;
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
-                    modPlayer.mysticDamage += 0.05f;
+                    mPlayer.mysticDamage += 0.05f;
                 }
-                if (modPlayer.Class ==  2 || modPlayer.Class == 17)
-                {
+                if (Boss3Defense.Contains(Class))
                     player.statDefense += 5;
-                }
-                if (modPlayer.Class ==  3 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 8 || modPlayer.Class == 9 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 14 || modPlayer.Class == 15 || modPlayer.Class == 18)
+
+                if (Boss3Speed.Contains(Class))
                 {
                     player.maxRunSpeed += .5f;
                     player.moveSpeed += .5f;
                 }
-                if (modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 9)
-                {
+                if (Boss3Crit.Contains(Class))
                     player.rangedCrit += 10;
-                }
+
             }
             if (Main.hardMode)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 10 || modPlayer.Class == 13 || modPlayer.Class == 16)
+                if (HardDamage.Contains(Class))
                 {
                     player.thrownDamage += 0.05f;
                     player.rangedDamage += 0.05f;
                     player.magicDamage += 0.05f;
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
-                    modPlayer.mysticDamage += 0.05f;
+                    mPlayer.mysticDamage += 0.05f;
                 }
-                if (modPlayer.Class == 2 || modPlayer.Class == 17 || modPlayer.Class == 3 || modPlayer.Class == 8 || modPlayer.Class == 9  || modPlayer.Class == 12 || modPlayer.Class == 14 || modPlayer.Class == 15)
-                {
+                if (HardRegen.Contains(Class))
                     player.lifeRegen += 2;
-                }
-                if (modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 11 || modPlayer.Class == 18)
-                {
+
+                if (HardMana.Contains(Class))
                     player.statManaMax2 += 40;
-                }
-                if (modPlayer.Class == 1 || modPlayer.Class == 2 || modPlayer.Class == 3)
-                {
-                    modPlayer.obsidium = true;
-                }
+
+                if (HardObsid.Contains(Class))
+                    mPlayer.obsidium = true;
+
             }
             if (NPC.downedMechBoss1)
             {
-                if (modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class ==  9 )
-                {
+                if (Mech1Crit.Contains(Class))
                     player.rangedCrit += 12;
-                }
-                if (modPlayer.Class == 1 || modPlayer.Class == 2 || modPlayer.Class ==  3 || modPlayer.Class ==  4 || modPlayer.Class ==  5 || modPlayer.Class ==  6 || modPlayer.Class ==  10 || modPlayer.Class ==  11 || modPlayer.Class ==  12 || modPlayer.Class ==  13 || modPlayer.Class ==  14 || modPlayer.Class ==  15 || modPlayer.Class ==  16 || modPlayer.Class ==  17 || modPlayer.Class ==  18 )
-                {
+
+                if (Mech1Speed.Contains(Class))
                     player.moveSpeed += .4f;
-                }
+
             }
             if (NPC.downedMechBoss2)
             {
-                if (modPlayer.Class == 4 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12)
+                if (Mech2Magic.Contains(Class))
                 {
                     player.magicDamage += 0.05f;
                     player.statManaMax2 += 20;
                     player.manaCost -= .1f;
-                    modPlayer.mysticDamage += .05f;
+                    mPlayer.mysticDamage += .05f;
                 }
-                if (modPlayer.Class == 1 || modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 9 || modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 15)
-                {
+                if (Mech2Jump.Contains(Class))
                     player.jumpSpeedBoost += 1.5f;
-                }
+
             }
             if (NPC.downedMechBoss3)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 2 || modPlayer.Class == 3)
+                if (Mech3Damage.Contains(Class))
                 {
-                    modPlayer.skp = true;
+                    mPlayer.skp = true;
                     player.meleeDamage += 0.05f;
                     player.meleeSpeed += 0.05f;
                 }
-                if (modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 9 || modPlayer.Class == 4 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 15 || modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18)
-                {
+                if (Mech3Defense.Contains(Class))
                     player.statDefense += 6;
-                }
+
             }
             if (NPC.downedPlantBoss)
             {
-                if (modPlayer.Class == 4 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18)
+                if (PlantBonus.Contains(Class))
                 {
                     player.maxMinions++;
                     player.manaRegenBonus += 20;
                 }
-                if (modPlayer.Class == 1 || modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 9 ||  modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 15 )
-                {
+                if (PlantThorns.Contains(Class))
                     player.thorns += 1f;
-                }
+
             }
             if (NPC.downedGolemBoss)
             {
-                if (modPlayer.Class ==  1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 13 )
+                if (GolemCrit.Contains(Class))
                 {
                     player.thrownCrit += 10;
                     player.rangedCrit += 10;
                     player.magicCrit += 10;
                     player.meleeCrit += 10;
                 }
-                if (modPlayer.Class ==  2 || modPlayer.Class == 3 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 8 || modPlayer.Class == 9 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 14 || modPlayer.Class == 15 || modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18)
-                {
+                if (GolemRegen.Contains(Class))
                     player.lifeRegen += 2;
-                }
+
             }
             if (NPC.downedFishron)
             {
-                if (modPlayer.Class ==  1 || modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 7 || modPlayer.Class == 8 || modPlayer.Class == 9)
+                if (FishDouche.Contains(Class))
                 {
-                    modPlayer.douche = true;
+                    mPlayer.douche = true;
                     player.rangedDamage += 0.08f;
                     player.meleeSpeed += 0.08f;
                 }
-                if (modPlayer.Class ==  4 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 13 || modPlayer.Class == 14 || modPlayer.Class == 15)
-                {
+                if (FishSpeed.Contains(Class))
                     player.jumpSpeedBoost += 4.0f;
-                }
-                if (modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18)
+
+                if (FishMDamage.Contains(Class))
                 {
-                    modPlayer.destructionDamage += 0.05f;
-                    modPlayer.conjurationDamage += 0.05f;
-                    modPlayer.mysticDuration += 0.1f;
+                    mPlayer.destructionDamage += 0.05f;
+                    mPlayer.conjurationDamage += 0.05f;
+                    mPlayer.mysticDuration += 0.1f;
                 }
             }
             if (NPC.downedAncientCultist)
             {
-                if (modPlayer.Class == 1 || modPlayer.Class == 4 || modPlayer.Class == 7 || modPlayer.Class == 13)
+                if (CultistDamage1.Contains(Class))
                 {
                     player.rangedDamage += 0.08f;
                     player.meleeDamage += 0.08f;
-                    modPlayer.mysticDamage += .08f;
+                    mPlayer.mysticDamage += .08f;
                 }
-                if (modPlayer.Class == 2 || modPlayer.Class == 3 || modPlayer.Class == 5 || modPlayer.Class == 6 || modPlayer.Class == 8 || modPlayer.Class == 9 || modPlayer.Class == 10 || modPlayer.Class == 11 || modPlayer.Class == 12 || modPlayer.Class == 14 || modPlayer.Class == 15 || modPlayer.Class == 16 || modPlayer.Class == 17 || modPlayer.Class == 18)
+                if (CultistDamage2.Contains(Class))
                 {
                     player.magicDamage += 0.08f;
                     player.minionDamage += 0.08f;
@@ -291,7 +270,7 @@ namespace Laugicality.Items.SoulStone
                 player.magicDamage += 0.10f;
                 player.minionDamage += 0.10f;
                 player.meleeDamage += 0.10f;
-                modPlayer.mysticDamage += .1f;
+                mPlayer.mysticDamage += .1f;
                 player.statDefense += 12;
             }
         }
@@ -300,6 +279,7 @@ namespace Laugicality.Items.SoulStone
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            var Class = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
             //Tooltips
             /*if (KS > 0)
             {
@@ -307,47 +287,47 @@ namespace Laugicality.Items.SoulStone
                 tooltips.Add(lineKSTT);
             }*/
             //Class
-            if (Class == 0) { TooltipLine lineClass = new TooltipLine(mod, "", "Your Soul is not Bound. \nCraft one of the class Stones to bind it!"); tooltips.Add(lineClass); }
-            else if (Class == 1) { TooltipLine lineClass = new TooltipLine(mod, "", "Warrior"); tooltips.Add(lineClass); }
-            else if (Class == 2) { TooltipLine lineClass = new TooltipLine(mod, "", "Tank"); tooltips.Add(lineClass); }
-            else if (Class == 3) { TooltipLine lineClass = new TooltipLine(mod, "", "Paladin"); tooltips.Add(lineClass); }
-            else if (Class == 4) { TooltipLine lineClass = new TooltipLine(mod, "", "Warlock"); tooltips.Add(lineClass); }
-            else if (Class == 5) { TooltipLine lineClass = new TooltipLine(mod, "", "Wizard"); tooltips.Add(lineClass); }
-            else if (Class == 6) { TooltipLine lineClass = new TooltipLine(mod, "", "Mage"); tooltips.Add(lineClass); }
-            else if (Class == 7) { TooltipLine lineClass = new TooltipLine(mod, "", "Sharpshooter"); tooltips.Add(lineClass); }
-            else if (Class == 8) { TooltipLine lineClass = new TooltipLine(mod, "", "Rogue"); tooltips.Add(lineClass); }
-            else if (Class == 9) { TooltipLine lineClass = new TooltipLine(mod, "", "Hunter"); tooltips.Add(lineClass); }
-            else if (Class == 10) { TooltipLine lineClass = new TooltipLine(mod, "", "Necromancer"); tooltips.Add(lineClass); }
-            else if (Class == 11) { TooltipLine lineClass = new TooltipLine(mod, "", "Sorcerer"); tooltips.Add(lineClass); }
-            else if (Class == 12) { TooltipLine lineClass = new TooltipLine(mod, "", "Shaman"); tooltips.Add(lineClass); }
-            else if (Class == 13) { TooltipLine lineClass = new TooltipLine(mod, "", "Assassin"); tooltips.Add(lineClass); }
-            else if (Class == 14) { TooltipLine lineClass = new TooltipLine(mod, "", "Ninja"); tooltips.Add(lineClass); }
-            else if (Class == 15) { TooltipLine lineClass = new TooltipLine(mod, "", "Thief"); tooltips.Add(lineClass); }
-            else if (Class == 16) { TooltipLine lineClass = new TooltipLine(mod, "", "Destructionist"); tooltips.Add(lineClass); }
-            else if (Class == 17) { TooltipLine lineClass = new TooltipLine(mod, "", "Illusionist"); tooltips.Add(lineClass); }
-            else if (Class == 18) { TooltipLine lineClass = new TooltipLine(mod, "", "Conjurer"); tooltips.Add(lineClass); }
+            if      (Class == (int)ClassType.Undefined      ) { TooltipLine lineClass = new TooltipLine(mod, "", "Your Soul is not Bound. \nCraft one of the class Stones to bind it!"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Warrior        ) { TooltipLine lineClass = new TooltipLine(mod, "", "Warrior"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Tank           ) { TooltipLine lineClass = new TooltipLine(mod, "", "Tank"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Paladin        ) { TooltipLine lineClass = new TooltipLine(mod, "", "Paladin"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Warlock        ) { TooltipLine lineClass = new TooltipLine(mod, "", "Warlock"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Wizard         ) { TooltipLine lineClass = new TooltipLine(mod, "", "Wizard"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Mage           ) { TooltipLine lineClass = new TooltipLine(mod, "", "Mage"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Sharpshooter   ) { TooltipLine lineClass = new TooltipLine(mod, "", "Sharpshooter"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Rogue          ) { TooltipLine lineClass = new TooltipLine(mod, "", "Rogue"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Hunter         ) { TooltipLine lineClass = new TooltipLine(mod, "", "Hunter"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Necromancer    ) { TooltipLine lineClass = new TooltipLine(mod, "", "Necromancer"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Sorcerer       ) { TooltipLine lineClass = new TooltipLine(mod, "", "Sorcerer"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Shaman         ) { TooltipLine lineClass = new TooltipLine(mod, "", "Shaman"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Assasin        ) { TooltipLine lineClass = new TooltipLine(mod, "", "Assassin"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Ninja          ) { TooltipLine lineClass = new TooltipLine(mod, "", "Ninja"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Thief          ) { TooltipLine lineClass = new TooltipLine(mod, "", "Thief"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Destructionist ) { TooltipLine lineClass = new TooltipLine(mod, "", "Destructionist"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Illusionist    ) { TooltipLine lineClass = new TooltipLine(mod, "", "Illusionist"); tooltips.Add(lineClass); }
+            else if (Class == (int)ClassType.Conjurer       ) { TooltipLine lineClass = new TooltipLine(mod, "", "Conjurer"); tooltips.Add(lineClass); }
             //Tooltips
             if (NPC.downedSlimeKing)
             {
-                if (Class == 13 || Class == 14 || Class == 15)
+                if (SlimeThrow.Contains(Class))
                 {
                     TooltipLine lineKS1 = new TooltipLine(mod, "", KS1);
                     tooltips.Add(lineKS1);
                 }
 
-                if (Class == 2 || Class == 3 || Class == 8 || Class == 14 || Class == 17)
+                if (SlimeJump.Contains(Class))
                 {
                     TooltipLine lineKS2 = new TooltipLine(mod, "", KS2);
                     tooltips.Add(lineKS2);
                 }
 
-                if (Class == 1 || Class == 3 || Class == 4 || Class == 5 || Class == 6 || Class == 7 || Class == 9 || Class == 10 || Class == 11 || Class == 12 || Class == 16 || Class == 18)
+                if (SlimeMinion.Contains(Class))
                 {
                     TooltipLine lineKS3 = new TooltipLine(mod, "", KS3);
                     tooltips.Add(lineKS3);
                 }
 
-                if (Class == 13 || Class == 15)
+                if (SlimeVelocity.Contains(Class))
                 {
                     TooltipLine lineKS4 = new TooltipLine(mod, "", KS4);
                     tooltips.Add(lineKS4);
@@ -355,22 +335,22 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedBoss1)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 10 || Class == 15 || Class == 16)
+                if (Boss1Thorns.Contains(Class))
                 {
                     TooltipLine lineEoC1 = new TooltipLine(mod, "", EoC1);
                     tooltips.Add(lineEoC1);
                 }
-                if (Class == 2 || Class == 5 || Class == 8 || Class == 12 || Class == 14 || Class == 17)
+                if (Boss1Speed.Contains(Class))
                 {
                     TooltipLine lineEoC2 = new TooltipLine(mod, "", EoC2);
                     tooltips.Add(lineEoC2);
                 }
-                if (Class == 3 || Class == 6 || Class == 9 || Class == 11 || Class == 13 || Class == 18)
+                if (Boss1Detect.Contains(Class))
                 {
                     TooltipLine lineEoC3 = new TooltipLine(mod, "", EoC3);
                     tooltips.Add(lineEoC3);
                 }
-                if (Class == 16 || Class == 17 || Class == 18)
+                if (Boss1Damage.Contains(Class))
                 {
                     TooltipLine lineEoC4 = new TooltipLine(mod, "", EoC4);
                     tooltips.Add(lineEoC4);
@@ -378,22 +358,22 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedBoss2)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 10 || Class == 13 || Class == 14 || Class == 16)
+                if (Boss2Rage.Contains(Class))
                 {
                     TooltipLine lineEoWBoC1 = new TooltipLine(mod, "", EoWBoC1);
                     tooltips.Add(lineEoWBoC1);
                 }
-                if (Class == 2 || Class == 3 || Class == 8 || Class == 12 || Class == 17)
+                if (Boss2Defence.Contains(Class))
                 {
                     TooltipLine lineEoWBoC2 = new TooltipLine(mod, "", EoWBoC2);
                     tooltips.Add(lineEoWBoC2);
                 }
-                if (Class == 5 || Class == 6 || Class == 9 || Class == 11 || Class == 15 || Class == 18)
+                if (Boss2Regen.Contains(Class))
                 {
                     TooltipLine lineEoWBoC3 = new TooltipLine(mod, "", EoWBoC3);
                     tooltips.Add(lineEoWBoC3);
                 }
-                if (Class == 4 || Class == 5 || Class == 6)
+                if (Boss2RBonus.Contains(Class))
                 {
                     TooltipLine lineEoWBoC4 = new TooltipLine(mod, "", EoWBoC4);
                     tooltips.Add(lineEoWBoC4);
@@ -401,22 +381,22 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedQueenBee)
             {
-                if (Class == 1 || Class == 7 || Class == 8 || Class == 16)
+                if (BeeTrue.Contains(Class))
                 {
                     TooltipLine lineQB1 = new TooltipLine(mod, "", QB1);
                     tooltips.Add(lineQB1);
                 }
-                if (Class == 2 || Class == 3 || Class == 4 || Class == 13 || Class == 14 || Class == 15 || Class == 18)
+                if (BeeRegen.Contains(Class))
                 {
                     TooltipLine lineQB2 = new TooltipLine(mod, "", QB2);
                     tooltips.Add(lineQB2);
                 }
-                if (Class == 5 || Class == 6 || Class == 9 || Class == 10 || Class == 11 || Class == 12 || Class == 17)
+                if (BeeMinions.Contains(Class))
                 {
                     TooltipLine lineQB3 = new TooltipLine(mod, "", QB3);
                     tooltips.Add(lineQB3);
                 }
-                if (Class == 10 || Class == 11 || Class == 12)
+                if (BeeMDamage.Contains(Class))
                 {
                     TooltipLine lineQB4 = new TooltipLine(mod, "", QB4);
                     tooltips.Add(lineQB4);
@@ -424,22 +404,22 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedBoss3)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 10 || Class == 13 || Class == 16)
+                if (Boss3Damage.Contains(Class))
                 {
                     TooltipLine lineSK1 = new TooltipLine(mod, "", SK1);
                     tooltips.Add(lineSK1);
                 }
-                if (Class == 2 || Class == 17)
+                if (Boss3Defense.Contains(Class))
                 {
                     TooltipLine lineSK2 = new TooltipLine(mod, "", SK2);
                     tooltips.Add(lineSK2);
                 }
-                if (Class == 3 || Class == 5 || Class == 6 || Class == 8 || Class == 9 || Class == 11 || Class == 12 || Class == 14 || Class == 15 || Class == 18)
+                if (Boss3Speed.Contains(Class))
                 {
                     TooltipLine lineSK3 = new TooltipLine(mod, "", SK3);
                     tooltips.Add(lineSK3);
                 }
-                if (Class == 7 || Class == 8 || Class == 9)
+                if (Boss3Crit.Contains(Class))
                 {
                     TooltipLine lineSK4 = new TooltipLine(mod, "", SK4);
                     tooltips.Add(lineSK4);
@@ -448,22 +428,22 @@ namespace Laugicality.Items.SoulStone
             }
             if (Main.hardMode)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 10 || Class == 13 || Class == 16)
+                if (HardDamage.Contains(Class))
                 {
                     TooltipLine lineWoF1 = new TooltipLine(mod, "", WoF1);
                     tooltips.Add(lineWoF1);
                 }
-                if (Class == 2 || Class == 17 || Class == 3 || Class == 8 || Class == 9 || Class == 12 || Class == 14 || Class == 15)
+                if (HardRegen.Contains(Class))
                 {
                     TooltipLine lineWoF2 = new TooltipLine(mod, "", WoF2);
                     tooltips.Add(lineWoF2);
                 }
-                if (Class == 5 || Class == 6 || Class == 11 || Class == 18)
+                if (HardMana.Contains(Class))
                 {
                     TooltipLine lineWoF3 = new TooltipLine(mod, "", WoF3);
                     tooltips.Add(lineWoF3);
                 }
-                if (Class == 1 || Class == 2 || Class == 3)
+                if (HardObsid.Contains(Class))
                 {
                     TooltipLine lineWoF4 = new TooltipLine(mod, "", WoF4);
                     tooltips.Add(lineWoF4);
@@ -471,13 +451,13 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedMechBoss2)
             {
-                if (Class == 7 || Class == 8 || Class == 9)
+                if (Mech1Crit.Contains(Class))
                 
                     {
                         TooltipLine lineTW1 = new TooltipLine(mod, "", TW1);
                         tooltips.Add(lineTW1);
                     }
-                if (Class == 1 || Class == 2 || Class == 3 || Class == 4 || Class == 5 || Class == 6 || Class == 10 || Class == 11 || Class == 12 || Class == 13 || Class == 14 || Class == 15 || Class == 16 || Class == 17 || Class == 18)
+                if (Mech1Speed.Contains(Class))
                     {
                         TooltipLine lineTW2 = new TooltipLine(mod, "", TW2);
                         tooltips.Add(lineTW2);
@@ -485,12 +465,12 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedMechBoss1)
             {
-                if (Class == 4 || Class == 5 || Class == 6 || Class == 16 || Class == 17 || Class == 18 || Class == 10 || Class == 11 || Class == 12)
+                if (Mech2Magic.Contains(Class))
                     {
                         TooltipLine lineDST1 = new TooltipLine(mod, "", DST1);
                         tooltips.Add(lineDST1);
                     }
-                if (Class == 1 || Class == 2 || Class == 3 || Class == 7 || Class == 8 || Class == 9 || Class == 13 || Class == 14 || Class == 15)
+                if (Mech2Jump.Contains(Class))
                     {
                         TooltipLine lineDST2 = new TooltipLine(mod, "", DST2);
                         tooltips.Add(lineDST2);
@@ -498,12 +478,12 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedMechBoss3)
             {
-                if (Class == 1 || Class == 2 || Class == 3)
+                if (Mech3Damage.Contains(Class))
                     {
                         TooltipLine lineSP1 = new TooltipLine(mod, "", SP1);
                         tooltips.Add(lineSP1);
                     }
-                if (Class == 7 || Class == 8 || Class == 9 || Class == 4 || Class == 5 || Class == 6 || Class == 10 || Class == 11 || Class == 12 || Class == 13 || Class == 14 || Class == 15 || Class == 16 || Class == 17 || Class == 18)
+                if (Mech3Defense.Contains(Class))
                     {
                         TooltipLine lineSP2 = new TooltipLine(mod, "", SP2);
                         tooltips.Add(lineSP2);
@@ -511,12 +491,12 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedPlantBoss)
             {
-                if (Class == 4 || Class == 5 || Class == 6 || Class == 10 || Class == 11 || Class == 12 || Class == 16 || Class == 17 || Class == 18)
+                if (PlantBonus.Contains(Class))
                 {
                     TooltipLine linePT1 = new TooltipLine(mod, "", PT1);
                     tooltips.Add(linePT1);
                 }
-                if (Class == 1 || Class == 2 || Class == 3 || Class == 7 || Class == 8 || Class == 9 || Class == 13 || Class == 14 || Class == 15)
+                if (PlantThorns.Contains(Class))
                 {
                     TooltipLine linePT2 = new TooltipLine(mod, "", PT2);
                     tooltips.Add(linePT2);
@@ -524,12 +504,12 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedGolemBoss)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 13)
+                if (GolemCrit.Contains(Class))
                 {
                     TooltipLine lineGL1 = new TooltipLine(mod, "", GL1);
                     tooltips.Add(lineGL1);
                 }
-                if (Class == 2 || Class == 3 || Class == 5 || Class == 6 || Class == 8 || Class == 9 || Class == 10 || Class == 11 || Class == 12 || Class == 14 || Class == 15 || Class == 16 || Class == 17 || Class == 18)
+                if (GolemRegen.Contains(Class))
                 {
                     TooltipLine lineGL2 = new TooltipLine(mod, "", GL2);
                     tooltips.Add(lineGL2);
@@ -537,17 +517,17 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedFishron)
             {
-                if (Class == 1 || Class == 2 || Class == 3 || Class == 7 || Class == 8 || Class == 9)
+                if (FishDouche.Contains(Class))
                 {
                     TooltipLine lineDF1 = new TooltipLine(mod, "", DF1);
                     tooltips.Add(lineDF1);
                 }
-                if (Class == 4 || Class == 5 || Class == 6 || Class == 10 || Class == 11 || Class == 12 || Class == 13 || Class == 14 || Class == 15)
+                if (FishSpeed.Contains(Class))
                 {
                     TooltipLine lineDF2 = new TooltipLine(mod, "", DF2);
                     tooltips.Add(lineDF2);
                 }
-                if (Class == 16 || Class == 17 || Class == 18)
+                if (FishMDamage.Contains(Class))
                 {
                     TooltipLine lineDF3 = new TooltipLine(mod, "", DF3);
                     tooltips.Add(lineDF3);
@@ -555,12 +535,12 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedAncientCultist)
             {
-                if (Class == 1 || Class == 4 || Class == 7 || Class == 13)
+                if (CultistDamage1.Contains(Class))
                 {
                     TooltipLine lineLC1 = new TooltipLine(mod, "", LC1);
                     tooltips.Add(lineLC1);
                 }
-                if (Class == 2 || Class == 3 || Class == 5 || Class == 6 || Class == 8 || Class == 9 || Class == 10 || Class == 11 || Class == 12 || Class == 14 || Class == 15 || Class == 16 || Class == 17 || Class == 18)
+                if (CultistDamage2.Contains(Class))
                 {
                     TooltipLine lineLC2 = new TooltipLine(mod, "", LC2);
                     tooltips.Add(lineLC2);
