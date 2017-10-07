@@ -39,7 +39,7 @@ namespace Laugicality.Items.SoulStone
         public override void RightClick(Player player)
         {
             //Player Vars
-            player.GetModPlayer<LaugicalityPlayer>().Class = 10;
+            player.GetModPlayer<LaugicalityPlayer>().Class = (int)LaugicalityVars.ClassType.Necromancer;
             Main.NewText("Your Soul has been bound to the Soul Stone.", 50, 200, 50);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
         }
 
