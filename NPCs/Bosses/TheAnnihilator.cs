@@ -42,7 +42,7 @@ namespace Laugicality.NPCs.Bosses
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Dramophone");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
 
         }
 

@@ -30,11 +30,13 @@ namespace Laugicality.NPCs.Obsidium
             npc.noGravity = true;
             npc.noTileCollide = true;
         }
-
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer-150)
-                return 1f;
+            var player = Main.LocalPlayer;
+            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+
+            if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer - 150 && !player.ZoneDungeon)
+                return SpawnCondition.Cavern.Chance * 0.75f;
             else return 0f;
         }
         public override void AI()

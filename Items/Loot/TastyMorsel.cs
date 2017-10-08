@@ -23,8 +23,13 @@ namespace Laugicality.Items.Loot
 			item.consumable = true;
 			item.shoot = mod.ProjectileType("DuneSharkronSpawn");
 		}
-        
-		public override void AddRecipes()
+
+        public override bool CanUseItem(Player player)
+        {
+            return Main.dayTime;
+        }
+
+        public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Lens, 2);

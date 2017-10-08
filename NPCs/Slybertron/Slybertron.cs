@@ -85,7 +85,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.lavaImmune = true;
             npc.noGravity = false;
             npc.noTileCollide = false;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Dramophone");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
             damage = 40;
 
         }
@@ -102,7 +102,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void AI()
         {
             //Despawn check
-            if (Main.player[npc.target].statLife == 0) { npc.position.Y -= -1000; spawned = 0; }
+            if (Main.player[npc.target].statLife == 0) { npc.position.Y += -100; spawned = 0; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             //Jump at you if too far away [x]

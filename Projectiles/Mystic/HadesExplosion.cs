@@ -21,6 +21,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.penetrate = 999;
             projectile.timeLeft = 24;
             projectile.ignoreWater = true;
+            projectile.tileCollide = false;
             Main.projFrames[projectile.type] = 6;
         }
 

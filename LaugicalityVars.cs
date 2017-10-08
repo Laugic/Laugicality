@@ -42,7 +42,7 @@ namespace Laugicality
         public static readonly HashSet<int> SlimeJump =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Tank, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Rogue, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Illusionist };
         public static readonly HashSet<int> SlimeMinion =
-            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Conjurer };
+            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Conjurer };
         public static readonly HashSet<int> SlimeVelocity =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Thief };
 
@@ -137,9 +137,9 @@ namespace Laugicality
 
         /* -------------- CULTIST -------------- */
         public static readonly HashSet<int> CultistDamage1 =
-            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Assasin };
+            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Tank, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Rogue, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Thief };
         public static readonly HashSet<int> CultistDamage2 =
-            new HashSet<int> { (int)LaugicalityVars.ClassType.Tank, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Rogue, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Shaman, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Thief, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Illusionist, (int)LaugicalityVars.ClassType.Conjurer };
+            new HashSet<int> { (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Shaman, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Illusionist, (int)LaugicalityVars.ClassType.Conjurer };
 
     }
 }

@@ -1,9 +1,9 @@
 author = Laugic 
-version = 0.8.0.1
+version = 0.8.2
 displayName = The Enigma Mod
 homepage = https://forums.terraria.org/index.php?threads/the-enigma-mod.60046/
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.zip, *.user, obj\*, bin\*, .vs\*
+buildIgnore = *.csproj, *.zip, *.user, obj\*, bin\*, .vs\*, .git\*, *.gitignore
 includePDB = true

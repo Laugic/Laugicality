@@ -24,7 +24,11 @@ namespace Laugicality.Items.Loot
 			item.shoot = mod.ProjectileType("TheAnnihilatorSpawn");
 		}
 
-		public override void AddRecipes()
+        public override bool CanUseItem(Player player)
+        {
+            return !Main.dayTime;
+        }
+        public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(1225, 5);
@@ -40,8 +44,8 @@ namespace Laugicality.Items.Loot
             Arecipe.AddIngredient(1225, 5);
             Arecipe.AddIngredient(ItemID.Lens, 3);
             Arecipe.AddIngredient(ItemID.RottenChunk, 3);
-            recipe.AddIngredient(null, "SoulOfHaught", 3);
-            recipe.AddIngredient(null, "SoulOfSought", 3);
+            Arecipe.AddIngredient(null, "SoulOfHaught", 3);
+            Arecipe.AddIngredient(null, "SoulOfSought", 3);
             Arecipe.AddTile(134);
             Arecipe.SetResult(this);
             Arecipe.AddRecipe();

@@ -11,6 +11,10 @@ And lots more planned features!
 -----
 v 0.8
 Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
+Hotfixes: 0.8.2- 
+Fixed Soul Stone multiplayer bug & various other bugfixes / Quality of Life fixes
+New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
+Music is now listed under features in the description- just scroll down and you'll find it!
 -----
 v0.7
 Added Mystic weapons to PreHM! More will be coming to both PreHM and Hardmode, so be on the lookout for new updates every Sunday!
@@ -49,7 +53,12 @@ Crystalizing Potions!
 Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
 Most Gems can combine with others to make super accessories.
 Some Gems, including Ironskin, Regeneration, Mining, and many more, can stack with their potion counterpart.
-
+========
+Music
+========
+Annihilator: Tied Up - Silent Partner
+Slybertron / Steam Train: Steredenn OST - Theyre Everywhere
+Obsidium: Chaos 101 2 - Gunnar Johnsén
 ========
 Planned features:
 ========

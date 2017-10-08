@@ -12,8 +12,8 @@ namespace Laugicality.Items.Placeable
 
         public override void SetDefaults()
         {
-            item.width = 54;
-            item.height = 27;
+            item.width = 32;
+            item.height = 32;
             item.maxStack = 1;
             item.useTurn = true;
             item.autoReuse = true;
