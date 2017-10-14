@@ -14,50 +14,22 @@ Added Hypothema- A chilly boss that guards the Ice Biome in Pre-Hardmode
 Added a new set of armor and weapons for Hypothema's loot
 Various Soul Stone changes, some Annihilator tweaks
 -----
-Other additions:
+Recent Changes:
 Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
-Fixed Soul Stone multiplayer bug & various other bugfixes / Quality of Life fixes
 New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
-Added Mystic weapons to PreHM! More will be coming to both PreHM and Hardmode, so be on the lookout for new updates every Sunday!
+Added Mystic weapons to PreHM!
 Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
 Dune Sharkron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
-Mystic is coming...
 Steam Train is the 3rd and final Steampunk boss, and with it the Steampunk tier is finished! Lots of new weapons and accessories have been added too.
 Slybertron brings an extra challenge to the table! "A mechanical King Slime? Pfft. That'll be eas-" *Terrarian had their guts ripped out by Reality.
-2/3 Steampunk bosses down!
 The Annihilator has started the boss train!
-It is a mechanical version of the Brain of Cthulhu, but you can fight it on any world, like you can the Destroyer. It has unique loot and it the beginnning of a new Soul set.
 Soul Stone- Created from the essences of life and magic, it allows you to absorb the souls of defeated bosses, gaining new effects as you progress.
 There's a secret under the ocean to the west...
-Crystalizing Potions!
 Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
-Most Gems can combine with others to make super accessories.
-Some Gems, including Ironskin, Regeneration, Mining, and many more, can stack with their potion counterpart.
+Most Gems can stack with their potion counterpart.
 ========
 Music
 ========
 Annihilator: Tied Up - Silent Partner
 Slybertron / Steam Train: Steredenn OST - They're Everywhere
-Obsidium: Chaos 101 2 - Gunnar Johnsén
-========
-Planned features:
-========
-[In no particular order]
-15 New Bosses! [Possibly more!]
--5 Pre-Hardmode:
-	-3 Bosses that drop loot that can be used in multi-class armors, like the Frost Armor
-	-2 Special bosses
--10 Hardmode:
-	[Done]-A 2nd group of Mech Bosses(Steampunk Bosses!)
-	-A special post-golem boss
-	-6 Post-Moonlord Bosses(All themed around H.P. Lovecraft[The guy who came up with Cthulhu]!)
-
-A New Class!
-The Mystic Class- A class with mystical properties, and secrets to discover.
-
-World Gen!
-New biomes and minibiomes, including Obsidium[Done], Steampunk Airships, and more!
-
-Improving various vanilla features:
--Giving the Goblin Army good loot pre-hardmode [Building blocks, unique weapons/accessories, etc.]
--Recipes for vanilla accessories and loot that are otherwise very difficult to get
+Obsidium: Chaos 101 2 - Gunnar Johnsen
