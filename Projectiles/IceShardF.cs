@@ -22,7 +22,7 @@ namespace Laugicality.Projectiles
             projectile.height = 54;
             projectile.friendly = true;
             projectile.penetrate = 4;
-            projectile.timeLeft = 600;
+            projectile.timeLeft = 200;
             projectile.ignoreWater = true;
         }
 

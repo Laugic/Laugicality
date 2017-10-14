@@ -6,17 +6,18 @@ A new class- The Mystic Class!
 4 Boss fights
 Over 175 new Items, including a new way to use Potions
 A new biome
-2 new Armor sets
+3 new Armor sets
 And lots more planned features!
 -----
-v 0.8
-Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
-Hotfixes: 0.8.2- 
-Fixed Soul Stone multiplayer bug & various other bugfixes / Quality of Life fixes
-New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
-Music is now listed under features in the description- just scroll down and you'll find it!
+v 0.9
+Added Hypothema- A chilly boss that guards the Ice Biome in Pre-Hardmode
+Added a new set of armor and weapons for Hypothema's loot
+Various Soul Stone changes, some Annihilator tweaks
 -----
 Other additions:
+Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
+Fixed Soul Stone multiplayer bug & various other bugfixes / Quality of Life fixes
+New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
 Added Mystic weapons to PreHM! More will be coming to both PreHM and Hardmode, so be on the lookout for new updates every Sunday!
 Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
 Dune Sharkron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
