@@ -16,39 +16,18 @@ Fixed Soul Stone multiplayer bug & various other bugfixes / Quality of Life fixe
 New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
 Music is now listed under features in the description- just scroll down and you'll find it!
 -----
-v0.7
+Other additions:
 Added Mystic weapons to PreHM! More will be coming to both PreHM and Hardmode, so be on the lookout for new updates every Sunday!
 Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
------
-v0.6
 Dune Sharkron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
 Mystic is coming...
------
-v0.5
 Steam Train is the 3rd and final Steampunk boss, and with it the Steampunk tier is finished! Lots of new weapons and accessories have been added too.
------
-v0.4
 Slybertron brings an extra challenge to the table! "A mechanical King Slime? Pfft. That'll be eas-" *Terrarian had their guts ripped out by Reality.
 2/3 Steampunk bosses down!
-v0.4.4
-Fixed many multiplayer issues with boss fights.
------
-v0.3
 The Annihilator has started the boss train!
 It is a mechanical version of the Brain of Cthulhu, but you can fight it on any world, like you can the Destroyer. It has unique loot and it the beginnning of a new Soul set.
-v0.3.3
-The Soul Stone now saves between reloads and updates, and a special weapon was added.
-There is now a crafting recipe for that pesky 'Hotline Fishing Hook'
-v0.3.4
-Potion Crystals no longer give the actual buff, except Inferno
-v0.3.6 Forum page added! :D
------
-v0.2
 Soul Stone- Created from the essences of life and magic, it allows you to absorb the souls of defeated bosses, gaining new effects as you progress.
 There's a secret under the ocean to the west...
-v0.2.5: Soul Stone is now more customizable. Expert items can be used to reabsorb Souls. They are returned after use.
------
-v0.1
 Crystalizing Potions!
 Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
 Most Gems can combine with others to make super accessories.
@@ -57,7 +36,7 @@ Some Gems, including Ironskin, Regeneration, Mining, and many more, can stack wi
 Music
 ========
 Annihilator: Tied Up - Silent Partner
-Slybertron / Steam Train: Steredenn OST - Theyre Everywhere
+Slybertron / Steam Train: Steredenn OST - They're Everywhere
 Obsidium: Chaos 101 2 - Gunnar Johnsén
 ========
 Planned features:

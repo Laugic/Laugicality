@@ -20,6 +20,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.penetrate = 3;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
+            projectile.tileCollide = false;
         }
 
         

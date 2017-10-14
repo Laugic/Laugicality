@@ -21,7 +21,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.width = 18;
             projectile.height = 18;
             projectile.friendly = true;
-            //projectile.penetrate = 2;
+            projectile.penetrate = 2;
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
         }
@@ -29,6 +29,8 @@ namespace Laugicality.Projectiles.Mystic
 
         public override void AI()
         {
+            projectile.velocity.Y += projectile.ai[0];
+
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
@@ -42,22 +44,38 @@ namespace Laugicality.Projectiles.Mystic
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
 
-            projectile.Kill();
-            Main.PlaySound(SoundID.Item10, projectile.position);
-            
+            projectile.penetrate--;
+            if (projectile.penetrate <= 0)
+            {
+                projectile.Kill();
+            }
+            else{
+                projectile.ai[0] += 0.2f;
+                if (projectile.velocity.X != oldVelocity.X)
+                {
+                    projectile.velocity.X = -oldVelocity.X;
+                }
+                if (projectile.velocity.Y != oldVelocity.Y)
+                {
+                    projectile.velocity.Y = -oldVelocity.Y;
+                }
+                projectile.velocity *= 0.75f;
+                Main.PlaySound(SoundID.Item10, projectile.position);
+            }
+
             return false;
         }
         
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            projectile.ai[0] += 0.2f;
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
-
-            projectile.Kill();
+            
             Main.PlaySound(SoundID.Item10, projectile.position);
         }
     }

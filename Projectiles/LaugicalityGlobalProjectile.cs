@@ -9,32 +9,76 @@ namespace Laugicality.Projectiles
 {
     public class LaugicalityGlobalProjectile : GlobalProjectile
     {
-
-        /*
-        public float mystDmg = 0;
-        public float mystDur = 0;
+        
         public virtual bool PreAI(Projectile projectile)
         {
             return true;
-            if (projectile.friendly == true) { 
-            Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            mystDmg = modPlayer.mysticDamage;
-            mystDur = modPlayer.mysticDuration;
+
+            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+
+            int rand = Main.rand.Next(4);
+            if (mPlayer.obsidium)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 6, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            }
+            if (mPlayer.frost)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 15, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            }
+            if (mPlayer.skp)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 44, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            }
+            if (mPlayer.douche)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 199, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            }
+            if (mPlayer.qB)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 46, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            }
+            if (mPlayer.meFied)
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Lightning"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             }
         }
 
-        public virtual void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
-            Main.NewText(target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage.ToString(), 150, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
-
-        }*/
         public override bool InstancePerEntity
         {
             get
             {
                 return true;
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+
+            int rand = Main.rand.Next(4);
+            if (mPlayer.obsidium)
+            {
+                target.AddBuff(24, (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
+            }
+            if (mPlayer.frost)
+            {
+                target.AddBuff(BuffID.Frostburn, (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
+            }
+            if (mPlayer.skp)
+            {
+                target.AddBuff(39, (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
+            }
+            if (mPlayer.douche)
+            {
+                target.AddBuff(70, (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
+            }
+            if (mPlayer.qB)
+            {
+                target.AddBuff(20, (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
+            }
+            if (mPlayer.meFied)
+            {
+                target.AddBuff(mod.BuffType("Electrified"), (int)((120 + 60 * rand) * mPlayer.mysticDuration), false);
             }
         }
     }

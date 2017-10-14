@@ -20,6 +20,8 @@ namespace Laugicality
         public static bool downedSlybertron = false;
         public static bool downedSteamTrain = false;
         public static bool downedDuneSharkron = false;
+        public static bool downedHypothema = false;
+        public static bool downedRagnar = false;
         public static int obsidiumTiles = 0;
         public static bool obEnf = false; //obsidiumEnfused
 
@@ -29,7 +31,9 @@ namespace Laugicality
             downedSlybertron = false;
             downedSteamTrain = false;
             downedDuneSharkron = false;
-            obEnf = false;
+            downedHypothema = false;
+            downedRagnar = false;
+        obEnf = false;
         }
 
         public override void PostUpdate()
@@ -49,6 +53,8 @@ namespace Laugicality
             if (downedSlybertron) downed.Add("slybertron");
             if (downedSteamTrain) downed.Add("steamtrain");
             if (downedDuneSharkron) downed.Add("dunesharkron");
+            if (downedHypothema) downed.Add("hypothema");
+            if (downedRagnar) downed.Add("ragnar");
             if (obEnf) obs = true; 
 
             return new TagCompound {
@@ -64,6 +70,8 @@ namespace Laugicality
             downedSlybertron = downed.Contains("slybertron");
             downedSteamTrain = downed.Contains("steamtrain");
             downedDuneSharkron = downed.Contains("dunesharkron");
+            downedHypothema = downed.Contains("hypothema");
+            downedRagnar = downed.Contains("ragnar");
             obEnf = tag.GetBool("obsidium");
         }
 

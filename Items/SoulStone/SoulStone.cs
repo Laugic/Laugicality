@@ -15,7 +15,7 @@ namespace Laugicality.Items.SoulStone
         //Throwing
         string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:+1 Max Minion]"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
         //Mystic
-        string EoC1 = "[c/B03A2E:Enemies take damage on contact]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +10% Illusion Duration]";
+        string EoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +10% Illusion Duration]";
         //Magic
         string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/B08E2E:Increased Mana Regeneration]";
         //Summon
@@ -23,19 +23,19 @@ namespace Laugicality.Items.SoulStone
         //Range
         string SK1 = "[c/839192:+5% Damage]"; string SK2 = "[c/839192:5 Defense]"; string SK3 = "[c/839192:Increased Run Speed]"; string SK4 = "[c/839192:+10% Ranged Critical strike chance]";
         //Melee
-        string WoF1 = "[c/AC395A:+5% Damage]"; string WoF2 = "[c/AC395A:Increased Life Regeneration]"; string WoF3 = "[c/AC395A:+40 Max Mana]"; string WoF4 = "[c/AC395A:Melee Attacks inflict 'On Fire!']";
+        string WoF1 = "[c/AC395A:+5% Damage]"; string WoF2 = "[c/AC395A:Increased Life Regeneration]"; string WoF3 = "[c/AC395A:+40 Max Mana]"; string WoF4 = "[c/AC395A:Attacks inflict 'On Fire!']";
        
         string TW1 = "[c/2BD34D:-10% Mana Cost, +20 Mana, +5% Magic damage, +5% Mystic Damage]"; string TW2 = "[c/2BD34D:Increased Wing flight time if worn under Wings]"; 
 
         string DST1 = "[c/DF0A0A:+12% Ranged Critical Strike Chance]"; string DST2 = "[c/DF0A0A:Increased Movement Speed]"; 
 
-        string SP1 = "[c/AAAAAA:+5% Melee damage and speed, melee attacks inflict 'Cursed Inferno']"; string SP2 = "[c/AAAAAA:+6 Defense]"; 
+        string SP1 = "[c/AAAAAA:+5% Melee damage and speed, attacks inflict 'Cursed Inferno']"; string SP2 = "[c/AAAAAA:+6 Defense]"; 
 
-        string PT1 = "[c/2B9DE9:+1 Max Minion, Increased Mana regeneration]"; string PT2 = "[c/2B9DE9:Enemies take full damage.]"; 
+        string PT1 = "[c/27AE60:+1 Max Minion, Increased Mana regeneration]"; string PT2 = "[c/27AE60:Release Spores when struck.]"; 
 
         string GL1 = "[c/AF740E:+10% Critical strike chance]"; string GL2 = "[c/AF740E:Increased Life Regeneration]"; 
 
-        string DF1 = "[c/04F6B2:+8% Ranged Damage and Melee Speed, Melee attacks inflict 'Venom']"; string DF2 = "[c/04F6B2:Greatly increased Wing Acceleration]"; string DF3 = "[c/04F6B2:+10% Mystic Damage and Duration]";
+        string DF1 = "[c/04F6B2:+8% Ranged Damage and Melee Speed, Attacks inflict 'Venom']"; string DF2 = "[c/04F6B2:Greatly increased Wing Acceleration]"; string DF3 = "[c/04F6B2:+10% Mystic Damage and Duration]";
 
         string LC1 = "[c/1D9CA7:+8% Magic, Minion, and Mystic Damage]"; string LC2 = "[c/1D9CA7:+8% Melee, Ranged, and Throwing Damage]";
 
@@ -61,6 +61,10 @@ namespace Laugicality.Items.SoulStone
         {
             var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             var Class = mPlayer.Class;
+
+            
+
+
             if (NPC.downedSlimeKing)
             {
                 if (LaugicalityVars.SlimeThrow.Contains(Class))
@@ -78,7 +82,7 @@ namespace Laugicality.Items.SoulStone
             if (NPC.downedBoss1)
             {
                 if (LaugicalityVars.Boss1Thorns.Contains(Class))
-                    player.thorns += 0.333333343f;
+                    mPlayer.eyes = true;
 
                 if (LaugicalityVars.Boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
@@ -213,7 +217,7 @@ namespace Laugicality.Items.SoulStone
                     player.manaRegenBonus += 20;
                 }
                 if (LaugicalityVars.PlantThorns.Contains(Class))
-                    player.thorns += 1f;
+                    mPlayer.spores = true;
 
             }
             if (NPC.downedGolemBoss)

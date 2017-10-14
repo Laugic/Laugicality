@@ -13,6 +13,7 @@ namespace Laugicality.NPCs.Bosses
     {
         public static Random rnd = new Random();
         public static int ai = rnd.Next(1, 6);
+        public static bool despawn = false;
 
         public override void SetStaticDefaults()
         {
@@ -21,6 +22,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetDefaults()
         {
+            despawn = false;
             npc.width = 34;
             npc.height = 34;
             npc.damage = 80;
@@ -34,6 +36,14 @@ namespace Laugicality.NPCs.Bosses
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+        }
+
+        public override void AI()
+        {
+            if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
+            if (Main.dayTime) { npc.position.Y += 300; }
+            if (despawn) { npc.position.Y += 300; }
+            if (!TheAnnihilator.on) { npc.position.Y += 300; }
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

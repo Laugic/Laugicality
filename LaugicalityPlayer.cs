@@ -22,6 +22,9 @@ namespace Laugicality
     {
         public const int maxBuffs = 42;
         public bool obsidium = false;
+        public bool frost = false;
+        public bool frigid = false;
+
         //Summons
         public bool mCore = false;
         public bool tV = false;
@@ -37,6 +40,8 @@ namespace Laugicality
         public bool toyTrain = false; //Toy Train Pet
         public bool bRage = false;
         public bool qB = false;
+        public bool eyes = false;
+        public bool spores = false;
 
         //Soul Stone class
         public int Class = 0;
@@ -59,7 +64,9 @@ namespace Laugicality
 
         public override void ResetEffects()
         {
+            frost = false;
             obsidium = false;
+            frigid = false;
             mCore = false;
             sShark = false;
             skp = false;
@@ -71,6 +78,8 @@ namespace Laugicality
             toyTrain = false;
             bRage = false;
             qB = false;
+            eyes = false;
+            spores = false;
 
             //Mystic
             mysticCrit = 4;
@@ -196,6 +205,10 @@ namespace Laugicality
             {
                 target.AddBuff(24, (int)((120 + 60 * rand)*mysticDuration), false);
             }
+            if (frost)
+            {
+                target.AddBuff(BuffID.Frostburn, (int)((120 + 60 * rand) * mysticDuration), false);
+            }
             if (skp)
             {
                 target.AddBuff(39, (int)((120 + 60 * rand) * mysticDuration), false);
@@ -243,13 +256,45 @@ namespace Laugicality
                 if (mysticMode > 3) mysticMode = 1;
             }
         }
+        /*
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+        }*/
 
-        public virtual void OnHitByNPC(NPC npc, int damage, bool crit)
+        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (bRage)
             {
                 player.AddBuff(mod.BuffType("BloodRage"), 420);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
             }
+            if (eyes)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            }
+
+            if (frigid)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+            }
+
+            if (spores)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 568, 48, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 569, 48, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 570, 48, 3f, player.whoAmI);
+                if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 571, 48, 3f, player.whoAmI); 
+                if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48, 3f, player.whoAmI);
+            }
+
         }
 
     }

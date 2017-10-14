@@ -72,6 +72,8 @@ namespace Laugicality //Laugicality.cs
                 bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.3f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), "The Steam Crown calls to its King");
                 bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.4f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), "A Suspicious Train Whistle might get its attention.");
                 bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), "A tasty morsel in the daytime will attract this Shark's attention.");
+                bossChecklist.Call("AddBossWithInfo", "Hypothema", 2.4f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), "There's a chill in the air...");
+                bossChecklist.Call("AddBossWithInfo", "Ragnar", 2.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), "This Molten Mess will guard the Obsidium biome.");
             }
         }
         

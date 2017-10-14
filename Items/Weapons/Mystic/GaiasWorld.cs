@@ -90,22 +90,22 @@ namespace Laugicality.Items.Weapons.Mystic
                 item.damage = 28;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
                 item.mana = 10;
-                item.useTime = 30;
+                item.useTime = 26;
                 item.useAnimation = 30;
                 item.knockBack = 6;
-                item.shootSpeed = 4f;
+                item.shootSpeed = 10f;
                 item.shoot = mod.ProjectileType("GaiaDestruction");
             }
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 24;
+                item.damage = 28;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
                 item.mana = 10;
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.knockBack = 4;
-                item.shootSpeed = 8f;
+                item.shootSpeed = 12f;
                 item.shoot = mod.ProjectileType("GaiaIllusion");
             }
             else if (modPlayer.mysticMode == 3)

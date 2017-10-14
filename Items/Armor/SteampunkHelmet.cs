@@ -7,8 +7,9 @@ namespace Laugicality.Items.Armor
 	public class SteampunkHelmet : ModItem
 	{
 public override void SetStaticDefaults()
-		{
-			Tooltip.SetDefault("Melee attacks inflict 'Electrified' \n +1 Minion capacity");
+        {
+            DisplayName.SetDefault("Steampunk Hat");
+            Tooltip.SetDefault("+17% Mystic Damage");
 		}
 
 		public override void SetDefaults()
@@ -29,15 +30,15 @@ public override void SetStaticDefaults()
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.meFied = true;
-            player.maxMinions++;
+            modPlayer.mysticDamage += .17f;
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Increased Minion capacity, +10% Minion damage";
-            player.maxMinions += 2;
-            player.minionDamage += 0.10f;
+            player.setBonus = "+17% Mystic Duration, \nAttacks inflict 'Electrified' ";
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            modPlayer.meFied = true;
+            modPlayer.mysticDuration += .17f;
         }
 
         public override void AddRecipes()

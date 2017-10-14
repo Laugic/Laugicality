@@ -17,6 +17,7 @@ namespace Laugicality.NPCs.Bosses
         public bool stage2 = false;
         public float vel = 1f;
         public int velMult = 1;
+        public static bool on = false;
 
         public override void SetStaticDefaults()
         {
@@ -26,6 +27,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetDefaults()
         {
+            on = true;
             spawn = 0;
             npc.width = 200;
             npc.height = 240;
@@ -55,6 +57,10 @@ namespace Laugicality.NPCs.Bosses
 
         public override void AI()
         {
+            if (npc.active)
+                on = true;
+            else
+                on = false;
             if (npc.velocity.X > 12) npc.velocity.X = 12;
             if (npc.velocity.Y > 12) npc.velocity.Y = 12;
             if (npc.life < npc.lifeMax && spawn < 1)
@@ -62,12 +68,9 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 1;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .9 && spawn < 2)
@@ -75,12 +78,9 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 2;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .8 && spawn < 3)
@@ -88,12 +88,9 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 3;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .7 && spawn < 4)
@@ -101,12 +98,9 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 4;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .6 && spawn < 5)
@@ -114,12 +108,9 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 5;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .5 && spawn < 6)
@@ -129,27 +120,14 @@ namespace Laugicality.NPCs.Bosses
                     npc.velocity *= 3;
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                 }
 
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 6;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .4 && spawn < 7)
@@ -159,26 +137,13 @@ namespace Laugicality.NPCs.Bosses
                     npc.velocity *= 3;
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                 }
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 7;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .3 && spawn < 8)
@@ -188,18 +153,13 @@ namespace Laugicality.NPCs.Bosses
                     npc.velocity *= 3;
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                 }
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 8;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .2 && spawn < 9)
@@ -209,26 +169,13 @@ namespace Laugicality.NPCs.Bosses
                     npc.velocity *= 2;
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                 }
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 9;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .12 && spawn < 10)
@@ -240,20 +187,13 @@ namespace Laugicality.NPCs.Bosses
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
                 }
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 10;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
             }
             if (npc.life < npc.lifeMax * .02 && spawn < 11 && Main.expertMode)
@@ -261,17 +201,10 @@ namespace Laugicality.NPCs.Bosses
                 if (Main.expertMode)
                 {
                     spawn = 11;
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalShelly"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalSlimer"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCreeper"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalCrawler"));
-                    NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                     NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MechanicalMimic"));
                 }
             }
@@ -292,6 +225,12 @@ namespace Laugicality.NPCs.Bosses
 
         public override void BossLoot(ref string name, ref int potionType)
         {
+            MechanicalCreeper.despawn = true;
+            MechanicalSlimer.despawn = true;
+            MechanicalShelly.despawn = true;
+            MechanicalMimic.despawn = true;
+            MechanicalCrawler.despawn = true;
+
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
