@@ -86,10 +86,19 @@ public class SandShardStaff : ModItem
             recipe.AddIngredient(ItemID.DemoniteBar, 8);
             recipe.AddIngredient(169, 16);
             recipe.AddIngredient(319, 1);
-            recipe.AddIngredient(null, "DarkShard", 1);
+            recipe.AddIngredient(null, "AncientShard", 1);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe Arecipe = new ModRecipe(mod);
+            Arecipe.AddIngredient(ItemID.CrimtaneBar, 8);
+            Arecipe.AddIngredient(169, 16);
+            Arecipe.AddIngredient(319, 1);
+            Arecipe.AddIngredient(null, "AncientShard", 1);
+            Arecipe.AddTile(16);
+            Arecipe.SetResult(this);
+            Arecipe.AddRecipe();
         }
     }
 }

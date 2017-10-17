@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Attacks inflict Frostburn. +4% Melee and Ranged crit");
+            Tooltip.SetDefault("Unleashes Ice Shards when struck. +4% Melee and Ranged crit");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.frost = true;
+            modPlayer.frigid = true;
             player.meleeCrit += 4;
             player.rangedCrit += 4;
         }

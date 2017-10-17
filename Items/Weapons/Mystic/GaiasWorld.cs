@@ -12,8 +12,8 @@ using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
-	public class GaiasWorld : ModItem
-	{
+	public class GaiasWorld : MysticItem
+    {
         public string tt = "";
 		public override void SetStaticDefaults()
         {
@@ -42,42 +42,6 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
 		}
 
-        
-        
-        /*
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            damage = (int) modPlayer.mysticDamage;
-            knockBack = modPlayer.mysticDuration;
-            return true;
-        }
-
-
-        //Mystic Stuff
-        public override bool AltFunctionUse(Player player)
-        {
-
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-            return true;
-        }
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-            if (player.altFunctionUse == 2)
-            {
-                
-            }
-        }*/
-
-        public virtual void GetWeaponDamage(Player player, ref int damage)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            item.damage = (int)(item.damage * modPlayer.mysticDamage);
-        }
-
         public override void HoldItem(Player player)
         {
             
@@ -87,9 +51,9 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 28;
+                item.damage = 35;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
-                item.mana = 10;
+                item.mana = 6;
                 item.useTime = 26;
                 item.useAnimation = 30;
                 item.knockBack = 6;
@@ -99,21 +63,23 @@ namespace Laugicality.Items.Weapons.Mystic
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 28;
+                item.damage = 24 + 6 * modPlayer.destructionPower;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
-                item.mana = 10;
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.knockBack = 4;
-                item.shootSpeed = 12f;
+                item.mana = 6;
+                item.useTime = 18 - (2 * modPlayer.destructionPower);
+                if (item.useTime <= 0)
+                    item.useTime = 1;
+                item.useAnimation = item.useTime;
+                item.knockBack = 2 + (2 * modPlayer.destructionPower);
+                item.shootSpeed = 10f + (float)(2 * modPlayer.destructionPower);
                 item.shoot = mod.ProjectileType("GaiaIllusion");
             }
             else if (modPlayer.mysticMode == 3)
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 16;
+                item.damage = 22;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
-                item.mana = 10;
+                item.mana = 6;
                 item.useTime = 24;
                 item.useAnimation = 24;
                 item.knockBack = 3;
@@ -140,6 +106,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("IronBar", 8);
+            recipe.AddIngredient(null, "DarkShard", 8);
             recipe.AddIngredient(ItemID.Amethyst);
             recipe.AddIngredient(ItemID.Topaz);
             recipe.AddIngredient(ItemID.Sapphire);

@@ -12,8 +12,8 @@ using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
-	public class HermesFlight : ModItem
-	{
+	public class HermesFlight : MysticItem
+    {
         public string tt = "";
 		public override void SetStaticDefaults()
         {
@@ -41,42 +41,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shoot = mod.ProjectileType("HermesDestruction");
 			item.shootSpeed = 6f;
 		}
-
         
-        
-        /*
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            damage = (int) modPlayer.mysticDamage;
-            knockBack = modPlayer.mysticDuration;
-            return true;
-        }
-
-
-        //Mystic Stuff
-        public override bool AltFunctionUse(Player player)
-        {
-
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-            return true;
-        }
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-            if (player.altFunctionUse == 2)
-            {
-                
-            }
-        }*/
-
-        public virtual void GetWeaponDamage(Player player, ref int damage)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            item.damage = (int)(item.damage * modPlayer.mysticDamage);
-        }
 
         public override void HoldItem(Player player)
         {
@@ -87,13 +52,15 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 8;
+                item.damage = 5 + 2 * modPlayer.destructionPower;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
                 item.mana = 4;
-                item.useTime = 12;
-                item.useAnimation = 12;
-                item.knockBack = 1;
-                item.shootSpeed = 14f;
+                item.useTime = 13 - modPlayer.destructionPower;
+                if (item.useTime <= 0)
+                    item.useTime = 1;
+                item.useAnimation = item.useTime;
+                item.knockBack = modPlayer.destructionPower;
+                item.shootSpeed = 12f + (float)(2 * modPlayer.destructionPower);
                 item.shoot = mod.ProjectileType("HermesDestruction");
             }
             else if(modPlayer.mysticMode == 2)

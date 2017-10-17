@@ -12,8 +12,8 @@ using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
-	public class HadesJudgement : ModItem
-	{
+	public class HadesJudgement : MysticItem
+    {
         public int damage = 0;
 		public override void SetStaticDefaults()
         {
@@ -52,32 +52,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 return true;
             else return false;
         }
-
-/*
-        //Mystic Stuff
-        public override bool AltFunctionUse(Player player)
-        {
-
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-            return true;
-        }
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-            if (player.altFunctionUse == 2)
-            {
-                
-            }
-        }*/
-
-        public virtual void GetWeaponDamage(Player player, ref int damage)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            item.damage = (int)(item.damage * modPlayer.mysticDamage);
-        }
-
+        
         public override void HoldItem(Player player)
         {
             
@@ -87,11 +62,12 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 32;
+                item.damage = 22 + 10 * modPlayer.destructionPower;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
-                item.useTime = 40;
-                item.useAnimation = 40;
-                item.knockBack = 8;
+                item.useTime = 48 - (8 * modPlayer.destructionPower);
+                if (item.useTime <= 0)
+                    item.useTime = 1;
+                item.knockBack = 5 + 3 * modPlayer.destructionPower;
                 item.shootSpeed = 4f;
                 item.shoot = mod.ProjectileType("GaiaIllusion");
             }

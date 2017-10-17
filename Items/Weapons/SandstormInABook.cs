@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Book, 1);
             recipe.AddIngredient(169, 16);
-			recipe.AddIngredient(null, "DarkShard", 1);
+			recipe.AddIngredient(null, "AncientShard", 1);
             recipe.AddTile(101);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

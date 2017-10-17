@@ -9,12 +9,14 @@ namespace Laugicality.Projectiles.Mystic
 {
 	public class GaiaConjuration : ModProjectile
     {
-        public float mystDmg = 0;
-        public float mystDur = 0;
+        public bool powered = false;
+        public int power = 1;
         public int damage = 0;
 
         public override void SetDefaults()
         {
+            power = 1;
+            powered = false;
             damage = 20;
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
@@ -29,6 +31,18 @@ namespace Laugicality.Projectiles.Mystic
 
         public override void AI()
         {
+            Player player = Main.player[projectile.owner];
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if(!powered)
+            {
+                powered = true;
+                while(modPlayer.conjurationPower > power)
+                {
+                    power++;
+                    projectile.penetrate++;
+                }
+            }
+            
             projectile.velocity.Y += projectile.ai[0];
 
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);

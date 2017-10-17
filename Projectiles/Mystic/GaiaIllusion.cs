@@ -9,14 +9,15 @@ namespace Laugicality.Projectiles.Mystic
 {
 	public class GaiaIllusion : ModProjectile
     {
-        public float mystDmg = 0;
-        public float mystDur = 0;
+        public bool powered = false;
+        public int power = 1;
         public int rand = 0;
+        public float mystDur = 0f;
 
         public override void SetDefaults()
         {
-            //mystDmg = (float)projectile.damage;
-            //mystDur = 1f + projectile.knockBack;
+            power = 1;
+            powered = false;
             projectile.width = 18;
             projectile.height = 18;
             projectile.friendly = true;
@@ -31,6 +32,14 @@ namespace Laugicality.Projectiles.Mystic
         {
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if (!powered)
+            {
+                powered = true;
+                while (modPlayer.illusionPower > power)
+                {
+                    power++;
+                }
+            }
             mystDur = modPlayer.mysticDuration;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
@@ -63,28 +72,28 @@ namespace Laugicality.Projectiles.Mystic
         {
             rand = Main.rand.Next(1, 6);
             if (rand == 1)
-                target.AddBuff(24, (int)(140 * mystDur));
+                target.AddBuff(24, (int)(140 * mystDur * power));
             if (rand == 2)
-                target.AddBuff(20, (int)(140 * mystDur));
+                target.AddBuff(20, (int)(140 * mystDur * power));
             if (rand == 3)
-                target.AddBuff(70, (int)(140 * mystDur));
+                target.AddBuff(70, (int)(140 * mystDur * power));
             if (rand == 4)
-                target.AddBuff(39, (int)(140 * mystDur));
+                target.AddBuff(39, (int)(140 * mystDur * power));
             if (rand == 5)
-                target.AddBuff(69, (int)(140 * mystDur));
+                target.AddBuff(69, (int)(140 * mystDur * power));
             rand += 1;
             if (rand == 6)
                 rand = 1;
             if (rand == 1)
-                target.AddBuff(24, (int)(140 * mystDur));
+                target.AddBuff(24, (int)(140 * mystDur * power));
             if (rand == 2)
-                target.AddBuff(20, (int)(140 * mystDur));
+                target.AddBuff(20, (int)(140 * mystDur * power));
             if (rand == 3)
-                target.AddBuff(70, (int)(140 * mystDur));
+                target.AddBuff(70, (int)(140 * mystDur * power));
             if (rand == 4)
-                target.AddBuff(39, (int)(140 * mystDur));
+                target.AddBuff(39, (int)(140 * mystDur * power));
             if (rand == 5)
-                target.AddBuff(69, (int)(140 * mystDur));
+                target.AddBuff(69, (int)(140 * mystDur * power));
             //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
         }
     }

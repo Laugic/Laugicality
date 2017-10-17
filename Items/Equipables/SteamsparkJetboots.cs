@@ -28,6 +28,7 @@ namespace Laugicality.Items.Equipables
             player.maxMinions += 1;
             player.lavaImmune = true;
             player.fireWalk = true;
+            player.waterWalk = true;
             player.buffImmune[24] = true;
             player.maxRunSpeed += 3.5f;
             player.moveSpeed += 1.75f;

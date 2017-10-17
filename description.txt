@@ -3,33 +3,30 @@ Current features:
 =========
 A new level-up system in the form of the Soul Stone
 A new class- The Mystic Class!
-4 Boss fights
-Over 175 new Items, including a new way to use Potions
+6 Boss fights
+Over 180 new Items, including a new way to use Potions
 A new biome
 3 new Armor sets
 And lots more planned features!
 -----
-v 0.9
-Added Hypothema- A chilly boss that guards the Ice Biome in Pre-Hardmode
-Added a new set of armor and weapons for Hypothema's loot
-Various Soul Stone changes, some Annihilator tweaks
+v 0.9.5
+Added Ragnar, the guardian of the Caverns.
+Added toggles for Soul Stone Visual and Mobility effects.
 -----
 Recent Changes:
+Added Hypothema- A chilly boss that guards the Ice Biome in Pre-Hardmode
 Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
 New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
 Added Mystic weapons to PreHM!
 Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
-Dune Sharkron is the first boss of the Pre-Trio to be added! (An early trio of bosses that will give players more options for class specific loot)
-Steam Train is the 3rd and final Steampunk boss, and with it the Steampunk tier is finished! Lots of new weapons and accessories have been added too.
-Slybertron brings an extra challenge to the table! "A mechanical King Slime? Pfft. That'll be eas-" *Terrarian had their guts ripped out by Reality.
-The Annihilator has started the boss train!
+Added Dune Sharkron, Steam Train, Slybertron, Annihilator
 Soul Stone- Created from the essences of life and magic, it allows you to absorb the souls of defeated bosses, gaining new effects as you progress.
 There's a secret under the ocean to the west...
 Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
-Most Gems can stack with their potion counterpart.
 ========
 Music
 ========
+PreTrio: Rotten Shotgun - Death Road to Canada OST
 Annihilator: Tied Up - Silent Partner
-Slybertron / Steam Train: Steredenn OST - They're Everywhere
+Slybertron / Steam Train: They're Everywhere - Steredenn OST
 Obsidium: Chaos 101 2 - Gunnar Johnsen

@@ -35,8 +35,8 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Unleashes Ice Shards when struck.";
-            modPlayer.frigid = true;
+            player.setBonus = "Attacks inflict Frostburn.";
+            modPlayer.frost = true;
             
         }
 

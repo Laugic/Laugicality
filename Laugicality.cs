@@ -28,6 +28,8 @@ namespace Laugicality //Laugicality.cs
     class Laugicality : Mod
     {
         internal static ModHotKey ToggleMystic;
+        internal static ModHotKey ToggleSoulStoneV;
+        internal static ModHotKey ToggleSoulStoneM;
         private double pressedHotkeyTime;
 
         public Laugicality()
@@ -60,6 +62,21 @@ namespace Laugicality //Laugicality.cs
             RecipeGroup.RegisterGroup("Emblems", group);
 
 
+            //Emblem
+            RecipeGroup Ggroup = new RecipeGroup(() => Lang.misc[37] + " Gem", new int[]
+            {
+                ItemID.Amethyst,
+                ItemID.Topaz,
+                ItemID.Ruby,
+                ItemID.Sapphire,
+                ItemID.Emerald,
+                ItemID.Ruby,
+                ItemID.Diamond,
+                ItemID.Amber
+            });
+            RecipeGroup.RegisterGroup("Gems", Ggroup);
+
+
         }
 
         //BossChecklist
@@ -73,7 +90,7 @@ namespace Laugicality //Laugicality.cs
                 bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.4f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), "A Suspicious Train Whistle might get its attention.");
                 bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), "A tasty morsel in the daytime will attract this Shark's attention.");
                 bossChecklist.Call("AddBossWithInfo", "Hypothema", 2.4f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), "There's a chill in the air...");
-                bossChecklist.Call("AddBossWithInfo", "Ragnar", 2.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), "This Molten Mess will guard the Obsidium biome.");
+                bossChecklist.Call("AddBossWithInfo", "Ragnar", 2.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), "This Molten Mess guards the underground.");
             }
         }
         
@@ -81,6 +98,8 @@ namespace Laugicality //Laugicality.cs
         public override void Load()
         {
             ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
+            ToggleSoulStoneV = RegisterHotKey("Toggle Soul Stone Visuals", "V");
+            ToggleSoulStoneM = RegisterHotKey("Toggle Soul Stone Mobility", "C");
         }
 
         public override void UpdateMusic(ref int music)

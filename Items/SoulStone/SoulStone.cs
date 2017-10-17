@@ -19,7 +19,7 @@ namespace Laugicality.Items.SoulStone
         //Magic
         string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/B08E2E:Increased Mana Regeneration]";
         //Summon
-        string QB1 = "[c/F39C12:Attacks inflict Poison]"; string QB2 = "[c/F39C12:Increased Life Regeneration]"; string QB3 = "[c/F39C12:+1 Max Minion]"; string QB4 = "[c/2B9DE9:+10% Minion damage]";
+        string QB1 = "[c/F39C12:Attacks inflict Poison]"; string QB2 = "[c/F39C12:Increased Life Regeneration]"; string QB3 = "[c/F39C12:+1 Max Minion]"; string QB4 = "[c/F39C12:+10% Minion damage]";
         //Range
         string SK1 = "[c/839192:+5% Damage]"; string SK2 = "[c/839192:5 Defense]"; string SK3 = "[c/839192:Increased Run Speed]"; string SK4 = "[c/839192:+10% Ranged Critical strike chance]";
         //Melee
@@ -70,7 +70,7 @@ namespace Laugicality.Items.SoulStone
                 if (LaugicalityVars.SlimeThrow.Contains(Class))
                     player.thrownDamage += 0.1f;
 
-                if (LaugicalityVars.SlimeJump.Contains(Class))
+                if (LaugicalityVars.SlimeJump.Contains(Class) && mPlayer.SoulStoneM)
                     player.jumpSpeedBoost += 5.0f;
 
                 if (LaugicalityVars.SlimeMinion.Contains(Class))
@@ -87,7 +87,7 @@ namespace Laugicality.Items.SoulStone
                 if (LaugicalityVars.Boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
 
-                if (LaugicalityVars.Boss1Detect.Contains(Class))
+                if (LaugicalityVars.Boss1Detect.Contains(Class) && mPlayer.SoulStoneV)
                     player.detectCreature = true;
 
                 if (LaugicalityVars.Boss1Damage.Contains(Class))
@@ -193,7 +193,7 @@ namespace Laugicality.Items.SoulStone
                     player.manaCost -= .1f;
                     mPlayer.mysticDamage += .05f;
                 }
-                if (LaugicalityVars.Mech2Jump.Contains(Class))
+                if (LaugicalityVars.Mech2Jump.Contains(Class) && mPlayer.SoulStoneM)
                     player.jumpSpeedBoost += 1.5f;
 
             }
@@ -241,7 +241,7 @@ namespace Laugicality.Items.SoulStone
                     player.rangedDamage += 0.08f;
                     player.meleeSpeed += 0.08f;
                 }
-                if (LaugicalityVars.FishSpeed.Contains(Class))
+                if (LaugicalityVars.FishSpeed.Contains(Class) && mPlayer.SoulStoneM)
                     player.jumpSpeedBoost += 4.0f;
 
                 if (LaugicalityVars.FishMDamage.Contains(Class))

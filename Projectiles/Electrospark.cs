@@ -7,7 +7,7 @@ namespace Laugicality.Projectiles
 {
 	public class Electrospark : ModProjectile
 	{
-        public int delay = 0;
+        private int delay = 0;
         public int damage = 0;
 
         public override void SetStaticDefaults()

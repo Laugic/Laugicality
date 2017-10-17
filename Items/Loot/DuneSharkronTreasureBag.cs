@@ -37,7 +37,7 @@ namespace Laugicality.Items.Loot
 
         public override void RightClick(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("DarkShard"), Main.rand.Next(1,4));
+            player.QuickSpawnItem(mod.ItemType("AncientShard"), Main.rand.Next(1,4));
             player.QuickSpawnItem(mod.ItemType("Pyramind"), 1);
             int ran = Main.rand.Next(1, 5);
             if (ran == 1) player.QuickSpawnItem(934, 1);

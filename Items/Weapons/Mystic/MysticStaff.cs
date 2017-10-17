@@ -12,8 +12,8 @@ using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
-	public class MysticStaff : ModItem
-	{
+	public class MysticStaff : MysticItem
+    {
         public string tt = "";
 		public override void SetStaticDefaults()
         {

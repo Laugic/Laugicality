@@ -24,6 +24,7 @@ namespace Laugicality
         public bool obsidium = false;
         public bool frost = false;
         public bool frigid = false;
+        public bool rocks = false;
 
         //Summons
         public bool mCore = false;
@@ -43,9 +44,10 @@ namespace Laugicality
         public bool eyes = false;
         public bool spores = false;
 
-        //Soul Stone class
+        //Soul Stone
         public int Class = 0;
-
+        public bool SoulStoneV = true;
+        public bool SoulStoneM = true;
 
         //Mystic vars
         public float mysticDamage = 1f;
@@ -55,15 +57,16 @@ namespace Laugicality
         public float illusionDamage = 1f;
         public float destructionDamage = 1f;
         public float conjurationDamage = 1f;
-        public float illusionPower = 1f;
-        public float destructionPower = 1f;
-        public float conjurationPower = 1f;
+        public int illusionPower = 1;
+        public int destructionPower = 1;
+        public int conjurationPower = 1;
 
 
         public bool ZoneObsidium = false;
 
         public override void ResetEffects()
         {
+            rocks = false;
             frost = false;
             obsidium = false;
             frigid = false;
@@ -89,9 +92,9 @@ namespace Laugicality
             illusionDamage = 1f;
             destructionDamage = 1f;
             conjurationDamage = 1f;
-            illusionPower = 1f;
-            destructionPower = 1f;
-            conjurationPower = 1f;
+            illusionPower = 1;
+            destructionPower = 1;
+            conjurationPower = 1;
         }
 
         public override TagCompound Save()
@@ -255,6 +258,14 @@ namespace Laugicality
                 mysticMode += 1;
                 if (mysticMode > 3) mysticMode = 1;
             }
+            if (Laugicality.ToggleSoulStoneV.JustPressed)
+            {
+                SoulStoneV = !SoulStoneV;
+            }
+            if (Laugicality.ToggleSoulStoneM.JustPressed)
+            {
+                SoulStoneM = !SoulStoneM;
+            }
         }
         /*
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -293,6 +304,18 @@ namespace Laugicality
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 570, 48, 3f, player.whoAmI);
                 if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 571, 48, 3f, player.whoAmI); 
                 if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48, 3f, player.whoAmI);
+            }
+
+            if (rocks)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, -8, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
             }
 
         }

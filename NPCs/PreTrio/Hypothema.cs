@@ -75,8 +75,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
-            music = MusicID.Boss2;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RottenShotgun");
             damage = 24;
         }
 
@@ -312,7 +311,7 @@ namespace Laugicality.NPCs.PreTrio
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrostShard"), Main.rand.Next(1, 3));
-                if (Main.rand.Next(0, 3) == 0)
+                if (Main.rand.Next(0, 3) != 0)
                 {
                     int ran = Main.rand.Next(1, 7);
                     if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height,ItemID.IceBoomerang, 1);

@@ -22,7 +22,7 @@ namespace Laugicality.Items.Weapons
             item.melee = true;
 			item.width = 34;
 			item.height = 40;
-			item.useTime = 54;
+			item.useTime = 36;
 			item.useAnimation = 18;
 			item.useStyle = 1;
 			item.knockBack = 4;

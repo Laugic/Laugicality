@@ -51,8 +51,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            //music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
-            music = MusicID.Boss2;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RottenShotgun");
             damage = 28;
         }
 
@@ -182,7 +181,7 @@ namespace Laugicality.NPCs.PreTrio
             potionType = 188;
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));
                 
                 int ran = Main.rand.Next(1, 5);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 934, 1);
