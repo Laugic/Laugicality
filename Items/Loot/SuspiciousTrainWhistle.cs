@@ -28,9 +28,8 @@ namespace Laugicality.Items.Loot
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(1225, 5);
-            recipe.AddIngredient(null, "SteamBar", 5);
-            recipe.AddIngredient(ItemID.Cog, 40);
-            recipe.AddIngredient(null, "SoulOfSought", 6);
+            recipe.AddIngredient(ItemID.Cog, 60);
+            recipe.AddIngredient(null, "SoulOfSought", 8);
 			recipe.AddTile(134);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

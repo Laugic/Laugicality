@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles
 
             if (projectile.velocity.X < 0) projectile.frame = 1;
             else projectile.frame = 0;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
+            if(Main.rand.Next(0,14)==0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
 		}
 
         /*

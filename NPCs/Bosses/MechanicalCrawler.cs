@@ -14,14 +14,17 @@ namespace Laugicality.NPCs.Bosses
         public static Random rnd = new Random();
         public static int ai = rnd.Next(1, 6);
         public static bool despawn = false;
+        public bool bitherial = false;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Charger");
         }
 
         public override void SetDefaults()
         {
+            bitherial = true;
             despawn = false;
             npc.width = 48;
             npc.height = 48;
@@ -32,7 +35,7 @@ namespace Laugicality.NPCs.Bosses
             npc.DeathSound = SoundID.NPCDeath14;
             npc.value = 60f;
             npc.knockBackResist = 0f;
-            npc.aiStyle = 74;
+            npc.aiStyle = 56;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -40,6 +43,8 @@ namespace Laugicality.NPCs.Bosses
         
         public override void AI()
         {
+            bitherial = true;
+            if (Main.rand.Next(0,14) == 0) Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (Main.dayTime) { npc.position.Y += 300; }
             if (despawn) { npc.position.Y += 300; }

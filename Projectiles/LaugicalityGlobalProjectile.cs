@@ -4,16 +4,95 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
 using Laugicality.NPCs;
+using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles
 {
     public class LaugicalityGlobalProjectile : GlobalProjectile
     {
-        
+        public bool etherial = false;
+        public bool bitherial = false;
+        public bool friend = false;
+        private int dmg = 0;
+        public int eDmg = 0;
+
+        public override void SetDefaults(Projectile projectile)
+        {
+            eDmg = 0;
+            dmg = 0;
+            etherial = false;
+            bitherial = false;
+            if (LaugicalityVars.EProjectiles.Contains(projectile.type))
+            {
+                bitherial = true;
+            }
+        }
+
+        public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
+        {
+            if (eDmg == 0)
+                eDmg = projectile.damage;
+
+            if (bitherial)
+            {
+                if (LaugicalityWorld.etherial)
+                    projectile.damage = eDmg  + 25;
+                else
+                    projectile.damage = eDmg;
+                return true;
+            }
+            else
+            {
+                if (dmg == 0)
+                {
+                    dmg = projectile.damage;
+                    friend = projectile.friendly;
+                }
+                if (!friend)
+                {
+                    if (etherial)
+                    {
+                        if (LaugicalityWorld.etherial)
+                        {
+                            projectile.damage = dmg;
+                            return true;
+                        }
+                        else
+                        {
+                            projectile.damage = 0;
+                            return false;
+                        }
+                    }
+                    else
+                    {
+
+                        if (LaugicalityWorld.etherial)
+                        {
+                            projectile.damage = 0;
+                            return false;
+                        }
+                        else
+                        {
+                            projectile.damage = dmg;
+                            return true;
+                        }
+                    }
+                }
+                else return true;
+            }
+
+        }
+
         public virtual bool PreAI(Projectile projectile)
         {
-            return true;
-
+            /*
+            if (LaugicalityWorld.etherial)
+            {
+                etherial = true;
+            }
+            */
             var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
 
             int rand = Main.rand.Next(4);
@@ -41,6 +120,7 @@ namespace Laugicality.Projectiles
             {
                 Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Lightning"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             }
+            return true;
         }
 
         public override bool InstancePerEntity

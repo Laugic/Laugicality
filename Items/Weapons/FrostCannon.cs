@@ -18,12 +18,12 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 7;
+			item.damage = 9;
             item.ranged = true;
 			item.width = 62;
 			item.height = 30;
-			item.useTime = 30;
-			item.useAnimation = 30;
+			item.useTime = 28;
+			item.useAnimation = 28;
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 8;
@@ -42,7 +42,7 @@ namespace Laugicality.Items.Weapons
             {
                 position += muzzleOffset;
             }
-            int numberProjectiles = Main.rand.Next(3,5);
+            int numberProjectiles = Main.rand.Next(3,6);
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15)); // 30 degree spread.

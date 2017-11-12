@@ -34,14 +34,19 @@ namespace Laugicality.NPCs.PreTrio
         public int hovDir = 1;
         public int moveDelay = 600;
         public int vDir = 2;
+        public bool bitherial = true;
+        public int plays = 0;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Hypothema");
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             moveDelay = 600;
             hovDir = 1;
             vDir = 1;
@@ -60,8 +65,8 @@ namespace Laugicality.NPCs.PreTrio
             dir = 0;
             vdir = 0;
             delay = reload;
-            npc.width = 26;
-            npc.height = 36;
+            npc.width = 64;
+            npc.height = 64;
             npc.damage = 28;
             npc.defense = 10;
             npc.aiStyle = 0;
@@ -81,6 +86,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 3000 + numPlayers * 800;
             npc.damage = 36;
             reload = 220;
@@ -91,6 +97,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void AI()
         {
+            bitherial = true;
             if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 10; }
             if (Main.player[npc.target].ZoneSnow == false) { npc.position.Y -= 10; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
@@ -307,7 +314,9 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = 188;
+            if (plays == 0)
+                plays = 1;
+                potionType = 188;
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrostShard"), Main.rand.Next(1, 3));

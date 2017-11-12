@@ -55,15 +55,20 @@ namespace Laugicality.NPCs.Slybertron
         public int gasBallHits = 0;
         public int gasBallShots = 0;
         public bool stage2 = false;
-        
+        public bool bitherial = true;
+        public int plays = 0;
+
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Slybertron");
             //Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             attackReloadSpeed = 1.0;
             attackDelay = 300;      //Delay before first attack
             attackReload = 200;     //Resetting the reload speed
@@ -92,6 +97,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 80000 + numPlayers * 8000;
             npc.damage = 140;
             damage = 50;
@@ -101,6 +107,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void AI()
         {
+            bitherial = true;
             //Despawn check
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += -100; spawned = 0; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
@@ -343,7 +350,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            if (Main.expertMode)
+                if (Main.expertMode)
             {
                 int debuff = mod.BuffType("Electrified");
                 if (debuff >= 0)
@@ -355,6 +362,8 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void BossLoot(ref string name, ref int potionType)
         {
+            if (plays == 0)
+                plays = 1;
             spawned = 0;
             if (!Main.expertMode)
             {

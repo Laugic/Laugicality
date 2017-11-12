@@ -17,7 +17,7 @@ namespace Laugicality.Items.Weapons
         }
         public override void SetDefaults()
         {
-            item.damage = 110;           //this is the item damage
+            item.damage = 110000;           //this is the item damage
             item.melee = true;             //this make the item do throwing damage
             item.noMelee = true;
             item.width = 106;

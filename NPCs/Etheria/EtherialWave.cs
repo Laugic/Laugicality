@@ -1,0 +1,46 @@
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Laugicality.NPCs.Etheria
+{
+	public class EtherialWave : ModProjectile
+    {
+        public bool bitherial = true;
+        public float dAccel = 0f;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Etherial Wave");
+            //ProjectileID.Sets.Homing[projectile.type] = true;
+			//ProjectileID.Sets.MinionShot[projectile.type] = true;
+		}
+
+		public override void SetDefaults()
+        {
+            dAccel = 0f;
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
+            projectile.width = 22;
+			projectile.height = 22;
+			//projectile.alpha = 255;
+            projectile.timeLeft = 200;
+            projectile.friendly = false;
+            projectile.hostile = true;
+            projectile.ignoreWater = true;
+            projectile.tileCollide = false;
+        }
+
+        public override void AI()
+        {
+            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), 0f, 0f);
+            dAccel += 0.5f;
+            projectile.direction += (int)dAccel;
+            bitherial = true;
+        }
+        public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
+        {
+            player.AddBuff(BuffID.Chilled, 90, true);
+        }
+    }
+}

@@ -11,6 +11,7 @@ namespace Laugicality.NPCs.Slybertron
     public class CogLoose : ModProjectile
     {
         public int spawned = 0;
+        public bool bitherial = true;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("a Loose Cog");
@@ -20,6 +21,8 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void SetDefaults()
         {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             spawned = 0;
             projectile.width = 48;
             projectile.height = 48;
@@ -34,6 +37,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void AI()
         {
+            bitherial = true;
             projectile.rotation -= 6;
             if (spawned == 0) { 
             Vector2 move = Vector2.Zero;

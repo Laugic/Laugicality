@@ -21,15 +21,20 @@ namespace Laugicality.NPCs.PreTrio
         public int jump = 0;
         public int shoot = 0;
         public int reload = 160;
+        public bool bitherial = true;
+        public int plays = 0;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Dune Sharkron");
             Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             shoot = 0;
             reload = 260;
             phase = 1;
@@ -57,6 +62,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 3000 + numPlayers * 800;
             npc.damage = 36;
             reload = 220;
@@ -66,6 +72,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void AI()
         {
+            bitherial = true;
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (!Main.dayTime) { npc.position.Y += 300; }
 
@@ -178,7 +185,9 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = 188;
+            if (plays == 0)
+                plays = 1;
+                potionType = 188;
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));

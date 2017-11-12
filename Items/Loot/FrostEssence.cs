@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unleashes Ice Shards when struck. +4% Melee and Ranged crit");
+            Tooltip.SetDefault("Unleashes Ice Shards when struck. +8% Melee and Ranged crit");
         }
 
         public override void SetDefaults()
@@ -26,8 +26,8 @@ namespace Laugicality.Items.Loot
         {
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.frigid = true;
-            player.meleeCrit += 4;
-            player.rangedCrit += 4;
+            player.meleeCrit += 8;
+            player.rangedCrit += 8;
         }
         /*
         public override void AddRecipes()

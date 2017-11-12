@@ -13,7 +13,8 @@ namespace Laugicality.NPCs.PreTrio
 	{
         public int grounded = 0;
         public int delay = 4;
-		public override void SetStaticDefaults()
+        public bool bitherial = true;
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Spark");
             //ProjectileID.Sets.Homing[projectile.type] = true;
@@ -21,7 +22,9 @@ namespace Laugicality.NPCs.PreTrio
 		}
 
 		public override void SetDefaults()
-		{
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             delay = 4;
             grounded = 0;
             projectile.width = 20;
@@ -36,6 +39,7 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void AI()
         {
+            bitherial = true;
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
             
             delay -= 1;

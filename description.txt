@@ -3,18 +3,18 @@ Current features:
 =========
 A new level-up system in the form of the Soul Stone
 A new class- The Mystic Class!
-6 Boss fights
-Over 180 new Items, including a new way to use Potions
+A new dimension- The Etherial
+7 Boss fights
+Over 200 new Items, including a new way to use Potions
 A new biome
 3 new Armor sets
 And lots more planned features!
 -----
-v 0.9.5
-Added Ragnar, the guardian of the Caverns.
-Added toggles for Soul Stone Visual and Mobility effects.
+v 0.10
+The Etherial is here- an alternate dimension that adds a new level of challenge and loot to the game!
 -----
 Recent Changes:
-Added Hypothema- A chilly boss that guards the Ice Biome in Pre-Hardmode
+Completed the Pre-Trio, a set of bosses to fight Early Hardmode to give the player some earlier class based armor and gear.
 Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
 New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
 Added Mystic weapons to PreHM!
@@ -27,6 +27,6 @@ Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
 Music
 ========
 PreTrio: Rotten Shotgun - Death Road to Canada OST
-Annihilator: Tied Up - Silent Partner
-Slybertron / Steam Train: They're Everywhere - Steredenn OST
+Steam Trio: Turquoise / IcerM
 Obsidium: Chaos 101 2 - Gunnar Johnsen
+Etherial: This Is The End 3 - Merlean, Epidemic Sound

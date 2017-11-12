@@ -18,7 +18,7 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 18;
+			item.damage = 20;
             item.melee = true;
 			item.width = 34;
 			item.height = 40;
@@ -40,7 +40,7 @@ namespace Laugicality.Items.Weapons
             {
                 position += muzzleOffset;
             }
-            int numberProjectiles = Main.rand.Next(2,5);
+            int numberProjectiles = Main.rand.Next(3,6);
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15)); // 30 degree spread.
