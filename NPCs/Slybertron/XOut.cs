@@ -9,6 +9,7 @@ namespace Laugicality.NPCs.Slybertron
     {
         public int delay = 25;
         public int damage = 0;
+        public bool bitherial = true;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("X-Out");
@@ -17,8 +18,10 @@ namespace Laugicality.NPCs.Slybertron
 		}
 
 		public override void SetDefaults()
-		{
-			projectile.width = 48;
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
+            projectile.width = 48;
 			projectile.height = 48;
 			//projectile.alpha = 255;
             projectile.timeLeft = 120;
@@ -32,8 +35,9 @@ namespace Laugicality.NPCs.Slybertron
 
 		public override void AI()
         {
+            bitherial = true;
             delay += 1;
-            if (delay == 30)
+            if (delay == 30 && Main.netMode != 1)
             {
                 Main.PlaySound(SoundID.Item33, (int)projectile.position.X, (int)projectile.position.Y);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);

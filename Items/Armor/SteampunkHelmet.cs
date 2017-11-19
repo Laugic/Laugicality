@@ -35,7 +35,7 @@ public override void SetStaticDefaults()
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+17% Mystic Duration, \nAttacks inflict 'Electrified' ";
+            player.setBonus = "+17% Mystic Duration, \nAttacks inflict 'Steamy!' ";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
             modPlayer.mysticDuration += .17f;

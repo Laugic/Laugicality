@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.UI.Chat;
 using Terraria.ModLoader;
+using Laugicality.Etherial;
 
 namespace Laugicality //Laugicality.cs
 {
@@ -48,7 +49,7 @@ namespace Laugicality //Laugicality.cs
         //Recipe Groups
         public override void AddRecipeGroups()
         {
-            //Emblem
+            //Emblems
             RecipeGroup group = new RecipeGroup(() => Lang.misc[37] + " Emblem", new int[]
             {
                 ItemID.RangerEmblem,
@@ -62,7 +63,7 @@ namespace Laugicality //Laugicality.cs
             RecipeGroup.RegisterGroup("Emblems", group);
 
 
-            //Emblem
+            //Gems
             RecipeGroup Ggroup = new RecipeGroup(() => Lang.misc[37] + " Gem", new int[]
             {
                 ItemID.Amethyst,
@@ -76,6 +77,14 @@ namespace Laugicality //Laugicality.cs
             });
             RecipeGroup.RegisterGroup("Gems", Ggroup);
 
+            //Gen
+            RecipeGroup Sgroup = new RecipeGroup(() => Lang.misc[37] + " Silver Bar", new int[]
+            {
+                ItemID.SilverBar,
+                ItemID.TungstenBar
+            });
+            RecipeGroup.RegisterGroup("SilverBars", Sgroup);
+
 
         }
 
@@ -85,28 +94,37 @@ namespace Laugicality //Laugicality.cs
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
             if (bossChecklist != null)
             {
-                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.2f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), "The Mechanical Television will summon it at night");
-                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.3f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), "The Steam Crown calls to its King");
-                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.4f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), "A Suspicious Train Whistle might get its attention.");
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), "A tasty morsel in the daytime will attract this Shark's attention.");
-                bossChecklist.Call("AddBossWithInfo", "Hypothema", 2.4f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), "There's a chill in the air...");
-                bossChecklist.Call("AddBossWithInfo", "Ragnar", 2.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), "This Molten Mess guards the underground.");
+                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.2f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType("MechanicalMonitor")));
+                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.3f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType("SteamCrown")));
+                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.4f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType("SuspiciousTrainWhistle")));
+                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the daytime will attract this Shark's attention.", ItemType("TastyMorsel")));
+                bossChecklist.Call("AddBossWithInfo", "Hypothema", 2.4f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType("ChilledMesh")));
+                bossChecklist.Call("AddBossWithInfo", "Ragnar", 2.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the underground.", ItemType("MoltenMess")));
+                bossChecklist.Call("AddBossWithInfo", "Etheria", 10.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume its prey. [i:{0}]", ItemType("EmblemOfEtheria")));
             }
         }
         
         //Hotkeys
         public override void Load()
         {
-            ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
-            ToggleSoulStoneV = RegisterHotKey("Toggle Soul Stone Visuals", "V");
-            ToggleSoulStoneM = RegisterHotKey("Toggle Soul Stone Mobility", "C");
+            if (!Main.dedServ)
+            {
+                Filters.Scene["Laugicality:Etherial"] = new Filter(new EtherialShader("FilterMiniTower").UseColor(0.4f, 0.1f, 1.0f).UseOpacity(0.5f), EffectPriority.VeryHigh);
+                SkyManager.Instance["Laugicality:Etherial"] = new EtherialVisual();
+            }
+                ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
+            ToggleSoulStoneV = RegisterHotKey("Toggle Accessory Visual FX", "V");
+            ToggleSoulStoneM = RegisterHotKey("Toggle Accessory Mobility FX", "C");
         }
-
         public override void UpdateMusic(ref int music)
         {
             if(Main.myPlayer != -1 && !Main.gameMenu)
             {
-                if(Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
+                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).etherial && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).etherialMusic)
+                {
+                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
+                }
+                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
                 {
                     music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
                 }

@@ -12,6 +12,7 @@ namespace Laugicality.NPCs.PreTrio
     {
         public int spawned = 0;
         public int delay = 0;
+        public bool bitherial = true;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("a Loose Rock");
@@ -19,6 +20,8 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetDefaults()
         {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             delay = 0;
             spawned = 0;
             projectile.width = 32;
@@ -34,6 +37,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void AI()
         {
+            bitherial = true;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 127, 0f, 0f);
             projectile.rotation -= 0.02f;
             if (spawned == 0) { 
@@ -66,17 +70,17 @@ namespace Laugicality.NPCs.PreTrio
 
             if (Main.expertMode)
                 delay += 1;
-            if (delay >= 60)
+            if (delay >= 60 && Main.netMode != 1)
             {
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 8, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -8, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4, 4, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4, -4, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4, -4, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4, 4, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
                     projectile.Kill();
                 }
             }

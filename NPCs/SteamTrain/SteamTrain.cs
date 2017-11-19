@@ -26,14 +26,19 @@ namespace Laugicality.NPCs.SteamTrain
         public int delay = 0;
         public int maxDelay = 60;
         public int range = 2000;
+        public bool bitherial = true;
+        public int plays = 0;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Steam Train");
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             maxDelay = 60;
             range = 2200;
             maxAccel = 20f;
@@ -47,7 +52,7 @@ namespace Laugicality.NPCs.SteamTrain
             delay = 0;
             boosted = false;
             npc.width = 1680;
-            npc.height = 120;
+            npc.height = 124;
             npc.damage = 90;
             npc.defense = 30;
             npc.aiStyle = 0;
@@ -61,12 +66,12 @@ namespace Laugicality.NPCs.SteamTrain
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
-
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 50000 + numPlayers * 6000;
             npc.damage = 100;
         }
@@ -74,6 +79,8 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override void AI()
         {
+            bitherial = true;
+            npc.spriteDirection = 0;
             //Despawn check
             if (Main.player[npc.target].statLife == 0) { npc.position.X = -1000; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
@@ -160,7 +167,7 @@ namespace Laugicality.NPCs.SteamTrain
             //Attacking
 
             if(boosted)delay += 1;
-            if (delay >= maxDelay)
+            if (delay >= maxDelay && Main.netMode != 1)
             {
 
                 if (delta.Y < 0)
@@ -203,7 +210,7 @@ namespace Laugicality.NPCs.SteamTrain
                 npc.life = (int)(npc.lifeMax * .15);
             }
             //Phase Stat Changing
-            if (phase == 1)
+            if (phase == 1 && Main.netMode != 1)
             {
                 range = 1800;
                 maxAccel = 26f;
@@ -220,7 +227,7 @@ namespace Laugicality.NPCs.SteamTrain
                 }
             }
 
-            if(phase == 2)
+            if(phase == 2 && Main.netMode != 1)
             {
                 range = 1400;
                 maxAccel = 32f;
@@ -236,9 +243,9 @@ namespace Laugicality.NPCs.SteamTrain
                     npc.damage = 130;
                 }
             }
-            if (phase == 3)
+            if (phase == 3 && Main.netMode != 1)
             {
-                range = 1200;
+                range = 1000;
                 maxAccel = 38f;
                 maxVaccel = 38f;
                 maxDelay = 30;
@@ -269,6 +276,13 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override void BossLoot(ref string name, ref int potionType)
         {
+            if (plays == 0)
+                plays = 1;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (LaugicalityWorld.downedEtheria)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialTank"), 1);
+            }
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));

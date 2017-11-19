@@ -23,11 +23,20 @@ namespace Laugicality.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.findTreasure = true;
-            Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
-            player.nightVision = true;
-            player.detectCreature = true;
-            player.dangerSense = true;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.SoulStoneV)
+            { 
+                player.findTreasure = true;
+                Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
+                player.nightVision = true;
+                player.detectCreature = true;
+                player.dangerSense = true;
+                player.AddBuff(116, 2);
+            }
+            if (modPlayer.SoulStoneM)
+            {
+                player.slowFall = true;
+            }
             player.maxMinions++;
             player.resistCold = true;
             player.lifeMagnet = true;
@@ -46,10 +55,8 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            player.slowFall = true;
             player.moveSpeed += 0.25f;
             player.endurance += 0.10f;
-            player.AddBuff(116, 2);
             player.magicDamage += 0.10f;
             player.meleeDamage += 0.10f;
             player.rangedDamage += 0.10f;

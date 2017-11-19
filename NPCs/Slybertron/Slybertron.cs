@@ -55,15 +55,22 @@ namespace Laugicality.NPCs.Slybertron
         public int gasBallHits = 0;
         public int gasBallShots = 0;
         public bool stage2 = false;
-        
+        public bool bitherial = true;
+        public int plays = 0;
+        public bool fall = false;
+
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Slybertron");
             //Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            fall = false;
+            plays = 1;
+            bitherial = true;
             attackReloadSpeed = 1.0;
             attackDelay = 300;      //Delay before first attack
             attackReload = 200;     //Resetting the reload speed
@@ -73,7 +80,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.width = 348;
             npc.height = 162;
             npc.damage = 100;
-            npc.defense = 32;
+            npc.defense = 30;
             npc.aiStyle = 1;
             npc.lifeMax = 60000;
             npc.HitSound = SoundID.NPCHit4;
@@ -85,13 +92,14 @@ namespace Laugicality.NPCs.Slybertron
             npc.lavaImmune = true;
             npc.noGravity = false;
             npc.noTileCollide = false;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybetron_AGraveMistake");
             damage = 40;
 
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 80000 + numPlayers * 8000;
             npc.damage = 140;
             damage = 50;
@@ -101,8 +109,11 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void AI()
         {
+            npc.spriteDirection = 0;
+            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("TrainSteam"), 0f, 0f);
+            bitherial = true;
             //Despawn check
-            if (Main.player[npc.target].statLife == 0) { npc.position.Y += -100; spawned = 0; }
+            if (Main.player[npc.target].statLife == 0) { npc.position.Y += -20; spawned = 0; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
             //Jump at you if too far away [x]
@@ -113,14 +124,21 @@ namespace Laugicality.NPCs.Slybertron
                 if (delta.X > 0) { npc.velocity.X = 8f; npc.velocity.Y = -2f; }
                 if (delta.X < 0) { npc.velocity.X = -8f; npc.velocity.Y = -2f; }
             }
-            if(npc.aiStyle == 0) { 
+            if(npc.aiStyle == 0 || fall == true)
+            { 
             npc.noTileCollide = true;
             }
-            else if (npc.aiStyle == 1){
+            else
+            {
                 npc.noTileCollide = false;
             }
             //Jump at you if too far away [y]
-            if (delta.Y < -1000 && npc.aiStyle == 1) { npc.aiStyle = 0; }
+            if (delta.Y < -300 && npc.aiStyle == 1) { npc.aiStyle = 0; }
+            if (delta.Y > 200)
+                fall = true;
+            else
+                fall = false;
+            
             if (delta.Y > 40 && npc.aiStyle == 0) { npc.aiStyle = 1; }
             if (npc.aiStyle == 0)
             {
@@ -133,7 +151,7 @@ namespace Laugicality.NPCs.Slybertron
             if (attackDurationCL > 0) attackDurationCL += 1;
 
             //Phases
-            if (npc.life < npc.lifeMax * .67 && phase == 1) { phase = 2; Main.NewText("Phase 2 weapons activated.", 250, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+            if (npc.life < npc.lifeMax * .67 && phase == 1 ) { phase = 2; Main.NewText("Phase 2 weapons activated.", 250, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
             if (npc.life < npc.lifeMax * .33 && phase == 2) { phase = 3; attackReloadSpeed += .1; }
@@ -184,7 +202,7 @@ namespace Laugicality.NPCs.Slybertron
             }
 
             //Attacks
-            if (attack1 == 1)//Gearikans
+            if (attack1 == 1 && Main.netMode != 1)//Gearikans
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
@@ -207,14 +225,14 @@ namespace Laugicality.NPCs.Slybertron
                 attackDelay = attackReload;
                 
             }
-            if (attack1 == 2)//Coginator
+            if (attack1 == 2 && Main.netMode != 1)//Coginator
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("Coginator"), damage, 3f, Main.myPlayer);
                 attack1 = 0;
                 coginatorShots += 1;
                 attackDelay = attackReload;
             }
-            if (attack1 == 3)//Steam Stream
+            if (attack1 == 3 && Main.netMode != 1)//Steam Stream
             {
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
@@ -255,7 +273,7 @@ namespace Laugicality.NPCs.Slybertron
                     attackDuration = 0;
                 }
             
-            if (attack1 == 4)//Electroshock
+            if (attack1 == 4 && Main.netMode != 1)//Electroshock
             {
                 Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
@@ -288,7 +306,7 @@ namespace Laugicality.NPCs.Slybertron
             }
 
             //Attack Layer 2
-            if(attack2 == 1)
+            if(attack2 == 1 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
                 attack2 = 0;
@@ -312,14 +330,14 @@ namespace Laugicality.NPCs.Slybertron
             {
                 attackDurationCL = 0;
             }
-            if (attack2 == 2)
+            if (attack2 == 2 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(npc.Center.X+120, npc.Center.Y, 0, 0, mod.ProjectileType("SteamyShadow"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X-120, npc.Center.Y, 0, 0, mod.ProjectileType("SteamyShadow"), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
-            if (attack2 == 3)
+            if (attack2 == 3 && Main.netMode != 1)
             {
                 Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
@@ -329,7 +347,7 @@ namespace Laugicality.NPCs.Slybertron
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
-            if (attack2 == 4)
+            if (attack2 == 4 && Main.netMode != 1)
             {
                 Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X + 120, npc.Center.Y, 8, 0, mod.ProjectileType("GasBall"), damage, 3f, Main.myPlayer);
@@ -343,7 +361,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            if (Main.expertMode)
+                if (Main.expertMode)
             {
                 int debuff = mod.BuffType("Electrified");
                 if (debuff >= 0)
@@ -355,6 +373,11 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void BossLoot(ref string name, ref int potionType)
         {
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (LaugicalityWorld.downedEtheria)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Etherworks"), 1);
+            }
             spawned = 0;
             if (!Main.expertMode)
             {

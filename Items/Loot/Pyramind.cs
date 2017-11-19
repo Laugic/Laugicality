@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increases your minion capacity \n+40 Mana");
+            Tooltip.SetDefault("Increases your minion capacity \n+40 Mana \nUnleash a Sandstorm when struck");
         }
 
         public override void SetDefaults()
@@ -24,6 +24,8 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            modPlayer.sandy = true;
             player.maxMinions += 1;
             player.statManaMax2 += 40;
         }

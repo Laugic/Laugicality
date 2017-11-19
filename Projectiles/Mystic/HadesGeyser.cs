@@ -61,7 +61,7 @@ namespace Laugicality.Projectiles.Mystic
                 rot += dir * 0.04;
             projectile.rotation = (float)rot;
             delay++;
-            if (delay >= delayMax) {
+            if (delay >= delayMax && Main.netMode != 1) {
                 delay = 0;
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(rot) * 8f, (float)Math.Sin(rot) * 8f, mod.ProjectileType("HadesGeyserBurst"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(rot + 1.57) * 8f, (float)Math.Sin(rot + 1.57) * 8f, mod.ProjectileType("HadesGeyserBurst"), damage, 3f, Main.myPlayer);

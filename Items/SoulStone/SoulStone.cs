@@ -15,7 +15,7 @@ namespace Laugicality.Items.SoulStone
         //Throwing
         string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:+1 Max Minion]"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
         //Mystic
-        string EoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +10% Illusion Duration]";
+        string EoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +20% Illusion Duration]";
         //Magic
         string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/B08E2E:Increased Mana Regeneration]";
         //Summon
@@ -94,7 +94,7 @@ namespace Laugicality.Items.SoulStone
                 {
                     mPlayer.destructionDamage += 0.05f;
                     mPlayer.conjurationDamage += 0.05f;
-                    mPlayer.mysticDuration += 0.1f;
+                    mPlayer.mysticDuration += 0.2f;
                 }
             }
             if (NPC.downedBoss2)

@@ -10,6 +10,7 @@ namespace Laugicality.NPCs.PreTrio
 {
 	public class IceShard : ModProjectile
     {
+        public bool bitherial = true;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Shard");
@@ -18,8 +19,10 @@ namespace Laugicality.NPCs.PreTrio
 		}
 
 		public override void SetDefaults()
-		{
-			projectile.width = 54;
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
+            projectile.width = 54;
 			projectile.height = 54;
 			//projectile.alpha = 255;
             projectile.timeLeft = 240;
@@ -31,6 +34,7 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void AI()
         {
+            bitherial = true;
             projectile.rotation += .2f;
             
             if (projectile.localAI[0] == 0f)

@@ -14,14 +14,17 @@ namespace Laugicality.NPCs.Bosses
         public static Random rnd = new Random();
         public static int ai = rnd.Next(1, 6);
         public static bool despawn = false;
+        public bool bitherial = false;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Spikinator");
         }
 
         public override void SetDefaults()
         {
+            bitherial = true;
             despawn = false;
             npc.width = 34;
             npc.height = 34;
@@ -40,6 +43,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void AI()
         {
+            bitherial = true;
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (Main.dayTime) { npc.position.Y += 300; }
             if (despawn) { npc.position.Y += 300; }

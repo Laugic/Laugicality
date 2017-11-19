@@ -18,7 +18,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hades' Judgement");
-            Tooltip.SetDefault("Cleanse your sins \nRight click while holding to change Mysticism");
+            Tooltip.SetDefault("Cleanse your sins \nFires different projectiles based on Mysticism");
             //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
@@ -64,9 +64,10 @@ namespace Laugicality.Items.Weapons.Mystic
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
                 item.damage = 22 + 10 * modPlayer.destructionPower;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
-                item.useTime = 48 - (8 * modPlayer.destructionPower);
+                item.useTime = 46 - (6 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 1;
+                item.useAnimation = item.useTime;
                 item.knockBack = 5 + 3 * modPlayer.destructionPower;
                 item.shootSpeed = 4f;
                 item.shoot = mod.ProjectileType("GaiaIllusion");

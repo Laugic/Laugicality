@@ -36,7 +36,27 @@ namespace Laugicality
             Illusionist, //(BuffDur & Mobility) 17
             Conjurer //(Util/Survivability) 18
         }
-        /* -------------- SLIMEKING -------------- */ 
+        /* -------------- Etherial NPCs and Projectiles -------------- */
+        public static readonly HashSet<int> ENPCs =
+            new HashSet<int>
+            {
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, 139, 262, 263, 264, 265, 245, 246, 247, 248, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 462, 422, 493, 507, 517, 438, 379
+            };
+
+        public static readonly HashSet<int> EProjectiles =
+            new HashSet<int>
+            {
+                270, 83, 100, 96, 605, 101, 102, 275, 276, 277, 262, 258, 259, 384, 385, 386, 464, 465, 466, 467, 468, 490, 
+            };
+
+
+        public static readonly HashSet<int> EBad =
+            new HashSet<int>
+            {
+                430, 431, 432, 433, 434, 435, 436
+            };
+
+        /* -------------- SLIMEKING -------------- */
         public static readonly HashSet<int> SlimeThrow =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Thief };
         public static readonly HashSet<int> SlimeJump =

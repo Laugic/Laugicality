@@ -56,6 +56,18 @@ namespace Laugicality.Items.Equipables
                 recipe.AddTile(134);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
+
+
+                ModRecipe Srecipe = new ModRecipe(mod);
+                Srecipe.AddRecipeGroup("WingsGroup");
+                Srecipe.AddIngredient(null, "SteamsparkJetboots", 1);
+                Srecipe.AddIngredient(calMod.ItemType("CoreofCalamity"), 3);
+                Srecipe.AddIngredient(calMod.ItemType("BarofLife"), 5);
+                Srecipe.AddIngredient(ItemID.LunarBar, 5);
+                Srecipe.AddTile(TileID.LunarCraftingStation);
+                Srecipe.SetResult(calMod.ItemType("InfinityBoots"));
+                Srecipe.AddRecipe();
+
             }
             else
             {

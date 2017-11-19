@@ -23,11 +23,15 @@ namespace Laugicality.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.findTreasure = true;
-            Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
-            player.nightVision = true;
-            player.detectCreature = true;
-            player.dangerSense = true;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.SoulStoneV)
+            {
+                player.findTreasure = true;
+                Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
+                player.nightVision = true;
+                player.detectCreature = true;
+                player.dangerSense = true;
+            }
             player.maxMinions++;
             player.calmed = true;
             player.resistCold = true;

@@ -12,7 +12,8 @@ namespace Laugicality.NPCs.PreTrio
 	public class SharkNeedle : ModProjectile
 	{
         public int grounded = 0;
-		public override void SetStaticDefaults()
+        public bool bitherial = true;
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shark Needle");
             //ProjectileID.Sets.Homing[projectile.type] = true;
@@ -20,7 +21,9 @@ namespace Laugicality.NPCs.PreTrio
 		}
 
 		public override void SetDefaults()
-		{
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             grounded = 0;
             projectile.width = 32;
 			projectile.height = 32;
@@ -34,6 +37,7 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void AI()
         {
+            bitherial = true;
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + .785f;
 
         }

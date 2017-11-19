@@ -18,12 +18,12 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 7;
+			item.damage = 9;
             item.ranged = true;
-			item.width = 62;
-			item.height = 30;
-			item.useTime = 30;
-			item.useAnimation = 30;
+			item.width = 56;
+			item.height = 26;
+			item.useTime = 28;
+			item.useAnimation = 28;
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 8;
@@ -35,6 +35,7 @@ namespace Laugicality.Items.Weapons
             item.useAmmo = AmmoID.Snowball;
             item.shoot = mod.ProjectileType("Frostball");
         }
+
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 25f;
@@ -42,7 +43,7 @@ namespace Laugicality.Items.Weapons
             {
                 position += muzzleOffset;
             }
-            int numberProjectiles = Main.rand.Next(3,5);
+            int numberProjectiles = Main.rand.Next(3,6);
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15)); // 30 degree spread.

@@ -36,15 +36,20 @@ namespace Laugicality.NPCs.PreTrio
         public int vDir = 2;
         public int attacks = 0;
         public bool attacking = false;
+        public bool bitherial = true;
+        public int plays = 0;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
             Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             attacks = 0;
             attacking = false;
             moveDelay = 600;
@@ -86,6 +91,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 4200 + numPlayers * 800;
             npc.damage = 40;
             reload = 220;
@@ -95,10 +101,11 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void AI()
         {
+            bitherial = true;
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
 
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 10; }
-            if (Main.player[npc.target].ZoneRockLayerHeight == false) { npc.position.Y -= 10; }
+            if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 30; }
+            if (Main.player[npc.target].ZoneRockLayerHeight == false) { npc.position.Y -= 30; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
 
@@ -118,8 +125,24 @@ namespace Laugicality.NPCs.PreTrio
                 attacking = false;
                 //Horizontal Movement
                 npc.velocity.X = accel;
-                if (npc.position.X < Main.player[npc.target].position.X - 400 && hovDir == -1) { hovDir = 1;}
-                if (npc.position.X > Main.player[npc.target].position.X + 400 && hovDir == 1) { hovDir = -1;}
+                if (npc.position.X < Main.player[npc.target].position.X - 400 && hovDir == -1)
+                {
+                    hovDir = 1;
+                    if (npc.life > npc.lifeMax / 2)
+                        shoot = 1;
+                    else
+                        shoot = 2;
+                    attacks += 1;
+                }
+                if (npc.position.X > Main.player[npc.target].position.X + 400 && hovDir == 1)
+                {
+                    hovDir = -1;
+                    if (npc.life > npc.lifeMax / 2)
+                        shoot = 1;
+                    else
+                        shoot = 2;
+                    attacks += 1;
+                }
                 if (Math.Abs(accel) < maxAccel) { accel += (float)hovDir / 4f; }
                 else { accel *= .5f; }
 
@@ -176,7 +199,7 @@ namespace Laugicality.NPCs.PreTrio
                     shoot = 2;
                 }
             }
-            //Attacks
+            /*Attacks
             if (moveType == 1)
             {
                 reload = 100;
@@ -191,25 +214,25 @@ namespace Laugicality.NPCs.PreTrio
                     attacks += 1;
                 }
             }
-
-            if (shoot == 1)
+            */
+            if (shoot == 1 && Main.netMode != 1)
             {
                 shoot = 0;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), damage, 3, Main.myPlayer);
             }
-            if (shoot == 2)
+            if (shoot == 2 && Main.netMode != 1)
             {
                 shoot = 0;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("RockLoose"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), damage, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, mod.ProjectileType("RockFalling"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
 
             }
         }
@@ -227,7 +250,14 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = 188;
+            if (plays == 0)
+                plays = 1;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (LaugicalityWorld.downedEtheria)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MoltenEtheria"), 1);
+            }
+                potionType = 188;
 
             if (Main.expertMode)
             {

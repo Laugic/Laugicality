@@ -24,7 +24,9 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.10f;
-            player.AddBuff(116, 2);
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.SoulStoneV)
+                player.AddBuff(116, 2);
             if (player.thorns < 1f)
             {
                 player.thorns = 0.333333343f;

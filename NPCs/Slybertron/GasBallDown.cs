@@ -9,6 +9,7 @@ namespace Laugicality.NPCs.Slybertron
 	{
         public int delay = 0;
         public int damage = 0;
+        public bool bitherial = true;
 
         public override void SetStaticDefaults()
         {
@@ -18,8 +19,10 @@ namespace Laugicality.NPCs.Slybertron
 		}
 
 		public override void SetDefaults()
-		{
-			projectile.width = 48;
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
+            projectile.width = 48;
 			projectile.height = 48;
 			//projectile.alpha = 255;
             projectile.timeLeft = 60;
@@ -30,6 +33,11 @@ namespace Laugicality.NPCs.Slybertron
             damage = projectile.damage;
         }
         
+        public override void AI()
+        {
+
+            bitherial = true;
+        }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {

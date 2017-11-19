@@ -27,7 +27,9 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            player.slowFall = true;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.SoulStoneM)
+                player.slowFall = true;
             player.moveSpeed += 0.25f;
         }
 

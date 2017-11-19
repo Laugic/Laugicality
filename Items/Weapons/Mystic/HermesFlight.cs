@@ -57,7 +57,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 item.mana = 4;
                 item.useTime = 13 - modPlayer.destructionPower;
                 if (item.useTime <= 0)
-                    item.useTime = 1;
+                    item.useTime = 2;
                 item.useAnimation = item.useTime;
                 item.knockBack = modPlayer.destructionPower;
                 item.shootSpeed = 12f + (float)(2 * modPlayer.destructionPower);

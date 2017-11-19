@@ -8,7 +8,8 @@ namespace Laugicality.NPCs.Slybertron
 	public class Gearikan : ModProjectile
 	{
         public int grounded = 0;
-		public override void SetStaticDefaults()
+        public bool bitherial = true;
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gearikan");
             //ProjectileID.Sets.Homing[projectile.type] = true;
@@ -16,7 +17,9 @@ namespace Laugicality.NPCs.Slybertron
 		}
 
 		public override void SetDefaults()
-		{
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             grounded = 0;
             projectile.width = 22;
 			projectile.height = 22;
@@ -30,6 +33,7 @@ namespace Laugicality.NPCs.Slybertron
 
 		public override void AI()
         {
+            bitherial = true;
             projectile.rotation += projectile.velocity.X;
             projectile.velocity.Y += .5f;
         }

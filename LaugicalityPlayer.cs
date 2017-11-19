@@ -25,6 +25,7 @@ namespace Laugicality
         public bool frost = false;
         public bool frigid = false;
         public bool rocks = false;
+        public bool sandy = false;
 
         //Summons
         public bool mCore = false;
@@ -61,12 +62,24 @@ namespace Laugicality
         public int destructionPower = 1;
         public int conjurationPower = 1;
 
+        public bool etherial = false;
+        public int etherialTrail = 0;
+        public bool etherable = false;
+        public int ethBkg = 0;
+        public bool etherialSlot = false;
+        public bool etherVision = false;
 
         public bool ZoneObsidium = false;
+        public bool etherialMusic = false;
 
         public override void ResetEffects()
         {
+            etherable = false;
+            etherVision = false;
+            etherialMusic = false;
+            etherable = false;
             rocks = false;
+            sandy = false;
             frost = false;
             obsidium = false;
             frigid = false;
@@ -95,25 +108,62 @@ namespace Laugicality
             illusionPower = 1;
             destructionPower = 1;
             conjurationPower = 1;
+
+
+            if (player.extraAccessory)
+            {
+                player.extraAccessorySlots = 1;
+                if (etherialSlot)
+                {
+                    player.extraAccessorySlots = 2;
+                }
+            }
+            else if (etherialSlot)
+            {
+                player.extraAccessorySlots = 2;
+            }
+
+            if (!player.extraAccessory && !etherialSlot)
+            {
+                player.extraAccessorySlots = 0;
+            }
+        }
+
+        public override void PreUpdate()
+        {
+            //Main.NewText(destructionPower.ToString(), 250, 250, 0);
+            //Main.NewText(illusionPower.ToString(), 250, 0, 250);
+            //Main.NewText(conjurationPower.ToString(), 0, 250, 0);
+            etherial = LaugicalityWorld.downedEtheria;
         }
 
         public override TagCompound Save()
         {
             return new TagCompound {
-                {"Class", Class }
+                {"Class", Class },
+                {"Etherial", etherial },
+                {"ESlot", etherialSlot }
             };
         }
 
+        public override void UpdateBiomeVisuals()
+        {
+            bool useNebula = NPC.AnyNPCs(mod.NPCType("EtherialBkg"));
+            player.ManageSpecialBiomeVisuals("Laugicality:Etherial", useNebula);
+        }
 
         public override void Load(TagCompound tag)
         {
             Class = tag.GetInt("Class");
+            etherial = tag.GetBool("Etherial");
+            etherialSlot = tag.GetBool("ESlot");
         }
 
 
         public override void UpdateBiomes()
         {
             ZoneObsidium = (LaugicalityWorld.obsidiumTiles > 250);
+            etherialMusic = etherial;
         }
 
 
@@ -150,30 +200,7 @@ namespace Laugicality
             }
             return null;
         }
-        /*
-        public override int GetWeaponDamage(Item sItem)
-        {
-            bool flag23 = false;
-            bool critTry = false;
-            int mCrit = this.inventory[this.selectedItem].crit; +this.mysticCrit;
-            Random mCritChance = new Random();
-            int mCritTry = mCritChance.Next(1,100);
-            if (mCritTry < mCrit) {
-                critTry = true;
-                bool flag23 = true;
-            }
-            
-            int num = sItem.damage;
-            if (critTry == true) num *= 2;
-            if (num > 0)
-            {
-                if (sItem.mystic)
-                {
-                    num = (int)((float)num * this.mysticDamage + 5E-06f);
-                }
-            }
-            return num;
-        }*/
+        
 
         public override void UpdateDead()
         {
@@ -229,15 +256,25 @@ namespace Laugicality
                 target.AddBuff(mod.BuffType("Electrified"), (int)((120 + 60 * rand) * mysticDuration), false);
             }
         }
-
+        public bool etherialCheck()
+        {
+            return etherial;
+        }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
+
+            if (etherialTrail > 0)
+            {
+                etherialTrail -= 1;
+                if(Main.rand.Next(0,4) == 0)
+                    Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+            }
             if (eFied)
             {
-                if (Main.rand.Next(4) == 0 && drawInfo.shadow == 0f)
+                if (Main.rand.Next(13) == 0 && drawInfo.shadow == 0f)
                 {
-                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, mod.DustType("Lightning"), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
+                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, mod.DustType("TrainSteam"), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
                     Main.dust[dust].noGravity = false;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -248,8 +285,24 @@ namespace Laugicality
                 b *= 0.8f;
                 fullBright = true;
             }
-        }
+            if (etherial)
+            {
+                r = 0.2f;
+                g = 0.9f;
+                b = 1f;
 
+                if(ethBkg <= 0)
+                {
+                    ethBkg = 9;
+                    NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("EtherialBkg"));
+                    NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("EtherialMusic"));
+                }
+                else
+                {
+                    ethBkg -= 1;
+                }
+            }
+        }
         //Hotkey
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
@@ -290,6 +343,14 @@ namespace Laugicality
                 if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 -  Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
             }
 
+            if (sandy)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
+            }
+
             if (frigid)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
@@ -311,11 +372,11 @@ namespace Laugicality
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, -8, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
             }
 
         }

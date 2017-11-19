@@ -19,7 +19,7 @@ namespace Laugicality.Projectiles
 
 		public override void AI()
 		{
-			projectile.velocity.Y += projectile.ai[0];
+			projectile.velocity.Y += projectile.ai[0] + 0.1f;
 			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Sandy"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 			
 		}

@@ -4,14 +4,95 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
 using Laugicality.NPCs;
+using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles
 {
     public class LaugicalityGlobalProjectile : GlobalProjectile
     {
-        
+        public bool etherial = false;
+        public bool bitherial = false;
+        public bool friend = false;
+        private int dmg = 0;
+        public int eDmg = 0;
+
+        public override void SetDefaults(Projectile projectile)
+        {
+            eDmg = 0;
+            dmg = 0;
+            etherial = false;
+            bitherial = false;
+            if (LaugicalityVars.EProjectiles.Contains(projectile.type))
+            {
+                bitherial = true;
+            }
+        }
+
+        public override bool PreDraw(Projectile projectile, SpriteBatch spriteBatch, Color lightColor)
+        {
+            if (eDmg == 0)
+                eDmg = projectile.damage;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+
+            if (bitherial)
+            {
+                if (modPlayer.etherial)
+                    projectile.damage = eDmg  + 25;
+                else
+                    projectile.damage = eDmg;
+                return true;
+            }
+            else
+            {
+                if (dmg == 0)
+                {
+                    dmg = projectile.damage;
+                    friend = projectile.friendly;
+                }
+                if (!friend)
+                {
+                    if (etherial)
+                    {
+                        if (modPlayer.etherial)
+                        {
+                            projectile.damage = dmg;
+                            return true;
+                        }
+                        else
+                        {
+                            projectile.damage = 0;
+                            return false;
+                        }
+                    }
+                    else
+                    {
+
+                        if (modPlayer.etherial)
+                        {
+                            projectile.damage = 0;
+                            return false;
+                        }
+                        else
+                        {
+                            projectile.damage = dmg;
+                            return true;
+                        }
+                    }
+                }
+                else return true;
+            }
+
+        }
+
         public virtual bool PreAI(Projectile projectile)
         {
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.etherial)
+            {
+                etherial = true;
+            }
             return true;
 
             var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);

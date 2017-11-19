@@ -9,7 +9,7 @@ namespace Laugicality.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("CHOO CHOO \n Inflicts 'Electrified'");	//The (English) text shown below your weapon's name
+			Tooltip.SetDefault("CHOO CHOO \n Inflicts 'Steamy'");	//The (English) text shown below your weapon's name
 		}
 
 		public override void SetDefaults()

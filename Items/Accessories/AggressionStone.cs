@@ -25,7 +25,9 @@ namespace Laugicality.Items.Accessories
         {
             player.manaRegenBonus += 25;
             player.magicDamage += 0.20f;
-            player.AddBuff(108, 2);
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.SoulStoneV)
+                player.AddBuff(108, 2);
             player.ammoCost80 = true;
             player.rangedDamage += 0.10f;
             player.enemySpawns = true;

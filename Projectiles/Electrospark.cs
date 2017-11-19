@@ -35,7 +35,7 @@ namespace Laugicality.Projectiles
         public override void AI()
         {
             delay += 1;
-            if(delay == 25)
+            if(delay == 25 && Main.netMode != 1)
             {
                 //Main.PlaySound(SoundID.Item33, (int)projectile.position.X, (int)projectile.position.Y);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectrosparkP2"), damage, 3f, Main.myPlayer);

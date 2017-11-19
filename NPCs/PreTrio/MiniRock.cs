@@ -12,8 +12,11 @@ namespace Laugicality.NPCs.PreTrio
 	public class MiniRock : ModProjectile
 	{
 
-		public override void SetDefaults()
-		{
+        public bool bitherial = true;
+        public override void SetDefaults()
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
             projectile.width = 16;
 			projectile.height = 16;
 			//projectile.alpha = 255;
@@ -25,6 +28,7 @@ namespace Laugicality.NPCs.PreTrio
         }
         public override void AI()
         {
+            bitherial = true;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 127, 0f, 0f);
             projectile.rotation += 0.02f;
 

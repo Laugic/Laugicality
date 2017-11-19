@@ -22,6 +22,8 @@ namespace Laugicality
         public static bool downedDuneSharkron = false;
         public static bool downedHypothema = false;
         public static bool downedRagnar = false;
+        public static bool downedEtheria = false; 
+        public static bool downedTrueEtheria = false;
         public static int obsidiumTiles = 0;
         public static bool obEnf = false; //obsidiumEnfused
 
@@ -33,7 +35,9 @@ namespace Laugicality
             downedDuneSharkron = false;
             downedHypothema = false;
             downedRagnar = false;
-        obEnf = false;
+            downedEtheria = false;
+            downedTrueEtheria = false;
+            obEnf = false;
         }
 
         public override void PostUpdate()
@@ -55,6 +59,8 @@ namespace Laugicality
             if (downedDuneSharkron) downed.Add("dunesharkron");
             if (downedHypothema) downed.Add("hypothema");
             if (downedRagnar) downed.Add("ragnar");
+            if (downedEtheria) downed.Add("etheria");
+            if (downedTrueEtheria) downed.Add("trueetheria");
             if (obEnf) obs = true; 
 
             return new TagCompound {
@@ -72,9 +78,59 @@ namespace Laugicality
             downedDuneSharkron = downed.Contains("dunesharkron");
             downedHypothema = downed.Contains("hypothema");
             downedRagnar = downed.Contains("ragnar");
+            downedEtheria = downed.Contains("etheria");
+            downedTrueEtheria = downed.Contains("trueetheria");
             obEnf = tag.GetBool("obsidium");
         }
 
+        public override void LoadLegacy(BinaryReader reader)
+        {
+            int loadVersion = reader.ReadInt32();
+            if (loadVersion == 0)
+            {
+                BitsByte flags = reader.ReadByte();
+                downedAnnihilator = flags[0];
+                downedSlybertron = flags[1];
+                downedSteamTrain = flags[2];
+                downedDuneSharkron = flags[3];
+                downedHypothema = flags[4];
+                downedRagnar = flags[5];
+                downedEtheria = flags[6];
+                downedTrueEtheria = flags[7];
+            }
+            else
+            {
+                ErrorLogger.Log("Enigma: Unknown loadVersion: " + loadVersion);
+            }
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = downedAnnihilator;
+            flags[1] = downedSlybertron;
+            flags[2] = downedSteamTrain;
+            flags[3] = downedDuneSharkron;
+            flags[4] = downedHypothema;
+            flags[5] = downedRagnar;
+            flags[6] = downedEtheria;
+            flags[7] = downedTrueEtheria;
+            writer.Write(flags);
+
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            downedAnnihilator = flags[0];
+            downedSlybertron = flags[1];
+            downedSteamTrain = flags[2];
+            downedDuneSharkron = flags[3];
+            downedHypothema = flags[4];
+            downedRagnar = flags[5];
+            downedEtheria = flags[6];
+            downedTrueEtheria = flags[7];
+        }
         public override void ResetNearbyTileEffects()
         {
             obsidiumTiles = 0;

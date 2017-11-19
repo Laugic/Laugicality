@@ -33,7 +33,7 @@ public override void SetStaticDefaults()
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+20% Throwing Velocity, \nAttacks inflict 'Electrified' ";
+            player.setBonus = "+20% Throwing Velocity, \nAttacks inflict 'Steamy!' ";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
             player.thrownVelocity += .2f;

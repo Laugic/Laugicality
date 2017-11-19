@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Grounded- Immune to 'Electrified' \n +10% Movement Speed");
+			Tooltip.SetDefault("Insulated- Immune to 'Steamy' \n +10% Movement Speed");
 		}
 
 		public override void SetDefaults()

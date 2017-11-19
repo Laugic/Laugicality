@@ -18,7 +18,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gaia's World");
-            Tooltip.SetDefault("The World is in your hands \nRight click while holding to change Mysticism");
+            Tooltip.SetDefault("The World is in your hands \nFires different projectiles based on Mysticism");
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
 		}
 
@@ -51,27 +51,27 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 35;
+                item.damage = 30 + 5 * modPlayer.destructionPower;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
                 item.mana = 6;
-                item.useTime = 26;
-                item.useAnimation = 30;
-                item.knockBack = 6;
-                item.shootSpeed = 10f;
+                item.useTime = 26 - (2 * modPlayer.destructionPower);
+                if (item.useTime <= 0)
+                    item.useTime = 1;
+                item.useAnimation = item.useTime;
+                item.knockBack = 4 + (2 * modPlayer.destructionPower);
+                item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
                 item.shoot = mod.ProjectileType("GaiaDestruction");
             }
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 24 + 6 * modPlayer.destructionPower;
+                item.damage = 30;
                 item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
                 item.mana = 6;
-                item.useTime = 18 - (2 * modPlayer.destructionPower);
-                if (item.useTime <= 0)
-                    item.useTime = 1;
+                item.useTime = 16;
                 item.useAnimation = item.useTime;
-                item.knockBack = 2 + (2 * modPlayer.destructionPower);
-                item.shootSpeed = 10f + (float)(2 * modPlayer.destructionPower);
+                item.knockBack = 4;
+                item.shootSpeed = 12f;
                 item.shoot = mod.ProjectileType("GaiaIllusion");
             }
             else if (modPlayer.mysticMode == 3)

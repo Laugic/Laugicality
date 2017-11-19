@@ -21,15 +21,20 @@ namespace Laugicality.NPCs.PreTrio
         public int jump = 0;
         public int shoot = 0;
         public int reload = 160;
+        public bool bitherial = true;
+        public int plays = 0;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Dune Sharkron");
             Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            plays = 1;
+            bitherial = true;
             shoot = 0;
             reload = 260;
             phase = 1;
@@ -57,6 +62,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
+            plays = numPlayers;
             npc.lifeMax = 3000 + numPlayers * 800;
             npc.damage = 36;
             reload = 220;
@@ -66,6 +72,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void AI()
         {
+            bitherial = true;
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (!Main.dayTime) { npc.position.Y += 300; }
 
@@ -97,13 +104,13 @@ namespace Laugicality.NPCs.PreTrio
             }
 
             //Phases
-            if (npc.life < npc.lifeMax * .8 && phase == 1)
+            if (npc.life < npc.lifeMax * .8 && phase == 1  )
             {
                 phase = 2;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 reload -= 20;
             }
-            if (npc.life < npc.lifeMax * .5 && phase == 2)
+            if (npc.life < npc.lifeMax * .5 && phase == 2  )
             {
                 npc.damage += 10;
                 dashSp = 6.5f;
@@ -111,7 +118,7 @@ namespace Laugicality.NPCs.PreTrio
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 reload -= 20;
             }
-            if (npc.life < npc.lifeMax * .2 && phase == 3 && Main.expertMode)
+            if (npc.life < npc.lifeMax * .2 && phase == 3 && Main.expertMode  )
             {
                 damage += 4;
                 dashSp = 7f;
@@ -121,7 +128,7 @@ namespace Laugicality.NPCs.PreTrio
 
             //Attacks
             if (shoot > 0) shoot -= 1;
-            if(shoot <= 0)
+            if(shoot <= 0 && Main.netMode != 1)
             {
                 shoot = reload;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
@@ -133,7 +140,7 @@ namespace Laugicality.NPCs.PreTrio
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
             }
-            if (phase >= 2 && shoot == reload/2)
+            if (phase >= 2 && shoot == reload/ 2 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
@@ -144,7 +151,7 @@ namespace Laugicality.NPCs.PreTrio
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
             }
-            if (phase >= 3 && shoot == reload / 8f )
+            if (phase >= 3 && shoot == reload / 8f && Main.netMode != 1)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
@@ -178,7 +185,14 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = 188;
+            if (plays == 0)
+                plays = 1;
+            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            if (LaugicalityWorld.downedEtheria)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Etheramind"), 1);
+            }
+                potionType = 188;
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));

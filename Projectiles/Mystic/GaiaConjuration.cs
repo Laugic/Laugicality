@@ -51,45 +51,50 @@ namespace Laugicality.Projectiles.Mystic
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
-
-            projectile.penetrate--;
-            if (projectile.penetrate <= 0)
+            if (Main.netMode != 1)
             {
-                projectile.Kill();
-            }
-            else{
-                projectile.ai[0] += 0.2f;
-                if (projectile.velocity.X != oldVelocity.X)
-                {
-                    projectile.velocity.X = -oldVelocity.X;
-                }
-                if (projectile.velocity.Y != oldVelocity.Y)
-                {
-                    projectile.velocity.Y = -oldVelocity.Y;
-                }
-                projectile.velocity *= 0.75f;
-                Main.PlaySound(SoundID.Item10, projectile.position);
-            }
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
 
+                projectile.penetrate--;
+                if (projectile.penetrate <= 0)
+                {
+                    projectile.Kill();
+                }
+                else
+                {
+                    projectile.ai[0] += 0.2f;
+                    if (projectile.velocity.X != oldVelocity.X)
+                    {
+                        projectile.velocity.X = -oldVelocity.X;
+                    }
+                    if (projectile.velocity.Y != oldVelocity.Y)
+                    {
+                        projectile.velocity.Y = -oldVelocity.Y;
+                    }
+                    projectile.velocity *= 0.75f;
+                    Main.PlaySound(SoundID.Item10, projectile.position);
+                }
+            }
             return false;
         }
         
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            projectile.ai[0] += 0.2f;
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
-            
+            if (Main.netMode != 1)
+            {
+                projectile.ai[0] += 0.2f;
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
+            }
             Main.PlaySound(SoundID.Item10, projectile.position);
         }
     }

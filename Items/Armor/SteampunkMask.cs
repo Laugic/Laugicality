@@ -43,7 +43,7 @@ public override void SetStaticDefaults()
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
-            player.setBonus = "+15% Minion damage \nAttacks inflict 'Electrified' ";
+            player.setBonus = "+15% Minion damage \nAttacks inflict 'Steamy!' ";
             player.minionDamage += 0.15f;
         }
 

@@ -14,17 +14,21 @@ namespace Laugicality.NPCs.Bosses
         public static Random rnd = new Random();
         public static int ai = rnd.Next(1, 6);
         public static bool despawn = false;
+        public bool bitherial = false;
 
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Charger");
+            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
+            bitherial = true;
             despawn = false;
-            npc.width = 48;
-            npc.height = 48;
+            npc.width = 50;
+            npc.height = 50;
             npc.damage = 80;
             npc.defense = 50;
             npc.lifeMax = 4000;
@@ -32,7 +36,7 @@ namespace Laugicality.NPCs.Bosses
             npc.DeathSound = SoundID.NPCDeath14;
             npc.value = 60f;
             npc.knockBackResist = 0f;
-            npc.aiStyle = 74;
+            npc.aiStyle = 56;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
@@ -40,10 +44,14 @@ namespace Laugicality.NPCs.Bosses
         
         public override void AI()
         {
+            bitherial = true;
+            if (Main.rand.Next(0,14) == 0) Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (Main.dayTime) { npc.position.Y += 300; }
             if (despawn) { npc.position.Y += 300; }
             if (!TheAnnihilator.on) { npc.position.Y += 300; }
+            
+            npc.rotation = (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X) + 1.57f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
@@ -97,18 +105,22 @@ namespace Laugicality.NPCs.Bosses
             scale = 0f;
             return null;
         }
-        /*
-        public override void HitEffect(int hitDirection, double damage)
+
+        public override void FindFrame(int frameHeight)
         {
-            for (int i = 0; i < 10; i++)
+            var frame = 0;
+            if (npc.velocity.X < 0) frame = 1;
+            else frame = 0;
+
+            if (frame == 0)
             {
-                int dustType = Main.rand.Next(139, 143);
-                int dustIndex = Dust.NewDust(npc.position, npc.width, npc.height, dustType);
-                Dust dust = Main.dust[dustIndex];
-                dust.velocity.X = dust.velocity.X + Main.rand.Next(-50, 51) * 0.01f;
-                dust.velocity.Y = dust.velocity.Y + Main.rand.Next(-50, 51) * 0.01f;
-                dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
+                npc.frame.Y = frameHeight;
             }
-        }*/
+            else
+            {
+                npc.frame.Y = 0;
+            }
+        }
+
     }
 }

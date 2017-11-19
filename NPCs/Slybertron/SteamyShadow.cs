@@ -9,8 +9,9 @@ using Laugicality;
 namespace Laugicality.NPCs.Slybertron
 {
 	public class SteamyShadow : ModProjectile
-	{
-		public override void SetStaticDefaults()
+    {
+        public bool bitherial = true;
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Steamy Shadow");
             //ProjectileID.Sets.Homing[projectile.type] = true;
@@ -18,8 +19,10 @@ namespace Laugicality.NPCs.Slybertron
 		}
 
 		public override void SetDefaults()
-		{
-			projectile.width = 48;
+        {
+            LaugicalityVars.EProjectiles.Add(projectile.type);
+            bitherial = true;
+            projectile.width = 48;
 			projectile.height = 48;
 			projectile.alpha = 0;
             projectile.timeLeft = 240;
@@ -31,6 +34,7 @@ namespace Laugicality.NPCs.Slybertron
 
 		public override void AI()
         {
+            bitherial = true;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
             projectile.rotation += 6;
