@@ -13,7 +13,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Etherial Pulsar");
+            DisplayName.SetDefault("True Etherial Pulsar");
             //ProjectileID.Sets.Homing[projectile.type] = true;
 			//ProjectileID.Sets.MinionShot[projectile.type] = true;
 		}
@@ -31,8 +31,7 @@ namespace Laugicality.NPCs.Etheria
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             delay = 0;
-            damage = 50;
-            projectile.scale = 2f;
+            damage = 60;
         }
 
         public override void AI()
@@ -40,9 +39,8 @@ namespace Laugicality.NPCs.Etheria
             bitherial = true;
             if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), 0f, 0f);
             delay += 1;
-            if (delay > 80)
                 projectile.velocity *= .95f;
-            if(delay == 140 && Main.netMode != 1)
+            if(delay >= 100 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
@@ -56,9 +54,29 @@ namespace Laugicality.NPCs.Etheria
             }
         }
 
+        public override Color? GetAlpha(Color drawColor)
+        {
+            var b = 225;
+            var b2 = 125;
+            var b3 = 155;
+            if (drawColor.R != (byte)b)
+            {
+                drawColor.R = (byte)b;
+            }
+            if (drawColor.G < (byte)b2)
+            {
+                drawColor.G = (byte)b2;
+            }
+            if (drawColor.B < (byte)b3)
+            {
+                drawColor.B = (byte)b3;
+            }
+            return drawColor;
+        }
+
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(BuffID.Chilled, 90, true);
+            player.AddBuff(44, 300, true);
         }
     }
 }

@@ -17,16 +17,18 @@ namespace Laugicality.Items.Accessories
             item.value = 1000;
             item.rare = 4;
             item.accessory = true;
-            item.defense = 8;
-            //item.lifeRegen = 19;
+            item.defense = 4;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.10f;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneV)
-                player.AddBuff(116, 2);
+            {
+                if (modPlayer.inf)
+                    player.AddBuff(116, 2);
+            }
             if (player.thorns < 1f)
             {
                 player.thorns = 0.333333343f;

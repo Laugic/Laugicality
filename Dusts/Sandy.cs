@@ -14,10 +14,11 @@ namespace Laugicality.Dusts
             dust.noLight = true;
             dust.scale *= 4.0f;
         }
-
         public override bool Update(Dust dust)
         {
             dust.position += dust.velocity;
+            if (dust.velocity.Y > -8)
+                dust.velocity.Y -= .1f;
             dust.rotation += dust.velocity.X * 0.15f;
             dust.scale *= 0.98f;
             if (dust.scale < 0.2f)

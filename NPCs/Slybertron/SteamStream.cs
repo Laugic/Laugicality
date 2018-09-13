@@ -38,7 +38,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.steamStreamHits += 1;
-            int debuff = mod.BuffType("Electrified");
+            int debuff = mod.BuffType("Steamy");
             if (debuff >= 0)
             {
                 player.AddBuff(debuff, 90, true);

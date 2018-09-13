@@ -8,7 +8,7 @@ namespace Laugicality.Items.Loot
         public override void SetStaticDefaults()
         {
             //DisplayName.SetDefault("Cog of Knowledge");
-            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 25% and jump height by 2");
+            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 25% and jump height by 2\nReduces the cooldown between Mystic Bursts.");
         }
 
         public override void SetDefaults()
@@ -19,16 +19,15 @@ namespace Laugicality.Items.Loot
             item.rare = 2;
             item.accessory = true;
             item.expert = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.jumpSpeedBoost += 2f;
             player.moveSpeed += 0.5f;
             modPlayer.mysticDamage += 0.12f;
+            modPlayer.mysticSwitchCoolRate += 1;
         }
         /*
         public override void AddRecipes()

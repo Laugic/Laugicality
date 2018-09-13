@@ -17,14 +17,15 @@ namespace Laugicality.Items.Accessories
             item.value = 1000;
             item.rare = 4;
             item.accessory = true;
-            //item.defense = 1000;
             item.lifeRegen = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.maxMinions++;
-            player.calmed = true;
+            if (modPlayer.calm)
+                player.calmed = true;
             player.resistCold = true;
             player.lifeMagnet = true;
             player.statLifeMax2 += (player.statLifeMax + player.statLifeMax2) / 5 / 20 * 20 - (player.statLifeMax / 5 / 20 * 20);

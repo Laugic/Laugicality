@@ -19,10 +19,10 @@ namespace Laugicality.Dusts
         {
             dust.position += dust.velocity;
             dust.rotation += dust.velocity.X * 0.15f;
-            dust.scale *= 0.99f;
+            dust.scale *= 0.97f;
             float light = 0.35f * dust.scale;
             Lighting.AddLight(dust.position, light, light, light);
-            if (dust.scale < 0.5f)
+            if (dust.scale < 0.65f)
             {
                 dust.active = false;
             }

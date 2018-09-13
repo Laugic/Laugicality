@@ -16,7 +16,7 @@ namespace Laugicality.Projectiles
 		public override void SetDefaults()
 		{
 			projectile.width = 18;               
-			projectile.height = 36;              
+			projectile.height = 18;              
 			projectile.aiStyle = 1;             
 			projectile.friendly = true;         
 			projectile.hostile = false;         
@@ -37,7 +37,7 @@ namespace Laugicality.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-                target.AddBuff(mod.BuffType("Electrified"), 90, true);
+                target.AddBuff(mod.BuffType("Steamy"), 90, true);
         }
     }
 }

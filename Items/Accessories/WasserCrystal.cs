@@ -17,8 +17,6 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 3;
             item.accessory = true;
-            //item.defense = 8;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -1,2 +1,0 @@
-Change gem stations- Alchemy station be an empty table, Crystaline & Mineral to be 2x2, and Ancient to be 2x3, and placeable on tables
-test plantera new spores effect

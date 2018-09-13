@@ -19,8 +19,6 @@ namespace Laugicality.Items.Equipables
             item.rare = 2;
             item.accessory = true;
             item.expert = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -40,9 +38,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "SupremeSummonerEmblem", 1);
             recipe.AddIngredient(null, "SupremeNinjaEmblem", 1);
             recipe.AddIngredient(null, "SupremeMysticEmblem", 1);
-            recipe.AddIngredient(null, "SoulOfThought", 5);
-            recipe.AddIngredient(null, "SoulOfFraught", 5);
-            recipe.AddIngredient(null, "SoulOfWrought", 5);
+            recipe.AddIngredient(null, "EtherialEssence", 5);
             recipe.AddTile(null, "AncientEnchanter");
             recipe.SetResult(this);
             recipe.AddRecipe();

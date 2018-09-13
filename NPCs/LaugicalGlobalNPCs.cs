@@ -10,7 +10,7 @@ namespace Laugicality.NPCs
 {
     public class LaugicalGlobalNPCs : GlobalNPC
     {
-        public bool eFied = false;//Electrified
+        public bool eFied = false;
         public bool mFied = false;//Mystified
         public bool hermes = false;
         public float mysticDamage = 1f;
@@ -27,97 +27,154 @@ namespace Laugicality.NPCs
         public int eLife = 0;
         public int eLifeMax = 0;
         public int plays = 0;
-        public bool lovely = false;
         public int dmg2 = 0;
-
-        public override void ResetEffects(NPC npc)
-        {
-            etherial = false;
-            eFied = false;
-            mFied = false;
-            hermes = false;
-            lovestruck = false;
-            frigid = false;
-            mysticCrit = 4;
-        }
-
+        public bool zImmune = false;
+        public float xTemp = 0;
+        public float yTemp = 0;
+        public bool invin = false;
+        public bool spored = false;
+        public bool furious = false;
+        public bool slimed = false;
+        private bool spawned = false;
+        
         public override void SetDefaults(NPC npc)
         {
+            slimed = false;
+            furious = false;
+            spawned = false;
+            spored = false;
             plays = 0;
             eDmg = 0;
             eDef = 0;
             dmg = 0;
-            etherial = false;
+            invin = npc.dontTakeDamage;
             if (npc.boss)
             {
                 bitherial = true;
+            }
+            if(bitherial)
+            {
+                LaugicalityVars.ENPCs.Add(npc.type);
             }
             //bitherial = false;
             if (LaugicalityVars.ENPCs.Contains(npc.type))
             {
                 bitherial = true;
             }
+            if (LaugicalityVars.Etherial.Contains(npc.type))
+            {
+                etherial = true;
+            }
             if (LaugicalityVars.EBad.Contains(npc.type))
             {
                 npc.life = 0;
             }
-            lovely = npc.friendly;
+            if (LaugicalityVars.ZNPCs.Contains(npc.type))
+            {
+                zImmune = true;
+            }
             dmg2 = npc.damage;
         }
 
+        public override void ResetEffects(NPC npc)
+        {
+            slimed = false;
+            furious = false;
+            spored = false;
+            //etherial = false;
+            eFied = false;
+            mFied = false;
+            hermes = false;
+            lovestruck = false;
+            frigid = false; 
+            mysticCrit = 4;
+        }
+        
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
             plays = numPlayers;
-            if (bitherial)
+            dmg2 = npc.damage;
+            if (bitherial || etherial)
             {
                 if (LaugicalityWorld.downedEtheria && Main.netMode != 1)
                 {
-                    npc.damage = (int)(npc.damage * 1.5 + 30);
+                    npc.damage = (int)(npc.damage * 1.25 + 30);
                     npc.defense = (int)(npc.defense / 2);
-                    npc.lifeMax += 60000;
-                    npc.lifeMax = (int)(npc.lifeMax * 1.5);
+                    if (npc.boss)
+                        npc.lifeMax += 15000;
+                    else
+                        npc.lifeMax += 4000;
+                    npc.lifeMax = (int)(npc.lifeMax * 1.25);
                     npc.life = npc.lifeMax;
                 }
             }
         }
 
-
-
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (eFied)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(16);// * mysticDamage);
+                if (damage < 16)
+                {
+                    damage = (16);// * mysticDamage);
+                }
+            }
+            if (spored)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(2);// * mysticDamage);
+                if (damage < 2)
+                {
+                    damage = (2);// * mysticDamage);
+                }
+            }
+            if (slimed)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(2);// * mysticDamage);
+                if (damage < 2)
+                {
+                    damage = (2);// * mysticDamage);
+                }
+            }
+            if (furious)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(8);// * mysticDamage);
+                if (damage < 8)
+                {
+                    damage = (8);// * mysticDamage);
+                }
+            }
+            if (hermes)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(4);// * mysticDamage);
+                if (damage < 4)
+                {
+                    damage = (4);// * mysticDamage);
+                }
+            }
+
             if (npc.boss == false)
             {
-                if (eFied)//Electrified
-                {
-                    if (npc.lifeRegen > 0)
-                    {
-                        npc.lifeRegen = 0;
-                    }
-                    npc.lifeRegen -= (int)(8);// * mysticDamage);
-                    if (damage < 8)
-                    {
-                        damage = (8);// * mysticDamage);
-                    }
-                }
-                if (hermes)//Electrified
-                {
-                    if (npc.lifeRegen > 0)
-                    {
-                        npc.lifeRegen = 0;
-                    }
-                    npc.lifeRegen -= 8;// * mysticDamage);
-                    if (damage < 8)
-                    {
-                        damage = (8);// * mysticDamage);
-                    }
-                }
-                if (lovestruck && npc.boss == false)//Mystified
-                {
-                    if (lovely == false)
-                        npc.friendly = true;
-                }
-                else npc.friendly = lovely;
-
                 if (frigid)
                 {
                     npc.velocity.X *= 0;
@@ -141,33 +198,75 @@ namespace Laugicality.NPCs
                 eLife = npc.life;
             if (eLifeMax == 0)
                 eLifeMax = npc.lifeMax;
-            /*if (bitherial)
+            if (!bitherial)
             {
-                if (LaugicalityWorld.downedEtheria && Main.netMode != 1)
+                if (npc.damage != 0)
                 {
-                    npc.damage = (int)(eDmg * 1.5 + 30);
-                    npc.defense = (int)(eDef / 2);
-                    if(npc.lifeMax == eLifeMax)
+                    dmg = npc.damage;
+                    friend = npc.friendly;
+                }
+                if (!friend || !invin)
+                {
+                    if (etherial)
                     {
-                        npc.lifeMax += 60000;
-                        npc.lifeMax = (int)( npc.lifeMax * 1.5);
-                        npc.life = npc.lifeMax;
+                        if (LaugicalityWorld.downedEtheria)
+                        {
+                            npc.dontTakeDamage = invin;
+                            if (npc.damage == 0)
+                            {
+                                npc.damage = dmg;
+                            }
+                            return true;
+                        }
+                        else
+                        {
+                            npc.dontTakeDamage = true;
+                            if (npc.damage == dmg)
+                            {
+                                npc.damage = 0;
+                            }
+                            return modPlayer.etherVision;
+                        }
+                    }
+                    else
+                    {
+
+                        if (LaugicalityWorld.downedEtheria)
+                        {
+                            npc.dontTakeDamage = true;
+                            if (npc.damage == dmg)
+                            {
+                                npc.damage = 0;
+                            }
+                            return modPlayer.etherVision;
+                        }
+                        else
+                        {
+                            npc.dontTakeDamage = invin;
+                            if (npc.damage == 0)
+                            {
+                                npc.damage = dmg;
+                            }
+                            return true;
+                        }
                     }
                 }
-                else
+                else if (friend)
                 {
-                    npc.damage = eDmg;
-                    npc.defense = eDef;
-                    if (npc.lifeMax != eLifeMax && Main.netMode != 1)
-                    {
-                        npc.lifeMax =(int)(npc.lifeMax / 1.5);
-                        npc.lifeMax -= 60000;
-                        npc.life = npc.lifeMax;
-                    }
+                    if (modPlayer.etherVision == false)
+                        return !LaugicalityWorld.downedEtheria;
+                    else
+                        return true;
                 }
-                return true;
-            }*/
-            if(!bitherial)
+                else return true;
+            }else return true;
+        }
+
+        public override bool PreAI(NPC npc)
+        {
+            if ((NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zImmune == false))
+                return false;
+            if (!bitherial)
             {
                 if (dmg == 0)
                 {
@@ -180,15 +279,19 @@ namespace Laugicality.NPCs
                     {
                         if (LaugicalityWorld.downedEtheria)
                         {
-                            npc.dontTakeDamage = false;
-                            npc.damage = dmg;
+                            if (npc.damage == 0)
+                            {
+                                npc.damage = dmg;
+                            }
                             return true;
                         }
                         else
                         {
-                            npc.dontTakeDamage = true;
-                            npc.damage = 0;
-                            return modPlayer.etherVision;
+                            if (npc.damage == dmg)
+                            {
+                                npc.damage = 0;
+                            }
+                            return false;
                         }
                     }
                     else
@@ -196,25 +299,29 @@ namespace Laugicality.NPCs
 
                         if (LaugicalityWorld.downedEtheria)
                         {
-                            npc.dontTakeDamage = true;
-                            npc.damage = 0;
-                            return modPlayer.etherVision;
+                            if (npc.damage == dmg)
+                            {
+                                npc.damage = 0;
+                            }
+                            return false;
                         }
                         else
                         {
-                            npc.dontTakeDamage = false;
-                            npc.damage = dmg;
+                            if (npc.damage == 0)
+                            {
+                                npc.damage = dmg;
+                            }
                             return true;
                         }
                     }
                 }
                 else return true;
-            }else return true;
+            }
+            else return true;
         }
-
+        
         public override Color? GetAlpha(NPC npc, Color drawColor)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
                 var b = 125;
@@ -257,6 +364,38 @@ namespace Laugicality.NPCs
                     }
                 }
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
+            }
+            if (spored)
+            {
+                if (Main.rand.Next(13) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Shroom"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
+            }
+            if (slimed)
+            {
+                if (Main.rand.Next(13) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 116, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                //Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
             }
             if (mFied)
             {
@@ -323,22 +462,58 @@ namespace Laugicality.NPCs
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
             }
 
-        }
-        public override void AI(NPC npc)
-        {
-
-            if (npc.life > npc.lifeMax)
-                npc.lifeMax = npc.life;
-
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            if (LaugicalityVars.ENPCs.Contains(npc.type) || !npc.boss)
+            if (furious)
             {
-                modPlayer.etherialMusic = false;
+                if (Main.rand.Next(4) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Magma"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.2f);
             }
         }
 
         public override void PostAI(NPC npc)
         {
+            //Za Warudo
+            if ((NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zImmune == false) || frigid)
+            {
+                npc.velocity.X *= 0;
+                npc.velocity.Y *= 0;
+                if (xTemp == 0 || yTemp == 0)
+                {
+                    xTemp = npc.position.X;
+                    yTemp = npc.position.Y;
+                }
+                else
+                {
+                    npc.position.X = xTemp;
+                    npc.position.Y = yTemp;
+                }
+            }
+            else
+            {
+                xTemp = 0;
+                yTemp = 0;
+            }
+
+
+            if (npc.life > npc.lifeMax)
+                npc.lifeMax = npc.life;
+
+            //Za Warudo
+            if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zImmune == false)
+            {
+                npc.velocity.X *= 0;
+                npc.velocity.Y *= 0;
+            }
 
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityVars.ENPCs.Contains(npc.type) || !npc.boss)
@@ -349,20 +524,53 @@ namespace Laugicality.NPCs
             {
                 npc.life = 0;
             }
+
+            
         }
 
         public override void NPCLoot(NPC npc)
         {
+            //Debuffs
+            if(furious)
+            {
+                if(Main.netMode != 1)
+                {
+                    float mag = 6f;
+                    float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                    int damage = 80;
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                }
+            }
             if (plays == 0)
                 plays = 1;
             //Soul Drops
+            if(lovestruck)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 58); //Drop Hearts
+                if(Main.rand.Next(1, 3) == 1)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 58);
+                }
+            }
             if (npc.lifeMax > 5 && npc.value > 0f && Main.hardMode)
             {
-                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneSkyHeight && Main.rand.Next(2) == 0)
+                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneSkyHeight && Main.rand.Next(3) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfSought"));
                 }
                 if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && Main.rand.Next(3) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfHaught"));
+                }
+                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<LaugicalityPlayer>(mod).ZoneObsidium && Main.rand.Next(3) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfHaught"));
                 }
@@ -375,10 +583,6 @@ namespace Laugicality.NPCs
             if (npc.type == 4)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TastyMorsel"), 1);
-            }
-            if (npc.type == 345)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrigidEssence"), Main.rand.Next(1, 3));
             }
             //Soul Fragments
             if (npc.type == NPCID.QueenBee && Main.expertMode)

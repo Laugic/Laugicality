@@ -13,8 +13,8 @@ namespace Laugicality.Items.Loot
 			DisplayName.SetDefault("Soul of Haught");
 			Tooltip.SetDefault("'The essence of hot creatures'");
 			// ticksperframe, frameCount
-			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
-			ItemID.Sets.AnimatesAsSoul[item.type] = true;
+			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 8));
+			//ItemID.Sets.AnimatesAsSoul[item.type] = true;
 			ItemID.Sets.ItemIconPulse[item.type] = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 		}
@@ -29,7 +29,7 @@ namespace Laugicality.Items.Loot
 			item.maxStack = 999;
 			item.value = 1000;
 			item.rare = 3;
-            item.scale *= 1.5f;
+            item.scale *= 4.5f;
         }
 
 		// The following 2 methods are purely to show off these 2 hooks. Don't use them in your own code.

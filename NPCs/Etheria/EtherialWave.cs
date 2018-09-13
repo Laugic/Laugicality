@@ -38,6 +38,26 @@ namespace Laugicality.NPCs.Etheria
             projectile.direction += (int)dAccel;
             bitherial = true;
         }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            var b = 125;
+            var b2 = 225;
+            var b3 = 255;
+            if (drawColor.R != (byte)b)
+            {
+                drawColor.R = (byte)b;
+            }
+            if (drawColor.G < (byte)b2)
+            {
+                drawColor.G = (byte)b2;
+            }
+            if (drawColor.B < (byte)b3)
+            {
+                drawColor.B = (byte)b3;
+            }
+            return drawColor;
+        }
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             player.AddBuff(BuffID.Chilled, 90, true);

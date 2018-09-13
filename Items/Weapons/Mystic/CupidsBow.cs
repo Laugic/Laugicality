@@ -18,16 +18,16 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Cupid's Bow");
-            Tooltip.SetDefault("'Make them fall for you' \nArrows inflict 'Lovestruck', which makes enemies friendly towards you\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'Make them fall for you' \nArrows inflict 'Lovestruck', which makes enemies drop Hearts on death\nFires different projectiles based on Mysticism\nThe amount of angels that can be conjured is your Conjuration Power * your Max Minions + 1");
             //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
 		public override void SetDefaults()
 		{
-			item.damage = 10;
+			item.damage = 40;
             //item.magic = true;
-            item.width = 48;
-			item.height = 48;
+            item.width = 44;
+			item.height = 74;
 			item.useTime = 18;
 			item.useAnimation = 18;
 			item.useStyle = 1;
@@ -44,6 +44,26 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
+
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.mysticMode == 3)
+            {
+                for (int p = 0; p < 1000; p++)
+                {
+                    if (Main.projectile[p].type == mod.ProjectileType("CupidConjurationAngel"))
+                    {
+                        if (player.ownedProjectileCounts[mod.ProjectileType("CupidConjurationAngel")] >= modPlayer.conjurationPower * player.maxMinions + 1)
+                        {
+                            Main.projectile[p].Kill();
+                            break;
+                        }
+                    }
+
+                }
+            }
+            
+
+
             return true;
         }
         public override void HoldItem(Player player)
@@ -56,9 +76,9 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
                 item.useStyle = 1;
-                item.damage = 30 + 10 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
-                item.useTime = 23 - (3 * modPlayer.destructionPower);
+                item.damage = 34 + 14 * modPlayer.destructionPower;
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
+                item.useTime = 22 - (4 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 1;
                 item.useAnimation = item.useTime;
@@ -71,9 +91,9 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
                 item.useStyle = 5;
-                item.damage = 77;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
-                item.useTime = 48;
+                item.damage = 42;
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
+                item.useTime = 16;
                 item.useAnimation = item.useTime;
                 item.knockBack = 1;
                 item.shootSpeed = 12f;
@@ -84,13 +104,13 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
                 item.useStyle = 5;
-                item.damage = 20;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
+                item.damage = 35;
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
                 item.useTime = 20;
                 item.useAnimation = item.useTime;
                 item.knockBack = 2;
-                item.shootSpeed = 24f;
-                item.shoot = mod.ProjectileType("CupidConjuration");
+                item.shootSpeed = 0f;
+                item.shoot = mod.ProjectileType("CupidConjurationAngel");
                 item.noUseGraphic = false;
             }
         }

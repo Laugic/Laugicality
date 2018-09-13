@@ -8,7 +8,7 @@ namespace Laugicality.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons Ragnar\n\'Chilled Lava.\' \nGuard of the Caverns.");
+            Tooltip.SetDefault("Summons Ragnar\n\'Chilled Lava.\' \nGuardian of the Obsidium.");
         }
         public override void SetDefaults()
 		{
@@ -26,15 +26,15 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneRockLayerHeight;
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            return modPlayer.ZoneObsidium;
         }
 
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.StoneBlock, 25);
-            recipe.AddIngredient(207, 2);
-            recipe.AddIngredient(null, "ChilledBar", 4);
+            recipe.AddIngredient(null, "ObsidiumBar", 5);
+            recipe.AddIngredient(173, 8);
             recipe.AddTile(26);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

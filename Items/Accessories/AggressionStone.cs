@@ -17,20 +17,18 @@ namespace Laugicality.Items.Accessories
             item.value = 1000;
             item.rare = 4;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.manaRegenBonus += 25;
             player.magicDamage += 0.20f;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.SoulStoneV)
-                player.AddBuff(108, 2);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            player.kbBuff = true;
             player.ammoCost80 = true;
             player.rangedDamage += 0.10f;
-            player.enemySpawns = true;
+            if (!modPlayer.battle)
+                player.enemySpawns = true;
         }
 
         public override void AddRecipes()

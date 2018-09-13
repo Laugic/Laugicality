@@ -49,13 +49,14 @@ namespace Laugicality.Items.Loot
                 else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(1, 4));
             }
 
-            int ran = Main.rand.Next(1, 7);
+            int ran = Main.rand.Next(1, 8);
             if (ran == 1) player.QuickSpawnItem(182, Main.rand.Next(1, 3));
             if (ran == 2) player.QuickSpawnItem(178, Main.rand.Next(1, 3));
             if (ran == 3) player.QuickSpawnItem(179, Main.rand.Next(1, 3));
             if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(1, 3));
             if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(1, 3));
             if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(1, 3));
+            if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(1, 3));
 
             if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(2701, Main.rand.Next(6, 13));
         }

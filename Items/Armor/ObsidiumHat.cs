@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
         public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("+12% Ranged, Summon, Magic, Throwing, and Mystic Damage");
+			Tooltip.SetDefault("+15% Magic Damage");
 		}
 
 		public override void SetDefaults()
@@ -29,30 +29,34 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.thrownDamage += 0.12f;
-            player.rangedDamage += 0.12f;
-            player.magicDamage += 0.12f;
-            player.minionDamage += 0.12f;
-            modPlayer.mysticDamage += 0.12f;
-            //modPlayer.mysticDuration += 1f;
+            player.magicDamage += 0.15f;
+        }
+
+
+        public override bool DrawHead()
+        {
+            return true;
+        }
+
+        public override void DrawHair(ref bool drawHair, ref bool drawAltHair)
+        {
+            drawAltHair = true;
         }
 
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Increased Life Regen \n+4 Defense \nAttacks inflict 'On Fire!' ";
+            player.setBonus = "+60 Max Mana \nAttacks inflict 'On Fire!' ";
             modPlayer.obsidium = true;
 
-            player.lifeRegen +=3;
-            player.statDefense += 4;
+            player.statManaMax2 += 60;
         }
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "ObsidiumBar", 10);
-            recipe.AddIngredient(173, 10);
-            recipe.AddIngredient(225, 10);
+            recipe.AddIngredient(null, "LavaGem", 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

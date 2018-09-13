@@ -18,13 +18,11 @@ namespace Laugicality.Items.Loot
             item.rare = 2;
             item.accessory = true;
             item.expert = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
                 player.thrownDamage += 0.2f;
@@ -32,7 +30,6 @@ namespace Laugicality.Items.Loot
                 player.magicDamage += 0.2f;
                 player.minionDamage += 0.2f;
                 player.meleeDamage += 0.2f;
-                modPlayer.mysticDamage += 0.2f;
             }
         }
         /*

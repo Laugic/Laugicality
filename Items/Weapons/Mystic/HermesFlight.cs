@@ -18,13 +18,13 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hermes' Flight");
-            Tooltip.SetDefault("Weild the power of Hermes \nRight click while holding to change Mysticism");
+            Tooltip.SetDefault("Weild the power of Hermes\nIllusion inflicts 'Hermes' Smite', which drains enemy life\nFires different projectiles based on Mysticism");
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
 		}
 
 		public override void SetDefaults()
 		{
-			item.damage = 8;
+			item.damage = 20;
             //item.magic = true;
             item.mana = 4;
             item.width = 28;
@@ -41,7 +41,25 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shoot = mod.ProjectileType("HermesDestruction");
 			item.shootSpeed = 6f;
 		}
-        
+
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if (modPlayer.mysticMode == 1)
+            {
+                int numberProjectiles = Main.rand.Next(2, 4);
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); // 30 degree spread.
+                                                                                                                    // If you want to randomize the speed to stagger the projectiles
+                    float scale = 1f - (Main.rand.NextFloat() * .3f);
+                    perturbedSpeed = perturbedSpeed * scale;
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("HermesDestruction"), damage, knockBack, player.whoAmI);
+                }
+
+            }
+            return true; // return false because we don't want tmodloader to shoot projectile
+        }
 
         public override void HoldItem(Player player)
         {
@@ -52,40 +70,40 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 5 + 2 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
+                item.damage = 16 + 4 * modPlayer.destructionPower;
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
                 item.mana = 4;
-                item.useTime = 13 - modPlayer.destructionPower;
-                if (item.useTime <= 0)
+                item.useTime = 20 - modPlayer.destructionPower;
+                if (item.useTime <= 2)
                     item.useTime = 2;
                 item.useAnimation = item.useTime;
-                item.knockBack = modPlayer.destructionPower;
-                item.shootSpeed = 12f + (float)(2 * modPlayer.destructionPower);
+                item.knockBack = 2 + 2 * modPlayer.destructionPower;
+                item.shootSpeed = 10f + (float)(2 * modPlayer.destructionPower);
                 item.shoot = mod.ProjectileType("HermesDestruction");
             }
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 10;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
+                item.damage = 25;
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
                 item.mana = 4;
-                item.useTime = 18;
-                item.useAnimation = 18;
-                item.knockBack = 18;
+                item.useTime = 16;
+                item.useAnimation = 16;
+                item.knockBack = 2;
                 item.shootSpeed = 8f;
                 item.shoot = mod.ProjectileType("HermesIllusion");
             }
             else if (modPlayer.mysticMode == 3)
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 8;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
+                item.damage = 18;
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
                 item.mana = 6;
-                item.useTime = 18;
-                item.useAnimation = 18;
+                item.useTime = 22;
+                item.useAnimation = 22;
                 item.knockBack = 5;
                 item.shootSpeed = 8f;
-                item.shoot = mod.ProjectileType("HermesConjuration");
+                item.shoot = mod.ProjectileType("HermesConjuration1");
             }
         }
 

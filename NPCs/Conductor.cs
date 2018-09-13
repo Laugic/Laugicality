@@ -31,11 +31,11 @@ namespace Laugicality.NPCs
 			name = "Conductor";
 			return mod.Properties.Autoload;
 		}
-        
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Conductor");
-            Main.npcFrameCount[npc.type] = 23;
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Conductor");
+            Main.npcFrameCount[npc.type] = 25;
             NPCID.Sets.ExtraFramesCount[npc.type] = 5;
             NPCID.Sets.AttackFrameCount[npc.type] = 4;
             NPCID.Sets.DangerDetectRange[npc.type] = 1000;
@@ -108,16 +108,18 @@ namespace Laugicality.NPCs
 
 		public override string TownNPCName()
 		{
-			switch (WorldGen.genRand.Next(4))
+			switch (WorldGen.genRand.Next(5))
 			{
 				case 0:
-					return "Charles";
+					return "Lord Charles III";
 				case 1:
-					return "Christopher";
+					return "Sir Christopher";
 				case 2:
-					return "Crane";
-				default:
-					return "Chester";
+					return "Earl Crane";
+                case 3:
+                    return "Lord Crimblesworth";
+                default:
+					return "Baron Chester von Kingsly";
 			}
 		}
 
@@ -136,19 +138,30 @@ namespace Laugicality.NPCs
 
 		public override string GetChat()
 		{
-            /*
-			int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-			if (partyGirl >= 0 && Main.rand.Next(4) == 0)
+			int steampunker = NPC.FindFirstNPC(NPCID.Steampunker);
+			if (steampunker >= 0 && Main.rand.Next(3) == 0)
 			{
-				return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
-			}*/
-			switch (Main.rand.Next(3))
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+				        return "Oh, of course. My wares are much more valueable than that " + Main.npc[steampunker].GivenName + "'s.";
+                    case 1:
+                        return "I bet " + Main.npc[steampunker].GivenName + " hasn't even invented a sentient machine yet.";
+                    default:
+                        return "A jetpack? Please. Tell " + Main.npc[steampunker].GivenName + " those went out of style a few centuries ago. Jetboots are the best transportation that modern technology can get you! Besides trains, of course.";
+                }
+			}
+			switch (Main.rand.Next(5))
 			{
 				case 0:
-					return "Spiffing.";
-				case 1:
-					return "Cheerio, young chap.";
-				default:
+					return "Spiffing!";
+                case 1:
+                    return "Trains are all the rage in Vetruvia these days.";
+                case 2:
+                    return "A train ride a day keeps the Steam Train away!";
+                case 3:
+                    return "All aboard!";
+                default:
 					return "Would you like to talk about Trains?";
 			}
 		}
@@ -189,11 +202,31 @@ namespace Laugicality.NPCs
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
+            shop.item[nextSlot].SetDefaults(mod.ItemType("Gear"));
+            nextSlot++;
 			shop.item[nextSlot].SetDefaults(mod.ItemType("ToyTrain"));
 			nextSlot++;
+            shop.item[nextSlot].SetDefaults(544);
+            shop.item[nextSlot].value = 50000;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(556);
+            shop.item[nextSlot].value = 50000;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(557);
+            shop.item[nextSlot].value = 50000;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(mod.ItemType("MechanicalMonitor"));
+            shop.item[nextSlot].value = 60000;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(mod.ItemType("SteamCrown"));
+            shop.item[nextSlot].value = 60000;
+            nextSlot++;
+            shop.item[nextSlot].SetDefaults(mod.ItemType("SuspiciousTrainWhistle"));
+            shop.item[nextSlot].value = 60000;
+            nextSlot++;
 
 
-			/*
+            /*
 			if (Main.LocalPlayer.GetModPlayer<ExamplePlayer>(mod).ZoneExample)
 			{
 				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleWings"));
@@ -226,7 +259,7 @@ namespace Laugicality.NPCs
 				shop.item[nextSlot].SetDefaults(ModLoader.GetMod("SummonersAssociation").ItemType("BloodTalisman"));
 				nextSlot++;
 			}*/
-		}
+        }
 
 		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
 		{
@@ -242,7 +275,7 @@ namespace Laugicality.NPCs
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
 		{
-			projType = mod.ProjectileType("CoginatorP");
+			projType = mod.ProjectileType("ConductorProjectile");
 			attackDelay = 1;
 		}
 

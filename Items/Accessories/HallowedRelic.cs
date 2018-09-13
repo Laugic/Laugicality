@@ -17,23 +17,27 @@ namespace Laugicality.Items.Accessories
             item.value = 10000;
             item.rare = 8;
             item.accessory = true;
-            //item.defense = 1000;
             item.lifeRegen = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneV)
             {
-                player.findTreasure = true;
+                if (modPlayer.spelunker)
+                    player.findTreasure = true;
                 Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
-                player.nightVision = true;
-                player.detectCreature = true;
-                player.dangerSense = true;
+                if (modPlayer.owl)
+                    player.nightVision = true;
+                if (modPlayer.hunter)
+                    player.detectCreature = true;
+                if (modPlayer.danger)
+                    player.dangerSense = true;
             }
             player.maxMinions++;
-            player.calmed = true;
+            if (modPlayer.calm)
+                player.calmed = true;
             player.resistCold = true;
             player.lifeMagnet = true;
             player.statLifeMax2 += (player.statLifeMax + player.statLifeMax2) / 5 / 20 * 20 - (player.statLifeMax / 5 / 20 * 20);

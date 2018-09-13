@@ -37,6 +37,7 @@ namespace Laugicality.Items.Consumables
 			recipe.AddIngredient(ItemID.Vertebrae, 3);
             recipe.AddIngredient(null, "SoulOfHaught", 3);
             recipe.AddIngredient(null, "SoulOfSought", 3);
+            recipe.AddIngredient(ItemID.Cog, 20);
             recipe.AddTile(134);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
@@ -47,6 +48,7 @@ namespace Laugicality.Items.Consumables
             Arecipe.AddIngredient(ItemID.RottenChunk, 3);
             Arecipe.AddIngredient(null, "SoulOfHaught", 3);
             Arecipe.AddIngredient(null, "SoulOfSought", 3);
+            Arecipe.AddIngredient(ItemID.Cog, 20);
             Arecipe.AddTile(134);
             Arecipe.SetResult(this);
             Arecipe.AddRecipe();

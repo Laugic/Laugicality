@@ -7,9 +7,10 @@ namespace Laugicality.Items.Weapons
 	public class BookOfKnowledge : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			Tooltip.SetDefault("Rain Lightning upon them");
-			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+        {
+            DisplayName.SetDefault("Book of Knowledge");
+            Tooltip.SetDefault("Rain Lightning upon them");
+			Item.staff[item.type] = true; 
 		}
 
 		public override void SetDefaults()
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Weapons
 			item.useTime = 12;
 			item.useAnimation = 12;
 			item.useStyle = 5;
-			item.noMelee = true; //so the item's animation doesn't do damage
+			item.noMelee = true; 
 			item.knockBack = 5;
 			item.value = 10000;
 			item.rare = 3;

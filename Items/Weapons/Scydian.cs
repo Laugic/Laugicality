@@ -14,13 +14,13 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-            item.scale *= 1.5f;
-			item.damage = 23;			//The damage of your weapon
+            item.scale *= 1.75f;
+			item.damage = 66;			//The damage of your weapon
 			item.melee = true;			//Is your weapon a melee weapon?
 			item.width = 64;			//Weapon's texture's width
 			item.height = 56;			//Weapon's texture's height
-			item.useTime = 30;			//The time span of using the weapon. Remember in terraria, 60 frames is a second.
-			item.useAnimation = 30;			//The time span of the using animation of the weapon, suggest set it the same as useTime.
+			item.useTime = 40;			//The time span of using the weapon. Remember in terraria, 60 frames is a second.
+			item.useAnimation = 40;			//The time span of the using animation of the weapon, suggest set it the same as useTime.
 			item.useStyle = 1;			//The use style of weapon, 1 for swinging, 2 for drinking, 3 act like shortsword, 4 for use like life crystal, 5 for use staffs or guns
 			item.knockBack = 5;			//The force of knockback of the weapon. Maxium is 20
 			item.value = 10000;			//The value of the weapon

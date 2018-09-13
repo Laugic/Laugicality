@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
         Mod calMod = ModLoader.GetMod("CalamityMod");
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Steam powered! \nWearer can run super fast \nImmunity to lava, can walk on liquids \nIncreases max minions by 1 and throwing damage by 10% \nIncreases flight time and flight acceleration if worn under wings");
+            Tooltip.SetDefault("Steam powered! \nWearer can run super fast \nImmunity to lava, can walk on liquids \nIncreases flight time and flight acceleration if worn under wings");
         }
 
         public override void SetDefaults()
@@ -19,13 +19,10 @@ namespace Laugicality.Items.Equipables
             item.value = 100;
             item.rare = 4;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.maxMinions += 1;
             player.lavaImmune = true;
             player.fireWalk = true;
             player.waterWalk = true;
@@ -34,7 +31,6 @@ namespace Laugicality.Items.Equipables
             player.moveSpeed += 1.75f;
             player.wingTimeMax += 180;
             player.jumpSpeedBoost += 3f;
-            player.thrownDamage += 0.1f;
         }
 
         public override void AddRecipes()
@@ -46,7 +42,7 @@ namespace Laugicality.Items.Equipables
                 recipe.AddIngredient(calMod.ItemType("AngelTreads"), 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
                 recipe.AddIngredient(null, "SteamBar", 15);
-                recipe.AddIngredient(ItemID.Cog, 40);
+                recipe.AddIngredient(null, "Gear", 20);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);
@@ -76,7 +72,7 @@ namespace Laugicality.Items.Equipables
                 recipe.AddIngredient(ItemID.LavaWaders, 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
                 recipe.AddIngredient(null, "SteamBar", 15);
-                recipe.AddIngredient(ItemID.Cog, 40);
+                recipe.AddIngredient(null, "Gear", 20);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);

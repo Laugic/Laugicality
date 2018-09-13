@@ -7,7 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increases critical strike change by 10%");
+            Tooltip.SetDefault("Increases critical strike chance by 10%");
         }
 
         public override void SetDefaults()
@@ -17,8 +17,6 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 2;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

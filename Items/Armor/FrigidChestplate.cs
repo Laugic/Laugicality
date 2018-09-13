@@ -18,7 +18,6 @@ namespace Laugicality.Items.Armor
 			item.value = 10000;
 			item.rare = 2;
 			item.defense = 6;
-            item.lifeRegen = 2;
         }
 
         public override void UpdateEquip(Player player)

@@ -36,7 +36,7 @@ public class SandShardStaff : ModItem
         item.rare = 1;
         item.UseSound = SoundID.Item44;
         item.autoReuse = true;
-        item.shoot = mod.ProjectileType("SandyShark");
+        item.shoot = mod.ProjectileType("Nothing");
         item.shootSpeed = 10f;
         item.summon = true;
             item.buffType = mod.BuffType("SandyShark"); //The buff added to player after used the item
@@ -77,8 +77,22 @@ public class SandShardStaff : ModItem
 		vector2.X = (float)Main.mouseX + Main.screenPosition.X;
 		vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
 		Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, mod.ProjectileType("SandyShark"), num73, num74, i, 0f, 0f);
-		return false;
-    }
+		return player.altFunctionUse != 2;
+        }
+
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
+        public override bool UseItem(Player player)
+        {
+            if (player.altFunctionUse == 2)
+            {
+                player.MinionNPCTargetAim();
+            }
+            return base.UseItem(player);
+        }
 
         public override void AddRecipes()
         {

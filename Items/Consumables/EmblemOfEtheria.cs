@@ -27,9 +27,11 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            if (Main.dayTime || LaugicalityWorld.downedEtheria)
-                return true;
-            else return false;
+            if (Main.dayTime && !LaugicalityWorld.downedEtheria)
+                return false;
+            else if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
+                return false;
+            return true;
         }
 
         public override void AddRecipes()

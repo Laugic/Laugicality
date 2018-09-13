@@ -24,9 +24,11 @@ namespace Laugicality.Items.Loot
             item.rare = 2;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
-            item.UseSound = SoundID.Item9;
+            item.useStyle = 1;
             item.consumable = true;
+            item.rare = 11;
+            item.expert = true;
+            bossBagNPC = mod.NPCType("Hypothema");
         }
 
         public override bool CanRightClick()
@@ -35,9 +37,9 @@ namespace Laugicality.Items.Loot
         }
 
 
-        public override void RightClick(Player player)
+        public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("FrostShard"), Main.rand.Next(1,4));
+            player.QuickSpawnItem(mod.ItemType("FrostShard"), Main.rand.Next(2,4));
             player.QuickSpawnItem(mod.ItemType("FrostEssence"), 1);
             int ran = Main.rand.Next(1, 7);
             if (ran == 1) player.QuickSpawnItem(ItemID.IceBoomerang, 1);

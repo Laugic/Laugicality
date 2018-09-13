@@ -17,8 +17,6 @@ namespace Laugicality.Items.Accessories
             item.value = 1000;
             item.rare = 4;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -27,9 +25,12 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneM)
-                player.slowFall = true;
+            {
+                if (modPlayer.feather)
+                    player.slowFall = true;
+            }
             player.moveSpeed += 0.25f;
         }
 

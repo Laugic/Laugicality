@@ -30,7 +30,7 @@ namespace Laugicality.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             //NPCs.Slybertron.Slybertron.electroShockHits += 1;
-            int debuff = mod.BuffType("Electrified");
+            int debuff = mod.BuffType("Steamy");
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);

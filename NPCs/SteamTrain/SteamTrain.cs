@@ -28,6 +28,7 @@ namespace Laugicality.NPCs.SteamTrain
         public int range = 2000;
         public bool bitherial = true;
         public int plays = 0;
+        int despawn = 0;
 
         public override void SetStaticDefaults()
         {
@@ -37,6 +38,7 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override void SetDefaults()
         {
+            despawn = 0;
             plays = 1;
             bitherial = true;
             maxDelay = 60;
@@ -66,7 +68,9 @@ namespace Laugicality.NPCs.SteamTrain
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.netAlways = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain");
+            bossBag = mod.ItemType("SteamTrainTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -75,18 +79,46 @@ namespace Laugicality.NPCs.SteamTrain
             npc.lifeMax = 50000 + numPlayers * 6000;
             npc.damage = 100;
         }
-        
+
+        public override bool CheckActive()
+        {
+            return false;
+        }
 
         public override void AI()
         {
             bitherial = true;
             npc.spriteDirection = 0;
-            //Despawn check
-            if (Main.player[npc.target].statLife == 0) { npc.position.X = -1000; }
+
+            //Retarget (borrowed from Dan <3)
+            Player P = Main.player[npc.target];
+            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.TargetClosest(true);
+            }
+            npc.netUpdate = true;
+
+            //DESPAWN
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+            {
+                npc.TargetClosest(true);
+                if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+                {
+                    if (despawn == 0)
+                        despawn++;
+                }
+            }
+            if (despawn >= 1)
+            {
+                despawn++;
+                npc.noTileCollide = true;
+                npc.velocity.Y = 8f;
+                if (despawn >= 300)
+                    npc.active = false;
+            }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
-
-            //Main.NewText(accel.ToString(), 250, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+            //Main.NewText(accel.ToString(), 250, 0, 0);  
 
 
             //Checking which direction to move when spawned
@@ -210,7 +242,7 @@ namespace Laugicality.NPCs.SteamTrain
                 npc.life = (int)(npc.lifeMax * .15);
             }
             //Phase Stat Changing
-            if (phase == 1 && Main.netMode != 1)
+            if (phase == 1)
             {
                 range = 1800;
                 maxAccel = 26f;
@@ -227,7 +259,7 @@ namespace Laugicality.NPCs.SteamTrain
                 }
             }
 
-            if(phase == 2 && Main.netMode != 1)
+            if(phase == 2)
             {
                 range = 1400;
                 maxAccel = 32f;
@@ -243,7 +275,7 @@ namespace Laugicality.NPCs.SteamTrain
                     npc.damage = 130;
                 }
             }
-            if (phase == 3 && Main.netMode != 1)
+            if (phase == 3)
             {
                 range = 1000;
                 maxAccel = 38f;
@@ -266,7 +298,7 @@ namespace Laugicality.NPCs.SteamTrain
         {
             if (Main.expertMode)
             {
-                int debuff = mod.BuffType("Electrified");
+                int debuff = mod.BuffType("Steamy");
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -274,7 +306,7 @@ namespace Laugicality.NPCs.SteamTrain
             }
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
             if (plays == 0)
                 plays = 1;
@@ -286,20 +318,24 @@ namespace Laugicality.NPCs.SteamTrain
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
-                potionType = 499;
+                
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfWrought"), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)
             {
-                potionType = 499;
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamTrainTreasureBag"), 1);
+                npc.DropBossBags();
             }
             LaugicalityWorld.downedSteamTrain = true;
 
         }
 
-        
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 499;
+        }
+
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             scale = 0f;

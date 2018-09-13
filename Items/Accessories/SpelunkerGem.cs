@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
@@ -7,7 +8,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shows the location of treasures and ore");
+            Tooltip.SetDefault("Shows the location of treasures and ore\nUse to toggle this effect in higher tier gems.");
         }
 
         public override void SetDefaults()
@@ -17,8 +18,10 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 2;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
+            item.useAnimation = 45;
+            item.useTime = 45;
+            item.useStyle = 4;
+            item.UseSound = SoundID.Item9;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -26,6 +29,14 @@ namespace Laugicality.Items.Accessories
             player.findTreasure = true;
 
         }
+
+        public override bool UseItem(Player player)
+        {
+            player.GetModPlayer<LaugicalityPlayer>(mod).spelunker = !player.GetModPlayer<LaugicalityPlayer>(mod).spelunker;
+            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).spelunker.ToString(), 250, 250, 0);
+            return true;
+        }
+
 
         public override void AddRecipes()
         {

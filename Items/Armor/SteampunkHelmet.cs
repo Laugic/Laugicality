@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
 public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Steampunk Hat");
-            Tooltip.SetDefault("+17% Mystic Damage");
+            Tooltip.SetDefault("+20% Mystic Damage");
 		}
 
 		public override void SetDefaults()
@@ -18,7 +18,7 @@ public override void SetStaticDefaults()
 			item.height = 22;
 			item.value = 10000;
 			item.rare = 5;
-			item.defense = 12;
+			item.defense = 14;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -35,10 +35,11 @@ public override void SetStaticDefaults()
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+17% Mystic Duration, \nAttacks inflict 'Steamy!' ";
+            player.setBonus = "+200% Mystic Duration\nSwitching Mysticisms unleashes a burst of Steam \nAttacks inflict 'Steamy!' ";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
-            modPlayer.mysticDuration += .17f;
+            modPlayer.mysticSteamBurst = true;
+            modPlayer.mysticDuration += 2f;
         }
 
         public override void AddRecipes()

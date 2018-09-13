@@ -29,7 +29,7 @@ namespace Laugicality.Items.Consumables
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(1225, 5);
             recipe.AddIngredient(ItemID.Cog, 60);
-            recipe.AddIngredient(null, "SoulOfSought", 8);
+            recipe.AddIngredient(null, "SoulOfSought", 6);
 			recipe.AddTile(134);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -13,11 +13,11 @@ namespace Laugicality.Items.SoulStone
     {
 
         //Throwing
-        string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:+1 Max Minion]"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
+        string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:Attacks Inflict 'Slimed']"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
         //Mystic
         string EoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +20% Illusion Duration]";
         //Magic
-        string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/B08E2E:Increased Mana Regeneration]";
+        string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/884EA0:Increased Mana Regeneration]";
         //Summon
         string QB1 = "[c/F39C12:Attacks inflict Poison]"; string QB2 = "[c/F39C12:Increased Life Regeneration]"; string QB3 = "[c/F39C12:+1 Max Minion]"; string QB4 = "[c/F39C12:+10% Minion damage]";
         //Range
@@ -37,13 +37,13 @@ namespace Laugicality.Items.SoulStone
 
         string DF1 = "[c/04F6B2:+8% Ranged Damage and Melee Speed, Attacks inflict 'Venom']"; string DF2 = "[c/04F6B2:Greatly increased Wing Acceleration]"; string DF3 = "[c/04F6B2:+10% Mystic Damage and Duration]";
 
-        string LC1 = "[c/1D9CA7:+8% Magic, Minion, and Mystic Damage]"; string LC2 = "[c/1D9CA7:+8% Melee, Ranged, and Throwing Damage]";
+        string LC2 = "[c/1D9CA7:+8% Magic, Minion, and Mystic Damage]"; string LC1 = "[c/1D9CA7:+8% Melee, Ranged, and Throwing Damage]";
 
         string ML1 = "[c/3BE5D7:+10% Damage, +12 Defense]";
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures");
+            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures\nAn otherworldly entitiy seems to have sealed some of its power...");
         }
 
         public override void SetDefaults()
@@ -59,7 +59,7 @@ namespace Laugicality.Items.SoulStone
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var mPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             var Class = mPlayer.Class;
 
             
@@ -74,7 +74,7 @@ namespace Laugicality.Items.SoulStone
                     player.jumpSpeedBoost += 5.0f;
 
                 if (LaugicalityVars.SlimeMinion.Contains(Class))
-                    player.maxMinions += 1;
+                    mPlayer.slimey = true;
 
                 if (LaugicalityVars.SlimeVelocity.Contains(Class))
                     player.thrownVelocity += .2f;
@@ -140,7 +140,6 @@ namespace Laugicality.Items.SoulStone
                     player.magicDamage += 0.05f;
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
-                    mPlayer.mysticDamage += 0.05f;
                 }
                 if (LaugicalityVars.Boss3Defense.Contains(Class))
                     player.statDefense += 5;
@@ -163,7 +162,6 @@ namespace Laugicality.Items.SoulStone
                     player.magicDamage += 0.05f;
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
-                    mPlayer.mysticDamage += 0.05f;
                 }
                 if (LaugicalityVars.HardRegen.Contains(Class))
                     player.lifeRegen += 2;
@@ -194,7 +192,7 @@ namespace Laugicality.Items.SoulStone
                     mPlayer.mysticDamage += .05f;
                 }
                 if (LaugicalityVars.Mech2Jump.Contains(Class) && mPlayer.SoulStoneM)
-                    player.jumpSpeedBoost += 1.5f;
+                    player.wingTimeMax += 120;
 
             }
             if (NPC.downedMechBoss3)
@@ -257,13 +255,13 @@ namespace Laugicality.Items.SoulStone
                 {
                     player.rangedDamage += 0.08f;
                     player.meleeDamage += 0.08f;
-                    mPlayer.mysticDamage += .08f;
+                    player.thrownDamage += .08f;
                 }
                 if (LaugicalityVars.CultistDamage2.Contains(Class))
                 {
                     player.magicDamage += 0.08f;
                     player.minionDamage += 0.08f;
-                    player.thrownDamage += .08f;
+                    mPlayer.mysticDamage += .08f;
                 }
             }
             if (NPC.downedMoonlord)
@@ -273,7 +271,6 @@ namespace Laugicality.Items.SoulStone
                 player.magicDamage += 0.10f;
                 player.minionDamage += 0.10f;
                 player.meleeDamage += 0.10f;
-                mPlayer.mysticDamage += .1f;
                 player.statDefense += 12;
             }
         }
@@ -282,7 +279,8 @@ namespace Laugicality.Items.SoulStone
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            var Class = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
+            Player ttPlayer = Main.player[Main.myPlayer];
+            var Class = ttPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
             //Tooltips
             /*if (KS > 0)
             {
@@ -452,31 +450,31 @@ namespace Laugicality.Items.SoulStone
                     tooltips.Add(lineWoF4);
                 }
             }
-            if (NPC.downedMechBoss2)
+            if (NPC.downedMechBoss1)
             {
                 if (LaugicalityVars.Mech1Crit.Contains(Class))
                 
                     {
-                        TooltipLine lineTW1 = new TooltipLine(mod, "", TW1);
-                        tooltips.Add(lineTW1);
-                    }
-                if (LaugicalityVars.Mech1Speed.Contains(Class))
-                    {
-                        TooltipLine lineTW2 = new TooltipLine(mod, "", TW2);
-                        tooltips.Add(lineTW2);
-                    }
-            }
-            if (NPC.downedMechBoss1)
-            {
-                if (LaugicalityVars.Mech2Magic.Contains(Class))
-                    {
                         TooltipLine lineDST1 = new TooltipLine(mod, "", DST1);
                         tooltips.Add(lineDST1);
                     }
-                if (LaugicalityVars.Mech2Jump.Contains(Class))
+                if (LaugicalityVars.Mech1Speed.Contains(Class))
                     {
                         TooltipLine lineDST2 = new TooltipLine(mod, "", DST2);
                         tooltips.Add(lineDST2);
+                    }
+            }
+            if (NPC.downedMechBoss2)
+            {
+                if (LaugicalityVars.Mech2Magic.Contains(Class))
+                    {
+                        TooltipLine lineTW1 = new TooltipLine(mod, "", TW1);
+                        tooltips.Add(lineTW1);
+                    }
+                if (LaugicalityVars.Mech2Jump.Contains(Class))
+                    {
+                        TooltipLine lineTW2 = new TooltipLine(mod, "", TW2);
+                        tooltips.Add(lineTW2);
                     }
             }
             if (NPC.downedMechBoss3)

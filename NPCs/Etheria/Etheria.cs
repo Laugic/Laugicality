@@ -35,8 +35,14 @@ namespace Laugicality.NPCs.Etheria
         public int Eattack = 0;
         public int EattackDel = 0;
         public int EattackDelMax = 0;
-
-
+        int despawn = 0;
+        bool attacking = false;
+        float theta = 0f;
+        public static float thetaSlow = 0f;
+        int attackDur = 0;
+        public static int tearIndex = 0;
+        public static Vector2 Center;
+        public static float scale = 1;
         public override void SetStaticDefaults()
         {
             LaugicalityVars.ENPCs.Add(npc.type);
@@ -47,6 +53,12 @@ namespace Laugicality.NPCs.Etheria
 
         public override void SetDefaults()
         {
+            tearIndex = 0;
+            thetaSlow = 0f;
+            attackDur = 0;
+            theta = 0f;
+            attacking = false;
+            despawn = 0;
             plays = 1;
             phase = 0;
             Eattack = 0;
@@ -69,8 +81,8 @@ namespace Laugicality.NPCs.Etheria
             bitherial = true;
             npc.width = 128;
             npc.height = 128;
-            npc.damage = 80;
-            npc.defense = 48;
+            npc.damage = 70;
+            npc.defense = 25;
             npc.aiStyle = 0;
             npc.lifeMax = 80000;
             npc.HitSound = SoundID.NPCHit21;
@@ -89,28 +101,57 @@ namespace Laugicality.NPCs.Etheria
         {
             plays = numPlayers;
             npc.lifeMax = 100000 + numPlayers * 10000;
-            npc.damage = 120;
+            npc.damage = 100;
             attackDelMax = 280;
             attackDel = attackDelMax;
-            damage = 40;
+            damage = 30;
             Eattack = 0;
             EattackDelMax = 200;
             EattackDel = EattackDelMax;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
-                maxAccel = 26f;
+                maxAccel = 24f;
             }
         }
-        
+
+        public override bool CheckActive()
+        {
+            return false;
+        }
 
         public override void AI()
         {
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            //Despawning
 
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 10; }
-            if (Main.dayTime == true && !LaugicalityWorld.downedEtheria) { npc.position.Y -= 20; }
+            //Retarget (borrowed from Dan <3)
+            Player player = Main.player[npc.target];
+            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.TargetClosest(true);
+            }
+            npc.netUpdate = true;
+
+            //DESPAWN
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+            {
+                npc.TargetClosest(true);
+                if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+                {
+                    if (despawn == 0)
+                        despawn++;
+                }
+            }
+            else if(!Main.dayTime || LaugicalityWorld.downedEtheria)
+                despawn = 0;
+            if(Main.dayTime && despawn == 0 && !LaugicalityWorld.downedEtheria)
+                despawn++;
+            if (despawn >= 1)
+            {
+                despawn++;
+                npc.noTileCollide = true;
+                if (despawn >= 300)
+                    npc.active = false;
+            }
 
             npc.spriteDirection = 0;
             bitherial = true;
@@ -124,6 +165,7 @@ namespace Laugicality.NPCs.Etheria
                 phase += 1;
                 if (Main.expertMode)
                     attackDelMax -= 20;
+                npc.netUpdate = true;
             }
             if (npc.life < npc.lifeMax * .75 && phase == 1 )
             {
@@ -134,18 +176,21 @@ namespace Laugicality.NPCs.Etheria
                 {
                     NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("EtheriaDecoy"));
                 }
+                npc.netUpdate = true;
             }
             if (npc.life < npc.lifeMax * .5 && phase == 2)
             {
                 phase += 1;
                 if (Main.expertMode)
                     attackDelMax -= 20;
+                npc.netUpdate = true;
             }
             if (npc.life < npc.lifeMax * .25 && phase == 3 )
             {
                 phase += 1;
                 if (Main.expertMode)
                     attackDelMax -= 20;
+                npc.netUpdate = true;
             }
             if (npc.life < npc.lifeMax * .10 && phase == 4 && Main.expertMode && LaugicalityWorld.downedEtheria)
             {
@@ -156,11 +201,13 @@ namespace Laugicality.NPCs.Etheria
                 {
                     NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("EtheriaDecoy"));
                 }
+                npc.netUpdate = true;
             }
             if (npc.life < npc.lifeMax * .20 && phase == 5 && Main.expertMode && LaugicalityWorld.downedEtheria)
             {
                 phase += 1;
                 attackDelMax -= 20;
+                npc.netUpdate = true;
             }
 
             //Movement
@@ -214,148 +261,209 @@ namespace Laugicality.NPCs.Etheria
                 if (Math.Abs(vaccel) < maxVaccel / 6) { vaccel += (float)vDir / 6f; }
                 else { vaccel *= .98f; }
             }
-            
+
+            //Attack Vars
+            theta += 3.14f / 40f;
+            if (theta > 6.28f)
+                theta -= 6.28f;
+            thetaSlow += 3.14f / 60f;
+            if (thetaSlow > 6.28f)
+                thetaSlow -= 6.28f;
+            float projMod = 2f;
+            Center = npc.Center;
+            scale = npc.scale;
 
             //Attack Delay
-            attackDel--;
+            if (!attacking)
+                attackDel--;
             if(attackDel <= 0)
             {
                 attackDel = attackDelMax;
-                attack = Main.rand.Next(1,4);
+                attack++;
+                attacking = true;
+                if (attack > 5)
+                    attack = 1;
+                if(LaugicalityWorld.downedEtheria)
+                    projMod = 4f;
                 if (phase > 4 && LaugicalityWorld.downedEtheria)
                 {
                     Eattack = attack;
                     attack = 0;
+                    projMod = 2.5f;
                 }
             }
 
             //Attacks
-            if(attack == 1 && Main.netMode != 1)
+            if(attack == 1 && Main.netMode != 1 && attacking)
             {
-                if (attackRel == -1)
-                    attackRel = 1;
-                attackRelMax = 4;
-                if(attackRel > 0)
+                attackRel++;
+                if(attackRel > 2)
                 {
-                    attackRel--;
-                    if(attackRel == 0)
-                    {
-                        attackRelMax--;
-                        if (attackRelMax > 0)
-                        {
-                            attackRel = 45;
-                            NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("HomingEtherial"));
-                        }
-                        else
-                        {
-                            attackRel = -1;
-                            attack = 0;
-                        }
-                    }
+                    attackRel = 0;
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(theta), npc.Center.Y + 48 * (float)Math.Sin(theta), 8 * (float)Math.Cos(theta), 8 * (float)Math.Sin(theta), mod.ProjectileType("EtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                }
+                attackDur++;
+                if(attackDur > 150)
+                {
+                    attackDur = 0;
+                    attacking = false;
                 }
             }
-            if(attack == 2 && Main.netMode != 1)
+            if(attack == 2 && Main.netMode != 1 && attacking)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("EtherialPulsar"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("EtherialPulsar"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("EtherialPulsar"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("EtherialPulsar"), damage, 3f, Main.myPlayer);
-                attack = 0;
+                attackRel++;
+                if (attackRel > 30)
+                {
+                    attackDur++;
+                    attackRel = 0;
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                }
+                if (attackDur >= 4)
+                {
+                    attackDur = 0;
+                    attacking = false;
+                }
             }
-            if (attack == 3 && Main.netMode != 1)
+            if (attack == 3 && Main.netMode != 1 && attacking)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("EtherialWave"), damage, 3f, Main.myPlayer);
-                attack = 0;
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
+                for (int i = 0; i < 8; i++)
+                {
+                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                    Main.npc[N].ai[0] = npc.whoAmI;
+                    Main.npc[N].ai[1] = i;
+                }
+                npc.position.X = Main.player[npc.target].position.X - (npc.position.X - Main.player[npc.target].position.X) / 2;
+                npc.position.Y = Main.player[npc.target].position.Y - (npc.position.Y - Main.player[npc.target].position.Y) / 2;
+                npc.velocity.X = -npc.velocity.X;
+                npc.velocity.Y = -npc.velocity.Y;
+                attacking = false;
+            }
+            if (attack == 4 && Main.netMode != 1 && attacking)
+            {
+                float dir = (float)Math.Atan2(npc.DirectionTo(Main.player[npc.target].Center).Y, npc.DirectionTo(Main.player[npc.target].Center).X);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), mod.ProjectileType("QuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                attacking = false;
+            }
+            if (attack == 5 && Main.netMode != 1 && attacking)
+            {
+                if (NPC.CountNPCS(mod.NPCType("EtherialTear")) < 4)
+                {
+                    NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("EtherialTear"));
+                    tearIndex++;
+                    attacking = false;
+                }
+                else
+                    attack = 1;
             }
 
             //Etherial Attacks
-            if (Eattack == 1 && Main.netMode != 1)
+            if (Eattack == 1 && Main.netMode != 1 && attacking)
             {
-                if (attackRel == -1)
-                    attackRel = 1;
-                attackRelMax = 6;
-                if (attackRel > 0)
+                attackRel++;
+                if (attackRel > 2)
                 {
-                    attackRel--;
-                    if (attackRel == 0)
-                    {
-                        attackRelMax--;
-                        if (attackRelMax > 0)
-                        {
-                            attackRel = 45;
-                            NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("TrueHomingEtherial"));
-                        }
-                        else
-                        {
-                            attackRel = -1;
-                            Eattack = 0;
-                        }
-                    }
+                    attackRel = 0;
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(theta), npc.Center.Y + 48 * (float)Math.Cos(theta), 8 * (float)Math.Cos(theta), 8 * (float)Math.Sin(theta), mod.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(theta + 3.14), npc.Center.Y + 48 * (float)Math.Sin(theta + 3.14), 8 * (float)Math.Cos(theta + 3.14), 8 * (float)Math.Sin(theta + 3.14), mod.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                }
+                attackDur++;
+                if (attackDur > 240)
+                {
+                    attackDur = 0;
+                    attacking = false;
                 }
             }
-            if (Eattack == 2 && Main.netMode != 1)
+            if (Eattack == 2 && Main.netMode != 1 && attacking)
             {
-                if (attackRel == -1)
-                    attackRel = 1;
-                attackRelMax = 4;
-                if (attackRel > 0)
+                attackRel++;
+                if (attackRel > 30)
                 {
-                    attackRel--;
-                    if (attackRel == 0)
-                    {
-                        attackRelMax--;
-                        if (attackRelMax > 0)
-                        {
-                            attackRel = 60;
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("TrueEtherialPulsar"), damage, 3f, Main.myPlayer);
-                        }
-                        else
-                        {
-                            attackRel = -1;
-                            Eattack = 0;
-                        }
-                    }
+                    attackDur++;
+                    attackRel = 0;
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                }
+                if (attackDur >= 4)
+                {
+                    attackDur = 0;
+                    attacking = false;
                 }
             }
-            if (Eattack == 3 && Main.netMode != 1)
+            if (Eattack == 3 && Main.netMode != 1 && attacking)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("TrueEtherialWave"), damage, 3f, Main.myPlayer);
-                Eattack = 0;
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
+                for (int i = 0; i < 12; i++)
+                {
+                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TrueEtherialSpiralShot"));
+                    Main.npc[N].ai[0] = npc.whoAmI;
+                    Main.npc[N].ai[1] = i;
+                }
+                npc.position.X = Main.player[npc.target].position.X - (npc.position.X - Main.player[npc.target].position.X) / 2;
+                npc.position.Y = Main.player[npc.target].position.Y - (npc.position.Y - Main.player[npc.target].position.Y) / 2;
+                npc.velocity.X = -npc.velocity.X;
+                npc.velocity.Y = -npc.velocity.Y;
+                attacking = false;
+            }
+            if (Eattack == 4 && Main.netMode != 1 && attacking)
+            {
+                float dir = (float)Math.Atan2(npc.DirectionTo(Main.player[npc.target].Center).Y, npc.DirectionTo(Main.player[npc.target].Center).X);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), mod.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir + 3.14), 8 * (float)Math.Sin(dir + 3.14), mod.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                attacking = false;
+            }
+            if (Eattack == 5 && Main.netMode != 1 && attacking)
+            {
+                if (NPC.CountNPCS(mod.NPCType("TrueEtherialTear")) < 4)
+                {
+                    NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("TrueEtherialTear"));
+                    tearIndex++;
+                    attacking = false;
+                }
+                else
+                    attack = 1;
             }
             //Main.NewText(phase.ToString(), 0, 200, 250);
+
+            if (Main.dayTime && !LaugicalityWorld.downedEtheria)
+            {
+                npc.position.Y += 18;
+            }
         }
 
+        public override Color? GetAlpha(Color drawColor)
+        {
+            var b = 125;
+            var b2 = 225;
+            var b3 = 255;
+            if (phase > 4 && LaugicalityWorld.downedEtheria)
+            {
+                b = 225;
+                b2 = 125;
+                b3 = 125;
+            }
+            if (drawColor.R != (byte)b)
+            {
+                drawColor.R = (byte)b;
+            }
+            if (drawColor.G < (byte)b2)
+            {
+                drawColor.G = (byte)b2;
+            }
+            if (drawColor.B < (byte)b3)
+            {
+                drawColor.B = (byte)b3;
+            }
+            return drawColor;
+        }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
 
+            player.AddBuff(44, 300, true);//Frostburn
         }
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            HomingEtherial.despawn = true;
-            TrueHomingEtherial.despawn = true;
             EtheriaDecoy.despawn = true;
             if (plays == 0)
                 plays = 1;
@@ -369,11 +477,26 @@ namespace Laugicality.NPCs.Etheria
             else
             {
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
-                Main.NewText("You're trapped in my world now.", 0, 200, 255);
                 LaugicalityWorld.downedEtheria = true;
             }
-            
 
+            if (LaugicalityWorld.downedEtheria)
+            {
+                Main.NewText("You're trapped in my world now.", 0, 200, 255);
+            }
+            if(LaugicalityWorld.bysmal == false)
+            {
+                LaugicalityWorld.bysmal = true;
+                Main.NewText("Bysmal Veins burst through the world", 125, 200, 255);
+                float sizeMult = Main.maxTilesX / 2600f;
+                for (int k = 0; k < (int)(200 * sizeMult); k++)
+                {
+                    int X = WorldGen.genRand.Next(0, Main.maxTilesX);
+                    int Y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 200, Main.maxTilesY - 200);
+                    WorldGen.OreRunner(X, Y, WorldGen.genRand.Next(9, 12), WorldGen.genRand.Next(5, 9), (ushort)mod.TileType("BysmalOre"));   
+                }
+                WorldGen.PlaceTile(0, 42, mod.TileType("BysmalOre"), true, true);
+            }
         }
         public override void FindFrame(int frameHeight)
         {

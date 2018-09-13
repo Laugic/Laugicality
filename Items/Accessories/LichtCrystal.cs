@@ -17,14 +17,14 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 3;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
-            player.nightVision = true;
+            if (modPlayer.owl)
+                player.nightVision = true;
 
         }
 

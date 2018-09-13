@@ -18,13 +18,13 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gaia's World");
-            Tooltip.SetDefault("The World is in your hands \nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("The World is in your hands\nIllusion inflicts a random elemental debuff\nFires different projectiles based on Mysticism");
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
 		}
 
 		public override void SetDefaults()
 		{
-			item.damage = 10;
+			item.damage = 30;
             //item.magic = true;
             item.mana = 6;
             item.width = 40;
@@ -51,10 +51,10 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 30 + 5 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
+                item.damage = 25 + 7 * modPlayer.destructionPower;
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
                 item.mana = 6;
-                item.useTime = 26 - (2 * modPlayer.destructionPower);
+                item.useTime = 30 - (2 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 1;
                 item.useAnimation = item.useTime;
@@ -65,10 +65,10 @@ namespace Laugicality.Items.Weapons.Mystic
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 30;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
+                item.damage = 28;
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
                 item.mana = 6;
-                item.useTime = 16;
+                item.useTime = 20;
                 item.useAnimation = item.useTime;
                 item.knockBack = 4;
                 item.shootSpeed = 12f;
@@ -77,8 +77,8 @@ namespace Laugicality.Items.Weapons.Mystic
             else if (modPlayer.mysticMode == 3)
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 22;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
+                item.damage = 32;
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
                 item.mana = 6;
                 item.useTime = 24;
                 item.useAnimation = 24;
@@ -106,7 +106,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("IronBar", 8);
-            recipe.AddIngredient(null, "DarkShard", 8);
+            recipe.AddIngredient(null, "AncientShard", 2);
             recipe.AddIngredient(ItemID.Amethyst);
             recipe.AddIngredient(ItemID.Topaz);
             recipe.AddIngredient(ItemID.Sapphire);

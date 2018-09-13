@@ -21,12 +21,13 @@ namespace Laugicality.Items.Loot
             item.width = 36;
             item.height = 36;
             item.maxStack = 20;
-            item.rare = 3;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
-            item.UseSound = SoundID.Item9;
+            item.useStyle = 1;
             item.consumable = true;
+            item.rare = 11;
+            item.expert = true;
+            bossBagNPC = mod.NPCType("SteamTrain");
         }
 
         public override bool CanRightClick()
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Loot
         }
 
 
-        public override void RightClick(Player player)
+        public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(mod.ItemType("SteamBar"), Main.rand.Next(20, 35));
             player.QuickSpawnItem(mod.ItemType("SoulOfWrought"), Main.rand.Next(25, 40));

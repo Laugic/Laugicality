@@ -17,25 +17,31 @@ namespace Laugicality.Items.Accessories
             item.value = 10000;
             item.rare = 10;
             item.accessory = true;
-            item.defense = 8;
+            item.defense = 4;
             item.lifeRegen = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneV)
-            { 
-                player.findTreasure = true;
+            {
+                if (modPlayer.spelunker)
+                    player.findTreasure = true;
                 Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
-                player.nightVision = true;
-                player.detectCreature = true;
-                player.dangerSense = true;
-                player.AddBuff(116, 2);
+                if (modPlayer.owl)
+                    player.nightVision = true;
+                if (modPlayer.hunter)
+                    player.detectCreature = true;
+                if (modPlayer.danger)
+                    player.dangerSense = true;
+                if(modPlayer.inf)
+                    player.AddBuff(116, 2);
             }
             if (modPlayer.SoulStoneM)
             {
-                player.slowFall = true;
+                if (modPlayer.feather)
+                    player.slowFall = true;
             }
             player.maxMinions++;
             player.resistCold = true;
@@ -44,7 +50,8 @@ namespace Laugicality.Items.Accessories
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[24] = true;
-            player.waterWalk = true;
+            if (modPlayer.ww)
+                player.waterWalk = true;
             player.gills = true;
             player.ignoreWater = true;
             player.accFlipper = true;

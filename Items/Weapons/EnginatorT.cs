@@ -44,6 +44,7 @@ namespace Laugicality.Items.Weapons
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "SteamBar", 16);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
+            recipe.AddIngredient(null, "Gear", 8);
             recipe.AddTile(134);
             recipe.SetResult(this);
             recipe.AddRecipe();

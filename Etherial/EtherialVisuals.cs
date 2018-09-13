@@ -23,7 +23,7 @@ namespace Laugicality.Etherial
 
         private void UpdateYIndex()
         {
-            int YType = ModLoader.GetMod("Laugicality").NPCType("EtherialBkg");
+            int YType = ModLoader.GetMod("Laugicality").NPCType("EtherialBkg");     //"EtherialBkg" should be the name of the npc you're basing the shader around.
             if (YIndex >= 0 && Main.npc[YIndex].active && Main.npc[YIndex].type == YType)
             {
                 return;
@@ -84,8 +84,8 @@ namespace Laugicality.Etherial
 
         public override Color OnTileColor(Color inColor)
         {
-            float intensity = this.GetIntensity();
-            return new Color(Vector4.Lerp(new Vector4(0.5f, 0.8f, 1f, 1f), inColor.ToVector4(), 1f - intensity));
+            float intensity = this.GetIntensity();//   Red|Green|Blue|Not Sure
+            return new Color(Vector4.Lerp(new Vector4(0.5f, 0.8f, 1f, 1f), inColor.ToVector4(), 1f - intensity)); 
         }
 
         private bool UpdateYIndex()
@@ -113,7 +113,7 @@ namespace Laugicality.Etherial
             if (maxDepth >= 0 && minDepth < 0)
             {
                 float intensity = this.GetIntensity();
-                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(77, 19, 0) * intensity);
+                spriteBatch.Draw(Main.blackTileTexture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(0, 19, 77) * intensity); //Tints the background (RGB)
             }
         }
 

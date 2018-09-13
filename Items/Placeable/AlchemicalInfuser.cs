@@ -35,6 +35,48 @@ namespace Laugicality.Items.Placeable
             recipe.AddIngredient(8, 4);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe Warrecipe = new ModRecipe(mod);
+            Warrecipe.AddRecipeGroup("Emblems");
+            Warrecipe.AddIngredient(ItemID.SoulofFright, 5);
+            Warrecipe.AddTile(134);
+            Warrecipe.SetResult(ItemID.WarriorEmblem);
+            Warrecipe.AddRecipe();
+
+            ModRecipe Ranrecipe = new ModRecipe(mod);
+            Ranrecipe.AddRecipeGroup("Emblems");
+            Ranrecipe.AddIngredient(ItemID.SoulofMight, 5);
+            Ranrecipe.AddTile(134);
+            Ranrecipe.SetResult(ItemID.RangerEmblem);
+            Ranrecipe.AddRecipe();
+
+            ModRecipe Sorrecipe = new ModRecipe(mod);
+            Sorrecipe.AddRecipeGroup("Emblems");
+            Sorrecipe.AddIngredient(ItemID.SoulofSight, 5);
+            Sorrecipe.AddTile(134);
+            Sorrecipe.SetResult(ItemID.SorcererEmblem);
+            Sorrecipe.AddRecipe();
+
+            ModRecipe Sumrecipe = new ModRecipe(mod);
+            Sumrecipe.AddRecipeGroup("Emblems");
+            Sumrecipe.AddIngredient(null, "SoulOfThought", 5);
+            Sumrecipe.AddTile(134);
+            Sumrecipe.SetResult(ItemID.SummonerEmblem);
+            Sumrecipe.AddRecipe();
+
+            ModRecipe Ninrecipe = new ModRecipe(mod);
+            Ninrecipe.AddRecipeGroup("Emblems");
+            Ninrecipe.AddIngredient(null, "SoulOfFraught", 5);
+            Ninrecipe.AddTile(134);
+            Ninrecipe.SetResult(null, "NinjaEmblem");
+            Ninrecipe.AddRecipe();
+
+            ModRecipe Mysrecipe = new ModRecipe(mod);
+            Mysrecipe.AddRecipeGroup("Emblems");
+            Mysrecipe.AddIngredient(null, "SoulOfWrought", 5);
+            Mysrecipe.AddTile(134);
+            Mysrecipe.SetResult(null, "MysticEmblem");
+            Mysrecipe.AddRecipe();
         }
     }
 }

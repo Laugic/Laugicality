@@ -23,8 +23,8 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.moveSpeed += 0.10f;
-            player.AddBuff(15, 2);
-            player.AddBuff(109, 2);
+            player.waterWalk = true;
+            player.ignoreWater = true;
         }
         
 
@@ -33,7 +33,6 @@ namespace Laugicality.Items.Armor
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "ObsidiumBar", 15);
             recipe.AddIngredient(173, 10);
-            recipe.AddIngredient(225, 10);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

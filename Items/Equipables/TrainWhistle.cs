@@ -7,7 +7,7 @@ namespace Laugicality.Items.Equipables
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Calls a Train for you to ride!");
+			Tooltip.SetDefault("Calls a Train for you to ride! \n'Not so suspicious'");
 		}
 
 		public override void SetDefaults()
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Equipables
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "SteamBar", 16);
-            recipe.AddIngredient(ItemID.Cog, 40);
+            recipe.AddIngredient(null, "Gear", 20);
             recipe.AddIngredient(null, "SoulOfWrought", 8);
             recipe.AddTile(134);
 			recipe.SetResult(this);

@@ -17,16 +17,16 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 3;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[24] = true;
-            player.waterWalk = true;
+            if (modPlayer.ww)
+                player.waterWalk = true;
 
         }
 

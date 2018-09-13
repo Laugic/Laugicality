@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.World.Generation;
 
 namespace Laugicality.NPCs.PreTrio
 {
@@ -14,30 +15,27 @@ namespace Laugicality.NPCs.PreTrio
     {
 
         public static Random rnd = new Random();
-        public int spawn = 0;
-        public bool stage2 = false;
         public int phase = 0;
-        public int dir = 0;
-        public int vdir = 0;
-        public float accel = 0f;
-        public float maxAccel = 20f;
-        public float vaccel = 0f;
-        public float maxVaccel = 20f;
-        public bool boosted = false;
         public int delay = 0;
         public int maxDelay = 60;
-        public int range = 2000;
         public int damage = 0;
         public int shoot = 0;
-        public int reload = 160;
         public int moveType = 1;
-        public int hovDir = 1;
-        public int moveDelay = 600;
-        public int vDir = 2;
-        public int attacks = 0;
         public bool attacking = false;
         public bool bitherial = true;
-        public int plays = 0;
+        public float vel = 0f;
+        public float tVel = 0f;
+        public float vMax = 14f;
+        public float vAccel = .2f;
+        public float vMag = 0f;
+        public double theta = 0;
+        public double theta2 = 0;
+        public int cycle = 0;
+        public int cycle2 = 0;
+        public int rotRate = 60;
+        public int reload = 0;
+        public int reloadMax = 120;
+        public static float sizeMult = Main.maxTilesX / 2600f;
 
         public override void SetStaticDefaults()
         {
@@ -48,32 +46,23 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetDefaults()
         {
-            plays = 1;
-            bitherial = true;
-            attacks = 0;
-            attacking = false;
-            moveDelay = 600;
-            hovDir = 1;
-            vDir = 1;
+            reload = 0;
+            rotRate = 60;
+            cycle2 = 0;
+            cycle = 0;
             moveType = 1;
+            theta = 0;
+            theta2 = 0;
             shoot = 0;
-            reload = 50;
-            phase = 1;
-            damage = 0;
-            maxDelay = 60;
-            range = 200;
-            maxAccel = 14f;
-            maxVaccel = 20f;
-            accel = 0f;
-            vaccel = 0f;
-            spawn = 0;
-            dir = 0;
-            vdir = 0;
-            delay = reload;
-            npc.width = 96;
+            vMag = 0f;
+            vMax = 14f;
+            tVel = 0f;
+            phase = 0;
+            bitherial = true;
+            npc.width = 88;
             npc.height = 96;
             npc.damage = 28;
-            npc.defense = 10;
+            npc.defense = 16;
             npc.aiStyle = 0;
             npc.lifeMax = 3200;
             npc.HitSound = SoundID.NPCHit7;
@@ -85,155 +74,216 @@ namespace Laugicality.NPCs.PreTrio
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RottenShotgun");
+            npc.buffImmune[24] = true;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
             damage = 32;
+            bossBag = mod.ItemType("RagnarTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            plays = numPlayers;
-            npc.lifeMax = 4200 + numPlayers * 800;
-            npc.damage = 40;
-            reload = 220;
-            damage = 36;
+            npc.lifeMax = 4400 + numPlayers * 800;
+            npc.damage = 36;
+            damage = 34;
         }
 
+        public override bool PreAI()
+        {
+            npc.TargetClosest(true);
+            return true;
+        }
 
         public override void AI()
         {
             bitherial = true;
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
+            var player = Main.player[npc.target];
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if (Main.player[npc.target].statLife <= 0) { npc.position.Y += 60; }
+            if (modPlayer.ZoneObsidium == false) { npc.defense = 9999; }
+            else { npc.defense = 24; }
 
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 30; }
-            if (Main.player[npc.target].ZoneRockLayerHeight == false) { npc.position.Y -= 30; }
+
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
 
-            
-            //Main.NewText(vaccel.ToString(), 250, 0, 0);
-
-            //Checking which direction to move when spawned
-            if (dir == 0)
+            float mag = 360;
+            theta -= Math.PI / rotRate;
+            if (theta < -Math.PI * 2)
             {
-                if (delta.X < 0) dir = 1;
-                else dir = -1;
+                cycle++;
+                theta += Math.PI * 2;
             }
+                
 
-            //Moving across top of screen
-            if (moveType == 1)
+            Vector2 rot;
+            rot.X = (float)Math.Cos(theta) * mag;
+            rot.Y = (float)Math.Sin(theta) * mag;
+            Vector2 targetPos = player.Center;
+            reload++;
+            if(moveType == 1)
             {
-                attacking = false;
-                //Horizontal Movement
-                npc.velocity.X = accel;
-                if (npc.position.X < Main.player[npc.target].position.X - 400 && hovDir == -1)
+                vMax = 10f;
+                rotRate = 120;
+                theta2 -= Math.PI / 140;
+                
+                if (theta2 < -Math.PI * 2)
                 {
-                    hovDir = 1;
-                    if (npc.life > npc.lifeMax / 2)
-                        shoot = 1;
-                    else
-                        shoot = 2;
-                    attacks += 1;
+                    theta2 += Math.PI * 2;
+                    cycle2++;
                 }
-                if (npc.position.X > Main.player[npc.target].position.X + 400 && hovDir == 1)
+                reloadMax = 120;
+                if (reload > reloadMax)
                 {
-                    hovDir = -1;
-                    if (npc.life > npc.lifeMax / 2)
-                        shoot = 1;
-                    else
-                        shoot = 2;
-                    attacks += 1;
+                    reload = 0;
+                    shoot = 1;
                 }
-                if (Math.Abs(accel) < maxAccel) { accel += (float)hovDir / 4f; }
-                else { accel *= .5f; }
-
-                //Vertical Movement
-                npc.velocity.Y = vaccel;
-                if (npc.position.Y - Main.player[npc.target].position.Y + 280 > 0) { vDir = -1; }
-                if (npc.position.Y - Main.player[npc.target].position.Y + 280 < 0) { vDir = 1; }
-                if (Math.Abs(vaccel) < maxVaccel / 4) { vaccel += (float)vDir / 3f; }
-                else { vaccel *= .2f; }
-                npc.velocity.Y = vaccel;
-                if (boosted == false)
+                Vector2 rot1;
+                rot1.X = (float)Math.Cos(theta2) * 320;
+                rot1.Y = (float)Math.Sin(theta) * 120;
+                targetPos = player.Center + rot1;
+                targetPos.Y -= 180;
+                if(cycle2 >= 2)
                 {
-                    if (Math.Abs(npc.position.Y - Main.player[npc.target].position.Y + 280) > 20)
+                    if(Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
                     {
-                        if (npc.position.Y - Main.player[npc.target].position.Y + 280 < 0)
-                        {
-                            if (vaccel < maxVaccel) vaccel += .4f;
-                        }
-                        if (npc.position.Y - Main.player[npc.target].position.Y + 280 > 0)
-                        {
-                            if (vaccel < maxVaccel) vaccel -= .4f;
-                        }
-                    }
-                    else
-                    {
-                        if (Math.Abs(vaccel) > .01f) vaccel *= .5f;
-                        else vaccel = 0f;
+                        cycle2 = 0;
+                        cycle = 0;
+                        moveType = 2;
                     }
                 }
-                else vaccel = 0;
-
-                //Attack 2
-                if(Math.Abs(delta.X) < 10 && attacks >= 8 && moveType == 1)
-                {
-                    attacks = 0;
-                    moveType = 2;
-                    npc.velocity.X = 0;
-                    npc.velocity.Y = 0;
-                }
-
             }
-
-            if(moveType == 2)
+            if(moveType == 3)
             {
+                moveType = 4;
+                vMax = 8f;
+                rotRate = 90;
+                Vector2 rot3;
+                rot3.X = 0;
+                rot3.Y = (float)Math.Sin(theta) * mag;
+                targetPos = player.Center + rot3;
+                if(cycle >= 8)
+                {
+                    moveType++;
+                    cycle = 0;
+                }
+                reloadMax = 90;
+                if (reload > reloadMax)
+                {
+                    reload = 0;
+                    shoot = 1;
+                }
+            }
+            if(moveType == 4)
+            {
+                vMax = 12f;
+                rotRate = 120;
+                targetPos = player.Center + rot;
+                if (npc.life > npc.lifeMax / 2)
+                {
+                    reloadMax = 90;
+                    if (reload > reloadMax)
+                    {
+                        reload = 0;
+                        shoot = 1;
+                    }
+                }
+                else
+                {
+                    reloadMax = 120;
+                    if (reload > reloadMax)
+                    {
+                        reload = 0;
+                        shoot = 2;
+                    }
+                }
+                if (cycle >= 4)
+                {
+                    if (Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
+                    {
+                        cycle = 0;
+                        moveType++;
+                    }
+                }
+            }
+            if (moveType == 2 || moveType == 5)
+            {
+                vMax = 14f;
                 attacking = true;
                 npc.velocity.Y = 14;
                 npc.velocity.X = 0;
-                vaccel = 0;
-                accel = 0;
                 if (npc.position.Y - Main.player[npc.target].position.Y > 280)
                 {
-                    moveType = 1;
-                    delay = reload;
+                    cycle = 0;
                     shoot = 2;
+                    moveType += 1;
+                    if (moveType == 6)
+                        moveType = 1;
                 }
             }
-            /*Attacks
-            if (moveType == 1)
+            else
             {
-                reload = 100;
-                delay -= 1;
-                if (delay <= 0)
+                float dist = Vector2.Distance(targetPos, npc.Center);
+                tVel = dist / 15;
+                if (vMag < vMax && vMag < tVel)
                 {
-                    delay = reload;
-                    if (npc.life > npc.lifeMax / 2)
-                        shoot = 1;
-                    else
-                        shoot = 2;
-                    attacks += 1;
+                    vMag += vAccel;
+                    vMag = tVel;
+                }
+
+                if (vMag > tVel)
+                {
+                    vMag = tVel;
+                }
+
+                if (vMag > vMax)
+                {
+                    vMag = vMax;
+                }
+
+                if (dist != 0)
+                {
+                    npc.velocity = npc.DirectionTo(targetPos) * vMag;
                 }
             }
-            */
+
+            //Attacks
+            //Normal Shot
             if (shoot == 1 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
+                if(Main.expertMode)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("RockLooseMini"), damage / 2, 3, Main.myPlayer);
             }
+            //Big Boom
             if (shoot == 2 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("RockLoose"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, mod.ProjectileType("RockFalling"), damage, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("MiniRock"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, mod.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
 
+                if (Main.expertMode && npc.life < npc.lifeMax * 2 / 3)
+                {
+                    if (attacking)
+                    {
+                        if (Main.rand.Next(3) == 0)
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmaCaster"));
+                        else if (Main.rand.Next(2) == 0)
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmatipedeHead"));
+                        else
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("ObsidiumElemental"));
+                    }
+                    else if(Main.rand.Next(5) == 0)
+                    {
+                        if (Main.rand.Next(3) == 0)
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmaCaster"));
+                        else if (Main.rand.Next(2) == 0)
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmatipedeHead"));
+                        else
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("ObsidiumElemental"));
+                    }
+                }
+                attacking = false;
             }
         }
 
@@ -243,27 +293,22 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (Main.expertMode)
             {
-                target.AddBuff(BuffID.Frostburn, 90, true);
-                target.AddBuff(BuffID.Chilled, 60, true);
+                target.AddBuff(BuffID.OnFire, 90, true);
             }
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
-            if (plays == 0)
-                plays = 1;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            if (LaugicalityWorld.downedEtheria)
+            if (LaugicalityWorld.downedEtheria )
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MoltenEtheria"), 1);
             }
-                potionType = 188;
 
             if (Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RagnarTreasureBag"), 1);
+                npc.DropBossBags();
             }
-            else
+            if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkShard"), Main.rand.Next(1, 3));
                 int ran = Main.rand.Next(1, 7);
@@ -294,5 +339,10 @@ namespace Laugicality.NPCs.PreTrio
         }
 
 
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 188;
+        }
+        
     }
 }

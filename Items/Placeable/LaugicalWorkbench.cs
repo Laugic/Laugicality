@@ -7,7 +7,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("For crafting things to craft things.");
+            Tooltip.SetDefault("For crafting things to craft things. \n'It's completely logical!'");
         }
 
         public override void SetDefaults()
@@ -32,9 +32,18 @@ namespace Laugicality.Items.Placeable
             recipe.AddIngredient(9, 20);
             recipe.AddIngredient(2340, 40);
             recipe.AddIngredient(363);
+            recipe.AddIngredient(2343);
             recipe.AddIngredient(997);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+
+            ModRecipe recipe1 = new ModRecipe(mod);
+            recipe1.AddTile(114);
+            recipe1.AddIngredient(3202);
+            recipe1.AddIngredient(583);
+            recipe1.SetResult(3119);
+            recipe1.AddRecipe();
         }
     }
 }

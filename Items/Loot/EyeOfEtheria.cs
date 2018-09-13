@@ -16,15 +16,13 @@ namespace Laugicality.Items.Loot
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 1;
+            item.rare = 5;
             item.accessory = true;
-            //item.defense = 1000;
-            item.lifeRegen = 1;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.etherVision = true;
         }
         

@@ -16,8 +16,8 @@ namespace Laugicality.NPCs.Obsidium
         {
             //npc.frameWidth = 40;
             //npc.frameHeight = 34;
-            npc.width = 40;
-            npc.height = 34;
+            npc.width = 32;
+            npc.height = 32;
             npc.damage = 35;
             npc.defense = 12;
             npc.lifeMax = 80;
@@ -29,6 +29,7 @@ namespace Laugicality.NPCs.Obsidium
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.buffImmune[24] = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -36,8 +37,8 @@ namespace Laugicality.NPCs.Obsidium
             var player = Main.LocalPlayer;
             var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
 
-            if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer - 150 && !player.ZoneDungeon)
-                return SpawnCondition.Cavern.Chance * 0.75f;
+            if (LaugicalityWorld.obsidiumTiles > 250)
+                return SpawnCondition.Cavern.Chance * 0.65f;
             else return 0f;
         }
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
@@ -58,7 +59,10 @@ namespace Laugicality.NPCs.Obsidium
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
+                if (Main.rand.Next(4) == 0)
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
+                else
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
             }
         }
     }

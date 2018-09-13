@@ -18,16 +18,16 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hades' Judgement");
-            Tooltip.SetDefault("Cleanse your sins \nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("Cleanse your sins\nIllusion inflicts 'Shadowflame'\nFires different projectiles based on Mysticism");
             //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
 		public override void SetDefaults()
 		{
-			item.damage = 10;
+			item.damage = 34;
             //item.magic = true;
-            item.width = 40;
-			item.height = 40;
+            item.width = 66;
+			item.height = 74;
 			item.useTime = 18;
 			item.useAnimation = 18;
 			item.useStyle = 1;
@@ -62,8 +62,8 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 22 + 10 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
+                item.damage = 32 + 12 * modPlayer.destructionPower;
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
                 item.useTime = 46 - (6 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 1;
@@ -75,8 +75,8 @@ namespace Laugicality.Items.Weapons.Mystic
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 28;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
+                item.damage = 32;
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
                 item.useTime = 20;
                 item.useAnimation = 20;
                 item.knockBack = 4;
@@ -86,8 +86,8 @@ namespace Laugicality.Items.Weapons.Mystic
             else if (modPlayer.mysticMode == 3)
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 16;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
+                item.damage = 20;
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
                 item.useTime = 65;
                 item.useAnimation = 65;
                 item.knockBack = 2;
@@ -101,21 +101,23 @@ namespace Laugicality.Items.Weapons.Mystic
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             damage = item.damage;
             if (modPlayer.mysticMode == 1)
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, mod.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
         }
 
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "ObsidiumBar", 16);
-            recipe.AddIngredient(ItemID.FallenStar, 8);
+            recipe.AddIngredient(null, "DarkShard", 2);
+            recipe.AddIngredient(ItemID.FallenStar, 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 
             ModRecipe Hrecipe = new ModRecipe(mod);
             Hrecipe.AddIngredient(ItemID.HellstoneBar, 16);
-            Hrecipe.AddIngredient(ItemID.FallenStar, 8);
+            Hrecipe.AddIngredient(null, "DarkShard", 2);
+            Hrecipe.AddIngredient(ItemID.FallenStar, 4);
             Hrecipe.AddTile(16);
             Hrecipe.SetResult(this);
             Hrecipe.AddRecipe();

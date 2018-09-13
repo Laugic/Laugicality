@@ -35,7 +35,7 @@ namespace Laugicality.Projectiles
         public override void AI()
         {
             delay += 1;
-            if(delay == 25 && Main.netMode != 1)
+            if(delay == 25 && Main.myPlayer == projectile.owner)
             {
                 //Main.PlaySound(SoundID.Item33, (int)projectile.position.X, (int)projectile.position.Y);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectrosparkP2"), damage, 3f, Main.myPlayer);
@@ -48,7 +48,7 @@ namespace Laugicality.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             //NPCs.Slybertron.Slybertron.electroShockHits += 1;
-            int debuff = mod.BuffType("Electrified");
+            int debuff = mod.BuffType("Steamy");
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);

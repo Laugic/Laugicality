@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
@@ -7,7 +8,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Shows the location of enemies");
+            Tooltip.SetDefault("Shows the location of enemies\nUse to toggle this effect in higher tier gems.");
         }
 
         public override void SetDefaults()
@@ -17,16 +18,23 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 2;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
+            item.useAnimation = 45;
+            item.useTime = 45;
+            item.useStyle = 4;
+            item.UseSound = SoundID.Item9;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.detectCreature = true;
-
         }
 
+        public override bool UseItem(Player player)
+        {
+            player.GetModPlayer<LaugicalityPlayer>(mod).hunter = !player.GetModPlayer<LaugicalityPlayer>(mod).hunter;
+            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).hunter.ToString(), 250, 250, 0);
+            return true;
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

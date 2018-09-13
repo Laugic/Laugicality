@@ -21,16 +21,22 @@ namespace Laugicality.NPCs.Bosses
         public bool poof = false;
         public bool bitherial = true;
         public int plays = 0;
+        public int frame = 0;
+        public int delay = 0;
+        public int fHeight = 10;
 
         public override void SetStaticDefaults()
         {
             LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("The Annihilator");
-            Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 8;
         }
 
         public override void SetDefaults()
         {
+            fHeight = 0;
+            delay = 0;
+            frame = 0;
             plays = 1;
             bitherial = true;
             poof = false;
@@ -52,7 +58,7 @@ namespace Laugicality.NPCs.Bosses
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
-
+            bossBag = mod.ItemType("AnnihilatorTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -244,6 +250,19 @@ namespace Laugicality.NPCs.Bosses
                 Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
                 Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
             }
+
+            delay++;
+            int phase = 0;
+            if (npc.life < npc.lifeMax * .5)
+                phase = 1;
+            if (delay >= 4)
+            {
+                delay = 0;
+                frame++;
+                if (frame > phase * 4 + 3)
+                    frame = phase * 4;
+            }
+            npc.frame.Y = fHeight * frame;
         }
 
 
@@ -251,7 +270,7 @@ namespace Laugicality.NPCs.Bosses
         {
             if (Main.expertMode)
             {
-                int debuff = mod.BuffType("Electrified");
+                int debuff = mod.BuffType("Steamy");
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -259,7 +278,7 @@ namespace Laugicality.NPCs.Bosses
             }
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
             MechanicalCreeper.despawn = true;
             MechanicalSlimer.despawn = true;
@@ -267,38 +286,35 @@ namespace Laugicality.NPCs.Bosses
             MechanicalMimic.despawn = true;
             MechanicalCrawler.despawn = true;
 
-            if (plays == 0)
+            if (plays < 1)
                 plays = 1;
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CogOfEtheria"), 1);
             }
-                if (!Main.expertMode)
+            if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
-                potionType = 499;
+               
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfThought"), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)
             {
-                potionType = 499;
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AnnihilatorTreasureBag"), 1);
+                npc.DropBossBags();
             }
             LaugicalityWorld.downedAnnihilator = true;
 
         }
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 499;
+        }
         public override void FindFrame(int frameHeight)
         {
-            if (npc.life < npc.lifeMax * .5)
-            {
-                npc.frame.Y = frameHeight;
-            }
-            else
-            {
-                npc.frame.Y = 0;
-            }
+
+            fHeight= frameHeight;
         }
 
 

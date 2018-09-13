@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.Etheria
             projectile.width = 22;
 			projectile.height = 22;
 			//projectile.alpha = 255;
-            projectile.timeLeft = 80;
+            projectile.timeLeft = 160;
             projectile.friendly = false;
             projectile.hostile = true;
             projectile.ignoreWater = true;
@@ -35,9 +35,29 @@ namespace Laugicality.NPCs.Etheria
 
             bitherial = true;
         }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            var b = 125;
+            var b2 = 225;
+            var b3 = 255;
+            if (drawColor.R != (byte)b)
+            {
+                drawColor.R = (byte)b;
+            }
+            if (drawColor.G < (byte)b2)
+            {
+                drawColor.G = (byte)b2;
+            }
+            if (drawColor.B < (byte)b3)
+            {
+                drawColor.B = (byte)b3;
+            }
+            return drawColor;
+        }
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(BuffID.Chilled, 90, true);
+            player.AddBuff(44, 300, true);//Frostburn
         }
     }
 }

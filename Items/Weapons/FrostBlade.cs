@@ -18,12 +18,12 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 20;
+			item.damage = 28;
             item.melee = true;
-			item.width = 34;
-			item.height = 40;
-			item.useTime = 36;
-			item.useAnimation = 18;
+			item.width = 48;
+			item.height = 54;
+			item.useTime = 60;
+			item.useAnimation = 30;
 			item.useStyle = 1;
 			item.knockBack = 4;
 			item.value = 10000;
@@ -60,8 +60,8 @@ namespace Laugicality.Items.Weapons
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.IceBlade, 1);
-            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddIngredient(null, "ChilledBar", 10);
+            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Miniature Train Whistle");
-			Tooltip.SetDefault("Summons a mini Train that follows you");
+			Tooltip.SetDefault("Summons a Toy Train that follows you");
 		}
 
 		public override void SetDefaults()

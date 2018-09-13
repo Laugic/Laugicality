@@ -13,19 +13,21 @@ namespace Laugicality.NPCs.Obsidium
     {
         public override void SetDefaults()
         {
-            npc.width = 34;
-            npc.height = 32;
-            npc.damage = 22;
-            npc.defense = 12;
+            npc.width = 40;
+            npc.height = 40;
+            npc.damage = 30;
+            npc.defense = 15;
             npc.lifeMax = 80;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
+            Main.npcFrameCount[npc.type] = 4;
             npc.value = 60f;
             npc.knockBackResist = 0.4f;
             npc.aiStyle = 0;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
+            npc.buffImmune[24] = true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -33,14 +35,13 @@ namespace Laugicality.NPCs.Obsidium
             var player = Main.LocalPlayer;
             var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
 
-            if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer - 150 && !player.ZoneDungeon)
-                return SpawnCondition.Cavern.Chance * 0.75f;
+            if (LaugicalityWorld.obsidiumTiles > 250  && LaugicalityWorld.downedRagnar)
+                return SpawnCondition.Cavern.Chance * 0.65f;
             else return 0f;
         }
 
         public override void AI()
         {
-            npc.rotation = 0.02f;
             if (npc.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref npc.velocity);
@@ -63,10 +64,11 @@ namespace Laugicality.NPCs.Obsidium
                     }
                 }
             }
+            
             if (target)
             {
                 AdjustMagnitude(ref move);
-                npc.velocity = (12 * npc.velocity + move) / 11f;
+                npc.velocity = (12 * npc.velocity + move) / 12f;
                 AdjustMagnitude(ref npc.velocity);
             }
 
@@ -84,12 +86,11 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
-            //NPCs.Slybertron.Slybertron.coginatorHits += 1;
             int debuff = BuffID.OnFire;
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);
-            }      //Add Onfire buff to the NPC for 1 second
+            }
         }
 
         public override void NPCLoot()
@@ -100,8 +101,26 @@ namespace Laugicality.NPCs.Obsidium
             }
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
+                if (Main.rand.Next(4) == 0)
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
+                else
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
             }
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frameCounter += 1.0;
+            if (npc.frameCounter > 20.0)
+            {
+                npc.frame.Y = npc.frame.Y + frameHeight;
+                npc.frameCounter = 0.0;
+            }
+            if (npc.frame.Y > frameHeight * 3)
+            {
+                npc.frame.Y = 0;
+            }
+
         }
     }
 }

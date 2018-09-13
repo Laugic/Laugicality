@@ -4,6 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
 using Laugicality.NPCs;
+using System;
+using System.Collections.Generic;
 
 namespace Laugicality.Projectiles.Mystic
 {
@@ -19,7 +21,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.width = 12;
             projectile.height = 12;
             projectile.friendly = true;
-            projectile.penetrate = 3;
+            projectile.penetrate = 2;
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
         }
@@ -33,35 +35,9 @@ namespace Laugicality.Projectiles.Mystic
             mystDur = modPlayer.mysticDuration;*/
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            projectile.penetrate--;
-            if (projectile.penetrate <= 0)
-            {
-                projectile.Kill();
-            }
-            else
-            {
-                projectile.ai[0] += 0.1f;
-                if (projectile.velocity.X != oldVelocity.X)
-                {
-                    projectile.velocity.X = -oldVelocity.X;
-                }
-                if (projectile.velocity.Y != oldVelocity.Y)
-                {
-                    projectile.velocity.Y = -oldVelocity.Y;
-                }
-                Main.PlaySound(SoundID.Item10, projectile.position);
-            }
-            return false;
-        }
-        /*
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(mod.BuffType("Electrified"), (int)(120*mystDur));
-            //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
-        }*/
+        
     }
 }

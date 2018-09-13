@@ -11,15 +11,15 @@ namespace Laugicality.Projectiles.Pets
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Toy Train");
-			Main.projFrames[projectile.type] = 16;
+			Main.projFrames[projectile.type] = 18;
 			Main.projPet[projectile.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			projectile.CloneDefaults(ProjectileID.BabyGrinch);
-            projectile.height = 62;
-            projectile.width = 98;
+            projectile.height = 92;
+            projectile.width = 168;
             aiType = ProjectileID.BabyGrinch;
 		}
 
@@ -44,8 +44,13 @@ namespace Laugicality.Projectiles.Pets
 			}
             if (Math.Abs(projectile.velocity.Y) < 1f && Math.Abs(projectile.velocity.X) > 1f)
             {
+                float dist = 0;
                 Rectangle rect = projectile.getRect();
-                Dust.NewDust(new Vector2(rect.X + projectile.width / 2, rect.Y), 0, 0, mod.DustType("TrainSteam"));
+                if (projectile.spriteDirection == 1)
+                    dist = -24;
+                else
+                    dist = 24;
+                Dust.NewDust(new Vector2(rect.X + projectile.width / 2 + dist, rect.Y), 0, 0, mod.DustType("TrainSteam"));
             }
             if (Math.Abs(projectile.velocity.Y) > 1f)
             {

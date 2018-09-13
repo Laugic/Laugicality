@@ -18,13 +18,13 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pluto's Frost");
-            Tooltip.SetDefault("'Make them fall for you' \nIllusion inflicts 'Frigid', which stops enemies in their tracks\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'Harness the void of Space' \nIllusion inflicts 'Frigid', which stops enemies in their tracks\nFires different projectiles based on Mysticism");
             Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
 		public override void SetDefaults()
 		{
-			item.damage = 10;
+			item.damage = 60;
             //item.magic = true;
             item.width = 48;
 			item.height = 48;
@@ -52,24 +52,40 @@ namespace Laugicality.Items.Weapons.Mystic
                                                                                                                     // If you want to randomize the speed to stagger the projectiles
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
+                    if(Main.netMode != 1)
+                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
                 }
 
             }
+            /*if (modPlayer.mysticMode == 3)
+            {
+                for(int p = 0; p < 1000; p++)
+                {
+                    if (Main.projectile[p].type == mod.ProjectileType("PlutoConjuration"))
+                    {
+                        if (player.ownedProjectileCounts[mod.ProjectileType("PlutoConjuration")] >= modPlayer.conjurationPower + 1)
+                        {
+                            Main.projectile[p].Kill();
+                            break;
+                        }
+                    }
+                        
+                }
+            }*/
             return true; // return false because we don't want tmodloader to shoot projectile
         }
         public override void HoldItem(Player player)
         {
             
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  
 
             if (modPlayer.mysticMode  == 1)
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 68 + 16 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
-                item.useTime = 22 - (2 * modPlayer.destructionPower);
+                item.damage = 88 + 16 * modPlayer.destructionPower;
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
+                item.useTime = 20 - (3 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 4;
                 item.useAnimation = item.useTime;
@@ -80,8 +96,8 @@ namespace Laugicality.Items.Weapons.Mystic
             else if(modPlayer.mysticMode == 2)
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 48;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
+                item.damage = 60;
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
                 item.useTime = 10;
                 item.useAnimation = item.useTime;
                 item.knockBack = 5;
@@ -93,7 +109,7 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
                 item.damage = 54;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
                 item.useTime = 24;
                 item.useAnimation = item.useTime;
                 item.knockBack = 2;
@@ -106,8 +122,8 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.HallowedBar, 12); //Crystal Shard
-            recipe.AddIngredient(null, "FrigidEssence", 12);
+            recipe.AddIngredient(null, "BysmalBar", 12); 
+            recipe.AddIngredient(null, "EtherialEssence", 15);
             recipe.AddIngredient(null, "SoulOfSought", 8);
             recipe.AddTile(134);
 			recipe.SetResult(this);

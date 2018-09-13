@@ -17,13 +17,13 @@ namespace Laugicality.Items.Armor
 			item.height = 22;
 			item.value = 10000;
 			item.rare = 5;
-			item.defense = 13;
+			item.defense = 14;
 		}
 
         public override void UpdateEquip(Player player)
         {
             player.moveSpeed += 0.10f;
-            player.buffImmune[mod.BuffType("Electrified")] = true;
+            player.buffImmune[mod.BuffType("Steamy")] = true;
             player.buffImmune[144] = true;
         }
         

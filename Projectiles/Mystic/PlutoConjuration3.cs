@@ -19,10 +19,10 @@ namespace Laugicality.Projectiles.Mystic
         {
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 42;
+            projectile.width = 22;
             projectile.height = 16;
             projectile.friendly = true;
-            projectile.penetrate = 3;
+            //projectile.penetrate = 3;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;

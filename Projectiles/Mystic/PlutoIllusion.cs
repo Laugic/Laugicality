@@ -19,10 +19,10 @@ namespace Laugicality.Projectiles.Mystic
         {
             power = 1;
             powered = false;
-            projectile.width = 42;
+            projectile.width = 22;
             projectile.height = 16;
             projectile.friendly = true;
-            projectile.penetrate = 2;
+            //projectile.penetrate = 2;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
         }
@@ -41,7 +41,8 @@ namespace Laugicality.Projectiles.Mystic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("Frigid"), (int)(140 * mystDur * power));
+            if(target.boss == false && !LaugicalityVars.FrigImmune.Contains(target.type))
+                target.AddBuff(mod.BuffType("Frigid"), (int)(140 * mystDur * power));
             //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
         }
 

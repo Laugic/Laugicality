@@ -18,13 +18,11 @@ namespace Laugicality.Items.Loot
             item.rare = 2;
             item.accessory = true;
             item.expert = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.obsidium = true;
             modPlayer.rocks = true;
             modPlayer.mysticDuration += 0.3f;

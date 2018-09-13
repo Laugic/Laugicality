@@ -24,20 +24,18 @@ namespace Laugicality.Items.Weapons.Mystic
 
 		public override void SetDefaults()
 		{
-			item.damage = 10;
-            //item.magic = true;
+			item.damage = 48;
             item.width = 48;
 			item.height = 48;
 			item.useTime = 18;
 			item.useAnimation = 18;
 			item.useStyle = 1;
-			item.noMelee = false; //so the item's animation doesn't do damage
+			item.noMelee = false; 
 			item.knockBack = 2;
 			item.value = 10000;
 			item.rare = 3;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-			//item.shoot = mod.ProjectileType("GaiaDestruction");
 			item.shootSpeed = 6f;
 		}
 
@@ -68,7 +66,7 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Destruction"), 1, true);
                 item.damage = 46 + 8 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.destructionDamage);
+                item.damage = (int)(item.damage * modPlayer.destructionDamage);
                 item.useTime = 36 - (3 * modPlayer.destructionPower);
                 if (item.useTime <= 0)
                     item.useTime = 2;
@@ -83,7 +81,7 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Illusion"), 1, true);
                 item.damage = 48;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.illusionDamage);
+                item.damage = (int)(item.damage * modPlayer.illusionDamage);
                 item.useTime = 10;
                 item.useAnimation = item.useTime;
                 item.knockBack = 5;
@@ -97,14 +95,14 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 player.AddBuff(mod.BuffType("Conjuration"), 1, true);
                 item.damage = 48;
-                item.damage = (int)(item.damage * modPlayer.mysticDamage * modPlayer.conjurationDamage);
-                item.useTime = 24;
+                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+                item.useTime = 30;
                 item.useAnimation = item.useTime;
                 item.knockBack = 2;
-                item.shootSpeed = 32f;
+                item.shootSpeed = 20f;
                 item.shoot = mod.ProjectileType("VulcanConjuration");
                 item.noUseGraphic = false;
-                item.UseSound = SoundID.Item33;
+                item.UseSound = SoundID.Item1;
                 item.scale = 1f;
             }
         }
@@ -115,6 +113,7 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(null, "SteamBar", 16);
             recipe.AddIngredient(null, "SoulOfWrought", 8);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
+            recipe.AddIngredient(null, "Gear", 12);
             recipe.AddTile(134);
             recipe.SetResult(this);
             recipe.AddRecipe();

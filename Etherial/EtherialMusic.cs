@@ -22,11 +22,11 @@ namespace Laugicality.Etherial
 
         public override void SetDefaults()
         {
-            life = 16;
+            life = 4;
             //npc.frameWidth = 40;
             //npc.frameHeight = 34;
-            npc.width = 40;
-            npc.height = 34;
+            npc.width = 1;
+            npc.height = 1;
             npc.damage = 0;
             npc.defense = 12;
             npc.life = 99999;
@@ -46,8 +46,12 @@ namespace Laugicality.Etherial
         {
             life -= 1;
             if (life == 0)
-                npc.life = 0;
+                npc.active = false;
         }
-        
+
+        public override bool CheckActive()
+        {
+            return false;
+        }
     }
 }

@@ -4,30 +4,13 @@ Current features:
 A new level-up system in the form of the Soul Stone
 A new class- The Mystic Class!
 A new dimension- The Etherial
-7 Boss fights
-Over 200 new Items, including a new way to use Potions
+8 Boss fights
+Over 350 new Items, including a new way to use Potions
 A new biome
-3 new Armor sets
+6 new Armor sets
 And lots more planned features!
 -----
-v 0.10
-The Etherial is here- an alternate dimension that adds a new level of challenge and loot to the game!
-Multiplayer boss fight issues and Boss Checklist bugs now fixed.
-New Mystic items now make Mystic a viable class through Hardmode!
------
-Recent Changes:
-Completed the Pre-Trio, a set of bosses to fight Early Hardmode to give the player some earlier class based armor and gear.
-Complete Revamp of the Obsidium biome! More additions to come, especially Hardmode changes, but the world generation should be staying as is for now!
-New Enchanting and Infusion Stations- place them on top of the Alchemical Infuser!
-Added Mystic weapons to PreHM!
-Completely reworked the Soul Stone to be Class based. Give a Fallen Star and a Life Crystal to the Guide to get started!
-Added Dune Sharkron, Steam Train, Slybertron, Annihilator
-Soul Stone- Created from the essences of life and magic, it allows you to absorb the souls of defeated bosses, gaining new effects as you progress.
-There's a secret under the ocean to the west...
-Crystalize 4 of any buff potion into a wearable 'Gem' accessory.
-========
-Music
-========
-PreTrio: Rotten Shotgun - Death Road to Canada OST
-Obsidium, Steam Trio, Etheria: Turquoise / IcerM
-Etherial: This Is The End 3 - Merlean Epidemic Sound
+v0.12
+Added Lava Titan, Moltioch, and Molten Soul [Hardmode Obsidium Enemies]
+Revamped both of the Etheria fights
+*Worldgen Glitch with Thorium Fixed!*

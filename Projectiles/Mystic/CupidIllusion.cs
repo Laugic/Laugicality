@@ -23,7 +23,7 @@ namespace Laugicality.Projectiles.Mystic
             power = 1;
             powered = false;
             projectile.width = 18;               
-			projectile.height = 36;              
+			projectile.height = 18;              
 			projectile.aiStyle = 1;             
 			projectile.friendly = true;         
 			projectile.hostile = false;         

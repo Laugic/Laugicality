@@ -17,7 +17,7 @@ namespace Laugicality.Items.Weapons
         }
         public override void SetDefaults()
         {
-            item.damage = 110000;           //this is the item damage
+            item.damage = 110;           //this is the item damage
             item.melee = true;             //this make the item do throwing damage
             item.noMelee = true;
             item.width = 106;
@@ -44,6 +44,7 @@ namespace Laugicality.Items.Weapons
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "SteamBar", 16);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
+            recipe.AddIngredient(null, "Gear", 8);
             recipe.AddTile(134);
             recipe.SetResult(this);
             recipe.AddRecipe();

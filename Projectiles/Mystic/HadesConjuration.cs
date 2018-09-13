@@ -36,7 +36,8 @@ namespace Laugicality.Projectiles.Mystic
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             damage = (int)projectile.damage;
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("HadesGeyser"), damage, 3f, Main.myPlayer);
+            if (Main.myPlayer == projectile.owner)
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("HadesGeyser"), damage, 3f, Main.myPlayer);
             projectile.Kill();
             return false;
         }
@@ -44,7 +45,8 @@ namespace Laugicality.Projectiles.Mystic
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             damage = (int)projectile.damage;
-            Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("HadesGeyser"), damage, 3f, Main.myPlayer);
+            if (Main.myPlayer == projectile.owner)
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("HadesGeyser"), damage, 3f, Main.myPlayer);
             projectile.Kill();
         }
     }

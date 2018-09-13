@@ -20,10 +20,10 @@ namespace Laugicality.Items.Weapons
 		{
 			item.damage = 9;
             item.ranged = true;
-			item.width = 56;
+			item.width = 46;
 			item.height = 26;
-			item.useTime = 28;
-			item.useAnimation = 28;
+			item.useTime = 38;
+			item.useAnimation = 38;
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 8;
@@ -67,8 +67,8 @@ namespace Laugicality.Items.Weapons
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SnowballCannon, 1);
-            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddIngredient(null, "ChilledBar", 12);
+            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

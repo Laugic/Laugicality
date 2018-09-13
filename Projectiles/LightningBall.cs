@@ -74,7 +74,7 @@ namespace Laugicality.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             projectile.ai[0] += 0.1f;
-            target.AddBuff(mod.BuffType("Electrified"), 80);      //Add Onfire buff to the NPC for 1 second
+            target.AddBuff(mod.BuffType("Steamy"), 80);      //Add Onfire buff to the NPC for 1 second
         }
     }
 }

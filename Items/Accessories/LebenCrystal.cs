@@ -17,7 +17,6 @@ namespace Laugicality.Items.Accessories
             item.value = 100;
             item.rare = 3;
             item.accessory = true;
-            //item.defense = 1000;
             item.lifeRegen = 2;
         }
 

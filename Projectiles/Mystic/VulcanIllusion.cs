@@ -41,7 +41,7 @@ namespace Laugicality.Projectiles.Mystic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("Electrified"), (int)(140 * mystDur * power));
+            target.AddBuff(mod.BuffType("Steamy"), (int)(140 * mystDur * power));
             //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
         }
         

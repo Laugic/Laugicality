@@ -17,7 +17,7 @@ namespace Laugicality.Items.Materials
 			item.maxStack = 99;
 			item.rare = 1;
 			item.useAnimation = 1;
-			item.useTime = 45;
+			item.useTime = 15;
 			item.useStyle = 1;
 		}
         

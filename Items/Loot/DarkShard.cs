@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dark Shard");
+            DisplayName.SetDefault("Magmatic Shard");
             Tooltip.SetDefault("");
         }
 
@@ -21,7 +21,9 @@ namespace Laugicality.Items.Loot
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
+            item.consumable = true;
             item.value = 0;
+            item.createTile = mod.TileType("MagmaVeins");
         }
         /*
         public override void AddRecipes()

@@ -19,13 +19,11 @@ namespace Laugicality.Items.Loot
             item.value = 100;
             item.rare = 2;
             item.accessory = true;
-            //item.defense = 1000;
-            item.lifeRegen = 1;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
                 modPlayer.destructionDamage += .2f;

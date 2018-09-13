@@ -31,7 +31,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 108, 56, mod.ItemType("MineralEnchanter"));
+            Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType("MineralEnchanter"));
         }
     }
 }

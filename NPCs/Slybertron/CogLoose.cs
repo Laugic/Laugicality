@@ -24,8 +24,8 @@ namespace Laugicality.NPCs.Slybertron
             LaugicalityVars.EProjectiles.Add(projectile.type);
             bitherial = true;
             spawned = 0;
-            projectile.width = 48;
-            projectile.height = 48;
+            projectile.width = 80;
+            projectile.height = 80;
             projectile.alpha = 0;
             projectile.timeLeft = 240;
             projectile.friendly = false;
@@ -82,7 +82,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.coginatorHits += 1;
-            int debuff = mod.BuffType("Electrified");
+            int debuff = mod.BuffType("Steamy");
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);

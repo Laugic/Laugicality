@@ -24,8 +24,8 @@ namespace Laugicality.Projectiles.Mystic
             power = 0;
             stopped = false;
             damage = projectile.damage;
-            projectile.width = 84;
-            projectile.height = 84;
+            projectile.width = 56;
+            projectile.height = 56;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 600;
@@ -56,21 +56,24 @@ namespace Laugicality.Projectiles.Mystic
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             projectile.velocity.X *= .92f;
             projectile.velocity.Y *= .92f;
-            if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.X) <= .2)
+            if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.Y) <= .2)
             {
                 stopped = true;
             }
-            if (stopped && Main.netMode != 1)
+            if (stopped)
             {
+                if (Main.myPlayer == projectile.owner)
+                {
+                    if(Main.rand.Next(5) == 0)
+                        Projectile.NewProjectile(projectile.Center.X - projectile.width / 2 + Main.rand.Next(projectile.width + 1), projectile.Center.Y - projectile.height / 2 + Main.rand.Next(projectile.height + 1), 0, 8, mod.ProjectileType("PlutoConjuration3"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                }
                 delay += 1;
-                if(delay >= 45)
+                if(delay >= 60)
                 {
                     delay = 0;
                     power++;
-
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("PlutoConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                    
-                    if (power >= modPlayer.conjurationPower * 2)
+                    if (power >= modPlayer.conjurationPower * 2 + 2)
                         projectile.Kill();
                 }
             }

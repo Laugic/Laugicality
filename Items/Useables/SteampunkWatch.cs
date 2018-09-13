@@ -21,13 +21,13 @@ namespace Laugicality.Items.Useables
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            //item.defense = 1000;
         }
         
         
         public override bool UseItem(Player player)
         {
-                Main.dayTime = !Main.dayTime;
+            Main.dayTime = !Main.dayTime;
+            Main.time = 0.0;
             return true;
         }
 

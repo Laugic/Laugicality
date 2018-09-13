@@ -20,15 +20,15 @@ namespace Laugicality.NPCs.Bosses
         {
             LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Charger");
-            Main.npcFrameCount[npc.type] = 2;
+            //Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
         {
             bitherial = true;
             despawn = false;
-            npc.width = 50;
-            npc.height = 50;
+            npc.width = 24;
+            npc.height = 24;
             npc.damage = 80;
             npc.defense = 50;
             npc.lifeMax = 4000;
@@ -105,7 +105,7 @@ namespace Laugicality.NPCs.Bosses
             scale = 0f;
             return null;
         }
-
+        /*
         public override void FindFrame(int frameHeight)
         {
             var frame = 0;
@@ -120,7 +120,7 @@ namespace Laugicality.NPCs.Bosses
             {
                 npc.frame.Y = 0;
             }
-        }
+        }*/
 
     }
 }

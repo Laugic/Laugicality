@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -11,6 +12,7 @@ using Terraria.GameContent.Generation;
 using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
+using Laugicality.Structures;
 
 namespace Laugicality
 {
@@ -22,30 +24,74 @@ namespace Laugicality
         public static bool downedDuneSharkron = false;
         public static bool downedHypothema = false;
         public static bool downedRagnar = false;
+        public static bool obsidiumHeart = false;
+        public static bool downedRocks = false;
         public static bool downedEtheria = false; 
         public static bool downedTrueEtheria = false;
+        public static bool downedDioritus = false;
+        public static bool downedAndesia = false;
+        public static bool downedAnDio = false;
         public static int obsidiumTiles = 0;
+        public static int power = 0;
+        public static int zWarudo = 240; //Duration
         public static bool obEnf = false; //obsidiumEnfused
+        public static bool bysmal = false;
+        public static int obsidiumPosition = 0;
+
+        public static int sizeMult = (int)(Math.Floor(Main.maxTilesX / 4200f)); //Small = 2; Medium = ~3; Large = 4;
+
+        public static int zawarudo = 0;
+        public static int dungeonSide = 1;
 
         public override void Initialize()
         {
+            sizeMult = (int)(Math.Floor(Main.maxTilesX / 4200f));
+            power = 0;
+            zWarudo = 240;
             downedAnnihilator = false;
             downedSlybertron = false;
             downedSteamTrain = false;
             downedDuneSharkron = false;
             downedHypothema = false;
             downedRagnar = false;
+            downedRocks = false;
             downedEtheria = false;
             downedTrueEtheria = false;
+            downedDioritus = false;
+            downedAndesia = false;
+            downedAnDio = false;
+            zawarudo = 0;
             obEnf = false;
+            obsidiumHeart = false;
+            bysmal = false;
+            obsidiumPosition = 0;
         }
 
         public override void PostUpdate()
         {
-            if(obEnf == false && NPC.downedBoss2)
+            if(obEnf == false && downedRagnar)
             {
                 obEnf = true;
-                Main.NewText("Fury runs through the Obsidium Caverns.", 150, 50, 50);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+                Main.NewText("Fury runs through the Obsidium Caverns.", 150, 50, 50);
+            }
+            if (zawarudo > 0)
+            {
+                zawarudo--;
+            }
+            zWarudo = 240;
+            if (downedEtheria)
+            {
+                for(int k = 0; k < 8; k++)
+                {
+                    Player player = Main.player[k];
+                    NPC.NewNPC((int)player.position.X - 160, (int)player.position.Y - 160, mod.NPCType("EtherialBkg"));
+                    bool music = true;
+                    foreach (NPC npc in Main.npc)
+                        if (npc.boss == true)
+                            music = false;
+                    if(music)
+                        NPC.NewNPC((int)player.position.X - 160, (int)player.position.Y - 160, mod.NPCType("EtherialMusic"));
+                }
             }
         }
 
@@ -53,19 +99,28 @@ namespace Laugicality
         {
             var downed = new List<string>();
             bool obs = false;
+            int pwr = 0;
             if (downedAnnihilator) downed.Add("annihilator");
             if (downedSlybertron) downed.Add("slybertron");
             if (downedSteamTrain) downed.Add("steamtrain");
             if (downedDuneSharkron) downed.Add("dunesharkron");
             if (downedHypothema) downed.Add("hypothema");
             if (downedRagnar) downed.Add("ragnar");
-            if (downedEtheria) downed.Add("etheria");
+            if (downedRocks) downed.Add("rocks");
             if (downedTrueEtheria) downed.Add("trueetheria");
-            if (obEnf) obs = true; 
+            if (downedDioritus) downed.Add("dioritus");
+            if (downedAndesia) downed.Add("andesia");
+            if (downedAnDio) downed.Add("andio");
+            if (obEnf) obs = true;
+            pwr = power;
 
             return new TagCompound {
                 {"downed", downed},
-                {"obsidium", obs }
+                {"etherial", downedEtheria},
+                {"obsidium", obs },
+                {"obsidiumHeart", obsidiumHeart },
+                {"bysmal", bysmal },
+                {"power", pwr }
             };
         }
 
@@ -78,9 +133,16 @@ namespace Laugicality
             downedDuneSharkron = downed.Contains("dunesharkron");
             downedHypothema = downed.Contains("hypothema");
             downedRagnar = downed.Contains("ragnar");
-            downedEtheria = downed.Contains("etheria");
+            downedRocks = downed.Contains("rocks");
             downedTrueEtheria = downed.Contains("trueetheria");
+            downedDioritus = downed.Contains("dioritus");
+            downedAndesia = downed.Contains("andesia");
+            downedAnDio = downed.Contains("andio");
             obEnf = tag.GetBool("obsidium");
+            downedEtheria = tag.GetBool("etherial");
+            obsidiumHeart = tag.GetBool("obsidiumHeart");
+            bysmal = tag.GetBool("bysmal");
+            power = tag.GetInt("power");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -97,6 +159,15 @@ namespace Laugicality
                 downedRagnar = flags[5];
                 downedEtheria = flags[6];
                 downedTrueEtheria = flags[7];
+
+                BitsByte flags2 = reader.ReadByte();
+                downedRocks = flags2[0];
+                downedDioritus = flags2[1];
+                downedAndesia = flags2[2];
+                downedAnDio = flags2[3];
+                obEnf = flags2[4];
+                obsidiumHeart = flags2[5];
+                bysmal = flags2[6];
             }
             else
             {
@@ -115,7 +186,17 @@ namespace Laugicality
             flags[5] = downedRagnar;
             flags[6] = downedEtheria;
             flags[7] = downedTrueEtheria;
+
+            BitsByte flags2 = new BitsByte();
+            flags2[0] = downedRocks;
+            flags2[1] = downedDioritus;
+            flags2[2] = downedAndesia;
+            flags2[3] = downedAnDio;
+            flags2[4] = obEnf;
+            flags2[5] = obsidiumHeart;
+            flags2[6] = bysmal;
             writer.Write(flags);
+            writer.Write(flags2);
 
         }
 
@@ -130,7 +211,17 @@ namespace Laugicality
             downedRagnar = flags[5];
             downedEtheria = flags[6];
             downedTrueEtheria = flags[7];
+            
+            BitsByte flags2 = reader.ReadByte();
+            downedRocks = flags2[0];
+            downedDioritus = flags2[1];
+            downedAndesia = flags2[2];
+            downedAnDio = flags2[3];
+            obEnf = flags2[4];
+            obsidiumHeart = flags2[5];
+            bysmal = flags2[6];
         }
+
         public override void ResetNearbyTileEffects()
         {
             obsidiumTiles = 0;
@@ -138,133 +229,430 @@ namespace Laugicality
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            obsidiumTiles = tileCounts[56];
+            obsidiumTiles = tileCounts[56] + tileCounts[mod.TileType("ObsidiumRock")] +  tileCounts[mod.TileType("Lycoris")] + tileCounts[mod.TileType("Radiata")];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        //public override void PostWorldGen()
         {
-            int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Shinies"));
-            if (genIndex == -1)
-            {
-                return;
-            }
+            int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+            int xO = Main.maxTilesX / 2;
+            int yO = (int)(Main.maxTilesY * .7f);
             tasks.Insert(genIndex + 1, new PassLegacy("Generating Obsidian Cavern", delegate (GenerationProgress progress)
             {
+
                 progress.Message = "Obsidification";
-                for (int i = 0; i < 1; i++)       
+
+                for(int i = (int)(-225 * sizeMult); i <= (int)(225 * sizeMult); i++)
                 {
-                    int X = 150;       
-                    int Y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 100, (int)WorldGen.rockLayer + 150);
-                    int TileType = 56;     
-
-                    WorldGen.TileRunner(X, Y, 1000, WorldGen.genRand.Next(300, 600), TileType, false, 0f, 0f, true, true);  
-                    
-                    for (int k = 0; k < 1000; k++)                
+                    for(int j = (int)(-275 * sizeMult); j <= (int)(275 * sizeMult); j++)
                     {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY );
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian) 
+                        if(TileCheckSafe(xO + i, yO + j))
                         {
-
+                            if (Main.tile[xO + i, yO + j].wall != 87 && Main.tile[xO + i, yO + j].type != 226)//Checking to not override the temple & the thorium blood chamber
                             {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(6, 12), WorldGen.genRand.Next(6, 12), mod.TileType("ObsidiumOreBlock"), false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
+                                if (j < -(int)(150 * sizeMult)) //Top Bumps of the Heart (Semi-Circles)
+                                {
+                                    if (i < 0)
+                                    {
+                                        if (Distance(xO - (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j) < (int)(100 * sizeMult))
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                        }
+                                        else if(Distance(xO - (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j) < (int)(100 * sizeMult) + 6)
+                                        {
+                                            if(Main.rand.Next(6) < (int)(100 * sizeMult) + 6 - Distance(xO - (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j))
+                                            {
+                                                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Distance(xO + (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j) < (int)(100 * sizeMult))
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                        }
+                                        else if (Distance(xO + (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j) < (int)(100 * sizeMult) + 6)
+                                        {
+                                            if (Main.rand.Next(6) < -Distance(xO + (int)(100 * sizeMult), yO - (int)(150 * sizeMult), xO + i, yO + j) + 6 + (int)(100 * sizeMult))
+                                            {
+                                                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                            }
+                                        }
+                                    }
+                                }
+                                else if(j < 0)
+                                {
+                                    if(Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - (int)(j * 2 / 3)))
+                                    {
+                                        PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                    }
+                                    else if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - (int)(j * 2 / 3)) + 6)
+                                    {
+                                        if (Main.rand.Next(6) < -Distance(xO + i, yO + j, xO, yO) + 6 + (int)(150 * sizeMult - (int)(j * 2 / 3)))
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                        }
+                                    }
+                                }
+                                else if(j < (int)(100 * sizeMult))
+                                {
+                                    if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - .47 * j))
+                                    {
+                                        PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                    }
+                                    else if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - .47 * j) + 6)
+                                    {
+                                        if (Main.rand.Next(6) < -Distance(xO + i, yO + j, xO, yO) + 6 + (int)(150 * sizeMult - .47 * j))
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                        }
+                                    }
+                                }
+                                else if(yO + j < Main.maxTilesY - 200)
+                                {
+                                    int radius = (Main.maxTilesY - 200) - (yO + (int)(100 * sizeMult));
+                                    if(i < 0 && i > -radius)
+                                    {
+                                        if(Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) > radius)
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                        }
+                                        else if (Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) < radius + 6)
+                                        {
+                                            if (Main.rand.Next(6) < Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) - 6 - radius)
+                                            {
+                                                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                            }
+                                        }
+                                    }
+                                    else if(i >= 0 && i < radius + 1)
+                                    {
+                                        if (Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) > radius)
+                                        {
+                                            PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                                        }
+                                        else if (Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) < radius + 6)
+                                        {
+                                            if (Main.rand.Next(6) < Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) - 6 - radius)
+                                            {
+                                                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
-                    }
-                
-                    //progress.Message = "To Ashes";
-                
-                    for (int k = 0; k < 300; k++)              
-                    {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
-                        {
-
-                            {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 57, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
-                            }
-                        }
-                    }
-                    for (int k = 0; k < 300; k++)          
-                    {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
-                        {
-
-                            {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 123, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
-                            }
-                        }
-                    }
-                    for (int k = 0; k < 300; k++)               
-                    {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)  
-                        {
-
-                            {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 119, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
-                            }
-                        }
-                    }
-                    for (int k = 0; k < 300; k++)
-                    {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
-                        if (Main.tile[Xore, Yore].type == TileID.Obsidian)
-                        {
-
-                            {
-                                WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(15, 40), WorldGen.genRand.Next(15, 40), 369, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
-                            }
-                        }
-                    }
-                    for (int k = 0; k < 100; k++)
-                    {
-                        int Xore = Main.rand.Next(0, 600);
-                        int Yore = WorldGen.genRand.Next((int)WorldGen.rockLayer - 300, Main.maxTilesY);
-                        WorldGen.TileRunner(Xore, Yore, (double)WorldGen.genRand.Next(12, 20), WorldGen.genRand.Next(15, 40), 273, false, 0f, 0f, false, true);  //   5, 10 is how big is the ore veins.    mod.TileType("CustomOreTile") is the custom ore tile,  if u want a vanila ore just do this: TileID.Cobalt, for cobalt spawn
-                            
-                        }
-                    }
-                for(int k = 0; k < 1500; k++)
-                {
-                    for(int l = 0; l < Main.maxTilesY; l++)
-                    {
-                        if (Main.tile[k, l].type == 273)
-                            WorldGen.KillTile(k, l);
                     }
                 }
-                    for (int k = 0; k < 600; k++)
+
+                for (int k = 0; k < 100 * sizeMult; k++) //Cave Pockets
+                {
+                    int x = xO + Main.rand.Next(-200 * sizeMult, 200 * sizeMult);
+                    int y = yO + Main.rand.Next(-250 * sizeMult, 250 * sizeMult);
+                if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock"))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(9, 15) * sizeMult, 3 * sizeMult, (ushort)249, false, 0f, 0f, false, true);
+                }
+                for (int k = 0; k < 50 * sizeMult; k++) //Cave Tunnels
+                {
+                    int x = xO + Main.rand.Next(-200 * sizeMult, 200 * sizeMult);
+                    int y = yO + Main.rand.Next(-250 * sizeMult, 250 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock"))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(16, 25), 140 * sizeMult, (ushort)249, false, 0f, 0f, false, true);
+                }
+                for (int k = 0; k < 50 * sizeMult; k++) //Caverns
+                {
+                    int x = xO + Main.rand.Next(-200 * sizeMult, 200 * sizeMult);
+                    int y = yO + Main.rand.Next(-250 * sizeMult, 250 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock"))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(25, 30), 25 * sizeMult, (ushort)249, false, 0f, 0f, false, true);
+                }
+                for (int i = (int)(-250 * sizeMult); i <= (int)(250 * sizeMult); i++)
+                {
+                    for (int j = (int)(-325 * sizeMult); j <= (int)(325 * sizeMult); j++)
                     {
-                        int Xsize = Main.rand.Next(16, 42);
-                        int Ysize = Main.rand.Next(16, 42);
-                        int Xwal = Main.rand.Next(100, 500);
-                        int Ywal = WorldGen.genRand.Next((int)WorldGen.rockLayer - 100, Main.maxTilesY - 300);
-                        int type = 79;
-                        int radius = 15;
-                        for (int x = Xwal - Xsize; x <= Xwal + Xsize; x++)
-                            for (int y = Ywal - Ysize; y <= Ywal + Ysize; y++)
+                        if(TileCheckSafe(xO + i, yO + j))
+                        {
+                            if (Main.tile[xO + i, yO + j].type == (ushort)249)
                             {
-                                if (Vector2.Distance(new Vector2(Xwal, Ywal), new Vector2(x, y)) <= Xsize)
-                                {
-                                    if (Main.rand.Next(6) != 0) WorldGen.PlaceWall(x, y, type);
-                                }
-                                if (Vector2.Distance(new Vector2(Xwal, Ywal), new Vector2(x, y)) <= Ysize)
-                                {
-                                    if (Main.rand.Next(6) != 0) WorldGen.PlaceWall(x, y, type);
-                                }
+                                WorldGen.KillTile(xO + i, yO + j);
                             }
+                        }
                     }
-                
+                }
+                for (int k = 0; k < 25 * sizeMult; k++) //Radiata
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(2, 6), 180 * sizeMult, (ushort)mod.TileType("Radiata"), false, 0f, 0f, false, true);
+                }
+                for (int k = 0; k < 50 * sizeMult; k++) //Lycoris
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") ||(Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(3, 6), 140 * sizeMult, (ushort)mod.TileType("Lycoris"), false, 0f, 0f, false, true);
+                }
+                for (int k = 0; k < 75 * sizeMult; k++) //Smol Radiata
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")))
+                        WorldGen.TileRunner(x, y, Main.rand.Next(3, 5), 180 * sizeMult, (ushort)mod.TileType("Radiata"), false, 0f, 0f, false, true);
+                }
+                for (int k = 0; k < 75 * sizeMult; k++) //Smol Lycoris
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")))
+                        WorldGen.TileRunner(x, y, Main.rand.Next(3, 5), 140 * sizeMult, (ushort)mod.TileType("Lycoris"), false, 0f, 0f, false, true);
+                }
+
+                for (int k = 0; k < 100 * sizeMult; k++) //Obsidium Brick
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)mod.TileType("Lycoris"))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(12, 18), 50 * sizeMult, (ushort)mod.TileType("ObsidiumBrick")); // false, 0f, 0f, false, true);
+                }
+
+                for (int k = 0; k < 300 * sizeMult; k++) //Obsidium Ore
+                {
+                    int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                    int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                    if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)mod.TileType("Lycoris"))
+                    WorldGen.TileRunner(x, y, Main.rand.Next(6, 14), 8, (ushort)mod.TileType("ObsidiumOreBlock"), false, 0f, 0f, false, true);
+                }
+
             }));
 
-            
+
+            int genIndex2 = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+
+            tasks.Insert(genIndex2 + 2, new PassLegacy("Obsidium Features", delegate (GenerationProgress progress)
+            {
+                //progress.Message = "Obsidium Core";
+                int numStructs = 7 * sizeMult;
+                int structX = xO;
+                int structY = yO + 35 * sizeMult;
+                //Deco Structs
+                numStructs = 7 * sizeMult;
+                int q = 0;
+                int s = Main.rand.Next(7);
+                bool mirrored = false;
+                structX = xO - 225 * sizeMult + Main.rand.Next(225 * sizeMult * 2);
+                structY = yO - 275 * sizeMult + Main.rand.Next(275 * sizeMult / 2);
+                while (q < numStructs)
+                {
+                    //structX = xO - 225 * sizeMult + Main.rand.Next(225 * sizeMult * 2);
+                    //structY = yO - 275 * sizeMult + Main.rand.Next(275 * sizeMult * 2);
+                    if(TileCheckSafe(structX, structY))
+                    {
+                        if(Main.tile[structX, structY].wall == (ushort)mod.WallType("ObsidiumRockWall"))
+                        {
+                            if (Main.rand.Next(2) == 0)
+                                mirrored = true;
+                            else
+                                mirrored = false;
+                            switch (s)
+                            {
+                                case 0:
+                                    TreeRuin.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 1:
+                                    PetrifiedTitans.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 2:
+                                    ObsidiumChalice.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 3:
+                                    LycorisCave.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 4:
+                                    LavaCave1.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 5:
+                                    LavaCave2.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 6:
+                                    LavaCave3.StructureGen(structX, structY, mirrored);
+                                    break;
+                                default:
+                                    LavaCave1.StructureGen(structX, structY, mirrored);
+                                    break;
+                            }
+                            s++;
+                            if (s >= 7)
+                                s = 0;
+                        }
+                    }
+                    q++;
+                    structX += Main.rand.Next(225 * sizeMult);
+                    if (structX > xO + 225 * sizeMult)
+                    {
+                        structX -= 225 * sizeMult * 2;
+                        structY += Main.rand.Next(275 * sizeMult / 4, 275 * sizeMult / 2);
+                        if (structY > yO + 275 * sizeMult)
+                        {
+                            structY -= 275 * sizeMult * 2;
+                        }
+                    }
+                }
+                //Loot Structs
+                numStructs = 5 * sizeMult;
+                q = 0;
+                s = Main.rand.Next(3);
+                structX = xO - 225 * sizeMult + Main.rand.Next(225 * sizeMult * 2);
+                structY = yO - 275 * sizeMult + Main.rand.Next(275 * sizeMult / 2);
+                while (q < numStructs)
+                {
+                    if (TileCheckSafe(structX, structY))
+                    {
+                        if (Main.tile[structX, structY].wall == (ushort)mod.WallType("ObsidiumRockWall"))
+                        {
+                            switch (s)
+                            {
+                                case 0:
+                                    LivingLycoris.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 1:
+                                    ObsidiumHouse1.StructureGen(structX, structY, mirrored);
+                                    break;
+                                case 2:
+                                    ObsidiumHouse2.StructureGen(structX, structY, mirrored);
+                                    break;
+                            }
+                            s++;
+                            if (s >= 3)
+                                s = 0;
+                        }
+                    }
+                    q++;
+                    structX += Main.rand.Next(225 * sizeMult);
+                    if(structX > xO + 225 * sizeMult)
+                    {
+                        structX -= 225 * sizeMult * 2;
+                        structY += Main.rand.Next(275 * sizeMult / 4, 275 * sizeMult / 2);
+                        if(structY > yO + 275 * sizeMult)
+                        {
+                            structY -= 275 * sizeMult * 2;
+                        }
+                    }
+                }
+
+                //Obsidium Heart
+                int heartX = xO - 60;
+                int heartY = yO - 90;
+                HeartWorld.HeartGen(heartX, heartY);
+            }));
+
+
         }
 
+        private void PlaceTile(int x, int y, int tileType)
+        {
+            WorldGen.KillTile(x, y);
+            WorldGen.KillWall(x, y);
+            Main.tile[x, y].liquid = 0;
+            WorldGen.PlaceTile(x, y, tileType, true, true);
+        }
 
+        private void PlaceTile(int x, int y, int tileType, int wallType)
+        {
+            WorldGen.KillTile(x, y);
+            WorldGen.KillWall(x, y);
+            Main.tile[x, y].liquid = 0;
+            WorldGen.PlaceTile(x, y, tileType, true, true);
+            WorldGen.PlaceWall(x, y, wallType, true);
+        }
+
+        private static bool TileCheckSafe(int i, int j)
+        {
+            if (i > 0 && i < Main.maxTilesX && j > 0 && j < Main.maxTilesY)
+                return true;
+            return false;
+        }
+
+        private float Distance(int x1, int y1, int x2, int y2)
+        {
+            return (float)(Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
+        }
+
+        public static void PlaceObsidiumChest(int x, int y, ushort floorType)
+        {
+            WorldGen.KillTile(x, y);
+            WorldGen.KillTile(x, y - 1);
+            WorldGen.KillTile(x + 1, y - 1);
+            WorldGen.KillTile(x + 1, y);
+            WorldGen.PlaceTile(x + 1, y + 1, floorType, true, true);
+            WorldGen.PlaceTile(x, y + 1, floorType, true, true);
+            Main.tile[x, y].liquid = 0;
+            Main.tile[x + 1, y].liquid = 0;
+            Main.tile[x, y + 1].liquid = 0;
+            Main.tile[x + 1, y + 1].liquid = 0;
+            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)ModLoader.GetMod("Laugicality").TileType("ObsidiumChest"), false, 0);
+            //int chestIndex = WorldGen.PlaceChest(x, y, 21, false, 44);
+
+            //Put Items in Obsidium Chest
+            //Special Loot
+            int[] obsidiumLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("Eruption"), ModLoader.GetMod("Laugicality").ItemType("ObsidiumLily"), ModLoader.GetMod("Laugicality").ItemType("MagmaHeart"), ModLoader.GetMod("Laugicality").ItemType("FireDust"), ModLoader.GetMod("Laugicality").ItemType("CrystalizedMagma"),};
+            int specialItem = 0;
+            if (obsidiumPosition < obsidiumLoot.GetLength(0))
+                specialItem = obsidiumLoot[obsidiumPosition];
+            else
+            {
+                obsidiumPosition = 0;
+                specialItem = obsidiumLoot[obsidiumPosition];
+            }
+            obsidiumPosition++;
+            //Ore
+            int[] oreLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("ObsidiumBar"), ModLoader.GetMod("Laugicality").ItemType("ObsidiumChunk"), ModLoader.GetMod("Laugicality").ItemType("ObsidiumBar"), ModLoader.GetMod("Laugicality").ItemType("ObsidiumChunk"), 175 }; //Hellstone Bar
+            int orePos = Main.rand.Next(oreLoot.GetLength(0));
+            int oreCount = Main.rand.Next(2, 6);
+            //Potions
+            int[] potLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("MysticPowerPotion"), ModLoader.GetMod("Laugicality").ItemType("JumpBoostPotion"), 2348, 2345, 2349 }; //Inferno, Lifeforce, Wrath
+            int potPos = Main.rand.Next(potLoot.GetLength(0));
+            int potCount = Main.rand.Next(2, 4);
+            //Moneys
+            int monType = 0;
+            int monCount = 0;
+            if (Main.rand.Next(2) == 0)
+            {
+                monType = 73; //Gold
+                monCount = Main.rand.Next(1, 4);
+            }
+            else
+            {
+                monType = 72; //Silver
+                monCount = Main.rand.Next(60, 99);
+            }
+            //Misc
+            int mscPos = Main.rand.Next(5);
+            int[] mscLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("LavaGem"), ModLoader.GetMod("Laugicality").ItemType("MagmaSnapper"), ModLoader.GetMod("Laugicality").ItemType("ArcaneShard"), ModLoader.GetMod("Laugicality").ItemType("LavaGem"), ModLoader.GetMod("Laugicality").ItemType("RubrumDust") }; //Inferno, Lifeforce, Wrath
+            int mscCount = Main.rand.Next(2, 6);
+
+            int[] itemsToPlaceInChests = new int[] { specialItem, oreLoot[orePos], potLoot[potPos], monType, mscLoot[mscPos] };
+            int[] itemCounts = new int[] { 1, oreCount, potCount, monCount, mscCount };
+            if(chestIndex < Main.chest.GetLength(0) && chestIndex > 0)
+            {
+                Chest chest = Main.chest[chestIndex];
+                if (chest != null)
+                {
+                    for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                    {
+                        if (chest.item[inventoryIndex].type == 0)
+                        {
+                            if (inventoryIndex < itemsToPlaceInChests.GetLength(0))
+                            {
+                                chest.item[inventoryIndex].SetDefaults(itemsToPlaceInChests[inventoryIndex]);
+                                chest.item[inventoryIndex].stack = itemCounts[inventoryIndex];
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

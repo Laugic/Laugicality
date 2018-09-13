@@ -17,16 +17,16 @@ namespace Laugicality.Items.Accessories
             item.value = 10000;
             item.rare = 8;
             item.accessory = true;
-            //item.defense = 1000;
-            //item.lifeRegen = 19;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[24] = true;
-            player.waterWalk = true;
+            if (modPlayer.ww)
+                player.waterWalk = true;
             player.gills = true;
             player.ignoreWater = true;
             player.accFlipper = true;
@@ -37,7 +37,11 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            player.slowFall = true;
+            if (modPlayer.SoulStoneM)
+            {
+                if (modPlayer.feather)
+                    player.slowFall = true;
+            }
             player.moveSpeed += 0.25f;
         }
 

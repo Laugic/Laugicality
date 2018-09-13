@@ -15,14 +15,15 @@ namespace Laugicality.Projectiles.Mystic
         {
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 128;
-            projectile.height = 128;
+            projectile.width = 64;
+            projectile.height = 64;
             projectile.friendly = true;
             projectile.penetrate = 999;
-            projectile.timeLeft = 24;
+            projectile.timeLeft = 64;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            Main.projFrames[projectile.type] = 6;
+            Main.projFrames[projectile.type] = 8;
+            projectile.scale *= 2f;
         }
 
         
@@ -33,23 +34,17 @@ namespace Laugicality.Projectiles.Mystic
             projectile.velocity.Y = 0;
 
             projectile.frameCounter++;
-            if (projectile.frameCounter > 4)
+            if (projectile.frameCounter > 8)
             {
                 projectile.frame++;
                 projectile.frameCounter = 0;
             }
-            if (projectile.frame > 6)
+            if (projectile.frame > 8)
             {
-                projectile.frame = 6;
+                projectile.frame = 8;
             }
         }
-
-        /*
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(mod.BuffType("Electrified"), (int)(120*mystDur));
-            //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
-        }*/
+        
         
     }
 }

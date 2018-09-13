@@ -18,19 +18,20 @@ namespace Laugicality.Projectiles.Mystic
         {
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 6;
-            projectile.height = 6;
+            projectile.width = 12;
+            projectile.height = 12;
             projectile.friendly = true;
-            //projectile.penetrate = 2;
+            projectile.penetrate = 2;
             projectile.timeLeft = 200;
             projectile.ignoreWater = true;
+            projectile.tileCollide = false;
         }
 
         
 
         public override void AI()
         {
-
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
             for (int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];
@@ -43,7 +44,7 @@ namespace Laugicality.Projectiles.Mystic
                     float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
                     //If the distance between the live targeted npc and the projectile is less than 480 pixels
-                    if (distance < 480f && !target.friendly && target.active)
+                    if (distance < 480f && !target.friendly && target.active && target.damage > 0)
                     {
                         //Divide the factor, 3f, which is the desired velocity
                         distance = 1f / distance;
@@ -53,21 +54,22 @@ namespace Laugicality.Projectiles.Mystic
                         shootToY *= distance * 5;
 
                         //Set the velocities to the shoot values
+                        int mag = 10;
                         if(projectile.velocity.X < shootToX)
                         {
-                            projectile.velocity.X += (shootToX - projectile.velocity.X)/10;
+                            projectile.velocity.X += (shootToX - projectile.velocity.X) / mag;
                         }
                         if(projectile.velocity.Y < shootToY)
                         {
-                            projectile.velocity.Y += (shootToY - projectile.velocity.Y) / 10;
+                            projectile.velocity.Y += (shootToY - projectile.velocity.Y) / mag;
                         }
                         if (projectile.velocity.X > shootToX)
                         {
-                            projectile.velocity.X -= (projectile.velocity.X - shootToX) / 10;
+                            projectile.velocity.X -= (projectile.velocity.X - shootToX) / mag;
                         }
                         if (projectile.velocity.Y > shootToY)
                         {
-                            projectile.velocity.Y -= (projectile.velocity.Y - shootToY) / 10;
+                            projectile.velocity.Y -= (projectile.velocity.Y - shootToY) / mag;
                         }
                     }
                 }
@@ -88,7 +90,7 @@ namespace Laugicality.Projectiles.Mystic
             }
             else
             {
-                projectile.ai[0] += 0.1f;
+                //projectile.ai[0] += 0.1f;
                 if (projectile.velocity.X != oldVelocity.X)
                 {
                     projectile.velocity.X = -oldVelocity.X;
@@ -101,11 +103,5 @@ namespace Laugicality.Projectiles.Mystic
             }
             return false;
         }
-        /*
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(mod.BuffType("Electrified"), (int)(120*mystDur));
-            //if (target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage < mystDmg)target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mysticDamage = mystDmg;
-        }*/
     }
 }

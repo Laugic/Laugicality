@@ -17,7 +17,7 @@ public override void SetStaticDefaults()
 			item.height = 22;
 			item.value = 10000;
 			item.rare = 5;
-			item.defense = 12;
+			item.defense = 14;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -33,10 +33,10 @@ public override void SetStaticDefaults()
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+20% Throwing Velocity, \nAttacks inflict 'Steamy!' ";
+            player.setBonus = "+33% Throwing Velocity, \nAttacks inflict 'Steamy!' ";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
-            player.thrownVelocity += .2f;
+            player.thrownVelocity += .33f;
         }
 
         public override void AddRecipes()

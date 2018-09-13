@@ -14,13 +14,13 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 20;
+			item.damage = 35;
 			item.magic = true;
 			item.mana = 10;
 			item.width = 28;
 			item.height = 30;
-			item.useTime = 18;
-			item.useAnimation = 18;
+			item.useTime = 16;
+			item.useAnimation = 16;
 			item.useStyle = 5;
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 5;

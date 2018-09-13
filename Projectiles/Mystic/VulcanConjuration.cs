@@ -24,47 +24,37 @@ namespace Laugicality.Projectiles.Mystic
             damage = projectile.damage;
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 24;
-            projectile.height = 24;
+            projectile.width = 40;
+            projectile.height = 40;
             projectile.friendly = true;
-            projectile.penetrate = -1;
+            projectile.penetrate = 2;
+            projectile.aiStyle = 1;
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            projectile.tileCollide = true;
         }
 
 
         public override void AI()
         {
+            projectile.velocity.Y += .2f;
+            
+        }
+        public override void Kill(int TimeLeft)
+        {
+            Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 0);
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            projectile.velocity.X *= .92f;
-            projectile.velocity.Y *= .92f;
-            if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.X) <= .2)
+            int damage = projectile.damage;
+            if (Main.myPlayer == projectile.owner)
             {
-                stopped = true;
-            }
-            if (stopped && Main.netMode != 1)
-            {
-                delay += 1;
-                if(delay >= 30)
+                for(int i = 0; i < modPlayer.conjurationPower*2 + 2; i++)
                 {
-                    delay = 0;
-                    power++;
-
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("ElectrosparkP2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    if (power >= modPlayer.conjurationPower)
-                        projectile.Kill();
+                    float theta = (float)(Main.rand.Next(45)) / 7;
+                    int mag = Main.rand.Next(6, 17);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta)*mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("VulcanConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
             }
-               
         }
         
     }

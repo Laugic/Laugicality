@@ -25,13 +25,13 @@ namespace Laugicality.Items.Consumables
         
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             return !modPlayer.etherialSlot;
         }
 
         public override bool UseItem(Player player)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.etherialSlot = true;
             return true;
         }

@@ -15,7 +15,7 @@ namespace Laugicality.Items.Weapons
 
 		public override void SetDefaults()
 		{
-			item.damage = 50;
+			item.damage = 55;
 			item.summon = true;
 			item.mana = 16;
 			item.width = 48;

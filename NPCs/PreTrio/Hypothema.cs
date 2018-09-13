@@ -80,8 +80,9 @@ namespace Laugicality.NPCs.PreTrio
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RottenShotgun");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hypothema");
             damage = 24;
+            bossBag = mod.ItemType("HypothemaTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -98,8 +99,8 @@ namespace Laugicality.NPCs.PreTrio
         public override void AI()
         {
             bitherial = true;
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y -= 10; }
-            if (Main.player[npc.target].ZoneSnow == false) { npc.position.Y -= 10; }
+            if (Main.player[npc.target].statLife <= 0) { npc.position.Y += 20; }
+            if (Main.player[npc.target].ZoneSnow == false) { npc.position.Y += 20; }
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
 
@@ -312,7 +313,7 @@ namespace Laugicality.NPCs.PreTrio
             }
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
             if (plays == 0)
                 plays = 1;
@@ -321,7 +322,6 @@ namespace Laugicality.NPCs.PreTrio
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialFrost"), 1);
             }
-                potionType = 188;
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrostShard"), Main.rand.Next(1, 3));
@@ -341,10 +341,16 @@ namespace Laugicality.NPCs.PreTrio
 
             if (Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HypothemaTreasureBag"), 1);
+                npc.DropBossBags();
             }
 
             LaugicalityWorld.downedHypothema = true;
         }
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 188;
+        }
+
     }
 }

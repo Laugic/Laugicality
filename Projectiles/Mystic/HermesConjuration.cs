@@ -55,7 +55,8 @@ namespace Laugicality.Projectiles.Mystic
             while (power > 0)
             {
                 power -= 1;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("HermesConjurationHoming"), damage, 3f, Main.myPlayer);
+                if(Main.netMode != 1)
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("HermesConjurationHoming"), damage, 3f, Main.myPlayer);
             }
             
             projectile.Kill();
@@ -69,7 +70,8 @@ namespace Laugicality.Projectiles.Mystic
             while (power > 0)
             {
                 power -= 1;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("HermesConjurationHoming"), damage, 3f, Main.myPlayer);
+                if (Main.netMode != 1)
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("HermesConjurationHoming"), damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();

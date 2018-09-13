@@ -77,8 +77,8 @@ namespace Laugicality.NPCs.Slybertron
             attack2Delay = 300;      //Delay before first attack
             attack2Reload = 400;     //Resetting the reload speed
             phase = 1;
-            npc.width = 348;
-            npc.height = 162;
+            npc.width = 378;
+            npc.height = 194;
             npc.damage = 100;
             npc.defense = 30;
             npc.aiStyle = 1;
@@ -92,8 +92,9 @@ namespace Laugicality.NPCs.Slybertron
             npc.lavaImmune = true;
             npc.noGravity = false;
             npc.noTileCollide = false;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybetron_AGraveMistake");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
             damage = 40;
+            bossBag = mod.ItemType("SlybertronTreasureBag");
 
         }
 
@@ -113,37 +114,40 @@ namespace Laugicality.NPCs.Slybertron
             if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("TrainSteam"), 0f, 0f);
             bitherial = true;
             //Despawn check
-            if (Main.player[npc.target].statLife == 0) { npc.position.Y += -20; spawned = 0; }
-            Vector2 delta = Main.player[npc.target].Center - npc.Center;
-            float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
-            //Jump at you if too far away [x]
-            if (Math.Abs(delta.X) > 1200 && npc.aiStyle == 1) { npc.aiStyle = 0; }
-            if (Math.Abs(delta.X) < 600 && npc.aiStyle == 0) { npc.aiStyle = 1; }
-            if (npc.aiStyle == 0)
-            {
-                if (delta.X > 0) { npc.velocity.X = 8f; npc.velocity.Y = -2f; }
-                if (delta.X < 0) { npc.velocity.X = -8f; npc.velocity.Y = -2f; }
-            }
-            if(npc.aiStyle == 0 || fall == true)
-            { 
-            npc.noTileCollide = true;
-            }
+            if (Main.player[npc.target].statLife == 0) { spawned = 0; npc.aiStyle = 0; npc.noTileCollide = true; }
             else
             {
-                npc.noTileCollide = false;
-            }
-            //Jump at you if too far away [y]
-            if (delta.Y < -300 && npc.aiStyle == 1) { npc.aiStyle = 0; }
-            if (delta.Y > 200)
-                fall = true;
-            else
-                fall = false;
-            
-            if (delta.Y > 40 && npc.aiStyle == 0) { npc.aiStyle = 1; }
-            if (npc.aiStyle == 0)
-            {
-                if (delta.X > 2) { npc.velocity.X = 2f; npc.velocity.Y = -8f; }
-                if (delta.X < -2) { npc.velocity.X = -2f; npc.velocity.Y = -8f; }
+                Vector2 delta = Main.player[npc.target].Center - npc.Center;
+                float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
+                //Jump at you if too far away [x]
+                if (Math.Abs(delta.X) > 1200 && npc.aiStyle == 1) { npc.aiStyle = 0; }
+                if (Math.Abs(delta.X) < 600 && npc.aiStyle == 0) { npc.aiStyle = 1; }
+                if (npc.aiStyle == 0)
+                {
+                    if (delta.X > 0) { npc.velocity.X = 8f; npc.velocity.Y = -2f; }
+                    if (delta.X < 0) { npc.velocity.X = -8f; npc.velocity.Y = -2f; }
+                }
+                if (npc.aiStyle == 0 || fall == true)
+                {
+                    npc.noTileCollide = true;
+                }
+                else
+                {
+                    npc.noTileCollide = false;
+                }
+                //Jump at you if too far away [y]
+                if (delta.Y < -300 && npc.aiStyle == 1) { npc.aiStyle = 0; }
+                if (delta.Y > 200)
+                    fall = true;
+                else
+                    fall = false;
+
+                if (delta.Y > 40 && npc.aiStyle == 0) { npc.aiStyle = 1; }
+                if (npc.aiStyle == 0)
+                {
+                    if (delta.X > 2) { npc.velocity.X = 2f; npc.velocity.Y = -8f; }
+                    if (delta.X < -2) { npc.velocity.X = -2f; npc.velocity.Y = -8f; }
+                }
             }
             npc.rotation = 0f;
             //Attack Durations
@@ -242,9 +246,11 @@ namespace Laugicality.NPCs.Slybertron
                     attack1 = 0;
                     steamStreamShots += 1;
                     attackDelay = attackReload;
-                Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
             }
-                if(attackDuration == 30)
+            /*if (attack1 == 3)
+                Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);*/
+
+            if (attackDuration == 30)
                 {
                     Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
@@ -275,7 +281,6 @@ namespace Laugicality.NPCs.Slybertron
             
             if (attack1 == 4 && Main.netMode != 1)//Electroshock
             {
-                Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, 2, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 4, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
@@ -304,9 +309,11 @@ namespace Laugicality.NPCs.Slybertron
                 electroShockShots += 1;
                 attackDelay = attackReload;
             }
+            if (attack1 == 4)
+                Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
 
             //Attack Layer 2
-            if(attack2 == 1 && Main.netMode != 1)
+            if (attack2 == 1 && Main.netMode != 1)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
                 attack2 = 0;
@@ -339,7 +346,6 @@ namespace Laugicality.NPCs.Slybertron
             }
             if (attack2 == 3 && Main.netMode != 1)
             {
-                Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
@@ -347,14 +353,18 @@ namespace Laugicality.NPCs.Slybertron
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
+            if (attack2 == 3)
+                Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
+
             if (attack2 == 4 && Main.netMode != 1)
             {
-                Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
                 Projectile.NewProjectile(npc.Center.X + 120, npc.Center.Y, 8, 0, mod.ProjectileType("GasBall"), damage, 3f, Main.myPlayer);
                 Projectile.NewProjectile(npc.Center.X - 120, npc.Center.Y, -8, 0, mod.ProjectileType("GasBall"), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
+            if (attack2 == 4)
+                Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
 
         }
 
@@ -363,7 +373,7 @@ namespace Laugicality.NPCs.Slybertron
         {
                 if (Main.expertMode)
             {
-                int debuff = mod.BuffType("Electrified");
+                int debuff = mod.BuffType("Steamy");
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -371,7 +381,7 @@ namespace Laugicality.NPCs.Slybertron
             }
         }
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
             var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
@@ -382,17 +392,20 @@ namespace Laugicality.NPCs.Slybertron
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
-                potionType = 499;
+               
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfFraught"), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)
             {
-                potionType = 499;
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SlybertronTreasureBag"), 1);
+                npc.DropBossBags();
             }
 
             LaugicalityWorld.downedSlybertron = true;
+        }
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 499;
         }
         /*
         public override void FindFrame(int frameHeight)
@@ -407,7 +420,7 @@ namespace Laugicality.NPCs.Slybertron
             }
         }*/
 
-        
+
         /*
 		public override void HitEffect(int hitDirection, double damage)
 		{

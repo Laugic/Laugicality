@@ -18,7 +18,7 @@ namespace Laugicality.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Crystaline Infuser");
+            name.SetDefault("Crystalline Infuser");
             AddMapEntry(new Color(150, 0, 150), name);
             disableSmartCursor = true;
             //adjTiles = new int[] { TileID.WorkBenches };
@@ -31,7 +31,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 108, 54, mod.ItemType("CrystalineInfuser"));
+            Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType("CrystalineInfuser"));
         }
     }
 }

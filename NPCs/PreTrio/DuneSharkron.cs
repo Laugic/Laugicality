@@ -41,8 +41,8 @@ namespace Laugicality.NPCs.PreTrio
             dash = 0;
             dashSp = 6f;
             jump = 0;
-            npc.width = 180;
-            npc.height = 80;
+            npc.width = 286;
+            npc.height = 154;
             npc.damage = 28;
             npc.defense = 10;
             npc.aiStyle = 103;
@@ -56,17 +56,18 @@ namespace Laugicality.NPCs.PreTrio
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RottenShotgun");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron");
             damage = 28;
+            bossBag = mod.ItemType("DuneSharkronTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             plays = numPlayers;
             npc.lifeMax = 3000 + numPlayers * 800;
-            npc.damage = 36;
+            npc.damage = 42;
             reload = 220;
-            damage = 36;
+            damage = 42;
         }
 
 
@@ -113,7 +114,7 @@ namespace Laugicality.NPCs.PreTrio
             if (npc.life < npc.lifeMax * .5 && phase == 2  )
             {
                 npc.damage += 10;
-                dashSp = 6.5f;
+                dashSp = 5.5f;
                 phase = 3;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 reload -= 20;
@@ -121,7 +122,7 @@ namespace Laugicality.NPCs.PreTrio
             if (npc.life < npc.lifeMax * .2 && phase == 3 && Main.expertMode  )
             {
                 damage += 4;
-                dashSp = 7f;
+                dashSp = 6f;
                 phase = 4;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
@@ -131,36 +132,39 @@ namespace Laugicality.NPCs.PreTrio
             if(shoot <= 0 && Main.netMode != 1)
             {
                 shoot = reload;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                if(phase >= 2)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -0, 0, mod.ProjectileType("Sandnado"), damage / 3, 3, Main.myPlayer);
+
             }
             if (phase >= 2 && shoot == reload/ 2 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("SharkNeedle"), damage / 3, 3, Main.myPlayer);
             }
-            if (phase >= 3 && shoot == reload / 8f && Main.netMode != 1)
+            if (phase >= 3 && shoot == reload / 7f && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 7, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -7, 0, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 7, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -7, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, 5, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 5, -5, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, -5, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -5, 5, mod.ProjectileType("SharkNeedleHoming"), damage / 3, 3, Main.myPlayer);
             }/*
             if (phase >= 2 && shoot == reload / 8 * 3)
             {
@@ -183,7 +187,7 @@ namespace Laugicality.NPCs.PreTrio
         {
         }*/
 
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void NPCLoot()
         {
             if (plays == 0)
                 plays = 1;
@@ -192,7 +196,6 @@ namespace Laugicality.NPCs.PreTrio
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Etheramind"), 1);
             }
-                potionType = 188;
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));
@@ -206,15 +209,21 @@ namespace Laugicality.NPCs.PreTrio
 
             if (Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DuneSharkronTreasureBag"), 1);
+                npc.DropBossBags();
             }
 
             LaugicalityWorld.downedDuneSharkron = true;
         }
-        
+
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = 188;
+        }
+
         public override void FindFrame(int frameHeight)
         {
-            frameHeight = 92;
+            frameHeight = 154;
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
 
             if (delta.X > 0)

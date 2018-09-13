@@ -29,8 +29,7 @@ namespace Laugicality.Items.Placeable
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(1225, 20);
-            recipe.AddIngredient(1006, 8);
+            recipe.AddIngredient(1225, 12);
             recipe.AddIngredient(2766, 8);
             recipe.AddIngredient(1508, 4);
             recipe.SetResult(this);

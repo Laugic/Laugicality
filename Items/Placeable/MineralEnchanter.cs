@@ -29,10 +29,9 @@ namespace Laugicality.Items.Placeable
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(1198, 20);
+            recipe.AddIngredient(1198, 12);
             recipe.AddIngredient(520, 8);
-            recipe.AddIngredient(521, 8);
-            recipe.AddIngredient(null, "SoulOfHaught", 4);
+            recipe.AddIngredient(531, 1); //Spell Tome
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

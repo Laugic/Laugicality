@@ -18,7 +18,8 @@ namespace Laugicality.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).lovestruck = true;
+            if(npc.boss == false)
+			    npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).lovestruck = true;
 		}
 	}
 }

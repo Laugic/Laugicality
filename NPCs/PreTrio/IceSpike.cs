@@ -27,8 +27,8 @@ namespace Laugicality.NPCs.PreTrio
             bitherial = true;
             delay = 4;
             grounded = 0;
-            projectile.width = 20;
-			projectile.height = 20;
+            projectile.width = 28;
+			projectile.height = 28;
 			//projectile.alpha = 255;
             projectile.timeLeft = 150;
             projectile.friendly = false;

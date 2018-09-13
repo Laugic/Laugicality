@@ -7,6 +7,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Crystalline Infuser");
             Tooltip.SetDefault("Combines Gems into Crystals");
         }
 
@@ -27,22 +28,11 @@ namespace Laugicality.Items.Placeable
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(57, 20);
-            recipe.AddIngredient(86, 8);
-            recipe.AddIngredient(31, 8);
-            recipe.AddIngredient(175, 4);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-
-
             ModRecipe Arecipe = new ModRecipe(mod);
             Arecipe.AddTile(null, "LaugicalWorkbench");
-            Arecipe.AddIngredient(1257, 20);
-            Arecipe.AddIngredient(1329, 8);
-            Arecipe.AddIngredient(31, 8);
-            Arecipe.AddIngredient(175, 4);
+            Arecipe.AddIngredient(null, "ObsidiumBar", 8);
+            Arecipe.AddIngredient(null, "DarkShard", 1);
+            Arecipe.AddIngredient(null, "LavaGem", 4);
             Arecipe.SetResult(this);
             Arecipe.AddRecipe();
         }
