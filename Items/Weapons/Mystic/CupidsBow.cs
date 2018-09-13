@@ -22,10 +22,11 @@ namespace Laugicality.Items.Weapons.Mystic
             //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
-		public override void SetDefaults()
+        
+
+        public override void SetDefaults()
 		{
 			item.damage = 40;
-            //item.magic = true;
             item.width = 44;
 			item.height = 74;
 			item.useTime = 18;
@@ -37,7 +38,6 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = 5;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-			//item.shoot = mod.ProjectileType("GaiaDestruction");
 			item.shootSpeed = 6f;
 		}
 
@@ -61,69 +61,59 @@ namespace Laugicality.Items.Weapons.Mystic
 
                 }
             }
-            
-
-
             return true;
         }
-        public override void HoldItem(Player player)
-        {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
 
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.useStyle = 1;
-                item.damage = 34 + 14 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 22 - (4 * modPlayer.destructionPower);
-                if (item.useTime <= 0)
-                    item.useTime = 1;
-                item.useAnimation = item.useTime;
-                item.knockBack = 2 + 2 * modPlayer.destructionPower;
-                item.shootSpeed = 12f;
-                item.shoot = mod.ProjectileType("CupidDestruction");
-                item.noUseGraphic = true;
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.useStyle = 5;
-                item.damage = 42;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.useTime = 16;
-                item.useAnimation = item.useTime;
-                item.knockBack = 1;
-                item.shootSpeed = 12f;
-                item.shoot = mod.ProjectileType("CupidIllusion");
-                item.noUseGraphic = false;
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.useStyle = 5;
-                item.damage = 35;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 20;
-                item.useAnimation = item.useTime;
-                item.knockBack = 2;
-                item.shootSpeed = 0f;
-                item.shoot = mod.ProjectileType("CupidConjurationAngel");
-                item.noUseGraphic = false;
-            }
+        public override void Destruction(LaugicalityPlayer modPlayer)
+        {
+            item.useStyle = 1;
+            item.damage = 34 + 14 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 22 - (4 * modPlayer.destructionPower);
+            if (item.useTime <= 0)
+                item.useTime = 1;
+            item.useAnimation = item.useTime;
+            item.knockBack = 2 + 2 * modPlayer.destructionPower;
+            item.shootSpeed = 12f;
+            item.shoot = mod.ProjectileType("CupidDestruction");
+            item.noUseGraphic = true;
+        }
+
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            item.useStyle = 5;
+            item.damage = 42;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 16;
+            item.useAnimation = item.useTime;
+            item.knockBack = 1;
+            item.shootSpeed = 12f;
+            item.shoot = mod.ProjectileType("CupidIllusion");
+            item.noUseGraphic = false;
+        }
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
+        {
+            item.useStyle = 5;
+            item.damage = 35;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 20;
+            item.useAnimation = item.useTime;
+            item.knockBack = 2;
+            item.shootSpeed = 0f;
+            item.shoot = mod.ProjectileType("CupidConjurationAngel");
+            item.noUseGraphic = false;
         }
 
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(621, 24); //Pearlwood
+            recipe.AddIngredient(ItemID.Pearlwood, 24);
             recipe.AddRecipeGroup("SilverBars", 8);
-            recipe.AddIngredient(520, 6); //Soul of Light
+            recipe.AddIngredient(ItemID.SoulofLight, 6);
             recipe.AddIngredient(null, "SoulOfSought", 4);
-            recipe.AddIngredient(502, 4); //Crystal Shard
-            recipe.AddTile(134);
+            recipe.AddIngredient(ItemID.CrystalShard, 4);
+            recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
         }

@@ -56,55 +56,48 @@ namespace Laugicality.Items.Weapons.Mystic
             }
             return true; // return false because we don't want tmodloader to shoot projectile
         }
-        public override void HoldItem(Player player)
-        {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
 
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 46 + 8 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 36 - (3 * modPlayer.destructionPower);
-                if (item.useTime <= 0)
-                    item.useTime = 2;
-                item.useAnimation = (int)(item.useTime/2);
-                item.knockBack = 4 + 2 * modPlayer.destructionPower;
-                item.shootSpeed = 14f;
-                item.shoot = 242;
-                item.UseSound = SoundID.Item1;
-                item.scale = 1.5f;
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 48;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.useTime = 10;
-                item.useAnimation = item.useTime;
-                item.knockBack = 5;
-                item.shootSpeed = 18f;
-                item.shoot = mod.ProjectileType("VulcanIllusion");
-                item.noUseGraphic = false;
-                item.UseSound = SoundID.Item1;
-                item.scale = 1f;
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 48;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 30;
-                item.useAnimation = item.useTime;
-                item.knockBack = 2;
-                item.shootSpeed = 20f;
-                item.shoot = mod.ProjectileType("VulcanConjuration");
-                item.noUseGraphic = false;
-                item.UseSound = SoundID.Item1;
-                item.scale = 1f;
-            }
+        public override void Destruction(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 46 + 8 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 36 - (3 * modPlayer.destructionPower);
+            if (item.useTime <= 0)
+                item.useTime = 2;
+            item.useAnimation = (int)(item.useTime / 2);
+            item.knockBack = 4 + 2 * modPlayer.destructionPower;
+            item.shootSpeed = 14f;
+            item.shoot = 242;
+            item.UseSound = SoundID.Item1;
+            item.scale = 1.5f;
+        }
+
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 48;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 10;
+            item.useAnimation = item.useTime;
+            item.knockBack = 5;
+            item.shootSpeed = 18f;
+            item.shoot = mod.ProjectileType("VulcanIllusion");
+            item.noUseGraphic = false;
+            item.UseSound = SoundID.Item1;
+            item.scale = 1f;
+        }
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 48;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 30;
+            item.useAnimation = item.useTime;
+            item.knockBack = 2;
+            item.shootSpeed = 20f;
+            item.shoot = mod.ProjectileType("VulcanConjuration");
+            item.noUseGraphic = false;
+            item.UseSound = SoundID.Item1;
+            item.scale = 1f;
         }
 
         public override void AddRecipes()

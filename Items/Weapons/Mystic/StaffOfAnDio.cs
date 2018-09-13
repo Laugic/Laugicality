@@ -41,56 +41,48 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
 		}
 
-        public override void HoldItem(Player player)
+        public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  
-
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 36 + 16 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 34 - (4 * modPlayer.destructionPower);
-                if (item.useTime <= 1)
-                    item.useTime = 2;
-                item.useAnimation = item.useTime;
-                item.knockBack = 4 + 2 * modPlayer.destructionPower;
-                item.shootSpeed = 14f;
-                item.shoot = mod.ProjectileType("AnDioDestruction1");
-                item.UseSound = SoundID.Item20;
-                item.scale = 1f;
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                player.AddBuff(mod.BuffType("Frigid"), 1, true);
-                item.damage = 26;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.damage = 36 + 16 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 34 - (4 * modPlayer.destructionPower);
+            if (item.useTime <= 1)
                 item.useTime = 2;
-                item.useAnimation = item.useTime;
-                item.knockBack = 5;
-                item.shootSpeed = 12f;
-                item.shoot = mod.ProjectileType("AnDioIllusion");
-                item.noUseGraphic = false;
-                item.UseSound = SoundID.Item20;
-                item.scale = 1f;
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 38;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 30;
-                item.useAnimation = item.useTime;
-                item.knockBack = 2;
-                item.shootSpeed = 18f;
-                item.shoot = mod.ProjectileType("AnDioConjuration1");
-                item.noUseGraphic = false;
-                item.UseSound = SoundID.Item20;
-                item.scale = 1f;
-            }
+            item.useAnimation = item.useTime;
+            item.knockBack = 4 + 2 * modPlayer.destructionPower;
+            item.shootSpeed = 14f;
+            item.shoot = mod.ProjectileType("AnDioDestruction1");
+            item.UseSound = SoundID.Item20;
+            item.scale = 1f;
+        }
+
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            modPlayer.player.AddBuff(mod.BuffType("Frigid"), 1, true);
+            item.damage = 26;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 2;
+            item.useAnimation = item.useTime;
+            item.knockBack = 5;
+            item.shootSpeed = 12f;
+            item.shoot = mod.ProjectileType("AnDioIllusion");
+            item.noUseGraphic = false;
+            item.UseSound = SoundID.Item20;
+            item.scale = 1f;
+        }
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 38;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 30;
+            item.useAnimation = item.useTime;
+            item.knockBack = 2;
+            item.shootSpeed = 18f;
+            item.shoot = mod.ProjectileType("AnDioConjuration1");
+            item.noUseGraphic = false;
+            item.UseSound = SoundID.Item20;
+            item.scale = 1f;
         }
 
         public override void AddRecipes()

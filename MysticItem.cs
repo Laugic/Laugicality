@@ -21,6 +21,10 @@ namespace Laugicality
         public static float conjMult = 1f;
         public static float illMult = 1f;
 
+        public abstract void Conjuration(LaugicalityPlayer modPlayer);
+        public abstract void Illusion(LaugicalityPlayer modPlayer);
+        public abstract void Destruction(LaugicalityPlayer modPlayer);
+
         public override void SetDefaults()
         {
             item.melee = false;
@@ -163,6 +167,26 @@ namespace Laugicality
                 damage = damage + (int)(originalDmg * globalDmg);
             modPlayer.mysticHold = true;
 
+        }
+
+        public override void HoldItem(Player player)
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            switch (modPlayer.mysticMode)
+            {
+                case 1 :
+                    player.AddBuff(mod.BuffType("Destruction"), 1, true);
+                    Destruction(modPlayer);
+                    break;
+                case 2:
+                    player.AddBuff(mod.BuffType("Illusion"), 1, true);
+                    Illusion(modPlayer);
+                    break;
+                case 3:
+                    player.AddBuff(mod.BuffType("Conjuration"), 1, true);
+                    Conjuration(modPlayer);
+                    break;
+            }
         }
     }
 }

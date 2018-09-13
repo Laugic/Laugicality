@@ -61,66 +61,44 @@ namespace Laugicality.Items.Weapons.Mystic
             return true; // return false because we don't want tmodloader to shoot projectile
         }
 
-        public override void HoldItem(Player player)
+        public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
-
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 16 + 4 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.mana = 4;
-                item.useTime = 20 - modPlayer.destructionPower;
-                if (item.useTime <= 2)
-                    item.useTime = 2;
-                item.useAnimation = item.useTime;
-                item.knockBack = 2 + 2 * modPlayer.destructionPower;
-                item.shootSpeed = 10f + (float)(2 * modPlayer.destructionPower);
-                item.shoot = mod.ProjectileType("HermesDestruction");
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 25;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.mana = 4;
-                item.useTime = 16;
-                item.useAnimation = 16;
-                item.knockBack = 2;
-                item.shootSpeed = 8f;
-                item.shoot = mod.ProjectileType("HermesIllusion");
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 18;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.mana = 6;
-                item.useTime = 22;
-                item.useAnimation = 22;
-                item.knockBack = 5;
-                item.shootSpeed = 8f;
-                item.shoot = mod.ProjectileType("HermesConjuration1");
-            }
+            item.damage = 16 + 4 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.mana = 4;
+            item.useTime = 20 - modPlayer.destructionPower;
+            if (item.useTime <= 2)
+                item.useTime = 2;
+            item.useAnimation = item.useTime;
+            item.knockBack = 2 + 2 * modPlayer.destructionPower;
+            item.shootSpeed = 10f + (float)(2 * modPlayer.destructionPower);
+            item.shoot = mod.ProjectileType("HermesDestruction");
         }
 
-
-        /*
-        public override bool CanRightClick()
+        public override void Illusion(LaugicalityPlayer modPlayer)
         {
-                return true;
+            item.damage = 25;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.mana = 4;
+            item.useTime = 16;
+            item.useAnimation = 16;
+            item.knockBack = 2;
+            item.shootSpeed = 8f;
+            item.shoot = mod.ProjectileType("HermesIllusion");
         }
-        
-        public override void RightClick(Player player)
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-        }*/
-        
+            item.damage = 18;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.mana = 6;
+            item.useTime = 22;
+            item.useAnimation = 22;
+            item.knockBack = 5;
+            item.shootSpeed = 8f;
+            item.shoot = mod.ProjectileType("HermesConjuration1");
+        }
+
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

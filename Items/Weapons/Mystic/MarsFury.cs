@@ -57,50 +57,43 @@ namespace Laugicality.Items.Weapons.Mystic
             return true;
         }
         
-        public override void HoldItem(Player player)
-        {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
 
-            if (modPlayer.mysticMode  == 1)
-            {
-                item.scale = 1.5f;
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 32 + 12 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 38 - (8 * modPlayer.destructionPower);
-                if (item.useTime <= 2)
-                    item.useTime = 2;
-                item.useAnimation = item.useTime;
-                item.knockBack = 5 + 3 * modPlayer.destructionPower;
-                item.shootSpeed = 4f;
-                item.shoot = mod.ProjectileType("Nothing");
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                item.scale = 1f;
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 32;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.useTime = 10;
-                item.useAnimation = 10;
-                item.knockBack = 4;
-                item.shootSpeed = 12f;
-                item.shoot = mod.ProjectileType("Nothing");
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                item.scale = 1f;
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 32;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 38;
-                item.useAnimation = 38;
-                item.knockBack = 2;
-                item.shootSpeed = 12f;
-                item.shoot = mod.ProjectileType("MarsConjuration");
-            }
+        public override void Destruction(LaugicalityPlayer modPlayer)
+        {
+            item.scale = 1.5f;
+            item.damage = 32 + 12 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 38 - (8 * modPlayer.destructionPower);
+            if (item.useTime <= 2)
+                item.useTime = 2;
+            item.useAnimation = item.useTime;
+            item.knockBack = 5 + 3 * modPlayer.destructionPower;
+            item.shootSpeed = 4f;
+            item.shoot = mod.ProjectileType("Nothing");
+        }
+
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            item.scale = 1f;
+            item.damage = 32;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 10;
+            item.useAnimation = 10;
+            item.knockBack = 4;
+            item.shootSpeed = 12f;
+            item.shoot = mod.ProjectileType("Nothing");
+        }
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
+        {
+            item.scale = 1f;
+            item.damage = 32;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 38;
+            item.useAnimation = 38;
+            item.knockBack = 2;
+            item.shootSpeed = 12f;
+            item.shoot = mod.ProjectileType("MarsConjuration");
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)

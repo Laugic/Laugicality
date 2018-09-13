@@ -41,9 +41,6 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
             item.scale = 1.5f;
 		}
-
-        
-        
         
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -53,50 +50,43 @@ namespace Laugicality.Items.Weapons.Mystic
             else return false;
         }
         
-        public override void HoldItem(Player player)
-        {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
 
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 1500 + 500 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 34 - (8 * modPlayer.destructionPower);
-                if (item.useTime <= 2)
-                    item.useTime = 3;
-                item.useAnimation = item.useTime;
-                item.knockBack = 5 + 3 * modPlayer.destructionPower;
-                item.shootSpeed = 4f;
-                item.shoot = mod.ProjectileType("Nothing");
-                item.scale = 2f + .25f * modPlayer.destructionPower;
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 1500;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.useTime = 20;
-                item.useAnimation = 20;
-                item.knockBack = 4;
-                item.shootSpeed = 12f;
-                item.shoot = 636; //Daybreak
-                item.scale = 1.5f;
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 1000;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 45;
-                item.useAnimation = 45;
-                item.knockBack = 2;
-                item.shootSpeed = 8f;
-                item.shoot = mod.ProjectileType("Nothing");
-                item.scale = 2f;
-            }
+        public override void Destruction(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 1500 + 500 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 34 - (8 * modPlayer.destructionPower);
+            if (item.useTime <= 2)
+                item.useTime = 3;
+            item.useAnimation = item.useTime;
+            item.knockBack = 5 + 3 * modPlayer.destructionPower;
+            item.shootSpeed = 4f;
+            item.shoot = mod.ProjectileType("Nothing");
+            item.scale = 2f + .25f * modPlayer.destructionPower;
+        }
+
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 1500;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 20;
+            item.useAnimation = 20;
+            item.knockBack = 4;
+            item.shootSpeed = 12f;
+            item.shoot = ProjectileID.Daybreak;
+            item.scale = 1.5f;
+        }
+
+        public override void Conjuration(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 1000;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 45;
+            item.useAnimation = 45;
+            item.knockBack = 2;
+            item.shootSpeed = 8f;
+            item.shoot = mod.ProjectileType("Nothing");
+            item.scale = 2f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)

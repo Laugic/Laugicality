@@ -22,7 +22,9 @@ namespace Laugicality.Items.Weapons.Mystic
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
 		}
 
-		public override void SetDefaults()
+        
+
+        public override void SetDefaults()
 		{
 			item.damage = 25;
             //item.magic = true;
@@ -74,63 +76,41 @@ namespace Laugicality.Items.Weapons.Mystic
             return true; // return false because we don't want tmodloader to shoot projectile
         }
 
-        public override void HoldItem(Player player)
+        public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            //Main.NewText(modPlayer.mysticMode.ToString(), 200, 200, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
-
-            if (modPlayer.mysticMode  == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-                item.damage = 22 + 6 * modPlayer.destructionPower;
-                item.damage = (int)(item.damage * modPlayer.destructionDamage);
-                item.useTime = 15 - 2 * modPlayer.destructionPower;
-                if (item.useTime <= 0)
-                    item.useTime = 2;
-                item.useAnimation = item.useTime;
-                item.knockBack = modPlayer.destructionPower;
-                item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
-                item.shoot = mod.ProjectileType("Nothing");
-            }
-            else if(modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-                item.damage = 25;
-                item.damage = (int)(item.damage * modPlayer.illusionDamage);
-                item.useTime = 15;
-                item.useAnimation = 15;
-                item.knockBack = 1;
-                item.shootSpeed = 8f;
-                item.shoot = mod.ProjectileType("Nothing");
-            }
-            else if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-                item.damage = 25;
-                item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-                item.useTime = 50;
-                item.useAnimation = 50;
-                item.knockBack = 5;
-                item.shootSpeed = 2f;
-                item.shoot = mod.ProjectileType("FriggConjuration");
-            }
+            item.damage = 22 + 6 * modPlayer.destructionPower;
+            item.damage = (int)(item.damage * modPlayer.destructionDamage);
+            item.useTime = 15 - 2 * modPlayer.destructionPower;
+            if (item.useTime <= 0)
+                item.useTime = 2;
+            item.useAnimation = item.useTime;
+            item.knockBack = modPlayer.destructionPower;
+            item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
+            item.shoot = mod.ProjectileType("Nothing");
         }
 
+        public override void Illusion(LaugicalityPlayer modPlayer)
+        {
+            item.damage = 25;
+            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.useTime = 15;
+            item.useAnimation = 15;
+            item.knockBack = 1;
+            item.shootSpeed = 8f;
+            item.shoot = mod.ProjectileType("Nothing");
+        }
 
-        /*
-        public override bool CanRightClick()
+        public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-                return true;
+            item.damage = 25;
+            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
+            item.useTime = 50;
+            item.useAnimation = 50;
+            item.knockBack = 5;
+            item.shootSpeed = 2f;
+            item.shoot = mod.ProjectileType("FriggConjuration");
         }
-        
-        public override void RightClick(Player player)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-        }
-        */
+
 
         public override void AddRecipes()
 		{
