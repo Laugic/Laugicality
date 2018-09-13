@@ -6,7 +6,7 @@ namespace Laugicality.Prefixes
 {
     public class Yeeting : ModPrefix
     {
-        /*private int power = 0;
+        private int power = 0;
         public override float RollChance(Item item)
         {
             return 4f;
@@ -50,6 +50,6 @@ namespace Laugicality.Prefixes
         {
             float multiplier = 1f + 0.05f * power;
             valueMult *= multiplier;
-        }*/
+        }
     }
 }

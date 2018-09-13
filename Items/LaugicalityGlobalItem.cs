@@ -35,7 +35,7 @@ namespace Laugicality.Items
             return myClone;
 		}
 
-        /*public override int ChoosePrefix(Item item, UnifiedRandom rand)
+        public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
             if (item.accessory && item.stack == 1 && rand.NextBool(40))
             {
@@ -58,15 +58,22 @@ namespace Laugicality.Items
                 return mod.PrefixType(pref);
             }
             return -1;
-        }*/
+        }
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            player.moveSpeed += .05f * item.GetGlobalItem<LaugicalityGlobalItem>().yeet;
-            player.maxRunSpeed += .05f * item.GetGlobalItem<LaugicalityGlobalItem>().yeet;
+            int yet = item.GetGlobalItem<LaugicalityGlobalItem>().yeet;
+            player.moveSpeed += .1f * yet;
+            player.maxRunSpeed += player.maxRunSpeed * (.05f * yet);
         }
 
-        public override void HoldItem(Item item, Player player)
+	    public override bool NewPreReforge(Item item)
+	    {
+	        yeet = 0;
+            return true;
+	    }
+
+	    public override void HoldItem(Item item, Player player)
         {
             if(meleeDmg == -1)
             {
@@ -102,78 +109,7 @@ namespace Laugicality.Items
             }
         }
 
-
-
-        /*
-        public override bool AltFunctionUse(Item item, Player player)
-        {
-            if (mystic)
-                return true;
-            else return false;
-        }
-        
-        public override bool CanUseItem(Item item, Player player)
-        {
-            if (player.altFunctionUse == 2 && mystic)
-            {
-                LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-                modPlayer.mysticMode += 1;
-                if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-            }
-            return true;
-        }
-
-
-        public virtual void HoldItem(Player player)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
-            {
-                player.AddBuff(mod.BuffType("Destruction"), 1, true);
-            }
-            if (modPlayer.mysticMode == 2)
-            {
-                player.AddBuff(mod.BuffType("Illusion"), 1, true);
-            }
-            if (modPlayer.mysticMode == 3)
-            {
-                player.AddBuff(mod.BuffType("Conjuration"), 1, true);
-            }
-        }
-
-        public override bool CanRightClick(Item item)
-        {
-            if (mystic)
-                return true;
-            else return false;
-        }
-
-
-        public virtual void RightClick(Item item, Player player)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMode += 1;
-            if (modPlayer.mysticMode > 3) modPlayer.mysticMode = 1;
-        }
-
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-		{
-			if (mystic)
-            {
-                TooltipLine line = new TooltipLine(mod, "Right click to change Mysticism", "Right click to change Mysticism");
-                line.overrideColor = Color.LimeGreen;
-				tooltips.Add(line);
-
-				/*foreach (TooltipLine line2 in tooltips)
-				{
-					if (line2.mod == "Terraria" && line2.Name == "ItemName")
-					{
-						line2.text = originalOwner + "'s " + line2.text;
-					}
-				}
-			}
-		}*/
-        /*public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             
             if (!item.social && item.prefix > 0 && item.GetGlobalItem<LaugicalityGlobalItem>().yeet > 0)
@@ -182,15 +118,7 @@ namespace Laugicality.Items
                 line.isModifier = true;
                 tooltips.Add(line);
             }
-            else
-            {
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Name == "Yeeting")
-                        tooltips.Remove(line);
-                }
-            }
-        }*/
+        }
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
