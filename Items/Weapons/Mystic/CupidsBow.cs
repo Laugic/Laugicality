@@ -24,7 +24,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         
 
-        public override void SetDefaults()
+        public override void SetMysticDefaults()
 		{
 			item.damage = 40;
             item.width = 44;

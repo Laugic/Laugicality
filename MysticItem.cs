@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -12,33 +13,38 @@ namespace Laugicality
 {
     public abstract class MysticItem : ModItem
     {
+        private static readonly string MYSTIC_DAMAGE_PREFIX = "mystic";
+
         // make-safe
         public bool mystic = true;
         public static float destruction = 0f;
         public static float illusion = 0f;
         public static float conjuration = 0f;
-        public static float destMult = 1f;
-        public static float conjMult = 1f;
-        public static float illMult = 1f;
+        public static float destructionMultiplier = 1f;
+        public static float conjurationMultiplier = 1f;
+        public static float illusionMultiplier = 1f;
 
         public abstract void Destruction(LaugicalityPlayer modPlayer);
         public abstract void Illusion(LaugicalityPlayer modPlayer);
         public abstract void Conjuration(LaugicalityPlayer modPlayer);
 
-        public override void SetDefaults()
+        public abstract void SetMysticDefaults();
+
+        public sealed override void SetDefaults()
         {
             item.melee = false;
             item.ranged = false;
             item.magic = false;
             item.thrown = false;
             item.summon = false;
-            item.crit = 4;
+            item.crit = 99;
             destruction = 0f;
             illusion = 0f;
             conjuration = 0f;
-            destMult = 1f;
-            illMult = 1f;
-            conjMult = 1f;
+            destructionMultiplier = 1f;
+            illusionMultiplier = 1f;
+            conjurationMultiplier = 1f;
+            SetMysticDefaults();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -46,10 +52,10 @@ namespace Laugicality
             var tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
             if (tt != null)
             {
-                // take reverse for 'damage',  grab translation
+                
                 string[] split = tt.text.Split(' ');
-                // todo: translation alchemical
-                tt.text = split.First() + " mystic " + split.Last();
+                
+                tt.text = split.First() + " " + getMysticDamageType() + " " + split.Last();
             }
             /*if (!item.social && item.prefix > 0)
             {
@@ -148,6 +154,8 @@ namespace Laugicality
             return -1;
         }*/
 
+        
+
         public override void GetWeaponDamage(Player player, ref int damage)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
@@ -187,6 +195,25 @@ namespace Laugicality
                     Conjuration(modPlayer);
                     break;
             }
+        }
+
+        private String getMysticDamageType()
+        {
+            if (Main.netMode != 1)
+            {
+                LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+                switch (modPlayer.mysticMode)
+                {
+                    case 1:
+                        return MYSTIC_DAMAGE_PREFIX + " destruction";
+                    case 2:
+                        return MYSTIC_DAMAGE_PREFIX + " illusion";
+                    case 3:
+                        return MYSTIC_DAMAGE_PREFIX + " conjuration";
+                }
+            }
+
+            return "mystic";
         }
     }
 }
