@@ -37,7 +37,7 @@ namespace Laugicality
             item.magic = false;
             item.thrown = false;
             item.summon = false;
-            item.crit = 99;
+            item.crit = 4;
             destruction = 0f;
             illusion = 0f;
             conjuration = 0f;
