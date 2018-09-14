@@ -12,6 +12,11 @@ namespace Laugicality.NPCs.SteamTrain
     [AutoloadBossHead]
     public class SteamTrain : ModNPC
     {
+        private static readonly int PHASE_NORMALDRIVE = 0;
+        private static readonly int PHASE_SUPERDRIVE = 1;
+        private static readonly int PHASE_HYPERDRIVE = 2;
+        private static readonly int PHASE_WARPDRIVE = 3;
+
         public static Random rnd = new Random();
         public int spawn = 0;
         public bool stage2 = false;
@@ -130,15 +135,15 @@ namespace Laugicality.NPCs.SteamTrain
 
             //Horizontal Movement
             npc.velocity.X = accel;
-            if(dir == 1)
+            if (dir == 1)
             {
-                if(accel < maxAccel/2)
+                if (accel < maxAccel / 2)
                 {
                     accel += .2f;
                 }
                 else
                 {
-                    if(boosted == false) //Play boosted sound effect
+                    if (boosted == false) //Play boosted sound effect
                     {
                         Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/train_whistle"));
                         boosted = true;
@@ -198,7 +203,10 @@ namespace Laugicality.NPCs.SteamTrain
 
             //Attacking
 
-            if(boosted)delay += 1;
+            if (boosted)
+            {
+                delay += 1;
+            }
             if (delay >= maxDelay && Main.netMode != 1)
             {
 
@@ -221,28 +229,37 @@ namespace Laugicality.NPCs.SteamTrain
                     Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, 8, mod.ProjectileType("SteamyShadow"), npc.damage / 3, 3f, Main.myPlayer);
                     //Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, 8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
                 }
-                if (phase > 0) { 
-                Projectile.NewProjectile(npc.position.X + 1572, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.position.X + 102, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
+                if (phase != PHASE_NORMALDRIVE)
+                {
+                    Projectile.NewProjectile(npc.position.X + 1572, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 102, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
                 }
-             delay = 0;
+                delay = 0;
 
             }
 
             //Health Phases
-            if (npc.life < npc.lifeMax * .67 && phase == 0)
+            if (npc.life < npc.lifeMax * .67 && phase == PHASE_NORMALDRIVE)
             {
-                phase = 1; Main.NewText("Superdrive.", 150, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+                phase = PHASE_SUPERDRIVE; Main.NewText("Superdrive.", 150, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
-            if (npc.life < npc.lifeMax * .33 && phase == 1) { phase = 2; Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0); Main.NewText("Hyperdrive.", 200, 0, 0); }
-            if (npc.life < npc.lifeMax * .10 && phase == 2 && Main.expertMode)
+
+            if (npc.life < npc.lifeMax * .33 && phase == PHASE_SUPERDRIVE)
             {
-                phase = 3; Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0); Main.NewText("Warpdrive.", 250, 0, 0);
+                phase = PHASE_HYPERDRIVE;
+                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                Main.NewText("Hyperdrive.", 200, 0, 0);
+            }
+            if (npc.life < npc.lifeMax * .10 && phase == PHASE_HYPERDRIVE && Main.expertMode)
+            {
+                phase = PHASE_WARPDRIVE;
+                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                Main.NewText("Warpdrive.", 250, 0, 0);
                 npc.life = (int)(npc.lifeMax * .15);
             }
             //Phase Stat Changing
-            if (phase == 1)
+            if (phase == PHASE_SUPERDRIVE)
             {
                 range = 1800;
                 maxAccel = 26f;
@@ -259,7 +276,7 @@ namespace Laugicality.NPCs.SteamTrain
                 }
             }
 
-            if(phase == 2)
+            if (phase == PHASE_HYPERDRIVE)
             {
                 range = 1400;
                 maxAccel = 32f;
@@ -275,7 +292,7 @@ namespace Laugicality.NPCs.SteamTrain
                     npc.damage = 130;
                 }
             }
-            if (phase == 3)
+            if (phase == PHASE_WARPDRIVE)
             {
                 range = 1000;
                 maxAccel = 38f;
@@ -318,7 +335,7 @@ namespace Laugicality.NPCs.SteamTrain
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
-                
+
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfWrought"), Main.rand.Next(20, 40));
             }
 
@@ -329,6 +346,7 @@ namespace Laugicality.NPCs.SteamTrain
             LaugicalityWorld.downedSteamTrain = true;
 
         }
+
 
 
         public override void BossLoot(ref string name, ref int potionType)
