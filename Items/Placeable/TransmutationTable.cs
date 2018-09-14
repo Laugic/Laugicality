@@ -244,7 +244,7 @@ namespace Laugicality.Items.Placeable
             TArecipe.SetResult(ItemID.AdamantiteOre, 5);
             TArecipe.AddRecipe();
 
-            //Ores
+            //Bars
             //Copper to Tin
             ModRecipe CTBrecipe = new ModRecipe(mod);
             CTBrecipe.AddIngredient(ItemID.CopperBar, 3);

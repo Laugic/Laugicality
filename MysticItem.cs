@@ -21,9 +21,9 @@ namespace Laugicality
         public static float conjMult = 1f;
         public static float illMult = 1f;
 
-        public abstract void Conjuration(LaugicalityPlayer modPlayer);
-        public abstract void Illusion(LaugicalityPlayer modPlayer);
         public abstract void Destruction(LaugicalityPlayer modPlayer);
+        public abstract void Illusion(LaugicalityPlayer modPlayer);
+        public abstract void Conjuration(LaugicalityPlayer modPlayer);
 
         public override void SetDefaults()
         {
