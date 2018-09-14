@@ -22,7 +22,7 @@ namespace Laugicality.Items.Weapons.Mystic
             //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
         }
 
-		public override void SetDefaults()
+		public override void SetMysticDefaults()
 		{
 			item.damage = 40;
             //item.magic = true;
@@ -55,8 +55,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 Projectile.NewProjectile(position.X, position.Y, (float)Math.Cos(theta) * shootMag, (float)Math.Sin(theta) * shootMag, mod.ProjectileType("MarsIllusion"), damage, knockBack, player.whoAmI);
             }
             return true;
-        }
-        
+        }      
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
@@ -103,6 +102,8 @@ namespace Laugicality.Items.Weapons.Mystic
             if (modPlayer.mysticMode == 1)
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("MarsDestruction"), damage, knockback, Main.myPlayer);
         }
+
+        
 
         public override void AddRecipes()
 		{

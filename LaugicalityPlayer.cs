@@ -18,7 +18,7 @@ using Laugicality.Items.Accessories;
 
 namespace Laugicality
 {
-    public class LaugicalityPlayer : ModPlayer
+    public partial class LaugicalityPlayer : ModPlayer
     {
         //Buffs
         public const int maxBuffs = 42;
@@ -49,7 +49,7 @@ namespace Laugicality
 
         public bool skp = false;
         public bool douche = false;
-        public bool eFied = false; 
+        public bool eFied = false;
         public bool meFied = false;
         public bool mFied = false; //Mystified Debuff
         public bool toyTrain = false; //Toy Train Pet
@@ -70,36 +70,6 @@ namespace Laugicality
         public bool danger = true;
         public bool feather = true;
 
-        //Mystic vars
-        public float mysticDamage = 1f;
-        public float mysticDuration = 1f;
-        public int mysticMode = 1; //1 = Destruction, 2 = Illusion, 3 = Conjuration
-        public float illusionDamage = 1f;
-        public float destructionDamage = 1f;
-        public float conjurationDamage = 1f;
-        public int illusionPower = 1;
-        public int destructionPower = 1;
-        public int conjurationPower = 1;
-        public int mysticSwitchCool = 0;
-        public int mysticSwitchCoolRate = 1;
-        public bool mysticSteamBurst = false;
-        public bool mysticShroomBurst = false;
-        public bool mysticSandBurst = false;
-        public int mysticSpiralBurst = 0;
-        public int mysticSpiralDelay = 0;
-        public int mysticSteamSpiralBurst = 0;
-        public int mysticSteamSpiralDelay = 0;
-        public bool mysticEruption = false;
-        public int mysticErupting = 0;
-        public bool mysticEruptionBurst = false;
-        public bool mysticMarblite = false;
-        public bool andioChestplate = false;
-        public bool andioChestguard = false;
-        public bool midnight = false;
-        public bool mysticHold = false;
-        public bool magmatic = false;
-        public int mysticCrit = 4;
-
         //Steam vars
         public float steamDamage = 1f;
 
@@ -115,7 +85,7 @@ namespace Laugicality
         public bool zImmune = false;
         public bool zCool = false;
         public float xTemp = 0;
-        public float yTemp = 0; 
+        public float yTemp = 0;
         public bool zProjImmune = false;
         public int zCoolDown = 1800;
         public float theta = 0f;
@@ -133,7 +103,7 @@ namespace Laugicality
         public bool shakeReset = false;
 
         public override void SetupStartInventory(IList<Item> items)
-        {        
+        {
             inf = true;
             calm = true;
             ww = true;
@@ -145,6 +115,9 @@ namespace Laugicality
             feather = true;
         }
 
+        /// <summary>
+        /// Challenge : Refactor This to be short and without having it look disgusting
+        /// </summary>
         public override void ResetEffects()
         {
             if (mysticSwitchCool > 0)
@@ -163,7 +136,7 @@ namespace Laugicality
             else
             {
                 shakeMag = 0;
-                if(shakeReset == true)
+                if (shakeReset == true)
                     shakeO = player.position;
                 else
                 {
@@ -271,32 +244,26 @@ namespace Laugicality
 
         public override void PreUpdate()
         {
-            //Main.NewText("Connected: " + connected.ToString(), 250, 250, 0);
-            //Main.NewText("World Power: " + LaugicalityWorld.power.ToString(), 250, 0, 250);
-            //Main.NewText(player.position.X.ToString(), 0, 250, 0);
             etherial = LaugicalityWorld.downedEtheria;
-            
+
             Random random = new Random();
-            if(shakeDur > 0)
+            if (shakeDur > 0)
             {
-                shakeMag += 1f/5f;
-                player.position.X = shakeO.X - shakeMag + (float)random.NextDouble()*shakeMag*2;
-                player.position.Y = shakeO.Y - shakeMag + (float)random.NextDouble()*shakeMag*2;
+                shakeMag += 1f / 5f;
+                player.position.X = shakeO.X - shakeMag + (float)random.NextDouble() * shakeMag * 2;
+                player.position.Y = shakeO.Y - shakeMag + (float)random.NextDouble() * shakeMag * 2;
             }
 
 
-            /*Za Warudo
-            if (LaugicalityWorld.zawarudo >= 1)
-            {
-                NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("ZaWarudo"));
-            }*/
             /*if (player.position.X < 700)
                 player.position.X = 65400;
             if (player.position.X > 65500)
                 player.position.X = 800;*/
         }
-        
 
+        /// <summary>
+        /// Refactor This to be short
+        /// </summary>
         public override void PostUpdate()
         {
             //Za Warudo
@@ -305,7 +272,7 @@ namespace Laugicality
                 player.velocity.X = 0;
                 player.velocity.Y = 0;
                 player.AddBuff(mod.BuffType("TrueCurse"), 1, true);
-                if(xTemp == 0 || yTemp == 0)
+                if (xTemp == 0 || yTemp == 0)
                 {
                     xTemp = player.position.X;
                     yTemp = player.position.Y;
@@ -338,7 +305,7 @@ namespace Laugicality
             //Mystic Bursts
             if (mysticErupting > 0)
             {
-                if(Main.rand.Next(4) == 0)
+                if (Main.rand.Next(4) == 0)
                 {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * mysticDamage), 3, Main.myPlayer);
                 }
@@ -451,13 +418,16 @@ namespace Laugicality
             }
             return null;
         }
-        
+
 
         public override void UpdateDead()
         {
             eFied = false;
         }
 
+        /// <summary>
+        /// Refactor This to be short
+        /// </summary>
         public override void UpdateBadLifeRegen()
         {
             //Main.NewText(mysticDuration.ToString(), 250, 250, 0);
@@ -494,25 +464,27 @@ namespace Laugicality
             }
         }
 
-        
-		public override bool PreItemCheck()
-		{
-            if(truecurse)
-			    return false;
+
+        public override bool PreItemCheck()
+        {
+            if (truecurse)
+                return false;
             return true;
-		}
+        }
 
-
+        /// <summary>
+        /// Refactor This to be short
+        /// </summary>
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             int rand = Main.rand.Next(4);
             if (obsidium)
             {
-                target.AddBuff(24, (int)((120 + 60 * rand)), false);
+                target.AddBuff(BuffID.OnFire, (int)((120 + 60 * rand)), false);
             }
             if (frost)
             {
-                target.AddBuff(BuffID.Frostburn, (int)((120 + 60 * rand) ), false);
+                target.AddBuff(BuffID.Frostburn, (int)((120 + 60 * rand)), false);
             }
             if (skp)
             {
@@ -536,7 +508,7 @@ namespace Laugicality
             }
             if (crysMag)
             {
-                if(crit)
+                if (crit)
                 {
                     float mag = 6f;
                     float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
@@ -575,111 +547,61 @@ namespace Laugicality
 
             if (etherialTrail > 0)
             {
-                etherialTrail -= 1;
-                if(Main.rand.Next(0,4) == 0)
-                    Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+                DrawEtherialTrailEffect();
             }
             if (eFied)
             {
-                if (Main.rand.Next(13) == 0 && drawInfo.shadow == 0f)
-                {
-                    int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4, mod.DustType("TrainSteam"), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
-                    Main.dust[dust].noGravity = false;
-                    Main.dust[dust].velocity *= 1.8f;
-                    Main.dust[dust].velocity.Y -= 0.5f;
-                    Main.playerDrawDust.Add(dust);
-                }
-                r *= 0.1f;
-                g *= 0.8f;
-                b *= 0.8f;
-                fullBright = true;
+                DrawSteamEffect(drawInfo, ref r, ref g, ref b, out fullBright);
             }
             if (etherial)
             {
-                r = 0.2f;
-                g = 0.9f;
-                b = 1f;
-
-                if(ethBkg <= 0)
-                {
-                    ethBkg = 9;
-                    //NPC.NewNPC((int)player.position.X - 160, (int)player.position.Y - 160, mod.NPCType("EtherialBkg"));
-                    //NPC.NewNPC((int)player.position.X - 160, (int)player.position.Y - 160, mod.NPCType("EtherialMusic"));
-                }
-                else
-                {
-                    ethBkg -= 1;
-                }
+                DrawEtherialEffect(out r, out g, out b);
             }
         }
 
-        public void mysticSwitch()
+        private void DrawEtherialTrailEffect()
         {
-               mysticMode += 1;
-            if (mysticMode > 3)
-                mysticMode = 1;
-            if(mysticSwitchCool <= 0)
+            etherialTrail -= 1;
+            if (Main.rand.Next(0, 4) == 0)
             {
-                if (mysticShroomBurst)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * mysticDamage), 3, Main.myPlayer);
-                    
-                    mysticSwitchCool = 60;
-                }
-                if (mysticEruption)
-                {
-                    mysticErupting += 90;
-                    mysticSwitchCool = 180;
-                }
-                if (magmatic)
-                {
-                    mysticErupting += 90;
-                    mysticSwitchCool = 180;
-                }
-                if (mysticSandBurst)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 2, 0, mod.ProjectileType("AncientRune"), (int)(12 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -2, 0, mod.ProjectileType("AncientRune"), (int)(12 * mysticDamage), 3, Main.myPlayer);
-                    
-                    mysticSwitchCool = 180;
-                }
-                if (mysticEruptionBurst)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * mysticDamage), 3, Main.myPlayer);
-                    mysticErupting += 45;
-                    
-                    mysticSwitchCool = 210;
-                }
-                if (andioChestguard)
-                {
-                    mysticSpiralBurst += 120;
-                    mysticSwitchCool = 210;
-                }
-                if (mysticSteamBurst)
-                {
-                    mysticSteamSpiralBurst += 145;
-                    mysticSwitchCool = 240;
-                }
-                if (mysticMarblite)
-                {
-                    player.AddBuff(mod.BuffType("ForGlory"), 180 + (int)(120 * mysticDuration));
-                    player.AddBuff(mod.BuffType("ForHonor"), 180 + (int)(120 * mysticDuration));
-                }
-                if (andioChestplate)
-                {
-                    player.AddBuff(mod.BuffType("ChestplateSwitch"), 300);
-                }
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+            }
+        }
+
+        private void DrawSteamEffect(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, out bool fullBright)
+        {
+            if (Main.rand.Next(13) == 0 && drawInfo.shadow == 0f)
+            {
+                int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4,
+                    mod.DustType("TrainSteam"), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
+                Main.dust[dust].noGravity = false;
+                Main.dust[dust].velocity *= 1.8f;
+                Main.dust[dust].velocity.Y -= 0.5f;
+                Main.playerDrawDust.Add(dust);
             }
 
+            r *= 0.1f;
+            g *= 0.8f;
+            b *= 0.8f;
+            fullBright = true;
         }
+
+        private void DrawEtherialEffect(out float r, out float g, out float b)
+        {
+            r = 0.2f;
+            g = 0.9f;
+            b = 1f;
+
+            if (ethBkg <= 0)
+            {
+                ethBkg = 9;
+            }
+            else
+            {
+                ethBkg -= 1;
+            }
+        }
+
 
         //Hotkey
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -699,10 +621,7 @@ namespace Laugicality
                 Main.NewText("Soul Stone and Potion Crystal mobility effects: " + SoulStoneM.ToString(), 250, 250, 0);
             }
         }
-        /*
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-        }*/
+
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
@@ -710,71 +629,151 @@ namespace Laugicality
             {
                 if (bRage)
                 {
-                    player.AddBuff(mod.BuffType("BloodRage"), 420);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
+                    ApplyBloodRage();
                 }
-                if (eyes)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                    if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                    if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-                }
-
-                if (sandy)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("Sandball"), 18, 5, Main.myPlayer);
-                }
-
-                if (frigid)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
-                }
-
-                if (spores)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 568, 48, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 569, 48, 3f, player.whoAmI);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 570, 48, 3f, player.whoAmI);
-                    if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 571, 48, 3f, player.whoAmI);
-                    if (Main.rand.Next(0, 2) == 0) Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48, 3f, player.whoAmI);
-                }
-
-                if (rocks)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17), mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
-                }
-                if (andioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
-                {
-                    NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("ZaWarudo"));
-                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-                    player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
-                }
-                if (andioChestplate && player.statLife < player.statLifeMax2 / 5 && zCool == false)
-                {
-                    NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("ZaWarudo"));
-                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-                    player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
-                }
+                SpawnProjectileOnPlayerHurt();
+                ArmorEffectPlayerHurt();
                 mysticSwitchCool = 120;
             }
         }
 
+        private void ArmorEffectPlayerHurt()
+        {
+            if (andioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
+            {
+                AnDioChestguardTimeStop();
+            }
+
+            if (andioChestplate && player.statLife < player.statLifeMax2 / 5 && zCool == false)
+            {
+                AnDioChestplateTimeStop();
+            }
+        }
+
+        private void AnDioChestplateTimeStop()
+        {
+            NPC.NewNPC((int) player.position.X, (int) player.position.Y, mod.NPCType("ZaWarudo"));
+            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+            player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
+        }
+
+        private void AnDioChestguardTimeStop()
+        {
+            NPC.NewNPC((int) player.position.X, (int) player.position.Y, mod.NPCType("ZaWarudo"));
+            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+            player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
+        }
+
+        private void SpawnProjectileOnPlayerHurt()
+        {
+            if (eyes)
+            {
+                SpawnMiniEye();
+            }
+
+            if (sandy)
+            {
+                SpawnSandBall();
+            }
+
+            if (frigid)
+            {
+                SpawnIceShard();
+            }
+
+            if (spores)
+            {
+                SpawnSpore();
+            }
+
+            if (rocks)
+            {
+                SpawnRockShard();
+            }
+        }
+
+        private void ApplyBloodRage()
+        {
+            player.AddBuff(mod.BuffType("BloodRage"), 420);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
+        }
+
+        private void SpawnMiniEye()
+        {
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            if (Main.rand.Next(0, 2) == 0)
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                    mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+            if (Main.rand.Next(0, 2) == 0)
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                    mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+        }
+
+        private void SpawnSandBall()
+        {
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("Sandball"), 18, 5,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("Sandball"), 18, 5,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("Sandball"), 18, 5,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("Sandball"), 18, 5,
+                Main.myPlayer);
+        }
+
+        private void SpawnIceShard()
+        {
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
+                mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+        }
+
+        private void SpawnSpore()
+        {
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 567, 48,
+                3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 568, 48,
+                3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 569, 48,
+                3f, player.whoAmI);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 570, 48,
+                3f, player.whoAmI);
+            if (Main.rand.Next(0, 2) == 0)
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 571,
+                    48, 3f, player.whoAmI);
+            if (Main.rand.Next(0, 2) == 0)
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12), 567,
+                    48, 3f, player.whoAmI);
+        }
+
+        private void SpawnRockShard()
+        {
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, mod.ProjectileType("RockShard"), 20, 3,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, mod.ProjectileType("RockShard"), 20, 3,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, mod.ProjectileType("RockShard"), 20, 3,
+                Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
+                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
+                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
+                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
+                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
+                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+        }
     }
 }
-       
+

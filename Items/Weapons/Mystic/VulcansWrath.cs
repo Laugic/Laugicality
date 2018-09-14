@@ -18,11 +18,12 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vulcan's Wrath");
-            Tooltip.SetDefault("'Unleash his fury' \nIllusion inflicts 'Steamy'\nFires different projectiles based on Mysticism");
-            //Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+            Tooltip.AddLine("'Unleash his fury'");
+            Tooltip.AddLine("Illusion inflicts 'Steamy'");
+            Tooltip.AddLine("Fires different projectiles based on Mysticism");
         }
 
-		public override void SetDefaults()
+		public override void SetMysticDefaults()
 		{
 			item.damage = 48;
             item.width = 48;
@@ -54,7 +55,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 }
 
             }
-            return true; // return false because we don't want tmodloader to shoot projectile
+            return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)

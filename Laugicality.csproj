@@ -471,11 +471,13 @@
     <Compile Include="Items\Weapons\Volcite.cs" />
     <Compile Include="Items\Weapons\WarlockStaff.cs" />
     <Compile Include="Laugicality.cs" />
+    <Compile Include="LaugicalityExtension.cs" />
     <Compile Include="LaugicalityPlayer.cs" />
     <Compile Include="LaugicalityVars.cs" />
     <Compile Include="LaugicalityWorld.cs" />
     <Compile Include="Mounts\SteamTrain.cs" />
     <Compile Include="MysticItem.cs" />
+    <Compile Include="MysticPlayer.cs" />
     <Compile Include="NewTileRunner.cs" />
     <Compile Include="NPCs\Bosses\MechanicalCrawler.cs" />
     <Compile Include="NPCs\Bosses\MechanicalMimic.cs" />

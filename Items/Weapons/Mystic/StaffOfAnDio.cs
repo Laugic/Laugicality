@@ -22,10 +22,9 @@ namespace Laugicality.Items.Weapons.Mystic
             Item.staff[item.type] = true; 
         }
 
-		public override void SetDefaults()
+		public override void SetMysticDefaults()
 		{
 			item.damage = 40;
-            //item.magic = true;
             item.width = 48;
 			item.height = 48;
 			item.useTime = 18;
@@ -37,7 +36,6 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = 3;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
-			//item.shoot = mod.ProjectileType("GaiaDestruction");
 			item.shootSpeed = 6f;
 		}
 

@@ -15,8 +15,6 @@ namespace Laugicality.Projectiles.Mystic
         {
             power = 1;
             mystDur = 1f;
-            //mystDmg = (float)projectile.damage;
-            //mystDur = 1f + projectile.knockBack;
             projectile.width = 24;
             projectile.height = 24;
             projectile.friendly = true;
@@ -24,6 +22,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;
+            
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

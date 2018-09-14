@@ -22,10 +22,9 @@ namespace Laugicality.Items.Weapons.Mystic
 			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
 		}
 
-		public override void SetDefaults()
+		public override void SetMysticDefaults()
 		{
 			item.damage = 32;
-            //item.magic = true;
             item.width = 48;
 			item.height = 48;
 			item.useTime = 18;
