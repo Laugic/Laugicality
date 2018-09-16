@@ -478,7 +478,6 @@
     <Compile Include="Mounts\SteamTrain.cs" />
     <Compile Include="MysticItem.cs" />
     <Compile Include="MysticPlayer.cs" />
-    <Compile Include="NewTileRunner.cs" />
     <Compile Include="NPCs\Bosses\MechanicalCrawler.cs" />
     <Compile Include="NPCs\Bosses\MechanicalMimic.cs" />
     <Compile Include="NPCs\Bosses\MechanicalShelly.cs" />

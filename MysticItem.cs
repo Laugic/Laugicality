@@ -50,13 +50,17 @@ namespace Laugicality
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             var tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+            int index = tooltips.FindIndex(x => x.Name == "Damage" && x.mod == "Terraria");
             if (tt != null)
             {
                 
                 string[] split = tt.text.Split(' ');
                 
-                tt.text = split.First() + " " + getMysticDamageType() + " " + split.Last();
+                tt.text = split.First() + " mystic " + split.Last();
             }
+
+            TooltipLine tt2 = new TooltipLine(mod, "PlayerMysticChanneling", getMysticType());
+            tooltips.Insert(index + 1, tt2);
             /*if (!item.social && item.prefix > 0)
             {
                 if (destruction == 1f)
@@ -197,7 +201,7 @@ namespace Laugicality
             }
         }
 
-        private String getMysticDamageType()
+        private String getMysticType()
         {
             if (Main.netMode != 1)
             {
@@ -205,11 +209,11 @@ namespace Laugicality
                 switch (modPlayer.mysticMode)
                 {
                     case 1:
-                        return MYSTIC_DAMAGE_PREFIX + " destruction";
+                        return "[c/F9A602:-Destruction-]";
                     case 2:
-                        return MYSTIC_DAMAGE_PREFIX + " illusion";
+                        return "[c/7851A9:-Illusion-]";
                     case 3:
-                        return MYSTIC_DAMAGE_PREFIX + " conjuration";
+                        return "[c/50C878:-Conjuration-]";
                 }
             }
 
