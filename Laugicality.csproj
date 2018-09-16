@@ -108,8 +108,6 @@
     <Compile Include="Dusts\Steam.cs" />
     <Compile Include="Dusts\TrainSteam.cs" />
     <Compile Include="Dusts\White.cs" />
-    <Compile Include="Etherial\EtherialBkg.cs" />
-    <Compile Include="Etherial\EtherialMusic.cs" />
     <Compile Include="Etherial\EtherialVisuals.cs" />
     <Compile Include="Etherial\ZaWarudo.cs" />
     <Compile Include="Etherial\ZaWarudoVisuals.cs" />

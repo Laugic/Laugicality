@@ -81,7 +81,7 @@ namespace Laugicality
             {
                 zawarudo--;
             }
-            zWarudo = 240;
+            zWarudo = 240;/*
             if (downedEtheria)
             {
                 for(int k = 0; k < 8; k++)
@@ -95,7 +95,7 @@ namespace Laugicality
                     if(music)
                         NPC.NewNPC((int)player.position.X - 160, (int)player.position.Y - 160, mod.NPCType("EtherialMusic"));
                 }
-            }
+            }*/
         }
 
         public override TagCompound Save()

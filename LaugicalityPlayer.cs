@@ -353,7 +353,7 @@ namespace Laugicality
 
         public override void UpdateBiomeVisuals()
         {
-            bool useNebula = NPC.AnyNPCs(mod.NPCType("EtherialBkg"));
+            bool useNebula = LaugicalityWorld.downedEtheria;
             player.ManageSpecialBiomeVisuals("Laugicality:Etherial", useNebula);
             bool useWorld = NPC.AnyNPCs(mod.NPCType("ZaWarudo"));
             player.ManageSpecialBiomeVisuals("Laugicality:ZaWarudo", useWorld);

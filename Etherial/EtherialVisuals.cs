@@ -14,38 +14,14 @@ namespace Laugicality.Etherial
 {
     public class EtherialShader : ScreenShaderData
     {
-        private int YIndex;
         
         public EtherialShader(string passName)
 			: base(passName)
 		{
         }
 
-        private void UpdateYIndex()
-        {
-            int YType = ModLoader.GetMod("Laugicality").NPCType("EtherialBkg");     //"EtherialBkg" should be the name of the npc you're basing the shader around.
-            if (YIndex >= 0 && Main.npc[YIndex].active && Main.npc[YIndex].type == YType)
-            {
-                return;
-            }
-            YIndex = -1;
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                if (Main.npc[i].active && Main.npc[i].type == YType)
-                {
-                    YIndex = i;
-                    break;
-                }
-            }
-        }
-
         public override void Apply()
         {
-            UpdateYIndex();
-            if (YIndex != -1)
-            {
-                UseTargetPosition(Main.npc[YIndex].Center);
-            }
             base.Apply();
         }
     }
@@ -54,7 +30,7 @@ namespace Laugicality.Etherial
     {
         private bool isActive = false;
         private float intensity = 0f;
-        private int YIndex = -1;
+
 
         public override void Update(GameTime gameTime)
         {
@@ -70,14 +46,9 @@ namespace Laugicality.Etherial
 
         private float GetIntensity()
         {
-            if (this.UpdateYIndex())
-            {
-                float x = 0f;
-                if (this.YIndex != -1)
-                {
-                    x = Vector2.Distance(Main.player[Main.myPlayer].Center, Main.npc[this.YIndex].Center);
-                }
-                return (1f - Utils.SmoothStep(3000f, 6000f, x)) * 0.66f;
+            if (LaugicalityWorld.downedEtheria)
+            {    
+                return (1f - Utils.SmoothStep(3000f, 6000f, 1)) * 0.66f;
             }
             return 0.66f;
         }
@@ -88,25 +59,6 @@ namespace Laugicality.Etherial
             return new Color(Vector4.Lerp(new Vector4(0.5f, 0.8f, 1f, 1f), inColor.ToVector4(), 1f - intensity)); 
         }
 
-        private bool UpdateYIndex()
-        {
-            int YType = ModLoader.GetMod("Laugicality").NPCType("EtherialBkg");
-            if (YIndex >= 0 && Main.npc[YIndex].active && Main.npc[YIndex].type == YType)
-            {
-                return true;
-            }
-            YIndex = -1;
-            for (int i = 0; i < Main.npc.Length; i++)
-            {
-                if (Main.npc[i].active && Main.npc[i].type == YType)
-                {
-                    YIndex = i;
-                    break;
-                }
-            }
-            //this.DoGIndex = DoGIndex;
-            return YIndex != -1;
-        }
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
         {
