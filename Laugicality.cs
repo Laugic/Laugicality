@@ -170,59 +170,22 @@ namespace Laugicality //Laugicality.cs
             ToggleSoulStoneV = RegisterHotKey("Toggle Accessory Visual FX", "V");
             ToggleSoulStoneM = RegisterHotKey("Toggle Accessory Mobility FX", "C");
         }
-        public override void UpdateMusic(ref int music, ref MusicPriority BossHigh)
+        public override void UpdateMusic(ref int music, ref MusicPriority musicPriority)
         {
-
-            /*int[] trackIDs = { 6, 40, 36, 27, 26, 29, 10, 8, 33, 16, 23, 2, 7, 20, 14, 11, 21, 4, 31, 19, 9, 22, 1, 18, 3, 30, 32 };
-            if (Main.gameMenu)
-            {
-                if (!musicPlaying)
-                {
-                    //musicPlaying = true;
-                    Main.musicVolume = 1f;
-                    Main.music[6].Pause();
-                    Main.musicFade[6] = 0f;
-                    Main.music[6].Stop(AudioStopOptions.Immediate);
-                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
-                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, GetSoundSlot(SoundType.Custom, "Sounds/Music/DuneSharkron"));
-                }
-                Main.music[6].Pause();
-                Main.musicFade[6] = 0f;
-                Main.music[6].Stop(AudioStopOptions.Immediate);
-            }*/
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
-                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).etherial && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).etherialMusic)
-                {
-                    bool play = true;
-                    foreach (NPC npc in Main.npc)
-                    {
-                        if (npc.boss == true)
-                            play = false;
-                    }
-                    if (play)
-                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
-                }
+                
                 if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
                 {
                     music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+                    musicPriority = MusicPriority.BiomeLow;
                 }
-
-            }
-        }
-        public override void PreSaveAndQuit()
-        {
-            /*int[] trackIDs = { 6, 40, 36, 27, 26, 29, 10, 8, 33, 16, 23, 2, 7, 20, 14, 11, 21, 4, 31, 19, 9, 22, 1, 18, 3, 30, 32 };
-
-            for (int i = 0; i < trackIDs.Length; i++)
-            {
-                if (Main.music[trackIDs[i]].IsPlaying)
+                if (LaugicalityWorld.downedEtheria)
                 {
-                    //Main.music[trackIDs[i]].Pause();
-                    Main.musicFade[i] = 0f;
-                    Main.music[i].Stop(AudioStopOptions.Immediate);
+                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
+                    musicPriority = MusicPriority.Environment;
                 }
-            }*/
+            }
         }
     }
 
