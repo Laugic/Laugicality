@@ -209,11 +209,11 @@ namespace Laugicality
                 switch (modPlayer.mysticMode)
                 {
                     case 1:
-                        return "[c/F9A602:-Destruction-]";
+                        return "[c/F1C40F:- Destruction -]";
                     case 2:
-                        return "[c/7851A9:-Illusion-]";
+                        return "[c/8E44AD:- Illusion -]";
                     case 3:
-                        return "[c/50C878:-Conjuration-]";
+                        return "[c/28B463:- Conjuration -]";
                 }
             }
 

@@ -7,8 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Cog of Knowledge");
-            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 25% and jump height by 2\nReduces the cooldown between Mystic Bursts.");
+            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 50% and jump height by 2\nReduces the cooldown between Mystic Bursts.");
         }
 
         public override void SetDefaults()
@@ -29,14 +28,5 @@ namespace Laugicality.Items.Loot
             modPlayer.mysticDamage += 0.12f;
             modPlayer.mysticSwitchCoolRate += 1;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(2328, 4);
-            recipe.AddTile(null, "AlchemicalInfuser");
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
     }
 }
