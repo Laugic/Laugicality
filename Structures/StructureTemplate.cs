@@ -16,7 +16,7 @@ using Laugicality;
 
 namespace Laugicality.Structures
 {
-    public class StructureTemplate : ModWorld
+    public class StructureTemplate
     {
         
         public static void StructureGen(int xPosO, int yPosO, bool mirrored)

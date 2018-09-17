@@ -19,11 +19,14 @@ namespace Laugicality //Laugicality.cs
         private double pressedHotkeyTime;
         private bool musicPlaying = false;
 
+        public static Laugicality instance;
+
         //Calling Mod References
         Mod calMod = ModLoader.GetMod("Calamity");
 
         public Laugicality()
         {
+
             Properties = new ModProperties()
             {
                 Autoload = true,
@@ -144,6 +147,7 @@ namespace Laugicality //Laugicality.cs
         //Hotkeys
         public override void Load()
         {
+            instance = this;
             if (!Main.dedServ)
             {                                                                                            //Foreground Filter (RGB)
                 Filters.Scene["Laugicality:Etherial"] = new Filter(new EtherialShader("FilterMiniTower").UseColor(0.1f, 0.4f, 1.0f).UseOpacity(0.5f), EffectPriority.VeryHigh);
@@ -170,6 +174,12 @@ namespace Laugicality //Laugicality.cs
             ToggleSoulStoneV = RegisterHotKey("Toggle Accessory Visual FX", "V");
             ToggleSoulStoneM = RegisterHotKey("Toggle Accessory Mobility FX", "C");
         }
+
+        public override void Unload()
+        {
+            instance = null;
+        }
+
         public override void UpdateMusic(ref int music, ref MusicPriority musicPriority)
         {
             if (Main.myPlayer != -1 && !Main.gameMenu)

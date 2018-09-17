@@ -23,7 +23,7 @@ namespace Laugicality.Etherial
 
         private void UpdateYIndex()
         {
-            int YType = ModLoader.GetMod("Laugicality").NPCType("ZaWarudo");
+            int YType = Laugicality.instance.NPCType("ZaWarudo");
             if (YIndex >= 0 && Main.npc[YIndex].active && Main.npc[YIndex].type == YType)
             {
                 return;
@@ -90,7 +90,7 @@ namespace Laugicality.Etherial
 
         private bool UpdateYIndex()
         {
-            int YType = ModLoader.GetMod("Laugicality").NPCType("ZaWarudo");
+            int YType = Laugicality.instance.NPCType("ZaWarudo");
             if (YIndex >= 0 && Main.npc[YIndex].active && Main.npc[YIndex].type == YType)
             {
                 return true;
