@@ -589,7 +589,7 @@ namespace Laugicality
         public static void PlaceObsidiumChest(int x, int y, ushort floorType)
         {
             ClearSpaceForChest(x, y, floorType);
-            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)ModLoader.GetMod("Laugicality").TileType("ObsidiumChest"), false, 0);
+            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)Laugicality.instance.TileType("ObsidiumChest"), false, 0);
 
             int specialItem = GetObsidiumLoot();
             obsidiumPosition++;
@@ -620,7 +620,7 @@ namespace Laugicality
 
         private static int GetObsidiumLoot()
         {
-            int[] obsidiumLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("Eruption"), ModLoader.GetMod("Laugicality").ItemType("ObsidiumLily"), ModLoader.GetMod("Laugicality").ItemType("MagmaHeart"), ModLoader.GetMod("Laugicality").ItemType("FireDust"), ModLoader.GetMod("Laugicality").ItemType("CrystalizedMagma"), };
+            int[] obsidiumLoot = new int[] { Laugicality.instance.ItemType("Eruption"), Laugicality.instance.ItemType("ObsidiumLily"), Laugicality.instance.ItemType("MagmaHeart"), Laugicality.instance.ItemType("FireDust"), Laugicality.instance.ItemType("CrystalizedMagma"), };
             
             if (obsidiumPosition < obsidiumLoot.GetLength(0))
                 return obsidiumLoot[obsidiumPosition];
@@ -644,7 +644,7 @@ namespace Laugicality
 
         private static int[] GetPotionLoot()
         {
-            int[] potLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("MysticPowerPotion"), ModLoader.GetMod("Laugicality").ItemType("JumpBoostPotion"), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
+            int[] potLoot = new int[] { Laugicality.instance.ItemType("MysticPowerPotion"), Laugicality.instance.ItemType("JumpBoostPotion"), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
             int potPos = Main.rand.Next(potLoot.GetLength(0));
             int potCount = Main.rand.Next(2, 5);
             int[] pot = { 0, 0 };
@@ -675,7 +675,7 @@ namespace Laugicality
         
         private static int[] GetMiscLoot()
         {
-            int[] mscLoot = new int[] { ModLoader.GetMod("Laugicality").ItemType("LavaGem"), ModLoader.GetMod("Laugicality").ItemType("ArcaneShard"), ModLoader.GetMod("Laugicality").ItemType("LavaGem"), ModLoader.GetMod("Laugicality").ItemType("RubrumDust"), ModLoader.GetMod("Laugicality").ItemType("AlbusDust"), ModLoader.GetMod("Laugicality").ItemType("VerdiDust") };
+            int[] mscLoot = new int[] { Laugicality.instance.ItemType("LavaGem"), Laugicality.instance.ItemType("ArcaneShard"), Laugicality.instance.ItemType("LavaGem"), Laugicality.instance.ItemType("RubrumDust"), Laugicality.instance.ItemType("AlbusDust"), Laugicality.instance.ItemType("VerdiDust") };
             int mscPos = Main.rand.Next(mscLoot.GetLength(0));
             int mscCount = Main.rand.Next(2, 6);
             int[] msc = { 0, 0 };

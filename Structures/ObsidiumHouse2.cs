@@ -16,7 +16,7 @@ using Laugicality;
 
 namespace Laugicality.Structures
 {
-    public class ObsidiumHouse2 : ModWorld
+    public class ObsidiumHouse2
     {
         
         public static void StructureGen(int xPosO, int yPosO, bool mirrored)
@@ -63,21 +63,21 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumBrick"), true, true);
+                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumBrick"), true, true);
                             }
                             if (StructureGen[j, i] == 2)
                             {
-                                LaugicalityWorld.PlaceObsidiumChest(xPosO + StructureGen.GetLength(1) - i, yPosO + j, (ushort)ModLoader.GetMod("Laugicality").TileType("ObsidiumBrick"));
+                                LaugicalityWorld.PlaceObsidiumChest(xPosO + StructureGen.GetLength(1) - i, yPosO + j, (ushort)Laugicality.instance.TileType("ObsidiumBrick"));
                             }
                             if (StructureGen[j, i] == 3)
                             {
                                 WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("Lycoris"), true, true);
+                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
                             }
                             if (StructureGen[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("Radiata"), true, true);
+                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
                             }
                             if (StructureGen[j, i] == 5)
                             {
@@ -120,21 +120,21 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumBrick"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumBrick"), true, true);
                             }
                             if (StructureGen[j, i] == 2)
                             {
-                                LaugicalityWorld.PlaceObsidiumChest(xPosO + i, yPosO + j, (ushort)ModLoader.GetMod("Laugicality").TileType("ObsidiumBrick"));
+                                LaugicalityWorld.PlaceObsidiumChest(xPosO + i, yPosO + j, (ushort)Laugicality.instance.TileType("ObsidiumBrick"));
                             }
                             if (StructureGen[j, i] == 3)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("Lycoris"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
                             }
                             if (StructureGen[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("Radiata"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
                             }
                             if (StructureGen[j, i] == 5)
                             {

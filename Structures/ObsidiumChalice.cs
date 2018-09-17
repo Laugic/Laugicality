@@ -16,7 +16,7 @@ using Laugicality;
 
 namespace Laugicality.Structures
 {
-    public class ObsidiumChalice : ModWorld
+    public class ObsidiumChalice
     {
         
         public static void StructureGen(int xPosO, int yPosO, bool mirrored)
@@ -92,7 +92,7 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (StructureGen[j, i] == 2)
                             {
@@ -108,7 +108,7 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumOreBlock"), true, true);
+                                WorldGen.PlaceTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
                             }
                             if (StructureGen[j, i] == 9)
                             {
@@ -123,7 +123,7 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (StructureGen[j, i] == 2)
                             {
@@ -139,7 +139,7 @@ namespace Laugicality.Structures
                             if (StructureGen[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumOreBlock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
                             }
                             if (StructureGen[j, i] == 9)
                             {

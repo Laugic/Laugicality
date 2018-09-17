@@ -16,7 +16,7 @@ using Laugicality;
 
 namespace Laugicality.Structures
 {
-    public class HeartWorld : ModWorld
+    public class HeartWorld
     {
         
         public static int xPosO = Main.maxTilesX / 2;
@@ -170,17 +170,17 @@ namespace Laugicality.Structures
                         if (HeartGen[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumRock"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
                         }
                         if (HeartGen[j, i] == 2)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumOreBlock"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
                         }
                         if (HeartGen[j, i] == 3)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("Radiata"), true, true); //Hellstone = 58
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true); //Hellstone = 58
                         }
                         if (HeartGen[j, i] == 4)
                         {
@@ -199,12 +199,12 @@ namespace Laugicality.Structures
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.KillWall(xPosO + i, yPosO + j);
                             WorldGen.PlaceWall(xPosO + i, yPosO + j, 177, true); //Hellstone Brick Wall
-                            WorldGen.PlaceObject(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumHeart"), true, 0, -1, -1);
+                            WorldGen.PlaceObject(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumHeart"), true, 0, -1, -1);
                         }
                         if (HeartGen[j, i] == 7)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModLoader.GetMod("Laugicality").TileType("ObsidiumCore"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumCore"), true, true);
                         }
                         if (HeartGen[j, i] == 9)
                         {
