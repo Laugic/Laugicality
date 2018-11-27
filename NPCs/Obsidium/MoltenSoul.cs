@@ -36,9 +36,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-
-            if (LaugicalityWorld.obsidiumTiles > 250 && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * 0.35f;
+            if (LaugicalityWorld.obsidiumTiles > 150 && Main.hardMode)
+                return SpawnCondition.Cavern.Chance * 0.15f;
             else return 0f;
         }
 

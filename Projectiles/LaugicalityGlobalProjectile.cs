@@ -193,7 +193,7 @@ namespace Laugicality.Projectiles
             zProjImmune = projOwner.GetModPlayer<LaugicalityPlayer>(mod).zProjImmune;
             if (projectile.friendly == false)
                 zProjImmune = false;
-            if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zProjImmune == false && zImmune == false)
+            if (LaugicalityWorld.zawarudo > 0 && zProjImmune == false && zImmune == false)
             {
                 projectile.timeLeft++;
                 if (!frozen)
@@ -208,7 +208,6 @@ namespace Laugicality.Projectiles
                 {
                     projectile.velocity.X *= 0.01f;
                     projectile.velocity.Y *= 0.01f;
-                    projectile.aiStyle = 0;
                     if (xTemp == 0 || yTemp == 0)
                     {
                         xTemp = projectile.position.X;
@@ -219,8 +218,8 @@ namespace Laugicality.Projectiles
                         projectile.position.X = xTemp;
                         projectile.position.Y = yTemp;
                     }
-                    return false;
                 }
+                return false;
             }
             else
             {
@@ -232,67 +231,13 @@ namespace Laugicality.Projectiles
                 }
                 if (!frozen)
                 {
-                    projectile.aiStyle = ai;
                     oldVX = 0f;
                     oldVY = 0f;
                 }
                 return true;
             }
-            return true;
         }
         
-        public override void AI(Projectile projectile)
-        {
-            /*
-            bool zProjImmune = false;
-            Player projOwner = Main.player[projectile.owner];
-            zProjImmune = projOwner.GetModPlayer<LaugicalityPlayer>(mod).zProjImmune;
-            if (projectile.friendly == false)
-                zProjImmune = false;
-            if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zProjImmune == false && zImmune == false)
-            {
-                projectile.timeLeft++;
-                if (!frozen)
-                {
-                    oldVX = projectile.velocity.X;
-                    oldVY = projectile.velocity.Y;
-                    frozen = true;
-                    xTemp = 0;
-                    yTemp = 0;
-                }
-                if (frozen)
-                {
-                    projectile.velocity.X *= 0.01f;
-                    projectile.velocity.Y *= 0.01f;
-                    projectile.aiStyle = 0;
-                    if (xTemp == 0 || yTemp == 0)
-                    {
-                        xTemp = projectile.position.X;
-                        yTemp = projectile.position.Y;
-                    }
-                    else
-                    {
-                        projectile.position.X = xTemp;
-                        projectile.position.Y = yTemp;
-                    }
-                }
-            }
-            else
-            {
-                if (frozen)
-                {
-                    projectile.velocity.X = oldVX;
-                    projectile.velocity.Y = oldVY;
-                    frozen = false;
-                }
-                if (!frozen)
-                {
-                    projectile.aiStyle = ai;
-                    oldVX = 0f;
-                    oldVY = 0f;
-                }
-            }*/
-        }
 
         public override bool InstancePerEntity
         {

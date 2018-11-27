@@ -25,8 +25,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                player.thrownDamage += .30f;
-                player.thrownVelocity += .5f;
+                modPlayer.etherialPipes = true;
             }
         }
         /*

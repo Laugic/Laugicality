@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("35% Damage Reduction while in the Etherial");
+            Tooltip.SetDefault("While in the etherial, prevent a hit of lethal damage once every minute. \n20% Damage Reduction");
         }
 
         public override void SetDefaults()
@@ -22,20 +22,9 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.endurance += 0.2f;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
-            {
-                player.endurance += 0.35f;
-            }
+            modPlayer.etherialScarf = true;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(2328, 4);
-            recipe.AddTile(null, "AlchemicalInfuser");
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
     }
 }

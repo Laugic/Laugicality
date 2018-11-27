@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 using Laugicality.Etherial;
+using System.IO;
 
 namespace Laugicality //Laugicality.cs
 {
@@ -16,8 +17,6 @@ namespace Laugicality //Laugicality.cs
         internal static ModHotKey ToggleMystic;
         internal static ModHotKey ToggleSoulStoneV;
         internal static ModHotKey ToggleSoulStoneM;
-        private double pressedHotkeyTime;
-        private bool musicPlaying = false;
 
         public static Laugicality instance;
 
@@ -126,10 +125,10 @@ namespace Laugicality //Laugicality.cs
                 bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType("MechanicalMonitor")));
                 bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType("SteamCrown")));
                 bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType("SuspiciousTrainWhistle")));
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the daytime will attract this Shark's attention.", ItemType("TastyMorsel")));
+                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert during daytime will attract this Shark's attention.", ItemType("TastyMorsel")));
                 bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType("ChilledMesh")));
                 bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ItemType("MoltenMess")));
-                bossChecklist.Call("AddBossWithInfo", "Etheria", 10.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType("EmblemOfEtheria")));
+                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType("EmblemOfEtheria")));
                 bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ItemType("AncientAwakener")));
                 bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
             }
@@ -196,6 +195,27 @@ namespace Laugicality //Laugicality.cs
                     musicPriority = MusicPriority.Environment;
                 }
             }
+        }
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            EnigmaMessageType msgType = (EnigmaMessageType)reader.ReadByte();
+            switch (msgType)
+            {
+                case EnigmaMessageType.ZaWarudoTime:
+                    int zTime = reader.ReadInt32();
+                    LaugicalityWorld world = GetModWorld<LaugicalityWorld>();
+                    LaugicalityWorld.zawarudo = zTime;
+                    break;
+                default:
+                    ErrorLogger.Log("Laugicality: Unknown Message type: " + msgType);
+                    break;
+            }
+        }
+
+        enum EnigmaMessageType : byte
+        {
+            ZaWarudoTime,
         }
     }
 

@@ -37,15 +37,15 @@ namespace Laugicality.Items.Consumables
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SpookyWood, 100);
-            recipe.AddIngredient(ItemID.Ectoplasm, 25);
-            recipe.AddTile(26);
+            recipe.AddIngredient(ItemID.SpookyWood, 75);
+            recipe.AddIngredient(ItemID.Ectoplasm, 15);
+            recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 
             ModRecipe Arecipe = new ModRecipe(mod);
             Arecipe.AddIngredient(null, "EtherialEssence", 15);
-            Arecipe.AddTile(26);
+            Arecipe.AddTile(TileID.DemonAltar);
             Arecipe.SetResult(this);
             Arecipe.AddRecipe();
         }

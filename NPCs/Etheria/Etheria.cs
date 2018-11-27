@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Laugicality.Structures;
 
 namespace Laugicality.NPCs.Etheria
 {
@@ -121,8 +122,6 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-
             //Retarget (borrowed from Dan <3)
             Player player = Main.player[npc.target];
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
@@ -467,7 +466,6 @@ namespace Laugicality.NPCs.Etheria
             EtheriaDecoy.despawn = true;
             if (plays == 0)
                 plays = 1;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EssenceOfEtheria"), 1);
@@ -488,14 +486,7 @@ namespace Laugicality.NPCs.Etheria
             {
                 LaugicalityWorld.bysmal = true;
                 Main.NewText("Bysmal Veins burst through the world", 125, 200, 255);
-                float sizeMult = Main.maxTilesX / 2600f;
-                for (int k = 0; k < (int)(200 * sizeMult); k++)
-                {
-                    int X = WorldGen.genRand.Next(0, Main.maxTilesX);
-                    int Y = WorldGen.genRand.Next((int)WorldGen.rockLayer + 200, Main.maxTilesY - 200);
-                    WorldGen.OreRunner(X, Y, WorldGen.genRand.Next(9, 12), WorldGen.genRand.Next(5, 9), (ushort)mod.TileType("BysmalOre"));   
-                }
-                WorldGen.PlaceTile(0, 42, mod.TileType("BysmalOre"), true, true);
+                GenerateBysmal();
             }
         }
         public override void FindFrame(int frameHeight)
@@ -508,18 +499,22 @@ namespace Laugicality.NPCs.Etheria
             scale = 0f;
             return null;
         }
-        /*
-		public override void HitEffect(int hitDirection, double damage)
-		{
-			for (int i = 0; i < 10; i++)
-			{
-				int dustType = Main.rand.Next(139, 143);
-				int dustIndex = Dust.NewDust(npc.position, npc.width, npc.height, dustType);
-				Dust dust = Main.dust[dustIndex];
-				dust.velocity.X = dust.velocity.X + Main.rand.Next(-50, 51) * 0.01f;
-				dust.velocity.Y = dust.velocity.Y + Main.rand.Next(-50, 51) * 0.01f;
-				dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
-			}
-		}*/
+
+        private void GenerateBysmal()
+        {
+            int sizeMult = (int)(Math.Floor(Main.maxTilesX / 4200f));
+            for(int i = 0; i < 30 * sizeMult; i++)
+            {
+                BysmalVeins.StructureGenBig(Main.rand.Next(200, Main.maxTilesX - 200), Main.rand.Next(350 * sizeMult, Main.maxTilesY - 400));
+            }
+            for (int i = 0; i < 100 * sizeMult; i++)
+            {
+                BysmalVeins.StructureGenMed(Main.rand.Next(200, Main.maxTilesX - 200), Main.rand.Next(350 * sizeMult, Main.maxTilesY - 400));
+            }
+            for (int i = 0; i < 120 * sizeMult; i++)
+            {
+                BysmalVeins.StructureGenSmall(Main.rand.Next(200, Main.maxTilesX - 200), Main.rand.Next(350 * sizeMult, Main.maxTilesY - 400));
+            }
+        }
     }
 }

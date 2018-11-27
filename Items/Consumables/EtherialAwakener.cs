@@ -32,8 +32,8 @@ namespace Laugicality.Items.Consumables
         {
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial)
-                NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("Dioritus"));
+            if (NPC.CountNPCS(mod.NPCType("Dioritus")) < 1)
+                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, mod.NPCType("Dioritus"));
             return false;
         }
 

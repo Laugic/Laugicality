@@ -76,10 +76,8 @@ namespace Laugicality
         //Etherial
         public bool etherial = false;
         public int etherialTrail = 0;
-        public bool etherable = false;
         public int ethBkg = 0;
         public bool etherialSlot = false;
-        public bool etherVision = false;
 
         //Misc
         public bool zImmune = false;
@@ -91,6 +89,8 @@ namespace Laugicality
         public float theta = 0f;
         public bool obsHeart = false;
         public bool crysMag = false;
+        public bool frostbite = false;
+        public int fullBysmal = 0;
 
         //Music
         public bool ZoneObsidium = false;
@@ -113,6 +113,7 @@ namespace Laugicality
             owl = true;
             danger = true;
             feather = true;
+            int[] bysmalItems = { 0, 0, 0 };
         }
 
         /// <summary>
@@ -128,6 +129,8 @@ namespace Laugicality
                 mysticSpiralBurst -= 1;
             if (mysticSteamSpiralBurst > 0)
                 mysticSteamSpiralBurst -= 1;
+            if (fullBysmal > 0)
+                fullBysmal -= 1;
             if (shakeDur > 0)
             {
                 shakeDur--;
@@ -163,8 +166,6 @@ namespace Laugicality
             truecurse = false;
             zImmune = false;
             zCool = false;
-            etherable = false;
-            etherVision = false;
             etherialMusic = false;
             rocks = false;
             sandy = false;
@@ -186,6 +187,7 @@ namespace Laugicality
             qB = false;
             eyes = false;
             spores = false;
+            frostbite = false;
 
             //Mystic
             mysticCrit = 4;
@@ -228,6 +230,7 @@ namespace Laugicality
             {
                 player.extraAccessorySlots = 0;
             }
+            ResetEtherial();
         }
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
@@ -267,7 +270,7 @@ namespace Laugicality
         public override void PostUpdate()
         {
             //Za Warudo
-            if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && zImmune == false)
+            if (LaugicalityWorld.zawarudo > 0 && zImmune == false)
             {
                 player.velocity.X = 0;
                 player.velocity.Y = 0;
@@ -329,6 +332,9 @@ namespace Laugicality
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage), 3, Main.myPlayer);
                 }
             }
+            CheckBysmalPowers();
+            if(LaugicalityWorld.downedEtheria || etherable)
+                GetEtherialAccessories();
         }
 
         public override TagCompound Save()
@@ -347,7 +353,8 @@ namespace Laugicality
                 {"Spelunker", spelunker},
                 {"NightOwl", owl},
                 {"Dangersense", danger},
-                {"Featherfall", feather}
+                {"Featherfall", feather},
+                {"BysmalPowers", bysmalPowers}
             };
         }
 
@@ -355,7 +362,9 @@ namespace Laugicality
         {
             bool useNebula = LaugicalityWorld.downedEtheria;
             player.ManageSpecialBiomeVisuals("Laugicality:Etherial", useNebula);
-            bool useWorld = NPC.AnyNPCs(mod.NPCType("ZaWarudo"));
+            bool useWorld = false;
+            if (LaugicalityWorld.zawarudo > 0)
+                useWorld = true;
             player.ManageSpecialBiomeVisuals("Laugicality:ZaWarudo", useWorld);
         }
 
@@ -375,6 +384,7 @@ namespace Laugicality
             owl = tag.GetBool("NightOwl");
             danger = tag.GetBool("Dangersense");
             feather = tag.GetBool("Featherfall");
+            bysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
         }
 
 
@@ -430,6 +440,7 @@ namespace Laugicality
         /// </summary>
         public override void UpdateBadLifeRegen()
         {
+            
             //Main.NewText(mysticDuration.ToString(), 250, 250, 0);
             if (halfDef)
             {
@@ -452,6 +463,15 @@ namespace Laugicality
                 }
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 16;
+            }
+            if (frostbite)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                }
+                player.lifeRegenTime = 0;
+                player.lifeRegen -= 24;
             }
             if (mFied)//Mystified
             {
@@ -652,16 +672,16 @@ namespace Laugicality
 
         private void AnDioChestplateTimeStop()
         {
-            NPC.NewNPC((int) player.position.X, (int) player.position.Y, mod.NPCType("ZaWarudo"));
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
+            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
         }
 
         private void AnDioChestguardTimeStop()
         {
-            NPC.NewNPC((int) player.position.X, (int) player.position.Y, mod.NPCType("ZaWarudo"));
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
+            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
         }
 
         private void SpawnProjectileOnPlayerHurt()

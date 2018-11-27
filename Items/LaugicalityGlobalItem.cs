@@ -37,7 +37,7 @@ namespace Laugicality.Items
 
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
-            if (item.accessory && item.stack == 1 && rand.NextBool(40))
+            if (item.accessory && item.stack == 1 && rand.NextBool(80))
             {
                 string pref = "Yeeting";
                 switch(rand.Next(4))
@@ -64,7 +64,7 @@ namespace Laugicality.Items
         {
             int yet = item.GetGlobalItem<LaugicalityGlobalItem>().yeet;
             player.moveSpeed += .1f * yet;
-            player.maxRunSpeed += player.maxRunSpeed * (.05f * yet);
+            player.maxRunSpeed += player.maxRunSpeed * (.015f * yet);
         }
 
 	    public override bool NewPreReforge(Item item)
@@ -114,7 +114,7 @@ namespace Laugicality.Items
             
             if (!item.social && item.prefix > 0 && item.GetGlobalItem<LaugicalityGlobalItem>().yeet > 0)
             {
-                TooltipLine line = new TooltipLine(mod, "Yeeting", "+" + item.GetGlobalItem<LaugicalityGlobalItem>().yeet * 5 + "% Max Run speed and Movement speed");
+                TooltipLine line = new TooltipLine(mod, "Yeeting", "+" + item.GetGlobalItem<LaugicalityGlobalItem>().yeet * 1.5 + "% Max Run speed and Movement speed");
                 line.isModifier = true;
                 tooltips.Add(line);
             }

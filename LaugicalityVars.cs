@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality
 {
     class LaugicalityVars //A list of all of the important vars!
     {
+        static Mod mod = ModLoader.GetMod("Laugicality");
         public enum ClassType
         {
             Undefined, //(No class) 0
@@ -40,13 +39,19 @@ namespace Laugicality
         public static readonly HashSet<int> ENPCs =
             new HashSet<int>
             {
-                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 535, 438, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem
             };
 
         public static readonly HashSet<int> EProjectiles =
             new HashSet<int>
             {
-                31, 71, 179, 270, 55, 83, 100, 96, 605, 101, 102, 275, 276, 277, 262, 258, 259, 384, 385, 386, 464, 465, 466, 467, 468, 490, 455, 454, 452, 670, 671, 672, 673, 673, 675, 676, 681, 682, 683, 684, 685, 686, 687, 
+                31, 67, 68, 56, 71, 241, 179, 270, 55, 83, 99, 100, 96, 605, 101, 102, 257, 275, 276, 277, 262, 258, 259, 288, 384, 385, 386, 464, 465, 466, 467, 468, 490, 455, 454, 452, 657, 658, 670, 671, 672, 673, 673, 675, 676, 681, 682, 683, 684, 685, 686, 687, 
+            };
+
+        public static readonly HashSet<int> EBosses =
+            new HashSet<int>
+            {
+                NPCID.KingSlime, NPCID.EyeofCthulhu, mod.NPCType("DuneSharkron"), NPCID.BrainofCthulhu, mod.NPCType("Hypothema"), NPCID.QueenBee, mod.NPCType("Ragnar"), NPCID.SkeletronHead, mod.NPCType("AnDio3"), NPCID.WallofFlesh, NPCID.TheDestroyer, NPCID.SkeletronPrime, mod.NPCType("TheAnnihilator"), mod.NPCType("Slybertron"), mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
         public static readonly HashSet<int> ZProjectiles =
@@ -83,9 +88,9 @@ namespace Laugicality
         public static readonly HashSet<int> SlimeThrow =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Thief };
         public static readonly HashSet<int> SlimeJump =
-            new HashSet<int> { (int)LaugicalityVars.ClassType.Tank, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Rogue, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Illusionist, (int)LaugicalityVars.ClassType.Shaman, };
+            new HashSet<int> { (int)LaugicalityVars.ClassType.Tank, (int)LaugicalityVars.ClassType.Paladin, (int)LaugicalityVars.ClassType.Rogue, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Illusionist, (int)LaugicalityVars.ClassType.Shaman, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Conjurer };
         public static readonly HashSet<int> SlimeMinion =
-            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Conjurer };
+            new HashSet<int> { (int)LaugicalityVars.ClassType.Warrior, (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Sharpshooter, (int)LaugicalityVars.ClassType.Hunter, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Destructionist };
         public static readonly HashSet<int> SlimeVelocity =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Thief };
 

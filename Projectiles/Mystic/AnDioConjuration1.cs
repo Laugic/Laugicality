@@ -34,6 +34,22 @@ namespace Laugicality.Projectiles.Mystic
         {
             if (Main.myPlayer == projectile.owner)
             {
+				float num102 = 30f;
+				int num103 = 0;
+				while ((float)num103 < num102)
+				{
+					Vector2 vector12 = Vector2.UnitX * 0f;
+					vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(10f, 10f);
+					vector12 = vector12.RotatedBy((double)projectile.velocity.ToRotation(), default(Vector2));
+					int num104 = Dust.NewDust(projectile.Center, 0, 0, mod.DustType("White"), 0f, 0f, 75, default(Color), 1.25f);
+					Main.dust[num104].scale = 1.75f;
+					Main.dust[num104].noGravity = true;
+					Main.dust[num104].position = projectile.Center + vector12;
+					Main.dust[num104].velocity = -1 * (projectile.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 2.5f);
+					int num = num103;
+					num103 = num + 1;
+				}
+				
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
@@ -52,7 +68,7 @@ namespace Laugicality.Projectiles.Mystic
             delay++;
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (delay > 30)
+            if (delay > 15)
             {
                     delay = 0;
                     power++;

@@ -53,27 +53,12 @@ namespace Laugicality.Items.Weapons.Mystic
                                                                                                                     // If you want to randomize the speed to stagger the projectiles
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    if (Main.netMode != 1)
+                    if (Main.player[Main.myPlayer] == player)
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
                 }
 
             }
-            /*if (modPlayer.mysticMode == 3)
-            {
-                for(int p = 0; p < 1000; p++)
-                {
-                    if (Main.projectile[p].type == mod.ProjectileType("PlutoConjuration"))
-                    {
-                        if (player.ownedProjectileCounts[mod.ProjectileType("PlutoConjuration")] >= modPlayer.conjurationPower + 1)
-                        {
-                            Main.projectile[p].Kill();
-                            break;
-                        }
-                    }
-                        
-                }
-            }*/
-            return true; // return false because we don't want tmodloader to shoot projectile
+            return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
@@ -116,6 +101,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(null, "Yuletide", 1);
             recipe.AddIngredient(null, "BysmalBar", 12);
             recipe.AddIngredient(null, "EtherialEssence", 15);
             recipe.AddIngredient(null, "SoulOfSought", 8);

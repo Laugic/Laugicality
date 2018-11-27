@@ -17,6 +17,9 @@ namespace Laugicality.Projectiles.Mystic
         public int damage = 0;
         public int delay = 0;
         public float mystDur = 1;
+		
+		public bool shift = false;
+		
         public override void SetDefaults()
         {
             mystDur = 1;
@@ -25,16 +28,30 @@ namespace Laugicality.Projectiles.Mystic
             damage = projectile.damage;
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 32;
-            projectile.height = 32;
+            projectile.width = 48;
+            projectile.height = 48;
             projectile.friendly = true;
             projectile.penetrate = 8;
             projectile.timeLeft = 300;
-            Main.projFrames[projectile.type] = 2;
             projectile.ignoreWater = true;
-            projectile.tileCollide = true;
+            Main.projFrames[projectile.type] = 2;
         }
 
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            int debuff = mod.BuffType("Spored");
+            if (debuff >= 0)
+            {
+                target.AddBuff(debuff, (int)(140 * mystDur * power), true);
+            }
+        }
+		
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+		{
+			width = 24;
+			height = 24;
+			return true;
+		}
 
         public override void AI()
         {
@@ -50,30 +67,52 @@ namespace Laugicality.Projectiles.Mystic
                 stopped = true;
             }
             
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if (Main.rand.Next(2) == 0)
+			{
+				int DustID = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 56, projectile.velocity.X * 0.2f, projectile.velocity.Y * 0.2f, 0, default(Color), 1.5f);
+				Main.dust[DustID].noGravity = true;
+			}
 
+			projectile.rotation += 0.05f;
+			if (projectile.timeLeft > 20)
+			{
+				if (!shift)
+				{
+					projectile.alpha += 2;
+					projectile.scale += 0.0075f;
+				}
+				else
+				{
+					projectile.alpha -= 2;
+					projectile.scale -= 0.0075f;
+				}
+				if (projectile.alpha > 175 && !shift)
+				{
+					shift = true;
+				}
+				if (projectile.alpha <= 25)
+				{
+					shift = false;
+				}
+			}
+			else
+			{
+				projectile.alpha += 5;
+			}
+        }
+		
+		public override void PostAI()
+        {         
             projectile.frameCounter++;
-            if (projectile.frameCounter > 30)
+            if (projectile.frameCounter > 15)
             {
                 projectile.frame++;
                 projectile.frameCounter = 0;
             }
-            if (projectile.frame > 1)
+            if (projectile.frame >= 2)
             {
                 projectile.frame = 0;
-            }
-            if (projectile.frame == 0)
-                projectile.scale *= .98f;
-            if (projectile.frame == 1)
-                projectile.scale *= 1.02f;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            int debuff = mod.BuffType("Spored");
-            if (debuff >= 0)
-            {
-                target.AddBuff(debuff, (int)(140 * mystDur * power), true);
+                return;
             }
         }
     }

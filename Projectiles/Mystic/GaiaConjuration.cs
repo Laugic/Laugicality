@@ -54,13 +54,11 @@ namespace Laugicality.Projectiles.Mystic
         {
             if (Main.myPlayer == projectile.owner)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
-            }
+                for (int k = 0; k < 8; k++)
+				{
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), mod.ProjectileType("GemShard"), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
+				}	
+			}
             projectile.penetrate--;
             if (projectile.penetrate <= 1)
             {
@@ -89,13 +87,11 @@ namespace Laugicality.Projectiles.Mystic
             if (Main.myPlayer == projectile.owner)
             {
                 projectile.ai[0] += 0.2f;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -6, 0, mod.ProjectileType("DiamondShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 6, 0, mod.ProjectileType("TopazShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -6, mod.ProjectileType("AmethystShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, mod.ProjectileType("EmeraldShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("SapphireShard"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("RubyShard"), damage, 3f, Main.myPlayer);
-            }
+                for (int k = 0; k < 8; k++)
+				{
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), mod.ProjectileType("GemShard"), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
+				}
+			}
             Main.PlaySound(SoundID.Item10, projectile.position);
         }
     }

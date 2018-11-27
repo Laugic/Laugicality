@@ -9,7 +9,7 @@ namespace Laugicality.Prefixes
         private int power = 0;
         public override float RollChance(Item item)
         {
-            return 4f;
+            return 2f;
         }
 
         public override bool CanRoll(Item item)

@@ -14,6 +14,9 @@ namespace Laugicality.Projectiles.Mystic
     {
         public bool bitherial = true;
         public int delay = 4;
+        public float mystDur = 1f;
+        public bool powered = false;
+        public int power = 1;
         //public bool zImmune = true;
         public override void SetStaticDefaults()
         {
@@ -25,21 +28,53 @@ namespace Laugicality.Projectiles.Mystic
             delay = 4;
             LaugicalityVars.EProjectiles.Add(projectile.type);
             //LaugicalityVars.ZProjectiles.Add(projectile.type);
-            projectile.width = 28;
-            projectile.height = 28;
+            projectile.width = 22;
+            projectile.height = 22;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 120;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-        }
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+		}
+		
+		public override Color? GetAlpha(Color lightColor)
+		{
+			return ((Color.White * 0.45f) * (0.05f * projectile.timeLeft));
+		}
+		
+		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+		{
+			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			for (int k = 0; k < projectile.oldPos.Length; k++)
+			{
+				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+				Color color = Color.White * 0.15f;
+				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+			}
+			return true;
+		}
 
 
         public override void AI()
         {
             //zImmune = true;
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f);
+            Player player = Main.player[projectile.owner];
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            power = modPlayer.illusionPower;
+            mystDur = modPlayer.mysticDuration;
+
+            for (int k = 0; k < 1; k++)
+            {
+				int num234 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y) - projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f, 125, default(Color), 1f);
+				Dust dust3 = Main.dust[num234];
+				dust3 = Main.dust[num234];
+				dust3.velocity *= 0.65f;
+				Main.dust[num234].noGravity = true;
+			}
+			
             if (projectile.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref projectile.velocity);
@@ -72,8 +107,7 @@ namespace Laugicality.Projectiles.Mystic
                 projectile.velocity *=3;
             }
 
-            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
-
+            projectile.rotation = (float)System.Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
         }
 
 
@@ -84,6 +118,12 @@ namespace Laugicality.Projectiles.Mystic
             {
                 vector *= 6f / magnitude;
             }
+        }
+
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Chilled, (int)(140 * mystDur * power));
         }
     }
 }

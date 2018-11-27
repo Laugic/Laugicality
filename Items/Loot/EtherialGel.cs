@@ -25,7 +25,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                player.jumpSpeedBoost += 5.0f;
+                modPlayer.etherialGel = true;
             }
         }
         /*

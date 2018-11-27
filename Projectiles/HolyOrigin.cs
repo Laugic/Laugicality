@@ -31,7 +31,7 @@ namespace Laugicality.Projectiles
             if(delay <= 0)
             {
                 delay = 4;
-                if(Main.netMode != 1)
+                if(Main.myPlayer == projectile.owner)
                     Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 48, mod.ProjectileType("HolyStrike"), (int)(projectile.damage), 3, Main.myPlayer);
             }
         }

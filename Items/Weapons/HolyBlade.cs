@@ -45,7 +45,7 @@ namespace Laugicality.Items.Weapons
         {
             if(player.ownedProjectileCounts[mod.ProjectileType("HolyOrigin")] == 0)
             {
-                if (Main.netMode != 1)
+                if (Main.player[Main.myPlayer] == player)
                 {
                     Projectile.NewProjectile((int)(target.position.X), (int)(target.position.Y) - 1200, 0, 0, mod.ProjectileType("HolyOrigin"), (int)(item.damage), 3, Main.myPlayer);
                 }

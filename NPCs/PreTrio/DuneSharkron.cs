@@ -41,8 +41,8 @@ namespace Laugicality.NPCs.PreTrio
             dash = 0;
             dashSp = 6f;
             jump = 0;
-            npc.width = 286;
-            npc.height = 154;
+            npc.width = 250;
+            npc.height = 140;
             npc.damage = 28;
             npc.defense = 10;
             npc.aiStyle = 103;
@@ -74,8 +74,9 @@ namespace Laugicality.NPCs.PreTrio
         public override void AI()
         {
             bitherial = true;
-            if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
-            if (!Main.dayTime) { npc.position.Y += 300; }
+            if (Main.player[npc.target].statLife == 0) npc.position.Y += 100; 
+            if (!Main.dayTime) npc.position.Y += 300;
+            npc.dontTakeDamage = !Main.player[npc.target].ZoneDesert;
 
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
 

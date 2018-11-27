@@ -23,24 +23,23 @@ namespace Laugicality.Items.Consumables
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
-			item.UseSound = SoundID.Item44;
+			//item.UseSound = SoundID.Item44;
 			item.consumable = true;
 			item.shoot = mod.ProjectileType("Nothing");
-		}
+        }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial)
-                NPC.SpawnOnPlayer(player.whoAmI, 50);
+            if (NPC.CountNPCS(NPCID.KingSlime) < 1)
+                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.KingSlime);
             return false;
         }
 
         public override bool CanUseItem(Player player)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (Main.dayTime && modPlayer.etherial);
+            return (modPlayer.etherial);
         }
 
         public override void AddRecipes()

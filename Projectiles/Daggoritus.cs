@@ -16,7 +16,7 @@ namespace Laugicality.Projectiles
             projectile.width = 24;
             projectile.height = 24;
             projectile.friendly = true;
-            projectile.aiStyle = 1;
+            projectile.aiStyle = 0;
             projectile.thrown = true;
             projectile.penetrate = -1;      
             projectile.extraUpdates = 1;
@@ -25,20 +25,10 @@ namespace Laugicality.Projectiles
 
         public override void AI()
         {
-            delay--;
-            if(delay == 0)
-            {
-                delay = 15;
-                if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("DaggorShard"), (int)(projectile.damage), 3, Main.myPlayer);
-            }
-            projectile.ai[0] += 1f;
-            if (projectile.ai[0] >= 150f)       //how much time the projectile can travel before landing
-            {
-                projectile.velocity.Y = projectile.velocity.Y + 0.15f;    // projectile fall velocity
-                projectile.velocity.X = projectile.velocity.X * 0.99f;    // projectile velocity
-            }
+
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
         }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {                                                           
             {
@@ -48,10 +38,5 @@ namespace Laugicality.Projectiles
             }
             return false;
         }
-        /*
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(BuffID.OnFire, 80);     
-        }*/
     }
 }

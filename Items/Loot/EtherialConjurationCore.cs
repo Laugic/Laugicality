@@ -26,8 +26,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                modPlayer.conjurationDamage += .2f;
-                modPlayer.conjurationPower += 2;
+                modPlayer.etherialTwins = true;
             }
         }
         /*

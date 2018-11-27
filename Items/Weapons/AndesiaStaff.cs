@@ -65,7 +65,7 @@ namespace Laugicality.Items.Weapons
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            if(Main.netMode != 1)
+            if(Main.player[Main.myPlayer] == player)
             {
                 Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) - 360 - 3 + Main.rand.Next(0, 6), 0, 0, mod.ProjectileType("Dioritite"), (int)(item.damage), 3, Main.myPlayer);
                 Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) + 360 - 3 + Main.rand.Next(0, 6), 0, 0, mod.ProjectileType("Andesimite"), (int)(item.damage), 3, Main.myPlayer);

@@ -25,8 +25,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                player.meleeCrit += 30;
-                player.rangedCrit += 30;
+                modPlayer.etherialFrost = true;
             }
         }
         /*

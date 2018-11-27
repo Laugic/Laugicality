@@ -25,5 +25,5 @@ namespace Laugicality.Buffs
             player.meleeDamage += 0.15f;
         }
         
-	}
+    }
 }

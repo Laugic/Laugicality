@@ -241,7 +241,7 @@ namespace Laugicality.NPCs.SteamTrain
             //Health Phases
             if (npc.life < npc.lifeMax * .67 && phase == PHASE_NORMALDRIVE)
             {
-                phase = PHASE_SUPERDRIVE; Main.NewText("Superdrive.", 150, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+                phase = PHASE_SUPERDRIVE; Main.NewText("Superdrive.", 150, 0, 0);
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
 

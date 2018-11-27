@@ -109,7 +109,6 @@
     <Compile Include="Dusts\TrainSteam.cs" />
     <Compile Include="Dusts\White.cs" />
     <Compile Include="Etherial\EtherialVisuals.cs" />
-    <Compile Include="Etherial\ZaWarudo.cs" />
     <Compile Include="Etherial\ZaWarudoVisuals.cs" />
     <Compile Include="Items\Accessories\AggressionStone.cs" />
     <Compile Include="Items\Accessories\AlterationStone.cs" />
@@ -308,6 +307,7 @@
     <Compile Include="Items\Loot\EtherialGel.cs" />
     <Compile Include="Items\Loot\EtherialGlobe.cs" />
     <Compile Include="Items\Loot\EtherialIllusionCore.cs" />
+    <Compile Include="Items\Loot\EtherialItem.cs" />
     <Compile Include="Items\Loot\EtherialPack.cs" />
     <Compile Include="Items\Loot\EtherialSac.cs" />
     <Compile Include="Items\Loot\EtherialScarf.cs" />
@@ -473,6 +473,7 @@
     <Compile Include="LaugicalityPlayer.cs" />
     <Compile Include="LaugicalityVars.cs" />
     <Compile Include="LaugicalityWorld.cs" />
+    <Compile Include="Mounts\Etheramind.cs" />
     <Compile Include="Mounts\SteamTrain.cs" />
     <Compile Include="MysticItem.cs" />
     <Compile Include="MysticPlayer.cs" />
@@ -483,6 +484,7 @@
     <Compile Include="NPCs\Bosses\MehcanicalCreeper.cs" />
     <Compile Include="NPCs\Bosses\TheAnnihilator.cs" />
     <Compile Include="NPCs\Conductor.cs" />
+    <Compile Include="NPCs\EtherialGlobalNPC.cs" />
     <Compile Include="NPCs\Etherial\Enemies\EtherialSpirit.cs" />
     <Compile Include="NPCs\Etheria\Etheria.cs" />
     <Compile Include="NPCs\Etheria\EtheriaDecoy.cs" />
@@ -560,7 +562,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Prefixes\Mobility.cs" />
-    <Compile Include="Prefixes\Mystic\MysticPrefix.cs" />
     <Compile Include="Projectiles\AncientRune.cs" />
     <Compile Include="Projectiles\AncientRuneUp.cs" />
     <Compile Include="Projectiles\Andeshiard.cs" />
@@ -798,8 +799,11 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Prefixes\Mystic\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"D:\steam game\steamapps\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>D:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)" -eac "$(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>

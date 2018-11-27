@@ -18,7 +18,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Loki's Staff");
-            Tooltip.SetDefault("'Many tricks up his sleeve'\nIllusion locks the player in place\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'Many tricks up his sleeve'\nIllusion inflicts 'Chilled'\nFires different projectiles based on Mysticism");
             Item.staff[item.type] = true; 
         }
 
@@ -56,7 +56,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            modPlayer.player.AddBuff(mod.BuffType("Frigid"), 1, true);
+            //modPlayer.player.AddBuff(mod.BuffType("Frigid"), 1, true);
             item.damage = 26;
             item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 2;

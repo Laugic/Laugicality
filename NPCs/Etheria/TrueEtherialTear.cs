@@ -62,7 +62,7 @@ namespace Laugicality.NPCs.Etheria
                 if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
                     index = Etheria.tearIndex;
             }
-            npc.rotation = 0;
+            npc.rotation += 3.14f / 20;
             if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
             {
                 float mag = 128 * Etheria.scale;

@@ -11,7 +11,7 @@ namespace Laugicality.Projectiles.Mystic
         public int damage = 0;
         public bool powered = false;
         public int power = 1;
-        public float mystDur = 0f;
+        public float mystDur = 1f;
 
         public override void SetStaticDefaults()
 		{

@@ -7,7 +7,8 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+1 to all Mystic powers while in the Etherial");
+            DisplayName.SetDefault("Fragmented Mind");
+            Tooltip.SetDefault("While in the etherial, if you would die from contact damage, heal 300 life instead. 3 minute cooldown.\nAfter colliding with an enemy, that enemy takes 50% more damage for 15 seconds.");
         }
 
         public override void SetDefaults()
@@ -23,12 +24,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
-            {
-                modPlayer.conjurationPower += 1;
-                modPlayer.illusionPower += 1;
-                modPlayer.destructionPower += 1;
-            }
+            modPlayer.etherialBrain = true;
         }
         /*
         public override void AddRecipes()

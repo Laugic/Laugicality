@@ -25,14 +25,18 @@ namespace Laugicality.Items.Consumables
 			item.useStyle = 4;
 			item.consumable = true;
 			item.shoot = mod.ProjectileType("Nothing");
-		}
+        }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial)
-                NPC.SpawnOnPlayer(player.whoAmI, 113);
+            if (NPC.CountNPCS(NPCID.WallofFlesh) < 1)
+            {
+                if(player.position.X < Main.maxTilesX / 2)
+                    NPC.NewNPC((int)player.position.X - 980, (int)player.position.Y, NPCID.WallofFlesh);
+                else
+                    NPC.NewNPC((int)player.position.X + 980, (int)player.position.Y, NPCID.WallofFlesh);
+            }
             return false;
         }
 

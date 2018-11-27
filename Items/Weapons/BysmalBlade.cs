@@ -46,7 +46,7 @@ namespace Laugicality.Items.Weapons
 		{
 			if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.Etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
             {
-                target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).etherial = true;
+                target.GetGlobalNPC<EtherialGlobalNPC>(mod).etherial = true;
             }
 		}
 	}

@@ -44,7 +44,7 @@ namespace Laugicality.Projectiles
             playN = player.position;
             projectile.position.X = posS.X + (playN.X - playS.X) * mag;
             projectile.position.Y = posS.Y + (playN.Y - playS.Y) * mag;
-            if(delay == 0 && Main.netMode != 1)
+            if(delay == 0 && Main.myPlayer == projectile.owner)
             {
                 delay = 4;
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("BloodBall2"), projectile.damage, 3f, Main.myPlayer);

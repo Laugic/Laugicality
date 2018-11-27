@@ -35,8 +35,8 @@ namespace Laugicality.Items.Useables
 
         public override bool UseItem(Player player)
         {
-            NPC.NewNPC((int)player.position.X, (int)player.position.Y, mod.NPCType("ZaWarudo"));
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.andioChestguard == true)
                 player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);

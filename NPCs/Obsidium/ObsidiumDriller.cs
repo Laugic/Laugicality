@@ -31,11 +31,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            var player = Main.LocalPlayer;
-            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-
-            if (LaugicalityWorld.obsidiumTiles > 250 && spawnInfo.spawnTileY > WorldGen.rockLayer)
-                return SpawnCondition.Cavern.Chance * 0.65f;
+            if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer)
+                return SpawnCondition.Cavern.Chance * 0.15f;
             else return 0f;
         }
 
@@ -107,6 +104,16 @@ namespace Laugicality.NPCs.Obsidium
                 else
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
             }
+        }
+
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return (Color.OrangeRed * .25f);
+        }
+
+        public override void DrawEffects(ref Color drawColor)
+        {
+            Lighting.AddLight(npc.position, 0.4f, 0.2f, 0.0f);
         }
     }
 }

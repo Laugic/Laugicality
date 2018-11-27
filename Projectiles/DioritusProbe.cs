@@ -279,13 +279,9 @@ namespace Laugicality.Projectiles
                             }
                             shootVel.Normalize();
                             shootVel *= shootSpeed;
-                            //if (Main.netMode != 1)
-                            //{ 
                             int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 6, shoot, projectile.damage, projectile.knockBack, Main.myPlayer, 0f, 0f);
                             Main.projectile[proj].timeLeft = 300;
                             Main.projectile[proj].netUpdate = true;
-                            //}
-                            //projectile.rotation = (float)Math.Atan2((double)shootVel.Y, (double)shootVel.X);
                             projectile.netUpdate = true;
                         }
                     }

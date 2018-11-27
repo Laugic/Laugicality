@@ -12,13 +12,13 @@ namespace Laugicality.Items.Weapons
     {
         public override void SetDefaults()
         {
-            item.damage = 36;           
+            item.damage = 32;           
             item.thrown = true;            
             item.noMelee = true;
             item.width = 30;
             item.height = 30;
-            item.useTime = 24;      
-            item.useAnimation = 24;   
+            item.useTime = 10;      
+            item.useAnimation = 10;   
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;

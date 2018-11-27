@@ -62,7 +62,6 @@ namespace Laugicality.NPCs.Etheria
                 if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
                     index = Etheria.tearIndex;
             }
-            npc.rotation = 0;
             if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
             {
                 float mag = 96 * Etheria.scale;
@@ -108,6 +107,7 @@ namespace Laugicality.NPCs.Etheria
             {
                 npc.velocity = npc.DirectionTo(targetPos) * vMag;
             }
+            npc.rotation += 3.14f / 20;
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

@@ -14,16 +14,22 @@ namespace Laugicality.Projectiles.Mystic
         {
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 8;
-            projectile.height = 8;
+            projectile.width = 24;
+            projectile.height = 24;
             projectile.friendly = true;
             projectile.penetrate = 1;
-            projectile.timeLeft = 160;
+            projectile.timeLeft = 180;
             projectile.ignoreWater = true;
-            projectile.scale *= 1.5f;
+            projectile.scale = 2f;
         }
+		
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+		{
+			width = 20;
+			height = 20;
+			return true;
+		}
 
-        
         public override void AI()
         {
             projectile.velocity.Y += .4f;
@@ -32,20 +38,12 @@ namespace Laugicality.Projectiles.Mystic
 
         }
 
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("DionysusExplosion"), (int)projectile.damage, 3f, Main.myPlayer);
-            projectile.Kill();
-            return false;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("DionysusExplosion"), (int)projectile.damage, 3f, Main.myPlayer);
-            projectile.Kill();
-        }
+		public override void Kill(int timeLeft)
+		{
+			if (Main.myPlayer == projectile.owner)
+			{
+               Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, mod.ProjectileType("DionysusExplosion"), (int)projectile.damage, 3f, Main.myPlayer);
+			}
+		}
     }
 }

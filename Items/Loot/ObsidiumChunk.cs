@@ -16,6 +16,7 @@ namespace Laugicality.Items.Loot
         {
             Tooltip.SetDefault("Pulsing with heat. \nRight Click to open");
         }
+
         public override void SetDefaults()
         {
             item.width = 28;

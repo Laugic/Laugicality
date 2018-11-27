@@ -18,7 +18,11 @@ namespace Laugicality.Structures
 {
     public class StructureTemplate
     {
-        
+        private static readonly int[,] StructureArray = new int[,]
+        {
+
+        };
+
         public static void StructureGen(int xPosO, int yPosO, bool mirrored)
         {
             //Obsidium Heart
@@ -26,22 +30,19 @@ namespace Laugicality.Structures
              * 0 = Do Nothing
              * 9 = Kill tile
              * */
-            int[,] StructureGen = new int[,]
-            {
+            
 
-            };
-
-            for (int i = 0; i < StructureGen.GetLength(1); i++)
+            for (int i = 0; i < StructureArray.GetLength(1); i++)
             {
-                for (int j = 0; j < StructureGen.GetLength(0); j++)
+                for (int j = 0; j < StructureArray.GetLength(0); j++)
                 {
                     if(mirrored)
                     {
-                        if (TileCheckSafe((int)(xPosO + StructureGen.GetLength(1) - i), (int)(yPosO + j)))
+                        if (TileCheckSafe((int)(xPosO + StructureArray.GetLength(1) - i), (int)(yPosO + j)))
                         {
-                            if (StructureGen[j, i] == 9)
+                            if (StructureArray[j, i] == 9)
                             {
-                                WorldGen.KillTile(xPosO + StructureGen.GetLength(1) - i, yPosO + j);
+                                WorldGen.KillTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j);
                             }
                         }
                     }
@@ -49,7 +50,7 @@ namespace Laugicality.Structures
                     {
                         if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                         {
-                            if (StructureGen[j, i] == 9)
+                            if (StructureArray[j, i] == 9)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
                             }

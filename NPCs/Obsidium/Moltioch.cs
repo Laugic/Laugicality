@@ -33,11 +33,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            var player = Main.LocalPlayer;
-            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-
-            if (LaugicalityWorld.obsidiumTiles > 250 && LaugicalityWorld.downedRagnar && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * 0.35f;
+            if (LaugicalityWorld.obsidiumTiles > 150 && LaugicalityWorld.downedRagnar && Main.hardMode)
+                return SpawnCondition.Cavern.Chance * 0.25f;
             else return 0f;
         }
 
@@ -124,16 +121,7 @@ namespace Laugicality.NPCs.Obsidium
 			turnSpeed = 0.2f;
             npc.buffImmune[24] = true;
         }
-
-        /*public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            var player = Main.LocalPlayer;
-            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-            
-            if (LaugicalityWorld.obsidiumTiles > 250 && LaugicalityWorld.downedRagnar && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * 35f;
-            else return 0f;
-        }*/
+        
 
         public override void NPCLoot()
         {

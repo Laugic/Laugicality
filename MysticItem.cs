@@ -201,7 +201,7 @@ namespace Laugicality
             }
         }
 
-        private String getMysticType()
+        private string getMysticType()
         {
             if (Main.netMode != 1)
             {

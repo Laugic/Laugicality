@@ -25,11 +25,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                player.thrownDamage += 0.2f;
-                player.rangedDamage += 0.2f;
-                player.magicDamage += 0.2f;
-                player.minionDamage += 0.2f;
-                player.meleeDamage += 0.2f;
+                modPlayer.etherialBones = true;
             }
         }
         /*

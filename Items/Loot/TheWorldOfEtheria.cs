@@ -26,7 +26,7 @@ namespace Laugicality.Items.Loot
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
-                modPlayer.zProjImmune = true;
+                modPlayer.etherialAnDio = true;
         }
         /*
         public override void AddRecipes()

@@ -9,23 +9,6 @@ namespace Laugicality.NPCs
 	[AutoloadHead]
 	public class Conductor : ModNPC
 	{
-        /*
-		public override string Texture
-		{
-			get
-			{
-				return "ExampleMod/NPCs/ExamplePerson";
-			}
-		}
-
-		public override string[] AltTextures
-		{
-			get
-			{
-				return new string[] { "ExampleMod/NPCs/ExamplePerson_Alt_1" };
-			}
-		}*/
-
 		public override bool Autoload(ref string name)
 		{
 			name = "Conductor";

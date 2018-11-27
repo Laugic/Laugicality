@@ -8,7 +8,7 @@ namespace Laugicality.Items.Useables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The High Priestess");
-            Tooltip.SetDefault("Allows you to enter and leave the Etherial at will");
+            Tooltip.SetDefault("Allows you to enter and leave the Etherial at will, as long as no powerful creatures are present to stop you. \nCan place shadows of itself, which can be wired to enter the Etherial. \nAn odd number of wires need to be connected, or it will immediately switch back.");
         }
 
         public override void SetDefaults()
@@ -21,8 +21,20 @@ namespace Laugicality.Items.Useables
             item.useTime = 45;
             item.useStyle = 4;
             item.expert = true;
+            item.createTile = mod.TileType("HighPriestess");
         }
-        
+
+        public override bool CanUseItem(Player player)
+        {
+            bool boss = false;
+            for(int i = 0;  i < 200; i++)
+            {
+                if (Main.npc[i].boss && Main.npc[i].active)
+                    boss = true;
+            }
+            return !boss;
+        }
+
         public override bool UseItem(Player player)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);

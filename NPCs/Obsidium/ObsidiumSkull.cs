@@ -34,11 +34,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            var player = Main.LocalPlayer;
-            var mPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-
-            if (LaugicalityWorld.obsidiumTiles > 250)
-                return SpawnCondition.Cavern.Chance * 0.65f;
+            if (LaugicalityWorld.obsidiumTiles > 150)
+                return SpawnCondition.Cavern.Chance * 0.35f;
             else return 0f;
         }
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)

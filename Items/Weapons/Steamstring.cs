@@ -107,7 +107,7 @@ namespace Laugicality.Items.Weapons
                                                                                                                 
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
-                if(Main.netMode != 1)
+                if(Main.player[Main.myPlayer] == player)
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
             }
 

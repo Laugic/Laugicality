@@ -31,8 +31,8 @@ namespace Laugicality.Items.Consumables
         {
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial)
-                NPC.SpawnOnPlayer(player.whoAmI, 222);
+            if (NPC.CountNPCS(NPCID.QueenBee) < 1)
+                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.QueenBee);
             return false;
         }
 

@@ -19,10 +19,10 @@ namespace Laugicality.Mounts
 			mountData.dashSpeed = 8f;
 			mountData.flightTimeMax = 0;
 			mountData.fatigueMax = 0;
-			mountData.jumpHeight = 2;
+			mountData.jumpHeight = 4;
 			mountData.acceleration = 0.04f;
 			mountData.jumpSpeed = 4f;
-			mountData.blockExtraJumps = false;
+			mountData.blockExtraJumps = true;
 			mountData.totalFrames = 4;
 			mountData.constantJump = true;
 			int[] array = new int[mountData.totalFrames];

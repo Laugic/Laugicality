@@ -110,7 +110,7 @@ namespace Laugicality.Items.Weapons
                                                                                                                 
                     float scale = 1f - (Main.rand.NextFloat() * .2f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    if(Main.netMode != 1)
+                    if(Main.player[Main.myPlayer] == player)
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 638, damage, knockBack, player.whoAmI);
                 }
             }

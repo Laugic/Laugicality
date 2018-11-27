@@ -35,8 +35,14 @@ namespace Laugicality.NPCs.Etherial.Enemies
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (LaugicalityWorld.downedEtheria)
-                return .075f;
+            bool canSpawn = true;
+            foreach(NPC npc in Main.npc)
+            {
+                if (npc.boss)
+                    canSpawn = false;
+            }
+            if (LaugicalityWorld.downedEtheria && canSpawn && NPC.CountNPCS(mod.NPCType("EtherialSpirit")) < 2)
+                return .05f;
             else return 0f;
         }
 
@@ -73,6 +79,10 @@ namespace Laugicality.NPCs.Etherial.Enemies
             }
 
 
+            if (Main.netMode != 1 && Main.rand.Next(280) == 0)
+            {
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 6), 3, Main.myPlayer);
+            }
         }
 
         private void AdjustMagnitude(ref Vector2 vector)
@@ -102,7 +112,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(1,3));            
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(2,4));            
         }
     }
 }

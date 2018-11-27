@@ -48,7 +48,7 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 for(int i = 0; i < modPlayer.conjurationPower; i++)
                 {
-                    if(Main.netMode != 1)
+                    if(Main.player[Main.myPlayer] == player)
                         Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, mod.ProjectileType("YuleConjuration"), (int)(item.damage), 3, Main.myPlayer);
                 }
             }

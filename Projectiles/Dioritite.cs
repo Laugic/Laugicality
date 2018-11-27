@@ -28,6 +28,7 @@ namespace Laugicality.Projectiles
             projectile.timeLeft = 60;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            projectile.magic = true;
         }
 
         public override void AI()

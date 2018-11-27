@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Provides waterwalking and free movement in liquids \n +10% Movement Speed");
+			Tooltip.SetDefault("Provides waterwalking and free movement in liquids \n+10% Movement Speed");
 		}
 
 		public override void SetDefaults()

@@ -30,11 +30,10 @@ namespace Laugicality.Items.Consumables
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial)
+            if (NPC.CountNPCS(NPCID.Spazmatism) < 1)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, 125);
-                NPC.SpawnOnPlayer(player.whoAmI, 126);
+                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.Spazmatism);
+                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.Retinazer);
             }
             return false;
         }

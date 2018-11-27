@@ -15,15 +15,5 @@ namespace Laugicality.Buffs.Mystic
 			Main.buffNoSave[Type] = true;
 			longerExpertDebuff = false;
 		}
-        /*
-		public override void Update(Player player, ref int buffIndex)
-		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).eFied = true;
-		}
-
-		public override void Update(NPC npc, ref int buffIndex)
-		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).eFied = true;
-		}*/
 	}
 }

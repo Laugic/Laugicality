@@ -92,7 +92,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("DionysusDestruction");
             item.UseSound = SoundID.Item1;
-            item.scale = 1.5f;
+            item.scale = 1.25f;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)

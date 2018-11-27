@@ -96,7 +96,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 target.AddBuff(189, (int)(120 * modPlayer.mysticDuration * modPlayer.illusionPower)); //Daybroken
             if (modPlayer.mysticMode == 3)
             {
-                if(Main.netMode != 1 && player.ownedProjectileCounts[mod.ProjectileType("GreatGladiusConjuration1")] < modPlayer.conjurationPower)
+                if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[mod.ProjectileType("GreatGladiusConjuration1")] < modPlayer.conjurationPower)
                     Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);
             }
         }

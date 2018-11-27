@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Laugicality.Items;
 
 namespace Laugicality.Items.Loot
 {
@@ -24,17 +25,8 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if(modPlayer.etherial || modPlayer.etherable)
-                player.maxMinions += 4;
+            if (modPlayer.etherial || modPlayer.etherable)
+                modPlayer.etherCog = true;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(2328, 4);
-            recipe.AddTile(null, "AlchemicalInfuser");
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
     }
 }

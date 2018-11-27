@@ -10,6 +10,19 @@ A new biome- The Obsidium
 6 and 1/3 new Armor sets
 And lots more planned features!
 -----
+Etherial Bosses Finished:
+King Slime
+Eye of Cthulhu
+Dune Sharkron
+Eater of Worlds
+Brain of Cthulhu
 v0.12
 Added Lava Titan, Moltioch, and Molten Soul [Hardmode Obsidium Enemies]
 Revamped both of the Etheria fights
+
+Fixed bug where all NPCs despawned when the player died in the Etherial.
+Hopefully improved Etherial boss performance in Multiplayer.
+Fixed bug with True Curse randomly being applied in multiplayer (hopefully)
+Fixed bug with talking to bound NPCs
+Fixed bug with Time Stop not working in multiplayer
+Fixed some Etherial boss summon items not working in Singleplayer

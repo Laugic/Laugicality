@@ -25,10 +25,8 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                item.lifeRegen = 12;
+                modPlayer.etherialStone = true;
             }
-            else
-                item.lifeRegen = 0;
         }
         /*
         public override void AddRecipes()

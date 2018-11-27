@@ -22,6 +22,7 @@ namespace Laugicality.NPCs.Obsidium
         int attackDelay = 0;
         public override void SetDefaults()
         {
+            LaugicalityVars.ENPCs.Add(npc.type);
             attackDelay = 0;
             vMag = 0f;
             vMax = 2f;
@@ -48,8 +49,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (NPC.CountNPCS(mod.NPCType("LavaTitan")) == 0 && LaugicalityWorld.obsidiumTiles > 250 && spawnInfo.spawnTileY > WorldGen.rockLayer && LaugicalityWorld.downedRagnar && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * .05f;
+            if (NPC.CountNPCS(mod.NPCType("LavaTitan")) == 0 && LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer && LaugicalityWorld.downedRagnar && Main.hardMode)
+                return SpawnCondition.Cavern.Chance * .075f;
             else return 0f;
         }
 

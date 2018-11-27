@@ -75,6 +75,8 @@ namespace Laugicality
                 zawarudo--;
             }
             zWarudo = 240;
+
+            
         }
 
         public override TagCompound Save()
@@ -179,6 +181,9 @@ namespace Laugicality
             flags2[6] = bysmal;
             writer.Write(flags);
             writer.Write(flags2);
+
+            int zawarudoSync = zawarudo;
+            writer.Write(zawarudoSync);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -201,6 +206,9 @@ namespace Laugicality
             obEnf = flags2[4];
             obsidiumHeart = flags2[5];
             bysmal = flags2[6];
+            int zawarudoSync = reader.ReadByte();
+            if(zawarudoSync < zawarudo)
+                zawarudo = zawarudoSync;
         }
 
         public override void ResetNearbyTileEffects()

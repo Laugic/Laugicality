@@ -99,9 +99,11 @@ namespace Laugicality.NPCs.PreTrio
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
             var player = Main.player[npc.target];
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y += 60; }
-            if (modPlayer.ZoneObsidium == false) { npc.defense = 9999; }
-            else { npc.defense = 24; }
+            if (Main.player[npc.target].statLife <= 0) npc.position.Y += 60;
+            if (modPlayer.ZoneObsidium == false)
+                npc.dontTakeDamage = true;
+            else
+                npc.dontTakeDamage = false;
 
 
             Vector2 delta = Main.player[npc.target].Center - npc.Center;

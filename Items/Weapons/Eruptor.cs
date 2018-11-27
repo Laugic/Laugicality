@@ -19,7 +19,7 @@ namespace Laugicality.Items.Weapons
 		public override void SetDefaults()
 		{
             numShots = 3;
-			item.damage = 22;
+			item.damage = 32;
             item.thrown = true;
 			item.width = 80;
 			item.height = 44;

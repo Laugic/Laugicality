@@ -40,8 +40,7 @@ namespace Laugicality.Projectiles.Mystic
             projectile.rotation = 0;
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            projectile.velocity.X *= .95f;
-            projectile.velocity.Y *= .95f;
+            projectile.velocity *= .9f;
             if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.Y) <= .2)
             {
                 stopped = true;
@@ -56,27 +55,25 @@ namespace Laugicality.Projectiles.Mystic
 
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X - projectile.width / 2 + Main.rand.Next(projectile.width), projectile.Center.Y - 8 + Main.rand.Next(16), 0, 10, mod.ProjectileType("DionysusConjuration2"), (int)(projectile.damage), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-16, 16), projectile.Center.Y - 6 + Main.rand.Next(16), 0, 10, mod.ProjectileType("DionysusConjuration2"), (int)(projectile.damage), 3f, Main.myPlayer);
                     }
                 }
             }
-                //Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-
+        }
+		
+		public override void PostAI()
+        {         
             projectile.frameCounter++;
-            if (projectile.frameCounter > 30)
+            if (projectile.frameCounter > 5)
             {
                 projectile.frame++;
                 projectile.frameCounter = 0;
             }
-            if (projectile.frame > 5)
+            if (projectile.frame >= 6)
             {
                 projectile.frame = 0;
+                return;
             }
-            if (projectile.frame == 0)
-                projectile.scale = 1f;
-            if (projectile.frame == 1)
-                projectile.scale = 1.1f;
         }
-        
     }
 }

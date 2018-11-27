@@ -15,7 +15,7 @@ namespace Laugicality.Projectiles.Mystic
         public bool stopped = false;
         public int power = 0;
         public int damage = 0;
-        public int delay = 0;
+        public int sporeTimer = 0;
 
         public override void SetDefaults()
         {
@@ -24,61 +24,99 @@ namespace Laugicality.Projectiles.Mystic
             damage = projectile.damage;
             //mystDmg = (float)projectile.damage;
             //mystDur = 1f + projectile.knockBack;
-            projectile.width = 64;
-            projectile.height = 64;
+            projectile.width = 44;
+            projectile.height = 34;
             projectile.friendly = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 600;
             Main.projFrames[projectile.type] = 2;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
         }
 
-
+		public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+			Rectangle frame = new Rectangle(0, 0, 48, 38);
+			frame.Y += 38 * projectile.frame;	
+			
+			spriteBatch.Draw(mod.GetTexture("Projectiles/Mystic/FreyaConjuration1_Glow"), projectile.Center - Main.screenPosition, frame, Color.White * 0.25f, projectile.rotation, new Vector2(22, 17), 1f, SpriteEffects.None, 0f);
+		}
+		
         public override void AI()
         {
-            projectile.rotation = 0;
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            projectile.velocity.X *= .95f;
-            projectile.velocity.Y *= .95f;
-            if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.Y) <= .2)
-            {
-                stopped = true;
-            }
+			
+			Lighting.AddLight(projectile.position, 0.1f, 0.1f, 0.4f);
+			
+            projectile.velocity.X *= 0.9f;
+			projectile.velocity.Y += 0.5f;
+			projectile.rotation = 0;
+
             if (stopped)
             {
-                delay += 1;
-                if(delay >= 15)
+                sporeTimer++;
+                if (sporeTimer >= 15)
                 {
-                    delay = 0;
                     power++;
-
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10, mod.ProjectileType("FreyaConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    }
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, mod.ProjectileType("FreyaConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+					}
                     if (power >= modPlayer.conjurationPower * 6 + 4)
+					{
                         projectile.Kill();
+					}
+					sporeTimer = 0;
                 }
             }
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-
-            projectile.frameCounter++;
-            if (projectile.frameCounter > 30)
-            {
-                projectile.frame++;
-                projectile.frameCounter = 0;
-            }
-            if (projectile.frame > 1)
-            {
-                projectile.frame = 0;
-            }
-            if (projectile.frame == 0)
-                projectile.scale = 1f;
-            if (projectile.frame == 1)
-                projectile.scale = 1.1f;
+			else
+			{
+				projectile.timeLeft = 600;
+			}
         }
-        
+		
+		public override void Kill(int timeLeft)
+		{
+			for (int k = 0; k < 10; k++)
+			{
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 56, Main.rand.Next((int)-5f, (int)5f), Main.rand.Next((int)-5f, (int)5f), 50, default(Color), 1f);
+				Main.dust[dust].noGravity = true;
+			}
+			for (int k = 0; k < 8; k++)
+			{
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 4, Main.rand.Next((int)-3f, (int)3f), Main.rand.Next((int)-3f, (int)3f), 100, default(Color), 1f);
+				Main.dust[dust].noGravity = true;
+			}
+		}
+		
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+		{
+			fallThrough = false; 
+			return true;
+		}
+		
+		public override bool OnTileCollide(Vector2 oldVelocity)
+		{
+			stopped = true;
+			return false;
+		}
+		
+		public override void PostAI()
+        {         
+			if (stopped)
+            {
+				projectile.frameCounter++;
+				if (projectile.frameCounter > 5)
+				{
+					projectile.frame++;
+					projectile.frameCounter = 0;
+				}
+				if (projectile.frame >= 2)
+				{
+					projectile.frame = 0;
+					return;
+				}
+			}
+        }
     }
 }

@@ -26,8 +26,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.etherial || modPlayer.etherable)
             {
-                modPlayer.destructionDamage += .2f;
-                modPlayer.destructionPower += 2;
+                modPlayer.etherialDestroyer = true;
             }
         }
         /*

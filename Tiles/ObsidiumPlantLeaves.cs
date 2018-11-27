@@ -10,10 +10,8 @@ namespace Laugicality.Tiles
 {
     public class ObsidiumPlantLeaves : ModTile
     {
-        bool anim = true;
         public override void SetDefaults()
         {
-            anim = true;
             Main.tileSolid[Type] = false;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
