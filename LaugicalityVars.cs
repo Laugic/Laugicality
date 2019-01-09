@@ -39,7 +39,7 @@ namespace Laugicality
         public static readonly HashSet<int> ENPCs =
             new HashSet<int>
             {
-                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, mod.NPCType("TitanBlast")
             };
 
         public static readonly HashSet<int> EProjectiles =
@@ -51,7 +51,7 @@ namespace Laugicality
         public static readonly HashSet<int> EBosses =
             new HashSet<int>
             {
-                NPCID.KingSlime, NPCID.EyeofCthulhu, mod.NPCType("DuneSharkron"), NPCID.BrainofCthulhu, mod.NPCType("Hypothema"), NPCID.QueenBee, mod.NPCType("Ragnar"), NPCID.SkeletronHead, mod.NPCType("AnDio3"), NPCID.WallofFlesh, NPCID.TheDestroyer, NPCID.SkeletronPrime, mod.NPCType("TheAnnihilator"), mod.NPCType("Slybertron"), mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
+                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, mod.NPCType("Hypothema"), NPCID.QueenBee, mod.NPCType("Ragnar"), NPCID.SkeletronHead, mod.NPCType("AnDio3"), NPCID.WallofFlesh, NPCID.TheDestroyer, NPCID.SkeletronPrime, mod.NPCType("TheAnnihilator"), mod.NPCType("Slybertron"), mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
         public static readonly HashSet<int> ZProjectiles =
@@ -83,6 +83,13 @@ namespace Laugicality
             new HashSet<int>
             {
                 
+            };
+
+
+        public static readonly HashSet<int> ObsidiumTiles =
+            new HashSet<int>
+            {
+                0, mod.TileType("ObsidiumRock"), mod.TileType("ObsidiumBrick"), mod.TileType("Lycoris"), mod.TileType("Radiata"), mod.TileType("ObsidiumOreBlock"), TileID.Obsidian,
             };
         /* -------------- SLIMEKING -------------- */
         public static readonly HashSet<int> SlimeThrow =

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.IO;
 
 namespace Laugicality.NPCs
 {
@@ -18,9 +19,14 @@ namespace Laugicality.NPCs
         public bool ethSpawn = false;
         public bool lovestruck = false;
         public bool frigid = false;
+        public bool bubbly = false;
+        public bool dawn = false;
+        public bool trueDawn = false;
         private int dmg = 0;
         public int plays = 0;
         public int dmg2 = 0;
+        public static int zTime = 0;
+        public int zTimeInstanced = 0;
         public bool zImmune = false;
         public float xTemp = 0;
         public float yTemp = 0;
@@ -30,10 +36,16 @@ namespace Laugicality.NPCs
         public bool slimed = false;
         public bool frostbite = false;
         public bool spooked = false;
+        public bool steamified = false;
         public float damageMult = 1f;
+        public int attacker = -1;
         
         public override void SetDefaults(NPC npc)
         {
+            steamified = false;
+            trueDawn = false;
+            dawn = false;
+            bubbly = false;
             spooked = false;
             frostbite = false;
             slimed = false;
@@ -53,6 +65,10 @@ namespace Laugicality.NPCs
 
         public override void ResetEffects(NPC npc)
         {
+            steamified = false;
+            trueDawn = false;
+            dawn = false;
+            bubbly = false;
             spooked = false;
             frostbite = false;
             slimed = false;
@@ -65,12 +81,63 @@ namespace Laugicality.NPCs
             frigid = false; 
             mysticCrit = 4;
             npc.takenDamageMultiplier = damageMult;
+            if(zTimeInstanced < zTime)
+            {
+                zTimeInstanced = zTime;
+            }
+            if (zTime > 0)
+            {
+                zTime--;
+            }
+            if (zTimeInstanced > 0)
+            {
+                zTimeInstanced--;
+            }
         }
 
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
             plays = numPlayers;
             dmg2 = npc.damage;
+        }
+
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.player.GetModPlayer<LaugicalityPlayer>(mod).ZoneObsidium)
+            {
+                pool.Clear();
+                float spawnMod = .25f;
+                if (!Main.hardMode)
+                {
+                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.10f * spawnMod);
+                    pool.Add(mod.NPCType("ObsidiumDriller"), 0.05f * spawnMod);
+                    pool.Add(NPCID.Skeleton, 0.25f * spawnMod);
+                    pool.Add(NPCID.BlackSlime, 0.15f * spawnMod);
+                    pool.Add(NPCID.MotherSlime, 0.15f * spawnMod);
+                    //pool.Add(mod.NPCType("MoltenSlime"), 0.45f);
+
+                    if (LaugicalityWorld.downedRagnar)
+                    {
+                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.30f * spawnMod);
+                        pool.Add(mod.NPCType("MagmaCaster"), 0.30f * spawnMod);
+                    }
+                }
+                else
+                {
+                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.15f * spawnMod);
+                    //pool.Add(mod.NPCType("MoltenSlime"), 0.2f * spawnMod);
+                    pool.Add(mod.NPCType("MoltiochHead"), 0.1f * spawnMod);
+                    pool.Add(mod.NPCType("MoltenSoul"), 0.05f * spawnMod);
+                    pool.Add(NPCID.SkeletonArcher, 0.2f * spawnMod);
+                    if (LaugicalityWorld.downedRagnar)
+                    {
+                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.20f * spawnMod);
+                        pool.Add(mod.NPCType("MagmaCaster"), 0.20f * spawnMod);
+                        pool.Add(mod.NPCType("LavaTitan"), 0.035f * spawnMod);
+                    }
+                }
+            }
+            return;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -155,10 +222,22 @@ namespace Laugicality.NPCs
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= (int)(24);
-                if (damage < 24)
+                npc.lifeRegen -= (int)(320);
+                if (damage < 320)
                 {
-                    damage = (24);
+                    damage = (320);
+                }
+            }
+            if (steamified)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(80);
+                if (damage < 80)
+                {
+                    damage = (80);
                 }
             }
             if (npc.boss == false)
@@ -169,10 +248,34 @@ namespace Laugicality.NPCs
                     npc.velocity.Y *= 0;
                 }
             }
+            if(bubbly)
+            {
+                if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("Bubble"), 20, 3f, Main.myPlayer);
+            }
+            if (dawn)
+            {
+                if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("DawnSpark"), 20, 3f, Main.myPlayer);
+            }
+            if (trueDawn)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(24);
+                if (damage < 24)
+                {
+                    damage = (24);
+                }
+                if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("TrueDawnSpark"), 40, 3f, Main.myPlayer);
+            }
         }
         public override bool PreAI(NPC npc)
         {
-            if (LaugicalityWorld.zawarudo > 0 && zImmune == false)
+            if (zTimeInstanced > 0 && zImmune == false)
                 return false;
             return true;
         }
@@ -308,6 +411,68 @@ namespace Laugicality.NPCs
                 }
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.2f);
             }
+            if (bubbly)
+            {
+                if (Main.rand.Next(8) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Bubble"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 2f;
+                    }
+                }
+            }
+            if (dawn || trueDawn)
+            {
+                if (Main.rand.Next(8) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Dawn"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 2f;
+                    }
+                }
+            }
+            if (frostbite)
+            {
+                if (Main.rand.Next(4) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Etherial"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.0f, 0.4f, 0.6f);
+            }
+            if (steamified)
+            {
+                if (Main.rand.Next(4) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Steam"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.4f, 0.4f, 0.4f);
+            }
             if (spooked)
             {
                 if (Main.rand.Next(4) < 2)
@@ -329,7 +494,7 @@ namespace Laugicality.NPCs
         public override void PostAI(NPC npc)
         {
             //Za Warudo
-            if ((LaugicalityWorld.zawarudo > 0 && zImmune == false) || frigid)
+            if ((zTimeInstanced > 0 && zImmune == false) || frigid)
             {
                 npc.velocity.X *= 0;
                 npc.velocity.Y *= 0;
@@ -355,7 +520,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = npc.life;
 
             //Za Warudo
-            if (LaugicalityWorld.zawarudo > 0 && zImmune == false)
+            if (zTimeInstanced > 0 && zImmune == false)
             {
                 npc.velocity.X *= 0;
                 npc.velocity.Y *= 0;
@@ -382,6 +547,65 @@ namespace Laugicality.NPCs
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
                     theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                }
+            }
+            if (bubbly)
+            {
+                if (Main.netMode != 1)
+                {
+                    int rand = Main.rand.Next(3, 7);
+                    for(int i = 0; i < rand; i++)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("Bubble"), 20, 3f, Main.myPlayer);
+                }
+            }
+            if (dawn)
+            {
+                if (Main.netMode != 1)
+                {
+                    int rand = Main.rand.Next(3, 7);
+                    for (int i = 0; i < rand; i++)
+                    {
+                        float mag = 8f;
+                        float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        int damage = 32;
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("DawnSpark"), damage, 3f, Main.myPlayer);
+                    }
+                }
+            }
+            if (trueDawn)
+            {
+                if (Main.netMode != 1)
+                {
+                    int rand = Main.rand.Next(4, 9);
+                    for (int i = 0; i < rand; i++)
+                    {
+                        float mag = 8f;
+                        float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        int damage = 45;
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("TrueDawnSpark"), damage, 3f, Main.myPlayer);
+                    }
+                }
+            }
+            if (steamified)
+            {
+                if (Main.netMode != 1)
+                {
+                    int rand = Main.rand.Next(4, 7);
+                    for (int i = 0; i < rand; i++)
+                    {
+                        float mag = 8f;
+                        float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        int damage = 1000;
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("VulcanConjuration"), damage, 3f, Main.myPlayer);
+                    }
+                }
+            }
+            if(attacker != -1)
+            {
+                if(Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).etherCog)
+                {
+                    Main.player[attacker].AddBuff(mod.BuffType("Annihilation"), 10 * 60, false);
+                    Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).annihilationDamageBoost += .2f;
                 }
             }
             if (plays == 0)
@@ -440,6 +664,7 @@ namespace Laugicality.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarSoulCrystal"), 1);
             }
+
         }
 
         public override bool InstancePerEntity

@@ -8,8 +8,8 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Cog of Etheria");
-            Tooltip.SetDefault("Increases your max number of minions by 4 while in the Etherial");
+            DisplayName.SetDefault("The Annihilation");
+            Tooltip.SetDefault("Killing an enemy while in the Etherial boosts your damage by 20% for 10 seconds. Killing another enemy in this time resets the timer and stacks the bonus.");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
                 modPlayer.etherCog = true;
         }
     }

@@ -55,36 +55,58 @@ namespace Laugicality.Tiles
         
         public override void RandomUpdate(int i, int j)
         {
-            int count = 0;
+            bool spawned = false;
+            spawned = LavaGemSpawn(i, j);
+            if (!spawned)
+                spawned = SpawnRocks(i, j);
+            if (!spawned)
+                spawned = LargeLavaGemSpawn(i, j);
+        }
+
+        private bool LavaGemSpawn(int i, int j)
+        {
             if (Main.tile[i, j - 1].type == 0 && Main.tile[i, j].active())
             {
-                for (int k = -50; k < 51; k++)
+                if (Main.rand.Next(4) == 0)
                 {
-                    for(int l = -50; l < 51; l++)
-                    {
-                        if(i + k > 0 && i + k < Main.maxTilesX && j + l > 0 && j + l < Main.maxTilesY)
-                        {
-                            if (Main.tile[i + k, j + l].type == (ushort)mod.TileType("LavaGem"))
-                                count++;
-                        }
-                    }
+                    WorldGen.PlaceTile(i, j - 1, mod.TileType("LavaGem"), true);
+                    return true;
                 }
-                if(count < 12)
-                    Terraria.WorldGen.PlaceTile(i, j - 1, mod.TileType("LavaGem"), true);
             }
-        }
-
-        /*public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
-            r = 0.2f;
-            g = 0.1f;
-            b = 0.2f;
+            return false;
         }
         
-        public override bool CanExplode(int i, int j)
+        private bool SpawnRocks(int i, int j)
         {
+            if (Main.tile[i, j - 1].type == 0 && Main.rand.Next(4) == 0)
+            {
+                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumRocks"), true);
+                return true;
+            }
+            else if(Main.tile[i, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.rand.Next(3) == 0)
+            {
+                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumStalagmites"), true);
+                return true;
+            }
+            else if (Main.tile[i, j + 1].type == 0 && Main.tile[i, j + 2].type == 0 && Main.rand.Next(2) == 0)
+            {
+                WorldGen.PlaceTile(i, j + 1, mod.TileType("ObsidiumStalactites"), true);
+                return true;
+            }
             return false;
-        }*/
+        }
 
+        private bool LargeLavaGemSpawn(int i, int j)
+        {
+            if (Main.tile[i, j - 1].type == 0 && Main.tile[i + 1, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.tile[i + 1, j - 2].type == 0)
+            {
+                if(Main.rand.Next(12) == 0)
+                {
+                    WorldGen.PlaceTile(i, j - 1, mod.TileType("LargeLavaGem"), true);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

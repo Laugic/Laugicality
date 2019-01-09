@@ -557,8 +557,8 @@ namespace Laugicality.Items.SoulStone
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(29);
-            recipe.AddIngredient(109);
+            recipe.AddIngredient(ItemID.LifeCrystal);
+            recipe.AddIngredient(null, "ArcaneShard", 10);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

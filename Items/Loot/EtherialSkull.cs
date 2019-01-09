@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+20% Damage while in the Etherial");
+            Tooltip.SetDefault("After taking damage, your damage is boosted by twice the percentage of your health that was taken for 10 seconds.\nIf this buff is still active when damage is taken again, the boost is stacked.");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialBones = true;
             }

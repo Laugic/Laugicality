@@ -429,7 +429,8 @@ namespace Laugicality.NPCs.RockTwins
                         Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
                     if (Main.netMode != 1 && NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) > 1)
                     {
-                        LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
+                        Laugicality.zawarudo = 4 * 60;
+                        LaugicalGlobalNPCs.zTime = 4 * 60;
                         laser = 120;
                     }
                     else

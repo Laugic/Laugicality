@@ -9,7 +9,8 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+20% Conjuration Damage and +2 Conjuration Power while in the Etherial");
+            DisplayName.SetDefault("Justice");
+            Tooltip.SetDefault("Taking damage in the Etherial heals you for that damage instead once every 90 seconds.");
         }
 
         public override void SetDefaults()
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialTwins = true;
             }

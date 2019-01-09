@@ -33,7 +33,6 @@ namespace Laugicality.Projectiles
             projectile.tileCollide = false;
             projectile.penetrate = 3;
             projectile.minion = true;
-            projectile.thrown = true;
         }
 
         public override void AI()

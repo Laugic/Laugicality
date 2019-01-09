@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+30% Mystic Damage while in the Etherial");
+            Tooltip.SetDefault("CHOO CHOO! While in the etherial, the faster you move, the higher your damage.\nColliding with an enemy deals your movement speed * 500 in damage.\nGreatly increases Movement Speed.");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialTank = true;
             }

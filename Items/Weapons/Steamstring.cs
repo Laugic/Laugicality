@@ -15,7 +15,7 @@ namespace Laugicality.Items.Weapons
         //public int steamCost = 60;
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("'Steaming Frenzy' \nTurns all Arrows into Brass Arrows\n20% chance to not consume ammo");
+			Tooltip.SetDefault("'Steaming Frenzy' \nTurns wooden arrows into Brass Arrows & fires an additional Brass Arrow\n33% chance to not consume ammo");
 		}
 
 		public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace Laugicality.Items.Weapons
             //steamTier = 1;
             //steamCost = 60;
             item.scale *= 1.2f;
-            item.damage = 42;
+            item.damage = 48;
 			item.ranged = true;
 			item.width = 40;
 			item.height = 62;
@@ -84,7 +84,7 @@ namespace Laugicality.Items.Weapons
             
         public override bool ConsumeAmmo(Player player)
 		{
-			return Main.rand.NextFloat() >= .20f;
+			return Main.rand.NextFloat() >= .33f;
 		}
 
         public override void HoldItem(Player player)
@@ -100,19 +100,18 @@ namespace Laugicality.Items.Weapons
             {
                 position += muzzleOffset;
             }
-            int numberProjectiles = Main.rand.Next(1, 3);
-            for (int i = 0; i < numberProjectiles; i++)
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(5));
+
+            float scale = 1f - (Main.rand.NextFloat() * .2f);
+            perturbedSpeed = perturbedSpeed * scale;
+            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+            
+            if(type == ProjectileID.WoodenArrowFriendly)
             {
-                Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); 
-                                                                                                                
-                float scale = 1f - (Main.rand.NextFloat() * .3f);
-                perturbedSpeed = perturbedSpeed * scale;
-                if(Main.player[Main.myPlayer] == player)
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+                return false;
             }
-
-
-            return false; 
+            return true; 
         }
     }
 }

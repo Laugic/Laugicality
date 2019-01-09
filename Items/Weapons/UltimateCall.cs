@@ -100,7 +100,7 @@ namespace Laugicality.Items.Weapons
             }
             return base.UseItem(player);
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -109,6 +109,6 @@ namespace Laugicality.Items.Weapons
             recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

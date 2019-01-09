@@ -24,14 +24,12 @@ namespace Laugicality.Items.Consumables
 			item.useTime = 45;
 			item.useStyle = 4;
 			item.consumable = true;
-			item.shoot = mod.ProjectileType("Nothing");
+			item.shoot = mod.ProjectileType("GeneralBossSpawn");
 		}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            if (NPC.CountNPCS(NPCID.EyeofCthulhu) < 1)
-                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.EyeofCthulhu);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.EyeofCthulhu, knockBack, player.whoAmI);
             return false;
         }
 

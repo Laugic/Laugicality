@@ -10,7 +10,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bysmal Chestguard");
-            Tooltip.SetDefault("+20 Defense when in the Etherial");
+            Tooltip.SetDefault("(20 Defense, +20 Defense when in the Etherial)");
 		}
 
 		public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherable || LaugicalityWorld.downedEtheria)
+            if (modPlayer.etherable > 0 || LaugicalityWorld.downedEtheria)
                 item.defense = 40;
             else
                 item.defense = 20;
@@ -42,45 +42,48 @@ namespace Laugicality.Items.Armor
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Absorb the power of up to 3 Etherial creatures";
             modPlayer.fullBysmal = 2;
-            
-            if (modPlayer.bysmalPowers.Contains(NPCID.KingSlime))
-                player.setBonus += "\nSuper Jump Boost while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.EyeofCthulhu))
-                player.setBonus += "\nAllows you to see all creatures, no matter which dimension you are in.";
-            if (modPlayer.bysmalPowers.Contains(NPCID.EaterofWorldsHead))
-                player.setBonus += "\nWhile in the etherial, prevent a hit of lethal damage once every minute. \n20% Damage Reduction";
-            if (modPlayer.bysmalPowers.Contains(NPCID.BrainofCthulhu))
-                player.setBonus += "\nWhile in the etherial, if you would die from contact damage, heal 300 life instead. 3 minute cooldown.\nAfter colliding with an enemy, that enemy takes 50% more damage for 15 seconds.";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("Hypothema")))
-                player.setBonus += "\n+30% Melee and Ranged crit when in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.QueenBee))
-                player.setBonus += "\n+30% Movement Speed and Max Run Speed while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("Ragnar")))
-                player.setBonus += "\n+8 Defense, +60% Throwing Velocity and Mystic Duration while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.SkeletronHead))
-                player.setBonus += "\n+20% Damage while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("AnDio3")))
-                player.setBonus += "\nYour projectiles are immune to Time Stop when in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.Retinazer) || modPlayer.bysmalPowers.Contains(NPCID.Spazmatism))
-                player.setBonus += "\n+20% Conjuration Damage and +2 Conjuration Power while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.TheDestroyer))
-                player.setBonus += "\n+20% Destruction Damage and +2 Destruction Power while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.SkeletronPrime))
-                player.setBonus += "\n+20% Illusion Damage and +2 Illusion Power while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("TheAnnihilator")))
-                player.setBonus += "\nIncreases your max number of minions by 4 while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("Slybertron")))
-                player.setBonus += "\n+30% Throwing damage and +50% Throwing Velocity while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(mod.NPCType("SteamTrain")))
-                player.setBonus += "\n+30% Mystic Damage while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.Plantera))
-                player.setBonus += "\n+30% Crit Chance while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.Golem))
-                player.setBonus += "\nGreatly increased life regeneration while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.DukeFishron))
-                player.setBonus += "\nIncreased mobility while in the Etherial";
-            if (modPlayer.bysmalPowers.Contains(NPCID.MoonLordCore))
-                player.setBonus += "\nAll Etherial effects can occur in any dimension";
+
+            for (int i = 0; i < modPlayer.bysmalPowers.Count; i++)
+            {
+                if (modPlayer.bysmalPowers[i] ==(NPCID.KingSlime))
+                    player.setBonus += "\nSuper Jump Boost & Super Speed Boost while in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.EyeofCthulhu))
+                    player.setBonus += "\nAllows you to see all creatures, no matter which dimension you are in.";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.EaterofWorldsHead))
+                    player.setBonus += "\nWhile in the etherial, prevent a hit of lethal damage once every minute. \n20% Damage Reduction";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.BrainofCthulhu))
+                    player.setBonus += "\nWhile in the etherial, if you would die from contact damage, heal 300 life instead. 3 minute cooldown.\nAfter colliding with an enemy, that enemy takes 50% more damage for 15 seconds.";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("Hypothema")))
+                    player.setBonus += "\nAttacks inflict 'Frostbite'";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.QueenBee))
+                    player.setBonus += "\nHoney provides triple the normal regen, 15 defense, and +15% damage while in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("Ragnar")))
+                    player.setBonus += "\nAfter submerging in Lava in the Etherial, greatly increased attack stats and mobility. +25% Max Life.";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.SkeletronHead))
+                    player.setBonus += "\nWhile in the Etherial, after taking damage, your damage is boosted by twice the percentage of your health that was taken for 10 seconds.\nIf this buff is still active when damage is taken again, the boost is stacked.";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("AnDio3")))
+                    player.setBonus += "\nYour projectiles are immune to Time Stop when in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.Retinazer) || modPlayer.bysmalPowers[i] ==(NPCID.Spazmatism))
+                    player.setBonus += "\nTaking damage in the Etherial heals you for that damage instead once every 90 seconds.";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.TheDestroyer))
+                    player.setBonus += "\nYour global damage modifier is applied to your defense while in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.SkeletronPrime))
+                    player.setBonus += "\nIn the Etherial, deal more damage the lower your life is";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("TheAnnihilator")))
+                    player.setBonus += "\nKilling an enemy while in the Etherial boosts your damage by 20% for 10 seconds. Killing another enemy in this time resets the timer and stacks the bonus.";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("Slybertron")))
+                    player.setBonus += "\nAttacks in the Etherial inflict 'Steamified', dealing damage over time, making enemies take more damage, and explode into cogs on death.";
+                if (modPlayer.bysmalPowers[i] ==(mod.NPCType("SteamTrain")))
+                    player.setBonus += "\nCHOO CHOO! While in the etherial, the faster you move, the higher your damage. Colliding with an enemy deals your movement speed * 500 in damage. Greatly increases Movement Speed.";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.Plantera))
+                    player.setBonus += "\nIf you are grappled to a tile in the Etherial, +50% Damage & increased life regen.";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.Golem))
+                    player.setBonus += "\nYour defense is added to your Max Life. Greatly increased Life Regen and +20 Defense while in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.DukeFishron))
+                    player.setBonus += "\nWater brings you great power in the Etherial";
+                if (modPlayer.bysmalPowers[i] ==(NPCID.MoonLordCore))
+                    player.setBonus += "\nAll Etherial effects can occur in any dimension";
+            }
         }
 
         public override void AddRecipes()

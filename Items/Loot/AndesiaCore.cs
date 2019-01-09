@@ -8,7 +8,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Andesia Core");
+            DisplayName.SetDefault("Core of Dusk");
             Tooltip.SetDefault("For Honor!");
         }
 

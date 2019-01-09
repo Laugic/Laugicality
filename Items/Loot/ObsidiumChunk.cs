@@ -38,28 +38,84 @@ namespace Laugicality.Items.Loot
 
         public override void RightClick(Player player)
         {
-            if (Main.rand.Next(1,9) != 1)
+            if (Main.hardMode)
             {
-                if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(173, Main.rand.Next(2, 6));
-                if (Main.rand.Next(1, 4) == 2) player.QuickSpawnItem(174, Main.rand.Next(3, 5));
-                if (Main.rand.Next(1, 4) == 3) player.QuickSpawnItem(mod.ItemType("ObsidiumOre"), Main.rand.Next(2, 6));
+                if (Main.rand.Next(8) != 0)
+                {
+                    int rand = Main.rand.Next(10);
+                    switch (rand)
+                    {
+                        case 1:
+                            player.QuickSpawnItem(ItemID.CobaltOre, Main.rand.Next(4, 12));
+                            break;
+                        case 2:
+                            player.QuickSpawnItem(ItemID.CobaltBar, Main.rand.Next(2, 7));
+                            break;
+                        case 3:
+                            player.QuickSpawnItem(ItemID.MythrilOre, Main.rand.Next(4, 12));
+                            break;
+                        case 4:
+                            player.QuickSpawnItem(ItemID.MythrilBar, Main.rand.Next(2, 7));
+                            break;
+                        case 5:
+                            player.QuickSpawnItem(ItemID.PalladiumOre, Main.rand.Next(4, 12));
+                            break;
+                        case 6:
+                            player.QuickSpawnItem(ItemID.PalladiumBar, Main.rand.Next(2, 7));
+                            break;
+                        case 7:
+                            player.QuickSpawnItem(ItemID.OrichalcumOre, Main.rand.Next(4, 12));
+                            break;
+                        case 8:
+                            player.QuickSpawnItem(ItemID.OrichalcumBar, Main.rand.Next(2, 7));
+                            break;
+                        default:
+                            player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(8, 15));
+                            break;
+                    }
+                    if (Main.rand.Next(1, 4) == 0) player.QuickSpawnItem(173, Main.rand.Next(4, 12));
+                }
+                else
+                {
+                    if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(175, Main.rand.Next(6, 13));
+                    else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(6, 13));
+                }
+
+                int ran = Main.rand.Next(1, 8);
+                if (ran == 1) player.QuickSpawnItem(182, Main.rand.Next(2, 4));
+                if (ran == 2) player.QuickSpawnItem(178, Main.rand.Next(2, 4));
+                if (ran == 3) player.QuickSpawnItem(179, Main.rand.Next(2, 4));
+                if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(2, 4));
+                if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(2, 4));
+                if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(2, 4));
+                if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(2, 4));
+                
             }
             else
             {
-                if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(175, Main.rand.Next(1, 4));
-                else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(1, 4));
+                if (Main.rand.Next(1, 9) != 1)
+                {
+                    if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(173, Main.rand.Next(2, 6));
+                    if (Main.rand.Next(1, 4) == 2) player.QuickSpawnItem(174, Main.rand.Next(3, 5));
+                    if (Main.rand.Next(1, 4) == 3) player.QuickSpawnItem(mod.ItemType("ObsidiumOre"), Main.rand.Next(2, 6));
+                }
+                else
+                {
+                    if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(175, Main.rand.Next(1, 4));
+                    else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(1, 4));
+                }
+
+                int ran = Main.rand.Next(1, 8);
+                if (ran == 1) player.QuickSpawnItem(182, Main.rand.Next(1, 3));
+                if (ran == 2) player.QuickSpawnItem(178, Main.rand.Next(1, 3));
+                if (ran == 3) player.QuickSpawnItem(179, Main.rand.Next(1, 3));
+                if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(1, 3));
+                if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(1, 3));
+                if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(1, 3));
+                if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(1, 3));
+
+                if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(2701, Main.rand.Next(6, 13));
             }
-
-            int ran = Main.rand.Next(1, 8);
-            if (ran == 1) player.QuickSpawnItem(182, Main.rand.Next(1, 3));
-            if (ran == 2) player.QuickSpawnItem(178, Main.rand.Next(1, 3));
-            if (ran == 3) player.QuickSpawnItem(179, Main.rand.Next(1, 3));
-            if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(1, 3));
-            if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(1, 3));
-            if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(1, 3));
-            if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(1, 3));
-
-            if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(2701, Main.rand.Next(6, 13));
         }
         
     }

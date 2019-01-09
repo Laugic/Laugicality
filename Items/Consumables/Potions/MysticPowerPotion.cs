@@ -29,7 +29,7 @@ namespace Laugicality.Items.Consumables.Potions
             player.AddBuff(mod.BuffType("MysticPower"), 3*60*60, true);
             return true;
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -39,10 +39,10 @@ namespace Laugicality.Items.Consumables.Potions
             recipe.AddIngredient(null, "RubrumDust", 1);
             recipe.AddIngredient(null, "VerdiDust", 1);
             recipe.AddIngredient(null, "RegisDust", 1);
-            recipe.AddIngredient(null, "CaerulumDust", 1);
+            recipe.AddIngredient(null, "AquosDust", 1);
             recipe.AddTile(13);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

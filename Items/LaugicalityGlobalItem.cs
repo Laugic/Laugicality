@@ -122,12 +122,12 @@ namespace Laugicality.Items
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            writer.Write(yeet);
+            writer.Write((byte)yeet);
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
         {
-            yeet = reader.ReadByte();
+            yeet = (int)(reader.ReadByte());
         }
     }
 }

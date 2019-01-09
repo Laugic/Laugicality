@@ -36,7 +36,7 @@ namespace Laugicality.Projectiles
 			{
 				projectile.velocity.Y = -oldVelocity.Y;
 			}
-			Main.PlaySound(SoundID.Item10, projectile.position);
+			//Main.PlaySound(SoundID.Item10, projectile.position);
 			return false;
 		}
 
@@ -46,7 +46,7 @@ namespace Laugicality.Projectiles
 			{
 				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
-			Main.PlaySound(SoundID.Item10, projectile.position);
+			//Main.PlaySound(SoundID.Item10, projectile.position);
 		}
 
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)

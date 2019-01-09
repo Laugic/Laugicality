@@ -24,6 +24,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.consumable = true;
             item.value = 150;
             item.createTile = mod.TileType("GreatShadowMusicBox");
+            item.accessory = true;
         }
         /*
         public override void AddRecipes()

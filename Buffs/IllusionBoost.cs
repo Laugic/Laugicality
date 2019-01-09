@@ -9,14 +9,13 @@ namespace Laugicality.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Illusion Power");
-			Description.SetDefault("'The mind's energy strengthens you.'\n+10% Illusion Damage, +1 Illusion Power");
+			Description.SetDefault("'The mind's energy strengthens you.'\n+100% Mystic Duration");
 			Main.buffNoSave[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).illusionDamage += 0.1f;
-            player.GetModPlayer<LaugicalityPlayer>(mod).illusionPower += 1;
+            player.GetModPlayer<LaugicalityPlayer>(mod).mysticDuration += 1f;
         }
         
 	}

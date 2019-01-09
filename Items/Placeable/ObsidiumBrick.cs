@@ -28,7 +28,7 @@ namespace Laugicality.Items.Placeable
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(17);
+            recipe.AddTile(TileID.Furnaces);
             recipe.AddIngredient(null, "ObsidiumRock", 2);
             recipe.SetResult(this);
             recipe.AddRecipe();

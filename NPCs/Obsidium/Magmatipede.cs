@@ -30,13 +30,13 @@ namespace Laugicality.NPCs.Obsidium
 			base.Init();
 			head = true;
 		}
-
+        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer && LaugicalityWorld.downedRagnar)
                 return SpawnCondition.Cavern.Chance * 0.5f;
             else return 0f;
-        }
+        }*/
 
         int attackCounter = 0;
 
@@ -125,7 +125,10 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumChunk"));
+            if (LaugicalityWorld.downedRagnar && Main.rand.Next(2) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumChunk"));
+            else
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(2, 5));
         }
     }
 

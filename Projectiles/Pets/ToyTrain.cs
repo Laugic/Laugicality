@@ -52,11 +52,11 @@ namespace Laugicality.Projectiles.Pets
                     dist = 24;
                 Dust.NewDust(new Vector2(rect.X + projectile.width / 2 + dist, rect.Y), 0, 0, mod.DustType("TrainSteam"));
             }
-            if (Math.Abs(projectile.velocity.Y) > 1f)
+            /*if (Math.Abs(projectile.velocity.Y) > 1f)
             {
                 Rectangle rect = projectile.getRect();
                 Dust.NewDust(new Vector2(rect.X, rect.Y+projectile.height), projectile.width, 0, mod.DustType("Steam"));
-            }
+            }*/
         }
         
     }

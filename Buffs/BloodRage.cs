@@ -9,14 +9,13 @@ namespace Laugicality.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Blood Rage");
-			Description.SetDefault("Increased Damage and Crit chance \n'Samson would be proud'");
+			Description.SetDefault("Increased Damage and Crit chance");
 			Main.debuff[Type] = false;
 			Main.buffNoSave[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage += 0.15f;
             player.thrownDamage += 0.15f;
             player.rangedDamage += 0.15f;
             player.magicDamage += 0.15f;

@@ -37,7 +37,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "After staying on a Mysticism for 5 seconds, increase its power by 1\nTime stop lasts longer\nAutomatically stops time after taking a hit below 20% life";
-            LaugicalityWorld.zWarudo += 140;
+            modPlayer.zaWarudoDuration += 2 * 60;
             modPlayer.andioChestplate = true;
             modPlayer.destructionPower += 1;
             modPlayer.illusionPower += 1;

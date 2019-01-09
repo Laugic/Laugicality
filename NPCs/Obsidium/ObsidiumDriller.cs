@@ -28,13 +28,13 @@ namespace Laugicality.NPCs.Obsidium
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
         }
-
+        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer)
                 return SpawnCondition.Cavern.Chance * 0.15f;
             else return 0f;
-        }
+        }*/
 
         public override void AI()
         {
@@ -50,12 +50,16 @@ namespace Laugicality.NPCs.Obsidium
             {
                 if (npc.velocity.Y > 0)
                     npc.velocity.Y *= .9f;
+                else if (Main.rand.Next(5) == 0)
+                    Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
                 npc.velocity.Y -= .2f;
             }
             else if (npc.Center.Y - Main.player[npc.target].Center.Y < -36)
             {
                 if (npc.velocity.Y < 0)
                     npc.velocity.Y *= .9f;
+                else if (Main.rand.Next(5) == 0)
+                    Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
                 npc.velocity.Y += .2f;
             }
             else
@@ -67,12 +71,16 @@ namespace Laugicality.NPCs.Obsidium
                     {
                         if (npc.velocity.X > 0)
                             npc.velocity.X *= .9f;
+                        else if (Main.rand.Next(5) == 0)
+                            Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
                         npc.velocity.X -= .5f;
                     }
                     if (Main.player[npc.target].Center.X > npc.Center.X)
                     {
                         if (npc.velocity.X < 0)
                             npc.velocity.X *= .9f;
+                        else if (Main.rand.Next(5) == 0)
+                            Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
                         npc.velocity.X += .5f;
                     }
                 }
@@ -99,21 +107,11 @@ namespace Laugicality.NPCs.Obsidium
             }
             else
             {
-                if(Main.rand.Next(4) == 0)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
-                else
+                if (NPC.downedBoss2)
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
+                else
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
             }
-        }
-
-        public override Color? GetAlpha(Color drawColor)
-        {
-            return (Color.OrangeRed * .25f);
-        }
-
-        public override void DrawEffects(ref Color drawColor)
-        {
-            Lighting.AddLight(npc.position, 0.4f, 0.2f, 0.0f);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
         {
             player.moveSpeed += 0.15f;
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if(modPlayer.etherable|| LaugicalityWorld.downedEtheria)
+            if(modPlayer.etherable > 0 || LaugicalityWorld.downedEtheria)
             {
                 player.moveSpeed += 0.25f;
                 player.maxRunSpeed += 1f;

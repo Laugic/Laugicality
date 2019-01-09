@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+30% Movement Speed and Max Run Speed while in the Etherial");
+            Tooltip.SetDefault("Honey provides triple the normal regen, 15 defense, and +15% damage while in the Etherial");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialBees = true;
             }

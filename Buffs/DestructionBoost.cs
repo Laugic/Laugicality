@@ -9,14 +9,13 @@ namespace Laugicality.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Destruction Power");
-			Description.SetDefault("'Hell's energy strengthens you.'\n+10% Destruction Damage, +1 Destruction Power");
+			Description.SetDefault("'Hell's energy strengthens you.'\n+10% Mystic Damage");
 			Main.buffNoSave[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).destructionDamage += 0.1f;
-            player.GetModPlayer<LaugicalityPlayer>(mod).destructionPower += 1;
+			player.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage += 0.1f;
         }
         
 	}

@@ -8,7 +8,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dioritus Core");
+            DisplayName.SetDefault("Core of Dawn");
             Tooltip.SetDefault("For Glory!");
         }
 

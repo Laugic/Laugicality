@@ -10,7 +10,7 @@ namespace Laugicality.Items.Weapons
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Tears a hole through dimensions. \nBanishes weak creatures to the Etherial.");	//The (English) text shown below your weapon's name
+			Tooltip.SetDefault("'A chill like no other' \nInflicts 'Frostbite'.");
 		}
 
 		public override void SetDefaults()
@@ -34,20 +34,21 @@ namespace Laugicality.Items.Weapons
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(null, "EtherialEssence", 8);
-            recipe.AddTile(134);
-			recipe.SetResult(this);
+            recipe.AddIngredient(null, "BysmalBar", 12);
+            recipe.AddIngredient(null, "EtherialEssence", 5);
+            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
         
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.Etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
+            /*if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.Etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
             {
                 target.GetGlobalNPC<EtherialGlobalNPC>(mod).etherial = true;
-            }
-		}
+            }*/
+            target.AddBuff(mod.BuffType("Frostbite"), 5 * 60);
+        }
 	}
 }

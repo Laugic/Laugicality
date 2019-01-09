@@ -15,6 +15,7 @@ using Terraria.Graphics.Capture;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Laugicality.Items.Accessories;
+using Laugicality.NPCs;
 
 namespace Laugicality
 {
@@ -32,6 +33,7 @@ namespace Laugicality
         public bool noRegen = false;
         public bool halfDef = false;
         public int connected = 0;
+        public int verdi = 0;
 
         //Summons
         public bool mCore = false;
@@ -59,7 +61,7 @@ namespace Laugicality
         public bool spores = false;
         public bool slimey = false;
 
-        //Potions
+        //Potion Gems
         public bool inf = true;
         public bool calm = true;
         public bool ww = true;
@@ -82,6 +84,7 @@ namespace Laugicality
         //Misc
         public bool zImmune = false;
         public bool zCool = false;
+        public int zaWarudoDuration = 0;
         public float xTemp = 0;
         public float yTemp = 0;
         public bool zProjImmune = false;
@@ -91,6 +94,7 @@ namespace Laugicality
         public bool crysMag = false;
         public bool frostbite = false;
         public int fullBysmal = 0;
+        bool boosted = false;
 
         //Music
         public bool ZoneObsidium = false;
@@ -121,16 +125,9 @@ namespace Laugicality
         /// </summary>
         public override void ResetEffects()
         {
-            if (mysticSwitchCool > 0)
-                mysticSwitchCool -= mysticSwitchCoolRate;
-            if (mysticErupting > 0)
-                mysticErupting -= 1;
-            if (mysticSpiralBurst > 0)
-                mysticSpiralBurst -= 1;
-            if (mysticSteamSpiralBurst > 0)
-                mysticSteamSpiralBurst -= 1;
+            MysticReset();
             if (fullBysmal > 0)
-                fullBysmal -= 1;
+                fullBysmal -= 1; 
             if (shakeDur > 0)
             {
                 shakeDur--;
@@ -147,13 +144,16 @@ namespace Laugicality
                     shakeReset = true;
                 }
             }
+            if (verdi > 0)
+                verdi -= 1;
             slimey = false;
             magmatic = false;
             crysMag = false;
             theta += 3.14f / 40f;
             uBois = false;
             obsHeart = false;
-            zCoolDown = 1800;
+            zCoolDown = 65 * 60;
+            zaWarudoDuration = 4 * 60;
             midnight = false;
             andioChestplate = false;
             andioChestguard = false;
@@ -188,30 +188,7 @@ namespace Laugicality
             eyes = false;
             spores = false;
             frostbite = false;
-
-            //Mystic
-            mysticCrit = 4;
-            mysticDamage = 1f;
-            mysticDuration = 1f;
-            mysticHold = false;
-
-            illusionDamage = 1f;
-            destructionDamage = 1f;
-            conjurationDamage = 1f;
-            illusionPower = 1;
-            destructionPower = 1;
-            conjurationPower = 1;
-
-            mysticSwitchCoolRate = 1;
-            mysticSandBurst = false;
-            mysticSteamBurst = false;
-            mysticShroomBurst = false;
-            mysticMarblite = false;
-            mysticEruption = false;
-            mysticEruptionBurst = false;
-
-            //Steam
-            mysticDamage = 1f;
+            
 
             if (player.extraAccessory)
             {
@@ -231,6 +208,7 @@ namespace Laugicality
                 player.extraAccessorySlots = 0;
             }
             ResetEtherial();
+
         }
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
@@ -257,20 +235,26 @@ namespace Laugicality
                 player.position.Y = shakeO.Y - shakeMag + (float)random.NextDouble() * shakeMag * 2;
             }
 
+            CheckBysmalPowers();
+            PreAccessories();
+            if (LaugicalityWorld.downedEtheria || etherable > 0)
+                GetEtherialAccessories();
+        }
+        
+        private void PreAccessories()
+        {
 
-            /*if (player.position.X < 700)
-                player.position.X = 65400;
-            if (player.position.X > 65500)
-                player.position.X = 800;*/
         }
 
-        /// <summary>
-        /// Refactor This to be short
-        /// </summary>
         public override void PostUpdate()
         {
-            //Za Warudo
-            if (LaugicalityWorld.zawarudo > 0 && zImmune == false)
+            PostUpdateZaWarudo();
+            PostUpdateMysticBursts();
+        }
+
+        private void PostUpdateZaWarudo()
+        {
+            if (Laugicality.zawarudo > 0 && zImmune == false)
             {
                 player.velocity.X = 0;
                 player.velocity.Y = 0;
@@ -304,8 +288,19 @@ namespace Laugicality
                 xTemp = 0;
                 yTemp = 0;
             }
+        }
+        
 
-            //Mystic Bursts
+        private void PostAccessories()
+        {
+            if (verdi > 0)
+            {
+                player.maxRunSpeed += .1f;
+            }
+        }
+
+        private void PostUpdateMysticBursts()
+        {
             if (mysticErupting > 0)
             {
                 if (Main.rand.Next(4) == 0)
@@ -332,10 +327,20 @@ namespace Laugicality
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage), 3, Main.myPlayer);
                 }
             }
-            CheckBysmalPowers();
-            if(LaugicalityWorld.downedEtheria || etherable)
-                GetEtherialAccessories();
         }
+
+        public override void PostUpdateEquips()
+        {
+            CheckBysmalPowers();
+            PostAccessories();
+            if (verdi > 0)
+            {
+                player.maxRunSpeed *= 1.1f;
+            }
+            if (LaugicalityWorld.downedEtheria || etherable > 0)
+                GetEtherialAccessoriesPost();
+        }
+
 
         public override TagCompound Save()
         {
@@ -363,7 +368,7 @@ namespace Laugicality
             bool useNebula = LaugicalityWorld.downedEtheria;
             player.ManageSpecialBiomeVisuals("Laugicality:Etherial", useNebula);
             bool useWorld = false;
-            if (LaugicalityWorld.zawarudo > 0)
+            if (Laugicality.zawarudo > 0)
                 useWorld = true;
             player.ManageSpecialBiomeVisuals("Laugicality:ZaWarudo", useWorld);
         }
@@ -390,7 +395,7 @@ namespace Laugicality
 
         public override void UpdateBiomes()
         {
-            ZoneObsidium = (LaugicalityWorld.obsidiumTiles > 250);
+            ZoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
             etherialMusic = etherial;
         }
 
@@ -471,7 +476,7 @@ namespace Laugicality
                     player.lifeRegen = 0;
                 }
                 player.lifeRegenTime = 0;
-                player.lifeRegen -= 24;
+                player.lifeRegen -= 32;
             }
             if (mFied)//Mystified
             {
@@ -526,6 +531,14 @@ namespace Laugicality
             {
                 target.AddBuff(mod.BuffType("Slimed"), (int)((120 + 60 * rand)), false);
             }
+            if (etherialFrost)
+            {
+                target.AddBuff(mod.BuffType("Frostbite"), (int)((12 * 60 + 60 * rand)), false);
+            }
+            if (etherialPipes)
+            {
+                target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
+            }
             if (crysMag)
             {
                 if (crit)
@@ -577,6 +590,10 @@ namespace Laugicality
             {
                 DrawEtherialEffect(out r, out g, out b);
             }
+            if(etherialTank)
+            {
+                DrawEtherialTankSteam();
+            }
         }
 
         private void DrawEtherialTrailEffect()
@@ -622,6 +639,20 @@ namespace Laugicality
             }
         }
 
+        private void DrawEtherialTankSteam()
+        {
+            if (Math.Abs(player.velocity.X) > 14f && SoulStoneV)
+            {
+                Rectangle rect = player.getRect();
+                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, mod.DustType("TrainSteam"));
+                if (boosted == false)
+                {
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/train_whistle"));
+                    boosted = true;
+                }
+            }
+            else boosted = false;
+        }
 
         //Hotkey
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -661,28 +692,24 @@ namespace Laugicality
         {
             if (andioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
             {
-                AnDioChestguardTimeStop();
+                ZaWarudo();
             }
 
             if (andioChestplate && player.statLife < player.statLifeMax2 / 5 && zCool == false)
             {
-                AnDioChestplateTimeStop();
+                ZaWarudo();
             }
         }
+        
 
-        private void AnDioChestplateTimeStop()
+        private void ZaWarudo()
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
-            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
+            Laugicality.zawarudo = zaWarudoDuration;
+            LaugicalGlobalNPCs.zTime = zaWarudoDuration;
         }
 
-        private void AnDioChestguardTimeStop()
-        {
-            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-            player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
-            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
-        }
 
         private void SpawnProjectileOnPlayerHurt()
         {

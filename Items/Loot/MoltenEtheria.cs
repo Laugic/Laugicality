@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+8 Defense, +60% Throwing Velocity and Mystic Duration while in the Etherial");
+            Tooltip.SetDefault("After submerging in Lava in the Etherial, greatly increased attack stats and mobility.\n+50% Max Life.");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialMagma = true;
             }

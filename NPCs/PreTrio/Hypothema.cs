@@ -36,6 +36,7 @@ namespace Laugicality.NPCs.PreTrio
         public int vDir = 2;
         public bool bitherial = true;
         public int plays = 0;
+        public int despawn = 0;
 
         public override void SetStaticDefaults()
         {
@@ -45,6 +46,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetDefaults()
         {
+            despawn = 0;
             plays = 1;
             bitherial = true;
             moveDelay = 600;
@@ -99,8 +101,8 @@ namespace Laugicality.NPCs.PreTrio
         public override void AI()
         {
             bitherial = true;
-            if (Main.player[npc.target].statLife <= 0) { npc.position.Y += 20; }
-            if (Main.player[npc.target].ZoneSnow == false) { npc.position.Y += 20; }
+            DespawnCheck(npc);
+            npc.dontTakeDamage = Main.player[npc.target].ZoneSnow == false;
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
 
@@ -302,10 +304,33 @@ namespace Laugicality.NPCs.PreTrio
             }
         }
 
-
+        private void DespawnCheck(NPC npc)
+        {
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+            {
+                npc.TargetClosest(true);
+                if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+                {
+                    if (despawn == 0)
+                        despawn++;
+                }
+            }
+            if (despawn >= 1)
+            {
+                despawn++;
+                npc.noTileCollide = true;
+                npc.velocity.Y = 8f;
+                if (despawn >= 300)
+                    npc.active = false;
+            }
+        }
 
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
+            if (LaugicalityWorld.downedEtheria)
+            {
+                target.AddBuff(mod.BuffType("Frostbite"), 4 * 60, true);
+            }
             if (Main.expertMode)
             {
                 target.AddBuff(BuffID.Frostburn, 90, true);

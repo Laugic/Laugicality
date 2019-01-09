@@ -15,6 +15,7 @@ namespace Laugicality.NPCs
     {
         private bool grew = false;
         private int counter = 0;
+        private int counter2 = 0;
         private int phase = 0;
         private int despawn = 0;
         private bool jumping = false;
@@ -36,11 +37,19 @@ namespace Laugicality.NPCs
         public bool friend = false;
         private bool invin = false;
 
-        
+        public float armTheta = 0;
+        public float armDist = 0;
+        bool hasSpawnedArms = false;
+        bool spawnCheck = false;
 
         //Boss Fights V
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
+            counter2 = 0;
+            spawnCheck = false;
+            hasSpawnedArms = false;
+            armDist = 0;
+            armTheta = 0;
             grew = false;
             counter = 0;
             phase = 0;
@@ -55,13 +64,13 @@ namespace Laugicality.NPCs
 
             if (LaugicalityWorld.downedEtheria)
             {
-                npc.damage = (int)(npc.damage * 1.25 + 30);
+                npc.damage = (int)(npc.damage * 1.33 + 40);
                 npc.defense = (int)(npc.defense / 2);
                 if (npc.boss)
                     npc.lifeMax += 15000;
                 else
                     npc.lifeMax += 5000;
-                npc.lifeMax = (int)(npc.lifeMax * 1.25);
+                npc.lifeMax = (int)(npc.lifeMax * 1.5);
                 npc.life = npc.lifeMax;
                 ScaleSpecificEtherialStats(npc);
             }
@@ -77,7 +86,6 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 70000;
                 npc.life = npc.lifeMax;
             }
-
             if(npc.type == NPCID.EyeofCthulhu)
             {
                 npc.damage = 225;
@@ -115,6 +123,36 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 60000;
                 npc.life = npc.lifeMax;
             }
+            if (npc.type == mod.NPCType("Hypothema"))
+            {
+                npc.damage = 200;
+                npc.lifeMax = 60000;
+                npc.life = npc.lifeMax;
+            }
+            if (npc.type == NPCID.QueenBee)
+            {
+                npc.damage = 230;
+                npc.lifeMax = 80000;
+                npc.life = npc.lifeMax;
+            }
+            if (npc.type == mod.NPCType("Ragnar"))
+            {
+                npc.damage = 250;
+                npc.lifeMax = 100000;
+                npc.life = npc.lifeMax;
+            }
+            if (npc.type == NPCID.SkeletronHead)
+            {
+                npc.damage = 280;
+                npc.lifeMax = 80000;
+                npc.life = npc.lifeMax;
+            }
+            if (npc.type == NPCID.SkeletronHand)
+            {
+                npc.damage = 200;
+                npc.lifeMax = 18000;
+                npc.life = npc.lifeMax;
+            }
         }
 
         public void EtherialPostAI(NPC npc)
@@ -123,22 +161,41 @@ namespace Laugicality.NPCs
             {
                 if (npc.type == NPCID.KingSlime)
                 {
-                    EtherialKingSlimeAI(npc);
+                    KingSlimeAI(npc);
                 }
                 if(npc.type == NPCID.EyeofCthulhu)
                 {
-                    EtherialEyeofCthulhuAI(npc);
+                    EyeofCthulhuAI(npc);
                 }
                 if(npc.type == mod.NPCType("DuneSharkron"))
                 {
-                    EtherialDuneSharkronAI(npc);
+                    DuneSharkronAI(npc);
                 }
                 if (npc.type == NPCID.BrainofCthulhu)
                 {
-                    EtherialBrainOfCthulhuAI(npc);
+                    BrainOfCthulhuAI(npc);
                 }
-
-                if(npc.boss)
+                if (npc.type == mod.NPCType("Hypothema"))
+                {
+                    HypothemaAI(npc);
+                }
+                if (npc.type == NPCID.QueenBee)
+                {
+                    QueenBeeAI(npc);
+                }
+                if (npc.type == mod.NPCType("Ragnar"))
+                {
+                    RagnarAI(npc);
+                }
+                if (npc.type == NPCID.SkeletronHead)
+                {
+                    SkeletronAI(npc);
+                }
+                if (npc.type == NPCID.DungeonGuardian)
+                {
+                    DungeonGuardianAI(npc);
+                }
+                if (npc.boss)
                 {
                     Retarget(npc);
                     DespawnCheck(npc);
@@ -179,19 +236,19 @@ namespace Laugicality.NPCs
             }
         }
 
-        private void EtherialKingSlimeAI(NPC npc)
+        private void KingSlimeAI(NPC npc)
         {
             if (Main.expertMode)
             {
                 Grow(npc, 1.75f, 1.5f);
                 if (Teleport(npc, 1250, Main.player[npc.target].position.X - npc.width / 2, Main.player[npc.target].position.Y - 350 - npc.height / 2))
                     targetPos = Main.player[npc.target].position;
-                EtherialKingSlimeHealthEffect(npc);
-                EtherialKingSlimeMovement(npc);
+                KingSlimeHealthEffect(npc);
+                KingSlimeMovement(npc);
             }
         }
 
-        private void EtherialKingSlimeHealthEffect(NPC npc)
+        private void KingSlimeHealthEffect(NPC npc)
         {
             if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 10 * (phase + 1))))
             {
@@ -205,7 +262,7 @@ namespace Laugicality.NPCs
             }
         }
 
-        private void EtherialKingSlimeMovement(NPC npc)
+        private void KingSlimeMovement(NPC npc)
         {
             movementCounter++;
             theta += 3.14f / 30;
@@ -246,13 +303,12 @@ namespace Laugicality.NPCs
             MoveToTarget(npc);
         }
 
-
-        private void EtherialEyeofCthulhuAI(NPC npc)
+        private void EyeofCthulhuAI(NPC npc)
         {
-            EtherialEyeofCthulhuHealthEffect(npc);
+            EyeofCthulhuHealthEffect(npc);
         }
 
-        private void EtherialEyeofCthulhuHealthEffect(NPC npc)
+        private void EyeofCthulhuHealthEffect(NPC npc)
         {
             if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 20 * (phase + 1))) && npc.life > npc.lifeMax / 2)
             {
@@ -269,14 +325,13 @@ namespace Laugicality.NPCs
                 npc.damage = 250;
             }
         }
-        
 
-        private void EtherialDuneSharkronAI(NPC npc)
+        private void DuneSharkronAI(NPC npc)
         {
-            EtherialDuneSharkronHealthEffect(npc);
+            DuneSharkronHealthEffect(npc);
         }
 
-        private void EtherialDuneSharkronHealthEffect(NPC npc)
+        private void DuneSharkronHealthEffect(NPC npc)
         {
             if (npc.life < npc.lifeMax / 3 && NPC.CountNPCS(NPCID.SandElemental) < 1)
             {
@@ -286,13 +341,12 @@ namespace Laugicality.NPCs
             }
         }
 
-
-        private void EtherialBrainOfCthulhuAI(NPC npc)
+        private void BrainOfCthulhuAI(NPC npc)
         {
-            EtherialBrainOfCthulhuHealthEffect(npc);
+            BrainOfCthulhuHealthEffect(npc);
         }
 
-        private void EtherialBrainOfCthulhuHealthEffect(NPC npc)
+        private void BrainOfCthulhuHealthEffect(NPC npc)
         {
             if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 10 * (phase + 1))))
             {
@@ -306,6 +360,109 @@ namespace Laugicality.NPCs
             }
         }
 
+        private void HypothemaAI(NPC npc)
+        {
+            HypothemaHealthEffect(npc);
+        }
+
+        private void HypothemaHealthEffect(NPC npc)
+        {
+            if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 4 * (phase + 1))) )
+            {
+                phase++;
+            }
+            if(NPC.CountNPCS(NPCID.IceGolem) < phase && Vector2.Distance(npc.Center, Main.player[npc.target].Center) < 320)
+            { 
+                if (Main.netMode != 1)
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.IceGolem);
+            }
+        }
+
+        private void QueenBeeAI(NPC npc)
+        {
+            counter++;
+            counter2++;
+            if(counter > 1 * 60 + (int)(60 * (npc.life / npc.lifeMax)))
+            {
+                counter = 0;
+                if (Main.netMode != 1)
+                {
+                    if(Main.rand.Next(2) == 0)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
+                    else
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperBee"));
+                }
+            }
+            if(counter2 > 4 * 60 + (int)(2 * 60 * (npc.life / npc.lifeMax)))
+            {
+                counter2 = 0;
+                if (Main.netMode != 1 && NPC.CountNPCS(mod.NPCType("SuperHornet")) < 8)
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperHornet"));
+            }
+        }
+
+        private void RagnarAI(NPC npc)
+        {
+            armTheta += (float)Math.PI / 90;
+            if (armTheta > (float)Math.PI * 2)
+                armTheta -= (float)Math.PI * 2;
+            armDist = 320;
+            if (!hasSpawnedArms)
+            {
+                SpawnArms(npc);
+                hasSpawnedArms = true;
+            }
+            RagnarHealthEffects(npc);
+        }
+
+        private void SpawnArms(NPC npc)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("RagnarHand"));
+                Main.npc[N].ai[0] = i;
+                Main.npc[N].ai[1] = npc.whoAmI;
+            }
+        }
+
+        private void RagnarHealthEffects(NPC npc)
+        {
+            if (npc.life < (int)(npc.lifeMax * (3 - (phase + 1)) / 3))
+            {
+                phase++;
+                if (Main.netMode != 1)
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("LavaTitan"));
+            }
+        }
+
+        private void SkeletronAI(NPC npc)
+        {
+            if(NPC.CountNPCS(NPCID.DungeonGuardian) < 1 || (NPC.CountNPCS(NPCID.DungeonGuardian) < 2 && npc.life < npc.lifeMax / 2))
+            {
+                if (Main.netMode != 1)
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DungeonGuardian);
+            }
+        }
+
+        private void DungeonGuardianAI(NPC npc)
+        {
+            float dist = Vector2.Distance(Main.player[npc.target].Center, npc.Center);
+            if (counter > 0)
+                counter--;
+            if(counter > 1 * 60 + 30)
+            {
+                npc.velocity.X = 0;
+                npc.velocity.Y = 0;
+            }
+            if ((dist > 1200  || Main.rand.Next(5 * 60) == 0 ) && Main.player[npc.target].statLife > 1 && counter == 0)
+            {
+                counter = 2 * 60;
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
+                npc.position.X = Main.player[npc.target].position.X - (npc.position.X - Main.player[npc.target].position.X) * 3 / 4;
+                npc.position.Y = Main.player[npc.target].position.Y - (npc.position.Y - Main.player[npc.target].position.Y) * 3 / 4;
+            }
+        }
+        
         private void MoveToTarget(NPC npc)
         {
             float dist = Vector2.Distance(targetPos, npc.Center);
@@ -356,7 +513,6 @@ namespace Laugicality.NPCs
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
                 return true;
             }
-
             return false;
         }
 
@@ -380,7 +536,6 @@ namespace Laugicality.NPCs
             npc.velocity.X = -npc.velocity.X;
             npc.velocity.Y = -npc.velocity.Y;
         }
-
 
         public override void OnHitPlayer(NPC npc, Player player, int damage, bool crit)
         {
@@ -411,6 +566,11 @@ namespace Laugicality.NPCs
                 if (npc.type == 35)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialSkull"), 1);
+                    foreach(NPC dungeonGuardian in Main.npc)
+                    {
+                        if (dungeonGuardian.type == NPCID.DungeonGuardian)
+                            dungeonGuardian.active = false;
+                    }
                 }
                 if (npc.type == 13)
                 {
@@ -470,7 +630,7 @@ namespace Laugicality.NPCs
                 }
 
 
-                if(LaugicalityVars.EBosses.Contains(npc.type))
+                if(LaugicalityVars.EBosses.Contains(npc.type) && !modPlayer.bysmalPowers.Contains(npc.type))
                 {
                     if (modPlayer.fullBysmal > 0)
                         modPlayer.CycleBysmalPowers(npc.type);
@@ -478,6 +638,7 @@ namespace Laugicality.NPCs
             }
         }
 
+        //Global Stuff V
         public override bool? DrawHealthBar(NPC npc, byte hbPosition, ref float scale, ref Vector2 position)
         {
             if (!npc.friendly)
@@ -509,7 +670,6 @@ namespace Laugicality.NPCs
             return null;
         }
 
-        //Global Stuff V
         public override bool InstancePerEntity { get { return true; } }
 
         public override void SetDefaults(NPC npc)

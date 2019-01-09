@@ -175,8 +175,11 @@ namespace Laugicality.Structures
         //Making sure tiles arent out of bounds
         private static bool TileCheckSafe(int i, int j)
         {
-            if (i > 0 && i < Main.maxTilesX && j > 0 && j < Main.maxTilesY)
-                return true;
+            if (i > 1 && i < Main.maxTilesX - 1 && j > 1 && j < Main.maxTilesY - 1)
+            {
+                if (LaugicalityVars.ObsidiumTiles.Contains(Main.tile[i, j].type))
+                    return true;
+            }
             return false;
         }
     }

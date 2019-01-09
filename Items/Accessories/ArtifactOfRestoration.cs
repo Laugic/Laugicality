@@ -7,7 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+600 Max Life \n+160 Mana \nNo longer gives Potion Sickness");
+            Tooltip.SetDefault("+600 Max Life \n+160 Mana \nGives 1 minute of Potion Sickness");
         }
 
         public override void SetDefaults()
@@ -23,6 +23,7 @@ namespace Laugicality.Items.Accessories
         {
             player.statLifeMax2 += 600;
             player.statManaMax2 += 160;
+            player.AddBuff(21, 3600);
         }
 
         public override void AddRecipes()

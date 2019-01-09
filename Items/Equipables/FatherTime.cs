@@ -30,8 +30,8 @@ namespace Laugicality.Items.Equipables
                 player.maxRunSpeed += 3f;
                 player.jumpSpeedBoost += 3f;
             }
-            LaugicalityWorld.zWarudo += 100;
-            modPlayer.zCoolDown -= 140;
+            modPlayer.zaWarudoDuration += (int)(1.75 * 60);
+            modPlayer.zCoolDown -= 10 * 60;
         }
         public override void AddRecipes()
         {

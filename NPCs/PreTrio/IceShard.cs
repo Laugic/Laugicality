@@ -82,6 +82,10 @@ namespace Laugicality.NPCs.PreTrio
         
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
+            if(LaugicalityWorld.downedEtheria)
+            {
+                target.AddBuff(mod.BuffType("Frostbite"), 4 * 60, true);
+            }
             if (Main.expertMode)
             {
                 target.AddBuff(BuffID.Frostburn, 90, true);

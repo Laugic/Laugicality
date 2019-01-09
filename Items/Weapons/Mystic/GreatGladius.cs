@@ -100,7 +100,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);
             }
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -109,6 +109,6 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

@@ -1,3 +1,4 @@
+using Laugicality.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,24 +28,23 @@ namespace Laugicality.Items.Useables
         public override bool CanUseItem(Player player)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.zCool == false)
-                return true;
-            else
-                return false;
+            return !modPlayer.zCool;
         }
 
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-            LaugicalityWorld.zawarudo = LaugicalityWorld.zWarudo;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            Laugicality.zawarudo = modPlayer.zaWarudoDuration;
+            LaugicalGlobalNPCs.zTime = modPlayer.zaWarudoDuration;
+            foreach ( Player player2 in Main.player){
+                
             if (modPlayer.andioChestguard == true)
                 player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
             else
                 player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
+            }
             return true;
         }
-        
-        
     }
 }

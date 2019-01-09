@@ -42,7 +42,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
                     canSpawn = false;
             }
             if (LaugicalityWorld.downedEtheria && canSpawn && NPC.CountNPCS(mod.NPCType("EtherialSpirit")) < 2)
-                return .05f;
+                return .035f;
             else return 0f;
         }
 
@@ -109,10 +109,9 @@ namespace Laugicality.NPCs.Etherial.Enemies
 
         }
         
-
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(2,4));            
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(3, 5));            
         }
     }
 }

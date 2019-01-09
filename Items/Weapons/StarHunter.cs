@@ -46,7 +46,7 @@ namespace Laugicality.Items.Weapons
 			item.shootSpeed = 22f;
 			item.useAmmo = 40;
 		}
-
+        /*
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
@@ -55,7 +55,7 @@ namespace Laugicality.Items.Weapons
             recipe.AddTile(412);
             recipe.SetResult(this);
 			recipe.AddRecipe();
-		}
+		}*/
             
         public override bool ConsumeAmmo(Player player)
 		{

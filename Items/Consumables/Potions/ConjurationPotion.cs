@@ -8,7 +8,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Conjuration Damage, +1 Conjuration Power");
+            Tooltip.SetDefault("+1 to all Mystic Powers\n5 minute duration");
         }
         public override void SetDefaults()
 		{

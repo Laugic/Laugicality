@@ -9,7 +9,8 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+20% Illusion Damage and +2 Illusion Power while in the Etherial");
+            DisplayName.SetDefault("Mechanical Rage");
+            Tooltip.SetDefault("In the Etherial, deal more damage the lower your life is");
         }
 
         public override void SetDefaults()
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 modPlayer.etherialPrime = true;
             }

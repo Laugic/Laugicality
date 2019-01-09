@@ -24,7 +24,7 @@ namespace Laugicality.Items.Weapons
 			item.useStyle = 1;			//The use style of weapon, 1 for swinging, 2 for drinking, 3 act like shortsword, 4 for use like life crystal, 5 for use staffs or guns
 			item.knockBack = 5;			//The force of knockback of the weapon. Maxium is 20
 			item.value = 10000;			//The value of the weapon
-			item.rare = 3;				//The rarity of the weapon, from -1 to 13
+			item.rare = 2;				//The rarity of the weapon, from -1 to 13
 			item.UseSound = SoundID.Item71;		//The sound when the weapon is using
 			item.autoReuse = true;			//Whether the weapon can use automaticly by pressing mousebutton
 		}

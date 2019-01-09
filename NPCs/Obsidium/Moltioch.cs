@@ -17,7 +17,7 @@ namespace Laugicality.NPCs.Obsidium
             npc.height = 96;
             npc.damage = 60;
             npc.defense = 12;
-            npc.lifeMax = 900;
+            npc.lifeMax = 2000;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.aiStyle = -1;
@@ -30,13 +30,13 @@ namespace Laugicality.NPCs.Obsidium
 			base.Init();
 			head = true;
 		}
-
+        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (LaugicalityWorld.obsidiumTiles > 150 && LaugicalityWorld.downedRagnar && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0.25f;
             else return 0f;
-        }
+        }*/
 
         int attackCounter = 0;
 
@@ -66,8 +66,8 @@ namespace Laugicality.NPCs.Obsidium
             npc.width = 96;
             npc.height = 96;
             npc.damage = 30;
-            npc.defense = 35;
-            npc.lifeMax = 300;
+            npc.defense = 38;
+            npc.lifeMax = 500;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.aiStyle = -1;
@@ -87,7 +87,7 @@ namespace Laugicality.NPCs.Obsidium
             npc.height = 96;
             npc.damage = 40;
             npc.defense = 28;
-            npc.lifeMax = 900;
+            npc.lifeMax = 4000;
             npc.HitSound = SoundID.NPCHit3;
             npc.DeathSound = SoundID.NPCDeath3;
             npc.aiStyle = -1;

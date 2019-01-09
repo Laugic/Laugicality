@@ -106,7 +106,9 @@ namespace Laugicality.Projectiles
         {
             if (eDmg == 0)
                 eDmg = projectile.damage;
-            var modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+
+            Player player = Main.player[projectile.owner];
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 
             if (bitherial)
             {
@@ -152,39 +154,41 @@ namespace Laugicality.Projectiles
                 }
             }
 
-            Player player = Main.player[projectile.owner];
-            LaugicalityPlayer mPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 
             int rand = Main.rand.Next(60);
-            if (projectile.friendly)
+            if (projectile.friendly && projectile.damage > 0)
             {
-                if (mPlayer.obsidium && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.obsidium && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 6, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.frost && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.frost && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 15, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.skp && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.skp && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 44, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.douche && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.douche && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 199, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.qB && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.qB && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 46, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.meFied && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.meFied && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (mPlayer.slimey && rand == 0 && mPlayer.SoulStoneV)
+                if (modPlayer.slimey && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 116, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                }
+                if (modPlayer.etherialFrost && rand == 0 && modPlayer.SoulStoneV)
+                {
+                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
             }
 
@@ -193,7 +197,7 @@ namespace Laugicality.Projectiles
             zProjImmune = projOwner.GetModPlayer<LaugicalityPlayer>(mod).zProjImmune;
             if (projectile.friendly == false)
                 zProjImmune = false;
-            if (LaugicalityWorld.zawarudo > 0 && zProjImmune == false && zImmune == false)
+            if (Laugicality.zawarudo > 0 && zProjImmune == false && zImmune == false)
             {
                 projectile.timeLeft++;
                 if (!frozen)
@@ -249,39 +253,51 @@ namespace Laugicality.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            var mPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
 
             int rand = Main.rand.Next(4);
-            if (mPlayer.obsidium)
+            if (modPlayer.obsidium)
             {
-                target.AddBuff(24, (int)(120 + 60 * rand), false);
+                target.AddBuff(24, (int)(3 * 60 + 60 * rand), false);
             }
-            if (mPlayer.frost)
+            if (modPlayer.frost)
             {
-                target.AddBuff(BuffID.Frostburn, (int)(120 + 60 * rand), false);
+                target.AddBuff(BuffID.Frostburn, (int)(3 * 60 + 60 * rand), false);
             }
-            if (mPlayer.skp)
+            if (modPlayer.skp)
             {
-                target.AddBuff(39, (int)(120 + 60 * rand), false);
+                target.AddBuff(39, (int)(4 * 60 + 60 * rand), false);
             }
-            if (mPlayer.douche)
+            if (modPlayer.douche)
             {
-                target.AddBuff(70, (int)(120 + 60 * rand), false);
+                target.AddBuff(70, (int)(4 * 60 + 60 * rand), false);
             }
-            if (mPlayer.qB)
+            if (modPlayer.qB)
             {
-                target.AddBuff(20, (int)(120 + 60 * rand), false);
+                target.AddBuff(20, (int)(4 * 60 + 60 * rand), false);
             }
-            if (mPlayer.meFied)
+            if (modPlayer.meFied)
             {
-                target.AddBuff(mod.BuffType("Steamy"), (int)(120 + 60 * rand), false);
+                target.AddBuff(mod.BuffType("Steamy"), (int)(3 * 60 + 60 * rand), false);
             }
-            if (mPlayer.slimey)
+            if (modPlayer.slimey)
             {
-                target.AddBuff(mod.BuffType("Slimed"), (int)(120 + 60 * rand), false);
+                target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
+            }
+            if (modPlayer.etherialFrost)
+            {
+                target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
+            }
+            if (modPlayer.etherialPipes)
+            {
+                target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
+            }
+            if (modPlayer.etherCog)
+            {
+                target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
             }
 
-            if (mPlayer.crysMag && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))
+            if (modPlayer.crysMag && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))
             {
                 if (crit)
                 {

@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Allows the use of Etherial accessories outside the Etherial. \nPut above Etherial accessories to work");
+            Tooltip.SetDefault("Allows the use of Etherial accessories outside the Etherial.");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.etherable = true;
+            modPlayer.etherable = 2;
         }
         /*
         public override void AddRecipes()

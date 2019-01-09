@@ -37,7 +37,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Dioritus Mystic Burst\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
-            modPlayer.zCoolDown -= 600;
+            modPlayer.zCoolDown -= 10 * 60;
             modPlayer.andioChestguard = true;
         }
 

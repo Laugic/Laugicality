@@ -41,7 +41,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
-            Main.npcFrameCount[npc.type] = 2;
+            //Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
@@ -116,19 +116,19 @@ namespace Laugicality.NPCs.PreTrio
                 cycle++;
                 theta += Math.PI * 2;
             }
-                
+
 
             Vector2 rot;
             rot.X = (float)Math.Cos(theta) * mag;
             rot.Y = (float)Math.Sin(theta) * mag;
             Vector2 targetPos = player.Center;
             reload++;
-            if(moveType == 1)
+            if (moveType == 1)
             {
                 vMax = 10f;
                 rotRate = 120;
                 theta2 -= Math.PI / 140;
-                
+
                 if (theta2 < -Math.PI * 2)
                 {
                     theta2 += Math.PI * 2;
@@ -145,9 +145,9 @@ namespace Laugicality.NPCs.PreTrio
                 rot1.Y = (float)Math.Sin(theta) * 120;
                 targetPos = player.Center + rot1;
                 targetPos.Y -= 180;
-                if(cycle2 >= 2)
+                if (cycle2 >= 2)
                 {
-                    if(Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
+                    if (Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
                     {
                         cycle2 = 0;
                         cycle = 0;
@@ -155,7 +155,7 @@ namespace Laugicality.NPCs.PreTrio
                     }
                 }
             }
-            if(moveType == 3)
+            if (moveType == 3)
             {
                 moveType = 4;
                 vMax = 8f;
@@ -164,7 +164,7 @@ namespace Laugicality.NPCs.PreTrio
                 rot3.X = 0;
                 rot3.Y = (float)Math.Sin(theta) * mag;
                 targetPos = player.Center + rot3;
-                if(cycle >= 8)
+                if (cycle >= 8)
                 {
                     moveType++;
                     cycle = 0;
@@ -176,7 +176,7 @@ namespace Laugicality.NPCs.PreTrio
                     shoot = 1;
                 }
             }
-            if(moveType == 4)
+            if (moveType == 4)
             {
                 vMax = 12f;
                 rotRate = 120;
@@ -255,7 +255,7 @@ namespace Laugicality.NPCs.PreTrio
             {
                 shoot = 0;
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
-                if(Main.expertMode)
+                if (Main.expertMode)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("RockLooseMini"), damage / 2, 3, Main.myPlayer);
             }
             //Big Boom
@@ -275,7 +275,7 @@ namespace Laugicality.NPCs.PreTrio
                         else
                             NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("ObsidiumElemental"));
                     }
-                    else if(Main.rand.Next(5) == 0)
+                    else if (Main.rand.Next(5) == 0)
                     {
                         if (Main.rand.Next(3) == 0)
                             NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmaCaster"));
@@ -301,7 +301,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void NPCLoot()
         {
-            if (LaugicalityWorld.downedEtheria )
+            if (LaugicalityWorld.downedEtheria)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MoltenEtheria"), 1);
             }
@@ -320,13 +320,13 @@ namespace Laugicality.NPCs.PreTrio
                 if (ran == 4) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HermesBoots, 1);
                 if (ran == 5) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EnchantedBoomerang, 1);
                 if (ran == 6) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LavaCharm, 1);
-                
+
             }
 
             LaugicalityWorld.downedRagnar = true;
         }
 
-
+        /*
         public override void FindFrame(int frameHeight)
         {
             frameHeight = 96;
@@ -338,13 +338,13 @@ namespace Laugicality.NPCs.PreTrio
             {
                 npc.frame.Y = 0;
             }
-        }
+        }*/
 
 
         public override void BossLoot(ref string name, ref int potionType)
         {
             potionType = 188;
         }
-        
+
     }
 }

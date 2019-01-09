@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Core of Mysticism");
-            Tooltip.SetDefault("+1 to all Mysticism Powers");
+            Tooltip.SetDefault("+15% Mystic Damage \n+1 to all Mysticism Powers");
         }
 
         public override void SetDefaults()
@@ -28,6 +28,7 @@ namespace Laugicality.Items.Equipables
             modPlayer.destructionPower += 1;
             modPlayer.illusionPower += 1;
             modPlayer.conjurationPower += 1;
+            modPlayer.mysticDamage += .15f;
         }
         
         public override void AddRecipes()

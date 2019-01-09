@@ -26,7 +26,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
                 player.wingTimeMax = 210;
         }
 
@@ -34,7 +34,7 @@ namespace Laugicality.Items.Loot
     ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 ascentWhenFalling = 0.85f;
                 ascentWhenRising = 0.185f;
@@ -47,7 +47,7 @@ namespace Laugicality.Items.Loot
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherial || modPlayer.etherable)
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
             {
                 speed = 15f;
                 acceleration *= 4f;

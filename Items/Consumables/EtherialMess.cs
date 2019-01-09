@@ -30,9 +30,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            if (NPC.CountNPCS(mod.NPCType("Ragnar")) < 1)
-                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, mod.NPCType("Ragnar"));
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), mod.NPCType("Ragnar"), knockBack, player.whoAmI);
             return false;
         }
 

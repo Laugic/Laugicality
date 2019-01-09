@@ -22,6 +22,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(180, 50, 0), name);
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             Main.tileFrameImportant[Type] = true;
+            Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 56, //TileID.Obsidian
@@ -32,7 +33,7 @@ namespace Laugicality.Tiles
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
-            if ((i % 8) < 4)
+            if ((i % 10) < 5)
             {
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
@@ -45,7 +46,7 @@ namespace Laugicality.Tiles
         
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
         {
-                frameYOffset = i % 4 * 18;
+                frameXOffset = i % 5 * 18;
         }
         
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)

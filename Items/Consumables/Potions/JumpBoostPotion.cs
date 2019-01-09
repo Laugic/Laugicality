@@ -8,7 +8,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increases jump height");
+            Tooltip.SetDefault("Increases jump height\n5 minute duration");
         }
         public override void SetDefaults()
 		{

@@ -30,6 +30,7 @@ namespace Laugicality.NPCs.RockTwins
             projectile.hostile = true;
             projectile.penetrate = -1;
             projectile.timeLeft = 120;
+            projectile.hide = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
         }
@@ -87,6 +88,12 @@ namespace Laugicality.NPCs.RockTwins
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             player.AddBuff(mod.BuffType("ForHonor"), 300, true);
+        }
+
+        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        {
+            //drawCacheProjsBehindProjectiles.Add(index);
+            drawCacheProjsBehindNPCs.Add(index);
         }
     }
 }

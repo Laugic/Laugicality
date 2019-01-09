@@ -38,10 +38,50 @@ namespace Laugicality
         public bool mysticHold = false;
         public bool magmatic = false;
         public int mysticCrit = 4;
+        public int orionCharge = 0;
+        public int usingMysticItem = 0;
 
         /// <summary>
         /// Refactor This to be short
         /// </summary>
+        
+        private void MysticReset()
+        {
+            if (usingMysticItem > 0)
+                usingMysticItem--;
+            else
+            {
+                orionCharge = 0;
+            }
+            if (mysticSwitchCool > 0)
+                mysticSwitchCool -= mysticSwitchCoolRate;
+            if (mysticErupting > 0)
+                mysticErupting -= 1;
+            if (mysticSpiralBurst > 0)
+                mysticSpiralBurst -= 1;
+            if (mysticSteamSpiralBurst > 0)
+                mysticSteamSpiralBurst -= 1;
+            mysticCrit = 4;
+            mysticDamage = 1f;
+            mysticDuration = 1f;
+            mysticHold = false;
+
+            illusionDamage = 1f;
+            destructionDamage = 1f;
+            conjurationDamage = 1f;
+            illusionPower = 1;
+            destructionPower = 1;
+            conjurationPower = 1;
+
+            mysticSwitchCoolRate = 1;
+            mysticSandBurst = false;
+            mysticSteamBurst = false;
+            mysticShroomBurst = false;
+            mysticMarblite = false;
+            mysticEruption = false;
+            mysticEruptionBurst = false;
+        }
+
         public void mysticSwitch()
         {
             mysticMode += 1;

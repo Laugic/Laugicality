@@ -24,7 +24,8 @@ namespace Laugicality.Items.Loot
         {
             player.endurance += 0.2f;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.etherialScarf = true;
+            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
+                modPlayer.etherialScarf = true;
         }
     }
 }

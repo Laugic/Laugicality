@@ -10,12 +10,19 @@ A new biome- The Obsidium
 6 and 1/3 new Armor sets
 And lots more planned features!
 -----
+All Etherial Items have been revamped!
+
 Etherial Bosses Finished:
 King Slime
 Eye of Cthulhu
 Dune Sharkron
 Eater of Worlds
 Brain of Cthulhu
+Hypothema
+Queen Bee
+Ragnar
+Skeletron
+
 v0.12
 Added Lava Titan, Moltioch, and Molten Soul [Hardmode Obsidium Enemies]
 Revamped both of the Etheria fights

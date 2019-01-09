@@ -33,13 +33,13 @@ namespace Laugicality.NPCs.Obsidium
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
         }
-
+        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (LaugicalityWorld.obsidiumTiles > 150 && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * 0.15f;
             else return 0f;
-        }
+        }*/
 
         public override void AI()
         {

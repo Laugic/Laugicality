@@ -29,10 +29,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (NPC.CountNPCS(NPCID.MoonLordCore) < 1)
-                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.MoonLordCore);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.MoonLordCore, knockBack, player.whoAmI);
             return false;
         }
 

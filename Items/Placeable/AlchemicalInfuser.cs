@@ -77,6 +77,34 @@ namespace Laugicality.Items.Placeable
             Mysrecipe.AddTile(134);
             Mysrecipe.SetResult(null, "MysticEmblem");
             Mysrecipe.AddRecipe();
+
+            ModRecipe Enchrecipe1 = new ModRecipe(mod);
+            Enchrecipe1.AddIngredient(ItemID.SilverBroadsword);
+            Enchrecipe1.AddIngredient(null, "ArcaneShard", 12);
+            Enchrecipe1.AddIngredient(null, "AquosDust", 6);
+            Enchrecipe1.AddIngredient(null, "RubrumDust", 4);
+            Enchrecipe1.AddTile(mod.TileType("AlchemicalInfuser"));
+            Enchrecipe1.SetResult(ItemID.EnchantedSword);
+            Enchrecipe1.AddRecipe();
+
+            ModRecipe Enchrecipe2 = new ModRecipe(mod);
+            Enchrecipe2.AddIngredient(ItemID.TungstenBroadsword);
+            Enchrecipe2.AddIngredient(null, "ArcaneShard", 12);
+            Enchrecipe2.AddIngredient(null, "AquosDust", 6);
+            Enchrecipe2.AddIngredient(null, "RubrumDust", 4);
+            Enchrecipe2.AddTile(mod.TileType("AlchemicalInfuser"));
+            Enchrecipe2.SetResult(ItemID.EnchantedSword);
+            Enchrecipe2.AddRecipe();
+
+            ModRecipe Starfuryrecipe = new ModRecipe(mod);
+            Starfuryrecipe.AddRecipeGroup("GldBars", 12);
+            Starfuryrecipe.AddIngredient(ItemID.SunplateBlock, 24);
+            Starfuryrecipe.AddIngredient(null, "ArcaneShard", 8);
+            Starfuryrecipe.AddIngredient(null, "RegisDust", 6);
+            Starfuryrecipe.AddIngredient(null, "AuraDust", 4);
+            Starfuryrecipe.AddTile(mod.TileType("AlchemicalInfuser"));
+            Starfuryrecipe.SetResult(ItemID.Starfury);
+            Starfuryrecipe.AddRecipe();
         }
     }
 }

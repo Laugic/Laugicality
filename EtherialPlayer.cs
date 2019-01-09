@@ -6,6 +6,7 @@ using Terraria.ModLoader.IO;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
 
 namespace Laugicality
 {
@@ -34,7 +35,13 @@ namespace Laugicality
         public bool etherialSpores = false;
         public bool etherialStone = false;
         public bool etherialTruffle = false;
-        public bool etherable = false;
+        public int etherable = 0;
+        public float etherBonesDamageBoost = 0;
+        public bool etherBonesBoost = false;
+        public bool grappleReturned = false;
+        public bool justiceCooldown = false;
+        public bool annihilationBoost = false;
+        public float annihilationDamageBoost = 0;
 
 
         public void CycleBysmalPowers(int newPower)
@@ -46,6 +53,8 @@ namespace Laugicality
         
         private void ResetEtherial()
         {
+            annihilationBoost = false;
+            justiceCooldown = false;
             etherialGel = false;
             etherVision = false;
             etherialScarf = false;
@@ -56,6 +65,7 @@ namespace Laugicality
             etherialBees = false;
             etherialMagma = false;
             etherialBones = false;
+            etherBonesBoost = false;
             etherialAnDio = false;
             etherialTwins = false;
             etherialDestroyer = false;
@@ -66,17 +76,19 @@ namespace Laugicality
             etherialSpores = false;
             etherialStone = false;
             etherialTruffle = false;
-            etherable = false;
+            if(etherable > 0)
+                etherable -= 1;
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if(etherialBrain && !etherialBrainCooldown && (LaugicalityWorld.downedEtheria || etherable))
+            CheckBysmalPowers();
+            if (etherialBrain && !etherialBrainCooldown && (LaugicalityWorld.downedEtheria || etherable > 0))
             {
                 npc.AddBuff(mod.BuffType("FragmentedMind"), 15 * 60, false);
                 if (damage >= player.statLife)
                 {
-                    if (etherialBrain && !etherialBrainCooldown && (LaugicalityWorld.downedEtheria || etherable))
+                    if (etherialBrain && !etherialBrainCooldown && (LaugicalityWorld.downedEtheria || etherable > 0))
                     {
                         player.AddBuff(mod.BuffType("FragmentedMind"), 60 * 60 * 3, true);
                         player.immune = true;
@@ -88,13 +100,35 @@ namespace Laugicality
                     }
                 }
             }
+            if(etherialTank)
+            {
+                npc.life -= (int)(Math.Abs(player.velocity.X) * 500);
+                if (npc.life <= 0)
+                {
+                    npc.life = 1;
+                }
+            }
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
+            CheckBysmalPowers();
+            if (etherialBones)
+            {
+                player.AddBuff(mod.BuffType("EtherBones"), 10 * 60, true);
+                etherBonesDamageBoost += ((float)damage / (float)player.statLifeMax2) * 2;
+            }
+            if(etherialTwins && !justiceCooldown)
+            {
+                player.AddBuff(mod.BuffType("JusticeCooldown"), 90 * 60, true);
+                player.statLife += damage;
+                player.immune = true;
+                player.immuneTime = 1 * 60;
+                return false;
+            }
             if (damage >= player.statLife)
             {
-                if (etherialScarf && !etherialScarfCooldown && (LaugicalityWorld.downedEtheria || etherable))
+                if (etherialScarf && !etherialScarfCooldown && (LaugicalityWorld.downedEtheria || etherable > 0))
                 {
                     player.AddBuff(mod.BuffType("EtherialScarfCooldown"), 60 * 60 * 1, true);
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
@@ -149,7 +183,7 @@ namespace Laugicality
                 if (bysmalPowers.Contains(NPCID.DukeFishron))
                     etherialTruffle = true;
                 if (bysmalPowers.Contains(NPCID.MoonLordCore))
-                    etherable = true;
+                    etherable = 2;
             }
         }
 
@@ -159,49 +193,33 @@ namespace Laugicality
             if(etherialGel)
             {
                 player.jumpSpeedBoost += 5.0f;
-            }
-            if (etherialFrost)
-            {
-                player.meleeCrit += 30;
-                player.rangedCrit += 30;
-            }
-            if (etherialBees)
-            {
+                player.moveSpeed += .5f;
                 player.maxRunSpeed += 3f;
-                player.moveSpeed += .3f;
+            }
+            if (etherialBees && player.honey)
+            {
+
             }
             if (etherialMagma)
             {
-                modPlayer.mysticDuration += 0.6f;
-                player.statDefense += 8;
-                player.thrownVelocity += 0.6f;
+                if (player.lavaWet)
+                    player.AddBuff(mod.BuffType("EtherialRagnar"), 15 * 60);
             }
             if (etherialBones)
             {
-                player.thrownDamage += 0.2f;
-                player.rangedDamage += 0.2f;
-                player.magicDamage += 0.2f;
-                player.minionDamage += 0.2f;
-                player.meleeDamage += 0.2f;
+
             }
             if (etherialAnDio)
             {
                 modPlayer.zProjImmune = true;
             }
-            if (etherialTwins)
-            {
-                modPlayer.conjurationDamage += .2f;
-                modPlayer.conjurationPower += 2;
-            }
             if (etherialDestroyer)
             {
-                modPlayer.destructionDamage += .2f;
-                modPlayer.destructionPower += 2;
+
             }
             if (etherialPrime)
             {
-                modPlayer.illusionDamage += .2f;
-                modPlayer.illusionPower += 2;
+
             }
             if (etherCog)
             {
@@ -214,24 +232,170 @@ namespace Laugicality
             }
             if (etherialTank)
             {
-                modPlayer.mysticDamage += 0.3f;
+                player.jumpSpeedBoost += 3.0f;
+                player.maxRunSpeed += 4f;
+                player.moveSpeed += 4f;
+
             }
             if (etherialSpores)
             {
-                player.thrownCrit += 30;
-                player.rangedCrit += 30;
-                player.magicCrit += 30;
-                player.meleeCrit += 30;
+
             }
             if (etherialStone)
             {
-                player.lifeRegen += 12;
+
             }
             if (etherialTruffle)
             {
-                player.jumpSpeedBoost += 5.0f;
-                player.maxRunSpeed += .5f;
-                player.moveSpeed += .25f;
+                player.gills = true;
+                player.ignoreWater = true;
+                player.accFlipper = true;
+                if(player.wet)
+                {
+                    player.jumpSpeedBoost += 3.0f;
+                    player.moveSpeed += .5f;
+                    player.maxRunSpeed += 3f;
+                }
+            }
+        }
+
+
+        private void GetEtherialAccessoriesPost()
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if (etherialGel)
+            {
+
+            }
+            if (etherialBees && player.honey)
+            {
+                player.lifeRegen += 8;
+                player.statDefense += 15;
+                float dmgBoost = .15f;
+                player.thrownDamage += dmgBoost;
+                player.rangedDamage += dmgBoost;
+                player.magicDamage += dmgBoost;
+                player.minionDamage += dmgBoost;
+                player.meleeDamage += dmgBoost;
+            }
+            if (etherialMagma)
+            {
+                player.statLifeMax2 = (int)(player.statLifeMax2 * 1.25f);
+            }
+            if (etherialBones)
+            {
+                if(etherBonesBoost)
+                {
+                    if (etherBonesDamageBoost > 5)
+                        etherBonesDamageBoost = 5;
+                    player.thrownDamage += etherBonesDamageBoost;
+                    player.rangedDamage += etherBonesDamageBoost;
+                    player.magicDamage += etherBonesDamageBoost;
+                    player.minionDamage += etherBonesDamageBoost;
+                    player.meleeDamage += etherBonesDamageBoost;
+                }
+                else
+                {
+                    etherBonesDamageBoost = 0;
+                }
+            }
+            if (etherialAnDio)
+            {
+
+            }
+            if (etherialDestroyer)
+            {
+                int originalDef = player.statDefense;
+                float globalDmg = 1;
+                globalDmg = player.meleeDamage - 1;
+                if (player.rangedDamage - 1 < globalDmg)
+                    globalDmg = player.rangedDamage - 1;
+                if (player.magicDamage - 1 < globalDmg)
+                    globalDmg = player.magicDamage - 1;
+                if (player.thrownDamage - 1 < globalDmg)
+                    globalDmg = player.thrownDamage - 1;
+                if (player.minionDamage - 1 < globalDmg)
+                    globalDmg = player.minionDamage - 1;
+                if (globalDmg > 0)
+                {
+                    if (globalDmg > 2)
+                        globalDmg = 2;
+                    player.statDefense += (int)(originalDef * globalDmg);
+                }
+            }
+            if (etherialPrime)
+            {
+                float lifePercentage = (float)(player.statLifeMax2 - player.statLife) / (float)player.statLifeMax2;
+                player.thrownDamage += lifePercentage;
+                player.rangedDamage += lifePercentage;
+                player.magicDamage += lifePercentage;
+                player.minionDamage += lifePercentage;
+                player.meleeDamage += lifePercentage;
+            }
+            if (etherCog)
+            {
+                if (annihilationBoost)
+                {
+                    if (annihilationDamageBoost > 5)
+                        annihilationDamageBoost = 5;
+                    player.thrownDamage += annihilationDamageBoost;
+                    player.rangedDamage += annihilationDamageBoost;
+                    player.magicDamage += annihilationDamageBoost;
+                    player.minionDamage += annihilationDamageBoost;
+                    player.meleeDamage += annihilationDamageBoost;
+                }
+                else
+                {
+                    annihilationDamageBoost = 0;
+                }
+            }
+            if (etherialPipes)
+            {
+
+            }
+            if (etherialTank)
+            {
+                float moveSpeed = 0;
+                moveSpeed = (float)Math.Abs(player.velocity.X) / 25f;
+                player.thrownDamage += moveSpeed;
+                player.rangedDamage += moveSpeed;
+                player.magicDamage += moveSpeed;
+                player.minionDamage += moveSpeed;
+                player.meleeDamage += moveSpeed;
+            }
+            if (etherialSpores)
+            {
+                if (player.grapCount > 0)
+                {
+                    grappleReturned = false;
+                    player.lifeRegen += 15;
+                    float dmgBoost = .5f;
+                    player.thrownDamage += dmgBoost;
+                    player.rangedDamage += dmgBoost;
+                    player.magicDamage += dmgBoost;
+                    player.minionDamage += dmgBoost;
+                    player.meleeDamage += dmgBoost;
+                }
+            }
+            if (etherialStone)
+            {
+                player.lifeRegen += 18;
+                player.statDefense += 20;
+                player.statLifeMax2 += player.statDefense;
+            }
+            if (etherialTruffle)
+            {
+                if(player.wet)
+                {
+                    player.lifeRegen += 12;
+                    player.statDefense += 35;
+                    float dmgBoost = .4f;
+                    player.thrownDamage += dmgBoost;
+                    player.rangedDamage += dmgBoost;
+                    player.magicDamage += dmgBoost;
+                    player.minionDamage += dmgBoost;
+                    player.meleeDamage += dmgBoost;
+                }
             }
         }
     }

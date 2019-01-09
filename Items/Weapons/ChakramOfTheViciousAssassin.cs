@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons
             item.noUseGraphic = true;
 
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -47,7 +47,7 @@ namespace Laugicality.Items.Weapons
             recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
 
     }
 }

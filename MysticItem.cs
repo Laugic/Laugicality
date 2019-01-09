@@ -166,19 +166,18 @@ namespace Laugicality
             int originalDmg = damage;
             damage = (int)(damage * modPlayer.mysticDamage);
             float globalDmg = 1;
-            globalDmg = player.meleeDamage - 1;
-            if(player.rangedDamage - 1 < globalDmg)
-                globalDmg = player.rangedDamage - 1;
-            if (player.magicDamage - 1 < globalDmg)
-                globalDmg = player.magicDamage - 1;
-            if (player.thrownDamage - 1 < globalDmg)
-                globalDmg = player.thrownDamage - 1;
-            if (player.minionDamage - 1 < globalDmg)
-                globalDmg = player.minionDamage - 1;
-            if (globalDmg > 0)
-                damage = damage + (int)(originalDmg * globalDmg);
+            globalDmg = player.meleeDamage;
+            if(player.rangedDamage < globalDmg)
+                globalDmg = player.rangedDamage;
+            if (player.magicDamage < globalDmg)
+                globalDmg = player.magicDamage;
+            if (player.thrownDamage < globalDmg)
+                globalDmg = player.thrownDamage;
+            if (player.minionDamage < globalDmg)
+                globalDmg = player.minionDamage;
+            if (globalDmg > 1)
+                damage = (int)(originalDmg * globalDmg);
             modPlayer.mysticHold = true;
-
         }
 
         public override void HoldItem(Player player)

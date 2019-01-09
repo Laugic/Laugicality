@@ -31,13 +31,13 @@ namespace Laugicality.NPCs.Obsidium
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
         }
-
+        /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (LaugicalityWorld.obsidiumTiles > 150)
                 return SpawnCondition.Cavern.Chance * 0.35f;
             else return 0f;
-        }
+        }*/
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.coginatorHits += 1;
@@ -56,10 +56,10 @@ namespace Laugicality.NPCs.Obsidium
             }
             else
             {
-                if (Main.rand.Next(4) == 0)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
-                else
+                if (NPC.downedBoss2)
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
+                else
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
             }
         }
     }

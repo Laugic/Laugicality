@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
         {
             float dmgBoost = .1f;
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherable || LaugicalityWorld.downedEtheria)
+            if (modPlayer.etherable > 0|| LaugicalityWorld.downedEtheria)
                 dmgBoost += .1f;
 
             player.thrownDamage += dmgBoost;

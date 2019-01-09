@@ -12,10 +12,10 @@ namespace Laugicality.Projectiles
 		{
 			DisplayName.SetDefault("Brass Arrow");     
 		}
-
-		public override void SetDefaults()
-		{
-			projectile.width = 18;               
+        
+        public override void SetDefaults()
+        {
+            projectile.width = 18;               
 			projectile.height = 18;              
 			projectile.aiStyle = 1;             
 			projectile.friendly = true;         
@@ -30,14 +30,22 @@ namespace Laugicality.Projectiles
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-			projectile.Kill();
-			return false;
+            projectile.penetrate--;
+            Vector2 targetPos;
+            targetPos.X = Main.MouseWorld.X;
+            targetPos.Y = Main.MouseWorld.Y;
+            projectile.velocity = projectile.DirectionTo(targetPos) * 22f;
+
+            return false;
 		}
         
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-                target.AddBuff(mod.BuffType("Steamy"), 90, true);
+            Vector2 targetPos;
+            targetPos.X = Main.MouseWorld.X;
+            targetPos.Y = Main.MouseWorld.Y;
+            projectile.velocity = projectile.DirectionTo(targetPos) * 22f;
         }
     }
 }

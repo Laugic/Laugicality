@@ -54,7 +54,7 @@ namespace Laugicality.Items.Weapons
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, mod.ProjectileType("WarlockStaff1"), (int)(item.damage) * 4, 3, Main.myPlayer);
             }
             return true;
-        }
+        }/*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -63,6 +63,6 @@ namespace Laugicality.Items.Weapons
             recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

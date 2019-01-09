@@ -5,6 +5,11 @@ using Terraria.ModLoader;
 using System;
 using Laugicality.Etherial;
 using System.IO;
+using System.Threading;
+using Laugicality.UI;
+using Terraria.UI;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Laugicality //Laugicality.cs
 {
@@ -14,6 +19,10 @@ namespace Laugicality //Laugicality.cs
         public static string GithubUserName { get { return "Laugic"; } }
         public static string GithubProjectName { get { return "Laugicality"; } }
 
+
+        //private UserInterface mysticaUserInterface;
+        //internal LaugicalityUI mysticaUI;
+
         internal static ModHotKey ToggleMystic;
         internal static ModHotKey ToggleSoulStoneV;
         internal static ModHotKey ToggleSoulStoneM;
@@ -22,6 +31,9 @@ namespace Laugicality //Laugicality.cs
 
         //Calling Mod References
         Mod calMod = ModLoader.GetMod("Calamity");
+
+        //Timestop
+        public static int zawarudo = 0;
 
         public Laugicality()
         {
@@ -35,7 +47,6 @@ namespace Laugicality //Laugicality.cs
             };
 
         }
-        
         //Recipe Groups
         public override void AddRecipeGroups()
         {
@@ -81,6 +92,7 @@ namespace Laugicality //Laugicality.cs
                 ItemID.SilverBar,
                 ItemID.TungstenBar
             });
+
             RecipeGroup.RegisterGroup("SilverBars", Sgroup);
 
             //Titanium Bars
@@ -99,7 +111,8 @@ namespace Laugicality //Laugicality.cs
                 ItemID.LargeSapphire,
                 ItemID.LargeEmerald,
                 ItemID.LargeRuby,
-                ItemID.LargeDiamond
+                ItemID.LargeDiamond,
+                ItemID.LargeAmber
             });
             RecipeGroup.RegisterGroup("LargeGems", LGgroup);
 
@@ -147,6 +160,7 @@ namespace Laugicality //Laugicality.cs
         public override void Load()
         {
             instance = this;
+            zawarudo = 0;
             if (!Main.dedServ)
             {                                                                                            //Foreground Filter (RGB)
                 Filters.Scene["Laugicality:Etherial"] = new Filter(new EtherialShader("FilterMiniTower").UseColor(0.1f, 0.4f, 1.0f).UseOpacity(0.5f), EffectPriority.VeryHigh);
@@ -168,6 +182,12 @@ namespace Laugicality //Laugicality.cs
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ItemType("SteamTrainMusicBox"), TileType("SteamTrainMusicBox"));
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ItemType("EtheriaMusicBox"), TileType("EtheriaMusicBox"));
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/GreatShadow"), ItemType("GreatShadowMusicBox"), TileType("GreatShadowMusicBox"));
+
+                /*
+                mysticaUI = new LaugicalityUI();
+                mysticaUI.Activate();
+                mysticaUserInterface = new UserInterface();
+                mysticaUserInterface.SetState(mysticaUI);*/
             }
             ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
             ToggleSoulStoneV = RegisterHotKey("Toggle Accessory Visual FX", "V");
@@ -186,8 +206,11 @@ namespace Laugicality //Laugicality.cs
                 
                 if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
                 {
-                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
-                    musicPriority = MusicPriority.BiomeLow;
+                    if(Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
+                    else
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+                    musicPriority = MusicPriority.BiomeHigh;
                 }
                 if (LaugicalityWorld.downedEtheria)
                 {
@@ -195,17 +218,49 @@ namespace Laugicality //Laugicality.cs
                     musicPriority = MusicPriority.Environment;
                 }
             }
+
+            if (zawarudo > 0)
+                zawarudo--;
         }
+
+        /*
+        public override void UpdateUI(GameTime gameTime)
+        {
+            if (mysticaUserInterface != null && LaugicalityUI.visible)
+                mysticaUserInterface.Update(gameTime);
+        }
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+            int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+            if (MouseTextIndex != -1)
+            {
+                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(
+                    "Enigma: Mystica",
+                    delegate
+                    {
+                        if (LaugicalityUI.visible)
+                        {
+                            mysticaUI.Draw(Main.spriteBatch);
+                        }
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
+        }*/
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
+            int zTime = reader.ReadInt32();
+            zawarudo = zTime;
+            Main.NewText(zTime.ToString(), 150, 50, 50);
             EnigmaMessageType msgType = (EnigmaMessageType)reader.ReadByte();
             switch (msgType)
             {
                 case EnigmaMessageType.ZaWarudoTime:
-                    int zTime = reader.ReadInt32();
-                    LaugicalityWorld world = GetModWorld<LaugicalityWorld>();
-                    LaugicalityWorld.zawarudo = zTime;
+                    int zTime2 = reader.ReadInt32();
+                    zawarudo = zTime2;
+                    Main.NewText(zTime2.ToString(), 150, 50, 50);
                     break;
                 default:
                     ErrorLogger.Log("Laugicality: Unknown Message type: " + msgType);

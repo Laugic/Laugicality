@@ -8,7 +8,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Destruction Damage, +1 Destruction Power");
+            Tooltip.SetDefault("+10% Mystic Damage\n5 minute duration");
         }
         public override void SetDefaults()
 		{

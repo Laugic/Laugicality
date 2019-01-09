@@ -50,7 +50,7 @@ namespace Laugicality.Items.Weapons
                     Projectile.NewProjectile((int)(target.position.X), (int)(target.position.Y) - 1200, 0, 0, mod.ProjectileType("HolyOrigin"), (int)(item.damage), 3, Main.myPlayer);
                 }
             }
-        }
+        }/*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -59,6 +59,6 @@ namespace Laugicality.Items.Weapons
             recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }
