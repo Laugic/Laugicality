@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Tank Crystal");
             Tooltip.SetDefault("+10% Damage reduction \n Attackers take damage");
         }
 

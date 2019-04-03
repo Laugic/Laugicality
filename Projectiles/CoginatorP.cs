@@ -17,7 +17,7 @@ namespace Laugicality.Projectiles
             projectile.friendly = true;
             projectile.aiStyle = 1;
             projectile.thrown = true;
-            projectile.penetrate = 6;      //this is how many enemy this projectile penetrate before desapear
+            projectile.penetrate = 3;      //this is how many enemy this projectile penetrate before desapear
             projectile.extraUpdates = 1;
             aiType = 507;
         }

@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Magma Crystal");
             Tooltip.SetDefault("Provides immunity to lava \nYou can walk on liquids");
         }
 

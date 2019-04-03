@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Mage Crystal");
             Tooltip.SetDefault("Increases knockback, magic damage, and mana regen");
         }
 

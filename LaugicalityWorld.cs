@@ -60,15 +60,16 @@ namespace Laugicality
             bysmal = false;
             obsidiumPosition = 0;
         }
-        
+
         public override void PostUpdate()
         {
-            if(obEnf == false && downedRagnar)
-            {
-                obEnf = true;
-                Main.NewText("Fury runs through the Obsidium Caverns.", 150, 50, 50);
-            }
             zawarudo = Laugicality.zawarudo;
+
+            if (downedEtheria)
+            {
+                Main.dayTime = false;
+                Main.time = 16200.0;
+            }
         }
 
         public override TagCompound Save()
@@ -119,6 +120,7 @@ namespace Laugicality
             obsidiumHeart = tag.GetBool("obsidiumHeart");
             bysmal = tag.GetBool("bysmal");
             power = tag.GetInt("power");
+            DryTheObsidium();
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -251,7 +253,11 @@ namespace Laugicality
         private static bool TileCheckSafe(int i, int j)
         {
             if (i > 0 && i < Main.maxTilesX - 1 && j > 0 && j < Main.maxTilesY - 1)
+            {
+                if (TileID.Sets.BasicChest[Main.tile[i, j].type])
+                    return false;
                 return true;
+            }
             return false;
         }
 

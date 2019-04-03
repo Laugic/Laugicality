@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Core of Mysticism");
-            Tooltip.SetDefault("+15% Mystic Damage \n+1 to all Mysticism Powers");
+            Tooltip.SetDefault("+15% Mystic Damage\n25% more Mystica is transfered when used");
         }
 
         public override void SetDefaults()
@@ -25,9 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.destructionPower += 1;
-            modPlayer.illusionPower += 1;
-            modPlayer.conjurationPower += 1;
+            modPlayer.globalAbsorbRate += .25f;
             modPlayer.mysticDamage += .15f;
         }
         

@@ -36,8 +36,10 @@ namespace Laugicality.Items.Useables
         {
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(null, "SteamBar", 6);
-                recipe.AddIngredient(ItemID.Cog, 40);
+                recipe.AddIngredient(null, "SteamBar", 8);
+                recipe.AddIngredient(null, "Gear", 20);
+                recipe.AddIngredient(null, "AndesiaCore", 1);
+                recipe.AddIngredient(null, "DioritusCore", 1);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);

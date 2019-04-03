@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 50% and jump height by 2\nReduces the cooldown between Mystic Bursts.");
+            Tooltip.SetDefault("Steam powered!\nIncreases Mystic damage by 12%\n+20% Overflow\nIncreases movement speed by 50% and jump height by 2\nReduces the cooldown between Mystic Bursts.");
         }
 
         public override void SetDefaults()
@@ -27,6 +27,7 @@ namespace Laugicality.Items.Loot
             player.moveSpeed += 0.5f;
             modPlayer.mysticDamage += 0.12f;
             modPlayer.mysticSwitchCoolRate += 1;
+            modPlayer.globalOverflow += .2f;
         }
     }
 }

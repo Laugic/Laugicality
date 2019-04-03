@@ -55,12 +55,15 @@ namespace Laugicality.Tiles
         
         public override void RandomUpdate(int i, int j)
         {
-            bool spawned = false;
-            spawned = LavaGemSpawn(i, j);
-            if (!spawned)
-                spawned = SpawnRocks(i, j);
-            if (!spawned)
-                spawned = LargeLavaGemSpawn(i, j);
+            if (Main.rand.Next(8) == 0)
+            {
+                bool spawned = false;
+                spawned = LavaGemSpawn(i, j);
+                if (!spawned)
+                    spawned = SpawnRocks(i, j);
+                if (!spawned)
+                    spawned = LargeLavaGemSpawn(i, j);
+            }
         }
 
         private bool LavaGemSpawn(int i, int j)

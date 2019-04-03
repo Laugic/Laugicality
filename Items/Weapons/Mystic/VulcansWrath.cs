@@ -14,7 +14,6 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class VulcansWrath : MysticItem
     {
-        public int damage = 0;
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Vulcan's Wrath");
@@ -40,15 +39,16 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
 		}
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1) {
+            if (modPlayer.mysticMode == 1)
+            {
                 int numberProjectiles = Main.rand.Next(2, 5);
                 for (int i = 0; i < numberProjectiles; i++)
                 {
-                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); // 30 degree spread.
-                                                                                                                    // If you want to randomize the speed to stagger the projectiles
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); 
+
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 242, damage, knockBack, player.whoAmI);
@@ -60,23 +60,20 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 46 + 8 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 36 - (3 * modPlayer.destructionPower);
-            if (item.useTime <= 0)
-                item.useTime = 2;
+            item.damage = 54;
+            item.useTime = 32;
             item.useAnimation = (int)(item.useTime / 2);
-            item.knockBack = 4 + 2 * modPlayer.destructionPower;
+            item.knockBack = 6;
             item.shootSpeed = 14f;
             item.shoot = 242;
             item.UseSound = SoundID.Item1;
             item.scale = 1.5f;
+            luxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 48;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 10;
             item.useAnimation = item.useTime;
             item.knockBack = 5;
@@ -85,12 +82,12 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
+            visCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 48;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 30;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
@@ -99,6 +96,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
+            mundusCost = 12;
         }
 
         public override void AddRecipes()

@@ -49,7 +49,7 @@ namespace Laugicality.NPCs.Etheria
             LaugicalityVars.ENPCs.Add(npc.type);
             delay = 0;
             DisplayName.SetDefault("Etheria");
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 5;
         }
 
         public override void SetDefaults()
@@ -80,8 +80,8 @@ namespace Laugicality.NPCs.Etheria
             attackRelMax = 0;
             attack = 0;
             bitherial = true;
-            npc.width = 128;
-            npc.height = 128;
+            npc.width = 190;
+            npc.height = 240;
             npc.damage = 70;
             npc.defense = 25;
             npc.aiStyle = 0;
@@ -155,57 +155,46 @@ namespace Laugicality.NPCs.Etheria
             npc.spriteDirection = 0;
             bitherial = true;
             npc.rotation = 0;
-            npc.scale = 1.5f +  (float)(phase)/10f;
-            npc.height = (int)(npc.scale * 128);
-            npc.width = (int)(npc.scale * 128);
+            if (phase > 2)
+                npc.scale = 1f + (float)(phase) / 10f;
+            else
+                npc.scale = 1f;
+            npc.height = (int)(npc.scale * 190);
+            npc.width = (int)(npc.scale * 240);
             //Setting Phases
-            if (npc.life < npc.lifeMax * .9 && phase == 0 )
+            if (npc.life < npc.lifeMax * .75 && phase == 0 )
             {
                 phase += 1;
                 if (Main.expertMode)
-                    attackDelMax -= 20;
+                    attackDelMax -= 30;
                 npc.netUpdate = true;
             }
-            if (npc.life < npc.lifeMax * .75 && phase == 1 )
+            if (npc.life < npc.lifeMax * .5 && phase == 1 )
             {
                 phase += 1;
                 if (Main.expertMode)
-                    attackDelMax -= 20;
+                    attackDelMax -= 30;
                 if (LaugicalityWorld.downedEtheria && Main.netMode != 1)
                 {
                     NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("EtheriaDecoy"));
                 }
                 npc.netUpdate = true;
             }
-            if (npc.life < npc.lifeMax * .5 && phase == 2)
+            if (npc.life < npc.lifeMax * .25 && phase == 2 && Main.expertMode && LaugicalityWorld.downedEtheria)
+            {
+                npc.life = (int)(npc.lifeMax * .5);
+                phase += 1;
+                if (Main.expertMode)
+                    attackDelMax -= 30;
+                npc.netUpdate = true;
+            }
+            if (npc.life < npc.lifeMax * .25 && phase == 3 && Main.expertMode && LaugicalityWorld.downedEtheria)
             {
                 phase += 1;
                 if (Main.expertMode)
-                    attackDelMax -= 20;
-                npc.netUpdate = true;
-            }
-            if (npc.life < npc.lifeMax * .25 && phase == 3 )
-            {
-                phase += 1;
-                if (Main.expertMode)
-                    attackDelMax -= 20;
-                npc.netUpdate = true;
-            }
-            if (npc.life < npc.lifeMax * .10 && phase == 4 && Main.expertMode && LaugicalityWorld.downedEtheria)
-            {
-                npc.life = (int)( npc.lifeMax * .33 );
-                phase += 1;
-                attackDelMax -= 20;
-                if (LaugicalityWorld.downedEtheria )
-                {
+                    attackDelMax -= 30;
+                if(Main.netMode != 1)
                     NPC.NewNPC((int)npc.position.X + Main.rand.Next(0, npc.width), (int)npc.position.Y + Main.rand.Next(0, npc.height), mod.NPCType("EtheriaDecoy"));
-                }
-                npc.netUpdate = true;
-            }
-            if (npc.life < npc.lifeMax * .20 && phase == 5 && Main.expertMode && LaugicalityWorld.downedEtheria)
-            {
-                phase += 1;
-                attackDelMax -= 20;
                 npc.netUpdate = true;
             }
 

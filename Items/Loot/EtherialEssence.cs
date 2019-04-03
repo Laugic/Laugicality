@@ -22,15 +22,15 @@ namespace Laugicality.Items.Loot
             item.useStyle = 1;
             item.value = 0;
         }
-        /*
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(77);
-            recipe.AddIngredient(null, "ObsidiumOre", 3);
-            recipe.SetResult(this);
+            recipe.AddTile(TileID.DemonAltar);
+            recipe.AddIngredient(null, "EtherialEssence", 10);
+            recipe.SetResult(ItemID.TruffleWorm);
             recipe.AddRecipe();
-        }*/
+        }
         
     }
 }

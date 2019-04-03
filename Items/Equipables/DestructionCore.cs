@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Destruction Damage \n+1 Destruction Power");
+            Tooltip.SetDefault("+10% Destruction Damage\n+25% Destruction Overflow\nAbsorb 25% more Lux when using Vis and Mundus");
         }
 
         public override void SetDefaults()
@@ -25,16 +25,17 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.destructionDamage += .1f;
-            modPlayer.destructionPower += 1;
+            modPlayer.luxOverflow += .25f;
+            modPlayer.luxAbsorbRate += .25f;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Diamond, 1);
-            recipe.AddIngredient(ItemID.Topaz, 1);
             recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "FrostShard", 1);
+            recipe.AddIngredient(null, "DarkShard", 1);
+            recipe.AddIngredient(null, "AuraDust", 2);
+            recipe.AddIngredient(null, "AlbusDust", 2);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

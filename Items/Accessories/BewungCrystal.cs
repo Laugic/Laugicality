@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Movement Crystal");
             Tooltip.SetDefault("Slows falling speed \n+25% Movement speed");
         }
 

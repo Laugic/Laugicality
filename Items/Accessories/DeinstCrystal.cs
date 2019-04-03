@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Manipulation Crystal");
             Tooltip.SetDefault("Increases placement speed and +1 range \n+25% Mining speed");
         }
 

@@ -27,6 +27,5 @@ namespace Laugicality.Buffs
             player.magicCrit += 10;
             player.meleeCrit += 10;
         }
-        
 	}
 }

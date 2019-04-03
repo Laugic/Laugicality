@@ -9,15 +9,13 @@ namespace Laugicality.Buffs
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Conjuration Power");
-			Description.SetDefault("'Otherworldly energy strengthens you.'\n+1 to all Mystic Powers");
+			Description.SetDefault("'Otherworldly energy strengthens you.'\n+50% Overflow");
 			Main.buffNoSave[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).destructionPower += 1;
-            player.GetModPlayer<LaugicalityPlayer>(mod).illusionPower += 1;
-            player.GetModPlayer<LaugicalityPlayer>(mod).conjurationPower += 1;
+            player.GetModPlayer<LaugicalityPlayer>(mod).globalOverflow += .5f;
         }
         
 	}

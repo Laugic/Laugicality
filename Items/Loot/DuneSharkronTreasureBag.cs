@@ -40,6 +40,7 @@ namespace Laugicality.Items.Loot
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(mod.ItemType("AncientShard"), Main.rand.Next(2,4));
+            player.QuickSpawnItem(mod.ItemType("Crystilla"), Main.rand.Next(6, 11));
             player.QuickSpawnItem(mod.ItemType("Pyramind"), 1);
             int ran = Main.rand.Next(1, 5);
             if (ran == 1) player.QuickSpawnItem(934, 1);

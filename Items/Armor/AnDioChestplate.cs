@@ -36,12 +36,21 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "After staying on a Mysticism for 5 seconds, increase its power by 1\nTime stop lasts longer\nAutomatically stops time after taking a hit below 20% life";
+            player.setBonus = "+50 to all Potentias\n25% Reduced Potentia useage\nThe lower your Potentia, the higher your Mystic damage\nPotentia does not decrease when time is stopped\nTime stop lasts longer\nAutomatically stops time after taking a hit below 25% life";
             modPlayer.zaWarudoDuration += 2 * 60;
             modPlayer.andioChestplate = true;
-            modPlayer.destructionPower += 1;
-            modPlayer.illusionPower += 1;
-            modPlayer.conjurationPower += 1;
+            modPlayer.luxMax += 50;
+            modPlayer.visMax += 50;
+            modPlayer.mundusMax += 50;
+            if (modPlayer.mysticMode == 1 && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))
+                modPlayer.mysticDamage += (1 - (modPlayer.lux / (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))) / 5;
+            if (modPlayer.mysticMode == 2 && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost))
+                modPlayer.mysticDamage += (1 - (modPlayer.vis / (modPlayer.visMax + modPlayer.visMaxPermaBoost))) / 5;
+            if (modPlayer.mysticMode == 3 && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))
+                modPlayer.mysticDamage += (1 - (modPlayer.mundus / (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))) / 5;
+            modPlayer.globalPotentiaUseRate *= .75f;
+            if (Laugicality.zawarudo > 0)
+                modPlayer.globalPotentiaUseRate = 0;
         }
 
         public override void AddRecipes()

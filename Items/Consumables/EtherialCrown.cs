@@ -36,8 +36,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (modPlayer.etherial);
+            return (LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.KingSlime) < 1);
         }
 
         public override void AddRecipes()

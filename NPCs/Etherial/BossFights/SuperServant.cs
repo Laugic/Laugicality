@@ -59,10 +59,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
             if (delay > 480)
             {
                 delay = Main.rand.Next(0, 120);
-                if (Main.netMode != 1)
-                {
-                    MirrorTeleport(npc, false);
-                }
+                MirrorTeleport(npc, false);
             }
         }
 
@@ -79,9 +76,13 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
-                    Main.npc[N].ai[0] = npc.whoAmI;
-                    Main.npc[N].ai[1] = i;
+
+                    if (Main.netMode != 1)
+                    {
+                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                        Main.npc[N].ai[0] = npc.whoAmI;
+                        Main.npc[N].ai[1] = i;
+                    }
                 }
             }
             npc.position.X = Main.player[npc.target].position.X - (npc.position.X - Main.player[npc.target].position.X);

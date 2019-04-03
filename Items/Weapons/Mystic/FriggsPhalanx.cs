@@ -14,26 +14,22 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class FriggsPhalanx : MysticItem
     {
-        public string tt = "";
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frigg's Phalanx");
             Tooltip.SetDefault("'The swarm cometh'\nIllusion inflicts 'Poison'\nFires different projectiles based on Mysticism");
-			Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+			Item.staff[item.type] = true;
 		}
-
-        
 
         public override void SetMysticDefaults()
 		{
 			item.damage = 25;
-            //item.magic = true;
             item.width = 48;
 			item.height = 48;
 			item.useTime = 18;
 			item.useAnimation = 18;
 			item.useStyle = 5;
-			item.noMelee = true; //so the item's animation doesn't do damage
+			item.noMelee = true;
 			item.knockBack = 2;
 			item.value = 10000;
 			item.rare = 1;
@@ -43,8 +39,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
 		}
 
-
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.mysticMode == 1)
@@ -52,8 +47,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 int numberProjectiles = Main.rand.Next(1, 3);
                 for (int i = 0; i < numberProjectiles; i++)
                 {
-                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); // degree spread.
-                                                                                                                    // If you want to randomize the speed to stagger the projectiles
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     if(Main.rand.Next(2) == 0)
@@ -73,44 +67,41 @@ namespace Laugicality.Items.Weapons.Mystic
                 float mag = 360;
                 Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -4 * (float)Math.Cos(theta), -4 * (float)Math.Sin(theta), mod.ProjectileType("FriggIllusion"), damage, 3, Main.myPlayer);
             }
-            return true; // return false because we don't want tmodloader to shoot projectile
+            return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 22 + 6 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 15 - 2 * modPlayer.destructionPower;
-            if (item.useTime <= 0)
-                item.useTime = 2;
+            item.damage = 28;
+            item.useTime = 13;
             item.useAnimation = item.useTime;
-            item.knockBack = modPlayer.destructionPower;
-            item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
+            item.knockBack = 1f;
+            item.shootSpeed = 10;
             item.shoot = mod.ProjectileType("Nothing");
+            luxCost = 6;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 25;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 15;
             item.useAnimation = 15;
             item.knockBack = 1;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("Nothing");
+            visCost = 5;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 25;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 50;
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = mod.ProjectileType("FriggConjuration");
+            mundusCost = 16;
         }
-
 
         public override void AddRecipes()
 		{

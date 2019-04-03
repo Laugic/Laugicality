@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Vision Stone");
             Tooltip.SetDefault("Mastery of light");
         }
 

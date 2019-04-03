@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("After submerging in Lava in the Etherial, greatly increased attack stats and mobility.\n+50% Max Life.");
+            Tooltip.SetDefault("After submerging in Lava in the Etherial, greatly increased attack stats and mobility.\n+25% Max Life.");
         }
 
         public override void SetDefaults()

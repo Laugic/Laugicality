@@ -21,7 +21,6 @@ namespace Laugicality.Projectiles
 		{
 			projectile.velocity.Y += projectile.ai[0];
 			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-			
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
@@ -61,7 +60,7 @@ namespace Laugicality.Projectiles
 		{
 			projectile.ai[0] += 0.1f;
 			projectile.velocity *= 0.75f;
-			target.AddBuff(BuffID.OnFire, 80);		//Add Onfire buff to the NPC for 1 second
+			target.AddBuff(BuffID.OnFire, 80);
 		}
 	}
 }

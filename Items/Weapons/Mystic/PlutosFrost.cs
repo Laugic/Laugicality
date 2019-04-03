@@ -14,43 +14,48 @@ namespace Laugicality.Items.Weapons.Mystic
 {
     public class PlutosFrost : MysticItem
     {
-        public int damage = 0;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Pluto's Frost");
-            Tooltip.SetDefault("'Harness the void of Space' \nIllusion inflicts 'Frigid', which stops enemies in their tracks\nFires different projectiles based on Mysticism");
-            Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+            Tooltip.SetDefault("'Harness the void of Space' \nIllusion inflicts 'Frigid', which stops enemies in their tracks\nWhile in the Etherial after defeating Etheria, +50% Overflow and Potentia Discharge and +25% Damage\nFires different projectiles based on Mysticism");
+            Item.staff[item.type] = true;
         }
 
         public override void SetMysticDefaults()
         {
             item.damage = 60;
-            //item.magic = true;
             item.width = 48;
             item.height = 48;
             item.useTime = 18;
             item.useAnimation = 18;
             item.useStyle = 5;
-            item.noMelee = true; //so the item's animation doesn't do damage
+            item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
             item.rare = 3;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            //item.shoot = mod.ProjectileType("GaiaDestruction");
             item.shootSpeed = 6f;
+            luxCost = 10;
+            visCost = 10;
+            mundusCost = 10;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            {
+                modPlayer.mysticDamage += .25f;
+                modPlayer.globalAbsorbRate *= 1.5f;
+                modPlayer.globalOverflow += .5f;
+            }
             if (modPlayer.mysticMode == 2)
             {
                 int numberProjectiles = Main.rand.Next(1, 3);
                 for (int i = 0; i < numberProjectiles; i++)
                 {
-                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); // 30 degree spread.
-                                                                                                                    // If you want to randomize the speed to stagger the projectiles
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     if (Main.player[Main.myPlayer] == player)
@@ -63,39 +68,37 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 88 + 16 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 20 - (3 * modPlayer.destructionPower);
-            if (item.useTime <= 0)
-                item.useTime = 4;
+            item.damage = 100;
+            item.useTime = 16;
             item.useAnimation = item.useTime;
-            item.knockBack = 4 + 2 * modPlayer.destructionPower;
+            item.knockBack = 6;
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("PlutoDestruction");
+            luxCost = 5;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 60;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 10;
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
             item.shoot = mod.ProjectileType("PlutoIllusion");
             item.noUseGraphic = false;
+            visCost = 6;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 54;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 24;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 24f;
             item.shoot = mod.ProjectileType("PlutoConjuration");
             item.noUseGraphic = false;
+            mundusCost = 16;
         }
 
         public override void AddRecipes()

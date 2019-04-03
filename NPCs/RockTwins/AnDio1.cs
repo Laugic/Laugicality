@@ -18,8 +18,6 @@ namespace Laugicality.NPCs.RockTwins
         {
             bitherial = true;
             spawned = false;
-            //npc.frameWidth = 40;
-            //npc.frameHeight = 34;
             npc.width = 59;
             npc.height = 167;
             npc.damage = 42;
@@ -37,6 +35,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.noTileCollide = true;
             npc.scale = 2f;
             npc.dontTakeDamage = true;
+            npc.boss = true;
         }
         public override void AI()
         {

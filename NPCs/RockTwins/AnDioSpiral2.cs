@@ -39,16 +39,14 @@ namespace Laugicality.NPCs.RockTwins
             power = 0;
             stopped = false;
             spawned = false;
-            //mystDmg = (float)projectile.damage;
-            //mystDur = 1f + projectile.knockBack;
             projectile.width = 20;
             projectile.height = 20;
             projectile.penetrate = -1;
             projectile.hostile = true;
-            projectile.timeLeft = 320;
+            projectile.timeLeft = 10 * 60;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            delay = projectile.timeLeft;
+            delay = 0;
         }
 
 
@@ -58,7 +56,7 @@ namespace Laugicality.NPCs.RockTwins
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
             theta -= 3.14f / 60;
-            int mag = 240;
+            int mag = 360;
             Vector2 move = Vector2.Zero;
             float distance = 1400f;
             bool target = false;
@@ -76,8 +74,6 @@ namespace Laugicality.NPCs.RockTwins
                     }
                 }
             }
-            //projectile.position.X = (float)targetX;
-            //projectile.position.Y = (float)targetY;
             distance = (float)Math.Sqrt((targetX - projectile.position.X) * (targetX - projectile.position.X) + (targetY - projectile.position.Y) * (targetY - projectile.position.Y));
             tVel = distance / 10;
 
@@ -97,10 +93,10 @@ namespace Laugicality.NPCs.RockTwins
             projectile.velocity.Y = (float)Math.Abs((projectile.position.Y - targetY) / distance * vel);
             if (targetY < projectile.position.Y)
                 projectile.velocity.Y *= -1;
-            delay--;
-            if(delay < 10)
+            delay++;
+            if((delay > 6 * 60 && Main.rand.Next(10 * 60 - delay) == 0 && Main.rand.Next(2) == 0) || delay > 9 * 60 + 50)
             {   
-                if (Main.netMode != 2)
+                if (Main.netMode != 1)
                 {
                     Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                     Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
@@ -112,24 +108,8 @@ namespace Laugicality.NPCs.RockTwins
                     Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
                 projectile.Kill();
-                //Main.NewText("Boom!", 255, 255, 0);
             }
-        }/*
-        public override bool PreKill(int timeLeft)
-        {
-            if (Main.netMode != 1)
-            {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("DioBall"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-            }
-            return true;
-        }*/
+        }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {

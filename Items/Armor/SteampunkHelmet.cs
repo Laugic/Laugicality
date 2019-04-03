@@ -35,11 +35,12 @@ public override void SetStaticDefaults()
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "+200% Mystic Duration\nSwitching Mysticisms unleashes a burst of Steam \nAttacks inflict 'Steamy!' ";
+            player.setBonus = "+200% Mystic Duration\nSwitching Mysticisms unleashes a burst of Steam\nDecreased Mystic Burst cooldown\nAttacks inflict 'Steamy!', which makes enemies take more damage";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.meFied = true;
             modPlayer.mysticSteamBurst = true;
             modPlayer.mysticDuration += 2f;
+            modPlayer.mysticSwitchCoolRate += 3;
         }
 
         public override void AddRecipes()

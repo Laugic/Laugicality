@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroom Amalgam");
-            Tooltip.SetDefault("+2% Mystic Damage\n+20 Max Mana");
+            Tooltip.SetDefault("+2% Mystic Damage\n+20% Overflow");
 		}
 
 		public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.mysticDamage += .02f;
-            player.statManaMax2 += 20;
+            modPlayer.globalOverflow += .2f;
         }
         
         public override void AddRecipes()

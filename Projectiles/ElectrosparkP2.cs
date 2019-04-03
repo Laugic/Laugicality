@@ -24,17 +24,7 @@ namespace Laugicality.Projectiles
             projectile.hostile = false;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            projectile.penetrate = 3;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            //NPCs.Slybertron.Slybertron.electroShockHits += 1;
-            int debuff = mod.BuffType("Steamy");
-            if (debuff >= 0)
-            {
-                target.AddBuff(debuff, 90, true);
-            }      //Add Onfire buff to the NPC for 1 second
+            projectile.penetrate = 4;
         }
     }
 }

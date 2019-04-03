@@ -30,21 +30,23 @@ namespace Laugicality.Items.Consumables
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.Golem, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.GolemHead, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.GolemFistLeft, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.GolemFistRight, knockBack, player.whoAmI);
             return false;
         }
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (modPlayer.etherial);
+            return (LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.GolemHead) < 1 && NPC.CountNPCS(NPCID.GolemHeadFree) < 1);
         }
-
+        
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "EtherialEssence", 5);
             recipe.AddTile(26);
-            recipe.SetResult(this);
+            recipe.SetResult((ItemID.LihzahrdPowerCell));
 			recipe.AddRecipe();
         }
 	}

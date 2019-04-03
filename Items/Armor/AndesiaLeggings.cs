@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("+150% Mystic Duration\n+15% Movement Speed");
+			Tooltip.SetDefault("+100% Mystic Duration\n+15% Movement Speed");
 		}
 
 		public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
         {
             player.moveSpeed += 0.15f;
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDuration += 1.5f;
+            modPlayer.mysticDuration += 1f;
         }
         
 

@@ -14,7 +14,6 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class HallowsEve : MysticItem
     {
-        public int damage = 0;
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallow's Eve");
@@ -42,7 +41,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.scale = .75f;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.mysticMode == 1)
@@ -55,34 +54,26 @@ namespace Laugicality.Items.Weapons.Mystic
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
-				
                 return false;
-            }
-            if (modPlayer.mysticMode == 3)
-            {
-                
             }
             return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 40 + 15 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 33 - (5 * modPlayer.destructionPower);
-            if (item.useTime <= 2)
-                item.useTime = 3;
+            item.damage = 55;
+            item.useTime = 28;
             item.useAnimation = (int)(item.useTime);
             item.knockBack = 0;
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("Nothing");
             item.UseSound = SoundID.Item1;
+            luxCost = 10;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 55;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 14;
             item.useAnimation = item.useTime;
             item.knockBack = 5;
@@ -90,12 +81,12 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("HallowsEveIllusion1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
+            visCost = 8;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 55;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 30;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
@@ -103,6 +94,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("HallowsEveConjuration1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
+            mundusCost = 15;
         }
 
        

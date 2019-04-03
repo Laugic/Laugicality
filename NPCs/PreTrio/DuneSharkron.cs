@@ -28,7 +28,6 @@ namespace Laugicality.NPCs.PreTrio
         {
             LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Dune Sharkron");
-            Main.npcFrameCount[npc.type] = 2;
         }
 
         public override void SetDefaults()
@@ -41,8 +40,8 @@ namespace Laugicality.NPCs.PreTrio
             dash = 0;
             dashSp = 6f;
             jump = 0;
-            npc.width = 250;
-            npc.height = 140;
+            npc.width = 180;
+            npc.height = 90;
             npc.damage = 28;
             npc.defense = 10;
             npc.aiStyle = 103;
@@ -59,6 +58,7 @@ namespace Laugicality.NPCs.PreTrio
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron");
             damage = 28;
             bossBag = mod.ItemType("DuneSharkronTreasureBag");
+            npc.scale = 1.5f;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -74,16 +74,17 @@ namespace Laugicality.NPCs.PreTrio
         public override void AI()
         {
             bitherial = true;
-            if (Main.player[npc.target].statLife == 0) npc.position.Y += 100; 
-            if (!Main.dayTime) npc.position.Y += 300;
+            if (Main.player[npc.target].statLife == 0) npc.position.Y += 100;
             npc.dontTakeDamage = !Main.player[npc.target].ZoneDesert;
 
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
-
-            //Main.NewText(delta.Y.ToString(), 250, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
+            if (delta.X > 0)
+                npc.spriteDirection = 1;
+            else
+                npc.spriteDirection = -1;
 
             //Horizontal Dash
-            if (Math.Abs(delta.X) > 300) {  dash = 1; }
+            if (Math.Abs(delta.X) > 300) { dash = 1; }
             
             if (Math.Abs(delta.X) < 40 ) { dash = 0; }
 
@@ -200,7 +201,8 @@ namespace Laugicality.NPCs.PreTrio
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));
-                
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Crystilla"), Main.rand.Next(4, 9));
+
                 int ran = Main.rand.Next(1, 5);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 934, 1);
                 if (ran == 2) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 857, 1);
@@ -221,22 +223,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             potionType = 188;
         }
-
-        public override void FindFrame(int frameHeight)
-        {
-            frameHeight = 154;
-            Vector2 delta = Main.player[npc.target].Center - npc.Center;
-
-            if (delta.X > 0)
-            {
-                npc.frame.Y = frameHeight;
-            }
-            else
-            {
-                npc.frame.Y = 0;
-            }
-        }
-
+        
         
         /*
 		public override void HitEffect(int hitDirection, double damage)

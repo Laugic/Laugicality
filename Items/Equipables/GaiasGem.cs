@@ -38,8 +38,8 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(ItemID.Emerald);
             recipe.AddIngredient(ItemID.Ruby);
             recipe.AddIngredient(ItemID.Diamond);
-            recipe.AddIngredient(109); //Mana Crystal
-            recipe.AddTile(16);
+            recipe.AddIngredient(null, "ArcaneShard", 6);
+            recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

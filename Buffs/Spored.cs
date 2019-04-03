@@ -15,7 +15,6 @@ namespace Laugicality.Buffs
 			Main.buffNoSave[Type] = true;
 			longerExpertDebuff = true;
 		}
-        
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{

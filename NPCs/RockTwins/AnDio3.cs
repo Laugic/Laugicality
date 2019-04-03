@@ -59,6 +59,7 @@ namespace Laugicality.NPCs.RockTwins
         public int attackDuration = 0;
         public int attackNum = 0;
         public int anDel = 0;
+        int despawn = 0;
 
         public override void SetStaticDefaults()
         {
@@ -69,6 +70,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void SetDefaults()
         {
+            despawn = 0;
             anDel = 0;
             attackNum = 0;
             attackDuration = 0;
@@ -133,15 +135,50 @@ namespace Laugicality.NPCs.RockTwins
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             plays = numPlayers;
-            npc.lifeMax = 8000 + numPlayers * 2000;
+            npc.lifeMax = 10000 + numPlayers * 2500;
             npc.damage = 88;
             reload = 300;
             delay = reload;
             damage = 40;
         }
 
+        private void DespawnCheck()
+        {
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+            {
+                npc.TargetClosest(true);
+                if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+                {
+                    if (despawn == 0)
+                        despawn++;
+                }
+            }
+            else
+                despawn = 0;
+            if (despawn >= 1)
+            {
+                despawn++;
+                npc.noTileCollide = true;
+                npc.velocity.Y = 8f;
+                if (despawn >= 300)
+                    npc.active = false;
+            }
+        }
+
+        private void Retarget()
+        {
+            Player P = Main.player[npc.target];
+            if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.TargetClosest(true);
+            }
+            npc.netUpdate = true;
+        }
+
         public override void AI()
         {
+            DespawnCheck();
+            Retarget();
             bitherial = true;
             if(anim == true)
             {
@@ -401,7 +438,7 @@ namespace Laugicality.NPCs.RockTwins
                 laserCharge = 1;
                 rotSpeed = .25f;
                 dist = 0;
-                if (NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) < 1)
+                if (NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) < 1 && !LaugicalityWorld.downedEtheria)
                 {
                     for (int i = 0; i < 8; i++)
                     {
@@ -429,8 +466,11 @@ namespace Laugicality.NPCs.RockTwins
                         Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
                     if (Main.netMode != 1 && NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) > 1)
                     {
-                        Laugicality.zawarudo = 4 * 60;
-                        LaugicalGlobalNPCs.zTime = 4 * 60;
+                        if(Laugicality.zawarudo < 4 * 60)
+                        {
+                            Laugicality.zawarudo += 4 * 60;
+                            LaugicalGlobalNPCs.zTime += 4 * 60;
+                        }
                         laser = 120;
                     }
                     else

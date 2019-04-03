@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Light Crystal");
             Tooltip.SetDefault("Increases Light Vision");
         }
 

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Laugicality.NPCs
 {
-    public class LaugicalGlobalNPCs : GlobalNPC
+    public partial class LaugicalGlobalNPCs : GlobalNPC
     {
         public bool eFied = false;
         public bool mFied = false;//Mystified
@@ -37,11 +37,13 @@ namespace Laugicality.NPCs
         public bool frostbite = false;
         public bool spooked = false;
         public bool steamified = false;
+        public bool incineration = false;
         public float damageMult = 1f;
         public int attacker = -1;
         
         public override void SetDefaults(NPC npc)
         {
+            incineration = false;
             steamified = false;
             trueDawn = false;
             dawn = false;
@@ -65,6 +67,7 @@ namespace Laugicality.NPCs
 
         public override void ResetEffects(NPC npc)
         {
+            incineration = false;
             steamified = false;
             trueDawn = false;
             dawn = false;
@@ -110,7 +113,7 @@ namespace Laugicality.NPCs
                 if (!Main.hardMode)
                 {
                     pool.Add(mod.NPCType("ObsidiumSkull"), 0.10f * spawnMod);
-                    pool.Add(mod.NPCType("ObsidiumDriller"), 0.05f * spawnMod);
+                    //pool.Add(mod.NPCType("ObsidiumDriller"), 0.05f * spawnMod);
                     pool.Add(NPCID.Skeleton, 0.25f * spawnMod);
                     pool.Add(NPCID.BlackSlime, 0.15f * spawnMod);
                     pool.Add(NPCID.MotherSlime, 0.15f * spawnMod);
@@ -119,41 +122,38 @@ namespace Laugicality.NPCs
                     if (LaugicalityWorld.downedRagnar)
                     {
                         pool.Add(mod.NPCType("MagmatipedeHead"), 0.30f * spawnMod);
-                        pool.Add(mod.NPCType("MagmaCaster"), 0.30f * spawnMod);
+                        //pool.Add(mod.NPCType("MagmaCaster"), 0.30f * spawnMod);
                     }
                 }
                 else
                 {
                     pool.Add(mod.NPCType("ObsidiumSkull"), 0.15f * spawnMod);
                     //pool.Add(mod.NPCType("MoltenSlime"), 0.2f * spawnMod);
-                    pool.Add(mod.NPCType("MoltiochHead"), 0.1f * spawnMod);
+                    pool.Add(mod.NPCType("MoltiochHead"), 0.05f * spawnMod);
                     pool.Add(mod.NPCType("MoltenSoul"), 0.05f * spawnMod);
-                    pool.Add(NPCID.SkeletonArcher, 0.2f * spawnMod);
+                    pool.Add(NPCID.SkeletonArcher, 0.25f * spawnMod);
+                    pool.Add(NPCID.GiantBat, 0.25f * spawnMod);
+                    pool.Add(NPCID.RedDevil, 0.25f * spawnMod);
                     if (LaugicalityWorld.downedRagnar)
                     {
-                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.20f * spawnMod);
-                        pool.Add(mod.NPCType("MagmaCaster"), 0.20f * spawnMod);
-                        pool.Add(mod.NPCType("LavaTitan"), 0.035f * spawnMod);
+                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.05f * spawnMod);
+                        //pool.Add(mod.NPCType("MagmaCaster"), 0.20f * spawnMod);
+                        pool.Add(mod.NPCType("LavaTitan"), 0.01f * spawnMod);
                     }
                 }
             }
             return;
         }
 
+        public override void GetChat(NPC npc, ref string chat)
+        {
+            if (npc.type == NPCID.ScorpionBlack && LaugicalityWorld.downedEtheria)
+                chat = "Why hello there.";
+            base.GetChat(npc, ref chat);
+        }
+
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            if (eFied)
-            {
-                if (npc.lifeRegen > 0)
-                {
-                    npc.lifeRegen = 0;
-                }
-                npc.lifeRegen -= (int)(16);
-                if (damage < 16)
-                {
-                    damage = (16);
-                }
-            }
             if (spored)
             {
                 if (npc.lifeRegen > 0)
@@ -179,6 +179,18 @@ namespace Laugicality.NPCs
                 }
             }
             if (furious)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= (int)(8);
+                if (damage < 8)
+                {
+                    damage = (8);
+                }
+            }
+            if (incineration)
             {
                 if (npc.lifeRegen > 0)
                 {
@@ -345,6 +357,22 @@ namespace Laugicality.NPCs
                     }
                 }
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
+            }
+            if (incineration)
+            {
+                if (Main.rand.Next(8) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Magma"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.8f, 0.4f, 0f);
             }
             if (hermes)
             {

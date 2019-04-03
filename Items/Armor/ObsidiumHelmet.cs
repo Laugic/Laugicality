@@ -37,10 +37,11 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Increased Life Regen \n+200% Mystic Duration \nAttacks inflict 'On Fire!' ";
+            player.setBonus = "Magmatic Mystic Burst\nDecreased Mystic Burst cooldown\n+20% Mystic Burst damage\nAttacks inflict 'On Fire!'";
             modPlayer.obsidium = true;
-            modPlayer.mysticDuration += 2f;
-            player.lifeRegen +=3;
+            modPlayer.mysticObsidiumBurst = true;
+            modPlayer.mysticSwitchCoolRate += 2;
+            modPlayer.mysticBurstDamage += .2f;
         }
 
 		public override void AddRecipes()

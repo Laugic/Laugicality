@@ -43,7 +43,7 @@ namespace Laugicality.NPCs.Etheria
             LaugicalityVars.ENPCs.Add(npc.type);
             delay = 0;
             DisplayName.SetDefault("Etherial Shadow");
-            Main.npcFrameCount[npc.type] = 7;
+            Main.npcFrameCount[npc.type] = 5;
         }
 
         public override void SetDefaults()
@@ -69,8 +69,8 @@ namespace Laugicality.NPCs.Etheria
             attackRelMax = 0;
             attack = 0;
             bitherial = true;
-            npc.width = 128;
-            npc.height = 128;
+            npc.width = 190;
+            npc.height = 240;
             npc.damage = 80;
             npc.defense = 48;
             npc.aiStyle = 0;
@@ -141,9 +141,12 @@ namespace Laugicality.NPCs.Etheria
             npc.spriteDirection = 0;
             bitherial = true;
             npc.rotation = 0;
-            npc.scale = 1.5f +  (float)(phase / 2)/4f;
-            npc.height = (int)(npc.scale * 128);
-            npc.width = (int)(npc.scale * 128);
+            if (phase > 2)
+                npc.scale = 1f + (float)(phase) / 10f;
+            else
+                npc.scale = 1f;
+            npc.height = (int)(npc.scale * 190);
+            npc.width = (int)(npc.scale * 240);
             phase = Etheria.phase;
 
             //Movement

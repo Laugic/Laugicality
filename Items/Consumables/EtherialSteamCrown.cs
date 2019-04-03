@@ -36,8 +36,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (!Main.dayTime && modPlayer.etherial);
+            return (LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType("Slybertron")) < 1);
         }
 
         public override void AddRecipes()

@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Attack Crystal");
             Tooltip.SetDefault("+10% Damage and critical strike chance \nSet your enemies ablaze");
         }
 

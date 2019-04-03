@@ -39,7 +39,7 @@ namespace Laugicality
         public static readonly HashSet<int> ENPCs =
             new HashSet<int>
             {
-                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114, 115, 116, 125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, mod.NPCType("TitanBlast")
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114,  125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, mod.NPCType("TitanBlast"), mod.NPCType("LaserBall"), mod.NPCType("AnDioLaserBall"), NPCID.Golem, 
             };
 
         public static readonly HashSet<int> EProjectiles =
@@ -51,19 +51,28 @@ namespace Laugicality
         public static readonly HashSet<int> EBosses =
             new HashSet<int>
             {
-                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, mod.NPCType("Hypothema"), NPCID.QueenBee, mod.NPCType("Ragnar"), NPCID.SkeletronHead, mod.NPCType("AnDio3"), NPCID.WallofFlesh, NPCID.TheDestroyer, NPCID.SkeletronPrime, mod.NPCType("TheAnnihilator"), mod.NPCType("Slybertron"), mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
+                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, mod.NPCType("Hypothema"), NPCID.QueenBee, mod.NPCType("Ragnar"), NPCID.SkeletronHead, mod.NPCType("AnDio3"), NPCID.TheDestroyer, NPCID.SkeletronPrime, mod.NPCType("TheAnnihilator"), mod.NPCType("Slybertron"), mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
+        //Projectiles that are immune to time stop
         public static readonly HashSet<int> ZProjectiles =
             new HashSet<int>
             {
                 
             };
 
+        //Projectiles that are immune to time stop while in the Etherial
+        public static readonly HashSet<int> EZProjectiles =
+            new HashSet<int>
+            {
+                mod.ProjectileType("AndeBall"), mod.ProjectileType("AndeEngery"), mod.ProjectileType("AndeLaser3"), mod.ProjectileType("AndeShard"), mod.ProjectileType("AnDioEnergy"), mod.ProjectileType("AnDioLaserBall"), mod.ProjectileType("AnDioSpiral"), mod.ProjectileType("AnDioSpiral2"), mod.ProjectileType("DioBall"), mod.ProjectileType("DioBallShot"), mod.ProjectileType("DioEnergy"), mod.ProjectileType("DioEnergyHoming"), mod.ProjectileType("DioShard"),
+            };
+
+        //Bosses that are immune to time stop
         public static readonly HashSet<int> ZNPCs =
             new HashSet<int>
             {
-                
+                mod.NPCType("LaserBall"), mod.NPCType("AnDioLaserBall"),
             };
 
         public static readonly HashSet<int> EBad =

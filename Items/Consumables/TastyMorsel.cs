@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace Laugicality.Items.Consumables
 {
@@ -21,12 +22,17 @@ namespace Laugicality.Items.Consumables
 			item.useStyle = 4;
 			item.UseSound = SoundID.Item44;
 			item.consumable = true;
-			item.shoot = mod.ProjectileType("DuneSharkronSpawn");
+			item.shoot = mod.ProjectileType("Nothing");
 		}
 
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), mod.NPCType("DuneSharkron"), knockBack, player.whoAmI);
+            return false;
+        }
         public override bool CanUseItem(Player player)
         {
-            return Main.dayTime;
+            return (player.ZoneDesert && NPC.CountNPCS(mod.NPCType("DuneSharkron")) < 1);
         }
 
         public override void AddRecipes()

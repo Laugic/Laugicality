@@ -7,7 +7,7 @@ namespace Laugicality.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Don\'t get your hand too close.'");
+            Tooltip.SetDefault("'Don't get your hand too close.'");
         }
 
         public override void SetDefaults()

@@ -46,9 +46,12 @@ namespace Laugicality
 
         public void CycleBysmalPowers(int newPower)
         {
-            if(bysmalPowers.Count > 2)
-            bysmalPowers.RemoveAt(0);
-            bysmalPowers.Add(newPower);
+            if(!bysmalPowers.Contains(newPower))
+            {
+                if (bysmalPowers.Count > 2)
+                    bysmalPowers.RemoveAt(0);
+                bysmalPowers.Add(newPower);
+            }
         }
         
         private void ResetEtherial()
@@ -116,7 +119,7 @@ namespace Laugicality
             if (etherialBones)
             {
                 player.AddBuff(mod.BuffType("EtherBones"), 10 * 60, true);
-                etherBonesDamageBoost += ((float)damage / (float)player.statLifeMax2) * 2;
+                etherBonesDamageBoost += ((float)damage / (float)player.statLifeMax2);
             }
             if(etherialTwins && !justiceCooldown)
             {
@@ -286,8 +289,8 @@ namespace Laugicality
             {
                 if(etherBonesBoost)
                 {
-                    if (etherBonesDamageBoost > 5)
-                        etherBonesDamageBoost = 5;
+                    if (etherBonesDamageBoost > 1)
+                        etherBonesDamageBoost = 1;
                     player.thrownDamage += etherBonesDamageBoost;
                     player.rangedDamage += etherBonesDamageBoost;
                     player.magicDamage += etherBonesDamageBoost;
@@ -301,7 +304,7 @@ namespace Laugicality
             }
             if (etherialAnDio)
             {
-
+                modPlayer.zProjImmune = true;
             }
             if (etherialDestroyer)
             {
@@ -336,8 +339,8 @@ namespace Laugicality
             {
                 if (annihilationBoost)
                 {
-                    if (annihilationDamageBoost > 5)
-                        annihilationDamageBoost = 5;
+                    if (annihilationDamageBoost > 1)
+                        annihilationDamageBoost = 1;
                     player.thrownDamage += annihilationDamageBoost;
                     player.rangedDamage += annihilationDamageBoost;
                     player.magicDamage += annihilationDamageBoost;

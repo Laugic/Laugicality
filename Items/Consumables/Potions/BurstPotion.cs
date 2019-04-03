@@ -8,7 +8,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Decreases Mystic Burst cooldown");
+            Tooltip.SetDefault("Decreases Mystic Burst cooldown\n5 minute duration");
         }
         public override void SetDefaults()
 		{

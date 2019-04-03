@@ -7,7 +7,8 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Decreased enemy spawn rate \nTake less damage from cold sources \n +1 Max Minion");
+            DisplayName.SetDefault("Harmony Crystal");
+            Tooltip.SetDefault("Decreased enemy spawn rate\nTake less damage from cold sources\n+1 Max Minion");
         }
 
         public override void SetDefaults()
@@ -26,7 +27,6 @@ namespace Laugicality.Items.Accessories
             if (modPlayer.calm)
                 player.calmed = true;
             player.resistCold = true;
-
         }
 
         public override void AddRecipes()

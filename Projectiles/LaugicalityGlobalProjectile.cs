@@ -154,6 +154,8 @@ namespace Laugicality.Projectiles
                 }
             }
 
+            if (projectile.type == ProjectileID.StardustGuardian || projectile.type == ProjectileID.StardustGuardianExplosion)
+                projectile.damage = (int)(2000 * Main.player[projectile.owner].minionDamage);
 
             int rand = Main.rand.Next(60);
             if (projectile.friendly && projectile.damage > 0)
@@ -197,6 +199,8 @@ namespace Laugicality.Projectiles
             zProjImmune = projOwner.GetModPlayer<LaugicalityPlayer>(mod).zProjImmune;
             if (projectile.friendly == false)
                 zProjImmune = false;
+            if (LaugicalityVars.EZProjectiles.Contains(projectile.type) && LaugicalityWorld.downedEtheria)
+                zImmune = true;
             if (Laugicality.zawarudo > 0 && zProjImmune == false && zImmune == false)
             {
                 projectile.timeLeft++;
@@ -284,15 +288,15 @@ namespace Laugicality.Projectiles
             {
                 target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
             }
-            if (modPlayer.etherialFrost)
+            if (modPlayer.etherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
             {
                 target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
             }
-            if (modPlayer.etherialPipes)
+            if (modPlayer.etherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
             {
                 target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
             }
-            if (modPlayer.etherCog)
+            if (modPlayer.etherCog && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
             {
                 target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
             }

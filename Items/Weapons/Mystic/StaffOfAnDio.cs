@@ -14,7 +14,6 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class StaffOfAnDio : MysticItem
     {
-        public int damage = 0;
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Loki's Staff");
@@ -41,24 +40,20 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 36 + 16 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 34 - (4 * modPlayer.destructionPower);
-            if (item.useTime <= 1)
-                item.useTime = 2;
+            item.damage = 52;
+            item.useTime = 24;
             item.useAnimation = item.useTime;
-            item.knockBack = 4 + 2 * modPlayer.destructionPower;
+            item.knockBack = 8;
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("AnDioDestruction1");
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
+            luxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            //modPlayer.player.AddBuff(mod.BuffType("Frigid"), 1, true);
             item.damage = 26;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 2;
             item.useAnimation = item.useTime;
             item.knockBack = 5;
@@ -67,12 +62,12 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
+            visCost = 1;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 38;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 30;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
@@ -81,6 +76,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
+            mundusCost = 10;
         }
 
         public override void AddRecipes()

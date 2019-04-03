@@ -29,7 +29,7 @@ namespace Laugicality.Tiles
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frameCounter++;
-			if (frameCounter > 1)
+			if (frameCounter >= 5)
 			{
 				frameCounter = 0;
 				frame++;

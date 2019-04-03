@@ -31,8 +31,6 @@ namespace Laugicality.NPCs.PreTrio
             bitherial = true;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 127, 0f, 0f);
             projectile.rotation += 0.02f;
-
         }
-
     }
 }

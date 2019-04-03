@@ -35,8 +35,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (player.ZoneJungle && modPlayer.etherial);
+            return (player.ZoneJungle && LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.Plantera) < 1);
         }
 
         public override void AddRecipes()

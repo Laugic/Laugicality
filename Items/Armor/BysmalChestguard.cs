@@ -60,7 +60,7 @@ namespace Laugicality.Items.Armor
                 if (modPlayer.bysmalPowers[i] ==(mod.NPCType("Ragnar")))
                     player.setBonus += "\nAfter submerging in Lava in the Etherial, greatly increased attack stats and mobility. +25% Max Life.";
                 if (modPlayer.bysmalPowers[i] ==(NPCID.SkeletronHead))
-                    player.setBonus += "\nWhile in the Etherial, after taking damage, your damage is boosted by twice the percentage of your health that was taken for 10 seconds.\nIf this buff is still active when damage is taken again, the boost is stacked.";
+                    player.setBonus += "\nWhile in the Etherial, after taking damage, your damage is boosted by the percentage of your health that was taken for 10 seconds.\nIf this buff is still active when damage is taken again, the boost is stacked.";
                 if (modPlayer.bysmalPowers[i] ==(mod.NPCType("AnDio3")))
                     player.setBonus += "\nYour projectiles are immune to Time Stop when in the Etherial";
                 if (modPlayer.bysmalPowers[i] ==(NPCID.Retinazer) || modPlayer.bysmalPowers[i] ==(NPCID.Spazmatism))

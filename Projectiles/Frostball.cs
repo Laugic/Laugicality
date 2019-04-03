@@ -29,7 +29,7 @@ namespace Laugicality.Projectiles
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-				projectile.Kill();
+			projectile.Kill();
             return true;
 		}
         

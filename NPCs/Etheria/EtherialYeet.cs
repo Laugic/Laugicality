@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
 
 namespace Laugicality.NPCs.Etheria
 {
@@ -30,8 +25,6 @@ namespace Laugicality.NPCs.Etheria
             stopped = false;
             damage = 20;
             spawned = false;
-            //mystDmg = (float)projectile.damage;
-            //mystDur = 1f + projectile.knockBack;
             projectile.width = 16;
             projectile.height = 16;
             projectile.penetrate = -1;
@@ -76,7 +69,7 @@ namespace Laugicality.NPCs.Etheria
             }
 
             projectile.velocity *= 3;
-
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
 
 
@@ -88,8 +81,6 @@ namespace Laugicality.NPCs.Etheria
                 vector *= 6f / magnitude;
             }
         }
-
-
 
         public override Color? GetAlpha(Color drawColor)
         {
@@ -110,9 +101,10 @@ namespace Laugicality.NPCs.Etheria
             }
             return drawColor;
         }
+
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(44, 300, true);//Frostburn
+            player.AddBuff(mod.BuffType("Frostbite"), 300, true);
         }
 
     }

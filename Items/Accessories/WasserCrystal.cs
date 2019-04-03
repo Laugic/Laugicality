@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Aqua Crystal");
             Tooltip.SetDefault("Mastery of water");
         }
 

@@ -263,8 +263,7 @@ namespace Laugicality.NPCs.RockTwins
                 }
                 if (vel > tVel)
                 {
-                    vel -= .1f;
-                    vel *= .95f;
+                    vel = tVel;
                 }
                 npc.velocity.X = (float)Math.Abs((npc.position.X - targetX) / distance * vel);
                 if (targetX < npc.position.X)

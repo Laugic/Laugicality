@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Fishing Crystal");
             Tooltip.SetDefault("Improved fishing skills");
         }
 

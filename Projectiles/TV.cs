@@ -4,7 +4,6 @@ using Terraria.ID;
 
 namespace Laugicality.Projectiles
 {
-	//ported from my tAPI mod because I'm lazy
 	public class TV : HoverShooter
 	{
 		public override void SetStaticDefaults()
@@ -13,7 +12,7 @@ namespace Laugicality.Projectiles
 			Main.projPet[projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
 			ProjectileID.Sets.Homing[projectile.type] = true;
-			ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true; //This is necessary for right-click targetting
+			ProjectileID.Sets.MinionTargettingFeature[projectile.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -30,7 +29,7 @@ namespace Laugicality.Projectiles
 			projectile.ignoreWater = true;
 			inertia = 20f;
 			shoot = mod.ProjectileType("LightningBall");
-            shootCool = 30f;
+            shootCool = 25f;
 			shootSpeed = 12f;
 		}
 

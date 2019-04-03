@@ -322,7 +322,8 @@ namespace Laugicality.NPCs.PreTrio
                 if (ran == 6) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LavaCharm, 1);
 
             }
-
+            if(!LaugicalityWorld.downedRagnar)
+                Main.NewText("Fury runs through the Obsidium Caverns.", 250, 150, 50);
             LaugicalityWorld.downedRagnar = true;
         }
 

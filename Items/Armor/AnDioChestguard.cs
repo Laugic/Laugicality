@@ -36,7 +36,19 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Dioritus Mystic Burst\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
+            player.setBonus = "50% more Potentia discharges to other Potentias when used\nDioritus Mystic Burst\nDecreases Mystic Burst cooldown" +
+                "\nGreatly increased Potentia Regen when time is stopped\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
+            modPlayer.globalAbsorbRate *= 1.5f;
+            if (Laugicality.zawarudo > 0)
+            {
+                if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.mysticMode != 1)
+                    modPlayer.lux += 1f / 4f;
+                if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.mysticMode != 2)
+                    modPlayer.vis += 1f / 4f;
+                if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.mysticMode != 3)
+                    modPlayer.mundus += 1f / 4f;
+            }
+            modPlayer.mysticSwitchCoolRate += 2;
             modPlayer.zCoolDown -= 10 * 60;
             modPlayer.andioChestguard = true;
         }

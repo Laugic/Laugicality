@@ -7,7 +7,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grows on Obsidium Rock");
+            Tooltip.SetDefault("Grows on Obsidium Rock\n'Molten Candy'");
         }
 
         public override void SetDefaults()
@@ -23,6 +23,7 @@ namespace Laugicality.Items.Placeable
             item.consumable = true;
             item.value = 0;
             item.createTile = mod.TileType("LavaGem");
+            item.bait = 20;
         }
         /*
         public override void AddRecipes()

@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Shroom Top");
+            DisplayName.SetDefault("Shroom Cap");
             Tooltip.SetDefault("+4% Mystic Damage");
 		}
 
@@ -45,9 +45,18 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "+100% Mystic Duration";
-            modPlayer.mysticDuration += 1f;
-            
+            player.setBonus = "Attacks cast using Overflow can pass through walls\nWhen at Max Potentia, Overflow slowly accrues over time";
+            modPlayer.shroomOverflow = 2;
+
+            if (modPlayer.mysticHold > 0)
+            {
+                if (modPlayer.lux >= modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
+                    modPlayer.lux += 1f / 20f;
+                if (modPlayer.vis >= modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
+                    modPlayer.vis += 1f / 20f;
+                if (modPlayer.mundus >= modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
+                    modPlayer.mundus += 1f / 20f;
+            }
         }
 
 		public override void AddRecipes()

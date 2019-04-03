@@ -101,8 +101,7 @@ namespace Laugicality.NPCs.Obsidium
 			tail = true;
 		}
 	}
-
-	// I made this 2nd base class to limit code repetition.
+    
 	public abstract class Moltioch : Worm
 	{
 		public override void SetStaticDefaults()

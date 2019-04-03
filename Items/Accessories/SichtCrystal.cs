@@ -7,6 +7,7 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Sight Crystal");
             Tooltip.SetDefault("'I see all.'");
         }
 

@@ -16,6 +16,7 @@ namespace Laugicality.NPCs.SteamTrain
         private static readonly int PHASE_SUPERDRIVE = 1;
         private static readonly int PHASE_HYPERDRIVE = 2;
         private static readonly int PHASE_WARPDRIVE = 3;
+        private static readonly int PHASE_CHOOCHOO = 4;
 
         public static Random rnd = new Random();
         public int spawn = 0;
@@ -34,6 +35,7 @@ namespace Laugicality.NPCs.SteamTrain
         public bool bitherial = true;
         public int plays = 0;
         int despawn = 0;
+        int baseDamage = 0;
 
         public override void SetStaticDefaults()
         {
@@ -43,6 +45,7 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override void SetDefaults()
         {
+            baseDamage = 0;
             despawn = 0;
             plays = 1;
             bitherial = true;
@@ -58,8 +61,8 @@ namespace Laugicality.NPCs.SteamTrain
             vdir = 0;
             delay = 0;
             boosted = false;
-            npc.width = 1680;
-            npc.height = 124;
+            npc.width = 1700;
+            npc.height = 92;
             npc.damage = 90;
             npc.defense = 30;
             npc.aiStyle = 0;
@@ -87,23 +90,23 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override bool CheckActive()
         {
-            return false;
+            if(despawn < 300)
+                return false;
+            return true;
         }
 
-        public override void AI()
+        private void Retarget()
         {
-            bitherial = true;
-            npc.spriteDirection = 0;
-
-            //Retarget (borrowed from Dan <3)
             Player P = Main.player[npc.target];
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest(true);
             }
             npc.netUpdate = true;
+        }
 
-            //DESPAWN
+        private void DespawnCheck()
+        {
             if (!Main.player[npc.target].active || Main.player[npc.target].dead)
             {
                 npc.TargetClosest(true);
@@ -112,6 +115,8 @@ namespace Laugicality.NPCs.SteamTrain
                     if (despawn == 0)
                         despawn++;
                 }
+                else
+                    despawn = 0;
             }
             if (despawn >= 1)
             {
@@ -121,11 +126,21 @@ namespace Laugicality.NPCs.SteamTrain
                 if (despawn >= 300)
                     npc.active = false;
             }
+        }
+
+        public override void AI()
+        {
+            bitherial = true;
+            npc.spriteDirection = 0;
+
+            Retarget();
+            DespawnCheck();
+            
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
-            //Main.NewText(accel.ToString(), 250, 0, 0);  
 
-
+            if(baseDamage == 0)
+                baseDamage = npc.damage;
             //Checking which direction to move when spawned
             if (dir == 0)
             {
@@ -186,11 +201,11 @@ namespace Laugicality.NPCs.SteamTrain
                 {
                     if (delta.Y > 40)
                     {
-                        if (vaccel < maxVaccel) vaccel += .4f;
+                        if (vaccel < maxVaccel) vaccel += .5f;
                     }
                     if (delta.Y < -40)
                     {
-                        if (vaccel < maxVaccel) vaccel -= .4f;
+                        if (vaccel < maxVaccel) vaccel -= .5f;
                     }
                 }
                 else
@@ -241,7 +256,8 @@ namespace Laugicality.NPCs.SteamTrain
             //Health Phases
             if (npc.life < npc.lifeMax * .67 && phase == PHASE_NORMALDRIVE)
             {
-                phase = PHASE_SUPERDRIVE; Main.NewText("Superdrive.", 150, 0, 0);
+                phase = PHASE_SUPERDRIVE;
+                Main.NewText("Superdrive.", 150, 0, 0);
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
 
@@ -258,6 +274,18 @@ namespace Laugicality.NPCs.SteamTrain
                 Main.NewText("Warpdrive.", 250, 0, 0);
                 npc.life = (int)(npc.lifeMax * .15);
             }
+            if (npc.life < npc.lifeMax * .10 && phase == PHASE_WARPDRIVE && Main.expertMode && LaugicalityWorld.downedEtheria)
+            {
+                phase = PHASE_CHOOCHOO;
+                Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+                Main.NewText("CHOO CHOO!", 255, 0, 50);
+                npc.life = (int)(npc.lifeMax * .33);
+            }
+            HealthEffects();
+        }
+
+        private void HealthEffects()
+        {
             //Phase Stat Changing
             if (phase == PHASE_SUPERDRIVE)
             {
@@ -266,14 +294,7 @@ namespace Laugicality.NPCs.SteamTrain
                 maxVaccel = 26f;
                 maxDelay = 50;
                 npc.defense = 25;
-                if (!Main.expertMode)
-                {
-                    npc.damage = 100;
-                }
-                else
-                {
-                    npc.damage = 120;
-                }
+                npc.damage = baseDamage + 20;
             }
 
             if (phase == PHASE_HYPERDRIVE)
@@ -282,15 +303,7 @@ namespace Laugicality.NPCs.SteamTrain
                 maxAccel = 32f;
                 maxVaccel = 32f;
                 maxDelay = 40;
-                npc.defense = 24;
-                if (!Main.expertMode)
-                {
-                    npc.damage = 110;
-                }
-                else
-                {
-                    npc.damage = 130;
-                }
+                npc.damage = baseDamage + 30;
             }
             if (phase == PHASE_WARPDRIVE)
             {
@@ -298,15 +311,16 @@ namespace Laugicality.NPCs.SteamTrain
                 maxAccel = 38f;
                 maxVaccel = 38f;
                 maxDelay = 30;
-                npc.defense = 18;
-                if (!Main.expertMode)
-                {
-                    npc.damage = 120;
-                }
-                else
-                {
-                    npc.damage = 140;
-                }
+                npc.damage = baseDamage + 40;
+            }
+            if (phase == PHASE_CHOOCHOO)
+            {
+                range = 600;
+                maxAccel = 48f;
+                maxVaccel = 48f;
+                maxDelay = 24;
+                npc.damage = baseDamage + 60;
+                Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
             }
         }
 

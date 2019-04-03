@@ -14,75 +14,64 @@ namespace Laugicality.Items.Weapons.Mystic
 {
     public class FreyasFley : MysticItem
     {
-        public string tt = "";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Freya's Fley");
             Tooltip.SetDefault("Spores of the gods\nIllusion inflicts 'Shroomed', which slowly drains enemy life\nFires different projectiles based on Mysticism");
-            Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+            Item.staff[item.type] = true;
         }
-
-
 
         public override void SetMysticDefaults()
         {
             item.damage = 8;
-
-            item.mana = 4;
             item.width = 52;
             item.height = 50;
             item.useTime = 18;
             item.useAnimation = 18;
             item.useStyle = 5;
-            item.noMelee = true; //so the item's animation doesn't do damage
+            item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
             item.rare = 1;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("HermesDestruction");
+            item.shoot = mod.ProjectileType("Nothing");
             item.shootSpeed = 6f;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 6 + 2 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.mana = 2;
-            item.useTime = 10 - modPlayer.destructionPower;
-            if (item.useTime <= 0)
-                item.useTime = 2;
+            item.damage = 8;
+            item.useTime = 9;
             item.useAnimation = item.useTime;
-            item.knockBack = modPlayer.destructionPower;
-            item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
+            item.knockBack = 1;
+            item.shootSpeed = 10f;
             item.shoot = mod.ProjectileType("FreyaDestruction");
+            luxCost = 3;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 8;
             item.damage = (int)(item.damage * modPlayer.illusionDamage);
-            item.mana = 8;
             item.useTime = 35;
             item.useAnimation = 35;
             item.knockBack = 1;
-            item.shootSpeed = 8f;
+            item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("FreyaIllusion");
+            visCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 8;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-            item.mana = 6;
             item.useTime = 50;
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = mod.ProjectileType("FreyaConjuration1");
+            mundusCost = 14;
         }
-
-
 
         public override void AddRecipes()
         {

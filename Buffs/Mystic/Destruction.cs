@@ -9,11 +9,11 @@ namespace Laugicality.Buffs.Mystic
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Destruction");
-			Description.SetDefault("Hell is your catalyst");
-			Main.debuff[Type] = false;
+            Description.SetDefault("Hell is your catalyst");
+            Main.debuff[Type] = false;
 			Main.pvpBuff[Type] = false;
 			Main.buffNoSave[Type] = true;
 			longerExpertDebuff = false;
-		}
-	}
+        }
+    }
 }

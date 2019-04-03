@@ -16,6 +16,7 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Laugicality.Items.Accessories;
 using Laugicality.NPCs;
+using Laugicality.Items.Placeable;
 
 namespace Laugicality
 {
@@ -43,6 +44,7 @@ namespace Laugicality
         public bool rTwins = false;
         public bool sCopter = false;
         public bool uBois = false; //Ultimate Leader
+        public bool arcticHydra = false;
 
         //Soul Stone
         public int Class = 0;
@@ -95,6 +97,8 @@ namespace Laugicality
         public bool frostbite = false;
         public int fullBysmal = 0;
         bool boosted = false;
+        float ringBoost = 0;
+        float fanBoost = 0;
 
         //Music
         public bool ZoneObsidium = false;
@@ -108,6 +112,7 @@ namespace Laugicality
 
         public override void SetupStartInventory(IList<Item> items)
         {
+            mysticBurstDisabled = false;
             inf = true;
             calm = true;
             ww = true;
@@ -188,7 +193,7 @@ namespace Laugicality
             eyes = false;
             spores = false;
             frostbite = false;
-            
+            arcticHydra = false;
 
             if (player.extraAccessory)
             {
@@ -215,11 +220,77 @@ namespace Laugicality
         {
             if (junk)
             {
+                caughtType = ItemID.Obsidian;
                 return;
             }
-            if (ZoneObsidium && (liquidType == 0 || liquidType == 1) && Main.rand.Next(6) == 0 && LaugicalityWorld.downedRagnar)
+            if (ZoneObsidium && liquidType == 1 && bait.type == mod.ItemType("LavaGem") && fishingRod.type == ItemID.HotlineFishingHook)
             {
-                caughtType = mod.ItemType("MagmaSnapper");
+                if (Main.rand.Next(3) == 0)
+                {
+                    int rand = Main.rand.Next(6);
+                    switch (rand)
+                    {
+                        case 0:
+                            caughtType = ItemID.Topaz;
+                            break;
+                        case 1:
+                            caughtType = ItemID.Amethyst;
+                            break;
+                        case 2:
+                            caughtType = ItemID.Sapphire;
+                            break;
+                        case 3:
+                            caughtType = ItemID.Emerald;
+                            break;
+                        case 4:
+                            caughtType = ItemID.Ruby;
+                            break;
+                        default:
+                            caughtType = ItemID.Diamond;
+                            break;
+                    }
+                }
+                if (NPC.downedBoss2)
+                {
+                    if(Main.rand.Next(3) == 0)
+                        caughtType = mod.ItemType("ObsidiumOre");
+                    if (Main.rand.Next(4) == 0)
+                        caughtType = mod.ItemType("ObsidiumBar");
+                }
+                if (LaugicalityWorld.downedRagnar)
+                {
+                    if (Main.rand.Next(5) == 0)
+                        caughtType = mod.ItemType("MagmaSnapper");
+                    else if (Main.rand.Next(4) == 0)
+                        caughtType = mod.ItemType("ObsidiumChunk");
+                }
+                if (Main.rand.Next(5) == 0)
+                    caughtType = ItemID.Obsidian;
+                if (Main.rand.Next(25) == 0)
+                {
+                    int rand = Main.rand.Next(6);
+                    switch (rand)
+                    {
+                        case 0:
+                            caughtType = ItemID.LavaCharm;
+                            break;
+                        case 1:
+                            caughtType = mod.ItemType("ObsidiumLily");
+                            break;
+                        case 2:
+                            caughtType = mod.ItemType("FireDust");
+                            break;
+                        case 3:
+                            caughtType = mod.ItemType("Eruption");
+                            break;
+                        case 4:
+                            caughtType = mod.ItemType("CrystalizedMagma");
+                            break;
+                        default:
+                            caughtType = mod.ItemType("MagmaHeart");
+                            break;
+                    }
+                }
             }
         }
 
@@ -250,6 +321,8 @@ namespace Laugicality
         {
             PostUpdateZaWarudo();
             PostUpdateMysticBursts();
+            PostUpdateMysticBuffs();
+            PostUpdateMovementTileChecks();
         }
 
         private void PostUpdateZaWarudo()
@@ -305,7 +378,7 @@ namespace Laugicality
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * mysticDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * mysticDamage * mysticBurstDamage), 3, Main.myPlayer);
                 }
             }
             if (mysticSpiralBurst > 0)
@@ -314,7 +387,7 @@ namespace Laugicality
                 if (mysticSpiralDelay > 2)
                 {
                     mysticSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta), 4 * (float)Math.Sin(theta), mod.ProjectileType("AnDioChestguardBurst"), (int)(32 * mysticDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), mod.ProjectileType("AnDioChestguardBurst"), (int)(32 * mysticDamage * mysticBurstDamage), 3, Main.myPlayer);
                 }
             }
             if (mysticSteamSpiralBurst > 0)
@@ -323,11 +396,111 @@ namespace Laugicality
                 if (mysticSteamSpiralDelay > 5)
                 {
                     mysticSteamSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * mysticDamage * mysticBurstDamage), 3, Main.myPlayer);
                 }
             }
         }
+
+        private void PostUpdateMovementTileChecks()
+        {
+            CheckVENT();
+            CheckRING();
+            CheckFAN();
+            CheckFANRight();
+        }
+
+        private void CheckVENT()
+        {
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("SteamVENT"))
+            {
+                if(player.velocity.Y >= 0)
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
+                player.velocity.Y = -25;
+            }
+        }
+
+        private void CheckRING()
+        {
+            float vSpeed = player.velocity.Y;
+            float minVSpeed = 10;
+            float maxVSpeed = 50;
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassRING") && vSpeed < 0)
+            {
+                if (ringBoost == 0 && Math.Abs(player.velocity.Y) > 1)
+                {
+                    if (vSpeed > -minVSpeed)
+                        player.velocity.Y = -minVSpeed;
+                    ringBoost = player.velocity.Y * 2f;
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassRING"));
+                    if (ringBoost < -maxVSpeed)
+                        ringBoost = -maxVSpeed;
+                }
+                if (Math.Abs(ringBoost) > 1)
+                    player.velocity.Y = ringBoost;
+            }
+            else
+                ringBoost = 0;
+        }
+
+        private void CheckFAN()
+        {
+            float hSpeed = player.velocity.X;
+            float minHSpeed = 10;
+            float maxHSpeed = 50;
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFAN"))
+            {
+                if (fanBoost == 0)
+                {
+                    if (hSpeed > -minHSpeed)
+                        player.velocity.X = -minHSpeed;
+                    fanBoost = player.velocity.X * 2f;
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
+                    if (fanBoost < -maxHSpeed)
+                        fanBoost = -maxHSpeed;
+                }
+                if (Math.Abs(fanBoost) > 1)
+                    player.velocity.X = fanBoost;
+            }
+            else
+                fanBoost = 0;
+        }
+        
+        private void CheckFANRight()
+        {
+            float hSpeed = player.velocity.X;
+            float minHSpeed = 10;
+            float maxHSpeed = 50;
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFANRight"))
+            {
+                if (fanBoost == 0)
+                {
+                    if (hSpeed < minHSpeed)
+                        player.velocity.X = minHSpeed;
+                    fanBoost = player.velocity.X * 2f;
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
+                    if (fanBoost > maxHSpeed)
+                        fanBoost = maxHSpeed;
+                }
+                if (Math.Abs(fanBoost) > 1)
+                    player.velocity.X = fanBoost;
+            }
+            else
+                fanBoost = 0;
+        }
+
+        /*
+        private void CheckRepCore()
+        {
+            if (Main.tile[(int)(player.Center.X / 16 + player.velocity.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("RepulsionCore") && Math.Abs(player.velocity.X) > 4)
+            {
+                player.velocity.X = -player.velocity.X;
+            }
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16 + player.velocity.Y / 16)].type == mod.TileType("RepulsionCore") && Math.Abs(player.velocity.Y) > 4)
+            {
+                player.velocity.Y = -player.velocity.Y;
+            }
+        }*/
 
         public override void PostUpdateEquips()
         {
@@ -340,7 +513,6 @@ namespace Laugicality
             if (LaugicalityWorld.downedEtheria || etherable > 0)
                 GetEtherialAccessoriesPost();
         }
-
 
         public override TagCompound Save()
         {
@@ -359,14 +531,18 @@ namespace Laugicality
                 {"NightOwl", owl},
                 {"Dangersense", danger},
                 {"Featherfall", feather},
-                {"BysmalPowers", bysmalPowers}
+                {"BysmalPowers", bysmalPowers},
+                {"LuxMaxPermaBoost", luxMaxPermaBoost},
+                {"VisMaxPermaBoost", visMaxPermaBoost},
+                {"MundusMaxPermaBoost", mundusMaxPermaBoost},
+                {"MysticBurstDisabled", mysticBurstDisabled},
             };
         }
 
         public override void UpdateBiomeVisuals()
         {
-            bool useNebula = LaugicalityWorld.downedEtheria;
-            player.ManageSpecialBiomeVisuals("Laugicality:Etherial", useNebula);
+            player.ManageSpecialBiomeVisuals("Laugicality:Etherial", LaugicalityWorld.downedEtheria);
+            player.ManageSpecialBiomeVisuals("Laugicality:Etherial2", !Main.dayTime && LaugicalityWorld.downedEtheria);
             bool useWorld = false;
             if (Laugicality.zawarudo > 0)
                 useWorld = true;
@@ -389,17 +565,19 @@ namespace Laugicality
             owl = tag.GetBool("NightOwl");
             danger = tag.GetBool("Dangersense");
             feather = tag.GetBool("Featherfall");
+            luxMaxPermaBoost = tag.GetFloat("LuxMaxPermaBoost");
+            visMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
+            mundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
+            mysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
             bysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
         }
-
-
+        
         public override void UpdateBiomes()
         {
             ZoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
             etherialMusic = etherial;
         }
-
-
+        
         public override bool CustomBiomesMatch(Player other)
         {
             LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
@@ -433,7 +611,6 @@ namespace Laugicality
             }
             return null;
         }
-
 
         public override void UpdateDead()
         {
@@ -594,6 +771,10 @@ namespace Laugicality
             {
                 DrawEtherialTankSteam();
             }
+            if(mysticHold > 0)
+            {
+                //DrawMysticUI();
+            }
         }
 
         private void DrawEtherialTrailEffect()
@@ -645,21 +826,77 @@ namespace Laugicality
             {
                 Rectangle rect = player.getRect();
                 Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, mod.DustType("TrainSteam"));
-                if (boosted == false)
-                {
-                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/train_whistle"));
-                    boosted = true;
-                }
             }
-            else boosted = false;
         }
 
         //Hotkey
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Laugicality.ToggleMystic.JustPressed && mysticHold)
+            if (Laugicality.ToggleMystic.JustPressed && mysticHold > 0)
             {
                 mysticSwitch();
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/MysticSwitch"));
+            }
+            if (Laugicality.QuickMystica.JustPressed && mysticality == 0)
+            {
+                bool mysticaPotion = false;
+                foreach (Item item in player.inventory)
+                {
+                    if (item.type == mod.ItemType("SupremeMysticaPotion"))
+                    {
+                        mysticaPotion = true;
+                        item.stack -= 1;
+                        Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
+                        if (lux < (luxMax + luxMaxPermaBoost) * (1 + (luxOverflow - 1) / 2))
+                            lux = (luxMax + luxMaxPermaBoost) * (1 + (luxOverflow - 1) / 2);
+                        if (vis < (visMax + visMaxPermaBoost) * (1 + (visOverflow - 1) / 2))
+                            vis = (visMax + visMaxPermaBoost) * (1 + (visOverflow - 1) / 2);
+                        if (mundus < (mundusMax + mundusMaxPermaBoost) * (1 + (mundusOverflow - 1) / 2))
+                            mundus = (mundusMax + mundusMaxPermaBoost) * (1 + (mundusOverflow - 1) / 2);
+                        player.AddBuff(mod.BuffType("Mysticality3"), 60 * 60, true);
+                    }
+                    if (mysticaPotion)
+                        break;
+                }
+                if(!mysticaPotion)
+                {
+                    foreach (Item item in player.inventory)
+                    {
+                        if (item.type == mod.ItemType("GreaterMysticaPotion"))
+                        {
+                            mysticaPotion = true;
+                            item.stack -= 1;
+                            Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
+                            if(lux < luxMax + luxMaxPermaBoost)
+                            lux = luxMax + luxMaxPermaBoost;
+                            if (vis < visMax + visMaxPermaBoost)
+                                vis = visMax + visMaxPermaBoost;
+                            if (mundus < mundusMax + mundusMaxPermaBoost)
+                                mundus = mundusMax + mundusMaxPermaBoost;
+                            player.AddBuff(mod.BuffType("Mysticality2"), 60 * 60, true);
+                        }
+                        if (mysticaPotion)
+                            break;
+                    }
+                }
+                if (!mysticaPotion)
+                {
+                    foreach (Item item in player.inventory)
+                    {
+                        if (item.type == mod.ItemType("MysticaPotion"))
+                        {
+                            mysticaPotion = true;
+                            item.stack -= 1;
+                            Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
+                            lux = luxMax + luxMaxPermaBoost;
+                            vis = visMax + visMaxPermaBoost;
+                            mundus = mundusMax + mundusMaxPermaBoost;
+                            player.AddBuff(mod.BuffType("Mysticality"), 60 * 60, true);
+                        }
+                        if (mysticaPotion)
+                            break;
+                    }
+                }
             }
             if (Laugicality.ToggleSoulStoneV.JustPressed)
             {
@@ -695,7 +932,7 @@ namespace Laugicality
                 ZaWarudo();
             }
 
-            if (andioChestplate && player.statLife < player.statLifeMax2 / 5 && zCool == false)
+            if (andioChestplate && player.statLife < player.statLifeMax2 / 4 && zCool == false)
             {
                 ZaWarudo();
             }
@@ -706,8 +943,11 @@ namespace Laugicality
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
-            Laugicality.zawarudo = zaWarudoDuration;
-            LaugicalGlobalNPCs.zTime = zaWarudoDuration;
+            if(Laugicality.zawarudo < zaWarudoDuration)
+            {
+                Laugicality.zawarudo = zaWarudoDuration;
+                LaugicalGlobalNPCs.zTime = zaWarudoDuration;
+            }
         }
 
 
@@ -820,6 +1060,11 @@ namespace Laugicality
                 mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
                 mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+        }
+
+        public LaugicalityPlayer GetModPlayer(Player player)
+        {
+            return player.GetModPlayer<LaugicalityPlayer>(mod);
         }
     }
 }

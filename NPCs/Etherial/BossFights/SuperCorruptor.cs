@@ -14,6 +14,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public bool bitherial = false;
         public bool etherial = true;
         int delay = 0;
+        int shootDelay = 0;
         int index = 0;
         Vector2 targetPos;
         public float tVel = 0f;
@@ -26,6 +27,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         public override void SetDefaults()
         {
+            shootDelay = 0;
             targetType = 0;
             vMag = 0f;
             vMax = 14f;
@@ -62,19 +64,17 @@ namespace Laugicality.NPCs.Etherial.BossFights
             if (delay > 480)
             {
                 delay = Main.rand.Next(1, 120);
-                if (Main.netMode != 1)
-                {
-                    MirrorTeleport(npc, false);
-                }
+                MirrorTeleport(npc, false);
+                
             }
         }
 
         private void Shoot(NPC npc)
         {
-            delay++;
-            if (delay > 480)
+            shootDelay++;
+            if (shootDelay > 480)
             {
-                delay = Main.rand.Next(1, 120);
+                shootDelay = Main.rand.Next(1, 120);
                 if (Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
             }
@@ -92,9 +92,13 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
-                    Main.npc[N].ai[0] = npc.whoAmI;
-                    Main.npc[N].ai[1] = i;
+
+                    if (Main.netMode != 1)
+                    {
+                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                        Main.npc[N].ai[0] = npc.whoAmI;
+                        Main.npc[N].ai[1] = i;
+                    }
                 }
             }
             npc.position.X = Main.player[npc.target].position.X - (npc.position.X - Main.player[npc.target].position.X);

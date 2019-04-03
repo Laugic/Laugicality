@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -52,6 +53,7 @@ namespace Laugicality.NPCs.Etheria
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("EtherialPulse"), damage, 3f, Main.myPlayer);
                 projectile.Kill();
             }
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
 
         public override Color? GetAlpha(Color drawColor)

@@ -10,8 +10,10 @@ using Laugicality.UI;
 using Terraria.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
 
-namespace Laugicality //Laugicality.cs
+namespace Laugicality
 {
 
     class Laugicality : Mod
@@ -19,20 +21,18 @@ namespace Laugicality //Laugicality.cs
         public static string GithubUserName { get { return "Laugic"; } }
         public static string GithubProjectName { get { return "Laugicality"; } }
 
-
-        //private UserInterface mysticaUserInterface;
-        //internal LaugicalityUI mysticaUI;
+        private UserInterface mysticaUserInterface;
+        internal LaugicalityUI mysticaUI;
 
         internal static ModHotKey ToggleMystic;
         internal static ModHotKey ToggleSoulStoneV;
         internal static ModHotKey ToggleSoulStoneM;
+        internal static ModHotKey QuickMystica;
 
         public static Laugicality instance;
 
-        //Calling Mod References
         Mod calMod = ModLoader.GetMod("Calamity");
 
-        //Timestop
         public static int zawarudo = 0;
 
         public Laugicality()
@@ -138,7 +138,7 @@ namespace Laugicality //Laugicality.cs
                 bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType("MechanicalMonitor")));
                 bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType("SteamCrown")));
                 bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType("SuspiciousTrainWhistle")));
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert during daytime will attract this Shark's attention.", ItemType("TastyMorsel")));
+                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ItemType("TastyMorsel")));
                 bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType("ChilledMesh")));
                 bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ItemType("MoltenMess")));
                 bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType("EmblemOfEtheria")));
@@ -154,9 +154,8 @@ namespace Laugicality //Laugicality.cs
                 //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
             }
         }
-        
 
-        //Hotkeys
+
         public override void Load()
         {
             instance = this;
@@ -165,10 +164,9 @@ namespace Laugicality //Laugicality.cs
             {                                                                                            //Foreground Filter (RGB)
                 Filters.Scene["Laugicality:Etherial"] = new Filter(new EtherialShader("FilterMiniTower").UseColor(0.1f, 0.4f, 1.0f).UseOpacity(0.5f), EffectPriority.VeryHigh);
                 SkyManager.Instance["Laugicality:Etherial"] = new EtherialVisual();
+                Filters.Scene["Laugicality:Etherial2"] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(0f, 2f, 8f).UseOpacity(0.8f), EffectPriority.VeryHigh);
                 Filters.Scene["Laugicality:ZaWarudo"] = new Filter(new ZaShader("FilterMiniTower").UseColor(0.5f, .5f, .5f).UseOpacity(0.5f), EffectPriority.VeryHigh);
                 SkyManager.Instance["Laugicality:ZaWarudo"] = new ZaWarudoVisual();
-
-
 
                 // Register a new music box
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron"), ItemType("DuneSharkronMusicBox"), TileType("DuneSharkronMusicBox"));
@@ -183,16 +181,18 @@ namespace Laugicality //Laugicality.cs
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ItemType("EtheriaMusicBox"), TileType("EtheriaMusicBox"));
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/GreatShadow"), ItemType("GreatShadowMusicBox"), TileType("GreatShadowMusicBox"));
 
-                /*
+
                 mysticaUI = new LaugicalityUI();
                 mysticaUI.Activate();
                 mysticaUserInterface = new UserInterface();
-                mysticaUserInterface.SetState(mysticaUI);*/
+                mysticaUserInterface.SetState(mysticaUI);
             }
             ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
-            ToggleSoulStoneV = RegisterHotKey("Toggle Accessory Visual FX", "V");
-            ToggleSoulStoneM = RegisterHotKey("Toggle Accessory Mobility FX", "C");
+            ToggleSoulStoneV = RegisterHotKey("Toggle Visual Effects", "V");
+            ToggleSoulStoneM = RegisterHotKey("Toggle Mobility Effects", "C");
+            QuickMystica = RegisterHotKey("Quick Mystica", "G");
         }
+
 
         public override void Unload()
         {
@@ -203,10 +203,10 @@ namespace Laugicality //Laugicality.cs
         {
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
-                
+
                 if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
                 {
-                    if(Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                    if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
                     else
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
@@ -229,6 +229,7 @@ namespace Laugicality //Laugicality.cs
             if (mysticaUserInterface != null && LaugicalityUI.visible)
                 mysticaUserInterface.Update(gameTime);
         }
+        */
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
@@ -238,7 +239,8 @@ namespace Laugicality //Laugicality.cs
                     "Enigma: Mystica",
                     delegate
                     {
-                        if (LaugicalityUI.visible)
+                        LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
+                        if (mysticPlayer.mysticHold > 0)
                         {
                             mysticaUI.Draw(Main.spriteBatch);
                         }
@@ -247,7 +249,7 @@ namespace Laugicality //Laugicality.cs
                     InterfaceScaleType.UI)
                 );
             }
-        }*/
+        }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {

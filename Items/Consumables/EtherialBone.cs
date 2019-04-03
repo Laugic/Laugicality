@@ -30,17 +30,13 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (NPC.CountNPCS(NPCID.SkeletronHead) < 1)
-                NPC.NewNPC((int)player.position.X, (int)player.position.Y - 480, NPCID.SkeletronHead);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), NPCID.SkeletronHead, knockBack, player.whoAmI);
             return false;
         }
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (!Main.dayTime && modPlayer.etherial);
+            return (!Main.dayTime && LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.SkeletronHead) < 1);
         }
 
         public override void AddRecipes()

@@ -35,8 +35,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (player.ZoneCrimson && modPlayer.etherial);
+            return (player.ZoneCrimson && LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.BrainofCthulhu) < 1);
         }
 
         public override void AddRecipes()

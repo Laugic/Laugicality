@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 using Laugicality.Items;
 using Laugicality.Items.Weapons.Mystic;
 using Terraria.Utilities;
-
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality
 {
@@ -23,6 +23,10 @@ namespace Laugicality
         public static float destructionMultiplier = 1f;
         public static float conjurationMultiplier = 1f;
         public static float illusionMultiplier = 1f;
+        public int luxCost = 10;
+        public int mundusCost = 10;
+        public int visCost = 10;
+        int hold = 0;
 
         public abstract void Destruction(LaugicalityPlayer modPlayer);
         public abstract void Illusion(LaugicalityPlayer modPlayer);
@@ -32,6 +36,7 @@ namespace Laugicality
 
         public sealed override void SetDefaults()
         {
+            hold = 0;
             item.melee = false;
             item.ranged = false;
             item.magic = false;
@@ -44,6 +49,9 @@ namespace Laugicality
             destructionMultiplier = 1f;
             illusionMultiplier = 1f;
             conjurationMultiplier = 1f;
+            luxCost = 10;
+            visCost = 10;
+            mundusCost = 10;
             SetMysticDefaults();
         }
 
@@ -58,9 +66,12 @@ namespace Laugicality
                 
                 tt.text = split.First() + " mystic " + split.Last();
             }
-
+            if (hold > 0)
+                hold--;
             TooltipLine tt2 = new TooltipLine(mod, "PlayerMysticChanneling", getMysticType());
+            TooltipLine tt3 = new TooltipLine(mod, "PlayerMysticChanneling", getMysticaType());
             tooltips.Insert(index + 1, tt2);
+            tooltips.Insert(index + 2, tt3);
             /*if (!item.social && item.prefix > 0)
             {
                 if (destruction == 1f)
@@ -177,7 +188,27 @@ namespace Laugicality
                 globalDmg = player.minionDamage;
             if (globalDmg > 1)
                 damage = (int)(originalDmg * globalDmg);
-            modPlayer.mysticHold = true;
+            switch (modPlayer.mysticMode)
+            {
+                case 1:
+                    damage = (int)(damage * modPlayer.destructionDamage);
+                    if (modPlayer.lux > modPlayer.luxMax + modPlayer.luxMaxPermaBoost)
+                        damage = (int)(damage * modPlayer.overflowDamage);
+                    break;
+                case 2:
+                    damage = (int)(damage * modPlayer.illusionDamage);
+                    if (modPlayer.vis > modPlayer.visMax + modPlayer.visMaxPermaBoost)
+                        damage = (int)(damage * modPlayer.overflowDamage);
+                    break;
+                case 3:
+                    damage = (int)(damage * modPlayer.conjurationDamage);
+                    if (modPlayer.mundus > modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost)
+                        damage = (int)(damage * modPlayer.overflowDamage);
+                    break;
+            }
+            if (modPlayer.mysticBurstDisabled)
+                damage = (int)(damage * 1.05f);
+            modPlayer.mysticHold = 2;
         }
 
         public override void HoldItem(Player player)
@@ -198,25 +229,125 @@ namespace Laugicality
                     Conjuration(modPlayer);
                     break;
             }
+            modPlayer.currentLuxCost = luxCost;
+            modPlayer.currentVisCost = visCost;
+            modPlayer.currentMundusCost = mundusCost;
+            hold = 2;
+            Laugicality.instance.mysticaUI.Update();
         }
 
         private string getMysticType()
         {
-            if (Main.netMode != 1)
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            switch (modPlayer.mysticMode)
             {
-                LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
-                switch (modPlayer.mysticMode)
-                {
-                    case 1:
-                        return "[c/F1C40F:- Destruction -]";
-                    case 2:
-                        return "[c/8E44AD:- Illusion -]";
-                    case 3:
-                        return "[c/28B463:- Conjuration -]";
-                }
+                case 1:
+                    return "[c/F1C40F:- Destruction -]";
+                case 2:
+                    return "[c/8E44AD:- Illusion -]";
+                case 3:
+                    return "[c/28B463:- Conjuration -]";
             }
-
             return "mystic";
         }
+
+        private string getMysticaType()
+        {
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            switch (modPlayer.mysticMode)
+            {
+                case 1:
+                    return "Uses " + (modPlayer.currentLuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate).ToString() + " lux";
+                case 2:
+                    return "Uses " + (modPlayer.currentVisCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate).ToString() + " vis";
+                case 3:
+                    return "Uses " + (modPlayer.currentMundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate).ToString() + " mundus";
+            }
+            return "mystica";
+        }
+
+        /*public override bool CanUseItem(Player player)
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            switch (modPlayer.mysticMode)
+            {
+                case 1:
+                    return modPlayer.lux > luxCost;
+                case 2:
+                    return modPlayer.vis > visCost;
+                case 3:
+                    return modPlayer.mundus > mundusCost;
+            }
+            return true;
+        }*/
+        
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            switch (modPlayer.mysticMode)
+            {
+                case 1:
+                    if (modPlayer.lux > luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
+                    {
+                        modPlayer.lux -= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.lux < 0)
+                            modPlayer.lux = 0;
+                        if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
+                            modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
+                        modPlayer.vis += luxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
+                            modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
+                        modPlayer.mundus += luxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
+                            modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
+                    }
+                    else
+                        return false;
+                    break;
+                case 2:
+                    if (modPlayer.vis > visCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate)
+                    {
+                        modPlayer.vis -= visCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.vis < 0)
+                            modPlayer.vis = 0;
+                        modPlayer.lux += visCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
+                            modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
+                        if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
+                            modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
+                        modPlayer.mundus += visCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
+                            modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
+                    }
+                    else
+                        return false;
+                    break;
+                case 3:
+                    if (modPlayer.mundus > mundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate)
+                    {
+                        modPlayer.mundus -= mundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.mundus < 0)
+                            modPlayer.mundus = 0;
+                        modPlayer.lux += mundusCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
+                            modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
+                        modPlayer.vis += mundusCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
+                            modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
+                        if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
+                            modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
+                    }
+                    else
+                        return false;
+                    break;
+            }
+            return MysticShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        }
+
+        public virtual bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            return true;
+        }
+
     }
 }

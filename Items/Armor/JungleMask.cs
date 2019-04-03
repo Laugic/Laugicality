@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,7 +10,7 @@ namespace Laugicality.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Hood");
-            Tooltip.SetDefault("Increases maximum mana by 20\n+125% Mystic Duration");
+            Tooltip.SetDefault("Increases maximum mana by 20\n+100% Mystic Duration");
 		}
 
 		public override void SetDefaults()
@@ -31,7 +32,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.statManaMax2 += 20;
-            modPlayer.mysticDuration += 1.25f;
+            modPlayer.mysticDuration += 1f;
         }
 
 
@@ -39,24 +40,31 @@ namespace Laugicality.Items.Armor
         {
             return false;
         }
-
-        /*public override void DrawHair(ref bool drawHair, ref bool drawAltHair)
-        {
-            drawAltHair = true;
-        }*/
-
+        
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Mystic damage increased by 12%";
+            player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nRegen the Potentia that you aren't actively using";
             modPlayer.mysticDamage += .12f;
-            
+            modPlayer.luxMax += player.statManaMax2 / 3;
+            modPlayer.visMax += player.statManaMax2 / 3;
+            modPlayer.mundusMax += player.statManaMax2 / 3;
+
+            if (modPlayer.mysticHold > 0)
+            {
+                if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.mysticMode != 1)
+                    modPlayer.lux += 1f / 20f;
+                if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.mysticMode != 2)
+                    modPlayer.vis += 1f / 20f;
+                if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.mysticMode != 3)
+                    modPlayer.mundus += 1f / 20f;
+            }
         }
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(331, 6);
+            recipe.AddIngredient(331, 8);
             recipe.AddIngredient(1124, 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);

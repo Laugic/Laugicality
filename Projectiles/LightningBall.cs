@@ -18,14 +18,17 @@ namespace Laugicality.Projectiles
 			projectile.width = 10;
 			projectile.height = 10;
 			projectile.alpha = 255;
-			projectile.penetrate = 3;
+			projectile.penetrate = 1;
 			projectile.friendly = true;
 			projectile.ignoreWater = true;
+            projectile.timeLeft = 5 * 60;
 		}
 
 		public override void AI()
         {
-            projectile.velocity.Y += projectile.ai[0];
+            if (projectile.ai[0] > .45f)
+                projectile.ai[0] = .45f;
+            projectile.velocity.Y += projectile.ai[0] + .15f;
             
             if (projectile.localAI[0] == 0f)
 			{
@@ -49,32 +52,18 @@ namespace Laugicality.Projectiles
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            projectile.penetrate--;
-            if (projectile.penetrate <= 0)
+            projectile.ai[0] += 0.15f;
+            if (projectile.velocity.X != oldVelocity.X)
             {
-                projectile.Kill();
+                projectile.velocity.X = -oldVelocity.X;
             }
-            else
+            if (projectile.velocity.Y != oldVelocity.Y)
             {
-                projectile.ai[0] += 0.1f;
-                if (projectile.velocity.X != oldVelocity.X)
-                {
-                    projectile.velocity.X = -oldVelocity.X;
-                }
-                if (projectile.velocity.Y != oldVelocity.Y)
-                {
-                    projectile.velocity.Y = -oldVelocity.Y;
-                }
-                projectile.velocity *= 0.75f;
-                Main.PlaySound(SoundID.Item10, projectile.position);
+                projectile.velocity.Y = -oldVelocity.Y;
             }
+            projectile.velocity *= 0.75f;
+            //Main.PlaySound(SoundID.Item10, projectile.position);
             return false;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            projectile.ai[0] += 0.1f;
-            target.AddBuff(mod.BuffType("Steamy"), 80);      //Add Onfire buff to the NPC for 1 second
         }
     }
 }

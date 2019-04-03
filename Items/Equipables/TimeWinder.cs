@@ -23,7 +23,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if((NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1))
+            if(Laugicality.zawarudo > 0)
             {
                 player.moveSpeed += 3f;
                 player.maxRunSpeed += 3f;

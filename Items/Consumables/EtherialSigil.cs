@@ -35,15 +35,14 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (modPlayer.etherial);
+            return (LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.MoonLordCore) < 1);
         }
 
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "EtherialEssence", 10);
-            recipe.AddTile(26);
+            recipe.AddIngredient(null, "EtherialEssence", 50);
+            recipe.AddTile(null, "HighPriestess");
             recipe.SetResult(this);
 			recipe.AddRecipe();
         }

@@ -29,10 +29,12 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Eruption Mystic Burst\nAttacks inflict 'On Fire!'\nIncreased stats after being submerged in Lava";
+            player.setBonus = "Eruption & Magmatic Mystic Bursts\n+25% Mystic Burst Damage & Decreased Mystic Burst cooldown\n+15%Throwing Crit Chance\nAttacks inflict 'On Fire!'\nIncreased stats after being submerged in Lava";
             modPlayer.obsidium = true;
             modPlayer.magmatic = true;
-
+            modPlayer.mysticObsidiumBurst = true;
+            player.thrownCrit += 15;
+            modPlayer.mysticSwitchCoolRate += 2;
 
             if (player.lavaWet)
                 player.AddBuff(mod.BuffType("Magmatic"), 60 * 15);

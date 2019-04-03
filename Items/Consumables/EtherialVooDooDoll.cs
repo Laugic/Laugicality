@@ -35,8 +35,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (player.ZoneUnderworldHeight && modPlayer.etherial);
+            return (player.ZoneUnderworldHeight && LaugicalityWorld.downedEtheria && NPC.CountNPCS(NPCID.WallofFlesh) < 1);
         }
 
         public override void AddRecipes()

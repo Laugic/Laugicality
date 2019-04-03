@@ -35,8 +35,11 @@ namespace Laugicality.Items.Useables
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            Laugicality.zawarudo = modPlayer.zaWarudoDuration;
-            LaugicalGlobalNPCs.zTime = modPlayer.zaWarudoDuration;
+            if(Laugicality.zawarudo < modPlayer.zaWarudoDuration)
+            {
+                Laugicality.zawarudo = modPlayer.zaWarudoDuration;
+                LaugicalGlobalNPCs.zTime = modPlayer.zaWarudoDuration;
+            }
             foreach ( Player player2 in Main.player){
                 
             if (modPlayer.andioChestguard == true)

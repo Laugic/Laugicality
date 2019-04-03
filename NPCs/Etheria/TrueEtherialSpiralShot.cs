@@ -68,6 +68,7 @@ namespace Laugicality.NPCs.Etheria
                 npc.active = false;
                 npc.life = 0;
             }
+            npc.rotation = (float)Math.Atan2((double)npc.velocity.Y, (double)npc.velocity.X) + 1.57f / 2;
         }
 
         public override Color? GetAlpha(Color drawColor)

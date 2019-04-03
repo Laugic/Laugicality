@@ -1,14 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader.IO;
-using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -19,11 +12,9 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             DisplayName.SetDefault("Dionysus' Bloom");
             Tooltip.SetDefault("'Grow his strength' \nIllusion inflicts 'Venom'\nFires different projectiles based on Mysticism");
-            Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+            Item.staff[item.type] = true;
         }
-
         
-
         public override void SetMysticDefaults()
 		{
 			item.damage = 44;
@@ -41,7 +32,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.shootSpeed = 6f;
 		}
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 64f;
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
@@ -62,43 +53,25 @@ namespace Laugicality.Items.Weapons.Mystic
                 }
                 return false;
             }
-            if (modPlayer.mysticMode == 3)
-            {
-                for (int p = 999; p >= 0; p--)
-                {
-                    if (Main.projectile[p].type == mod.ProjectileType("DionysusConjuration"))
-                    {
-                        if (player.ownedProjectileCounts[mod.ProjectileType("DionysusConjuration")] >= modPlayer.conjurationPower + 1)
-                        {
-                            Main.projectile[p].Kill();
-                            break;
-                        }
-                    }
-
-                }
-            }
             return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 60 + 12 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.useTime = 30 - (4 * modPlayer.destructionPower);
-            if (item.useTime <= 0)
-                item.useTime = 2;
-            item.useAnimation = (int)(item.useTime);
+            item.damage = 72;
+            item.useTime = 25;
+            item.useAnimation = item.useTime;
             item.knockBack = 0;
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("DionysusDestruction");
             item.UseSound = SoundID.Item1;
             item.scale = 1.25f;
+            luxCost = 6;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 42;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
             item.useTime = 10;
             item.useAnimation = item.useTime;
             item.knockBack = 5;
@@ -107,12 +80,12 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
+            visCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 44;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
             item.useTime = 30;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
@@ -121,6 +94,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
+            mundusCost = 20;
         }
 
        

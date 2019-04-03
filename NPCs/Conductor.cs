@@ -9,6 +9,7 @@ namespace Laugicality.NPCs
 	[AutoloadHead]
 	public class Conductor : ModNPC
 	{
+        int chatIndex = 0;
 		public override bool Autoload(ref string name)
 		{
 			name = "Conductor";
@@ -29,7 +30,8 @@ namespace Laugicality.NPCs
 
         public override void SetDefaults()
 		{
-			npc.townNPC = true;
+            chatIndex = 0;
+            npc.townNPC = true;
 			npc.friendly = true;
 			npc.width = 18;
 			npc.height = 40;
@@ -54,17 +56,10 @@ namespace Laugicality.NPCs
 
 		public override bool CanTownNPCSpawn(int numTownNPCs, int money)
 		{
-			for (int k = 0; k < 255; k++)
-			{
-				Player player = Main.player[k];
-				if (player.active)
-				{
-                    if (LaugicalityWorld.downedAnnihilator && LaugicalityWorld.downedSlybertron && LaugicalityWorld.downedSteamTrain)
-                    {
-                        return true;
-                    }
-				}
-			}
+            if (LaugicalityWorld.downedAnnihilator && LaugicalityWorld.downedSlybertron && LaugicalityWorld.downedSteamTrain)
+            {
+                return true;
+            }
 			return false;
 		}
         /*
@@ -91,7 +86,7 @@ namespace Laugicality.NPCs
 
 		public override string TownNPCName()
 		{
-			switch (WorldGen.genRand.Next(5))
+			switch (WorldGen.genRand.Next(6))
 			{
 				case 0:
 					return "Lord Charles III";
@@ -101,9 +96,11 @@ namespace Laugicality.NPCs
 					return "Earl Crane";
                 case 3:
                     return "Lord Crimblesworth";
+                case 4:
+                    return "Baron Chester von Kingsly";
                 default:
-					return "Baron Chester von Kingsly";
-			}
+                    return "Laugic";
+            }
 		}
 
 		public override void FindFrame(int frameHeight)
@@ -122,19 +119,24 @@ namespace Laugicality.NPCs
 		public override string GetChat()
 		{
 			int steampunker = NPC.FindFirstNPC(NPCID.Steampunker);
+            chatIndex++;
+            if (TownNPCName() == "Laugic" && chatIndex % 9 == 0)
+                return "Heyo " + Main.LocalPlayer.name + ". How're you enjoying Enigma so far? I mean uh- ahem... Trains?";
+            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage > 1 && chatIndex % 10 == 0)
+                return "Oh, you aren't one of those 'Mystics' are you? The Moldyrians have such an ancient way of thinking. Steam power is where it's at!";
 			if (steampunker >= 0 && Main.rand.Next(3) == 0)
 			{
-                switch (Main.rand.Next(3))
+                switch (chatIndex % 3)
                 {
                     case 0:
 				        return "Oh, of course. My wares are much more valueable than that " + Main.npc[steampunker].GivenName + "'s.";
                     case 1:
-                        return "I bet " + Main.npc[steampunker].GivenName + " hasn't even invented a sentient machine yet.";
+                        return "I bet " + Main.npc[steampunker].GivenName + " hasn't even invented a sentient machine yet!";
                     default:
-                        return "A jetpack? Please. Tell " + Main.npc[steampunker].GivenName + " those went out of style a few centuries ago. Jetboots are the best transportation that modern technology can get you! Besides trains, of course.";
+                        return "A jetpack? Please. Tell " + Main.npc[steampunker].GivenName + " those went out of style a few centuries ago. Jetboots are the best you can get! Besides trains, of course.";
                 }
 			}
-			switch (Main.rand.Next(5))
+			switch (chatIndex % 8)
 			{
 				case 0:
 					return "Spiffing!";
@@ -144,6 +146,12 @@ namespace Laugicality.NPCs
                     return "A train ride a day keeps the Steam Train away!";
                 case 3:
                     return "All aboard!";
+                case 4:
+                    return "I wonder what happened to all of the Moldyrians. You wouldn't happen to have seen one recently, would you?";
+                case 5:
+                    return "'What is the meaning of life?' I for one think the answer probably involves lots of steam.";
+                case 6:
+                    return "Hm? How did I get these items that call giant mechanical abominations at a whim? Through the power of Steam, of course!";
                 default:
 					return "Would you like to talk about Trains?";
 			}

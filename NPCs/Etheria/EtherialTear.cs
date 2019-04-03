@@ -55,7 +55,6 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             bitherial = true;
             if (index == 0)
             {
@@ -107,7 +106,7 @@ namespace Laugicality.NPCs.Etheria
             {
                 npc.velocity = npc.DirectionTo(targetPos) * vMag;
             }
-            npc.rotation += 3.14f / 20;
+            npc.rotation += 3.14f / 20f;
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

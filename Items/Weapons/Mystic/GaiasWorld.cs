@@ -14,25 +14,22 @@ namespace Laugicality.Items.Weapons.Mystic
 {
     public class GaiasWorld : MysticItem
     {
-        public string tt = "";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gaia's World");
             Tooltip.SetDefault("The World is in your hands\nIllusion inflicts a random elemental debuff\nFires different projectiles based on Mysticism");
-            Item.staff[item.type] = true; //this makes the useStyle animate as a staff instead of as a gun
+            Item.staff[item.type] = true;
         }
 
         public override void SetMysticDefaults()
         {
-            item.damage = 30;
-            //item.magic = true;
-            item.mana = 6;
+            item.damage = 25;
             item.width = 40;
             item.height = 40;
             item.useTime = 18;
             item.useAnimation = 18;
             item.useStyle = 5;
-            item.noMelee = true; //so the item's animation doesn't do damage
+            item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
             item.rare = 3;
@@ -44,54 +41,48 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 25 + 7 * modPlayer.destructionPower;
-            item.damage = (int)(item.damage * modPlayer.destructionDamage);
-            item.mana = 6;
-            item.useTime = 30 - (2 * modPlayer.destructionPower);
-            if (item.useTime <= 0)
-                item.useTime = 1;
+            item.damage = 25;
+            item.useTime = 28;
             item.useAnimation = item.useTime;
-            item.knockBack = 4 + (2 * modPlayer.destructionPower);
-            item.shootSpeed = 8f + (float)(2 * modPlayer.destructionPower);
+            item.knockBack = 6;
+            item.shootSpeed = 10;
             item.shoot = mod.ProjectileType("GaiaDestruction");
+            luxCost = 7;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 28;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
-            item.mana = 6;
+            item.damage = 25;
             item.useTime = 20;
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("GaiaIllusion");
+            visCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 32;
-            item.damage = (int)(item.damage * modPlayer.conjurationDamage);
-            item.mana = 6;
-            item.useTime = 24;
-            item.useAnimation = 24;
+            item.damage = 25;
+            item.useTime = 32;
+            item.useAnimation = 32;
             item.knockBack = 3;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("GaiaConjuration");
+            mundusCost = 12;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddRecipeGroup("IronBar", 8);
-            recipe.AddIngredient(null, "AncientShard", 2);
+            recipe.AddIngredient(null, "Crystilla", 4);
             recipe.AddIngredient(ItemID.Amethyst);
             recipe.AddIngredient(ItemID.Topaz);
             recipe.AddIngredient(ItemID.Sapphire);
             recipe.AddIngredient(ItemID.Emerald);
             recipe.AddIngredient(ItemID.Ruby);
             recipe.AddIngredient(ItemID.Diamond);
-            recipe.AddIngredient(ItemID.FallenStar, 2);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();
