@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -7,6 +8,8 @@ namespace Laugicality.Tiles
 {
     public class HighPriestess : ModTile
     {
+        private bool _updatedWorldInTick = false;
+
         public override void SetDefaults()
         {
             Main.tileSolidTop[Type] = false;
@@ -22,6 +25,8 @@ namespace Laugicality.Tiles
             disableSmartCursor = true;
             dustType = mod.DustType("Etherial");
         }
+
+        
 
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
@@ -39,8 +44,17 @@ namespace Laugicality.Tiles
             }
         }
 
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            _updatedWorldInTick = false;
+
+            return base.PreDraw(i, j, spriteBatch);
+        }
+
         public override void HitWire(int i, int j)
         {
+            if (_updatedWorldInTick) return;
+
             bool boss = false;
             Vector2 pos;
             pos.X = i * 16 - 24;
@@ -54,15 +68,18 @@ namespace Laugicality.Tiles
                     break;
                 }
             }
+
             if(!boss)
             {
                 LaugicalityWorld.downedEtheria = !LaugicalityWorld.downedEtheria;
+
                 for(int k = 0; k < 12; k++)
-                {
                     Dust.NewDust(pos, 64, 64, mod.DustType("Etherial"), 0f, 0f);
-                }
+
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
             }
+
+            _updatedWorldInTick = true;
         }
     }
 }
