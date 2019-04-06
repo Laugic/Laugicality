@@ -523,7 +523,7 @@ namespace Laugicality
                 {"NightOwl", owl},
                 {"Dangersense", danger},
                 {"Featherfall", feather},
-                {"BysmalPowers", bysmalPowers},
+                {"BysmalPowers", BysmalPowers},
                 {"LuxMaxPermaBoost", luxMaxPermaBoost},
                 {"VisMaxPermaBoost", visMaxPermaBoost},
                 {"MundusMaxPermaBoost", mundusMaxPermaBoost},
@@ -561,7 +561,7 @@ namespace Laugicality
             visMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
             mundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
             mysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
-            bysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
+            BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
         }
         
         public override void UpdateBiomes()

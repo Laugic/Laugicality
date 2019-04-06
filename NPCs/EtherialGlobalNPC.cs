@@ -1070,7 +1070,7 @@ namespace Laugicality.NPCs
                     foreach (Player player in Main.player)
                     {
                         var modPlayer2 = player.GetModPlayer<LaugicalityPlayer>(mod);
-                        if (LaugicalityVars.EBosses.Contains(npc.type) && !modPlayer2.bysmalPowers.Contains(npc.type))
+                        if (LaugicalityVars.EBosses.Contains(npc.type) && !modPlayer2.BysmalPowers.Contains(npc.type))
                         {
                             if (modPlayer2.fullBysmal > 0)
                                 modPlayer2.CycleBysmalPowers(npc.type);
@@ -1079,7 +1079,7 @@ namespace Laugicality.NPCs
                 }
                 else if(Main.netMode == 0)
                 {
-                    if (LaugicalityVars.EBosses.Contains(npc.type) && !modPlayer.bysmalPowers.Contains(npc.type) && npc.type != mod.NPCType("Etheria"))
+                    if (LaugicalityVars.EBosses.Contains(npc.type) && !modPlayer.BysmalPowers.Contains(npc.type) && npc.type != mod.NPCType("Etheria"))
                     {
                         if (modPlayer.fullBysmal > 0)
                             modPlayer.CycleBysmalPowers(npc.type);
