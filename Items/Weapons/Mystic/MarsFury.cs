@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons.Mystic
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(_counter > 0)
                 _counter--;
-            if (modPlayer.mysticMode == 2 && _counter <= 0)
+            if (modPlayer.MysticMode == 2 && _counter <= 0)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
@@ -73,7 +73,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 4;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("Nothing");
-            visCost = 4;
+            VisCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -85,31 +85,31 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 2;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("MarsConjuration");
-            mundusCost = 20;
+            MundusCost = 20;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            luxCost = 8;
-            if (modPlayer.mysticMode == 1 && modPlayer.lux >= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
+            LuxCost = 8;
+            if (modPlayer.MysticMode == 1 && modPlayer.lux >= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
             {
                 Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("MarsDestruction"), damage, knockback, Main.myPlayer);
 
-                modPlayer.lux -= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.lux -= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.lux < 0)
                     modPlayer.lux = 0;
                 if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                     modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
-                modPlayer.vis += luxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.vis += LuxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
                     modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
-                modPlayer.mundus += luxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.mundus += LuxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
                     modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
 
             }
-            luxCost = 0;
+            LuxCost = 0;
         }
 
         public override void AddRecipes()

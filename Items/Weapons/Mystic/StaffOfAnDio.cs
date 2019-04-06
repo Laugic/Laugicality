@@ -40,7 +40,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("AnDioDestruction1");
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
-            luxCost = 8;
+            LuxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -54,7 +54,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
-            visCost = 1;
+            VisCost = 1;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -68,7 +68,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
-            mundusCost = 10;
+            MundusCost = 10;
         }
 
         public override void AddRecipes()

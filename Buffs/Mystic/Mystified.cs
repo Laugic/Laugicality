@@ -18,7 +18,7 @@ namespace Laugicality.Buffs.Mystic
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).mFied = true;
+			player.GetModPlayer<LaugicalityPlayer>(mod).MystifiedDebuff = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

@@ -47,7 +47,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+60 Max Mana \nAttacks inflict 'On Fire!' ";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
 
             player.statManaMax2 += 60;
         }

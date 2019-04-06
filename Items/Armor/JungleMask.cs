@@ -31,7 +31,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.statManaMax2 += 20;
-            modPlayer.mysticDuration += 1f;
+            modPlayer.MysticDuration += 1f;
         }
 
 
@@ -44,18 +44,18 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nRegen the Potentia that you aren't actively using";
-            modPlayer.mysticDamage += .12f;
+            modPlayer.MysticDamage += .12f;
             modPlayer.luxMax += player.statManaMax2 / 3;
             modPlayer.visMax += player.statManaMax2 / 3;
             modPlayer.mundusMax += player.statManaMax2 / 3;
 
-            if (modPlayer.mysticHold > 0)
+            if (modPlayer.MysticHold > 0)
             {
-                if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.mysticMode != 1)
+                if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.MysticMode != 1)
                     modPlayer.lux += 1f / 20f;
-                if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.mysticMode != 2)
+                if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.MysticMode != 2)
                     modPlayer.vis += 1f / 20f;
-                if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.mysticMode != 3)
+                if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.MysticMode != 3)
                     modPlayer.mundus += 1f / 20f;
             }
         }

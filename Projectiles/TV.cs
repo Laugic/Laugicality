@@ -39,9 +39,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.dead)
 			{
-				modPlayer.tV = false;
+				modPlayer.TVSummon = false;
 			}
-			if (modPlayer.tV)
+			if (modPlayer.TVSummon)
 			{
 				projectile.timeLeft = 2;
 			}

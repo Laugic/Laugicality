@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("Shroolicopter")] > 0)
 			{
-				modPlayer.sCopter = true;
+				modPlayer.ShroomCopterSummon = true;
 			}
-			if (!modPlayer.sCopter)
+			if (!modPlayer.ShroomCopterSummon)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

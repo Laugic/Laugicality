@@ -40,9 +40,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.dead)
 			{
-				modPlayer.sCopter = false;
+				modPlayer.ShroomCopterSummon = false;
 			}
-			if (modPlayer.sCopter)
+			if (modPlayer.ShroomCopterSummon)
 			{
 				projectile.timeLeft = 2;
 			}

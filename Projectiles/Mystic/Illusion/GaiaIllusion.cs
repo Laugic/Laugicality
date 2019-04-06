@@ -53,28 +53,28 @@ namespace Laugicality.Projectiles.Mystic.Illusion
         {
             rand = Main.rand.Next(1, 6);
             if (rand == 1)
-                target.AddBuff(24, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(24, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 2)
-                target.AddBuff(20, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(20, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 3)
-                target.AddBuff(70, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(70, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 4)
-                target.AddBuff(39, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(39, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 5)
-                target.AddBuff(69, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(69, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             rand += 1;
             if (rand == 6)
                 rand = 1;
             if (rand == 1)
-                target.AddBuff(24, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(24, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 2)
-                target.AddBuff(20, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(20, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 3)
-                target.AddBuff(70, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(70, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 4)
-                target.AddBuff(39, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(39, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
             if (rand == 5)
-                target.AddBuff(69, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration));
+                target.AddBuff(69, (int)(4 * 60 * Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration));
         }
     }
 }

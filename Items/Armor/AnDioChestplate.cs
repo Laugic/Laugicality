@@ -42,14 +42,14 @@ namespace Laugicality.Items.Armor
             modPlayer.luxMax += 50;
             modPlayer.visMax += 50;
             modPlayer.mundusMax += 50;
-            if (modPlayer.mysticMode == 1 && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))
-                modPlayer.mysticDamage += (1 - (modPlayer.lux / (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))) / 5;
-            if (modPlayer.mysticMode == 2 && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost))
-                modPlayer.mysticDamage += (1 - (modPlayer.vis / (modPlayer.visMax + modPlayer.visMaxPermaBoost))) / 5;
-            if (modPlayer.mysticMode == 3 && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))
-                modPlayer.mysticDamage += (1 - (modPlayer.mundus / (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))) / 5;
+            if (modPlayer.MysticMode == 1 && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.lux / (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))) / 5;
+            if (modPlayer.MysticMode == 2 && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.vis / (modPlayer.visMax + modPlayer.visMaxPermaBoost))) / 5;
+            if (modPlayer.MysticMode == 3 && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.mundus / (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))) / 5;
             modPlayer.globalPotentiaUseRate *= .75f;
-            if (Laugicality.zawarudo > 0)
+            if (Laugicality.zaWarudo > 0)
                 modPlayer.globalPotentiaUseRate = 0;
         }
 

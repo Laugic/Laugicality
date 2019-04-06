@@ -36,13 +36,13 @@ namespace Laugicality.Items.Weapons.Mystic
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
 
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 3)
+            if (modPlayer.MysticMode == 3)
             {
                 for (int p = 0; p < 1000; p++)
                 {
                     if (Main.projectile[p].type == mod.ProjectileType("CupidConjurationAngel"))
                     {
-                        if (player.ownedProjectileCounts[mod.ProjectileType("CupidConjurationAngel")] >= modPlayer.mysticDuration * 4)
+                        if (player.ownedProjectileCounts[mod.ProjectileType("CupidConjurationAngel")] >= modPlayer.MysticDuration * 4)
                         {
                             Main.projectile[p].Kill();
                             break;
@@ -63,7 +63,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("CupidDestruction");
             item.noUseGraphic = true;
-            luxCost = 4;
+            LuxCost = 4;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -76,7 +76,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("CupidIllusion");
             item.noUseGraphic = false;
-            visCost = 5;
+            VisCost = 5;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -89,7 +89,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 0f;
             item.shoot = mod.ProjectileType("CupidConjurationAngel");
             item.noUseGraphic = false;
-            mundusCost = 24;
+            MundusCost = 24;
         }
 
         public override void AddRecipes()

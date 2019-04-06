@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Mystic
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
 
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
                 charge++;
                 Main.PlaySound(SoundID.Item60, position);

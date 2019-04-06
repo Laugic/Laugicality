@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.ownedProjectileCounts[mod.ProjectileType("ArcticHydraHead")] > 0)
             {
-                modPlayer.arcticHydra = true;
+                modPlayer.ArcticHydraSummon = true;
             }
-            if (!modPlayer.arcticHydra)
+            if (!modPlayer.ArcticHydraSummon)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

@@ -36,9 +36,9 @@ namespace Laugicality.Projectiles.Pets
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.dead)
 			{
-				modPlayer.toyTrain = false;
+				modPlayer.ToyTrainPet = false;
 			}
-			if (modPlayer.toyTrain)
+			if (modPlayer.ToyTrainPet)
 			{
 				projectile.timeLeft = 2;
 			}

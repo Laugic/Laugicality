@@ -25,7 +25,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.globalAbsorbRate += .25f;
-            modPlayer.mysticDamage += .15f;
+            modPlayer.MysticDamage += .15f;
         }
         
         public override void AddRecipes()

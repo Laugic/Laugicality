@@ -47,7 +47,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+33% Throwing Velocity \n+4 Defense \nAttacks inflict 'On Fire!' ";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
 
             player.thrownVelocity += .33f;
             player.statDefense += 4;

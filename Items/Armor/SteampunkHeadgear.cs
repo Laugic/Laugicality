@@ -35,7 +35,7 @@ public override void SetStaticDefaults()
         {
             player.setBonus = "+33% Throwing Velocity, \nAttacks inflict 'Steamy!' ";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.meFied = true;
+            modPlayer.Steamified = true;
             player.thrownVelocity += .33f;
         }
 

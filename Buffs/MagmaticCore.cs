@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("MagmaticCore")] > 0)
 			{
-				modPlayer.mCore = true;
+				modPlayer.MoltenCoreSummon = true;
 			}
-			if (!modPlayer.mCore)
+			if (!modPlayer.MoltenCoreSummon)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

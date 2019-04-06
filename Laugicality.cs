@@ -15,10 +15,6 @@ namespace Laugicality
 
     public class Laugicality : Mod
     {
-        public static string GithubUserName { get { return "Laugic"; } }
-        public static string GithubProjectName { get { return "Laugicality"; } }
-
-        private UserInterface _mysticaUserInterface;
         internal LaugicalityUI mysticaUI;
 
         internal static ModHotKey toggleMystic;
@@ -28,9 +24,7 @@ namespace Laugicality
 
         public static Laugicality instance;
 
-        Mod _calMod = ModLoader.GetMod("Calamity");
-
-        public static int zawarudo = 0;
+        public static int zaWarudo = 0;
 
         public Laugicality()
         {
@@ -44,6 +38,7 @@ namespace Laugicality
             };
 
         }
+
         //Recipe Groups
         public override void AddRecipeGroups()
         {
@@ -130,6 +125,7 @@ namespace Laugicality
         public override void PostSetupContent()
         {
             Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+
             if (bossChecklist != null)
             {
                 bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType("MechanicalMonitor")));
@@ -142,9 +138,12 @@ namespace Laugicality
                 bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ItemType("AncientAwakener")));
                 bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
             }
+
             Mod achMod = ModLoader.GetMod("AchievementLibs");
+
             int[] rewardsBleedingHeart = { ItemType("ObsidiumHeart") };
             int[] rewardsBleedingHeartCount = { 1 };
+
             if (achMod != null)
             {
                 achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType("MoltenMess")), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
@@ -156,7 +155,8 @@ namespace Laugicality
         public override void Load()
         {
             instance = this;
-            zawarudo = 0;
+            zaWarudo = 0;
+
             if (!Main.dedServ)
             {                                                                                            //Foreground Filter (RGB)
                 Filters.Scene["Laugicality:Etherial"] = new Filter(new EtherialShader("FilterMiniTower").UseColor(0.1f, 0.4f, 1.0f).UseOpacity(0.5f), EffectPriority.VeryHigh);
@@ -181,9 +181,10 @@ namespace Laugicality
 
                 mysticaUI = new LaugicalityUI();
                 mysticaUI.Activate();
-                _mysticaUserInterface = new UserInterface();
-                _mysticaUserInterface.SetState(mysticaUI);
+                MysticaUserInterface = new UserInterface();
+                MysticaUserInterface.SetState(mysticaUI);
             }
+
             toggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
             toggleSoulStoneV = RegisterHotKey("Toggle Visual Effects", "V");
             toggleSoulStoneM = RegisterHotKey("Toggle Mobility Effects", "C");
@@ -200,15 +201,16 @@ namespace Laugicality
         {
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
-
                 if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).zoneObsidium)
                 {
                     if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
                     else
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+
                     musicPriority = MusicPriority.BiomeHigh;
                 }
+
                 if (LaugicalityWorld.downedEtheria)
                 {
                     music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
@@ -216,8 +218,8 @@ namespace Laugicality
                 }
             }
 
-            if (zawarudo > 0)
-                zawarudo--;
+            if (zaWarudo > 0)
+                zaWarudo--;
         }
 
         /*
@@ -230,6 +232,7 @@ namespace Laugicality
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+
             if (mouseTextIndex != -1)
             {
                 layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
@@ -237,7 +240,7 @@ namespace Laugicality
                     delegate
                     {
                         LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
-                        if (mysticPlayer.mysticHold > 0)
+                        if (mysticPlayer.MysticHold > 0)
                         {
                             mysticaUI.Draw(Main.spriteBatch);
                         }
@@ -251,14 +254,16 @@ namespace Laugicality
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             int zTime = reader.ReadInt32();
-            zawarudo = zTime;
+            zaWarudo = zTime;
             Main.NewText(zTime.ToString(), 150, 50, 50);
+
             EnigmaMessageType msgType = (EnigmaMessageType)reader.ReadByte();
+
             switch (msgType)
             {
                 case EnigmaMessageType.ZaWarudoTime:
                     int zTime2 = reader.ReadInt32();
-                    zawarudo = zTime2;
+                    zaWarudo = zTime2;
                     Main.NewText(zTime2.ToString(), 150, 50, 50);
                     break;
                 default:
@@ -271,6 +276,10 @@ namespace Laugicality
         {
             ZaWarudoTime,
         }
+
+        public UserInterface MysticaUserInterface { get; private set; }
+
+        public Mod CalamityMod { get; } = ModLoader.GetMod("Calamity");
     }
 
 }

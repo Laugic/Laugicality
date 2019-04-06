@@ -19,7 +19,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).truecurse = true;
+			player.GetModPlayer<LaugicalityPlayer>(mod).TrueCurse = true;
 		}
 	}
 }

@@ -35,7 +35,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
                 int numberProjectiles = Main.rand.Next(2, 5);
                 for (int i = 0; i < numberProjectiles; i++)
@@ -61,7 +61,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = 242;
             item.UseSound = SoundID.Item1;
             item.scale = 1.5f;
-            luxCost = 8;
+            LuxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -75,7 +75,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            visCost = 4;
+            VisCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -89,7 +89,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            mundusCost = 12;
+            MundusCost = 12;
         }
 
         public override void AddRecipes()

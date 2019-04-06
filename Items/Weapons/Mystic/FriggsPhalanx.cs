@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
                 int numberProjectiles = Main.rand.Next(1, 3);
                 for (int i = 0; i < numberProjectiles; i++)
@@ -55,7 +55,7 @@ namespace Laugicality.Items.Weapons.Mystic
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("FriggDestruction"), damage, knockBack, player.whoAmI);
                 }
             }
-            if(modPlayer.mysticMode == 2)
+            if(modPlayer.MysticMode == 2)
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                 float mag = 360;
@@ -72,7 +72,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 1f;
             item.shootSpeed = 10;
             item.shoot = mod.ProjectileType("Nothing");
-            luxCost = 6;
+            LuxCost = 6;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -83,7 +83,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 1;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("Nothing");
-            visCost = 5;
+            VisCost = 5;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -94,7 +94,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = mod.ProjectileType("FriggConjuration");
-            mundusCost = 16;
+            MundusCost = 16;
         }
 
         public override void AddRecipes()

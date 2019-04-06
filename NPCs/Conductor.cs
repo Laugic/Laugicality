@@ -120,7 +120,7 @@ namespace Laugicality.NPCs
             _chatIndex++;
             if (TownNPCName() == "Laugic" && _chatIndex % 9 == 0)
                 return "Heyo " + Main.LocalPlayer.name + ". How're you enjoying Enigma so far? I mean uh- ahem... Trains?";
-            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage > 1 && _chatIndex % 10 == 0)
+            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).MysticDamage > 1 && _chatIndex % 10 == 0)
                 return "Oh, you aren't one of those 'Mystics' are you? The Moldyrians have such an ancient way of thinking. Steam power is where it's at!";
 			if (steampunker >= 0 && Main.rand.Next(3) == 0)
 			{

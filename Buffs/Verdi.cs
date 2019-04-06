@@ -15,7 +15,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            player.GetModPlayer<LaugicalityPlayer>(mod).verdi = 2;
+            player.GetModPlayer<LaugicalityPlayer>(mod).Verdi = 2;
         }
         
 	}

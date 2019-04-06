@@ -7,7 +7,7 @@ namespace Laugicality.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("TV");
+			DisplayName.SetDefault("TVSummon");
 			Description.SetDefault("Don't watch- it's just fake news.");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
@@ -16,11 +16,11 @@ namespace Laugicality.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-			if (player.ownedProjectileCounts[mod.ProjectileType("TV")] > 0)
+			if (player.ownedProjectileCounts[mod.ProjectileType("TVSummon")] > 0)
 			{
-				modPlayer.tV = true;
+				modPlayer.TVSummon = true;
 			}
-			if (!modPlayer.tV)
+			if (!modPlayer.TVSummon)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

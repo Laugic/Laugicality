@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += .02f;
+            modPlayer.MysticDamage += .02f;
             player.moveSpeed += 0.08f;
         }
         

@@ -25,7 +25,7 @@ namespace Laugicality.Items.Loot
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.jumpSpeedBoost += 2f;
             player.moveSpeed += 0.5f;
-            modPlayer.mysticDamage += 0.12f;
+            modPlayer.MysticDamage += 0.12f;
             modPlayer.mysticSwitchCoolRate += 1;
             modPlayer.globalOverflow += .2f;
         }

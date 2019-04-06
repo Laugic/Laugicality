@@ -29,9 +29,9 @@ namespace Laugicality.Items.Weapons.Mystic
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 6f;
-            luxCost = 10;
-            visCost = 10;
-            mundusCost = 10;
+            LuxCost = 10;
+            VisCost = 10;
+            MundusCost = 10;
         }
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -39,11 +39,11 @@ namespace Laugicality.Items.Weapons.Mystic
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
-                modPlayer.mysticDamage += .25f;
+                modPlayer.MysticDamage += .25f;
                 modPlayer.globalAbsorbRate *= 1.5f;
                 modPlayer.globalOverflow += .5f;
             }
-            if (modPlayer.mysticMode == 2)
+            if (modPlayer.MysticMode == 2)
             {
                 int numberProjectiles = Main.rand.Next(1, 3);
                 for (int i = 0; i < numberProjectiles; i++)
@@ -67,7 +67,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 6;
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("PlutoDestruction");
-            luxCost = 5;
+            LuxCost = 5;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -79,7 +79,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 18f;
             item.shoot = mod.ProjectileType("PlutoIllusion");
             item.noUseGraphic = false;
-            visCost = 6;
+            VisCost = 6;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -91,7 +91,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 24f;
             item.shoot = mod.ProjectileType("PlutoConjuration");
             item.noUseGraphic = false;
-            mundusCost = 16;
+            MundusCost = 16;
         }
 
         public override void AddRecipes()

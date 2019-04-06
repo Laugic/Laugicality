@@ -38,7 +38,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+10% Ranged Crit Chance \nAttacks inflict 'On Fire!' ";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
             player.rangedCrit += 10;
         }
 

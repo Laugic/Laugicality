@@ -18,7 +18,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).eFied = true;
+			player.GetModPlayer<LaugicalityPlayer>(mod).Electrified = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

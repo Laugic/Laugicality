@@ -37,7 +37,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+10% Damage Reduction\nAttacks inflict 'On Fire!' ";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
             player.endurance += 0.1f;
         }
 

@@ -47,9 +47,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.arcticHydra = false;
+                modPlayer.ArcticHydraSummon = false;
             }
-            if (modPlayer.arcticHydra)
+            if (modPlayer.ArcticHydraSummon)
             {
                 projectile.timeLeft = 2;
             }
@@ -177,7 +177,7 @@ namespace Laugicality.Projectiles
         private void GetDust()
         {
             if (Main.rand.Next(8) == 0)
-                Dust.NewDust(projectile.Center, 0, 0, mod.DustType("ArcticHydra"));
+                Dust.NewDust(projectile.Center, 0, 0, mod.DustType("ArcticHydraSummon"));
         }
 
         private void Shoot()

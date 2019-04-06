@@ -30,7 +30,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += .04f;
+            modPlayer.MysticDamage += .04f;
         }
 
         public override bool DrawHead()
@@ -48,7 +48,7 @@ namespace Laugicality.Items.Armor
             player.setBonus = "Attacks cast using Overflow can pass through walls\nWhen at Max Potentia, Overflow slowly accrues over time";
             modPlayer.shroomOverflow = 2;
 
-            if (modPlayer.mysticHold > 0)
+            if (modPlayer.MysticHold > 0)
             {
                 if (modPlayer.lux >= modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                     modPlayer.lux += 1f / 20f;

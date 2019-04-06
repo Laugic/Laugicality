@@ -34,7 +34,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode != 1)
+            if (modPlayer.MysticMode != 1)
                 return true;
             else return false;
         }
@@ -47,7 +47,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 8;
             item.shootSpeed = 4f;
             item.shoot = mod.ProjectileType("Nothing");
-            luxCost = 0;
+            LuxCost = 0;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -58,7 +58,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 4;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("HadesIllusion");
-            visCost = 8;
+            VisCost = 8;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -69,31 +69,31 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 2;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("HadesConjuration");
-            mundusCost = 20;
+            MundusCost = 20;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            luxCost = 16;
-            if (modPlayer.mysticMode == 1 && modPlayer.lux >= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
+            LuxCost = 16;
+            if (modPlayer.MysticMode == 1 && modPlayer.lux >= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
             {
                 Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, mod.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
                 
-                modPlayer.lux -= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.lux -= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.lux < 0)
                     modPlayer.lux = 0;
                 if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                     modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
-                modPlayer.vis += luxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.vis += LuxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
                     modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
-                modPlayer.mundus += luxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                modPlayer.mundus += LuxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                 if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
                     modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
                 
             }
-            luxCost = 0;
+            LuxCost = 0;
 
         }
 

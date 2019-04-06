@@ -43,7 +43,7 @@ public override void SetStaticDefaults()
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.meFied = true;
+            modPlayer.Steamified = true;
             player.setBonus = "+18% Minion damage \nAttacks inflict 'Steamy!' ";
             player.minionDamage += 0.18f;
         }

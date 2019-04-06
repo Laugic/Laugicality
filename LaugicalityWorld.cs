@@ -61,7 +61,7 @@ namespace Laugicality
 
         public override void PostUpdate()
         {
-            zawarudo = Laugicality.zawarudo;
+            zawarudo = Laugicality.zaWarudo;
 
             if (downedEtheria)
             {
@@ -174,7 +174,7 @@ namespace Laugicality
             writer.Write(flags);
             writer.Write(flags2);
 
-            //int zTime = Laugicality.zawarudo;
+            //int zTime = Laugicality.zaWarudo;
             //writer.Write(zTime);
         }
 
@@ -199,7 +199,7 @@ namespace Laugicality
             obsidiumHeart = flags2[5];
             bysmal = flags2[6];
             //int zTime = reader.ReadInt32();
-            //zawarudo = (int)zTime;
+            //zaWarudo = (int)zTime;
         }
 
         public override void ResetNearbyTileEffects()

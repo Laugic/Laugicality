@@ -46,7 +46,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+3 Max Minions \nAttacks inflict 'On Fire!' ";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
             player.maxMinions += 3;
         }
 

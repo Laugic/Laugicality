@@ -39,19 +39,19 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 1;
             item.shootSpeed = 10f;
             item.shoot = mod.ProjectileType("FreyaDestruction");
-            luxCost = 3;
+            LuxCost = 3;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 8;
-            item.damage = (int)(item.damage * modPlayer.illusionDamage);
+            item.damage = (int)(item.damage * modPlayer.IllusionDamage);
             item.useTime = 35;
             item.useAnimation = 35;
             item.knockBack = 1;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("FreyaIllusion");
-            visCost = 10;
+            VisCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -62,7 +62,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = mod.ProjectileType("FreyaConjuration1");
-            mundusCost = 14;
+            MundusCost = 14;
         }
 
         public override void AddRecipes()

@@ -42,9 +42,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.mCore = false;
+                modPlayer.MoltenCoreSummon = false;
             }
-            if (modPlayer.mCore)
+            if (modPlayer.MoltenCoreSummon)
             {
                 projectile.timeLeft = 2;
             }

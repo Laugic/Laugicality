@@ -29,7 +29,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += 0.15f;
+            modPlayer.MysticDamage += 0.15f;
         }
 
         
@@ -38,7 +38,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Magmatic Mystic Burst\nDecreased Mystic Burst cooldown\n+20% Mystic Burst damage\nAttacks inflict 'On Fire!'";
-            modPlayer.obsidium = true;
+            modPlayer.Obsidium = true;
             modPlayer.mysticObsidiumBurst = true;
             modPlayer.mysticSwitchCoolRate += 2;
             modPlayer.mysticBurstDamage += .2f;

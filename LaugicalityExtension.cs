@@ -4,9 +4,9 @@ namespace Laugicality
 {
     internal static class LaugicalityExtension
     {
-        public static void AddLine(this ModTranslation self, string line)
+        public static void AddLine(this ModTranslation modTranslation, string line)
         {
-            self.SetDefault(self.GetDefault() + "\n" + line);
+            modTranslation.SetDefault(modTranslation.GetDefault() + "\n" + line);
         }
     }
 }

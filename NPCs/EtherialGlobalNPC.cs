@@ -634,12 +634,12 @@ namespace Laugicality.NPCs
             if(_counter > 16 * 60)
             {
                 _counter = 0;
-                if(Laugicality.zawarudo < 10 * 60)
+                if(Laugicality.zaWarudo < 10 * 60)
                 {
-                    Laugicality.zawarudo = 10 * 60;
+                    Laugicality.zaWarudo = 10 * 60;
                     LaugicalGlobalNpCs.zTime = 10 * 60;
                 }
-                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
             }
         }
         

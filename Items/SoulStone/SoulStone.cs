@@ -66,11 +66,11 @@ namespace Laugicality.Items.SoulStone
                 if (LaugicalityVars.slimeThrow.Contains(Class))
                     player.thrownDamage += 0.1f;
 
-                if (LaugicalityVars.slimeJump.Contains(Class) && mPlayer.soulStoneM)
+                if (LaugicalityVars.slimeJump.Contains(Class) && mPlayer.SoulStoneMovement)
                     player.jumpSpeedBoost += 5.0f;
 
                 if (LaugicalityVars.slimeMinion.Contains(Class))
-                    mPlayer.slimey = true;
+                    mPlayer.Slimey = true;
 
                 if (LaugicalityVars.slimeVelocity.Contains(Class))
                     player.thrownVelocity += .2f;
@@ -78,25 +78,25 @@ namespace Laugicality.Items.SoulStone
             if (NPC.downedBoss1)
             {
                 if (LaugicalityVars.boss1Thorns.Contains(Class))
-                    mPlayer.eyes = true;
+                    mPlayer.Eyes = true;
 
                 if (LaugicalityVars.boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
 
-                if (LaugicalityVars.boss1Detect.Contains(Class) && mPlayer.soulStoneV)
+                if (LaugicalityVars.boss1Detect.Contains(Class) && mPlayer.SoulStoneVisuals)
                     player.detectCreature = true;
 
                 if (LaugicalityVars.boss1Damage.Contains(Class))
                 {
-                    mPlayer.destructionDamage += 0.05f;
-                    mPlayer.conjurationDamage += 0.05f;
-                    mPlayer.mysticDuration += 0.2f;
+                    mPlayer.DestructionDamage += 0.05f;
+                    mPlayer.ConjurationDamage += 0.05f;
+                    mPlayer.MysticDuration += 0.2f;
                 }
             }
             if (NPC.downedBoss2)
             {
                 if (LaugicalityVars.boss2Rage.Contains(Class))
-                    mPlayer.bRage = true;
+                    mPlayer.BloodRage = true;
 
                 if (LaugicalityVars.boss2Defence.Contains(Class))
                 {
@@ -115,7 +115,7 @@ namespace Laugicality.Items.SoulStone
             if (NPC.downedQueenBee)
             {
                 if (LaugicalityVars.beeTrue.Contains(Class))
-                    mPlayer.qB = true;
+                    mPlayer.QueenBee = true;
 
                 if (LaugicalityVars.beeRegen.Contains(Class))
                     player.lifeRegen += 2;
@@ -166,7 +166,7 @@ namespace Laugicality.Items.SoulStone
                     player.statManaMax2 += 40;
 
                 if (LaugicalityVars.hardObsid.Contains(Class))
-                    mPlayer.obsidium = true;
+                    mPlayer.Obsidium = true;
 
             }
             if (NPC.downedMechBoss1)
@@ -185,9 +185,9 @@ namespace Laugicality.Items.SoulStone
                     player.magicDamage += 0.05f;
                     player.statManaMax2 += 20;
                     player.manaCost -= .1f;
-                    mPlayer.mysticDamage += .05f;
+                    mPlayer.MysticDamage += .05f;
                 }
-                if (LaugicalityVars.mech2Jump.Contains(Class) && mPlayer.soulStoneM)
+                if (LaugicalityVars.mech2Jump.Contains(Class) && mPlayer.SoulStoneMovement)
                     player.wingTimeMax += 120;
 
             }
@@ -195,7 +195,7 @@ namespace Laugicality.Items.SoulStone
             {
                 if (LaugicalityVars.mech3Damage.Contains(Class))
                 {
-                    mPlayer.skp = true;
+                    mPlayer.SkeletonPrime = true;
                     player.meleeDamage += 0.05f;
                     player.meleeSpeed += 0.05f;
                 }
@@ -211,7 +211,7 @@ namespace Laugicality.Items.SoulStone
                     player.manaRegenBonus += 20;
                 }
                 if (LaugicalityVars.plantThorns.Contains(Class))
-                    mPlayer.spores = true;
+                    mPlayer.Spores = true;
 
             }
             if (NPC.downedGolemBoss)
@@ -231,18 +231,18 @@ namespace Laugicality.Items.SoulStone
             {
                 if (LaugicalityVars.fishDouche.Contains(Class))
                 {
-                    mPlayer.douche = true;
+                    mPlayer.Doucheron = true;
                     player.rangedDamage += 0.08f;
                     player.meleeSpeed += 0.08f;
                 }
-                if (LaugicalityVars.fishSpeed.Contains(Class) && mPlayer.soulStoneM)
+                if (LaugicalityVars.fishSpeed.Contains(Class) && mPlayer.SoulStoneMovement)
                     player.jumpSpeedBoost += 4.0f;
 
                 if (LaugicalityVars.fishMDamage.Contains(Class))
                 {
-                    mPlayer.destructionDamage += 0.05f;
-                    mPlayer.conjurationDamage += 0.05f;
-                    mPlayer.mysticDuration += 0.1f;
+                    mPlayer.DestructionDamage += 0.05f;
+                    mPlayer.ConjurationDamage += 0.05f;
+                    mPlayer.MysticDuration += 0.1f;
                 }
             }
             if (NPC.downedAncientCultist)
@@ -257,7 +257,7 @@ namespace Laugicality.Items.SoulStone
                 {
                     player.magicDamage += 0.08f;
                     player.minionDamage += 0.08f;
-                    mPlayer.mysticDamage += .08f;
+                    mPlayer.MysticDamage += .08f;
                 }
             }
             if (NPC.downedMoonlord)

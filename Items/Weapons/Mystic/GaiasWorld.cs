@@ -39,7 +39,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 6;
             item.shootSpeed = 10;
             item.shoot = mod.ProjectileType("GaiaDestruction");
-            luxCost = 7;
+            LuxCost = 7;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -50,7 +50,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 4;
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType("GaiaIllusion");
-            visCost = 10;
+            VisCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -61,7 +61,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 3;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("GaiaConjuration");
-            mundusCost = 12;
+            MundusCost = 12;
         }
 
         public override void AddRecipes()

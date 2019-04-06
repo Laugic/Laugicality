@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
 				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
@@ -61,7 +61,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 14f;
             item.shoot = mod.ProjectileType("Nothing");
             item.UseSound = SoundID.Item1;
-            luxCost = 10;
+            LuxCost = 10;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -74,7 +74,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("HallowsEveIllusion1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
-            visCost = 8;
+            VisCost = 8;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -87,7 +87,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("HallowsEveConjuration1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
-            mundusCost = 15;
+            MundusCost = 15;
         }
 
        

@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("SandyShark")] > 0)
 			{
-				modPlayer.sShark = true;
+				modPlayer.SandSharkSummon = true;
 			}
-			if (!modPlayer.sShark)
+			if (!modPlayer.SandSharkSummon)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

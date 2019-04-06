@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.frigid = true;
+            modPlayer.Frigid = true;
             player.meleeCrit += 8;
             player.rangedCrit += 8;
         }

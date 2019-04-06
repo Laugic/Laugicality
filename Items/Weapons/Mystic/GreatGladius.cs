@@ -33,7 +33,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode != 1)
+            if (modPlayer.MysticMode != 1)
                 return true;
             else return false;
         }
@@ -74,9 +74,9 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if(modPlayer.mysticMode == 2)
-                target.AddBuff(BuffID.Daybreak, (int)(4 * 60 * modPlayer.mysticDuration));
-            if (modPlayer.mysticMode == 3)
+            if(modPlayer.MysticMode == 2)
+                target.AddBuff(BuffID.Daybreak, (int)(4 * 60 * modPlayer.MysticDuration));
+            if (modPlayer.MysticMode == 3)
             {
                 if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[mod.ProjectileType("GreatGladiusConjuration1")] < 2)
                     Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);

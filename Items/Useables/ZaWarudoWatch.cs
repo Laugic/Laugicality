@@ -32,11 +32,11 @@ namespace Laugicality.Items.Useables
 
         public override bool UseItem(Player player)
         {
-            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if(Laugicality.zawarudo < modPlayer.zaWarudoDuration)
+            if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {
-                Laugicality.zawarudo = modPlayer.zaWarudoDuration;
+                Laugicality.zaWarudo = modPlayer.zaWarudoDuration;
                 LaugicalGlobalNpCs.zTime = modPlayer.zaWarudoDuration;
             }
             foreach ( Player player2 in Main.player){

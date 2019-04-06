@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
         {
             player.moveSpeed += 0.15f;
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDuration += 1f;
+            modPlayer.MysticDuration += 1f;
         }
         
 

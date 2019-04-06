@@ -23,9 +23,9 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.obsidium = true;
-            modPlayer.rocks = true;
-            modPlayer.mysticDuration += 0.3f;
+            modPlayer.Obsidium = true;
+            modPlayer.Rocks = true;
+            modPlayer.MysticDuration += 0.3f;
             player.statDefense += 4;
             player.thrownVelocity += 0.3f;
         }

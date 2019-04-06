@@ -23,7 +23,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.soulStoneV)
+            if (modPlayer.SoulStoneVisuals)
             {
                 if (modPlayer.spelunker)
                     player.findTreasure = true;

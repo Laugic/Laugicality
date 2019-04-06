@@ -24,7 +24,7 @@ namespace Laugicality.Projectiles.Mystic
         {
             if (!durationed)
             {
-                duration = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().mysticDuration;
+                duration = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration;
                 durationed = true;
                 projectile.timeLeft = (int)(projectile.timeLeft * duration);
                 overflowed = CheckOverflow();
@@ -39,11 +39,11 @@ namespace Laugicality.Projectiles.Mystic
         private bool CheckOverflow()
         {
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.mysticMode == 1 && modPlayer.lux + modPlayer.currentLuxCost > modPlayer.luxMax + modPlayer.luxMaxPermaBoost)
+            if (modPlayer.MysticMode == 1 && modPlayer.lux + modPlayer.currentLuxCost > modPlayer.luxMax + modPlayer.luxMaxPermaBoost)
                 return true;
-            if (modPlayer.mysticMode == 2 && modPlayer.vis + modPlayer.currentVisCost > modPlayer.visMax + modPlayer.visMaxPermaBoost)
+            if (modPlayer.MysticMode == 2 && modPlayer.vis + modPlayer.currentVisCost > modPlayer.visMax + modPlayer.visMaxPermaBoost)
                 return true;
-            if (modPlayer.mysticMode == 3 && modPlayer.mundus + modPlayer.currentMundusCost > modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost)
+            if (modPlayer.MysticMode == 3 && modPlayer.mundus + modPlayer.currentMundusCost > modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost)
                 return true;
             return false;
         }

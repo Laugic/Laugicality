@@ -30,16 +30,16 @@ public override void SetStaticDefaults()
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += .17f;
+            modPlayer.MysticDamage += .17f;
         }
 
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "+200% Mystic Duration\nSwitching Mysticisms unleashes a burst of Steam\nDecreased Mystic Burst cooldown\nAttacks inflict 'Steamy!', which makes enemies take more damage";
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.meFied = true;
+            modPlayer.Steamified = true;
             modPlayer.mysticSteamBurst = true;
-            modPlayer.mysticDuration += 2f;
+            modPlayer.MysticDuration += 2f;
             modPlayer.mysticSwitchCoolRate += 3;
         }
 

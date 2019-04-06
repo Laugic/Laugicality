@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.ownedProjectileCounts[mod.ProjectileType("AndesiaProbe")] > 0)
             {
-                modPlayer.rTwins = true;
+                modPlayer.RockTwinsSummon = true;
             }
-            if (!modPlayer.rTwins)
+            if (!modPlayer.RockTwinsSummon)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

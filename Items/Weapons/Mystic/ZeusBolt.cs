@@ -38,15 +38,15 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
-            luxCost = 10;
-            visCost = 10;
-            mundusCost = 10;
+            LuxCost = 10;
+            VisCost = 10;
+            MundusCost = 10;
         }
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
                 if(Main.rand.Next(2) == 0)
                 {
@@ -57,7 +57,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("ZuesBoltDestruction1"), damage, 3f, player.whoAmI, 0f, 0f);
                 }
             }
-            if (modPlayer.mysticMode == 3)
+            if (modPlayer.MysticMode == 3)
             {
                 
             }

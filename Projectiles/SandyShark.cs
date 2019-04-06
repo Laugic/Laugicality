@@ -43,9 +43,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.sShark = false;
+                modPlayer.SandSharkSummon = false;
             }
-            if (modPlayer.sShark)
+            if (modPlayer.SandSharkSummon)
             {
                 projectile.timeLeft = 2;
             }

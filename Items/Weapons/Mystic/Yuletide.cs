@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 3)
+            if (modPlayer.MysticMode == 3)
             {
                 for(int i = 0; i < 3; i++)
                 {
@@ -55,7 +55,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 2;
             item.shootSpeed = 10;
             item.shoot = mod.ProjectileType("YuleDestruction");
-            luxCost = 4;
+            LuxCost = 4;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -66,7 +66,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 1;
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("YuleIllusion");
-            visCost = 8;
+            VisCost = 8;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -77,7 +77,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = mod.ProjectileType("Nothing");
-            mundusCost = 4;
+            MundusCost = 4;
         }
 
         public override void AddRecipes()

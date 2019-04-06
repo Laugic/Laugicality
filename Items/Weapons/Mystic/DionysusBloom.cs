@@ -40,7 +40,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 position += muzzleOffset;
             }
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 2)
+            if (modPlayer.MysticMode == 2)
             {
 
                 int numberProjectiles = Main.rand.Next(1, 4);
@@ -66,7 +66,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = mod.ProjectileType("DionysusDestruction");
             item.UseSound = SoundID.Item1;
             item.scale = 1.25f;
-            luxCost = 6;
+            LuxCost = 6;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -80,7 +80,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            visCost = 4;
+            VisCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -94,7 +94,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            mundusCost = 20;
+            MundusCost = 20;
         }
 
        

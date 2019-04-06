@@ -6,7 +6,9 @@ namespace Laugicality
 {
     class LaugicalityVars //A list of all of the important vars!
     {
+        // TODO Change this to an actual instance of Laugicality, taken from LaugicalityMod.
         static Mod _mod = ModLoader.GetMod("Laugicality");
+
         public enum ClassType
         {
             Undefined, //(No class) 0
@@ -36,6 +38,7 @@ namespace Laugicality
             Conjurer //(Util/Survivability) 18
         }
         /* -------------- Etherial NPCs and Projectiles -------------- */
+
         public static readonly HashSet<int> enpCs =
             new HashSet<int>
             {

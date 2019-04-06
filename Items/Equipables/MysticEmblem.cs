@@ -22,7 +22,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += .15f;
+            modPlayer.MysticDamage += .15f;
         }
         /*
         public override void AddRecipes()

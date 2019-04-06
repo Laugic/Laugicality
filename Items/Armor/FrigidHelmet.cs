@@ -36,7 +36,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Attacks inflict Frostburn.";
-            modPlayer.frost = true;
+            modPlayer.Frost = true;
             
         }
 

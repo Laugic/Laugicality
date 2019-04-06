@@ -24,7 +24,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.soulStoneV)
+            if (modPlayer.SoulStoneVisuals)
             {
                 if (modPlayer.spelunker)
                     player.findTreasure = true;
@@ -38,7 +38,7 @@ namespace Laugicality.Items.Accessories
                 if(modPlayer.inf)
                     player.AddBuff(116, 2);
             }
-            if (modPlayer.soulStoneM)
+            if (modPlayer.SoulStoneMovement)
             {
                 if (modPlayer.feather)
                     player.slowFall = true;

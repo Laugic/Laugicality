@@ -40,7 +40,7 @@ namespace Laugicality.Etherial
 
         private float GetIntensity()
         {
-            if (Laugicality.zawarudo > 0)
+            if (Laugicality.zaWarudo > 0)
             {
                 return (1f - Utils.SmoothStep(3000f, 6000f, 1)) * 0.66f;
             }

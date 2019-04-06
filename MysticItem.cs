@@ -8,23 +8,12 @@ namespace Laugicality
 {
     public abstract class MysticItem : ModItem
     {
-        private static readonly string _mystic_Damage_Prefix = "mystic";
-
-        // make-safe
-        public bool mystic = true;
-        public static float destruction = 0f;
-        public static float illusion = 0f;
-        public static float conjuration = 0f;
-        public static float destructionMultiplier = 1f;
-        public static float conjurationMultiplier = 1f;
-        public static float illusionMultiplier = 1f;
-        public int luxCost = 10;
-        public int mundusCost = 10;
-        public int visCost = 10;
         int _hold = 0;
 
         public abstract void Destruction(LaugicalityPlayer modPlayer);
+
         public abstract void Illusion(LaugicalityPlayer modPlayer);
+
         public abstract void Conjuration(LaugicalityPlayer modPlayer);
 
         public abstract void SetMysticDefaults();
@@ -38,15 +27,9 @@ namespace Laugicality
             item.thrown = false;
             item.summon = false;
             item.crit = 4;
-            destruction = 0f;
-            illusion = 0f;
-            conjuration = 0f;
-            destructionMultiplier = 1f;
-            illusionMultiplier = 1f;
-            conjurationMultiplier = 1f;
-            luxCost = 10;
-            visCost = 10;
-            mundusCost = 10;
+            LuxCost = 10;
+            VisCost = 10;
+            MundusCost = 10;
             SetMysticDefaults();
         }
 
@@ -224,9 +207,9 @@ namespace Laugicality
                     Conjuration(modPlayer);
                     break;
             }
-            modPlayer.currentLuxCost = luxCost;
-            modPlayer.currentVisCost = visCost;
-            modPlayer.currentMundusCost = mundusCost;
+            modPlayer.currentLuxCost = LuxCost;
+            modPlayer.currentVisCost = VisCost;
+            modPlayer.currentMundusCost = MundusCost;
             _hold = 2;
             Laugicality.instance.mysticaUI.Update();
         }
@@ -279,20 +262,21 @@ namespace Laugicality
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+
             switch (modPlayer.mysticMode)
             {
                 case 1:
-                    if (modPlayer.lux > luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
+                    if (modPlayer.lux > LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
                     {
-                        modPlayer.lux -= luxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.lux -= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.lux < 0)
                             modPlayer.lux = 0;
                         if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                             modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
-                        modPlayer.vis += luxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.vis += LuxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
                             modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
-                        modPlayer.mundus += luxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.mundus += LuxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
                             modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
                     }
@@ -300,17 +284,17 @@ namespace Laugicality
                         return false;
                     break;
                 case 2:
-                    if (modPlayer.vis > visCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate)
+                    if (modPlayer.vis > VisCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate)
                     {
-                        modPlayer.vis -= visCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.vis -= VisCost * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.vis < 0)
                             modPlayer.vis = 0;
-                        modPlayer.lux += visCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.lux += VisCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                             modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
                         if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
                             modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
-                        modPlayer.mundus += visCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.mundus += VisCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.visDischargeRate * modPlayer.visUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
                             modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
                     }
@@ -318,15 +302,15 @@ namespace Laugicality
                         return false;
                     break;
                 case 3:
-                    if (modPlayer.mundus > mundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate)
+                    if (modPlayer.mundus > MundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate)
                     {
-                        modPlayer.mundus -= mundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.mundus -= MundusCost * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.mundus < 0)
                             modPlayer.mundus = 0;
-                        modPlayer.lux += mundusCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.lux += MundusCost * modPlayer.globalAbsorbRate * modPlayer.luxAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
                             modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
-                        modPlayer.vis += mundusCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
+                        modPlayer.vis += MundusCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.mundusDischargeRate * modPlayer.mundusUseRate * modPlayer.globalPotentiaUseRate;
                         if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
                             modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
                         if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
@@ -336,6 +320,7 @@ namespace Laugicality
                         return false;
                     break;
             }
+
             return MysticShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
 
@@ -344,5 +329,12 @@ namespace Laugicality
             return true;
         }
 
+        public bool Mystic { get; } = true;
+
+        public int LuxCost { get; set; } = 10;
+
+        public int MundusCost { get; set; } = 10;
+
+        public int VisCost { get; set; } = 10;
     }
 }

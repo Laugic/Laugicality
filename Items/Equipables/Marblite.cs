@@ -25,7 +25,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.mysticMarblite = true;
-            modPlayer.mysticDamage += .1f;
+            modPlayer.MysticDamage += .1f;
         }
 
         public override void AddRecipes()

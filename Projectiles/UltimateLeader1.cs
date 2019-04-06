@@ -53,9 +53,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.uBois = false;
+                modPlayer.UltraBoisSummon = false;
             }
-            if (modPlayer.uBois)
+            if (modPlayer.UltraBoisSummon)
             {
                 projectile.timeLeft = 2;
             }

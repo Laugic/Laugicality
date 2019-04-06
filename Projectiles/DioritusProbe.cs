@@ -51,9 +51,9 @@ namespace Laugicality.Projectiles
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (player.dead)
             {
-                modPlayer.rTwins = false;
+                modPlayer.RockTwinsSummon = false;
             }
-            if (modPlayer.rTwins)
+            if (modPlayer.RockTwinsSummon)
             {
                 projectile.timeLeft = 2;
             }

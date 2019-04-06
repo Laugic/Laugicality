@@ -18,9 +18,9 @@ namespace Laugicality.Buffs
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 			if (player.ownedProjectileCounts[mod.ProjectileType("UltimateLeader1")] > 0)
 			{
-				modPlayer.uBois = true;
+				modPlayer.UltraBoisSummon = true;
 			}
-			if (!modPlayer.uBois)
+			if (!modPlayer.UltraBoisSummon)
 			{
 				player.DelBuff(buffIndex);
 				buffIndex--;

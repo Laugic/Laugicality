@@ -35,7 +35,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         {
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.usingMysticItem == 0 || modPlayer.mysticMode != 3)
+            if (modPlayer.UsingMysticItem == 0 || modPlayer.MysticMode != 3)
             {
                 projectile.Kill();
             }

@@ -139,7 +139,7 @@ namespace Laugicality.UI
         public override void Draw(SpriteBatch spriteBatch)
         {
             LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
-            visible = (mysticPlayer.mysticHold > 0);
+            visible = (mysticPlayer.MysticHold > 0);
             float luxTemp = mysticPlayer.lux;
             if (luxTemp > mysticPlayer.luxMax)
                 luxTemp = mysticPlayer.luxMax;

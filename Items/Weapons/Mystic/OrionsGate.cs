@@ -42,10 +42,10 @@ namespace Laugicality.Items.Weapons.Mystic
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
 
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.mysticMode == 1)
+            if (modPlayer.MysticMode == 1)
             {
                 modPlayer.orionCharge++;
-                modPlayer.usingMysticItem = 60;
+                modPlayer.UsingMysticItem = 60;
                 if (modPlayer.orionCharge > 24)
                     modPlayer.orionCharge = 24;
                 for (int i = 0; i < modPlayer.orionCharge / 2 + 1; i++)
@@ -56,12 +56,12 @@ namespace Laugicality.Items.Weapons.Mystic
                     Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)) - 32 - modPlayer.orionCharge + Main.rand.Next(64 + 2 * modPlayer.orionCharge), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)) - 32 - modPlayer.orionCharge + Main.rand.Next(64 + 2 * modPlayer.orionCharge), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), mod.ProjectileType("OrionDestruction"), damage, 3, Main.myPlayer);
                 }
             }
-            if(modPlayer.mysticMode == 2)
+            if(modPlayer.MysticMode == 2)
             {
                 Projectile.NewProjectile(player.position.X, player.position.Y - 600, -4, 0, mod.ProjectileType("OrionIllusionSpawn"), damage, 3, Main.myPlayer);
                 Projectile.NewProjectile(player.position.X, player.position.Y - 600, 4, 0, mod.ProjectileType("OrionIllusionSpawn"), damage, 3, Main.myPlayer);
             }
-            if (modPlayer.mysticMode == 3)
+            if (modPlayer.MysticMode == 3)
             {
                 bool projExists = false;
                 foreach( Projectile projectile in Main.projectile)
@@ -69,7 +69,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     if(projectile.type == mod.ProjectileType("OrionConjuration"))
                     {
                         projectile.timeLeft = 90;
-                        modPlayer.usingMysticItem = 90;
+                        modPlayer.UsingMysticItem = 90;
                         projExists = true;
                     }
                 }
