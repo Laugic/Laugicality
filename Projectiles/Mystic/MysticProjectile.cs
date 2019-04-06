@@ -39,11 +39,11 @@ namespace Laugicality.Projectiles.Mystic
         private bool CheckOverflow()
         {
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.MysticMode == 1 && modPlayer.lux + modPlayer.currentLuxCost > modPlayer.luxMax + modPlayer.luxMaxPermaBoost)
+            if (modPlayer.MysticMode == 1 && modPlayer.Lux + modPlayer.CurrentLuxCost > modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost)
                 return true;
-            if (modPlayer.MysticMode == 2 && modPlayer.vis + modPlayer.currentVisCost > modPlayer.visMax + modPlayer.visMaxPermaBoost)
+            if (modPlayer.MysticMode == 2 && modPlayer.Vis + modPlayer.CurrentVisCost > modPlayer.VisMax + modPlayer.VisMaxPermaBoost)
                 return true;
-            if (modPlayer.MysticMode == 3 && modPlayer.mundus + modPlayer.currentMundusCost > modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost)
+            if (modPlayer.MysticMode == 3 && modPlayer.Mundus + modPlayer.CurrentMundusCost > modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost)
                 return true;
             return false;
         }
@@ -51,7 +51,7 @@ namespace Laugicality.Projectiles.Mystic
         private void OverflowEffects()
         {
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.shroomOverflow > 0)
+            if (modPlayer.ShroomOverflow > 0)
                 projectile.tileCollide = false;
         }
 
@@ -60,7 +60,7 @@ namespace Laugicality.Projectiles.Mystic
             target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
 
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.incineration > 0)
+            if (modPlayer.Incineration > 0)
                 target.AddBuff(mod.BuffType("Incineration"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
             if (modPlayer.sporeShard > 0)
                 target.AddBuff(mod.BuffType("Spored"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));

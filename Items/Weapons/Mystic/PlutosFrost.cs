@@ -40,8 +40,8 @@ namespace Laugicality.Items.Weapons.Mystic
             if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 modPlayer.MysticDamage += .25f;
-                modPlayer.globalAbsorbRate *= 1.5f;
-                modPlayer.globalOverflow += .5f;
+                modPlayer.GlobalAbsorbRate *= 1.5f;
+                modPlayer.GlobalOverflow += .5f;
             }
             if (modPlayer.MysticMode == 2)
             {

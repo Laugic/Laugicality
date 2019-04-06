@@ -24,7 +24,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticShroomBurst = true;
+            modPlayer.MysticShroomBurst = true;
         }
         
         public override void AddRecipes()

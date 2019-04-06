@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.MysticDamage += .02f;
-            modPlayer.globalOverflow += .2f;
+            modPlayer.GlobalOverflow += .2f;
         }
         
         public override void AddRecipes()

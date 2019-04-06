@@ -26,18 +26,18 @@ namespace Laugicality.Items.Consumables.Potions
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<LaugicalityPlayer>().mysticality == 0;
+            return player.GetModPlayer<LaugicalityPlayer>().Mysticality == 0;
         }
 
         public override bool UseItem(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * (1 + (modPlayer.luxOverflow * modPlayer.globalOverflow - 1) / 2))
-                modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * (1 + (modPlayer.luxOverflow * modPlayer.globalOverflow - 1) / 2);
-            if (modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost) * (1 + (modPlayer.visOverflow * modPlayer.globalOverflow - 1) / 2))
-                modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * (1 + (modPlayer.visOverflow * modPlayer.globalOverflow - 1) / 2);
-            if (modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * (1 + (modPlayer.mundusOverflow * modPlayer.globalOverflow - 1) / 2))
-                modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * (1 + (modPlayer.mundusOverflow * modPlayer.globalOverflow - 1) / 2);
+            if (modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * (1 + (modPlayer.LuxOverflow * modPlayer.GlobalOverflow - 1) / 2))
+                modPlayer.Lux = (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * (1 + (modPlayer.LuxOverflow * modPlayer.GlobalOverflow - 1) / 2);
+            if (modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * (1 + (modPlayer.VisOverflow * modPlayer.GlobalOverflow - 1) / 2))
+                modPlayer.Vis = (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * (1 + (modPlayer.VisOverflow * modPlayer.GlobalOverflow - 1) / 2);
+            if (modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2))
+                modPlayer.Mundus = (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2);
             player.AddBuff(mod.BuffType("Mysticality3"), 60 * 60, true);
             return true;
         }

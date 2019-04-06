@@ -26,18 +26,18 @@ namespace Laugicality.Items.Consumables.Potions
 
         public override bool CanUseItem(Player player)
         {
-            return player.GetModPlayer<LaugicalityPlayer>().mysticality == 0;
+            return player.GetModPlayer<LaugicalityPlayer>().Mysticality == 0;
         }
 
         public override bool UseItem(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost)
-                modPlayer.lux = modPlayer.luxMax + modPlayer.luxMaxPermaBoost;
-            if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost)
-                modPlayer.vis = modPlayer.visMax + modPlayer.visMaxPermaBoost;
-            if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost)
-                modPlayer.mundus = modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost;
+            if (modPlayer.Lux < modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost)
+                modPlayer.Lux = modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost;
+            if (modPlayer.Vis < modPlayer.VisMax + modPlayer.VisMaxPermaBoost)
+                modPlayer.Vis = modPlayer.VisMax + modPlayer.VisMaxPermaBoost;
+            if (modPlayer.Mundus < modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost)
+                modPlayer.Mundus = modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost;
             player.AddBuff(mod.BuffType("Mysticality2"), 60 * 60, true);
             return true;
         }

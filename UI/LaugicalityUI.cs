@@ -140,29 +140,29 @@ namespace Laugicality.UI
         {
             LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
             visible = (mysticPlayer.MysticHold > 0);
-            float luxTemp = mysticPlayer.lux;
-            if (luxTemp > mysticPlayer.luxMax)
-                luxTemp = mysticPlayer.luxMax;
+            float luxTemp = mysticPlayer.Lux;
+            if (luxTemp > mysticPlayer.LuxMax)
+                luxTemp = mysticPlayer.LuxMax;
             if (LuxBar != null)
-                LuxBar.DrawSelf(spriteBatch, (int)luxTemp, (int)(mysticPlayer.luxMax));
-            if (OverflowLuxBar != null && mysticPlayer.lux > mysticPlayer.luxMax)
-                OverflowLuxBar.DrawSelf(spriteBatch, (int)(mysticPlayer.lux - mysticPlayer.luxMax), (int)(mysticPlayer.luxMax));
-            float mundusTemp = mysticPlayer.mundus;
-            if (mundusTemp > mysticPlayer.mundusMax)
-                mundusTemp = mysticPlayer.mundusMax;
+                LuxBar.DrawSelf(spriteBatch, (int)luxTemp, (int)(mysticPlayer.LuxMax));
+            if (OverflowLuxBar != null && mysticPlayer.Lux > mysticPlayer.LuxMax)
+                OverflowLuxBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Lux - mysticPlayer.LuxMax), (int)(mysticPlayer.LuxMax));
+            float mundusTemp = mysticPlayer.Mundus;
+            if (mundusTemp > mysticPlayer.MundusMax)
+                mundusTemp = mysticPlayer.MundusMax;
             if (MundusBar != null)
-                MundusBar.DrawSelf(spriteBatch, (int)mundusTemp, (int)(mysticPlayer.mundusMax));
-            if (OverflowMundusBar != null && mysticPlayer.mundus > mysticPlayer.mundusMax)
-                OverflowMundusBar.DrawSelf(spriteBatch, (int)(mysticPlayer.mundus - mysticPlayer.mundusMax), (int)(mysticPlayer.mundusMax));
-            float visTemp = mysticPlayer.vis;
-            if (visTemp > mysticPlayer.visMax)
-                visTemp = mysticPlayer.visMax;
+                MundusBar.DrawSelf(spriteBatch, (int)mundusTemp, (int)(mysticPlayer.MundusMax));
+            if (OverflowMundusBar != null && mysticPlayer.Mundus > mysticPlayer.MundusMax)
+                OverflowMundusBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Mundus - mysticPlayer.MundusMax), (int)(mysticPlayer.MundusMax));
+            float visTemp = mysticPlayer.Vis;
+            if (visTemp > mysticPlayer.VisMax)
+                visTemp = mysticPlayer.VisMax;
             if (VisBar != null)
-                VisBar.DrawSelf(spriteBatch, (int)visTemp, (int)(mysticPlayer.visMax));
-            if (OverflowVisBar != null && mysticPlayer.vis > mysticPlayer.visMax)
-                OverflowVisBar.DrawSelf(spriteBatch, (int)(mysticPlayer.vis - mysticPlayer.visMax), (int)(mysticPlayer.visMax));
-            if (MysticBurstBar != null && mysticPlayer.mysticSwitchCool > 0 && mysticBurstCooldownMax >= mysticPlayer.mysticSwitchCool)
-                MysticBurstBar.DrawSelf(spriteBatch, mysticPlayer.mysticSwitchCool, mysticBurstCooldownMax);
+                VisBar.DrawSelf(spriteBatch, (int)visTemp, (int)(mysticPlayer.VisMax));
+            if (OverflowVisBar != null && mysticPlayer.Vis > mysticPlayer.VisMax)
+                OverflowVisBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Vis - mysticPlayer.VisMax), (int)(mysticPlayer.VisMax));
+            if (MysticBurstBar != null && mysticPlayer.MysticSwitchCool > 0 && mysticBurstCooldownMax >= mysticPlayer.MysticSwitchCool)
+                MysticBurstBar.DrawSelf(spriteBatch, mysticPlayer.MysticSwitchCool, mysticBurstCooldownMax);
             UpdateHover(spriteBatch);
         }
 
@@ -302,9 +302,9 @@ namespace Laugicality.UI
         private void UpdateMysticBurst()
         {
             LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
-            if (mysticBurstCooldownMax < mysticPlayer.mysticSwitchCool)
-                mysticBurstCooldownMax = mysticPlayer.mysticSwitchCool;
-            if (mysticPlayer.mysticSwitchCool == 0 && mysticBurstCooldownMax != 0)
+            if (mysticBurstCooldownMax < mysticPlayer.MysticSwitchCool)
+                mysticBurstCooldownMax = mysticPlayer.MysticSwitchCool;
+            if (mysticPlayer.MysticSwitchCool == 0 && mysticBurstCooldownMax != 0)
             {
                 mysticBurstCooldownMax = 0;
                 Main.PlaySound(25, (int)Main.LocalPlayer.position.X, (int)Main.LocalPlayer.position.Y, 0);
@@ -323,11 +323,11 @@ namespace Laugicality.UI
             int widthMod = 12;
             int heightMod = 8;
             if (posX > TopPosBase.X - widthMod && posX < TopPosBase.X + LuxBGTexture.Width + widthMod && posY > TopPosBase.Y - heightMod && posY < TopPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.lux).ToString() + "/" + Math.Round(mysticPlayer.luxMax + mysticPlayer.luxMaxPermaBoost).ToString() + " Lux", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Lux).ToString() + "/" + Math.Round(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost).ToString() + " Lux", drawPos, Color.White);
             if (posX > BotPosBase.X - widthMod && posX < BotPosBase.X + LuxBGTexture.Width + widthMod && posY > BotPosBase.Y - heightMod && posY < BotPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.vis).ToString() + "/" + Math.Round(mysticPlayer.visMax + mysticPlayer.visMaxPermaBoost).ToString() + " Vis", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Vis).ToString() + "/" + Math.Round(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost).ToString() + " Vis", drawPos, Color.White);
             if (posX > MidPosBase.X - widthMod && posX < MidPosBase.X + LuxBGTexture.Width + widthMod && posY > MidPosBase.Y - heightMod && posY < MidPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.mundus).ToString() + "/" + Math.Round(mysticPlayer.mundusMax + mysticPlayer.mundusMaxPermaBoost).ToString() + " Mundus", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Mundus).ToString() + "/" + Math.Round(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost).ToString() + " Mundus", drawPos, Color.White);
         }
     }
 }

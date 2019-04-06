@@ -27,8 +27,8 @@ namespace Laugicality.Items.Useables
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/SoulStore"));
-            player.GetModPlayer<LaugicalityPlayer>(mod).mysticBurstDisabled = !player.GetModPlayer<LaugicalityPlayer>(mod).mysticBurstDisabled;
-            if (player.GetModPlayer<LaugicalityPlayer>(mod).mysticBurstDisabled)
+            player.GetModPlayer<LaugicalityPlayer>(mod).MysticBurstDisabled = !player.GetModPlayer<LaugicalityPlayer>(mod).MysticBurstDisabled;
+            if (player.GetModPlayer<LaugicalityPlayer>(mod).MysticBurstDisabled)
                 Main.NewText("You stored part of your Soul in the Vase.", 150, 100, 0);
             else
                 Main.NewText("Your soul has been released.", 150, 100, 0);

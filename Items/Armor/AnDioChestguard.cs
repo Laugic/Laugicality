@@ -38,19 +38,19 @@ namespace Laugicality.Items.Armor
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "50% more Potentia discharges to other Potentias when used\nDioritus Mystic Burst\nDecreases Mystic Burst cooldown" +
                 "\nGreatly increased Potentia Regen when time is stopped\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
-            modPlayer.globalAbsorbRate *= 1.5f;
+            modPlayer.GlobalAbsorbRate *= 1.5f;
             if (Laugicality.zaWarudo > 0)
             {
-                if (modPlayer.lux < modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.MysticMode != 1)
-                    modPlayer.lux += 1f / 4f;
-                if (modPlayer.vis < modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.MysticMode != 2)
-                    modPlayer.vis += 1f / 4f;
-                if (modPlayer.mundus < modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.MysticMode != 3)
-                    modPlayer.mundus += 1f / 4f;
+                if (modPlayer.Lux < modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost && modPlayer.MysticMode != 1)
+                    modPlayer.Lux += 1f / 4f;
+                if (modPlayer.Vis < modPlayer.VisMax + modPlayer.VisMaxPermaBoost && modPlayer.MysticMode != 2)
+                    modPlayer.Vis += 1f / 4f;
+                if (modPlayer.Mundus < modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost && modPlayer.MysticMode != 3)
+                    modPlayer.Mundus += 1f / 4f;
             }
-            modPlayer.mysticSwitchCoolRate += 2;
+            modPlayer.MysticSwitchCoolRate += 2;
             modPlayer.zCoolDown -= 10 * 60;
-            modPlayer.andioChestguard = true;
+            modPlayer.AndioChestguard = true;
         }
 
         public override void AddRecipes()

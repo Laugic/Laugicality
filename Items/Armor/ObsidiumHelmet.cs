@@ -39,9 +39,9 @@ namespace Laugicality.Items.Armor
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Magmatic Mystic Burst\nDecreased Mystic Burst cooldown\n+20% Mystic Burst damage\nAttacks inflict 'On Fire!'";
             modPlayer.Obsidium = true;
-            modPlayer.mysticObsidiumBurst = true;
-            modPlayer.mysticSwitchCoolRate += 2;
-            modPlayer.mysticBurstDamage += .2f;
+            modPlayer.MysticObsidiumBurst = true;
+            modPlayer.MysticSwitchCoolRate += 2;
+            modPlayer.MysticBurstDamage += .2f;
         }
 
 		public override void AddRecipes()

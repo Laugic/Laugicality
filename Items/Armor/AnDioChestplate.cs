@@ -38,19 +38,19 @@ namespace Laugicality.Items.Armor
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "+50 to all Potentias\n25% Reduced Potentia useage\nThe lower your Potentia, the higher your Mystic damage\nPotentia does not decrease when time is stopped\nTime stop lasts longer\nAutomatically stops time after taking a hit below 25% life";
             modPlayer.zaWarudoDuration += 2 * 60;
-            modPlayer.andioChestplate = true;
-            modPlayer.luxMax += 50;
-            modPlayer.visMax += 50;
-            modPlayer.mundusMax += 50;
-            if (modPlayer.MysticMode == 1 && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.lux / (modPlayer.luxMax + modPlayer.luxMaxPermaBoost))) / 5;
-            if (modPlayer.MysticMode == 2 && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.vis / (modPlayer.visMax + modPlayer.visMaxPermaBoost))) / 5;
-            if (modPlayer.MysticMode == 3 && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.mundus / (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost))) / 5;
-            modPlayer.globalPotentiaUseRate *= .75f;
+            modPlayer.AndioChestplate = true;
+            modPlayer.LuxMax += 50;
+            modPlayer.VisMax += 50;
+            modPlayer.MundusMax += 50;
+            if (modPlayer.MysticMode == 1 && modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.Lux / (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost))) / 5;
+            if (modPlayer.MysticMode == 2 && modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.Vis / (modPlayer.VisMax + modPlayer.VisMaxPermaBoost))) / 5;
+            if (modPlayer.MysticMode == 3 && modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost))
+                modPlayer.MysticDamage += (1 - (modPlayer.Mundus / (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost))) / 5;
+            modPlayer.GlobalPotentiaUseRate *= .75f;
             if (Laugicality.zaWarudo > 0)
-                modPlayer.globalPotentiaUseRate = 0;
+                modPlayer.GlobalPotentiaUseRate = 0;
         }
 
         public override void AddRecipes()

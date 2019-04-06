@@ -24,7 +24,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticMarblite = true;
+            modPlayer.MysticMarblite = true;
             modPlayer.MysticDamage += .1f;
         }
 

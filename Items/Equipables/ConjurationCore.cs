@@ -24,8 +24,8 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.ConjurationDamage += .1f;
-            modPlayer.mundusOverflow += .25f;
-            modPlayer.mundusAbsorbRate += .25f;
+            modPlayer.MundusOverflow += .25f;
+            modPlayer.MundusAbsorbRate += .25f;
         }
         
         public override void AddRecipes()

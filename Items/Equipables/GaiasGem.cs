@@ -26,7 +26,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.MysticDuration += 1f;
-            modPlayer.mysticSwitchCoolRate += 1;
+            modPlayer.MysticSwitchCoolRate += 1;
         }
         
         public override void AddRecipes()

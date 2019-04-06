@@ -26,8 +26,8 @@ namespace Laugicality.Items.Loot
             player.jumpSpeedBoost += 2f;
             player.moveSpeed += 0.5f;
             modPlayer.MysticDamage += 0.12f;
-            modPlayer.mysticSwitchCoolRate += 1;
-            modPlayer.globalOverflow += .2f;
+            modPlayer.MysticSwitchCoolRate += 1;
+            modPlayer.GlobalOverflow += .2f;
         }
     }
 }

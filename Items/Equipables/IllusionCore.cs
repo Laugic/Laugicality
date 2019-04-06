@@ -24,8 +24,8 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.IllusionDamage += .1f;
-            modPlayer.visOverflow += .25f;
-            modPlayer.visAbsorbRate += .25f;
+            modPlayer.VisOverflow += .25f;
+            modPlayer.VisAbsorbRate += .25f;
         }
         
         public override void AddRecipes()

@@ -76,21 +76,21 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             LuxCost = 16;
-            if (modPlayer.MysticMode == 1 && modPlayer.lux >= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate)
+            if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
             {
                 Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, mod.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
                 
-                modPlayer.lux -= LuxCost * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
-                if (modPlayer.lux < 0)
-                    modPlayer.lux = 0;
-                if (modPlayer.lux > (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
-                    modPlayer.lux = (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow;
-                modPlayer.vis += LuxCost * modPlayer.globalAbsorbRate * modPlayer.visAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
-                if (modPlayer.vis > (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
-                    modPlayer.vis = (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow;
-                modPlayer.mundus += LuxCost * modPlayer.globalAbsorbRate * modPlayer.mundusAbsorbRate * modPlayer.luxDischargeRate * modPlayer.luxUseRate * modPlayer.globalPotentiaUseRate;
-                if (modPlayer.mundus > (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
-                    modPlayer.mundus = (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow;
+                modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
+                if (modPlayer.Lux < 0)
+                    modPlayer.Lux = 0;
+                if (modPlayer.Lux > (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * modPlayer.LuxOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Lux = (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * modPlayer.LuxOverflow * modPlayer.GlobalOverflow;
+                modPlayer.Vis += LuxCost * modPlayer.GlobalAbsorbRate * modPlayer.VisAbsorbRate * modPlayer.LuxDischargeRate * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
+                if (modPlayer.Vis > (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * modPlayer.VisOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Vis = (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * modPlayer.VisOverflow * modPlayer.GlobalOverflow;
+                modPlayer.Mundus += LuxCost * modPlayer.GlobalAbsorbRate * modPlayer.MundusAbsorbRate * modPlayer.LuxDischargeRate * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
+                if (modPlayer.Mundus > (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * modPlayer.MundusOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Mundus = (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * modPlayer.MundusOverflow * modPlayer.GlobalOverflow;
                 
             }
             LuxCost = 0;

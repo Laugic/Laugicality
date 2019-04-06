@@ -25,8 +25,8 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.globalOverflow += .1f;
-            modPlayer.overflowDamage += .1f;
+            modPlayer.GlobalOverflow += .1f;
+            modPlayer.OverflowDamage += .1f;
         }
 
         public override void AddRecipes()

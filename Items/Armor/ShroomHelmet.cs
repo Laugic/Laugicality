@@ -46,16 +46,16 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Attacks cast using Overflow can pass through walls\nWhen at Max Potentia, Overflow slowly accrues over time";
-            modPlayer.shroomOverflow = 2;
+            modPlayer.ShroomOverflow = 2;
 
             if (modPlayer.MysticHold > 0)
             {
-                if (modPlayer.lux >= modPlayer.luxMax + modPlayer.luxMaxPermaBoost && modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) * modPlayer.luxOverflow * modPlayer.globalOverflow)
-                    modPlayer.lux += 1f / 20f;
-                if (modPlayer.vis >= modPlayer.visMax + modPlayer.visMaxPermaBoost && modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost) * modPlayer.visOverflow * modPlayer.globalOverflow)
-                    modPlayer.vis += 1f / 20f;
-                if (modPlayer.mundus >= modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost && modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) * modPlayer.mundusOverflow * modPlayer.globalOverflow)
-                    modPlayer.mundus += 1f / 20f;
+                if (modPlayer.Lux >= modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost && modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * modPlayer.LuxOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Lux += 1f / 20f;
+                if (modPlayer.Vis >= modPlayer.VisMax + modPlayer.VisMaxPermaBoost && modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * modPlayer.VisOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Vis += 1f / 20f;
+                if (modPlayer.Mundus >= modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost && modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * modPlayer.MundusOverflow * modPlayer.GlobalOverflow)
+                    modPlayer.Mundus += 1f / 20f;
             }
         }
 

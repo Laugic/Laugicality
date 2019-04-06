@@ -41,7 +41,7 @@ namespace Laugicality.Items.Useables
             }
             foreach ( Player player2 in Main.player){
                 
-            if (modPlayer.andioChestguard == true)
+            if (modPlayer.AndioChestguard == true)
                 player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
             else
                 player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);

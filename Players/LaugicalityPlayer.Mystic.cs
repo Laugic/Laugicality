@@ -14,75 +14,82 @@ namespace Laugicality
             if (UsingMysticItem > 0)
                 UsingMysticItem--;
             else
-            {
-                orionCharge = 0;
-            }
-            if (mysticSwitchCool > 0)
-                mysticSwitchCool -= mysticSwitchCoolRate;
-            if (mysticErupting > 0)
-                mysticErupting -= 1;
-            if (mysticSpiralBurst > 0)
-                mysticSpiralBurst -= 1;
-            if (mysticSteamSpiralBurst > 0)
-                mysticSteamSpiralBurst -= 1;
+                OrionCharge = 0;
+
+            if (MysticSwitchCool > 0)
+                MysticSwitchCool -= MysticSwitchCoolRate;
+
+            if (MysticErupting > 0)
+                MysticErupting -= 1;
+
+            if (MysticSpiralBurst > 0)
+                MysticSpiralBurst -= 1;
+
+            if (MysticSteamSpiralBurst > 0)
+                MysticSteamSpiralBurst -= 1;
+
             MysticCrit = 4;
             MysticDamage = 1f;
             MysticDuration = 1f;
+
             if (MysticHold > 0)
                 MysticHold -= 1;
-            if (shroomOverflow > 0)
-                shroomOverflow--;
-            if (incineration > 0)
-                incineration--;
+
+            if (ShroomOverflow > 0)
+                ShroomOverflow--;
+
+            if (Incineration > 0)
+                Incineration--;
 
             IllusionDamage = 1f;
             DestructionDamage = 1f;
             ConjurationDamage = 1f;
 
-            mysticSwitchCoolRate = 1;
-            mysticBurstDamage = 1f;
-            mysticSandBurst = false;
-            mysticSteamBurst = false;
-            mysticShroomBurst = false;
-            mysticMarblite = false;
-            mysticEruption = false;
-            mysticEruptionBurst = false;
-            mysticObsidiumBurst = false;
+            MysticSwitchCoolRate = 1;
+            MysticBurstDamage = 1f;
+            MysticSandBurst = false;
+            MysticSteamBurst = false;
+            MysticShroomBurst = false;
+            MysticMarblite = false;
+            MysticEruption = false;
+            MysticEruptionBurst = false;
+            MysticObsidiumBurst = false;
 
-            if (mysticality > 0)
-                mysticality -= 1;
-            luxDischargeRate = 1;
-            luxOverflow = 1.25f;
-            luxAbsorbRate = 1;
-            visDischargeRate = 1;
-            visOverflow = 1.25f;
-            visAbsorbRate = 1;
-            mundusDischargeRate = 1;
-            mundusOverflow = 1.25f;
-            mundusAbsorbRate = 1;
-            globalAbsorbRate = .5f;
-            globalOverflow = 1f;
-            overflowDamage = 1f;
+            if (Mysticality > 0)
+                Mysticality -= 1;
 
-            luxMax = 100;
-            visMax = 100;
-            mundusMax = 100;
+            LuxDischargeRate = 1;
+            LuxOverflow = 1.25f;
+            LuxAbsorbRate = 1;
+            VisDischargeRate = 1;
+            VisOverflow = 1.25f;
+            VisAbsorbRate = 1;
+            MundusDischargeRate = 1;
+            MundusOverflow = 1.25f;
+            MundusAbsorbRate = 1;
+            GlobalAbsorbRate = .5f;
+            GlobalOverflow = 1f;
+            OverflowDamage = 1f;
 
-            currentLuxCost = 0;
-            currentVisCost = 0;
-            currentMundusCost = 0;
+            LuxMax = 100;
+            VisMax = 100;
+            MundusMax = 100;
 
-            luxUseRate = 1;
-            visUseRate = 1;
-            mundusUseRate = 1;
-            globalPotentiaUseRate = 1;
+            CurrentLuxCost = 0;
+            CurrentVisCost = 0;
+            CurrentMundusCost = 0;
+
+            LuxUseRate = 1;
+            VisUseRate = 1;
+            MundusUseRate = 1;
+            GlobalPotentiaUseRate = 1;
         }
 
         public override void PreUpdateBuffs()
         {
-            luxMax = 100;
-            visMax = 100;
-            mundusMax = 100;
+            LuxMax = 100;
+            VisMax = 100;
+            MundusMax = 100;
         }
 
         public void MysticSwitch()
@@ -100,68 +107,78 @@ namespace Laugicality
                 default:
                     break;
             }
-            if (mysticSwitchCool <= 0 && !mysticBurstDisabled)
+            if (MysticSwitchCool <= 0 && !MysticBurstDisabled)
             {
-                if (mysticShroomBurst)
+                if (MysticShroomBurst)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
 
-                    mysticSwitchCool += 1 * 60;
+                    MysticSwitchCool += 1 * 60;
                 }
-                if (mysticEruption)
-                {
-                    mysticErupting += 90;
-                    mysticSwitchCool += 3 * 60;
-                }
-                if (magmatic)
-                {
-                    mysticErupting += 90;
-                    mysticSwitchCool += 3 * 60;
-                }
-                if (mysticSandBurst)
-                {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
 
-                    mysticSwitchCool += 3 * 60;
-                }
-                if (mysticEruptionBurst)
+                if (MysticEruption)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    mysticErupting += 45;
+                    MysticErupting += 90;
+                    MysticSwitchCool += 3 * 60;
+                }
 
-                    mysticSwitchCool += 4 * 60;
-                }
-                if (andioChestguard)
+                if (Magmatic)
                 {
-                    mysticSpiralBurst += 150;
-                    mysticSwitchCool += 4 * 60;
+                    MysticErupting += 90;
+                    MysticSwitchCool += 3 * 60;
                 }
-                if (mysticObsidiumBurst)
+
+                if (MysticSandBurst)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+
+                    MysticSwitchCool += 3 * 60;
+                }
+
+                if (MysticEruptionBurst)
+                {
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    MysticErupting += 45;
+
+                    MysticSwitchCool += 4 * 60;
+                }
+
+                if (AndioChestguard)
+                {
+                    MysticSpiralBurst += 150;
+                    MysticSwitchCool += 4 * 60;
+                }
+
+                if (MysticObsidiumBurst)
                 {
                     float mag = 12f;
                     float theta = 0;
+
                     for (int i = 0; i < 16; i++)
                     {
                         theta += (float)Math.PI / 8;
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("ObsidiumMysticBurst"), (int)(24 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("ObsidiumMysticBurst"), (int)(24 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                     }
-                    mysticSwitchCool += 4 * 60;
+
+                    MysticSwitchCool += 4 * 60;
                 }
-                if (mysticSteamBurst)
+
+                if (MysticSteamBurst)
                 {
-                    mysticSteamSpiralBurst += 145;
-                    mysticSwitchCool += 4 * 60;
+                    MysticSteamSpiralBurst += 145;
+                    MysticSwitchCool += 4 * 60;
                 }
-                if (mysticMarblite)
+
+                if (MysticMarblite)
                 {
                     player.AddBuff(mod.BuffType("ForGlory"), 180 + (int)(120 * MysticDuration));
                     player.AddBuff(mod.BuffType("ForHonor"), 180 + (int)(120 * MysticDuration));
@@ -172,14 +189,16 @@ namespace Laugicality
 
         private void PostUpdateMysticBuffs()
         {
-            if (andioChestplate)
+            if (AndioChestplate)
             {
-                if (lux < (luxMax + luxMaxPermaBoost))
-                    DestructionDamage += (1 - (lux / (luxMax + luxMaxPermaBoost))) / 5;
-                if (vis < (visMax + visMaxPermaBoost))
-                    IllusionDamage += (1 - (vis / (visMax + visMaxPermaBoost))) / 5;
-                if (mundus < (mundusMax + mundusMaxPermaBoost))
-                    ConjurationDamage += (1 - (mundus / (mundusMax + mundusMaxPermaBoost))) / 5;
+                if (Lux < (LuxMax + LuxMaxPermaBoost))
+                    DestructionDamage += (1 - (Lux / (LuxMax + LuxMaxPermaBoost))) / 5;
+
+                if (Vis < (VisMax + VisMaxPermaBoost))
+                    IllusionDamage += (1 - (Vis / (VisMax + VisMaxPermaBoost))) / 5;
+
+                if (Mundus < (MundusMax + MundusMaxPermaBoost))
+                    ConjurationDamage += (1 - (Mundus / (MundusMax + MundusMaxPermaBoost))) / 5;
             }
         }
 
@@ -206,64 +225,96 @@ namespace Laugicality
 
         #endregion
 
-        //Mystic Bursts
-        public bool mysticBurstDisabled = false;
-        public float mysticBurstDamage = 1f;
-        public int mysticSwitchCool = 0;
-        public int mysticSwitchCoolRate = 1;
-        public bool mysticSteamBurst = false;
-        public bool mysticShroomBurst = false;
-        public bool mysticSandBurst = false;
-        public bool mysticEruptionBurst = false;
-        public bool mysticMarblite = false;
-        public bool andioChestplate = false;
-        public bool andioChestguard = false;
-        public bool midnight = false;
-        public int mysticSpiralBurst = 0;
-        public int mysticSpiralDelay = 0;
-        public int mysticSteamSpiralBurst = 0;
-        public int mysticSteamSpiralDelay = 0;
-        public bool mysticEruption = false;
-        public int mysticErupting = 0;
-        public bool magmatic = false;
-        public int orionCharge = 0;
-        public bool mysticObsidiumBurst = false;
+        #region Mystic Bursts
 
-        //Mystica
-        public float lux = 100;
-        public float luxMax = 100;
-        public float luxOverflow = 1.25f;
-        public float luxDischargeRate = 1;
-        public float luxAbsorbRate = 1;
-        public float mundus = 100;
-        public float mundusMax = 100;
-        public float mundusOverflow = 1.25f;
-        public float mundusDischargeRate = 1;
-        public float mundusAbsorbRate = 1;
-        public float vis = 100;
-        public float visMax = 100;
-        public float visOverflow = 1.25f;
-        public float visDischargeRate = 1;
-        public float visAbsorbRate = 1;
-        public float globalAbsorbRate = .5f;
-        public float luxUseRate = 1f;
-        public float visUseRate = 1f;
-        public float mundusUseRate = 1f;
-        public float globalPotentiaUseRate = 1f;
-        public float globalOverflow = 1f;
-        public float overflowDamage = 1f;
+        public bool MysticBurstDisabled { get; set; } = false;
 
-        public float luxMaxPermaBoost = 0;
-        public float visMaxPermaBoost = 0;
-        public float mundusMaxPermaBoost = 0;
-        public int currentLuxCost = 0;
-        public int currentVisCost = 0;
-        public int currentMundusCost = 0;
+        public float MysticBurstDamage { get; set; } = 1f;
 
-        //Overflows
-        public int shroomOverflow = 0;
-        public int incineration = 0;
+        public int MysticSwitchCool { get; set; } = 0;
 
-        public int mysticality = 0;
+        public int MysticSwitchCoolRate { get; set; } = 1;
+
+        public bool MysticSteamBurst { get; set; } = false;
+
+        public bool MysticShroomBurst { get; set; } = false;
+
+        public bool MysticSandBurst { get; set; } = false;
+
+        public bool MysticEruptionBurst { get; set; } = false;
+
+        public bool MysticMarblite { get; set; } = false;
+
+        public bool AndioChestplate { get; set; } = false;
+
+        public bool AndioChestguard { get; set; } = false;
+
+        public bool Midnight { get; set; } = false;
+
+        public int MysticSpiralBurst { get; set; } = 0;
+
+        public int MysticSpiralDelay { get; set; } = 0;
+
+        public int MysticSteamSpiralBurst { get; set; } = 0;
+
+        public int MysticSteamSpiralDelay { get; set; } = 0;
+
+        public bool MysticEruption { get; set; } = false;
+
+        public int MysticErupting { get; set; } = 0;
+
+        public bool Magmatic { get; set; } = false;
+
+        public int OrionCharge { get; set; } = 0;
+
+        public bool MysticObsidiumBurst { get; set; } = false;
+
+        #endregion
+
+        #region Mystica
+
+        public float Lux { get; set; } = 100;
+        public float LuxMax { get; set; } = 100;
+        public float LuxOverflow { get; set; } = 1.25f;
+        public float LuxDischargeRate { get; set; } = 1;
+        public float LuxAbsorbRate { get; set; } = 1;
+        public float LuxUseRate { get; set; } = 1f;
+        public float LuxMaxPermaBoost { get; set; } = 0;
+        public int CurrentLuxCost { get; set; }
+
+        public float Mundus { get; set; } = 100;
+        public float MundusMax { get; set; } = 100;
+        public float MundusOverflow { get; set; } = 1.25f;
+        public float MundusDischargeRate { get; set; } = 1;
+        public float MundusAbsorbRate { get; set; } = 1;
+        public float MundusUseRate { get; set; } = 1f;
+        public float MundusMaxPermaBoost { get; set; } = 0;
+        public int CurrentMundusCost { get; set; } = 0;
+
+        public float Vis { get; set; } = 100;
+        public float VisMax { get; set; } = 100;
+        public float VisOverflow { get; set; } = 1.25f;
+        public float VisDischargeRate { get; set; } = 1;
+        public float VisAbsorbRate { get; set; } = 1;
+        public float VisUseRate { get; set; } = 1f;
+        public float VisMaxPermaBoost { get; set; } = 0;
+        public int CurrentVisCost { get; set; } = 0;
+
+        public float GlobalAbsorbRate { get; set; } = .5f;
+        public float GlobalPotentiaUseRate { get; set; } = 1f;
+        public float GlobalOverflow { get; set; } = 1f;
+        public float OverflowDamage { get; set; } = 1f;
+
+        #endregion
+
+        #region Overflows
+
+        public int ShroomOverflow { get; set; }
+
+        public int Incineration { get; set; }
+
+        public int Mysticality { get; set; }
+
+        #endregion
     }
 }

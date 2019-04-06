@@ -44,16 +44,16 @@ namespace Laugicality.Items.Weapons.Mystic
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.MysticMode == 1)
             {
-                modPlayer.orionCharge++;
+                modPlayer.OrionCharge++;
                 modPlayer.UsingMysticItem = 60;
-                if (modPlayer.orionCharge > 24)
-                    modPlayer.orionCharge = 24;
-                for (int i = 0; i < modPlayer.orionCharge / 2 + 1; i++)
+                if (modPlayer.OrionCharge > 24)
+                    modPlayer.OrionCharge = 24;
+                for (int i = 0; i < modPlayer.OrionCharge / 2 + 1; i++)
                 {
                     float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f / 180f;
-                    theta += -modPlayer.orionCharge / 24 * 3.14f / 6 + 2 * modPlayer.orionCharge / 24 * (float)Main.rand.NextDouble() * 3.14f / 6;
-                    float mag = 600 + Main.rand.Next(200 + 4 * modPlayer.orionCharge);
-                    Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)) - 32 - modPlayer.orionCharge + Main.rand.Next(64 + 2 * modPlayer.orionCharge), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)) - 32 - modPlayer.orionCharge + Main.rand.Next(64 + 2 * modPlayer.orionCharge), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), mod.ProjectileType("OrionDestruction"), damage, 3, Main.myPlayer);
+                    theta += -modPlayer.OrionCharge / 24 * 3.14f / 6 + 2 * modPlayer.OrionCharge / 24 * (float)Main.rand.NextDouble() * 3.14f / 6;
+                    float mag = 600 + Main.rand.Next(200 + 4 * modPlayer.OrionCharge);
+                    Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)) - 32 - modPlayer.OrionCharge + Main.rand.Next(64 + 2 * modPlayer.OrionCharge), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)) - 32 - modPlayer.OrionCharge + Main.rand.Next(64 + 2 * modPlayer.OrionCharge), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), mod.ProjectileType("OrionDestruction"), damage, 3, Main.myPlayer);
                 }
             }
             if(modPlayer.MysticMode == 2)

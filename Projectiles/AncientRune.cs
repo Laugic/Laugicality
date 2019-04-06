@@ -34,7 +34,7 @@ namespace Laugicality.Projectiles
             projectile.rotation += 0.02f;
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
             if (Main.rand.Next(4) == 0 && Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4+Main.rand.Next(0,9), -Main.rand.Next(3,7),  mod.ProjectileType("AncientRuneUp"), (int)(12 * modPlayer.MysticDamage * modPlayer.mysticBurstDamage), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4+Main.rand.Next(0,9), -Main.rand.Next(3,7),  mod.ProjectileType("AncientRuneUp"), (int)(12 * modPlayer.MysticDamage * modPlayer.MysticBurstDamage), 3, Main.myPlayer);
             
         }
         
