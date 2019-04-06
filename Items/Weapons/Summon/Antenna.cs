@@ -1,3 +1,4 @@
+using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +10,7 @@ namespace Laugicality.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a TVSummon to fight for you.");
+			Tooltip.SetDefault("Summons a TV to fight for you.");
 		}
 
 		public override void SetDefaults()
@@ -27,9 +28,9 @@ namespace Laugicality.Items.Weapons.Summon
 			item.value = Item.buyPrice(0, 25, 0, 0);
 			item.rare = 7;
 			item.UseSound = SoundID.Item44;
-			item.shoot = mod.ProjectileType("TVSummon");
+			item.shoot = mod.ProjectileType(nameof(TV));
 			item.shootSpeed = 12f;
-			item.buffType = mod.BuffType("TVSummon");
+			item.buffType = mod.BuffType(nameof(TV));
 			item.buffTime = 3600;
 		}
 		
