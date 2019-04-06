@@ -51,7 +51,10 @@ namespace Laugicality.Tiles
             for (int k = 0; k < 200; k++)
             {
                 if (Main.npc[k].boss && Main.npc[k].active)
+                {
                     boss = true;
+                    break;
+                }
             }
             if(!boss)
             {
