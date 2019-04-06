@@ -21,7 +21,7 @@ namespace Laugicality.NPCs.PreTrio
         public override void SetDefaults()
         {
             Main.projFrames[projectile.type] = 3;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             delay = 0;
             spawned = 0;

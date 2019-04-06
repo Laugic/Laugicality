@@ -19,7 +19,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).spooked = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).spooked = true;
 		}
 	}
 }

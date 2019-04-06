@@ -466,7 +466,7 @@ namespace Laugicality.NPCs.RockTwins
                         if(Laugicality.zaWarudo < 4 * 60)
                         {
                             Laugicality.zaWarudo += 4 * 60;
-                            LaugicalGlobalNpCs.zTime += 4 * 60;
+                            LaugicalGlobalNPCs.zTime += 4 * 60;
                         }
                         laser = 120;
                     }

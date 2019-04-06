@@ -30,7 +30,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if(target.boss == false && !LaugicalityVars.FrigImmune.Contains(target.type))
+            if(target.boss == false && !LaugicalityVars.frigImmune.Contains(target.type))
                 target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
         }
 

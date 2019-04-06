@@ -46,7 +46,7 @@ namespace Laugicality.Items.Weapons.Melee
         /*
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.Etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
+            if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
             {
                 target.GetGlobalNPC<EtherialGlobalNPC>(mod).etherial = true;
             }

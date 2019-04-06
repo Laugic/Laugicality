@@ -24,33 +24,39 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            int minPotentia = (int)(modPlayer.luxMax + modPlayer.luxMaxPermaBoost);
-            if(modPlayer.visMax + modPlayer.visMaxPermaBoost < minPotentia)
-                minPotentia = (int)(modPlayer.visMax + modPlayer.visMaxPermaBoost);
-            if (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost < minPotentia)
-                minPotentia = (int)(modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost);
+
+            int minPotentia = (int)(modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost);
+
+            if(modPlayer.VisMax + modPlayer.VisMaxPermaBoost < minPotentia)
+                minPotentia = (int)(modPlayer.VisMax + modPlayer.VisMaxPermaBoost);
+
+            if (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost < minPotentia)
+                minPotentia = (int)(modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost);
+
             player.statLifeMax2 += minPotentia;
             float currPotentia = 1;
             float currMaxPotentia = 1;
-            switch (modPlayer.mysticMode)
+
+            switch (modPlayer.MysticMode)
             {
                 case 1:
-                    currPotentia = modPlayer.lux;
-                    currMaxPotentia = modPlayer.luxMax + modPlayer.luxMaxPermaBoost;
+                    currPotentia = modPlayer.Lux;
+                    currMaxPotentia = modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost;
                     break;
                 case 2:
-                    currPotentia = modPlayer.vis;
-                    currMaxPotentia = modPlayer.visMax + modPlayer.visMaxPermaBoost;
+                    currPotentia = modPlayer.Vis;
+                    currMaxPotentia = modPlayer.VisMax + modPlayer.VisMaxPermaBoost;
                     break;
                 default:
-                    currPotentia = modPlayer.mundus;
-                    currMaxPotentia = modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost;
+                    currPotentia = modPlayer.Mundus;
+                    currMaxPotentia = modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost;
                     break;
             }
             if (currMaxPotentia == 0)
                 currMaxPotentia = 1;
+
             player.lifeRegen += (int)(6 * (1 - (currPotentia / currMaxPotentia)));
-            modPlayer.mysticDamage += .2f * (1-(player.statLife / player.statLifeMax2));
+            modPlayer.MysticDamage += .2f * (1-(player.statLife / player.statLifeMax2));
         }
 
         public override void AddRecipes()

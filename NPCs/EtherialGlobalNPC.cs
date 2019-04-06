@@ -162,7 +162,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 50000;
                 npc.life = npc.lifeMax;
                 npc.defense = 40;
-                npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
             if (npc.type == mod.NPCType("Andesia"))
             {
@@ -170,7 +170,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 50000;
                 npc.life = npc.lifeMax;
                 npc.defense = 40;
-                npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
             if (npc.type == mod.NPCType("AnDio3"))
             {
@@ -178,7 +178,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 120000;
                 npc.life = npc.lifeMax;
                 npc.defense = 60;
-                npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
             if (npc.type == NPCID.WallofFlesh)
             {
@@ -637,7 +637,7 @@ namespace Laugicality.NPCs
                 if(Laugicality.zaWarudo < 10 * 60)
                 {
                     Laugicality.zaWarudo = 10 * 60;
-                    LaugicalGlobalNpCs.zTime = 10 * 60;
+                    LaugicalGlobalNPCs.zTime = 10 * 60;
                 }
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
             }

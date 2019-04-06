@@ -63,7 +63,7 @@ namespace Laugicality
 
         public override void SetupStartInventory(IList<Item> items)
         {
-            mysticBurstDisabled = false;
+            MysticBurstDisabled = false;
             inf = true;
             calm = true;
             ww = true;
@@ -108,16 +108,16 @@ namespace Laugicality
                 Verdi -= 1;
 
             Slimey = false;
-            magmatic = false;
+            Magmatic = false;
             crysMag = false;
             theta += 3.14f / 40f;
             UltraBoisSummon = false;
             obsHeart = false;
             zCoolDown = 65 * 60;
             zaWarudoDuration = 4 * 60;
-            midnight = false;
-            andioChestplate = false;
-            andioChestguard = false;
+            Midnight = false;
+            AndioChestplate = false;
+            AndioChestguard = false;
             ShroomCopterSummon = false;
             zProjImmune = false;
             RockTwinsSummon = false;
@@ -329,32 +329,32 @@ namespace Laugicality
 
         private void PostUpdateMysticBursts()
         {
-            if (mysticErupting > 0)
+            if (MysticErupting > 0)
             {
                 if (Main.rand.Next(4) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
             }
 
-            if (mysticSpiralBurst > 0)
+            if (MysticSpiralBurst > 0)
             {
-                mysticSpiralDelay++;
+                MysticSpiralDelay++;
 
-                if (mysticSpiralDelay > 2)
+                if (MysticSpiralDelay > 2)
                 {
-                    mysticSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), mod.ProjectileType("AnDioChestguardBurst"), (int)(32 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                    MysticSpiralDelay = 0;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), mod.ProjectileType("AnDioChestguardBurst"), (int)(32 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                 }
             }
 
-            if (mysticSteamSpiralBurst > 0)
+            if (MysticSteamSpiralBurst > 0)
             {
-                mysticSteamSpiralDelay++;
+                MysticSteamSpiralDelay++;
 
-                if (mysticSteamSpiralDelay > 5)
+                if (MysticSteamSpiralDelay > 5)
                 {
-                    mysticSteamSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * mysticBurstDamage), 3, Main.myPlayer);
+                    MysticSteamSpiralDelay = 0;
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                 }
             }
         }
@@ -502,10 +502,10 @@ namespace Laugicality
                 {"Dangersense", danger},
                 {"Featherfall", feather},
                 {"BysmalPowers", BysmalPowers},
-                {"LuxMaxPermaBoost", luxMaxPermaBoost},
-                {"VisMaxPermaBoost", visMaxPermaBoost},
-                {"MundusMaxPermaBoost", mundusMaxPermaBoost},
-                {"MysticBurstDisabled", mysticBurstDisabled},
+                {"LuxMaxPermaBoost", LuxMaxPermaBoost},
+                {"VisMaxPermaBoost", VisMaxPermaBoost},
+                {"MundusMaxPermaBoost", MundusMaxPermaBoost},
+                {"MysticBurstDisabled", MysticBurstDisabled},
             };
         }
 
@@ -533,10 +533,10 @@ namespace Laugicality
             owl = tag.GetBool("NightOwl");
             danger = tag.GetBool("Dangersense");
             feather = tag.GetBool("Featherfall");
-            luxMaxPermaBoost = tag.GetFloat("LuxMaxPermaBoost");
-            visMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
-            mundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
-            mysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
+            LuxMaxPermaBoost = tag.GetFloat("LuxMaxPermaBoost");
+            VisMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
+            MundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
+            MysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
             BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
         }
         
@@ -810,7 +810,7 @@ namespace Laugicality
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/MysticSwitch"));
             }
 
-            if (Laugicality.quickMystica.JustPressed && mysticality == 0)
+            if (Laugicality.quickMystica.JustPressed && Mysticality == 0)
             {
                 bool mysticaPotion = false;
 
@@ -821,14 +821,14 @@ namespace Laugicality
                         mysticaPotion = true;
                         item.stack -= 1;
                         Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
-                        if (lux < (luxMax + luxMaxPermaBoost) * (1 + (luxOverflow - 1) / 2))
-                            lux = (luxMax + luxMaxPermaBoost) * (1 + (luxOverflow - 1) / 2);
+                        if (Lux < (LuxMax + LuxMaxPermaBoost) * (1 + (LuxOverflow - 1) / 2))
+                            Lux = (LuxMax + LuxMaxPermaBoost) * (1 + (LuxOverflow - 1) / 2);
 
-                        if (vis < (visMax + visMaxPermaBoost) * (1 + (visOverflow - 1) / 2))
-                            vis = (visMax + visMaxPermaBoost) * (1 + (visOverflow - 1) / 2);
+                        if (Vis < (VisMax + VisMaxPermaBoost) * (1 + (VisOverflow - 1) / 2))
+                            Vis = (VisMax + VisMaxPermaBoost) * (1 + (VisOverflow - 1) / 2);
 
-                        if (mundus < (mundusMax + mundusMaxPermaBoost) * (1 + (mundusOverflow - 1) / 2))
-                            mundus = (mundusMax + mundusMaxPermaBoost) * (1 + (mundusOverflow - 1) / 2);
+                        if (Mundus < (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2))
+                            Mundus = (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2);
 
                         player.AddBuff(mod.BuffType("Mysticality3"), 60 * 60, true);
                     }
@@ -846,12 +846,12 @@ namespace Laugicality
                             mysticaPotion = true;
                             item.stack -= 1;
                             Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
-                            if(lux < luxMax + luxMaxPermaBoost)
-                            lux = luxMax + luxMaxPermaBoost;
-                            if (vis < visMax + visMaxPermaBoost)
-                                vis = visMax + visMaxPermaBoost;
-                            if (mundus < mundusMax + mundusMaxPermaBoost)
-                                mundus = mundusMax + mundusMaxPermaBoost;
+                            if(Lux < LuxMax + LuxMaxPermaBoost)
+                            Lux = LuxMax + LuxMaxPermaBoost;
+                            if (Vis < VisMax + VisMaxPermaBoost)
+                                Vis = VisMax + VisMaxPermaBoost;
+                            if (Mundus < MundusMax + MundusMaxPermaBoost)
+                                Mundus = MundusMax + MundusMaxPermaBoost;
                             player.AddBuff(mod.BuffType("Mysticality2"), 60 * 60, true);
                         }
 
@@ -869,9 +869,9 @@ namespace Laugicality
                             mysticaPotion = true;
                             item.stack -= 1;
                             Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
-                            lux = luxMax + luxMaxPermaBoost;
-                            vis = visMax + visMaxPermaBoost;
-                            mundus = mundusMax + mundusMaxPermaBoost;
+                            Lux = LuxMax + LuxMaxPermaBoost;
+                            Vis = VisMax + VisMaxPermaBoost;
+                            Mundus = MundusMax + MundusMaxPermaBoost;
                             player.AddBuff(mod.BuffType("Mysticality"), 60 * 60, true);
                         }
 
@@ -897,23 +897,23 @@ namespace Laugicality
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-            if (mysticSwitchCool <= 0)
+            if (MysticSwitchCool <= 0)
             {
                 if (BloodRage)
                     ApplyBloodRage();
 
                 SpawnProjectileOnPlayerHurt();
                 ArmorEffectPlayerHurt();
-                mysticSwitchCool = 120;
+                MysticSwitchCool = 120;
             }
         }
 
         private void ArmorEffectPlayerHurt()
         {
-            if (andioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
+            if (AndioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
                 ZaWarudo();
 
-            if (andioChestplate && player.statLife < player.statLifeMax2 / 4 && zCool == false)
+            if (AndioChestplate && player.statLife < player.statLifeMax2 / 4 && zCool == false)
                 ZaWarudo();
         }
         
@@ -926,7 +926,7 @@ namespace Laugicality
             if(Laugicality.zaWarudo < zaWarudoDuration)
             {
                 Laugicality.zaWarudo = zaWarudoDuration;
-                LaugicalGlobalNpCs.zTime = zaWarudoDuration;
+                LaugicalGlobalNPCs.zTime = zaWarudoDuration;
             }
         }
 

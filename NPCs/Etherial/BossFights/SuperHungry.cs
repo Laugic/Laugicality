@@ -13,7 +13,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         {
             delay = 0;
             npc.CloneDefaults(NPCID.TheHungryII);
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.damage = 50;
             npc.defense = 80;
             npc.lifeMax = 6000;

@@ -47,7 +47,7 @@ namespace Laugicality.Projectiles
             }
 
             timer++;
-            if (timer > 4 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria && timer > 2))
+            if (timer > 4 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && timer > 2))
             {
                 if (Main.myPlayer == projectile.owner)
                 {

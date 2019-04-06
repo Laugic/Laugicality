@@ -59,7 +59,7 @@ namespace Laugicality.Projectiles
                 GetMinionSlots(player.ownedProjectileCounts[mod.ProjectileType("ArcticHydraHead")]);
                 range = 200 + 50 * player.ownedProjectileCounts[mod.ProjectileType("ArcticHydraHead")];
                 projectile.damage += index * 20;
-                if ((Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
+                if ((Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
                 {
                     projectile.damage += 20 * index;
                     range = range * 2;

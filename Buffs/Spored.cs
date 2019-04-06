@@ -18,7 +18,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).spored = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).spored = true;
 		}
 	}
 }

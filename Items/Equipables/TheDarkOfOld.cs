@@ -24,20 +24,20 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += .08f;
-            switch(modPlayer.mysticMode)
+            modPlayer.MysticDamage += .08f;
+            switch(modPlayer.MysticMode)
             {
                 case 1:
-                    if(modPlayer.lux < (modPlayer.luxMax + modPlayer.luxMaxPermaBoost) / 2)
-                        modPlayer.mysticDamage += .08f;
+                    if(modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
                     break;
                 case 2:
-                    if (modPlayer.vis < (modPlayer.visMax + modPlayer.visMaxPermaBoost) / 2)
-                        modPlayer.mysticDamage += .08f;
+                    if (modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
                     break;
                 default:
-                    if (modPlayer.mundus < (modPlayer.mundusMax + modPlayer.mundusMaxPermaBoost) / 2)
-                        modPlayer.mysticDamage += .08f;
+                    if (modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
                     break;
             }
         }

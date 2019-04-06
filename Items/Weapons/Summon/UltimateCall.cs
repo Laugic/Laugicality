@@ -32,7 +32,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.shoot = mod.ProjectileType("Nothing");
             item.shootSpeed = 10f;
             item.summon = true;
-            item.buffType = mod.BuffType("UltimateLeader");
+            item.buffType = mod.BuffType("UltimateLeaderBuff");
             item.buffTime = 3600;
         }
     

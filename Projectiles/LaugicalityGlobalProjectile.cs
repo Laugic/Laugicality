@@ -296,7 +296,7 @@ namespace Laugicality.Projectiles
             }
             if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
             {
-                target.GetGlobalNPC<LaugicalGlobalNpCs>(mod).attacker = projectile.owner;
+                target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
             }
 
             if (modPlayer.crysMag && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))

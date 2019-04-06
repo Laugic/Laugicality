@@ -34,14 +34,13 @@ namespace Laugicality.Projectiles.Pets
 		{
 			Player player = Main.player[projectile.owner];
 			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+
 			if (player.dead)
-			{
-				modPlayer.ToyTrainPet = false;
-			}
-			if (modPlayer.ToyTrainPet)
-			{
+				modPlayer.ToyTrain = false;
+
+			if (modPlayer.ToyTrain)
 				projectile.timeLeft = 2;
-			}
+
             if (Math.Abs(projectile.velocity.Y) < 1f && Math.Abs(projectile.velocity.X) > 1f)
             {
                 float dist = 0;

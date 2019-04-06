@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Summon
 
         public override void HoldItem(Player player)
         {
-            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 item.useTime = 30;
                 item.useAnimation = 30;

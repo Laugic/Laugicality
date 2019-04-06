@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.NPCs
 {
-    public partial class LaugicalGlobalNpCs : GlobalNPC
+    public partial class LaugicalGlobalNPCs : GlobalNPC
     {
         public bool eFied = false;
         public bool mFied = false;//Mystified

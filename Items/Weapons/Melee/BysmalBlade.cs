@@ -42,7 +42,7 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void HoldItem(Player player)
         {
-            if((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 item.scale = 3.5f;
                 item.useTime = 12;

@@ -36,7 +36,7 @@ namespace Laugicality.Projectiles
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             int power = Main.rand.Next(4, 7);
-            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                     power *= 2;
             while (power > 0)
             {
@@ -56,7 +56,7 @@ namespace Laugicality.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             int power = Main.rand.Next(4, 7);
-            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                 power *= 2;
             while (power > 0)
             {

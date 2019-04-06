@@ -41,7 +41,7 @@ namespace Laugicality.Projectiles
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                 float mag = 120;
-                if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+                if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                 {
                     theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                     mag = 120;

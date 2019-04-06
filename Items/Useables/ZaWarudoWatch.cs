@@ -37,7 +37,7 @@ namespace Laugicality.Items.Useables
             if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {
                 Laugicality.zaWarudo = modPlayer.zaWarudoDuration;
-                LaugicalGlobalNpCs.zTime = modPlayer.zaWarudoDuration;
+                LaugicalGlobalNPCs.zTime = modPlayer.zaWarudoDuration;
             }
             foreach ( Player player2 in Main.player){
                 

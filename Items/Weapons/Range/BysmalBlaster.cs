@@ -70,32 +70,39 @@ namespace Laugicality.Items.Weapons.Range
             
             float mag = 12f;
             theta += rotSp;
+
             if (theta >= 3.14158265f * 2)
                 theta -= 3.14158265f * 2;
+
             Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("BysmalBlast"), (int)(item.damage), 3, Main.myPlayer);
 
             //Normal shot
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
-            {
                 position += muzzleOffset;
-            }
+
+
             reload -= 1;
+
             if (reload <= 0)
             {
                 reload = reloadMax;
-                if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+                if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                     reload /= 2;
+
                 int numberProjectiles = Main.rand.Next(3, 6);
+
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(7)); 
                                                                                                                 
                     float scale = 1f - (Main.rand.NextFloat() * .2f);
                     perturbedSpeed = perturbedSpeed * scale;
+
                     if(Main.player[Main.myPlayer] == player)
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
                 }
             }
+
             return false; 
         }
     }

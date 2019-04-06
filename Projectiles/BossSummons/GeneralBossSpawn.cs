@@ -19,7 +19,7 @@ namespace Laugicality.Projectiles.BossSummons
 			projectile.timeLeft = 20;
 			projectile.tileCollide = false;
 			aiType = ProjectileID.Bullet;
-            LaugicalityVars.ZProjectiles.Add(projectile.type);
+            LaugicalityVars.zProjectiles.Add(projectile.type);
         }
 		
 		public override void AI()

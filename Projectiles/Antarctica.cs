@@ -51,7 +51,7 @@ namespace Laugicality.Projectiles
             if(!justSpawned)
             {
                 justSpawned = true;
-                if ((Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
+                if ((Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
                     duration = 2;
                 projectile.timeLeft = 7 * 60 * duration;
                 origDmg = projectile.damage;

@@ -14,7 +14,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.LeechHead);
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 22;
             npc.height = 28;
             npc.damage = 60;
@@ -42,7 +42,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.LeechBody);
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 22;
             npc.height = 18;
             npc.damage = 30;
@@ -64,7 +64,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.LeechTail);
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 18;
             npc.height = 22;
             npc.damage = 40;

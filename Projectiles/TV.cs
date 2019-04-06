@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Laugicality.Projectiles
 {
-	public class Tv : HoverShooter
+	public class TV : HoverShooter
 	{
 		public override void SetStaticDefaults()
 		{

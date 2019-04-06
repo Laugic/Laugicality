@@ -19,7 +19,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public override void SetDefaults()
         {
             movementCounter = 0;
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 18;
             npc.height = 18;
             npc.damage = 80;

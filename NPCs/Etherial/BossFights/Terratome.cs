@@ -42,7 +42,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
             tVel = 0f;
             index = 0;
             delay = 0;
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 78;
             npc.height = 78;
             npc.damage = 40;

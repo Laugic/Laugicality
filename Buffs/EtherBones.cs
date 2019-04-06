@@ -20,7 +20,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).etherBonesBoost = true;
+			player.GetModPlayer<LaugicalityPlayer>(mod).EtherBonesBoost = true;
 		}
 	}
 }

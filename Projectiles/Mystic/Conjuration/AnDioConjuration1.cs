@@ -25,7 +25,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void SetDefaults()
         {
             power = 0;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             delay = 0;
             projectile.width = 24;
             projectile.height = 24;

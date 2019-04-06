@@ -69,7 +69,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             }
             /*Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            mystDur = modPlayer.mysticDuration;*/
+            mystDur = modPlayer.MysticDuration;*/
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }

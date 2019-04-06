@@ -23,7 +23,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         public override void SetDefaults()
         {
             powered = false;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             delay = 4;
             grounded = 0;

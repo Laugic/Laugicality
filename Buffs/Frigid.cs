@@ -24,7 +24,7 @@ namespace Laugicality.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).frigid = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).frigid = true;
 		}
 	}
 }

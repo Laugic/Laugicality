@@ -132,11 +132,11 @@ namespace Laugicality.Items.Placeable
             srecipe.AddRecipe();
 
             //Tungsten to Gold
-            ModRecipe grecipe = new ModRecipe(mod);
-            grecipe.AddIngredient(ItemID.TungstenOre, 5);
-            grecipe.AddTile(null, "TransmutationTable");
-            grecipe.SetResult(ItemID.GoldOre, 4);
-            grecipe.AddRecipe();
+            ModRecipe gRecipe = new ModRecipe(mod);
+            gRecipe.AddIngredient(ItemID.TungstenOre, 5);
+            gRecipe.AddTile(null, "TransmutationTable");
+            gRecipe.SetResult(ItemID.GoldOre, 4);
+            gRecipe.AddRecipe();
 
             //Gold to Tungsten
             ModRecipe gTrecipe = new ModRecipe(mod);
@@ -551,11 +551,11 @@ namespace Laugicality.Items.Placeable
             cIrecipe.AddRecipe();
 
             //Ichor to CursedFlame
-            ModRecipe crecipe = new ModRecipe(mod);
-            crecipe.AddIngredient(ItemID.Ichor);
-            crecipe.AddTile(null, "TransmutationTable");
-            crecipe.SetResult(ItemID.CursedFlame);
-            crecipe.AddRecipe();
+            ModRecipe cRecipe = new ModRecipe(mod);
+            cRecipe.AddIngredient(ItemID.Ichor);
+            cRecipe.AddTile(null, "TransmutationTable");
+            cRecipe.SetResult(ItemID.CursedFlame);
+            cRecipe.AddRecipe();
 
             //Ebonkoi to Hemopiranha
             ModRecipe eHrecipe = new ModRecipe(mod);

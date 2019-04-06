@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class UltraJumpBoost : ModBuff
+	public class UltraJumpBoostBuff : ModBuff
 	{
 		public override void SetDefaults()
 		{

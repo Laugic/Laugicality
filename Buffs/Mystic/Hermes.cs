@@ -19,7 +19,7 @@ namespace Laugicality.Buffs.Mystic
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).hermes = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).hermes = true;
 		}
 	}
 }

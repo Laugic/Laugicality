@@ -77,7 +77,7 @@ namespace Laugicality.Projectiles
             }
             /*Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            mystDur = modPlayer.mysticDuration;*/
+            mystDur = modPlayer.MysticDuration;*/
             
         }
 

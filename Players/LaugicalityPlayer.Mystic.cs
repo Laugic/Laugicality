@@ -70,6 +70,7 @@ namespace Laugicality
             GlobalAbsorbRate = .5f;
             GlobalOverflow = 1f;
             OverflowDamage = 1f;
+            AntiflowDamage = 1f;
 
             LuxMax = 100;
             VisMax = 100;
@@ -202,6 +203,10 @@ namespace Laugicality
             }
         }
 
+
+        public int SporeShard { get; set; } = 0;
+
+        public float AntiflowDamage { get; set; } = 1f;
 
         #region General Mystic Vars
 

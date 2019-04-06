@@ -19,7 +19,7 @@ namespace Laugicality.NPCs.PreTrio
         public override void SetDefaults()
         {
             Main.projFrames[projectile.type] = 3;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             projectile.width = 42;
             projectile.height = 42;
             projectile.alpha = 0;

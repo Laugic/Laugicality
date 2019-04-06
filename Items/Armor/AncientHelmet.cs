@@ -30,7 +30,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.mysticDamage += 0.10f;
+            modPlayer.MysticDamage += 0.10f;
             player.minionDamage += .1f;
             player.magicDamage += .1f;
         }
@@ -39,7 +39,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Innate Sandstorm in a Bottle\n+15% Increased Potentia Conversion\n+60 Mana\nIncreased Max Minions";
-            modPlayer.globalAbsorbRate += .15f;
+            modPlayer.GlobalAbsorbRate += .15f;
             player.statManaMax2 += 60;
             player.maxMinions += 2;
             player.doubleJumpSandstorm = true;

@@ -60,9 +60,10 @@ namespace Laugicality.Projectiles.Mystic
             target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
 
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
+
             if (modPlayer.Incineration > 0)
                 target.AddBuff(mod.BuffType("Incineration"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
-            if (modPlayer.sporeShard > 0)
+            if (modPlayer.SporeShard > 0)
                 target.AddBuff(mod.BuffType("Spored"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
         }
     }
