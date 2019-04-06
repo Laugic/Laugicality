@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Summon
 			item.UseSound = SoundID.Item44;
 			item.shoot = mod.ProjectileType(nameof(TV));
 			item.shootSpeed = 12f;
-			item.buffType = mod.BuffType(nameof(TV));
+			item.buffType = mod.BuffType(nameof(TVBuff));
 			item.buffTime = 3600;
 		}
 		
