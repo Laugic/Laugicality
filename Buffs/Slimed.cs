@@ -16,7 +16,7 @@ namespace Laugicality.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).slimed = true;
+            npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).slimed = true;
         }
 
     }

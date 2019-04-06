@@ -18,7 +18,7 @@ namespace Laugicality.NPCs.Slybertron
 
 		public override void SetDefaults()
         {
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             projectile.width = 48;
 			projectile.height = 48;

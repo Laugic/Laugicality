@@ -50,11 +50,11 @@ namespace Laugicality.Items.Consumables
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 
-            ModRecipe Arecipe = new ModRecipe(mod);
-            Arecipe.AddIngredient(null, "EtherialEssence", 15);
-            Arecipe.AddTile(TileID.DemonAltar);
-            Arecipe.SetResult(this);
-            Arecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(null, "EtherialEssence", 15);
+            arecipe.AddTile(TileID.DemonAltar);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
         }
 	}
 }

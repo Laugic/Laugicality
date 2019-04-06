@@ -10,26 +10,26 @@ namespace Laugicality.NPCs.Etherial.BossFights
     {
         public bool bitherial = false;
         public bool etherial = true;
-        int delay = 0;
-        int index = 0;
-        Vector2 targetPos;
+        int _delay = 0;
+        int _index = 0;
+        Vector2 _targetPos;
         public float tVel = 0f;
         public float vel = 0f;
         public float vMax = 10f;
         public float vAccel = .2f;
         public float vMag = 0f;
-        float theta = 0;
-        int targetType = 0;
+        float _theta = 0;
+        int _targetType = 0;
 
         public override void SetDefaults()
         {
-            targetType = 0;
+            _targetType = 0;
             vMag = 0f;
             vMax = 14f;
             tVel = 0f;
-            index = 0;
-            delay = 0;
-            LaugicalityVars.Etherial.Add(npc.type);
+            _index = 0;
+            _delay = 0;
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 54;
             npc.height = 40;
             npc.damage = 40;
@@ -57,20 +57,20 @@ namespace Laugicality.NPCs.Etherial.BossFights
         private void MovementType(NPC npc)
         {
             npc.rotation = 0f;
-            theta += 3.14f / 30;
+            _theta += 3.14f / 30;
             if (Main.npc[(int)npc.ai[0]].active && Main.player[Main.npc[(int)npc.ai[0]].target].statLife > 0)
             {
-                if (targetType == 0)
+                if (_targetType == 0)
                 {
                     float mag = 64;
                     Vector2 rot;
-                    rot.X = (float)Math.Cos(theta + 3.14f * npc.ai[1] / 4) * (mag + 32 * npc.ai[1]);
-                    rot.Y = (float)Math.Sin(theta + 3.14f * npc.ai[1] / 4) * (mag + 32 * npc.ai[1]);
-                    targetPos = Main.npc[(int)npc.ai[0]].Center + rot;
+                    rot.X = (float)Math.Cos(_theta + 3.14f * npc.ai[1] / 4) * (mag + 32 * npc.ai[1]);
+                    rot.Y = (float)Math.Sin(_theta + 3.14f * npc.ai[1] / 4) * (mag + 32 * npc.ai[1]);
+                    _targetPos = Main.npc[(int)npc.ai[0]].Center + rot;
                 }
-                if (targetType == 1)
+                if (_targetType == 1)
                 {
-                    targetPos = Main.player[Main.npc[(int)npc.ai[0]].target].Center;
+                    _targetPos = Main.player[Main.npc[(int)npc.ai[0]].target].Center;
                 }
             }
             else
@@ -79,7 +79,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         private void MoveToTarget(NPC npc)
         {
-            float dist = Vector2.Distance(targetPos, npc.Center);
+            float dist = Vector2.Distance(_targetPos, npc.Center);
             tVel = dist / 15;
             if (vMag < vMax && vMag < tVel)
             {
@@ -99,21 +99,21 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
             if (dist != 0)
             {
-                npc.velocity = npc.DirectionTo(targetPos) * vMag;
+                npc.velocity = npc.DirectionTo(_targetPos) * vMag;
             }
         }
 
         private void Shoot(NPC npc)
         {
-            delay++;
-            if (delay > 480)
+            _delay++;
+            if (_delay > 480)
             {
-                delay = Main.rand.Next(0, 120);
-                if (Main.netMode != 1 && targetType == 0)
+                _delay = Main.rand.Next(0, 120);
+                if (Main.netMode != 1 && _targetType == 0)
                 {
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
                 }
-                targetType = 1 - targetType;
+                _targetType = 1 - _targetType;
             }
         }
 

@@ -46,13 +46,13 @@ namespace Laugicality.Items.Consumables
 			recipe.AddRecipe();
 
 
-            ModRecipe Arecipe = new ModRecipe(mod);
-            Arecipe.AddIngredient(ItemID.Lens, 2);
-            Arecipe.AddIngredient(ItemID.RottenChunk, 3);
-            Arecipe.AddIngredient(ItemID.SharkFin, 2);
-            Arecipe.AddTile(26);
-            Arecipe.SetResult(this);
-            Arecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(ItemID.Lens, 2);
+            arecipe.AddIngredient(ItemID.RottenChunk, 3);
+            arecipe.AddIngredient(ItemID.SharkFin, 2);
+            arecipe.AddTile(26);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
         }
 	}
 }

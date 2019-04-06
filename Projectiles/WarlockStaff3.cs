@@ -18,7 +18,7 @@ namespace Laugicality.Projectiles
         {
             //zImmune = true;
             delay = 2;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             //LaugicalityVars.ZProjectiles.Add(projectile.type);
             projectile.width = 28;
             projectile.height = 28;

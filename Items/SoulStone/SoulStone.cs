@@ -9,33 +9,33 @@ namespace Laugicality.Items.SoulStone
     {
 
         //Throwing
-        string KS1 = "[c/2B9DE9:+10% Throwing Damage]"; string KS2 = "[c/2B9DE9:Greatly increases jump height]"; string KS3 = "[c/2B9DE9:Attacks Inflict 'Slimed']"; string KS4 = "[c/2B9DE9:+20% Throwing velocity]";
+        string _ks1 = "[c/2B9DE9:+10% Throwing Damage]"; string _ks2 = "[c/2B9DE9:Greatly increases jump height]"; string _ks3 = "[c/2B9DE9:Attacks Inflict 'Slimed']"; string _ks4 = "[c/2B9DE9:+20% Throwing velocity]";
         //Mystic
-        string EoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string EoC2 = "[c/B03A2E:Greatly increases movement speed]"; string EoC3 = "[c/B03A2E:Hunter Potion Effect]"; string EoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +20% Illusion Duration]";
+        string _eoC1 = "[c/B03A2E:Friendly Eyes spawn to protect you when you take damage.]"; string _eoC2 = "[c/B03A2E:Greatly increases movement speed]"; string _eoC3 = "[c/B03A2E:Hunter Potion Effect]"; string _eoC4 = "[c/B03A2E:+5% Destruction and Conjuration Damage, +20% Illusion Duration]";
         //Magic
-        string EoWBoC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string EoWBoC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string EoWBoC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string EoWBoC4 = "[c/884EA0:Increased Mana Regeneration]";
+        string _eoWboC1 = "[c/884EA0:Causes 'Blood Rage' when struck]"; string _eoWboC2 = "[c/884EA0:+4 Defense, +20 Max Life]"; string _eoWboC3 = "[c/884EA0:+20 Max Mana, Increased Life Regeneration]"; string _eoWboC4 = "[c/884EA0:Increased Mana Regeneration]";
         //Summon
-        string QB1 = "[c/F39C12:Attacks inflict Poison]"; string QB2 = "[c/F39C12:Increased Life Regeneration]"; string QB3 = "[c/F39C12:+1 Max Minion]"; string QB4 = "[c/F39C12:+10% Minion damage]";
+        string _qb1 = "[c/F39C12:Attacks inflict Poison]"; string _qb2 = "[c/F39C12:Increased Life Regeneration]"; string _qb3 = "[c/F39C12:+1 Max Minion]"; string _qb4 = "[c/F39C12:+10% Minion damage]";
         //Range
-        string SK1 = "[c/839192:+5% Damage]"; string SK2 = "[c/839192:5 Defense]"; string SK3 = "[c/839192:Increased Run Speed]"; string SK4 = "[c/839192:+10% Ranged Critical strike chance]";
+        string _sk1 = "[c/839192:+5% Damage]"; string _sk2 = "[c/839192:5 Defense]"; string _sk3 = "[c/839192:Increased Run Speed]"; string _sk4 = "[c/839192:+10% Ranged Critical strike chance]";
         //Melee
-        string WoF1 = "[c/AC395A:+5% Damage]"; string WoF2 = "[c/AC395A:Increased Life Regeneration]"; string WoF3 = "[c/AC395A:+40 Max Mana]"; string WoF4 = "[c/AC395A:Attacks inflict 'On Fire!']";
+        string _woF1 = "[c/AC395A:+5% Damage]"; string _woF2 = "[c/AC395A:Increased Life Regeneration]"; string _woF3 = "[c/AC395A:+40 Max Mana]"; string _woF4 = "[c/AC395A:Attacks inflict 'On Fire!']";
        
-        string TW1 = "[c/2BD34D:-10% Mana Cost, +20 Mana, +5% Magic damage, +5% Mystic Damage]"; string TW2 = "[c/2BD34D:Increased Wing flight time if worn under Wings]"; 
+        string _tw1 = "[c/2BD34D:-10% Mana Cost, +20 Mana, +5% Magic damage, +5% Mystic Damage]"; string _tw2 = "[c/2BD34D:Increased Wing flight time if worn under Wings]"; 
 
-        string DST1 = "[c/DF0A0A:+12% Ranged Critical Strike Chance]"; string DST2 = "[c/DF0A0A:Increased Movement Speed]"; 
+        string _dst1 = "[c/DF0A0A:+12% Ranged Critical Strike Chance]"; string _dst2 = "[c/DF0A0A:Increased Movement Speed]"; 
 
-        string SP1 = "[c/AAAAAA:+5% Melee damage and speed, attacks inflict 'Cursed Inferno']"; string SP2 = "[c/AAAAAA:+6 Defense]"; 
+        string _sp1 = "[c/AAAAAA:+5% Melee damage and speed, attacks inflict 'Cursed Inferno']"; string _sp2 = "[c/AAAAAA:+6 Defense]"; 
 
-        string PT1 = "[c/27AE60:+1 Max Minion, Increased Mana regeneration]"; string PT2 = "[c/27AE60:Release Spores when struck.]"; 
+        string _pt1 = "[c/27AE60:+1 Max Minion, Increased Mana regeneration]"; string _pt2 = "[c/27AE60:Release Spores when struck.]"; 
 
-        string GL1 = "[c/AF740E:+10% Critical strike chance]"; string GL2 = "[c/AF740E:Increased Life Regeneration]"; 
+        string _gl1 = "[c/AF740E:+10% Critical strike chance]"; string _gl2 = "[c/AF740E:Increased Life Regeneration]"; 
 
-        string DF1 = "[c/04F6B2:+8% Ranged Damage and Melee Speed, Attacks inflict 'Venom']"; string DF2 = "[c/04F6B2:Greatly increased Wing Acceleration]"; string DF3 = "[c/04F6B2:+10% Mystic Damage and Duration]";
+        string _df1 = "[c/04F6B2:+8% Ranged Damage and Melee Speed, Attacks inflict 'Venom']"; string _df2 = "[c/04F6B2:Greatly increased Wing Acceleration]"; string _df3 = "[c/04F6B2:+10% Mystic Damage and Duration]";
 
-        string LC2 = "[c/1D9CA7:+8% Magic, Minion, and Mystic Damage]"; string LC1 = "[c/1D9CA7:+8% Melee, Ranged, and Throwing Damage]";
+        string _lc2 = "[c/1D9CA7:+8% Magic, Minion, and Mystic Damage]"; string _lc1 = "[c/1D9CA7:+8% Melee, Ranged, and Throwing Damage]";
 
-        string ML1 = "[c/3BE5D7:+10% Damage, +12 Defense]";
+        string _ml1 = "[c/3BE5D7:+10% Damage, +12 Defense]";
 
         public override void SetStaticDefaults()
         {
@@ -63,30 +63,30 @@ namespace Laugicality.Items.SoulStone
 
             if (NPC.downedSlimeKing)
             {
-                if (LaugicalityVars.SlimeThrow.Contains(Class))
+                if (LaugicalityVars.slimeThrow.Contains(Class))
                     player.thrownDamage += 0.1f;
 
-                if (LaugicalityVars.SlimeJump.Contains(Class) && mPlayer.SoulStoneM)
+                if (LaugicalityVars.slimeJump.Contains(Class) && mPlayer.soulStoneM)
                     player.jumpSpeedBoost += 5.0f;
 
-                if (LaugicalityVars.SlimeMinion.Contains(Class))
+                if (LaugicalityVars.slimeMinion.Contains(Class))
                     mPlayer.slimey = true;
 
-                if (LaugicalityVars.SlimeVelocity.Contains(Class))
+                if (LaugicalityVars.slimeVelocity.Contains(Class))
                     player.thrownVelocity += .2f;
             }
             if (NPC.downedBoss1)
             {
-                if (LaugicalityVars.Boss1Thorns.Contains(Class))
+                if (LaugicalityVars.boss1Thorns.Contains(Class))
                     mPlayer.eyes = true;
 
-                if (LaugicalityVars.Boss1Speed.Contains(Class))
+                if (LaugicalityVars.boss1Speed.Contains(Class))
                     player.moveSpeed += 1.0f;
 
-                if (LaugicalityVars.Boss1Detect.Contains(Class) && mPlayer.SoulStoneV)
+                if (LaugicalityVars.boss1Detect.Contains(Class) && mPlayer.soulStoneV)
                     player.detectCreature = true;
 
-                if (LaugicalityVars.Boss1Damage.Contains(Class))
+                if (LaugicalityVars.boss1Damage.Contains(Class))
                 {
                     mPlayer.destructionDamage += 0.05f;
                     mPlayer.conjurationDamage += 0.05f;
@@ -95,41 +95,41 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedBoss2)
             {
-                if (LaugicalityVars.Boss2Rage.Contains(Class))
+                if (LaugicalityVars.boss2Rage.Contains(Class))
                     mPlayer.bRage = true;
 
-                if (LaugicalityVars.Boss2Defence.Contains(Class))
+                if (LaugicalityVars.boss2Defence.Contains(Class))
                 {
                     player.statDefense += 4;
                     player.statLifeMax2 += 20;
                 }
-                if (LaugicalityVars.Boss2Regen.Contains(Class))
+                if (LaugicalityVars.boss2Regen.Contains(Class))
                 {
                     player.lifeRegen += 1;
                     player.statManaMax2 += 20;
                 }
-                if (LaugicalityVars.Boss2RBonus.Contains(Class))
+                if (LaugicalityVars.boss2RBonus.Contains(Class))
                     player.manaRegenBonus += 15;
 
             }
             if (NPC.downedQueenBee)
             {
-                if (LaugicalityVars.BeeTrue.Contains(Class))
+                if (LaugicalityVars.beeTrue.Contains(Class))
                     mPlayer.qB = true;
 
-                if (LaugicalityVars.BeeRegen.Contains(Class))
+                if (LaugicalityVars.beeRegen.Contains(Class))
                     player.lifeRegen += 2;
 
-                if (LaugicalityVars.BeeMinions.Contains(Class))
+                if (LaugicalityVars.beeMinions.Contains(Class))
                     player.maxMinions += 1;
 
-                if (LaugicalityVars.BeeMDamage.Contains(Class))
+                if (LaugicalityVars.beeMDamage.Contains(Class))
                     player.minionDamage += .1f;
 
             }
             if (NPC.downedBoss3)
             {
-                if (LaugicalityVars.Boss3Damage.Contains(Class))
+                if (LaugicalityVars.boss3Damage.Contains(Class))
                 {
                     player.thrownDamage += 0.05f;
                     player.rangedDamage += 0.05f;
@@ -137,21 +137,21 @@ namespace Laugicality.Items.SoulStone
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
                 }
-                if (LaugicalityVars.Boss3Defense.Contains(Class))
+                if (LaugicalityVars.boss3Defense.Contains(Class))
                     player.statDefense += 5;
 
-                if (LaugicalityVars.Boss3Speed.Contains(Class))
+                if (LaugicalityVars.boss3Speed.Contains(Class))
                 {
                     player.maxRunSpeed += .5f;
                     player.moveSpeed += .5f;
                 }
-                if (LaugicalityVars.Boss3Crit.Contains(Class))
+                if (LaugicalityVars.boss3Crit.Contains(Class))
                     player.rangedCrit += 10;
 
             }
             if (Main.hardMode)
             {
-                if (LaugicalityVars.HardDamage.Contains(Class))
+                if (LaugicalityVars.hardDamage.Contains(Class))
                 {
                     player.thrownDamage += 0.05f;
                     player.rangedDamage += 0.05f;
@@ -159,86 +159,86 @@ namespace Laugicality.Items.SoulStone
                     player.minionDamage += 0.05f;
                     player.meleeDamage += 0.05f;
                 }
-                if (LaugicalityVars.HardRegen.Contains(Class))
+                if (LaugicalityVars.hardRegen.Contains(Class))
                     player.lifeRegen += 2;
 
-                if (LaugicalityVars.HardMana.Contains(Class))
+                if (LaugicalityVars.hardMana.Contains(Class))
                     player.statManaMax2 += 40;
 
-                if (LaugicalityVars.HardObsid.Contains(Class))
+                if (LaugicalityVars.hardObsid.Contains(Class))
                     mPlayer.obsidium = true;
 
             }
             if (NPC.downedMechBoss1)
             {
-                if (LaugicalityVars.Mech1Crit.Contains(Class))
+                if (LaugicalityVars.mech1Crit.Contains(Class))
                     player.rangedCrit += 12;
 
-                if (LaugicalityVars.Mech1Speed.Contains(Class))
+                if (LaugicalityVars.mech1Speed.Contains(Class))
                     player.moveSpeed += .4f;
 
             }
             if (NPC.downedMechBoss2)
             {
-                if (LaugicalityVars.Mech2Magic.Contains(Class))
+                if (LaugicalityVars.mech2Magic.Contains(Class))
                 {
                     player.magicDamage += 0.05f;
                     player.statManaMax2 += 20;
                     player.manaCost -= .1f;
                     mPlayer.mysticDamage += .05f;
                 }
-                if (LaugicalityVars.Mech2Jump.Contains(Class) && mPlayer.SoulStoneM)
+                if (LaugicalityVars.mech2Jump.Contains(Class) && mPlayer.soulStoneM)
                     player.wingTimeMax += 120;
 
             }
             if (NPC.downedMechBoss3)
             {
-                if (LaugicalityVars.Mech3Damage.Contains(Class))
+                if (LaugicalityVars.mech3Damage.Contains(Class))
                 {
                     mPlayer.skp = true;
                     player.meleeDamage += 0.05f;
                     player.meleeSpeed += 0.05f;
                 }
-                if (LaugicalityVars.Mech3Defense.Contains(Class))
+                if (LaugicalityVars.mech3Defense.Contains(Class))
                     player.statDefense += 6;
 
             }
             if (NPC.downedPlantBoss)
             {
-                if (LaugicalityVars.PlantBonus.Contains(Class))
+                if (LaugicalityVars.plantBonus.Contains(Class))
                 {
                     player.maxMinions++;
                     player.manaRegenBonus += 20;
                 }
-                if (LaugicalityVars.PlantThorns.Contains(Class))
+                if (LaugicalityVars.plantThorns.Contains(Class))
                     mPlayer.spores = true;
 
             }
             if (NPC.downedGolemBoss)
             {
-                if (LaugicalityVars.GolemCrit.Contains(Class))
+                if (LaugicalityVars.golemCrit.Contains(Class))
                 {
                     player.thrownCrit += 10;
                     player.rangedCrit += 10;
                     player.magicCrit += 10;
                     player.meleeCrit += 10;
                 }
-                if (LaugicalityVars.GolemRegen.Contains(Class))
+                if (LaugicalityVars.golemRegen.Contains(Class))
                     player.lifeRegen += 2;
 
             }
             if (NPC.downedFishron)
             {
-                if (LaugicalityVars.FishDouche.Contains(Class))
+                if (LaugicalityVars.fishDouche.Contains(Class))
                 {
                     mPlayer.douche = true;
                     player.rangedDamage += 0.08f;
                     player.meleeSpeed += 0.08f;
                 }
-                if (LaugicalityVars.FishSpeed.Contains(Class) && mPlayer.SoulStoneM)
+                if (LaugicalityVars.fishSpeed.Contains(Class) && mPlayer.soulStoneM)
                     player.jumpSpeedBoost += 4.0f;
 
-                if (LaugicalityVars.FishMDamage.Contains(Class))
+                if (LaugicalityVars.fishMDamage.Contains(Class))
                 {
                     mPlayer.destructionDamage += 0.05f;
                     mPlayer.conjurationDamage += 0.05f;
@@ -247,13 +247,13 @@ namespace Laugicality.Items.SoulStone
             }
             if (NPC.downedAncientCultist)
             {
-                if (LaugicalityVars.CultistDamage1.Contains(Class))
+                if (LaugicalityVars.cultistDamage1.Contains(Class))
                 {
                     player.rangedDamage += 0.08f;
                     player.meleeDamage += 0.08f;
                     player.thrownDamage += .08f;
                 }
-                if (LaugicalityVars.CultistDamage2.Contains(Class))
+                if (LaugicalityVars.cultistDamage2.Contains(Class))
                 {
                     player.magicDamage += 0.08f;
                     player.minionDamage += 0.08f;
@@ -306,247 +306,247 @@ namespace Laugicality.Items.SoulStone
             //Tooltips
             if (NPC.downedSlimeKing)
             {
-                if (LaugicalityVars.SlimeThrow.Contains(Class))
+                if (LaugicalityVars.slimeThrow.Contains(Class))
                 {
-                    TooltipLine lineKS1 = new TooltipLine(mod, "", KS1);
-                    tooltips.Add(lineKS1);
+                    TooltipLine lineKs1 = new TooltipLine(mod, "", _ks1);
+                    tooltips.Add(lineKs1);
                 }
 
-                if (LaugicalityVars.SlimeJump.Contains(Class))
+                if (LaugicalityVars.slimeJump.Contains(Class))
                 {
-                    TooltipLine lineKS2 = new TooltipLine(mod, "", KS2);
-                    tooltips.Add(lineKS2);
+                    TooltipLine lineKs2 = new TooltipLine(mod, "", _ks2);
+                    tooltips.Add(lineKs2);
                 }
 
-                if (LaugicalityVars.SlimeMinion.Contains(Class))
+                if (LaugicalityVars.slimeMinion.Contains(Class))
                 {
-                    TooltipLine lineKS3 = new TooltipLine(mod, "", KS3);
-                    tooltips.Add(lineKS3);
+                    TooltipLine lineKs3 = new TooltipLine(mod, "", _ks3);
+                    tooltips.Add(lineKs3);
                 }
 
-                if (LaugicalityVars.SlimeVelocity.Contains(Class))
+                if (LaugicalityVars.slimeVelocity.Contains(Class))
                 {
-                    TooltipLine lineKS4 = new TooltipLine(mod, "", KS4);
-                    tooltips.Add(lineKS4);
+                    TooltipLine lineKs4 = new TooltipLine(mod, "", _ks4);
+                    tooltips.Add(lineKs4);
                 }
             }
             if (NPC.downedBoss1)
             {
-                if (LaugicalityVars.Boss1Thorns.Contains(Class))
+                if (LaugicalityVars.boss1Thorns.Contains(Class))
                 {
-                    TooltipLine lineEoC1 = new TooltipLine(mod, "", EoC1);
+                    TooltipLine lineEoC1 = new TooltipLine(mod, "", _eoC1);
                     tooltips.Add(lineEoC1);
                 }
-                if (LaugicalityVars.Boss1Speed.Contains(Class))
+                if (LaugicalityVars.boss1Speed.Contains(Class))
                 {
-                    TooltipLine lineEoC2 = new TooltipLine(mod, "", EoC2);
+                    TooltipLine lineEoC2 = new TooltipLine(mod, "", _eoC2);
                     tooltips.Add(lineEoC2);
                 }
-                if (LaugicalityVars.Boss1Detect.Contains(Class))
+                if (LaugicalityVars.boss1Detect.Contains(Class))
                 {
-                    TooltipLine lineEoC3 = new TooltipLine(mod, "", EoC3);
+                    TooltipLine lineEoC3 = new TooltipLine(mod, "", _eoC3);
                     tooltips.Add(lineEoC3);
                 }
-                if (LaugicalityVars.Boss1Damage.Contains(Class))
+                if (LaugicalityVars.boss1Damage.Contains(Class))
                 {
-                    TooltipLine lineEoC4 = new TooltipLine(mod, "", EoC4);
+                    TooltipLine lineEoC4 = new TooltipLine(mod, "", _eoC4);
                     tooltips.Add(lineEoC4);
                 }
             }
             if (NPC.downedBoss2)
             {
-                if (LaugicalityVars.Boss2Rage.Contains(Class))
+                if (LaugicalityVars.boss2Rage.Contains(Class))
                 {
-                    TooltipLine lineEoWBoC1 = new TooltipLine(mod, "", EoWBoC1);
-                    tooltips.Add(lineEoWBoC1);
+                    TooltipLine lineEoWboC1 = new TooltipLine(mod, "", _eoWboC1);
+                    tooltips.Add(lineEoWboC1);
                 }
-                if (LaugicalityVars.Boss2Defence.Contains(Class))
+                if (LaugicalityVars.boss2Defence.Contains(Class))
                 {
-                    TooltipLine lineEoWBoC2 = new TooltipLine(mod, "", EoWBoC2);
-                    tooltips.Add(lineEoWBoC2);
+                    TooltipLine lineEoWboC2 = new TooltipLine(mod, "", _eoWboC2);
+                    tooltips.Add(lineEoWboC2);
                 }
-                if (LaugicalityVars.Boss2Regen.Contains(Class))
+                if (LaugicalityVars.boss2Regen.Contains(Class))
                 {
-                    TooltipLine lineEoWBoC3 = new TooltipLine(mod, "", EoWBoC3);
-                    tooltips.Add(lineEoWBoC3);
+                    TooltipLine lineEoWboC3 = new TooltipLine(mod, "", _eoWboC3);
+                    tooltips.Add(lineEoWboC3);
                 }
-                if (LaugicalityVars.Boss2RBonus.Contains(Class))
+                if (LaugicalityVars.boss2RBonus.Contains(Class))
                 {
-                    TooltipLine lineEoWBoC4 = new TooltipLine(mod, "", EoWBoC4);
-                    tooltips.Add(lineEoWBoC4);
+                    TooltipLine lineEoWboC4 = new TooltipLine(mod, "", _eoWboC4);
+                    tooltips.Add(lineEoWboC4);
                 }
             }
             if (NPC.downedQueenBee)
             {
-                if (LaugicalityVars.BeeTrue.Contains(Class))
+                if (LaugicalityVars.beeTrue.Contains(Class))
                 {
-                    TooltipLine lineQB1 = new TooltipLine(mod, "", QB1);
-                    tooltips.Add(lineQB1);
+                    TooltipLine lineQb1 = new TooltipLine(mod, "", _qb1);
+                    tooltips.Add(lineQb1);
                 }
-                if (LaugicalityVars.BeeRegen.Contains(Class))
+                if (LaugicalityVars.beeRegen.Contains(Class))
                 {
-                    TooltipLine lineQB2 = new TooltipLine(mod, "", QB2);
-                    tooltips.Add(lineQB2);
+                    TooltipLine lineQb2 = new TooltipLine(mod, "", _qb2);
+                    tooltips.Add(lineQb2);
                 }
-                if (LaugicalityVars.BeeMinions.Contains(Class))
+                if (LaugicalityVars.beeMinions.Contains(Class))
                 {
-                    TooltipLine lineQB3 = new TooltipLine(mod, "", QB3);
-                    tooltips.Add(lineQB3);
+                    TooltipLine lineQb3 = new TooltipLine(mod, "", _qb3);
+                    tooltips.Add(lineQb3);
                 }
-                if (LaugicalityVars.BeeMDamage.Contains(Class))
+                if (LaugicalityVars.beeMDamage.Contains(Class))
                 {
-                    TooltipLine lineQB4 = new TooltipLine(mod, "", QB4);
-                    tooltips.Add(lineQB4);
+                    TooltipLine lineQb4 = new TooltipLine(mod, "", _qb4);
+                    tooltips.Add(lineQb4);
                 }
             }
             if (NPC.downedBoss3)
             {
-                if (LaugicalityVars.Boss3Damage.Contains(Class))
+                if (LaugicalityVars.boss3Damage.Contains(Class))
                 {
-                    TooltipLine lineSK1 = new TooltipLine(mod, "", SK1);
-                    tooltips.Add(lineSK1);
+                    TooltipLine lineSk1 = new TooltipLine(mod, "", _sk1);
+                    tooltips.Add(lineSk1);
                 }
-                if (LaugicalityVars.Boss3Defense.Contains(Class))
+                if (LaugicalityVars.boss3Defense.Contains(Class))
                 {
-                    TooltipLine lineSK2 = new TooltipLine(mod, "", SK2);
-                    tooltips.Add(lineSK2);
+                    TooltipLine lineSk2 = new TooltipLine(mod, "", _sk2);
+                    tooltips.Add(lineSk2);
                 }
-                if (LaugicalityVars.Boss3Speed.Contains(Class))
+                if (LaugicalityVars.boss3Speed.Contains(Class))
                 {
-                    TooltipLine lineSK3 = new TooltipLine(mod, "", SK3);
-                    tooltips.Add(lineSK3);
+                    TooltipLine lineSk3 = new TooltipLine(mod, "", _sk3);
+                    tooltips.Add(lineSk3);
                 }
-                if (LaugicalityVars.Boss3Crit.Contains(Class))
+                if (LaugicalityVars.boss3Crit.Contains(Class))
                 {
-                    TooltipLine lineSK4 = new TooltipLine(mod, "", SK4);
-                    tooltips.Add(lineSK4);
+                    TooltipLine lineSk4 = new TooltipLine(mod, "", _sk4);
+                    tooltips.Add(lineSk4);
                 }
 
             }
             if (Main.hardMode)
             {
-                if (LaugicalityVars.HardDamage.Contains(Class))
+                if (LaugicalityVars.hardDamage.Contains(Class))
                 {
-                    TooltipLine lineWoF1 = new TooltipLine(mod, "", WoF1);
+                    TooltipLine lineWoF1 = new TooltipLine(mod, "", _woF1);
                     tooltips.Add(lineWoF1);
                 }
-                if (LaugicalityVars.HardRegen.Contains(Class))
+                if (LaugicalityVars.hardRegen.Contains(Class))
                 {
-                    TooltipLine lineWoF2 = new TooltipLine(mod, "", WoF2);
+                    TooltipLine lineWoF2 = new TooltipLine(mod, "", _woF2);
                     tooltips.Add(lineWoF2);
                 }
-                if (LaugicalityVars.HardMana.Contains(Class))
+                if (LaugicalityVars.hardMana.Contains(Class))
                 {
-                    TooltipLine lineWoF3 = new TooltipLine(mod, "", WoF3);
+                    TooltipLine lineWoF3 = new TooltipLine(mod, "", _woF3);
                     tooltips.Add(lineWoF3);
                 }
-                if (LaugicalityVars.HardObsid.Contains(Class))
+                if (LaugicalityVars.hardObsid.Contains(Class))
                 {
-                    TooltipLine lineWoF4 = new TooltipLine(mod, "", WoF4);
+                    TooltipLine lineWoF4 = new TooltipLine(mod, "", _woF4);
                     tooltips.Add(lineWoF4);
                 }
             }
             if (NPC.downedMechBoss1)
             {
-                if (LaugicalityVars.Mech1Crit.Contains(Class))
+                if (LaugicalityVars.mech1Crit.Contains(Class))
                 
                     {
-                        TooltipLine lineDST1 = new TooltipLine(mod, "", DST1);
-                        tooltips.Add(lineDST1);
+                        TooltipLine lineDst1 = new TooltipLine(mod, "", _dst1);
+                        tooltips.Add(lineDst1);
                     }
-                if (LaugicalityVars.Mech1Speed.Contains(Class))
+                if (LaugicalityVars.mech1Speed.Contains(Class))
                     {
-                        TooltipLine lineDST2 = new TooltipLine(mod, "", DST2);
-                        tooltips.Add(lineDST2);
+                        TooltipLine lineDst2 = new TooltipLine(mod, "", _dst2);
+                        tooltips.Add(lineDst2);
                     }
             }
             if (NPC.downedMechBoss2)
             {
-                if (LaugicalityVars.Mech2Magic.Contains(Class))
+                if (LaugicalityVars.mech2Magic.Contains(Class))
                     {
-                        TooltipLine lineTW1 = new TooltipLine(mod, "", TW1);
-                        tooltips.Add(lineTW1);
+                        TooltipLine lineTw1 = new TooltipLine(mod, "", _tw1);
+                        tooltips.Add(lineTw1);
                     }
-                if (LaugicalityVars.Mech2Jump.Contains(Class))
+                if (LaugicalityVars.mech2Jump.Contains(Class))
                     {
-                        TooltipLine lineTW2 = new TooltipLine(mod, "", TW2);
-                        tooltips.Add(lineTW2);
+                        TooltipLine lineTw2 = new TooltipLine(mod, "", _tw2);
+                        tooltips.Add(lineTw2);
                     }
             }
             if (NPC.downedMechBoss3)
             {
-                if (LaugicalityVars.Mech3Damage.Contains(Class))
+                if (LaugicalityVars.mech3Damage.Contains(Class))
                     {
-                        TooltipLine lineSP1 = new TooltipLine(mod, "", SP1);
-                        tooltips.Add(lineSP1);
+                        TooltipLine lineSp1 = new TooltipLine(mod, "", _sp1);
+                        tooltips.Add(lineSp1);
                     }
-                if (LaugicalityVars.Mech3Defense.Contains(Class))
+                if (LaugicalityVars.mech3Defense.Contains(Class))
                     {
-                        TooltipLine lineSP2 = new TooltipLine(mod, "", SP2);
-                        tooltips.Add(lineSP2);
+                        TooltipLine lineSp2 = new TooltipLine(mod, "", _sp2);
+                        tooltips.Add(lineSp2);
                     }
             }
             if (NPC.downedPlantBoss)
             {
-                if (LaugicalityVars.PlantBonus.Contains(Class))
+                if (LaugicalityVars.plantBonus.Contains(Class))
                 {
-                    TooltipLine linePT1 = new TooltipLine(mod, "", PT1);
-                    tooltips.Add(linePT1);
+                    TooltipLine linePt1 = new TooltipLine(mod, "", _pt1);
+                    tooltips.Add(linePt1);
                 }
-                if (LaugicalityVars.PlantThorns.Contains(Class))
+                if (LaugicalityVars.plantThorns.Contains(Class))
                 {
-                    TooltipLine linePT2 = new TooltipLine(mod, "", PT2);
-                    tooltips.Add(linePT2);
+                    TooltipLine linePt2 = new TooltipLine(mod, "", _pt2);
+                    tooltips.Add(linePt2);
                 }
             }
             if (NPC.downedGolemBoss)
             {
-                if (LaugicalityVars.GolemCrit.Contains(Class))
+                if (LaugicalityVars.golemCrit.Contains(Class))
                 {
-                    TooltipLine lineGL1 = new TooltipLine(mod, "", GL1);
-                    tooltips.Add(lineGL1);
+                    TooltipLine lineGl1 = new TooltipLine(mod, "", _gl1);
+                    tooltips.Add(lineGl1);
                 }
-                if (LaugicalityVars.GolemRegen.Contains(Class))
+                if (LaugicalityVars.golemRegen.Contains(Class))
                 {
-                    TooltipLine lineGL2 = new TooltipLine(mod, "", GL2);
-                    tooltips.Add(lineGL2);
+                    TooltipLine lineGl2 = new TooltipLine(mod, "", _gl2);
+                    tooltips.Add(lineGl2);
                 }
             }
             if (NPC.downedFishron)
             {
-                if (LaugicalityVars.FishDouche.Contains(Class))
+                if (LaugicalityVars.fishDouche.Contains(Class))
                 {
-                    TooltipLine lineDF1 = new TooltipLine(mod, "", DF1);
-                    tooltips.Add(lineDF1);
+                    TooltipLine lineDf1 = new TooltipLine(mod, "", _df1);
+                    tooltips.Add(lineDf1);
                 }
-                if (LaugicalityVars.FishSpeed.Contains(Class))
+                if (LaugicalityVars.fishSpeed.Contains(Class))
                 {
-                    TooltipLine lineDF2 = new TooltipLine(mod, "", DF2);
-                    tooltips.Add(lineDF2);
+                    TooltipLine lineDf2 = new TooltipLine(mod, "", _df2);
+                    tooltips.Add(lineDf2);
                 }
-                if (LaugicalityVars.FishMDamage.Contains(Class))
+                if (LaugicalityVars.fishMDamage.Contains(Class))
                 {
-                    TooltipLine lineDF3 = new TooltipLine(mod, "", DF3);
-                    tooltips.Add(lineDF3);
+                    TooltipLine lineDf3 = new TooltipLine(mod, "", _df3);
+                    tooltips.Add(lineDf3);
                 }
             }
             if (NPC.downedAncientCultist)
             {
-                if (LaugicalityVars.CultistDamage1.Contains(Class))
+                if (LaugicalityVars.cultistDamage1.Contains(Class))
                 {
-                    TooltipLine lineLC1 = new TooltipLine(mod, "", LC1);
-                    tooltips.Add(lineLC1);
+                    TooltipLine lineLc1 = new TooltipLine(mod, "", _lc1);
+                    tooltips.Add(lineLc1);
                 }
-                if (LaugicalityVars.CultistDamage2.Contains(Class))
+                if (LaugicalityVars.cultistDamage2.Contains(Class))
                 {
-                    TooltipLine lineLC2 = new TooltipLine(mod, "", LC2);
-                    tooltips.Add(lineLC2);
+                    TooltipLine lineLc2 = new TooltipLine(mod, "", _lc2);
+                    tooltips.Add(lineLc2);
                 }
             }
             if (NPC.downedMoonlord && Class > 0)
             {
-                TooltipLine lineML1 = new TooltipLine(mod, "", ML1);
-                tooltips.Add(lineML1);
+                TooltipLine lineMl1 = new TooltipLine(mod, "", _ml1);
+                tooltips.Add(lineMl1);
             }
         }
         

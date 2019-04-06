@@ -7,7 +7,7 @@ namespace Laugicality.Backgrounds
 	{
 		public override bool ChooseBgStyle()
 		{
-			return Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).ZoneObsidium;
+			return Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).zoneObsidium;
 		}
 
 		public override void FillTextureArray(int[] textureSlots)

@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles
             reload = 60;
 		}
 
-        public Vector2 getPosition()
+        public Vector2 GetPosition()
         {
             return projectile.position;
         }

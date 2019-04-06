@@ -5,7 +5,7 @@ namespace Laugicality.Projectiles
 {
 	public class Electrospark : ModProjectile
 	{
-        private int delay = 0;
+        private int _delay = 0;
 
         public override void SetStaticDefaults()
         {
@@ -25,13 +25,13 @@ namespace Laugicality.Projectiles
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.penetrate = 1;
-            delay = 0;
+            _delay = 0;
         }
 
         public override void AI()
         {
-            delay += 1;
-            if(delay == 25 && Main.myPlayer == projectile.owner)
+            _delay += 1;
+            if(_delay == 25 && Main.myPlayer == projectile.owner)
             {
                 //Main.PlaySound(SoundID.Item33, (int)projectile.position.X, (int)projectile.position.Y);
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);

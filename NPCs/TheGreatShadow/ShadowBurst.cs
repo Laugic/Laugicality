@@ -16,7 +16,7 @@ namespace Laugicality.NPCs.TheGreatShadow
         {
             zImmune = true;
             delay = 60;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             projectile.width = 16;
             projectile.height = 16;
             projectile.hostile = false;

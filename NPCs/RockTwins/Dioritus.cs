@@ -44,7 +44,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Dioritus");
             //Main.npcFrameCount[npc.type] = 2;
         }

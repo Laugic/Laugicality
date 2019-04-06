@@ -14,12 +14,12 @@ namespace Laugicality.Projectiles
         public float vMag = 0;
         public int index = 0;
         public float theta = 0f;
-        int reload = 0;
-        int reloadMax = 45;
+        int _reload = 0;
+        int _reloadMax = 45;
 
         public override void SetStaticDefaults()
         {
-            reload = 0;
+            _reload = 0;
             Main.projFrames[projectile.type] = 1;
             Main.projPet[projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[projectile.type] = true;
@@ -123,12 +123,12 @@ namespace Laugicality.Projectiles
 
 
             //Attack
-            if(reload > 0)
-                reload--;
+            if(_reload > 0)
+                _reload--;
             else
             {
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("UltimateLeader4"), (int)(projectile.damage * 2), 3, Main.myPlayer);
-                reload = reloadMax - 4 + Main.rand.Next(9);
+                _reload = _reloadMax - 4 + Main.rand.Next(9);
             }
 
             projectile.netUpdate = true;

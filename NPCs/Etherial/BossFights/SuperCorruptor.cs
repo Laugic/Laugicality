@@ -9,28 +9,28 @@ namespace Laugicality.NPCs.Etherial.BossFights
     {
         public bool bitherial = false;
         public bool etherial = true;
-        int delay = 0;
-        int shootDelay = 0;
-        int index = 0;
-        Vector2 targetPos;
+        int _delay = 0;
+        int _shootDelay = 0;
+        int _index = 0;
+        Vector2 _targetPos;
         public float tVel = 0f;
         public float vel = 0f;
         public float vMax = 10f;
         public float vAccel = .2f;
         public float vMag = 0f;
-        float theta = 0;
-        int targetType = 0;
+        float _theta = 0;
+        int _targetType = 0;
 
         public override void SetDefaults()
         {
-            shootDelay = 0;
-            targetType = 0;
+            _shootDelay = 0;
+            _targetType = 0;
             vMag = 0f;
             vMax = 14f;
             tVel = 0f;
-            index = 0;
-            delay = 0;
-            LaugicalityVars.Etherial.Add(npc.type);
+            _index = 0;
+            _delay = 0;
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 36;
             npc.height = 36;
             npc.damage = 40;
@@ -56,10 +56,10 @@ namespace Laugicality.NPCs.Etherial.BossFights
         
         private void MovementType(NPC npc)
         {
-            delay++;
-            if (delay > 480)
+            _delay++;
+            if (_delay > 480)
             {
-                delay = Main.rand.Next(1, 120);
+                _delay = Main.rand.Next(1, 120);
                 MirrorTeleport(npc, false);
                 
             }
@@ -67,10 +67,10 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         private void Shoot(NPC npc)
         {
-            shootDelay++;
-            if (shootDelay > 480)
+            _shootDelay++;
+            if (_shootDelay > 480)
             {
-                shootDelay = Main.rand.Next(1, 120);
+                _shootDelay = Main.rand.Next(1, 120);
                 if (Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
             }
@@ -91,9 +91,9 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
                     if (Main.netMode != 1)
                     {
-                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
-                        Main.npc[N].ai[0] = npc.whoAmI;
-                        Main.npc[N].ai[1] = i;
+                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                        Main.npc[n].ai[0] = npc.whoAmI;
+                        Main.npc[n].ai[1] = i;
                     }
                 }
             }

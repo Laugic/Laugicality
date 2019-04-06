@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.RockTwins
         public int plays = 0;
         public static int laser = 0;
         public int laserCharge = 0;
-        public static Vector2 Center;
+        public static Vector2 center;
         public static Vector2 position;
         public static Player target;
         public static bool andio = false;
@@ -53,7 +53,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Andesia");
         }
 
@@ -124,7 +124,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void AI()
         {
-            Center = npc.Center;
+            center = npc.Center;
             position = npc.position;
             bitherial = true;
 

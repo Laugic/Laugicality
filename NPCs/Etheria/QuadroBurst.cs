@@ -7,8 +7,8 @@ namespace Laugicality.NPCs.Etheria
 	public class QuadroBurst : ModProjectile
     {
         public bool bitherial = true;
-        int delay = 0;
-        int spawned = 0;
+        int _delay = 0;
+        int _spawned = 0;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Etherial Pulse");
@@ -18,9 +18,9 @@ namespace Laugicality.NPCs.Etheria
 
 		public override void SetDefaults()
         {
-            spawned = 0;
-            delay = 0;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            _spawned = 0;
+            _delay = 0;
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             projectile.width = 44;
 			projectile.height = 44;
@@ -37,15 +37,15 @@ namespace Laugicality.NPCs.Etheria
             if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), 0f, 0f);
 
             bitherial = true;
-            delay++;
-            if(delay > 20)
+            _delay++;
+            if(_delay > 20)
             {
-                spawned++;
-                delay = 0;
+                _spawned++;
+                _delay = 0;
                 if (Main.myPlayer == projectile.owner)
                     Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 4, -projectile.velocity.Y / 4, mod.ProjectileType("EtherialPulsar"), (int)(projectile.damage), 3, Main.myPlayer);
             }
-            if(spawned >=4)
+            if(_spawned >=4)
                 projectile.Kill();
         }
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

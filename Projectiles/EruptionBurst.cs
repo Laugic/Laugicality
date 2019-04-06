@@ -13,7 +13,7 @@ namespace Laugicality.Projectiles
 
 		public override void SetDefaults()
         {
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             projectile.width = 16;
 			projectile.height = 16;

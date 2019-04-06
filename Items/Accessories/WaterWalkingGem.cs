@@ -44,12 +44,12 @@ namespace Laugicality.Items.Accessories
             recipe.SetResult(this);
             recipe.AddRecipe();
 
-            ModRecipe WWrecipe = new ModRecipe(mod);
-            WWrecipe.AddIngredient(54);
-            WWrecipe.AddIngredient(this);
-            WWrecipe.AddTile(114);
-            WWrecipe.SetResult(863);
-            WWrecipe.AddRecipe();
+            ModRecipe wWrecipe = new ModRecipe(mod);
+            wWrecipe.AddIngredient(54);
+            wWrecipe.AddIngredient(this);
+            wWrecipe.AddTile(114);
+            wWrecipe.SetResult(863);
+            wWrecipe.AddRecipe();
         }
     }
 }

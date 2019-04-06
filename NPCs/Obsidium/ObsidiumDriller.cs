@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.Obsidium
         public override void AI()
         {
             //Retarget (borrowed from Dan <3)
-            Player P = Main.player[npc.target];
+            Player p = Main.player[npc.target];
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest(true);

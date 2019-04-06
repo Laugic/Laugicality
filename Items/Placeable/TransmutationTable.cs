@@ -38,574 +38,574 @@ namespace Laugicality.Items.Placeable
 
             //Dungeon Table Recipes
             //Green
-            ModRecipe Grecipe = new ModRecipe(mod);
-            Grecipe.AddIngredient(ItemID.Bone, 10);
-            Grecipe.AddIngredient(137, 24);
-            Grecipe.AddTile(16);
-            Grecipe.SetResult(1400);
-            Grecipe.AddRecipe();
+            ModRecipe grecipe = new ModRecipe(mod);
+            grecipe.AddIngredient(ItemID.Bone, 10);
+            grecipe.AddIngredient(137, 24);
+            grecipe.AddTile(16);
+            grecipe.SetResult(1400);
+            grecipe.AddRecipe();
             //Blue
-            ModRecipe Brecipe = new ModRecipe(mod);
-            Brecipe.AddIngredient(ItemID.Bone, 10);
-            Brecipe.AddIngredient(134, 24);
-            Brecipe.AddTile(16);
-            Brecipe.SetResult(1397);
-            Brecipe.AddRecipe();
+            ModRecipe brecipe = new ModRecipe(mod);
+            brecipe.AddIngredient(ItemID.Bone, 10);
+            brecipe.AddIngredient(134, 24);
+            brecipe.AddTile(16);
+            brecipe.SetResult(1397);
+            brecipe.AddRecipe();
             //Pink
-            ModRecipe Precipe = new ModRecipe(mod);
-            Precipe.AddIngredient(ItemID.Bone, 10);
-            Precipe.AddIngredient(139, 24);
-            Precipe.AddTile(16);
-            Precipe.SetResult(1403);
-            Precipe.AddRecipe();
+            ModRecipe precipe = new ModRecipe(mod);
+            precipe.AddIngredient(ItemID.Bone, 10);
+            precipe.AddIngredient(139, 24);
+            precipe.AddTile(16);
+            precipe.SetResult(1403);
+            precipe.AddRecipe();
 
             //Metal Transmutation!!
             //Ores
             //Copper to Tin
-            ModRecipe CTrecipe = new ModRecipe(mod);
-            CTrecipe.AddIngredient(ItemID.CopperOre, 3);
-            CTrecipe.AddTile(null, "TransmutationTable");
-            CTrecipe.SetResult(ItemID.TinOre, 3);
-            CTrecipe.AddRecipe();
+            ModRecipe cTrecipe = new ModRecipe(mod);
+            cTrecipe.AddIngredient(ItemID.CopperOre, 3);
+            cTrecipe.AddTile(null, "TransmutationTable");
+            cTrecipe.SetResult(ItemID.TinOre, 3);
+            cTrecipe.AddRecipe();
 
             //Tin to Copper
-            ModRecipe TCrecipe = new ModRecipe(mod);
-            TCrecipe.AddIngredient(ItemID.TinOre, 3);
-            TCrecipe.AddTile(null, "TransmutationTable");
-            TCrecipe.SetResult(ItemID.CopperOre, 3);
-            TCrecipe.AddRecipe();
+            ModRecipe crecipe = new ModRecipe(mod);
+            crecipe.AddIngredient(ItemID.TinOre, 3);
+            crecipe.AddTile(null, "TransmutationTable");
+            crecipe.SetResult(ItemID.CopperOre, 3);
+            crecipe.AddRecipe();
 
             //Tin to Iron
-            ModRecipe TIrecipe = new ModRecipe(mod);
-            TIrecipe.AddIngredient(ItemID.TinOre, 4);
-            TIrecipe.AddTile(null, "TransmutationTable");
-            TIrecipe.SetResult(ItemID.IronOre, 3);
-            TIrecipe.AddRecipe();
+            ModRecipe irecipe = new ModRecipe(mod);
+            irecipe.AddIngredient(ItemID.TinOre, 4);
+            irecipe.AddTile(null, "TransmutationTable");
+            irecipe.SetResult(ItemID.IronOre, 3);
+            irecipe.AddRecipe();
 
             //Iron to Tin
-            ModRecipe ITrecipe = new ModRecipe(mod);
-            ITrecipe.AddIngredient(ItemID.IronOre, 3);
-            ITrecipe.AddTile(null, "TransmutationTable");
-            ITrecipe.SetResult(ItemID.TinOre, 3);
-            ITrecipe.AddRecipe();
+            ModRecipe trecipe = new ModRecipe(mod);
+            trecipe.AddIngredient(ItemID.IronOre, 3);
+            trecipe.AddTile(null, "TransmutationTable");
+            trecipe.SetResult(ItemID.TinOre, 3);
+            trecipe.AddRecipe();
 
             //Iron to Lead
-            ModRecipe ILrecipe = new ModRecipe(mod);
-            ILrecipe.AddIngredient(ItemID.IronOre, 3);
-            ILrecipe.AddTile(null, "TransmutationTable");
-            ILrecipe.SetResult(ItemID.LeadOre, 3);
-            ILrecipe.AddRecipe();
+            ModRecipe lrecipe = new ModRecipe(mod);
+            lrecipe.AddIngredient(ItemID.IronOre, 3);
+            lrecipe.AddTile(null, "TransmutationTable");
+            lrecipe.SetResult(ItemID.LeadOre, 3);
+            lrecipe.AddRecipe();
 
             //Lead to Iron
-            ModRecipe LIrecipe = new ModRecipe(mod);
-            LIrecipe.AddIngredient(ItemID.LeadOre, 3);
-            LIrecipe.AddTile(null, "TransmutationTable");
-            LIrecipe.SetResult(ItemID.IronOre, 3);
-            LIrecipe.AddRecipe();
+            ModRecipe lIrecipe = new ModRecipe(mod);
+            lIrecipe.AddIngredient(ItemID.LeadOre, 3);
+            lIrecipe.AddTile(null, "TransmutationTable");
+            lIrecipe.SetResult(ItemID.IronOre, 3);
+            lIrecipe.AddRecipe();
 
             //Lead to Silver
-            ModRecipe LSrecipe = new ModRecipe(mod);
-            LSrecipe.AddIngredient(ItemID.LeadOre, 5);
-            LSrecipe.AddTile(null, "TransmutationTable");
-            LSrecipe.SetResult(ItemID.SilverOre, 3);
-            LSrecipe.AddRecipe();
+            ModRecipe lSrecipe = new ModRecipe(mod);
+            lSrecipe.AddIngredient(ItemID.LeadOre, 5);
+            lSrecipe.AddTile(null, "TransmutationTable");
+            lSrecipe.SetResult(ItemID.SilverOre, 3);
+            lSrecipe.AddRecipe();
 
             //Silver to Lead
-            ModRecipe SLrecipe = new ModRecipe(mod);
-            SLrecipe.AddIngredient(ItemID.SilverOre, 3);
-            SLrecipe.AddTile(null, "TransmutationTable");
-            SLrecipe.SetResult(ItemID.LeadOre, 3);
-            SLrecipe.AddRecipe();
+            ModRecipe sLrecipe = new ModRecipe(mod);
+            sLrecipe.AddIngredient(ItemID.SilverOre, 3);
+            sLrecipe.AddTile(null, "TransmutationTable");
+            sLrecipe.SetResult(ItemID.LeadOre, 3);
+            sLrecipe.AddRecipe();
 
             //Silver to Tungsten
-            ModRecipe STrecipe = new ModRecipe(mod);
-            STrecipe.AddIngredient(ItemID.SilverOre, 4);
-            STrecipe.AddTile(null, "TransmutationTable");
-            STrecipe.SetResult(ItemID.TungstenOre, 4);
-            STrecipe.AddRecipe();
+            ModRecipe sTrecipe = new ModRecipe(mod);
+            sTrecipe.AddIngredient(ItemID.SilverOre, 4);
+            sTrecipe.AddTile(null, "TransmutationTable");
+            sTrecipe.SetResult(ItemID.TungstenOre, 4);
+            sTrecipe.AddRecipe();
 
             //Tungsten to Silver
-            ModRecipe TSrecipe = new ModRecipe(mod);
-            TSrecipe.AddIngredient(ItemID.TungstenOre, 4);
-            TSrecipe.AddTile(null, "TransmutationTable");
-            TSrecipe.SetResult(ItemID.SilverOre, 4);
-            TSrecipe.AddRecipe();
+            ModRecipe srecipe = new ModRecipe(mod);
+            srecipe.AddIngredient(ItemID.TungstenOre, 4);
+            srecipe.AddTile(null, "TransmutationTable");
+            srecipe.SetResult(ItemID.SilverOre, 4);
+            srecipe.AddRecipe();
 
             //Tungsten to Gold
-            ModRecipe TGrecipe = new ModRecipe(mod);
-            TGrecipe.AddIngredient(ItemID.TungstenOre, 5);
-            TGrecipe.AddTile(null, "TransmutationTable");
-            TGrecipe.SetResult(ItemID.GoldOre, 4);
-            TGrecipe.AddRecipe();
+            ModRecipe grecipe = new ModRecipe(mod);
+            grecipe.AddIngredient(ItemID.TungstenOre, 5);
+            grecipe.AddTile(null, "TransmutationTable");
+            grecipe.SetResult(ItemID.GoldOre, 4);
+            grecipe.AddRecipe();
 
             //Gold to Tungsten
-            ModRecipe GTrecipe = new ModRecipe(mod);
-            GTrecipe.AddIngredient(ItemID.GoldOre, 4);
-            GTrecipe.AddTile(null, "TransmutationTable");
-            GTrecipe.SetResult(ItemID.TungstenOre, 4);
-            GTrecipe.AddRecipe();
+            ModRecipe gTrecipe = new ModRecipe(mod);
+            gTrecipe.AddIngredient(ItemID.GoldOre, 4);
+            gTrecipe.AddTile(null, "TransmutationTable");
+            gTrecipe.SetResult(ItemID.TungstenOre, 4);
+            gTrecipe.AddRecipe();
 
             //Gold to Platinum
-            ModRecipe GPrecipe = new ModRecipe(mod);
-            GPrecipe.AddIngredient(ItemID.GoldOre, 4);
-            GPrecipe.AddTile(null, "TransmutationTable");
-            GPrecipe.SetResult(ItemID.PlatinumOre, 4);
-            GPrecipe.AddRecipe();
+            ModRecipe gPrecipe = new ModRecipe(mod);
+            gPrecipe.AddIngredient(ItemID.GoldOre, 4);
+            gPrecipe.AddTile(null, "TransmutationTable");
+            gPrecipe.SetResult(ItemID.PlatinumOre, 4);
+            gPrecipe.AddRecipe();
 
             //Platinum to Gold
-            ModRecipe PGrecipe = new ModRecipe(mod);
-            PGrecipe.AddIngredient(ItemID.PlatinumOre, 4);
-            PGrecipe.AddTile(null, "TransmutationTable");
-            PGrecipe.SetResult(ItemID.GoldOre, 4);
-            PGrecipe.AddRecipe();
+            ModRecipe pGrecipe = new ModRecipe(mod);
+            pGrecipe.AddIngredient(ItemID.PlatinumOre, 4);
+            pGrecipe.AddTile(null, "TransmutationTable");
+            pGrecipe.SetResult(ItemID.GoldOre, 4);
+            pGrecipe.AddRecipe();
 
             //Platinum to Cobalt
-            ModRecipe PCrecipe = new ModRecipe(mod);
-            PCrecipe.AddIngredient(ItemID.PlatinumOre, 6);
-            PCrecipe.AddTile(null, "TransmutationTable");
-            PCrecipe.AddTile(null, "MineralEnchanter");
-            PCrecipe.SetResult(ItemID.CobaltOre, 4);
-            PCrecipe.AddRecipe();
+            ModRecipe pCrecipe = new ModRecipe(mod);
+            pCrecipe.AddIngredient(ItemID.PlatinumOre, 6);
+            pCrecipe.AddTile(null, "TransmutationTable");
+            pCrecipe.AddTile(null, "MineralEnchanter");
+            pCrecipe.SetResult(ItemID.CobaltOre, 4);
+            pCrecipe.AddRecipe();
 
             //Cobalt to Platinum
-            ModRecipe CPrecipe = new ModRecipe(mod);
-            CPrecipe.AddIngredient(ItemID.CobaltOre, 3);
-            CPrecipe.AddTile(null, "TransmutationTable");
-            CPrecipe.SetResult(ItemID.PlatinumOre, 3);
-            CPrecipe.AddRecipe();
+            ModRecipe cPrecipe = new ModRecipe(mod);
+            cPrecipe.AddIngredient(ItemID.CobaltOre, 3);
+            cPrecipe.AddTile(null, "TransmutationTable");
+            cPrecipe.SetResult(ItemID.PlatinumOre, 3);
+            cPrecipe.AddRecipe();
 
             //Cobalt to Palladium
-            ModRecipe CParecipe = new ModRecipe(mod);
-            CParecipe.AddIngredient(ItemID.CobaltOre, 3);
-            CParecipe.AddTile(null, "TransmutationTable");
-            CParecipe.SetResult(ItemID.PalladiumOre, 3);
-            CParecipe.AddRecipe();
+            ModRecipe cParecipe = new ModRecipe(mod);
+            cParecipe.AddIngredient(ItemID.CobaltOre, 3);
+            cParecipe.AddTile(null, "TransmutationTable");
+            cParecipe.SetResult(ItemID.PalladiumOre, 3);
+            cParecipe.AddRecipe();
 
             //Palladium to Cobalt
-            ModRecipe PaCrecipe = new ModRecipe(mod);
-            PaCrecipe.AddIngredient(ItemID.PalladiumOre, 3);
-            PaCrecipe.AddTile(null, "TransmutationTable");
-            PaCrecipe.SetResult(ItemID.CobaltOre, 3);
-            PaCrecipe.AddRecipe();
+            ModRecipe paCrecipe = new ModRecipe(mod);
+            paCrecipe.AddIngredient(ItemID.PalladiumOre, 3);
+            paCrecipe.AddTile(null, "TransmutationTable");
+            paCrecipe.SetResult(ItemID.CobaltOre, 3);
+            paCrecipe.AddRecipe();
 
             //Palladium to Mythril
-            ModRecipe PMrecipe = new ModRecipe(mod);
-            PMrecipe.AddIngredient(ItemID.PalladiumOre, 5);
-            PMrecipe.AddTile(null, "TransmutationTable");
-            PMrecipe.SetResult(ItemID.MythrilOre, 3);
-            PMrecipe.AddRecipe();
+            ModRecipe pMrecipe = new ModRecipe(mod);
+            pMrecipe.AddIngredient(ItemID.PalladiumOre, 5);
+            pMrecipe.AddTile(null, "TransmutationTable");
+            pMrecipe.SetResult(ItemID.MythrilOre, 3);
+            pMrecipe.AddRecipe();
 
             //Mythril to Palladium
-            ModRecipe MPrecipe = new ModRecipe(mod);
-            MPrecipe.AddIngredient(ItemID.MythrilOre, 3);
-            MPrecipe.AddTile(null, "TransmutationTable");
-            MPrecipe.SetResult(ItemID.PalladiumOre, 3);
-            MPrecipe.AddRecipe();
+            ModRecipe mPrecipe = new ModRecipe(mod);
+            mPrecipe.AddIngredient(ItemID.MythrilOre, 3);
+            mPrecipe.AddTile(null, "TransmutationTable");
+            mPrecipe.SetResult(ItemID.PalladiumOre, 3);
+            mPrecipe.AddRecipe();
 
             //Mythril to Orichalcum
-            ModRecipe MOrecipe = new ModRecipe(mod);
-            MOrecipe.AddIngredient(ItemID.MythrilOre, 4);
-            MOrecipe.AddTile(null, "TransmutationTable");
-            MOrecipe.SetResult(ItemID.OrichalcumOre, 4);
-            MOrecipe.AddRecipe();
+            ModRecipe mOrecipe = new ModRecipe(mod);
+            mOrecipe.AddIngredient(ItemID.MythrilOre, 4);
+            mOrecipe.AddTile(null, "TransmutationTable");
+            mOrecipe.SetResult(ItemID.OrichalcumOre, 4);
+            mOrecipe.AddRecipe();
 
             //Orichalcum to Mythril
-            ModRecipe OMrecipe = new ModRecipe(mod);
-            OMrecipe.AddIngredient(ItemID.OrichalcumOre, 4);
-            OMrecipe.AddTile(null, "TransmutationTable");
-            OMrecipe.SetResult(ItemID.MythrilOre, 4);
-            OMrecipe.AddRecipe();
+            ModRecipe oMrecipe = new ModRecipe(mod);
+            oMrecipe.AddIngredient(ItemID.OrichalcumOre, 4);
+            oMrecipe.AddTile(null, "TransmutationTable");
+            oMrecipe.SetResult(ItemID.MythrilOre, 4);
+            oMrecipe.AddRecipe();
 
             //Orichalcum to Adamantite
-            ModRecipe OArecipe = new ModRecipe(mod);
-            OArecipe.AddIngredient(ItemID.OrichalcumOre, 6);
-            OArecipe.AddTile(null, "TransmutationTable");
-            OArecipe.SetResult(ItemID.AdamantiteOre, 4);
-            OArecipe.AddRecipe();
+            ModRecipe oArecipe = new ModRecipe(mod);
+            oArecipe.AddIngredient(ItemID.OrichalcumOre, 6);
+            oArecipe.AddTile(null, "TransmutationTable");
+            oArecipe.SetResult(ItemID.AdamantiteOre, 4);
+            oArecipe.AddRecipe();
 
             //Adamantite to Orichalcum
-            ModRecipe AOrecipe = new ModRecipe(mod);
-            AOrecipe.AddIngredient(ItemID.AdamantiteOre, 4);
-            AOrecipe.AddTile(null, "TransmutationTable");
-            AOrecipe.SetResult(ItemID.OrichalcumOre, 4);
-            AOrecipe.AddRecipe();
+            ModRecipe aOrecipe = new ModRecipe(mod);
+            aOrecipe.AddIngredient(ItemID.AdamantiteOre, 4);
+            aOrecipe.AddTile(null, "TransmutationTable");
+            aOrecipe.SetResult(ItemID.OrichalcumOre, 4);
+            aOrecipe.AddRecipe();
 
             //Adamantite to Titanium
-            ModRecipe ATrecipe = new ModRecipe(mod);
-            ATrecipe.AddIngredient(ItemID.AdamantiteOre, 5);
-            ATrecipe.AddTile(null, "TransmutationTable");
-            ATrecipe.SetResult(ItemID.TitaniumOre, 5);
-            ATrecipe.AddRecipe();
+            ModRecipe aTrecipe = new ModRecipe(mod);
+            aTrecipe.AddIngredient(ItemID.AdamantiteOre, 5);
+            aTrecipe.AddTile(null, "TransmutationTable");
+            aTrecipe.SetResult(ItemID.TitaniumOre, 5);
+            aTrecipe.AddRecipe();
 
             //Titanium to Adamantite
-            ModRecipe TArecipe = new ModRecipe(mod);
-            TArecipe.AddIngredient(ItemID.TitaniumOre, 5);
-            TArecipe.AddTile(null, "TransmutationTable");
-            TArecipe.SetResult(ItemID.AdamantiteOre, 5);
-            TArecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(ItemID.TitaniumOre, 5);
+            arecipe.AddTile(null, "TransmutationTable");
+            arecipe.SetResult(ItemID.AdamantiteOre, 5);
+            arecipe.AddRecipe();
 
             //Bars
             //Copper to Tin
-            ModRecipe CTBrecipe = new ModRecipe(mod);
-            CTBrecipe.AddIngredient(ItemID.CopperBar, 3);
-            CTBrecipe.AddTile(null, "TransmutationTable");
-            CTBrecipe.SetResult(ItemID.TinBar, 3);
-            CTBrecipe.AddRecipe();
+            ModRecipe ctBrecipe = new ModRecipe(mod);
+            ctBrecipe.AddIngredient(ItemID.CopperBar, 3);
+            ctBrecipe.AddTile(null, "TransmutationTable");
+            ctBrecipe.SetResult(ItemID.TinBar, 3);
+            ctBrecipe.AddRecipe();
 
             //Tin to Copper
-            ModRecipe TCBrecipe = new ModRecipe(mod);
-            TCBrecipe.AddIngredient(ItemID.TinBar, 3);
-            TCBrecipe.AddTile(null, "TransmutationTable");
-            TCBrecipe.SetResult(ItemID.CopperBar, 3);
-            TCBrecipe.AddRecipe();
+            ModRecipe tcBrecipe = new ModRecipe(mod);
+            tcBrecipe.AddIngredient(ItemID.TinBar, 3);
+            tcBrecipe.AddTile(null, "TransmutationTable");
+            tcBrecipe.SetResult(ItemID.CopperBar, 3);
+            tcBrecipe.AddRecipe();
 
             //Tin to Iron
-            ModRecipe TIBrecipe = new ModRecipe(mod);
-            TIBrecipe.AddIngredient(ItemID.TinBar, 4);
-            TIBrecipe.AddTile(null, "TransmutationTable");
-            TIBrecipe.SetResult(ItemID.IronBar, 3);
-            TIBrecipe.AddRecipe();
+            ModRecipe tiBrecipe = new ModRecipe(mod);
+            tiBrecipe.AddIngredient(ItemID.TinBar, 4);
+            tiBrecipe.AddTile(null, "TransmutationTable");
+            tiBrecipe.SetResult(ItemID.IronBar, 3);
+            tiBrecipe.AddRecipe();
 
             //Iron to Tin
-            ModRecipe ITBrecipe = new ModRecipe(mod);
-            ITBrecipe.AddIngredient(ItemID.IronBar, 3);
-            ITBrecipe.AddTile(null, "TransmutationTable");
-            ITBrecipe.SetResult(ItemID.TinBar, 3);
-            ITBrecipe.AddRecipe();
+            ModRecipe itBrecipe = new ModRecipe(mod);
+            itBrecipe.AddIngredient(ItemID.IronBar, 3);
+            itBrecipe.AddTile(null, "TransmutationTable");
+            itBrecipe.SetResult(ItemID.TinBar, 3);
+            itBrecipe.AddRecipe();
 
             //Iron to Lead
-            ModRecipe ILBrecipe = new ModRecipe(mod);
-            ILBrecipe.AddIngredient(ItemID.IronBar, 3);
-            ILBrecipe.AddTile(null, "TransmutationTable");
-            ILBrecipe.SetResult(ItemID.LeadBar, 3);
-            ILBrecipe.AddRecipe();
+            ModRecipe ilBrecipe = new ModRecipe(mod);
+            ilBrecipe.AddIngredient(ItemID.IronBar, 3);
+            ilBrecipe.AddTile(null, "TransmutationTable");
+            ilBrecipe.SetResult(ItemID.LeadBar, 3);
+            ilBrecipe.AddRecipe();
 
             //Lead to Iron
-            ModRecipe LIBrecipe = new ModRecipe(mod);
-            LIBrecipe.AddIngredient(ItemID.LeadBar, 3);
-            LIBrecipe.AddTile(null, "TransmutationTable");
-            LIBrecipe.SetResult(ItemID.IronBar, 3);
-            LIBrecipe.AddRecipe();
+            ModRecipe liBrecipe = new ModRecipe(mod);
+            liBrecipe.AddIngredient(ItemID.LeadBar, 3);
+            liBrecipe.AddTile(null, "TransmutationTable");
+            liBrecipe.SetResult(ItemID.IronBar, 3);
+            liBrecipe.AddRecipe();
 
             //Lead to Silver
-            ModRecipe LSBrecipe = new ModRecipe(mod);
-            LSBrecipe.AddIngredient(ItemID.LeadBar, 5);
-            LSBrecipe.AddTile(null, "TransmutationTable");
-            LSBrecipe.SetResult(ItemID.SilverBar, 3);
-            LSBrecipe.AddRecipe();
+            ModRecipe lsBrecipe = new ModRecipe(mod);
+            lsBrecipe.AddIngredient(ItemID.LeadBar, 5);
+            lsBrecipe.AddTile(null, "TransmutationTable");
+            lsBrecipe.SetResult(ItemID.SilverBar, 3);
+            lsBrecipe.AddRecipe();
 
             //Silver to Lead
-            ModRecipe SLBrecipe = new ModRecipe(mod);
-            SLBrecipe.AddIngredient(ItemID.SilverBar, 3);
-            SLBrecipe.AddTile(null, "TransmutationTable");
-            SLBrecipe.SetResult(ItemID.LeadBar, 3);
-            SLBrecipe.AddRecipe();
+            ModRecipe slBrecipe = new ModRecipe(mod);
+            slBrecipe.AddIngredient(ItemID.SilverBar, 3);
+            slBrecipe.AddTile(null, "TransmutationTable");
+            slBrecipe.SetResult(ItemID.LeadBar, 3);
+            slBrecipe.AddRecipe();
 
             //Silver to Tungsten
-            ModRecipe STBrecipe = new ModRecipe(mod);
-            STBrecipe.AddIngredient(ItemID.SilverBar, 4);
-            STBrecipe.AddTile(null, "TransmutationTable");
-            STBrecipe.SetResult(ItemID.TungstenBar, 4);
-            STBrecipe.AddRecipe();
+            ModRecipe stBrecipe = new ModRecipe(mod);
+            stBrecipe.AddIngredient(ItemID.SilverBar, 4);
+            stBrecipe.AddTile(null, "TransmutationTable");
+            stBrecipe.SetResult(ItemID.TungstenBar, 4);
+            stBrecipe.AddRecipe();
 
             //Tungsten to Silver
-            ModRecipe TSBrecipe = new ModRecipe(mod);
-            TSBrecipe.AddIngredient(ItemID.TungstenBar, 4);
-            TSBrecipe.AddTile(null, "TransmutationTable");
-            TSBrecipe.SetResult(ItemID.SilverBar, 4);
-            TSBrecipe.AddRecipe();
+            ModRecipe tsBrecipe = new ModRecipe(mod);
+            tsBrecipe.AddIngredient(ItemID.TungstenBar, 4);
+            tsBrecipe.AddTile(null, "TransmutationTable");
+            tsBrecipe.SetResult(ItemID.SilverBar, 4);
+            tsBrecipe.AddRecipe();
 
             //Tungsten to Gold
-            ModRecipe TGBrecipe = new ModRecipe(mod);
-            TGBrecipe.AddIngredient(ItemID.TungstenBar, 5);
-            TGBrecipe.AddTile(null, "TransmutationTable");
-            TGBrecipe.SetResult(ItemID.GoldBar, 4);
-            TGBrecipe.AddRecipe();
+            ModRecipe tgBrecipe = new ModRecipe(mod);
+            tgBrecipe.AddIngredient(ItemID.TungstenBar, 5);
+            tgBrecipe.AddTile(null, "TransmutationTable");
+            tgBrecipe.SetResult(ItemID.GoldBar, 4);
+            tgBrecipe.AddRecipe();
 
             //Gold to Tungsten
-            ModRecipe GTBrecipe = new ModRecipe(mod);
-            GTBrecipe.AddIngredient(ItemID.GoldBar, 4);
-            GTBrecipe.AddTile(null, "TransmutationTable");
-            GTBrecipe.SetResult(ItemID.TungstenBar, 4);
-            GTBrecipe.AddRecipe();
+            ModRecipe gtBrecipe = new ModRecipe(mod);
+            gtBrecipe.AddIngredient(ItemID.GoldBar, 4);
+            gtBrecipe.AddTile(null, "TransmutationTable");
+            gtBrecipe.SetResult(ItemID.TungstenBar, 4);
+            gtBrecipe.AddRecipe();
 
             //Gold to Platinum
-            ModRecipe GPBrecipe = new ModRecipe(mod);
-            GPBrecipe.AddIngredient(ItemID.GoldBar, 4);
-            GPBrecipe.AddTile(null, "TransmutationTable");
-            GPBrecipe.SetResult(ItemID.PlatinumBar, 4);
-            GPBrecipe.AddRecipe();
+            ModRecipe gpBrecipe = new ModRecipe(mod);
+            gpBrecipe.AddIngredient(ItemID.GoldBar, 4);
+            gpBrecipe.AddTile(null, "TransmutationTable");
+            gpBrecipe.SetResult(ItemID.PlatinumBar, 4);
+            gpBrecipe.AddRecipe();
 
             //Platinum to Gold
-            ModRecipe PGBrecipe = new ModRecipe(mod);
-            PGBrecipe.AddIngredient(ItemID.PlatinumBar, 4);
-            PGBrecipe.AddTile(null, "TransmutationTable");
-            PGBrecipe.SetResult(ItemID.GoldBar, 4);
-            PGBrecipe.AddRecipe();
+            ModRecipe pgBrecipe = new ModRecipe(mod);
+            pgBrecipe.AddIngredient(ItemID.PlatinumBar, 4);
+            pgBrecipe.AddTile(null, "TransmutationTable");
+            pgBrecipe.SetResult(ItemID.GoldBar, 4);
+            pgBrecipe.AddRecipe();
 
             //Platinum to Cobalt
-            ModRecipe PCBrecipe = new ModRecipe(mod);
-            PCBrecipe.AddIngredient(ItemID.PlatinumBar, 6);
-            PCBrecipe.AddTile(null, "TransmutationTable");
-            PCBrecipe.AddTile(null, "MineralEnchanter");
-            PCBrecipe.SetResult(ItemID.CobaltBar, 4);
-            PCBrecipe.AddRecipe();
+            ModRecipe pcBrecipe = new ModRecipe(mod);
+            pcBrecipe.AddIngredient(ItemID.PlatinumBar, 6);
+            pcBrecipe.AddTile(null, "TransmutationTable");
+            pcBrecipe.AddTile(null, "MineralEnchanter");
+            pcBrecipe.SetResult(ItemID.CobaltBar, 4);
+            pcBrecipe.AddRecipe();
 
             //Cobalt to Platinum
-            ModRecipe CPBrecipe = new ModRecipe(mod);
-            CPBrecipe.AddIngredient(ItemID.CobaltBar, 3);
-            CPBrecipe.AddTile(null, "TransmutationTable");
-            CPBrecipe.SetResult(ItemID.PlatinumBar, 3);
-            CPBrecipe.AddRecipe();
+            ModRecipe cpBrecipe = new ModRecipe(mod);
+            cpBrecipe.AddIngredient(ItemID.CobaltBar, 3);
+            cpBrecipe.AddTile(null, "TransmutationTable");
+            cpBrecipe.SetResult(ItemID.PlatinumBar, 3);
+            cpBrecipe.AddRecipe();
 
             //Cobalt to Palladium
-            ModRecipe CPaBrecipe = new ModRecipe(mod);
-            CPaBrecipe.AddIngredient(ItemID.CobaltBar, 3);
-            CPaBrecipe.AddTile(null, "TransmutationTable");
-            CPaBrecipe.SetResult(ItemID.PalladiumBar, 3);
-            CPaBrecipe.AddRecipe();
+            ModRecipe cPaBrecipe = new ModRecipe(mod);
+            cPaBrecipe.AddIngredient(ItemID.CobaltBar, 3);
+            cPaBrecipe.AddTile(null, "TransmutationTable");
+            cPaBrecipe.SetResult(ItemID.PalladiumBar, 3);
+            cPaBrecipe.AddRecipe();
 
             //Palladium to Cobalt
-            ModRecipe PaCBrecipe = new ModRecipe(mod);
-            PaCBrecipe.AddIngredient(ItemID.PalladiumBar, 3);
-            PaCBrecipe.AddTile(null, "TransmutationTable");
-            PaCBrecipe.SetResult(ItemID.CobaltBar, 3);
-            PaCBrecipe.AddRecipe();
+            ModRecipe paCBrecipe = new ModRecipe(mod);
+            paCBrecipe.AddIngredient(ItemID.PalladiumBar, 3);
+            paCBrecipe.AddTile(null, "TransmutationTable");
+            paCBrecipe.SetResult(ItemID.CobaltBar, 3);
+            paCBrecipe.AddRecipe();
 
             //Palladium to Mythril
-            ModRecipe PMBrecipe = new ModRecipe(mod);
-            PMBrecipe.AddIngredient(ItemID.PalladiumBar, 5);
-            PMBrecipe.AddTile(null, "TransmutationTable");
-            PMBrecipe.SetResult(ItemID.MythrilBar, 3);
-            PMBrecipe.AddRecipe();
+            ModRecipe pmBrecipe = new ModRecipe(mod);
+            pmBrecipe.AddIngredient(ItemID.PalladiumBar, 5);
+            pmBrecipe.AddTile(null, "TransmutationTable");
+            pmBrecipe.SetResult(ItemID.MythrilBar, 3);
+            pmBrecipe.AddRecipe();
 
             //Mythril to Palladium
-            ModRecipe MPBrecipe = new ModRecipe(mod);
-            MPBrecipe.AddIngredient(ItemID.MythrilBar, 3);
-            MPBrecipe.AddTile(null, "TransmutationTable");
-            MPBrecipe.SetResult(ItemID.PalladiumBar, 3);
-            MPBrecipe.AddRecipe();
+            ModRecipe mpBrecipe = new ModRecipe(mod);
+            mpBrecipe.AddIngredient(ItemID.MythrilBar, 3);
+            mpBrecipe.AddTile(null, "TransmutationTable");
+            mpBrecipe.SetResult(ItemID.PalladiumBar, 3);
+            mpBrecipe.AddRecipe();
 
             //Mythril to Orichalcum
-            ModRecipe MOBrecipe = new ModRecipe(mod);
-            MOBrecipe.AddIngredient(ItemID.MythrilBar, 4);
-            MOBrecipe.AddTile(null, "TransmutationTable");
-            MOBrecipe.SetResult(ItemID.OrichalcumBar, 4);
-            MOBrecipe.AddRecipe();
+            ModRecipe moBrecipe = new ModRecipe(mod);
+            moBrecipe.AddIngredient(ItemID.MythrilBar, 4);
+            moBrecipe.AddTile(null, "TransmutationTable");
+            moBrecipe.SetResult(ItemID.OrichalcumBar, 4);
+            moBrecipe.AddRecipe();
 
             //Orichalcum to Mythril
-            ModRecipe OMBrecipe = new ModRecipe(mod);
-            OMBrecipe.AddIngredient(ItemID.OrichalcumBar, 4);
-            OMBrecipe.AddTile(null, "TransmutationTable");
-            OMBrecipe.SetResult(ItemID.MythrilBar, 4);
-            OMBrecipe.AddRecipe();
+            ModRecipe omBrecipe = new ModRecipe(mod);
+            omBrecipe.AddIngredient(ItemID.OrichalcumBar, 4);
+            omBrecipe.AddTile(null, "TransmutationTable");
+            omBrecipe.SetResult(ItemID.MythrilBar, 4);
+            omBrecipe.AddRecipe();
 
             //Orichalcum to Adamantite
-            ModRecipe OABrecipe = new ModRecipe(mod);
-            OABrecipe.AddIngredient(ItemID.OrichalcumBar, 6);
-            OABrecipe.AddTile(null, "TransmutationTable");
-            OABrecipe.SetResult(ItemID.AdamantiteBar, 4);
-            OABrecipe.AddRecipe();
+            ModRecipe oaBrecipe = new ModRecipe(mod);
+            oaBrecipe.AddIngredient(ItemID.OrichalcumBar, 6);
+            oaBrecipe.AddTile(null, "TransmutationTable");
+            oaBrecipe.SetResult(ItemID.AdamantiteBar, 4);
+            oaBrecipe.AddRecipe();
 
             //Adamantite to Orichalcum
-            ModRecipe AOBrecipe = new ModRecipe(mod);
-            AOBrecipe.AddIngredient(ItemID.AdamantiteBar, 4);
-            AOBrecipe.AddTile(null, "TransmutationTable");
-            AOBrecipe.SetResult(ItemID.OrichalcumBar, 4);
-            AOBrecipe.AddRecipe();
+            ModRecipe aoBrecipe = new ModRecipe(mod);
+            aoBrecipe.AddIngredient(ItemID.AdamantiteBar, 4);
+            aoBrecipe.AddTile(null, "TransmutationTable");
+            aoBrecipe.SetResult(ItemID.OrichalcumBar, 4);
+            aoBrecipe.AddRecipe();
 
             //Adamantite to Titanium
-            ModRecipe ATBrecipe = new ModRecipe(mod);
-            ATBrecipe.AddIngredient(ItemID.AdamantiteBar, 5);
-            ATBrecipe.AddTile(null, "TransmutationTable");
-            ATBrecipe.SetResult(ItemID.TitaniumBar, 5);
-            ATBrecipe.AddRecipe();
+            ModRecipe atBrecipe = new ModRecipe(mod);
+            atBrecipe.AddIngredient(ItemID.AdamantiteBar, 5);
+            atBrecipe.AddTile(null, "TransmutationTable");
+            atBrecipe.SetResult(ItemID.TitaniumBar, 5);
+            atBrecipe.AddRecipe();
 
             //Titanium to Adamantite
-            ModRecipe TABrecipe = new ModRecipe(mod);
-            TABrecipe.AddIngredient(ItemID.TitaniumBar, 5);
-            TABrecipe.AddTile(null, "TransmutationTable");
-            TABrecipe.SetResult(ItemID.AdamantiteBar, 5);
-            TABrecipe.AddRecipe();
+            ModRecipe taBrecipe = new ModRecipe(mod);
+            taBrecipe.AddIngredient(ItemID.TitaniumBar, 5);
+            taBrecipe.AddTile(null, "TransmutationTable");
+            taBrecipe.SetResult(ItemID.AdamantiteBar, 5);
+            taBrecipe.AddRecipe();
 
 
             //Crimson to Corruption
             
             //Undertaker to Musket
-            ModRecipe UMrecipe = new ModRecipe(mod);
-            UMrecipe.AddIngredient(ItemID.TheUndertaker);
-            UMrecipe.AddTile(null, "TransmutationTable");
-            UMrecipe.SetResult(ItemID.Musket);
-            UMrecipe.AddRecipe();
+            ModRecipe uMrecipe = new ModRecipe(mod);
+            uMrecipe.AddIngredient(ItemID.TheUndertaker);
+            uMrecipe.AddTile(null, "TransmutationTable");
+            uMrecipe.SetResult(ItemID.Musket);
+            uMrecipe.AddRecipe();
 
             //Musket to Undertaker
-            ModRecipe MUrecipe = new ModRecipe(mod);
-            MUrecipe.AddIngredient(ItemID.Musket);
-            MUrecipe.AddTile(null, "TransmutationTable");
-            MUrecipe.SetResult(ItemID.TheUndertaker);
-            MUrecipe.AddRecipe();
+            ModRecipe mUrecipe = new ModRecipe(mod);
+            mUrecipe.AddIngredient(ItemID.Musket);
+            mUrecipe.AddTile(null, "TransmutationTable");
+            mUrecipe.SetResult(ItemID.TheUndertaker);
+            mUrecipe.AddRecipe();
 
             //Rotted Fork to Ball o' Hurt
-            ModRecipe RBrecipe = new ModRecipe(mod);
-            RBrecipe.AddIngredient(802);
-            RBrecipe.AddTile(null, "TransmutationTable");
-            RBrecipe.SetResult(162);
-            RBrecipe.AddRecipe();
+            ModRecipe rBrecipe = new ModRecipe(mod);
+            rBrecipe.AddIngredient(802);
+            rBrecipe.AddTile(null, "TransmutationTable");
+            rBrecipe.SetResult(162);
+            rBrecipe.AddRecipe();
 
             //Ball o' Hurt to Rotted Fork
-            ModRecipe BRrecipe = new ModRecipe(mod);
-            BRrecipe.AddIngredient(162);
-            BRrecipe.AddTile(null, "TransmutationTable");
-            BRrecipe.SetResult(802);
-            BRrecipe.AddRecipe();
+            ModRecipe bRrecipe = new ModRecipe(mod);
+            bRrecipe.AddIngredient(162);
+            bRrecipe.AddTile(null, "TransmutationTable");
+            bRrecipe.SetResult(802);
+            bRrecipe.AddRecipe();
 
             //CrimsonRod to Vilethorn
-            ModRecipe CVrecipe = new ModRecipe(mod);
-            CVrecipe.AddIngredient(ItemID.CrimsonRod);
-            CVrecipe.AddTile(null, "TransmutationTable");
-            CVrecipe.SetResult(ItemID.Vilethorn);
-            CVrecipe.AddRecipe();
+            ModRecipe cVrecipe = new ModRecipe(mod);
+            cVrecipe.AddIngredient(ItemID.CrimsonRod);
+            cVrecipe.AddTile(null, "TransmutationTable");
+            cVrecipe.SetResult(ItemID.Vilethorn);
+            cVrecipe.AddRecipe();
 
             //Vilethorn to CrimsonRod
-            ModRecipe VCrecipe = new ModRecipe(mod);
-            VCrecipe.AddIngredient(ItemID.Vilethorn);
-            VCrecipe.AddTile(null, "TransmutationTable");
-            VCrecipe.SetResult(ItemID.CrimsonRod);
-            VCrecipe.AddRecipe();
+            ModRecipe vCrecipe = new ModRecipe(mod);
+            vCrecipe.AddIngredient(ItemID.Vilethorn);
+            vCrecipe.AddTile(null, "TransmutationTable");
+            vCrecipe.SetResult(ItemID.CrimsonRod);
+            vCrecipe.AddRecipe();
 
             //Panic Necklace to Band of Starpower
-            ModRecipe PBrecipe = new ModRecipe(mod);
-            PBrecipe.AddIngredient(ItemID.PanicNecklace);
-            PBrecipe.AddTile(null, "TransmutationTable");
-            PBrecipe.SetResult(111);
-            PBrecipe.AddRecipe();
+            ModRecipe pBrecipe = new ModRecipe(mod);
+            pBrecipe.AddIngredient(ItemID.PanicNecklace);
+            pBrecipe.AddTile(null, "TransmutationTable");
+            pBrecipe.SetResult(111);
+            pBrecipe.AddRecipe();
 
             //Band of Starpower to Panic Necklace
-            ModRecipe BPrecipe = new ModRecipe(mod);
-            BPrecipe.AddIngredient(111);
-            BPrecipe.AddTile(null, "TransmutationTable");
-            BPrecipe.SetResult(ItemID.PanicNecklace);
-            BPrecipe.AddRecipe();
+            ModRecipe bPrecipe = new ModRecipe(mod);
+            bPrecipe.AddIngredient(111);
+            bPrecipe.AddTile(null, "TransmutationTable");
+            bPrecipe.SetResult(ItemID.PanicNecklace);
+            bPrecipe.AddRecipe();
 
             //Crimson Heart to Shadow Orb
-            ModRecipe CSrecipe = new ModRecipe(mod);
-            CSrecipe.AddIngredient(3062);
-            CSrecipe.AddTile(null, "TransmutationTable");
-            CSrecipe.SetResult(ItemID.ShadowOrb);
-            CSrecipe.AddRecipe();
+            ModRecipe cSrecipe = new ModRecipe(mod);
+            cSrecipe.AddIngredient(3062);
+            cSrecipe.AddTile(null, "TransmutationTable");
+            cSrecipe.SetResult(ItemID.ShadowOrb);
+            cSrecipe.AddRecipe();
 
             //Shadow Orb to Crimson Heart
-            ModRecipe SCrecipe = new ModRecipe(mod);
-            SCrecipe.AddIngredient(ItemID.ShadowOrb);
-            SCrecipe.AddTile(null, "TransmutationTable");
-            SCrecipe.SetResult(3062);
-            SCrecipe.AddRecipe();
+            ModRecipe sCrecipe = new ModRecipe(mod);
+            sCrecipe.AddIngredient(ItemID.ShadowOrb);
+            sCrecipe.AddTile(null, "TransmutationTable");
+            sCrecipe.SetResult(3062);
+            sCrecipe.AddRecipe();
 
             //Demonite to Crimtane
-            ModRecipe DCrecipe = new ModRecipe(mod);
-            DCrecipe.AddIngredient(ItemID.DemoniteOre, 3);
-            DCrecipe.AddTile(null, "TransmutationTable");
-            DCrecipe.SetResult(ItemID.CrimtaneOre, 3);
-            DCrecipe.AddRecipe();
+            ModRecipe dCrecipe = new ModRecipe(mod);
+            dCrecipe.AddIngredient(ItemID.DemoniteOre, 3);
+            dCrecipe.AddTile(null, "TransmutationTable");
+            dCrecipe.SetResult(ItemID.CrimtaneOre, 3);
+            dCrecipe.AddRecipe();
 
             //Crimtane to Demonite
-            ModRecipe CDrecipe = new ModRecipe(mod);
-            CDrecipe.AddIngredient(ItemID.CrimtaneOre, 3);
-            CDrecipe.AddTile(null, "TransmutationTable");
-            CDrecipe.SetResult(ItemID.DemoniteOre, 3);
-            CDrecipe.AddRecipe();
+            ModRecipe cDrecipe = new ModRecipe(mod);
+            cDrecipe.AddIngredient(ItemID.CrimtaneOre, 3);
+            cDrecipe.AddTile(null, "TransmutationTable");
+            cDrecipe.SetResult(ItemID.DemoniteOre, 3);
+            cDrecipe.AddRecipe();
 
             //CrimtaneBar to DemoniteBar
-            ModRecipe CDBrecipe = new ModRecipe(mod);
-            CDBrecipe.AddIngredient(ItemID.CrimtaneBar, 3);
-            CDBrecipe.AddTile(null, "TransmutationTable");
-            CDBrecipe.SetResult(ItemID.DemoniteBar, 3);
-            CDBrecipe.AddRecipe();
+            ModRecipe cdBrecipe = new ModRecipe(mod);
+            cdBrecipe.AddIngredient(ItemID.CrimtaneBar, 3);
+            cdBrecipe.AddTile(null, "TransmutationTable");
+            cdBrecipe.SetResult(ItemID.DemoniteBar, 3);
+            cdBrecipe.AddRecipe();
 
             //DemoniteBar to CrimtaneBar
-            ModRecipe DCBrecipe = new ModRecipe(mod);
-            DCBrecipe.AddIngredient(ItemID.DemoniteBar, 3);
-            DCBrecipe.AddTile(null, "TransmutationTable");
-            DCBrecipe.SetResult(ItemID.CrimtaneBar, 3);
-            DCBrecipe.AddRecipe();
+            ModRecipe dcBrecipe = new ModRecipe(mod);
+            dcBrecipe.AddIngredient(ItemID.DemoniteBar, 3);
+            dcBrecipe.AddTile(null, "TransmutationTable");
+            dcBrecipe.SetResult(ItemID.CrimtaneBar, 3);
+            dcBrecipe.AddRecipe();
 
             //Ebonstone to Crimstone
-            ModRecipe ECrecipe = new ModRecipe(mod);
-            ECrecipe.AddIngredient(ItemID.EbonstoneBlock);
-            ECrecipe.AddTile(null, "TransmutationTable");
-            ECrecipe.SetResult(ItemID.CrimstoneBlock);
-            ECrecipe.AddRecipe();
+            ModRecipe eCrecipe = new ModRecipe(mod);
+            eCrecipe.AddIngredient(ItemID.EbonstoneBlock);
+            eCrecipe.AddTile(null, "TransmutationTable");
+            eCrecipe.SetResult(ItemID.CrimstoneBlock);
+            eCrecipe.AddRecipe();
 
             //Crimstone to Ebonstone
-            ModRecipe CErecipe = new ModRecipe(mod);
-            CErecipe.AddIngredient(ItemID.CrimstoneBlock);
-            CErecipe.AddTile(null, "TransmutationTable");
-            CErecipe.SetResult(ItemID.EbonstoneBlock);
-            CErecipe.AddRecipe();
+            ModRecipe cErecipe = new ModRecipe(mod);
+            cErecipe.AddIngredient(ItemID.CrimstoneBlock);
+            cErecipe.AddTile(null, "TransmutationTable");
+            cErecipe.SetResult(ItemID.EbonstoneBlock);
+            cErecipe.AddRecipe();
 
             //CursedFlame to Ichor
-            ModRecipe CIrecipe = new ModRecipe(mod);
-            CIrecipe.AddIngredient(ItemID.CursedFlame);
-            CIrecipe.AddTile(null, "TransmutationTable");
-            CIrecipe.SetResult(ItemID.Ichor);
-            CIrecipe.AddRecipe();
+            ModRecipe cIrecipe = new ModRecipe(mod);
+            cIrecipe.AddIngredient(ItemID.CursedFlame);
+            cIrecipe.AddTile(null, "TransmutationTable");
+            cIrecipe.SetResult(ItemID.Ichor);
+            cIrecipe.AddRecipe();
 
             //Ichor to CursedFlame
-            ModRecipe ICrecipe = new ModRecipe(mod);
-            ICrecipe.AddIngredient(ItemID.Ichor);
-            ICrecipe.AddTile(null, "TransmutationTable");
-            ICrecipe.SetResult(ItemID.CursedFlame);
-            ICrecipe.AddRecipe();
+            ModRecipe crecipe = new ModRecipe(mod);
+            crecipe.AddIngredient(ItemID.Ichor);
+            crecipe.AddTile(null, "TransmutationTable");
+            crecipe.SetResult(ItemID.CursedFlame);
+            crecipe.AddRecipe();
 
             //Ebonkoi to Hemopiranha
-            ModRecipe EHrecipe = new ModRecipe(mod);
-            EHrecipe.AddIngredient(ItemID.Ebonkoi);
-            EHrecipe.AddTile(null, "TransmutationTable");
-            EHrecipe.SetResult(ItemID.Hemopiranha);
-            EHrecipe.AddRecipe();
+            ModRecipe eHrecipe = new ModRecipe(mod);
+            eHrecipe.AddIngredient(ItemID.Ebonkoi);
+            eHrecipe.AddTile(null, "TransmutationTable");
+            eHrecipe.SetResult(ItemID.Hemopiranha);
+            eHrecipe.AddRecipe();
 
             //Hemopiranha to Ebonkoi
-            ModRecipe HErecipe = new ModRecipe(mod);
-            HErecipe.AddIngredient(ItemID.Hemopiranha);
-            HErecipe.AddTile(null, "TransmutationTable");
-            HErecipe.SetResult(ItemID.Ebonkoi);
-            HErecipe.AddRecipe();
+            ModRecipe hErecipe = new ModRecipe(mod);
+            hErecipe.AddIngredient(ItemID.Hemopiranha);
+            hErecipe.AddTile(null, "TransmutationTable");
+            hErecipe.SetResult(ItemID.Ebonkoi);
+            hErecipe.AddRecipe();
 
             //Ebonkoi to CrimsonTigerfish
-            ModRecipe ETrecipe = new ModRecipe(mod);
-            ETrecipe.AddIngredient(ItemID.Ebonkoi);
-            ETrecipe.AddTile(null, "TransmutationTable");
-            ETrecipe.SetResult(ItemID.CrimsonTigerfish);
-            ETrecipe.AddRecipe();
+            ModRecipe eTrecipe = new ModRecipe(mod);
+            eTrecipe.AddIngredient(ItemID.Ebonkoi);
+            eTrecipe.AddTile(null, "TransmutationTable");
+            eTrecipe.SetResult(ItemID.CrimsonTigerfish);
+            eTrecipe.AddRecipe();
 
             //CrimsonTigerfish to Ebonkoi
-            ModRecipe TErecipe = new ModRecipe(mod);
-            TErecipe.AddIngredient(ItemID.CrimsonTigerfish);
-            TErecipe.AddTile(null, "TransmutationTable");
-            TErecipe.SetResult(ItemID.Ebonkoi);
-            TErecipe.AddRecipe();
+            ModRecipe erecipe = new ModRecipe(mod);
+            erecipe.AddIngredient(ItemID.CrimsonTigerfish);
+            erecipe.AddTile(null, "TransmutationTable");
+            erecipe.SetResult(ItemID.Ebonkoi);
+            erecipe.AddRecipe();
 
             //CrimsonSeeds to CorruptSeeds
-            ModRecipe CCrecipe = new ModRecipe(mod);
-            CCrecipe.AddIngredient(ItemID.CrimsonSeeds);
-            CCrecipe.AddTile(null, "TransmutationTable");
-            CCrecipe.SetResult(ItemID.CorruptSeeds);
-            CCrecipe.AddRecipe();
+            ModRecipe cCrecipe = new ModRecipe(mod);
+            cCrecipe.AddIngredient(ItemID.CrimsonSeeds);
+            cCrecipe.AddTile(null, "TransmutationTable");
+            cCrecipe.SetResult(ItemID.CorruptSeeds);
+            cCrecipe.AddRecipe();
 
             //CorruptSeeds to CrimsonSeeds
-            ModRecipe CCsrecipe = new ModRecipe(mod);
-            CCsrecipe.AddIngredient(ItemID.CorruptSeeds);
-            CCsrecipe.AddTile(null, "TransmutationTable");
-            CCsrecipe.SetResult(ItemID.CrimsonSeeds);
-            CCsrecipe.AddRecipe();
+            ModRecipe cCsrecipe = new ModRecipe(mod);
+            cCsrecipe.AddIngredient(ItemID.CorruptSeeds);
+            cCsrecipe.AddTile(null, "TransmutationTable");
+            cCsrecipe.SetResult(ItemID.CrimsonSeeds);
+            cCsrecipe.AddRecipe();
 
             //Crafting Life Fruits
-            ModRecipe LFrecipe = new ModRecipe(mod);
-            LFrecipe.AddIngredient(ItemID.LifeCrystal);
-            LFrecipe.AddIngredient(1006, 5);
-            LFrecipe.AddTile(null, "TransmutationTable");
-            LFrecipe.SetResult(ItemID.LifeFruit);
-            LFrecipe.AddRecipe();
+            ModRecipe lFrecipe = new ModRecipe(mod);
+            lFrecipe.AddIngredient(ItemID.LifeCrystal);
+            lFrecipe.AddIngredient(1006, 5);
+            lFrecipe.AddTile(null, "TransmutationTable");
+            lFrecipe.SetResult(ItemID.LifeFruit);
+            lFrecipe.AddRecipe();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Laugicality
     public partial class LaugicalityPlayer : ModPlayer
     {
         //Buffs
-        public const int maxBuffs = 42;
+        public const int MAX_BUFFS = 42;
         public bool obsidium = false;
         public bool frost = false;
         public bool frigid = false;
@@ -40,8 +40,8 @@ namespace Laugicality
 
         //Soul Stone
         public int Class = 0;
-        public bool SoulStoneV = true;
-        public bool SoulStoneM = true;
+        public bool soulStoneV = true;
+        public bool soulStoneM = true;
 
         public bool skp = false;
         public bool douche = false;
@@ -88,12 +88,12 @@ namespace Laugicality
         public bool crysMag = false;
         public bool frostbite = false;
         public int fullBysmal = 0;
-        bool boosted = false;
-        float ringBoost = 0;
-        float fanBoost = 0;
+        bool _boosted = false;
+        float _ringBoost = 0;
+        float _fanBoost = 0;
 
         //Music
-        public bool ZoneObsidium = false;
+        public bool zoneObsidium = false;
         public bool etherialMusic = false;
 
         //Camera Effects
@@ -215,7 +215,7 @@ namespace Laugicality
                 caughtType = ItemID.Obsidian;
                 return;
             }
-            if (ZoneObsidium && liquidType == 1 && bait.type == mod.ItemType("LavaGem") && fishingRod.type == ItemID.HotlineFishingHook)
+            if (zoneObsidium && liquidType == 1 && bait.type == mod.ItemType("LavaGem") && fishingRod.type == ItemID.HotlineFishingHook)
             {
                 if (Main.rand.Next(3) == 0)
                 {
@@ -396,13 +396,13 @@ namespace Laugicality
 
         private void PostUpdateMovementTileChecks()
         {
-            CheckVENT();
-            CheckRING();
-            CheckFAN();
-            CheckFANRight();
+            CheckVent();
+            CheckRing();
+            CheckFan();
+            CheckFanRight();
         }
 
-        private void CheckVENT()
+        private void CheckVent()
         {
             if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("SteamVENT"))
             {
@@ -412,73 +412,73 @@ namespace Laugicality
             }
         }
 
-        private void CheckRING()
+        private void CheckRing()
         {
             float vSpeed = player.velocity.Y;
             float minVSpeed = 10;
             float maxVSpeed = 50;
             if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassRING") && vSpeed < 0)
             {
-                if (ringBoost == 0 && Math.Abs(player.velocity.Y) > 1)
+                if (_ringBoost == 0 && Math.Abs(player.velocity.Y) > 1)
                 {
                     if (vSpeed > -minVSpeed)
                         player.velocity.Y = -minVSpeed;
-                    ringBoost = player.velocity.Y * 2f;
+                    _ringBoost = player.velocity.Y * 2f;
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassRING"));
-                    if (ringBoost < -maxVSpeed)
-                        ringBoost = -maxVSpeed;
+                    if (_ringBoost < -maxVSpeed)
+                        _ringBoost = -maxVSpeed;
                 }
-                if (Math.Abs(ringBoost) > 1)
-                    player.velocity.Y = ringBoost;
+                if (Math.Abs(_ringBoost) > 1)
+                    player.velocity.Y = _ringBoost;
             }
             else
-                ringBoost = 0;
+                _ringBoost = 0;
         }
 
-        private void CheckFAN()
+        private void CheckFan()
         {
             float hSpeed = player.velocity.X;
             float minHSpeed = 10;
             float maxHSpeed = 50;
             if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFAN"))
             {
-                if (fanBoost == 0)
+                if (_fanBoost == 0)
                 {
                     if (hSpeed > -minHSpeed)
                         player.velocity.X = -minHSpeed;
-                    fanBoost = player.velocity.X * 2f;
+                    _fanBoost = player.velocity.X * 2f;
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
-                    if (fanBoost < -maxHSpeed)
-                        fanBoost = -maxHSpeed;
+                    if (_fanBoost < -maxHSpeed)
+                        _fanBoost = -maxHSpeed;
                 }
-                if (Math.Abs(fanBoost) > 1)
-                    player.velocity.X = fanBoost;
+                if (Math.Abs(_fanBoost) > 1)
+                    player.velocity.X = _fanBoost;
             }
             else
-                fanBoost = 0;
+                _fanBoost = 0;
         }
         
-        private void CheckFANRight()
+        private void CheckFanRight()
         {
             float hSpeed = player.velocity.X;
             float minHSpeed = 10;
             float maxHSpeed = 50;
             if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFANRight"))
             {
-                if (fanBoost == 0)
+                if (_fanBoost == 0)
                 {
                     if (hSpeed < minHSpeed)
                         player.velocity.X = minHSpeed;
-                    fanBoost = player.velocity.X * 2f;
+                    _fanBoost = player.velocity.X * 2f;
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
-                    if (fanBoost > maxHSpeed)
-                        fanBoost = maxHSpeed;
+                    if (_fanBoost > maxHSpeed)
+                        _fanBoost = maxHSpeed;
                 }
-                if (Math.Abs(fanBoost) > 1)
-                    player.velocity.X = fanBoost;
+                if (Math.Abs(_fanBoost) > 1)
+                    player.velocity.X = _fanBoost;
             }
             else
-                fanBoost = 0;
+                _fanBoost = 0;
         }
 
         /*
@@ -512,8 +512,8 @@ namespace Laugicality
                 {"Class", Class },
                 {"Etherial", etherial },
                 {"ESlot", etherialSlot },
-                {"SoulStoneMove", SoulStoneM },
-                {"SoulStoneVis", SoulStoneV },
+                {"SoulStoneMove", soulStoneM },
+                {"SoulStoneVis", soulStoneV },
                 {"Inferno", inf},
                 {"Calming", calm},
                 {"WaterWalking", ww},
@@ -546,8 +546,8 @@ namespace Laugicality
             Class = tag.GetInt("Class");
             etherial = tag.GetBool("Etherial");
             etherialSlot = tag.GetBool("ESlot");
-            SoulStoneM = tag.GetBool("SoulStoneMove");
-            SoulStoneV = tag.GetBool("SoulStoneVis");
+            soulStoneM = tag.GetBool("SoulStoneMove");
+            soulStoneV = tag.GetBool("SoulStoneVis");
             inf = tag.GetBool("Inferno");
             calm = tag.GetBool("Calming");
             ww = tag.GetBool("WaterWalking");
@@ -566,38 +566,38 @@ namespace Laugicality
         
         public override void UpdateBiomes()
         {
-            ZoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
+            zoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
             etherialMusic = etherial;
         }
         
         public override bool CustomBiomesMatch(Player other)
         {
             LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
-            return ZoneObsidium == modOther.ZoneObsidium;
+            return zoneObsidium == modOther.zoneObsidium;
         }
 
         public override void CopyCustomBiomesTo(Player other)
         {
             LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
-            modOther.ZoneObsidium = ZoneObsidium;
+            modOther.zoneObsidium = zoneObsidium;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
-            flags[0] = ZoneObsidium;
+            flags[0] = zoneObsidium;
             writer.Write(flags);
         }
 
         public override void ReceiveCustomBiomes(BinaryReader reader)
         {
             BitsByte flags = reader.ReadByte();
-            ZoneObsidium = flags[0];
+            zoneObsidium = flags[0];
         }
 
         public override Texture2D GetMapBackgroundImage()
         {
-            if (ZoneObsidium)
+            if (zoneObsidium)
             {
                 return mod.GetTexture("ObsidiumBiomeMapBackground");
             }
@@ -726,7 +726,7 @@ namespace Laugicality
             }
         }
 
-        public bool etherialCheck()
+        public bool EtherialCheck()
         {
             return etherial;
         }
@@ -814,7 +814,7 @@ namespace Laugicality
 
         private void DrawEtherialTankSteam()
         {
-            if (Math.Abs(player.velocity.X) > 14f && SoulStoneV)
+            if (Math.Abs(player.velocity.X) > 14f && soulStoneV)
             {
                 Rectangle rect = player.getRect();
                 Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, mod.DustType("TrainSteam"));
@@ -824,12 +824,12 @@ namespace Laugicality
         //Hotkey
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (Laugicality.ToggleMystic.JustPressed && mysticHold > 0)
+            if (Laugicality.toggleMystic.JustPressed && mysticHold > 0)
             {
-                mysticSwitch();
+                MysticSwitch();
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/MysticSwitch"));
             }
-            if (Laugicality.QuickMystica.JustPressed && mysticality == 0)
+            if (Laugicality.quickMystica.JustPressed && mysticality == 0)
             {
                 bool mysticaPotion = false;
                 foreach (Item item in player.inventory)
@@ -890,15 +890,15 @@ namespace Laugicality
                     }
                 }
             }
-            if (Laugicality.ToggleSoulStoneV.JustPressed)
+            if (Laugicality.toggleSoulStoneV.JustPressed)
             {
-                SoulStoneV = !SoulStoneV;
-                Main.NewText("Soul Stone and Potion Crystal visual effects: " + SoulStoneV.ToString(), 250, 250, 0);
+                soulStoneV = !soulStoneV;
+                Main.NewText("Soul Stone and Potion Crystal visual effects: " + soulStoneV.ToString(), 250, 250, 0);
             }
-            if (Laugicality.ToggleSoulStoneM.JustPressed)
+            if (Laugicality.toggleSoulStoneM.JustPressed)
             {
-                SoulStoneM = !SoulStoneM;
-                Main.NewText("Soul Stone and Potion Crystal mobility effects: " + SoulStoneM.ToString(), 250, 250, 0);
+                soulStoneM = !soulStoneM;
+                Main.NewText("Soul Stone and Potion Crystal mobility effects: " + soulStoneM.ToString(), 250, 250, 0);
             }
         }
 
@@ -938,7 +938,7 @@ namespace Laugicality
             if(Laugicality.zawarudo < zaWarudoDuration)
             {
                 Laugicality.zawarudo = zaWarudoDuration;
-                LaugicalGlobalNPCs.zTime = zaWarudoDuration;
+                LaugicalGlobalNpCs.zTime = zaWarudoDuration;
             }
         }
 

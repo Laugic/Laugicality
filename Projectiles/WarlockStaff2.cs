@@ -32,7 +32,7 @@ namespace Laugicality.Projectiles
             zImmune = true;
             theta = 0;
             vel = 0;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             power = 0;
             stopped = false;
             spawned = false;

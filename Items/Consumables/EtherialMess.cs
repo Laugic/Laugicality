@@ -34,7 +34,7 @@ namespace Laugicality.Items.Consumables
         public override bool CanUseItem(Player player)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            return (modPlayer.ZoneObsidium && LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType("Ragnar")) < 1);
+            return (modPlayer.zoneObsidium && LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType("Ragnar")) < 1);
         }
 
         public override void AddRecipes()

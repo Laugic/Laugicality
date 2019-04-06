@@ -1,0 +1,23 @@
+using Terraria;
+using Terraria.ModLoader;
+using Laugicality.NPCs;
+
+namespace Laugicality.Buffs
+{
+	public class Dawn : ModBuff
+	{
+		public override void SetDefaults()
+		{
+			DisplayName.SetDefault("Dawn");
+			Description.SetDefault("Golden energy");
+			Main.debuff[Type] = true;
+			Main.buffNoSave[Type] = true;
+		}
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).dawn = true;
+        }
+
+    }
+}

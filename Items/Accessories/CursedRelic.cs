@@ -24,7 +24,7 @@ namespace Laugicality.Items.Accessories
         {
             player.endurance += 0.10f;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.SoulStoneV && modPlayer.inf)
+            if (modPlayer.soulStoneV && modPlayer.inf)
                 player.AddBuff(116, 2);
             player.magicDamage += 0.10f;
             player.meleeDamage += 0.10f;

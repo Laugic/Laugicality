@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.RockTwins
         {
             zImmune = true;
             time = 0;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             power = 0;
             stopped = false;
             spawned = false;

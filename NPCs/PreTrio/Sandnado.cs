@@ -21,7 +21,7 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void SetDefaults()
         {
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             theta = 0;
             distance = 0;
             tVel = 0f;

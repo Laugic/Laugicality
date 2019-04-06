@@ -7,27 +7,28 @@ using Laugicality.Etherial;
 using System.IO;
 using Terraria.UI;
 using System.Collections.Generic;
+using Laugicality.UI;
 using Terraria.Graphics.Shaders;
 
 namespace Laugicality
 {
 
-    class Laugicality : Mod
+    public class Laugicality : Mod
     {
         public static string GithubUserName { get { return "Laugic"; } }
         public static string GithubProjectName { get { return "Laugicality"; } }
 
-        private UserInterface mysticaUserInterface;
+        private UserInterface _mysticaUserInterface;
         internal LaugicalityUI mysticaUI;
 
-        internal static ModHotKey ToggleMystic;
-        internal static ModHotKey ToggleSoulStoneV;
-        internal static ModHotKey ToggleSoulStoneM;
-        internal static ModHotKey QuickMystica;
+        internal static ModHotKey toggleMystic;
+        internal static ModHotKey toggleSoulStoneV;
+        internal static ModHotKey toggleSoulStoneM;
+        internal static ModHotKey quickMystica;
 
         public static Laugicality instance;
 
-        Mod calMod = ModLoader.GetMod("Calamity");
+        Mod _calMod = ModLoader.GetMod("Calamity");
 
         public static int zawarudo = 0;
 
@@ -61,7 +62,7 @@ namespace Laugicality
 
 
             //Gems
-            RecipeGroup Ggroup = new RecipeGroup(() => Lang.misc[37] + " Gem", new int[]
+            RecipeGroup ggroup = new RecipeGroup(() => Lang.misc[37] + " Gem", new int[]
             {
                 ItemID.Amethyst,
                 ItemID.Topaz,
@@ -72,35 +73,35 @@ namespace Laugicality
                 ItemID.Diamond,
                 ItemID.Amber
             });
-            RecipeGroup.RegisterGroup("Gems", Ggroup);
+            RecipeGroup.RegisterGroup("Gems", ggroup);
 
             //Gold Bars
-            RecipeGroup Gldgroup = new RecipeGroup(() => Lang.misc[37] + " Gold Bar", new int[]
+            RecipeGroup gldgroup = new RecipeGroup(() => Lang.misc[37] + " Gold Bar", new int[]
             {
                 ItemID.GoldBar,
                 ItemID.PlatinumBar
             });
-            RecipeGroup.RegisterGroup("GldBars", Gldgroup);
+            RecipeGroup.RegisterGroup("GldBars", gldgroup);
 
             //Silver Bars
-            RecipeGroup Sgroup = new RecipeGroup(() => Lang.misc[37] + " Silver Bar", new int[]
+            RecipeGroup sgroup = new RecipeGroup(() => Lang.misc[37] + " Silver Bar", new int[]
             {
                 ItemID.SilverBar,
                 ItemID.TungstenBar
             });
 
-            RecipeGroup.RegisterGroup("SilverBars", Sgroup);
+            RecipeGroup.RegisterGroup("SilverBars", sgroup);
 
             //Titanium Bars
-            RecipeGroup Titgroup = new RecipeGroup(() => Lang.misc[37] + " Titanium Bar", new int[]
+            RecipeGroup titgroup = new RecipeGroup(() => Lang.misc[37] + " Titanium Bar", new int[]
             {
                 ItemID.TitaniumBar,
                 ItemID.AdamantiteBar
             });
-            RecipeGroup.RegisterGroup("TitaniumBars", Titgroup);
+            RecipeGroup.RegisterGroup("TitaniumBars", titgroup);
 
             //Large Gems
-            RecipeGroup LGgroup = new RecipeGroup(() => Lang.misc[37] + " Large Gem", new int[]
+            RecipeGroup lGgroup = new RecipeGroup(() => Lang.misc[37] + " Large Gem", new int[]
             {
                 ItemID.LargeAmethyst,
                 ItemID.LargeTopaz,
@@ -110,17 +111,17 @@ namespace Laugicality
                 ItemID.LargeDiamond,
                 ItemID.LargeAmber
             });
-            RecipeGroup.RegisterGroup("LargeGems", LGgroup);
+            RecipeGroup.RegisterGroup("LargeGems", lGgroup);
 
             //Dungeon Tables
-            RecipeGroup DTgroup = new RecipeGroup(() => Lang.misc[37] + " Dungeon Table", new int[]
+            RecipeGroup dTgroup = new RecipeGroup(() => Lang.misc[37] + " Dungeon Table", new int[]
             {
                 1510, //Gothic
                 1397, //Blue
                 1400, //Green
                 1403  //Pink
             });
-            RecipeGroup.RegisterGroup("DungeonTables", DTgroup);
+            RecipeGroup.RegisterGroup("DungeonTables", dTgroup);
 
 
         }
@@ -180,13 +181,13 @@ namespace Laugicality
 
                 mysticaUI = new LaugicalityUI();
                 mysticaUI.Activate();
-                mysticaUserInterface = new UserInterface();
-                mysticaUserInterface.SetState(mysticaUI);
+                _mysticaUserInterface = new UserInterface();
+                _mysticaUserInterface.SetState(mysticaUI);
             }
-            ToggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
-            ToggleSoulStoneV = RegisterHotKey("Toggle Visual Effects", "V");
-            ToggleSoulStoneM = RegisterHotKey("Toggle Mobility Effects", "C");
-            QuickMystica = RegisterHotKey("Quick Mystica", "G");
+            toggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
+            toggleSoulStoneV = RegisterHotKey("Toggle Visual Effects", "V");
+            toggleSoulStoneM = RegisterHotKey("Toggle Mobility Effects", "C");
+            quickMystica = RegisterHotKey("Quick Mystica", "G");
         }
 
 
@@ -200,7 +201,7 @@ namespace Laugicality
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
 
-                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).ZoneObsidium)
+                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).zoneObsidium)
                 {
                     if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
@@ -228,10 +229,10 @@ namespace Laugicality
         */
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-            int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (MouseTextIndex != -1)
+            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+            if (mouseTextIndex != -1)
             {
-                layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer(
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
                     "Enigma: Mystica",
                     delegate
                     {

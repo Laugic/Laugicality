@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles
 			projectile.hide = true;
         }
 
-        public float movementFactor // Change this value to alter how fast the spear moves
+        public float MovementFactor // Change this value to alter how fast the spear moves
         {
             get { return projectile.ai[0]; }
             set { projectile.ai[0] = value; }
@@ -47,22 +47,22 @@ namespace Laugicality.Projectiles
             projectile.position.Y = ownerMountedCenter.Y - (float)(projectile.height / 2);
             if (!projOwner.frozen)
             {
-                if (movementFactor == 0f) 
+                if (MovementFactor == 0f) 
                 {
-                    movementFactor = 3f; 
+                    MovementFactor = 3f; 
                     projectile.netUpdate = true; 
                 }
                 if (projOwner.itemAnimation < projOwner.itemAnimationMax / 3) 
                 {
-                    movementFactor -= 2.4f;
+                    MovementFactor -= 2.4f;
                 }
                 else 
                 {
-                    movementFactor += 2.1f;
+                    MovementFactor += 2.1f;
                 }
             }
             
-            projectile.position += projectile.velocity * movementFactor;
+            projectile.position += projectile.velocity * MovementFactor;
             
             if (projOwner.itemAnimation == 0)
             {

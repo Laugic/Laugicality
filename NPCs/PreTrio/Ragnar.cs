@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
             //Main.npcFrameCount[npc.type] = 2;
         }
@@ -96,7 +96,7 @@ namespace Laugicality.NPCs.PreTrio
             var player = Main.player[npc.target];
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (Main.player[npc.target].statLife <= 0) npc.position.Y += 60;
-            if (modPlayer.ZoneObsidium == false)
+            if (modPlayer.zoneObsidium == false)
                 npc.dontTakeDamage = true;
             else
                 npc.dontTakeDamage = false;

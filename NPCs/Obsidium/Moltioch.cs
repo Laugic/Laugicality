@@ -36,16 +36,16 @@ namespace Laugicality.NPCs.Obsidium
             else return 0f;
         }*/
 
-        int attackCounter = 0;
+        int _attackCounter = 0;
 
 		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.Write(attackCounter);
+			writer.Write(_attackCounter);
 		}
 
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			attackCounter = reader.ReadInt32();
+			_attackCounter = reader.ReadInt32();
 		}
 
 		public override void CustomBehavior()

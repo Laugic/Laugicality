@@ -6,15 +6,15 @@ namespace Laugicality.Items.Materials
 {
     public class BottledGel : ModItem
     {
-        int time = 0;
-        int sec = 15;
+        int _time = 0;
+        int _sec = 15;
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("The gels will mesh together over time");
         }
         public override void SetDefaults()
         {
-            time = 0;
+            _time = 0;
             item.width = 28;
             item.height = 28;
             item.maxStack = 1;
@@ -28,8 +28,8 @@ namespace Laugicality.Items.Materials
         
         public override void UpdateInventory(Player player)
         {
-            if(time < 60 * sec)
-                time++;
+            if(_time < 60 * _sec)
+                _time++;
             else
             {
                 player.QuickSpawnItem(mod.ItemType("BottledPinkGel"), 1);

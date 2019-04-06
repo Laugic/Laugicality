@@ -19,8 +19,8 @@ namespace Laugicality.NPCs.RockTwins
         {
             zImmune = true;
             delay = 4;
-            LaugicalityVars.EProjectiles.Add(projectile.type);
-            LaugicalityVars.ZProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
+            LaugicalityVars.zProjectiles.Add(projectile.type);
             projectile.width = 28;
             projectile.height = 28;
             projectile.hostile = true;
@@ -86,10 +86,10 @@ namespace Laugicality.NPCs.RockTwins
             player.AddBuff(mod.BuffType("ForHonor"), 300, true);
         }
 
-        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNPCsAndTiles, List<int> drawCacheProjsBehindNPCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
+        public override void DrawBehind(int index, List<int> drawCacheProjsBehindNpCsAndTiles, List<int> drawCacheProjsBehindNpCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)
         {
             //drawCacheProjsBehindProjectiles.Add(index);
-            drawCacheProjsBehindNPCs.Add(index);
+            drawCacheProjsBehindNpCs.Add(index);
         }
     }
 }

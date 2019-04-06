@@ -6,7 +6,7 @@ namespace Laugicality.Prefixes
 {
     public class Yeeting : ModPrefix
     {
-        private int power = 0;
+        private int _power = 0;
         public override float RollChance(Item item)
         {
             return 2f;
@@ -26,7 +26,7 @@ namespace Laugicality.Prefixes
 
         public Yeeting(int power)
         {
-            this.power = power;
+            this._power = power;
         }
 
         public override bool Autoload(ref string name)
@@ -43,12 +43,12 @@ namespace Laugicality.Prefixes
 
         public override void Apply(Item item)
         {
-            item.GetGlobalItem<LaugicalityGlobalItem>().yeet = power;
+            item.GetGlobalItem<LaugicalityGlobalItem>().yeet = _power;
         }
 
         public override void ModifyValue(ref float valueMult)
         {
-            float multiplier = 1f + 0.05f * power;
+            float multiplier = 1f + 0.05f * _power;
             valueMult *= multiplier;
         }
     }

@@ -7,7 +7,7 @@ namespace Laugicality.NPCs
 	[AutoloadHead]
 	public class Conductor : ModNPC
 	{
-        int chatIndex = 0;
+        int _chatIndex = 0;
 		public override bool Autoload(ref string name)
 		{
 			name = "Conductor";
@@ -28,7 +28,7 @@ namespace Laugicality.NPCs
 
         public override void SetDefaults()
 		{
-            chatIndex = 0;
+            _chatIndex = 0;
             npc.townNPC = true;
 			npc.friendly = true;
 			npc.width = 18;
@@ -52,7 +52,7 @@ namespace Laugicality.NPCs
 			}
 		}
 
-		public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+		public override bool CanTownNPCSpawn(int numTownNpCs, int money)
 		{
             if (LaugicalityWorld.downedAnnihilator && LaugicalityWorld.downedSlybertron && LaugicalityWorld.downedSteamTrain)
             {
@@ -117,14 +117,14 @@ namespace Laugicality.NPCs
 		public override string GetChat()
 		{
 			int steampunker = NPC.FindFirstNPC(NPCID.Steampunker);
-            chatIndex++;
-            if (TownNPCName() == "Laugic" && chatIndex % 9 == 0)
+            _chatIndex++;
+            if (TownNPCName() == "Laugic" && _chatIndex % 9 == 0)
                 return "Heyo " + Main.LocalPlayer.name + ". How're you enjoying Enigma so far? I mean uh- ahem... Trains?";
-            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage > 1 && chatIndex % 10 == 0)
+            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage > 1 && _chatIndex % 10 == 0)
                 return "Oh, you aren't one of those 'Mystics' are you? The Moldyrians have such an ancient way of thinking. Steam power is where it's at!";
 			if (steampunker >= 0 && Main.rand.Next(3) == 0)
 			{
-                switch (chatIndex % 3)
+                switch (_chatIndex % 3)
                 {
                     case 0:
 				        return "Oh, of course. My wares are much more valueable than that " + Main.npc[steampunker].GivenName + "'s.";
@@ -134,7 +134,7 @@ namespace Laugicality.NPCs
                         return "A jetpack? Please. Tell " + Main.npc[steampunker].GivenName + " those went out of style a few centuries ago. Jetboots are the best you can get! Besides trains, of course.";
                 }
 			}
-			switch (chatIndex % 8)
+			switch (_chatIndex % 8)
 			{
 				case 0:
 					return "Spiffing!";

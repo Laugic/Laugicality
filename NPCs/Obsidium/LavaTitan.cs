@@ -7,24 +7,24 @@ namespace Laugicality.NPCs.Obsidium
 {
     public class LavaTitan : ModNPC
     {
-        bool attacking = false;
-        bool attack = false;
-        Vector2 targetPos;
+        bool _attacking = false;
+        bool _attack = false;
+        Vector2 _targetPos;
         public float tVel = 0f;
         public float vMax = 14f;
         public float vAccel = .2f;
         public float vMag = 0f;
-        int attackDelay = 0;
+        int _attackDelay = 0;
         public override void SetDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
-            attackDelay = 0;
+            LaugicalityVars.enpCs.Add(npc.type);
+            _attackDelay = 0;
             vMag = 0f;
             vMax = 2f;
             tVel = 0f;
-            targetPos = npc.position;
-            attack = false;
-            attacking = false;
+            _targetPos = npc.position;
+            _attack = false;
+            _attacking = false;
             npc.width = 88;
             npc.height = 88;
             npc.damage = 50;
@@ -57,33 +57,33 @@ namespace Laugicality.NPCs.Obsidium
         public override void AI()
         {
             //Attack
-            if(attack)
+            if(_attack)
             {
                 if(Main.netMode != 1)
                 {
-                    attack = false;
+                    _attack = false;
                     for (int i = 0; i < 8; i++)
                     {
-                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBlast"));
-                        Main.npc[N].ai[0] = npc.whoAmI;
-                        Main.npc[N].ai[1] = i;
+                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBlast"));
+                        Main.npc[n].ai[0] = npc.whoAmI;
+                        Main.npc[n].ai[1] = i;
                     }
                     Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 122);
                 }
             }
-            if(!attacking)
-                attackDelay++;
-            if(attackDelay > 60 * 4)
+            if(!_attacking)
+                _attackDelay++;
+            if(_attackDelay > 60 * 4)
             {
-                attackDelay = 0;
-                attacking = true;
+                _attackDelay = 0;
+                _attacking = true;
             }
 
             //Movement
-            targetPos = Main.player[npc.target].Center;
-            if(!attacking)
+            _targetPos = Main.player[npc.target].Center;
+            if(!_attacking)
             {
-                float dist = Vector2.Distance(targetPos, npc.Center);
+                float dist = Vector2.Distance(_targetPos, npc.Center);
                 tVel = dist / 15;
                 if (vMag < vMax && vMag < tVel)
                 {
@@ -103,7 +103,7 @@ namespace Laugicality.NPCs.Obsidium
 
                 if (dist != 0)
                 {
-                    npc.velocity = npc.DirectionTo(targetPos) * vMag;
+                    npc.velocity = npc.DirectionTo(_targetPos) * vMag;
                 }
             }
             else
@@ -116,7 +116,7 @@ namespace Laugicality.NPCs.Obsidium
         public override void FindFrame(int frameHeight)
         {
             npc.frameCounter += 1;
-            if(!attacking)
+            if(!_attacking)
             {
                 if (npc.frameCounter > 30)
                 {
@@ -137,14 +137,14 @@ namespace Laugicality.NPCs.Obsidium
                 if (npc.frameCounter > 4)
                 {
                     if (npc.frame.Y > frameHeight * 10 && npc.frame.Y < frameHeight * 12)
-                        attack = true;
+                        _attack = true;
                     npc.frame.Y = npc.frame.Y + frameHeight;
                     npc.frameCounter = 0;
                 }
                 if (npc.frame.Y > frameHeight * 13)
                 {
                     npc.frame.Y = 0;
-                    attacking = false;
+                    _attacking = false;
                 }
             }
         }

@@ -9,11 +9,11 @@ namespace Laugicality.NPCs.SteamTrain
     [AutoloadBossHead]
     public class SteamTrain : ModNPC
     {
-        private static readonly int PHASE_NORMALDRIVE = 0;
-        private static readonly int PHASE_SUPERDRIVE = 1;
-        private static readonly int PHASE_HYPERDRIVE = 2;
-        private static readonly int PHASE_WARPDRIVE = 3;
-        private static readonly int PHASE_CHOOCHOO = 4;
+        private static readonly int _phase_Normaldrive = 0;
+        private static readonly int _phase_Superdrive = 1;
+        private static readonly int _phase_Hyperdrive = 2;
+        private static readonly int _phase_Warpdrive = 3;
+        private static readonly int _phase_Choochoo = 4;
 
         public static Random rnd = new Random();
         public int spawn = 0;
@@ -31,19 +31,19 @@ namespace Laugicality.NPCs.SteamTrain
         public int range = 2000;
         public bool bitherial = true;
         public int plays = 0;
-        int despawn = 0;
-        int baseDamage = 0;
+        int _despawn = 0;
+        int _baseDamage = 0;
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Steam Train");
         }
 
         public override void SetDefaults()
         {
-            baseDamage = 0;
-            despawn = 0;
+            _baseDamage = 0;
+            _despawn = 0;
             plays = 1;
             bitherial = true;
             maxDelay = 60;
@@ -87,14 +87,14 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override bool CheckActive()
         {
-            if(despawn < 300)
+            if(_despawn < 300)
                 return false;
             return true;
         }
 
         private void Retarget()
         {
-            Player P = Main.player[npc.target];
+            Player p = Main.player[npc.target];
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest(true);
@@ -109,18 +109,18 @@ namespace Laugicality.NPCs.SteamTrain
                 npc.TargetClosest(true);
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead)
                 {
-                    if (despawn == 0)
-                        despawn++;
+                    if (_despawn == 0)
+                        _despawn++;
                 }
                 else
-                    despawn = 0;
+                    _despawn = 0;
             }
-            if (despawn >= 1)
+            if (_despawn >= 1)
             {
-                despawn++;
+                _despawn++;
                 npc.noTileCollide = true;
                 npc.velocity.Y = 8f;
-                if (despawn >= 300)
+                if (_despawn >= 300)
                     npc.active = false;
             }
         }
@@ -136,8 +136,8 @@ namespace Laugicality.NPCs.SteamTrain
             Vector2 delta = Main.player[npc.target].Center - npc.Center;
             float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
 
-            if(baseDamage == 0)
-                baseDamage = npc.damage;
+            if(_baseDamage == 0)
+                _baseDamage = npc.damage;
             //Checking which direction to move when spawned
             if (dir == 0)
             {
@@ -241,7 +241,7 @@ namespace Laugicality.NPCs.SteamTrain
                     Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, 8, mod.ProjectileType("SteamyShadow"), npc.damage / 3, 3f, Main.myPlayer);
                     //Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, 8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
                 }
-                if (phase != PHASE_NORMALDRIVE)
+                if (phase != _phase_Normaldrive)
                 {
                     Projectile.NewProjectile(npc.position.X + 1572, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
                     Projectile.NewProjectile(npc.position.X + 102, npc.position.Y + 60, 0, -8, mod.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
@@ -251,29 +251,29 @@ namespace Laugicality.NPCs.SteamTrain
             }
 
             //Health Phases
-            if (npc.life < npc.lifeMax * .67 && phase == PHASE_NORMALDRIVE)
+            if (npc.life < npc.lifeMax * .67 && phase == _phase_Normaldrive)
             {
-                phase = PHASE_SUPERDRIVE;
+                phase = _phase_Superdrive;
                 Main.NewText("Superdrive.", 150, 0, 0);
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
             }
 
-            if (npc.life < npc.lifeMax * .33 && phase == PHASE_SUPERDRIVE)
+            if (npc.life < npc.lifeMax * .33 && phase == _phase_Superdrive)
             {
-                phase = PHASE_HYPERDRIVE;
+                phase = _phase_Hyperdrive;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 Main.NewText("Hyperdrive.", 200, 0, 0);
             }
-            if (npc.life < npc.lifeMax * .10 && phase == PHASE_HYPERDRIVE && Main.expertMode)
+            if (npc.life < npc.lifeMax * .10 && phase == _phase_Hyperdrive && Main.expertMode)
             {
-                phase = PHASE_WARPDRIVE;
+                phase = _phase_Warpdrive;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 Main.NewText("Warpdrive.", 250, 0, 0);
                 npc.life = (int)(npc.lifeMax * .15);
             }
-            if (npc.life < npc.lifeMax * .10 && phase == PHASE_WARPDRIVE && Main.expertMode && LaugicalityWorld.downedEtheria)
+            if (npc.life < npc.lifeMax * .10 && phase == _phase_Warpdrive && Main.expertMode && LaugicalityWorld.downedEtheria)
             {
-                phase = PHASE_CHOOCHOO;
+                phase = _phase_Choochoo;
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 Main.NewText("CHOO CHOO!", 255, 0, 50);
                 npc.life = (int)(npc.lifeMax * .33);
@@ -284,39 +284,39 @@ namespace Laugicality.NPCs.SteamTrain
         private void HealthEffects()
         {
             //Phase Stat Changing
-            if (phase == PHASE_SUPERDRIVE)
+            if (phase == _phase_Superdrive)
             {
                 range = 1800;
                 maxAccel = 26f;
                 maxVaccel = 26f;
                 maxDelay = 50;
                 npc.defense = 25;
-                npc.damage = baseDamage + 20;
+                npc.damage = _baseDamage + 20;
             }
 
-            if (phase == PHASE_HYPERDRIVE)
+            if (phase == _phase_Hyperdrive)
             {
                 range = 1400;
                 maxAccel = 32f;
                 maxVaccel = 32f;
                 maxDelay = 40;
-                npc.damage = baseDamage + 30;
+                npc.damage = _baseDamage + 30;
             }
-            if (phase == PHASE_WARPDRIVE)
+            if (phase == _phase_Warpdrive)
             {
                 range = 1000;
                 maxAccel = 38f;
                 maxVaccel = 38f;
                 maxDelay = 30;
-                npc.damage = baseDamage + 40;
+                npc.damage = _baseDamage + 40;
             }
-            if (phase == PHASE_CHOOCHOO)
+            if (phase == _phase_Choochoo)
             {
                 range = 600;
                 maxAccel = 48f;
                 maxVaccel = 48f;
                 maxDelay = 24;
-                npc.damage = baseDamage + 60;
+                npc.damage = _baseDamage + 60;
                 Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
             }
         }

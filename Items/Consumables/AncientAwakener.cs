@@ -45,12 +45,12 @@ namespace Laugicality.Items.Consumables
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 
-            ModRecipe Grecipe = new ModRecipe(mod);
-            Grecipe.AddRecipeGroup("GldBars", 4);
-            Grecipe.AddIngredient(154, 1);
-            Grecipe.AddTile(77);
-            Grecipe.SetResult(327);
-            Grecipe.AddRecipe();
+            ModRecipe grecipe = new ModRecipe(mod);
+            grecipe.AddRecipeGroup("GldBars", 4);
+            grecipe.AddIngredient(154, 1);
+            grecipe.AddTile(77);
+            grecipe.SetResult(327);
+            grecipe.AddRecipe();
         }
 	}
 }

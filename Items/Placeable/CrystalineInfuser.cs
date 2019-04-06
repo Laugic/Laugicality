@@ -27,13 +27,13 @@ namespace Laugicality.Items.Placeable
 
         public override void AddRecipes()
         {
-            ModRecipe Arecipe = new ModRecipe(mod);
-            Arecipe.AddTile(null, "LaugicalWorkbench");
-            Arecipe.AddIngredient(null, "ObsidiumBar", 8);
-            Arecipe.AddIngredient(null, "DarkShard", 1);
-            Arecipe.AddIngredient(null, "LavaGem", 4);
-            Arecipe.SetResult(this);
-            Arecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddTile(null, "LaugicalWorkbench");
+            arecipe.AddIngredient(null, "ObsidiumBar", 8);
+            arecipe.AddIngredient(null, "DarkShard", 1);
+            arecipe.AddIngredient(null, "LavaGem", 4);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Laugicality.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).damageMult * 1.5f;
+            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).damageMult * 1.5f;
         }
     }
 }

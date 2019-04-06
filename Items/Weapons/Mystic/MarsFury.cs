@@ -7,7 +7,7 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class MarsFury : MysticItem
     {
-        int counter = 0;
+        int _counter = 0;
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mars' Fury");
@@ -16,7 +16,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
 		public override void SetMysticDefaults()
 		{
-            counter = 0;
+            _counter = 0;
             item.damage = 40;
             item.width = 66;
 			item.height = 74;
@@ -36,9 +36,9 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if(counter > 0)
-                counter--;
-            if (modPlayer.mysticMode == 2 && counter <= 0)
+            if(_counter > 0)
+                _counter--;
+            if (modPlayer.mysticMode == 2 && _counter <= 0)
             {
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
@@ -48,7 +48,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                counter = 6;
+                _counter = 6;
             }
             return true;
         }      

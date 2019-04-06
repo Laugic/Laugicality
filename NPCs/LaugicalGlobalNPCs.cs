@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.NPCs
 {
-    public partial class LaugicalGlobalNPCs : GlobalNPC
+    public partial class LaugicalGlobalNpCs : GlobalNPC
     {
         public bool eFied = false;
         public bool mFied = false;//Mystified
@@ -20,7 +20,7 @@ namespace Laugicality.NPCs
         public bool bubbly = false;
         public bool dawn = false;
         public bool trueDawn = false;
-        private int dmg = 0;
+        private int _dmg = 0;
         public int plays = 0;
         public int dmg2 = 0;
         public static int zTime = 0;
@@ -52,12 +52,12 @@ namespace Laugicality.NPCs
             furious = false;
             spored = false;
             plays = 0;
-            dmg = 0;
+            _dmg = 0;
             invin = npc.dontTakeDamage;
             dmg2 = npc.damage;
             damageMult = npc.takenDamageMultiplier;
 
-            if (LaugicalityVars.ZNPCs.Contains(npc.type))
+            if (LaugicalityVars.znpCs.Contains(npc.type))
             {
                 zImmune = true;
             }
@@ -104,7 +104,7 @@ namespace Laugicality.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.GetModPlayer<LaugicalityPlayer>(mod).ZoneObsidium)
+            if (spawnInfo.player.GetModPlayer<LaugicalityPlayer>(mod).zoneObsidium)
             {
                 pool.Clear();
                 float spawnMod = .25f;
@@ -655,7 +655,7 @@ namespace Laugicality.NPCs
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfHaught"));
                 }
-                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<LaugicalityPlayer>(mod).ZoneObsidium && Main.rand.Next(3) == 0)
+                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<LaugicalityPlayer>(mod).zoneObsidium && Main.rand.Next(3) == 0)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfHaught"));
                 }

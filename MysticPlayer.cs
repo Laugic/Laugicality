@@ -156,7 +156,7 @@ namespace Laugicality
             mundusMax = 100;
         }
 
-        public void mysticSwitch()
+        public void MysticSwitch()
         {
             switch(mysticMode)
             {

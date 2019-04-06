@@ -8,7 +8,7 @@ namespace Laugicality.Etherial
 {
     public class ZaShader : ScreenShaderData
     {
-        private int YIndex;
+        private int _yIndex;
         
         public ZaShader(string passName)
 			: base(passName)
@@ -23,18 +23,18 @@ namespace Laugicality.Etherial
 
     public class ZaWarudoVisual : CustomSky
     {
-        private bool isActive = false;
-        private float intensity = 0f;
+        private bool _isActive = false;
+        private float _intensity = 0f;
 
         public override void Update(GameTime gameTime)
         {
-            if (isActive && intensity < 1f)
+            if (_isActive && _intensity < 1f)
             {
-                intensity += 0.01f;
+                _intensity += 0.01f;
             }
-            else if (!isActive && intensity > 0f)
+            else if (!_isActive && _intensity > 0f)
             {
-                intensity -= 0.01f;
+                _intensity -= 0.01f;
             }
         }
 
@@ -70,22 +70,22 @@ namespace Laugicality.Etherial
 
         public override void Activate(Vector2 position, params object[] args)
         {
-            isActive = true;
+            _isActive = true;
         }
 
         public override void Deactivate(params object[] args)
         {
-            isActive = false;
+            _isActive = false;
         }
 
         public override void Reset()
         {
-            isActive = false;
+            _isActive = false;
         }
 
         public override bool IsActive()
         {
-            return isActive || intensity > 0f;
+            return _isActive || _intensity > 0f;
         }
     }
 }

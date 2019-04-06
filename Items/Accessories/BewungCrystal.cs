@@ -23,7 +23,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.SoulStoneM)
+            if (modPlayer.soulStoneM)
             {
                 if (modPlayer.feather)
                     player.slowFall = true;

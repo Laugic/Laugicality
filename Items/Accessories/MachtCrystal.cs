@@ -23,7 +23,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.SoulStoneV)
+            if (modPlayer.soulStoneV)
             {
                 if (modPlayer.inf)
                     player.AddBuff(116, 2);

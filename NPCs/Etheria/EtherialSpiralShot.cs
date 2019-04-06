@@ -8,22 +8,22 @@ namespace Laugicality.NPCs.Etheria
 {
     public class EtherialSpiralShot : ModNPC
     {
-        float theta = -1;
-        float dist = 0;
-        float distRate = 1;
-        Vector2 origin;
+        float _theta = -1;
+        float _dist = 0;
+        float _distRate = 1;
+        Vector2 _origin;
         public bool bitherial = true;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Etherial Pulse");
         }
         public override void SetDefaults()
         {
             bitherial = true;
-            distRate = 1;
-            dist = 20;
-            theta = -1;
+            _distRate = 1;
+            _dist = 20;
+            _theta = -1;
             npc.width = 44;
             npc.height = 44;
             npc.damage = 60;
@@ -47,20 +47,20 @@ namespace Laugicality.NPCs.Etheria
         
         public override void AI()
         {
-            if (theta == -1)
+            if (_theta == -1)
             {
-                theta = npc.ai[1] * 6.28f / 8;
-                origin = npc.position;
+                _theta = npc.ai[1] * 6.28f / 8;
+                _origin = npc.position;
             }
-            theta += 3.14f / 120;
-            dist += distRate;
-            distRate += .05f;
+            _theta += 3.14f / 120;
+            _dist += _distRate;
+            _distRate += .05f;
             float divisions = 6.28f / 8;
             Vector2 targetPos;
-            targetPos.X = origin.X + dist * (float)Math.Cos(theta) - npc.width / 2;
-            targetPos.Y = origin.Y + dist * (float)Math.Sin(theta);
+            targetPos.X = _origin.X + _dist * (float)Math.Cos(_theta) - npc.width / 2;
+            targetPos.Y = _origin.Y + _dist * (float)Math.Sin(_theta);
             npc.position = targetPos;
-            if(dist > 1200)
+            if(_dist > 1200)
             {
                 npc.active = false;
                 npc.life = 0;

@@ -20,7 +20,7 @@ namespace Laugicality.NPCs.Etheria
 
 		public override void SetDefaults()
         {
-            LaugicalityVars.EProjectiles.Add(projectile.type);
+            LaugicalityVars.eProjectiles.Add(projectile.type);
             bitherial = true;
             projectile.width = 44;
 			projectile.height = 44;

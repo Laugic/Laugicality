@@ -8,7 +8,7 @@ namespace Laugicality.Structures
         public static int xPosO = Main.maxTilesX / 2;
         public static int yPosO = Main.maxTilesY / 2;
         
-        private static readonly int[,] HeartStructure = new int[,]
+        private static readonly int[,] _heartStructure = new int[,]
         {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -148,52 +148,52 @@ namespace Laugicality.Structures
              * */
             
 
-            for (int i = 0; i < HeartStructure.GetLength(1); i++)
+            for (int i = 0; i < _heartStructure.GetLength(1); i++)
             {
-                for (int j = 0; j < HeartStructure.GetLength(0); j++)
+                for (int j = 0; j < _heartStructure.GetLength(0); j++)
                 {
                     if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                     {
-                        if (HeartStructure[j, i] == 1)
+                        if (_heartStructure[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
                         }
-                        if (HeartStructure[j, i] == 2)
+                        if (_heartStructure[j, i] == 2)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
                         }
-                        if (HeartStructure[j, i] == 3)
+                        if (_heartStructure[j, i] == 3)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true); //Hellstone = 58
                         }
-                        if (HeartStructure[j, i] == 4)
+                        if (_heartStructure[j, i] == 4)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.KillWall(xPosO + i, yPosO + j);
                             WorldGen.PlaceWall(xPosO + i, yPosO + j, 177, true); //Hellstone Brick Wall
                         }
-                        if (HeartStructure[j, i] == 5)
+                        if (_heartStructure[j, i] == 5)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.KillWall(xPosO + i, yPosO + j);
                             WorldGen.PlaceWall(xPosO + i, yPosO + j, 137, true); //Lavafall Wall
                         }
-                        if (HeartStructure[j, i] == 6)
+                        if (_heartStructure[j, i] == 6)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.KillWall(xPosO + i, yPosO + j);
                             WorldGen.PlaceWall(xPosO + i, yPosO + j, 177, true); //Hellstone Brick Wall
                             WorldGen.PlaceObject(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumHeart"), true, 0, -1, -1);
                         }
-                        if (HeartStructure[j, i] == 7)
+                        if (_heartStructure[j, i] == 7)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumCore"), true, true);
                         }
-                        if (HeartStructure[j, i] == 9)
+                        if (_heartStructure[j, i] == 9)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                         }

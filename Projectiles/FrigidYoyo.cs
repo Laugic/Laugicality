@@ -26,7 +26,7 @@ namespace Laugicality.Projectiles
 			projectile.scale = 1f;
 		}
 
-        public Vector2 getPosition()
+        public Vector2 GetPosition()
         {
             return projectile.position;
         }

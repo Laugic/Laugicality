@@ -6,7 +6,7 @@ namespace Laugicality.Items.Equipables
 {
     public class SteamsparkJetboots : ModItem
     {
-        Mod calMod = ModLoader.GetMod("CalamityMod");
+        Mod _calMod = ModLoader.GetMod("CalamityMod");
         public override void SetStaticDefaults()
         {
             Tooltip.SetDefault("Steam powered! \nWearer can run super fast \nImmunity to lava, can walk on liquids \nIncreases flight time and flight acceleration if worn under wings");
@@ -36,10 +36,10 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
 
-            if (calMod != null)
+            if (_calMod != null)
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(calMod.ItemType("AngelTreads"), 1);
+                recipe.AddIngredient(_calMod.ItemType("AngelTreads"), 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
                 recipe.AddIngredient(null, "SteamBar", 15);
                 recipe.AddIngredient(null, "Gear", 20);
@@ -54,15 +54,15 @@ namespace Laugicality.Items.Equipables
                 recipe.AddRecipe();
 
 
-                ModRecipe Srecipe = new ModRecipe(mod);
-                Srecipe.AddRecipeGroup("WingsGroup");
-                Srecipe.AddIngredient(null, "SteamsparkJetboots", 1);
-                Srecipe.AddIngredient(calMod.ItemType("CoreofCalamity"), 3);
-                Srecipe.AddIngredient(calMod.ItemType("BarofLife"), 5);
-                Srecipe.AddIngredient(ItemID.LunarBar, 5);
-                Srecipe.AddTile(TileID.LunarCraftingStation);
-                Srecipe.SetResult(calMod.ItemType("InfinityBoots"));
-                Srecipe.AddRecipe();
+                ModRecipe srecipe = new ModRecipe(mod);
+                srecipe.AddRecipeGroup("WingsGroup");
+                srecipe.AddIngredient(null, "SteamsparkJetboots", 1);
+                srecipe.AddIngredient(_calMod.ItemType("CoreofCalamity"), 3);
+                srecipe.AddIngredient(_calMod.ItemType("BarofLife"), 5);
+                srecipe.AddIngredient(ItemID.LunarBar, 5);
+                srecipe.AddTile(TileID.LunarCraftingStation);
+                srecipe.SetResult(_calMod.ItemType("InfinityBoots"));
+                srecipe.AddRecipe();
 
             }
             else

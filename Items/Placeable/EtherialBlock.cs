@@ -31,10 +31,10 @@ namespace Laugicality.Items.Placeable
             recipe.SetResult(this);
             recipe.AddRecipe();
 
-            ModRecipe Erecipe = new ModRecipe(mod);
-            Erecipe.AddIngredient(null, "EtherialEssence");
-            Erecipe.SetResult(this, 20);
-            Erecipe.AddRecipe();
+            ModRecipe erecipe = new ModRecipe(mod);
+            erecipe.AddIngredient(null, "EtherialEssence");
+            erecipe.SetResult(this, 20);
+            erecipe.AddRecipe();
         }
     }
 }

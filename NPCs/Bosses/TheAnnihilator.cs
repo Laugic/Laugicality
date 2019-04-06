@@ -25,7 +25,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("The Annihilator");
             Main.npcFrameCount[npc.type] = 8;
         }

@@ -14,8 +14,8 @@ namespace Laugicality.NPCs.Slybertron
         public int phase = 0;
         public int numDefeats = 0;
         public int attackDuration = 0;
-        public int attackDurationCL = 0;
-        public int attackDurationXO = 0;
+        public int attackDurationCl = 0;
+        public int attackDurationXo = 0;
         public int damage = 0;
         public double attackDelay = 0;      //Current delay between attacks
         public double attackReload = 200;   //What the delay is reset to between attacks
@@ -58,7 +58,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Slybertron");
             //Main.npcFrameCount[npc.type] = 2;
         }
@@ -149,7 +149,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.rotation = 0f;
             //Attack Durations
             if (attackDuration > 0) attackDuration += 1;
-            if (attackDurationCL > 0) attackDurationCL += 1;
+            if (attackDurationCl > 0) attackDurationCl += 1;
 
             //Phases
             if (npc.life < npc.lifeMax * .67 && phase == 1 ) { phase = 2; Main.NewText("Phase 2 weapons activated.", 250, 0, 0);  //this is the message that will appear when the npc is killed  , 200, 200, 55 is the text color
@@ -314,25 +314,25 @@ namespace Laugicality.NPCs.Slybertron
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
                 attack2 = 0;
-                attackDurationCL = 1;
+                attackDurationCl = 1;
                 attack2Delay = attack2Reload;
             }
 
-            if (attackDurationCL == 30)
+            if (attackDurationCl == 30)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
             }
-            if (attackDurationCL == 60)
+            if (attackDurationCl == 60)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
             }
-            if (attackDurationCL == 90)
+            if (attackDurationCl == 90)
             {
                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
             }
-            if (attackDurationCL > 90)
+            if (attackDurationCl > 90)
             {
-                attackDurationCL = 0;
+                attackDurationCl = 0;
             }
             if (attack2 == 2 && Main.netMode != 1)
             {

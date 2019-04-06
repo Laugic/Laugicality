@@ -4,7 +4,7 @@ namespace Laugicality.Structures
 {
     public class LivingLycoris
     {
-        private static readonly int[,] StructureArray = new int[,]
+        private static readonly int[,] _structureArray = new int[,]
         {
                 {0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 ,                {0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0}
@@ -64,31 +64,31 @@ namespace Laugicality.Structures
              * */
             
 
-            for (int i = 0; i < StructureArray.GetLength(1); i++)
+            for (int i = 0; i < _structureArray.GetLength(1); i++)
             {
-                for (int j = 0; j < StructureArray.GetLength(0); j++)
+                for (int j = 0; j < _structureArray.GetLength(0); j++)
                 {
                     if (mirrored)
                     {
-                        if (TileCheckSafe((int)(xPosO + StructureArray.GetLength(1) - i), (int)(yPosO + j)))
+                        if (TileCheckSafe((int)(xPosO + _structureArray.GetLength(1) - i), (int)(yPosO + j)))
                         {
-                            if (StructureArray[j, i] == 1)
+                            if (_structureArray[j, i] == 1)
                             {
-                                WorldGen.KillTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
+                                WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
                             }
-                            if (StructureArray[j, i] == 2)
+                            if (_structureArray[j, i] == 2)
                             {
-                                WorldGen.KillTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
+                                WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
                             }
-                            if (StructureArray[j, i] == 3)
+                            if (_structureArray[j, i] == 3)
                             {
-                                LaugicalityWorld.PlaceObsidiumChest(xPosO + StructureArray.GetLength(1) - i, yPosO + j, (ushort)Laugicality.instance.TileType("Radiata"));
+                                LaugicalityWorld.PlaceObsidiumChest(xPosO + _structureArray.GetLength(1) - i, yPosO + j, (ushort)Laugicality.instance.TileType("Radiata"));
                             }
-                            if (StructureArray[j, i] == 9)
+                            if (_structureArray[j, i] == 9)
                             {
-                                WorldGen.KillTile(xPosO + StructureArray.GetLength(1) - i, yPosO + j);
+                                WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
                             }
                         }
                     }
@@ -96,21 +96,21 @@ namespace Laugicality.Structures
                     {
                         if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                         {
-                            if (StructureArray[j, i] == 1)
+                            if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
                                 WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
                             }
-                            if (StructureArray[j, i] == 2)
+                            if (_structureArray[j, i] == 2)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
                                 WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
                             }
-                            if (StructureArray[j, i] == 3)
+                            if (_structureArray[j, i] == 3)
                             {
                                 LaugicalityWorld.PlaceObsidiumChest(xPosO + i, yPosO + j, (ushort)Laugicality.instance.TileType("Radiata"));
                             }
-                            if (StructureArray[j, i] == 9)
+                            if (_structureArray[j, i] == 9)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
                             }
@@ -125,7 +125,7 @@ namespace Laugicality.Structures
         {
             if (i > 1 && i < Main.maxTilesX - 1 && j > 1 && j < Main.maxTilesY - 1)
             {
-                if(LaugicalityVars.ObsidiumTiles.Contains(Main.tile[i, j].type))
+                if(LaugicalityVars.obsidiumTiles.Contains(Main.tile[i, j].type))
                     return true;
             }
             return false;

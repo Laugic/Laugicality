@@ -13,10 +13,10 @@ namespace Laugicality.Projectiles
         public bool etherial = false;
         public bool bitherial = false;
         public bool friend = false;
-        private int dmg = 0;
+        private int _dmg = 0;
         public int eDmg = 0;
-        public float oldVX = 0f;
-        public float oldVY = 0f;
+        public float oldVx = 0f;
+        public float oldVy = 0f;
         public int ai = 0;
         public float xTemp = 0;
         public float yTemp = 0;
@@ -28,17 +28,17 @@ namespace Laugicality.Projectiles
             frozen = false;
             zImmune = false;
             ai = projectile.aiStyle;
-            oldVX = 0f;
-            oldVY = 0f;
+            oldVx = 0f;
+            oldVy = 0f;
             eDmg = 0;
-            dmg = 0;
+            _dmg = 0;
             etherial = false;
             bitherial = false;
-            if (LaugicalityVars.EProjectiles.Contains(projectile.type))
+            if (LaugicalityVars.eProjectiles.Contains(projectile.type))
             {
                 bitherial = true;
             }
-            if (LaugicalityVars.ZProjectiles.Contains(projectile.type))
+            if (LaugicalityVars.zProjectiles.Contains(projectile.type))
             {
                 zImmune = true;
             }
@@ -60,9 +60,9 @@ namespace Laugicality.Projectiles
             }
             else
             {
-                if (dmg == 0)
+                if (_dmg == 0)
                 {
-                    dmg = projectile.damage;
+                    _dmg = projectile.damage;
                     friend = !projectile.hostile;
                 }
                 if (!friend)
@@ -71,7 +71,7 @@ namespace Laugicality.Projectiles
                     {
                         if (LaugicalityWorld.downedEtheria)
                         {
-                            projectile.damage = dmg;
+                            projectile.damage = _dmg;
                             return true;
                         }
                         else
@@ -90,7 +90,7 @@ namespace Laugicality.Projectiles
                         }
                         else
                         {
-                            projectile.damage = dmg;
+                            projectile.damage = _dmg;
                             return true;
                         }
                     }
@@ -117,9 +117,9 @@ namespace Laugicality.Projectiles
             }
             else
             {
-                if (dmg == 0)
+                if (_dmg == 0)
                 {
-                    dmg = projectile.damage;
+                    _dmg = projectile.damage;
                     friend = !projectile.hostile;
                 }
                 if (!friend)
@@ -128,7 +128,7 @@ namespace Laugicality.Projectiles
                     {
                         if (LaugicalityWorld.downedEtheria)
                         {
-                            projectile.damage = dmg;
+                            projectile.damage = _dmg;
                         }
                         else
                         {
@@ -146,7 +146,7 @@ namespace Laugicality.Projectiles
                         }
                         else
                         {
-                            projectile.damage = dmg;
+                            projectile.damage = _dmg;
                         }
                     }
                 }
@@ -158,35 +158,35 @@ namespace Laugicality.Projectiles
             int rand = Main.rand.Next(60);
             if (projectile.friendly && projectile.damage > 0)
             {
-                if (modPlayer.obsidium && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.obsidium && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 6, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.frost && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.frost && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 15, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.skp && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.skp && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 44, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.douche && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.douche && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 199, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.qB && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.qB && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 46, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.meFied && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.meFied && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.slimey && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.slimey && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 116, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.EtherialFrost && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.EtherialFrost && rand == 0 && modPlayer.soulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
@@ -197,15 +197,15 @@ namespace Laugicality.Projectiles
             zProjImmune = projOwner.GetModPlayer<LaugicalityPlayer>(mod).zProjImmune;
             if (projectile.friendly == false)
                 zProjImmune = false;
-            if (LaugicalityVars.EZProjectiles.Contains(projectile.type) && LaugicalityWorld.downedEtheria)
+            if (LaugicalityVars.ezProjectiles.Contains(projectile.type) && LaugicalityWorld.downedEtheria)
                 zImmune = true;
             if (Laugicality.zawarudo > 0 && zProjImmune == false && zImmune == false)
             {
                 projectile.timeLeft++;
                 if (!frozen)
                 {
-                    oldVX = projectile.velocity.X;
-                    oldVY = projectile.velocity.Y;
+                    oldVx = projectile.velocity.X;
+                    oldVy = projectile.velocity.Y;
                     frozen = true;
                     xTemp = 0;
                     yTemp = 0;
@@ -231,14 +231,14 @@ namespace Laugicality.Projectiles
             {
                 if (frozen)
                 {
-                    projectile.velocity.X = oldVX;
-                    projectile.velocity.Y = oldVY;
+                    projectile.velocity.X = oldVx;
+                    projectile.velocity.Y = oldVy;
                     frozen = false;
                 }
                 if (!frozen)
                 {
-                    oldVX = 0f;
-                    oldVY = 0f;
+                    oldVx = 0f;
+                    oldVy = 0f;
                 }
                 return true;
             }
@@ -296,7 +296,7 @@ namespace Laugicality.Projectiles
             }
             if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
             {
-                target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
+                target.GetGlobalNPC<LaugicalGlobalNpCs>(mod).attacker = projectile.owner;
             }
 
             if (modPlayer.crysMag && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))

@@ -12,7 +12,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
         public bool etherial = true;
         public override void SetDefaults()
         {
-            LaugicalityVars.Etherial.Add(npc.type);
+            LaugicalityVars.etherial.Add(npc.type);
             npc.width = 68;
             npc.height = 74;
             npc.damage = 60;

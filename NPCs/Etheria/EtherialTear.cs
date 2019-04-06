@@ -12,9 +12,9 @@ namespace Laugicality.NPCs.Etheria
         public static int ai = rnd.Next(1, 6);
         public static bool despawn = false;
         public bool bitherial = false;
-        int index = 0;
-        Vector2 targetPos;
-        int delay = 0;
+        int _index = 0;
+        Vector2 _targetPos;
+        int _delay = 0;
         public float tVel = 0f;
         public float vel = 0f;
         public float vMax = 14f;
@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.Etheria
         public float vMag = 0f;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             DisplayName.SetDefault("Etherial Tear");
         }
 
@@ -31,8 +31,8 @@ namespace Laugicality.NPCs.Etheria
             vMag = 0f;
             vMax = 14f;
             tVel = 0f;
-            delay = 0;
-            index = 0;
+            _delay = 0;
+            _index = 0;
             bitherial = true;
             despawn = false;
             npc.width = 22;
@@ -53,35 +53,35 @@ namespace Laugicality.NPCs.Etheria
         public override void AI()
         {
             bitherial = true;
-            if (index == 0)
+            if (_index == 0)
             {
                 if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
-                    index = Etheria.tearIndex;
+                    _index = Etheria.tearIndex;
             }
             if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
             {
                 float mag = 96 * Etheria.scale;
                 Vector2 rot;
-                rot.X = (float)Math.Cos(Etheria.thetaSlow + 3.14f * index / 4) * mag;
-                rot.Y = (float)Math.Sin(Etheria.thetaSlow + 3.14f * index / 4) * mag;
-                targetPos = Etheria.Center + rot;
+                rot.X = (float)Math.Cos(Etheria.thetaSlow + 3.14f * _index / 4) * mag;
+                rot.Y = (float)Math.Sin(Etheria.thetaSlow + 3.14f * _index / 4) * mag;
+                _targetPos = Etheria.center + rot;
             }
             else
             {
                 npc.active = false;
                 npc.life = 0;
             }
-            delay++;
-            if(delay > 360)
+            _delay++;
+            if(_delay > 360)
             {
-                delay = 0;
+                _delay = 0;
                 if (Main.netMode != 1)
                 {
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
                 }
             }
 
-            float dist = Vector2.Distance(targetPos, npc.Center);
+            float dist = Vector2.Distance(_targetPos, npc.Center);
             tVel = dist / 15;
             if (vMag < vMax && vMag < tVel)
             {
@@ -101,7 +101,7 @@ namespace Laugicality.NPCs.Etheria
 
             if (dist != 0)
             {
-                npc.velocity = npc.DirectionTo(targetPos) * vMag;
+                npc.velocity = npc.DirectionTo(_targetPos) * vMag;
             }
             npc.rotation += 3.14f / 20f;
         }

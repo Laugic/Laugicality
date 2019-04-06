@@ -30,15 +30,15 @@ namespace Laugicality.NPCs.Etheria
         public float vaccel = 0f;
         public float maxVaccel = 20f;
         public int damage = 0;
-        public int Eattack = 0;
-        public int EattackDel = 0;
-        public int EattackDelMax = 0;
+        public int eattack = 0;
+        public int eattackDel = 0;
+        public int eattackDelMax = 0;
         public static bool despawn = false;
-        int despawnT = 0;
+        int _despawnT = 0;
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
             delay = 0;
             DisplayName.SetDefault("Etherial Shadow");
             Main.npcFrameCount[npc.type] = 5;
@@ -46,12 +46,12 @@ namespace Laugicality.NPCs.Etheria
 
         public override void SetDefaults()
         {
-            despawnT = 0;
+            _despawnT = 0;
             despawn = false;
             phase = 0;
-            Eattack = 0;
-            EattackDelMax = 280;
-            EattackDel = EattackDelMax;
+            eattack = 0;
+            eattackDelMax = 280;
+            eattackDel = eattackDelMax;
             damage = 40;
             moveDelay = 600;
             maxAccel = 22f;
@@ -93,9 +93,9 @@ namespace Laugicality.NPCs.Etheria
             attackDelMax = 220;
             attackDel = attackDelMax;
             damage = 30;
-            Eattack = 0;
-            EattackDelMax = 200;
-            EattackDel = EattackDelMax;
+            eattack = 0;
+            eattackDelMax = 200;
+            eattackDel = eattackDelMax;
             if (LaugicalityWorld.downedEtheria)
             {
                 maxAccel = 30f;
@@ -119,19 +119,19 @@ namespace Laugicality.NPCs.Etheria
                 npc.TargetClosest(true);
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead)
                 {
-                    if (despawnT == 0)
-                        despawnT++;
+                    if (_despawnT == 0)
+                        _despawnT++;
                 }
             }
             else if (!Main.dayTime || LaugicalityWorld.downedEtheria)
-                despawnT = 0;
-            if (Main.dayTime && despawnT == 0 && !LaugicalityWorld.downedEtheria)
-                despawnT++;
-            if (despawnT >= 1)
+                _despawnT = 0;
+            if (Main.dayTime && _despawnT == 0 && !LaugicalityWorld.downedEtheria)
+                _despawnT++;
+            if (_despawnT >= 1)
             {
-                despawnT++;
+                _despawnT++;
                 npc.noTileCollide = true;
-                if (despawnT >= 300)
+                if (_despawnT >= 300)
                     npc.active = false;
             }
             if(despawn)
@@ -246,18 +246,18 @@ namespace Laugicality.NPCs.Etheria
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
-                            Main.npc[N].ai[0] = npc.whoAmI;
-                            Main.npc[N].ai[1] = i;
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                            Main.npc[n].ai[0] = npc.whoAmI;
+                            Main.npc[n].ai[1] = i;
                         }
                     }
                     else
                     {
                         for (int i = 0; i < 12; i++)
                         {
-                            int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TrueEtherialSpiralShot"));
-                            Main.npc[N].ai[0] = npc.whoAmI;
-                            Main.npc[N].ai[1] = i;
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TrueEtherialSpiralShot"));
+                            Main.npc[n].ai[0] = npc.whoAmI;
+                            Main.npc[n].ai[1] = i;
                         }
                     }
                 }

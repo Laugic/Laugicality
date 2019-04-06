@@ -7,12 +7,12 @@ namespace Laugicality.NPCs.Obsidium
 {
     public class MagmaCaster : ModNPC
     {
-        int delay = 0;
-        int reload = 0;
+        int _delay = 0;
+        int _reload = 0;
         public override void SetDefaults()
         {
-            reload = 0;
-            delay = 0;
+            _reload = 0;
+            _delay = 0;
             npc.width = 80;
             npc.height = 80;
             npc.damage = 36;
@@ -53,11 +53,11 @@ namespace Laugicality.NPCs.Obsidium
             adj.Y = -npc.height / 2;
             if(Main.rand.Next(3) == 0)
                 Dust.NewDust(npc.Center + adj, npc.width / 2, 12, mod.DustType("Magma"), 0f, 0f);
-            delay--;
-            if (delay <= 0)
+            _delay--;
+            if (_delay <= 0)
             {
-                reload++;
-                if(reload < 45)
+                _reload++;
+                if(_reload < 45)
                 {
                     if (Main.rand.Next(4) == 0)
                     {
@@ -67,8 +67,8 @@ namespace Laugicality.NPCs.Obsidium
                 }
                 else
                 {
-                    reload = 0;
-                    delay = 240;
+                    _reload = 0;
+                    _delay = 240;
                 }
             }
 

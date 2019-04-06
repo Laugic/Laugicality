@@ -45,11 +45,11 @@ namespace Laugicality.Items.Accessories
             recipe.SetResult(this);
             recipe.AddRecipe();
 
-            ModRecipe Hrecipe = new ModRecipe(mod);
-            Hrecipe.AddIngredient(null, "ObsidiumBar", 8);
-            Hrecipe.AddTile(77);
-            Hrecipe.SetResult(2422);
-            Hrecipe.AddRecipe();
+            ModRecipe hrecipe = new ModRecipe(mod);
+            hrecipe.AddIngredient(null, "ObsidiumBar", 8);
+            hrecipe.AddTile(77);
+            hrecipe.SetResult(2422);
+            hrecipe.AddRecipe();
         }
     }
 }

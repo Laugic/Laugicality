@@ -8,7 +8,7 @@ namespace Laugicality
 {
     public abstract class MysticItem : ModItem
     {
-        private static readonly string MYSTIC_DAMAGE_PREFIX = "mystic";
+        private static readonly string _mystic_Damage_Prefix = "mystic";
 
         // make-safe
         public bool mystic = true;
@@ -21,7 +21,7 @@ namespace Laugicality
         public int luxCost = 10;
         public int mundusCost = 10;
         public int visCost = 10;
-        int hold = 0;
+        int _hold = 0;
 
         public abstract void Destruction(LaugicalityPlayer modPlayer);
         public abstract void Illusion(LaugicalityPlayer modPlayer);
@@ -31,7 +31,7 @@ namespace Laugicality
 
         public sealed override void SetDefaults()
         {
-            hold = 0;
+            _hold = 0;
             item.melee = false;
             item.ranged = false;
             item.magic = false;
@@ -61,10 +61,10 @@ namespace Laugicality
                 
                 tt.text = split.First() + " mystic " + split.Last();
             }
-            if (hold > 0)
-                hold--;
-            TooltipLine tt2 = new TooltipLine(mod, "PlayerMysticChanneling", getMysticType());
-            TooltipLine tt3 = new TooltipLine(mod, "PlayerMysticChanneling", getMysticaType());
+            if (_hold > 0)
+                _hold--;
+            TooltipLine tt2 = new TooltipLine(mod, "PlayerMysticChanneling", GetMysticType());
+            TooltipLine tt3 = new TooltipLine(mod, "PlayerMysticChanneling", GetMysticaType());
             tooltips.Insert(index + 1, tt2);
             tooltips.Insert(index + 2, tt3);
             /*if (!item.social && item.prefix > 0)
@@ -227,11 +227,11 @@ namespace Laugicality
             modPlayer.currentLuxCost = luxCost;
             modPlayer.currentVisCost = visCost;
             modPlayer.currentMundusCost = mundusCost;
-            hold = 2;
+            _hold = 2;
             Laugicality.instance.mysticaUI.Update();
         }
 
-        private string getMysticType()
+        private string GetMysticType()
         {
             LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             switch (modPlayer.mysticMode)
@@ -246,7 +246,7 @@ namespace Laugicality
             return "mystic";
         }
 
-        private string getMysticaType()
+        private string GetMysticaType()
         {
             LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             switch (modPlayer.mysticMode)

@@ -31,13 +31,13 @@ namespace Laugicality.Items.Materials
             recipe.AddRecipe();
 
 
-            ModRecipe Arecipe = new ModRecipe(mod);
-            Arecipe.AddIngredient(ItemID.SnowBlock, 5);
-            Arecipe.AddIngredient(ItemID.IceBlock, 5);
-            Arecipe.AddIngredient(ItemID.CrimtaneBar, 1);
-            Arecipe.AddTile(16);
-            Arecipe.SetResult(this);
-            Arecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(ItemID.SnowBlock, 5);
+            arecipe.AddIngredient(ItemID.IceBlock, 5);
+            arecipe.AddIngredient(ItemID.CrimtaneBar, 1);
+            arecipe.AddTile(16);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
 
         }
 	}

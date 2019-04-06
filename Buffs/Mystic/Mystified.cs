@@ -23,7 +23,7 @@ namespace Laugicality.Buffs.Mystic
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mFied = true;
+			npc.GetGlobalNPC<LaugicalGlobalNpCs>(mod).mFied = true;
 		}
 	}
 }

@@ -8,14 +8,14 @@ namespace Laugicality.NPCs.Obsidium
 {
     public class TitanBlast : ModNPC
     {
-        float theta = -1;
-        float dist = 0;
-        float distRate = 1;
+        float _theta = -1;
+        float _dist = 0;
+        float _distRate = 1;
         public override void SetDefaults()
         {
-            distRate = 1;
-            dist = 20;
-            theta = -1;
+            _distRate = 1;
+            _dist = 20;
+            _theta = -1;
             npc.width = 30;
             npc.height = 30;
             npc.damage = 50;
@@ -40,17 +40,17 @@ namespace Laugicality.NPCs.Obsidium
         public override void AI()
         {
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Magma"), 0f, 0f);
-            if (theta == -1)
-                theta = npc.ai[1] * 6.28f / 8;
-            theta += 3.14f / 80;
-            dist += distRate;
-            distRate += .05f;
+            if (_theta == -1)
+                _theta = npc.ai[1] * 6.28f / 8;
+            _theta += 3.14f / 80;
+            _dist += _distRate;
+            _distRate += .05f;
             float divisions = 6.28f / 8;
             Vector2 targetPos;
-            targetPos.X = Main.npc[(int)npc.ai[0]].Center.X + dist * (float)Math.Cos(theta) - npc.width / 2;
-            targetPos.Y = Main.npc[(int)npc.ai[0]].Center.Y + dist * (float)Math.Sin(theta);
+            targetPos.X = Main.npc[(int)npc.ai[0]].Center.X + _dist * (float)Math.Cos(_theta) - npc.width / 2;
+            targetPos.Y = Main.npc[(int)npc.ai[0]].Center.Y + _dist * (float)Math.Sin(_theta);
             npc.position = targetPos;
-            if(dist > 1600)
+            if(_dist > 1600)
             {
                 npc.active = false;
                 npc.life = 0;

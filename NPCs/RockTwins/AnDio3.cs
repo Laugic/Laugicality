@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.RockTwins
         public int plays = 0;
         public static int laser = 0;
         public int laserCharge = 0;
-        public static Vector2 Center;
+        public static Vector2 center;
         public static Vector2 position;
         public static Player target;
         public static bool andio = false;
@@ -56,18 +56,18 @@ namespace Laugicality.NPCs.RockTwins
         public int attackDuration = 0;
         public int attackNum = 0;
         public int anDel = 0;
-        int despawn = 0;
+        int _despawn = 0;
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
-            LaugicalityVars.ZNPCs.Add(npc.type);
+            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.znpCs.Add(npc.type);
             DisplayName.SetDefault("AnDio");
         }
 
         public override void SetDefaults()
         {
-            despawn = 0;
+            _despawn = 0;
             anDel = 0;
             attackNum = 0;
             attackDuration = 0;
@@ -146,25 +146,25 @@ namespace Laugicality.NPCs.RockTwins
                 npc.TargetClosest(true);
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead)
                 {
-                    if (despawn == 0)
-                        despawn++;
+                    if (_despawn == 0)
+                        _despawn++;
                 }
             }
             else
-                despawn = 0;
-            if (despawn >= 1)
+                _despawn = 0;
+            if (_despawn >= 1)
             {
-                despawn++;
+                _despawn++;
                 npc.noTileCollide = true;
                 npc.velocity.Y = 8f;
-                if (despawn >= 300)
+                if (_despawn >= 300)
                     npc.active = false;
             }
         }
 
         private void Retarget()
         {
-            Player P = Main.player[npc.target];
+            Player p = Main.player[npc.target];
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
                 npc.TargetClosest(true);
@@ -184,7 +184,7 @@ namespace Laugicality.NPCs.RockTwins
                     anim = false;
             }
             npc.spriteDirection = 0;
-            Center = npc.Center;
+            center = npc.Center;
             position = npc.position;
             bitherial = true;
 
@@ -466,7 +466,7 @@ namespace Laugicality.NPCs.RockTwins
                         if(Laugicality.zawarudo < 4 * 60)
                         {
                             Laugicality.zawarudo += 4 * 60;
-                            LaugicalGlobalNPCs.zTime += 4 * 60;
+                            LaugicalGlobalNpCs.zTime += 4 * 60;
                         }
                         laser = 120;
                     }

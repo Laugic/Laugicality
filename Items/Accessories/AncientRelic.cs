@@ -37,7 +37,7 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            if (modPlayer.SoulStoneM)
+            if (modPlayer.soulStoneM)
             {
                 if (modPlayer.feather)
                     player.slowFall = true;

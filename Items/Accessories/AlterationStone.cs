@@ -26,7 +26,7 @@ namespace Laugicality.Items.Accessories
             player.blockRange++;
             player.pickSpeed -= 0.25f;
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.SoulStoneM)
+            if (modPlayer.soulStoneM)
             {
                 if (modPlayer.feather)
                     player.slowFall = true;

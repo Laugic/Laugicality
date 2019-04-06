@@ -50,16 +50,16 @@ namespace Laugicality.Items.Consumables
 			recipe.SetResult(this);
 			recipe.AddRecipe();
             
-            ModRecipe Arecipe = new ModRecipe(mod);
-            Arecipe.AddIngredient(1225, 5);
-            Arecipe.AddIngredient(ItemID.Lens, 3);
-            Arecipe.AddIngredient(ItemID.RottenChunk, 3);
-            Arecipe.AddIngredient(null, "SoulOfHaught", 3);
-            Arecipe.AddIngredient(null, "SoulOfSought", 3);
-            Arecipe.AddIngredient(ItemID.Cog, 20);
-            Arecipe.AddTile(134);
-            Arecipe.SetResult(this);
-            Arecipe.AddRecipe();
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(1225, 5);
+            arecipe.AddIngredient(ItemID.Lens, 3);
+            arecipe.AddIngredient(ItemID.RottenChunk, 3);
+            arecipe.AddIngredient(null, "SoulOfHaught", 3);
+            arecipe.AddIngredient(null, "SoulOfSought", 3);
+            arecipe.AddIngredient(ItemID.Cog, 20);
+            arecipe.AddTile(134);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
         }
 	}
 }

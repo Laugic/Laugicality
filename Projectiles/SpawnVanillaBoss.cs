@@ -6,10 +6,10 @@ namespace Laugicality.Projectiles
 {
 	public class SpawnVanillaBoss : ModProjectile
 	{
-        int id = 1;
+        int _id = 1;
 		public override void SetDefaults()
 		{
-            id = 1;
+            _id = 1;
 			projectile.width = 6;
 			projectile.height = 6;
 			projectile.aiStyle = 1;
@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles
 			if (projectile.ai[1] >= 0)
 			{
 				Main.PlaySound(15, (int)player.position.X, (int)player.position.Y-50, 0);
-				NPC.SpawnOnPlayer(player.whoAmI, id);
+				NPC.SpawnOnPlayer(player.whoAmI, _id);
 				projectile.ai[1] = -30;
 			}
 		}

@@ -5,10 +5,10 @@ namespace Laugicality.Mounts
 {
     public class Etheramind : ModMountData
     {
-        int delay = 0;
+        int _delay = 0;
         public override void SetDefaults()
         {
-            delay = 0;
+            _delay = 0;
             mountData.spawnDust = mod.DustType("Etherial");
             mountData.buff = mod.BuffType("Etheramind");
             mountData.heightBoost = 20;
@@ -61,10 +61,10 @@ namespace Laugicality.Mounts
 
         public override void UpdateEffects(Player player)
         {
-            delay++;
-            if(delay >= 60)
+            _delay++;
+            if(_delay >= 60)
             {
-                delay = 0;
+                _delay = 0;
                 if(Main.netMode != 1)
                 {
                     Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 6, mod.ProjectileType("Etherblast"), 400, 3f, Main.myPlayer);

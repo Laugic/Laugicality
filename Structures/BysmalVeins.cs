@@ -6,7 +6,7 @@ namespace Laugicality.Structures
     public class BysmalVeins
     {
         
-        private static readonly int[,] BysmalBig = new int[,]
+        private static readonly int[,] _bysmalBig = new int[,]
         {
             { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -52,7 +52,7 @@ namespace Laugicality.Structures
 
         };
 
-        private static readonly int[,] BysmalMed = new int[,]
+        private static readonly int[,] _bysmalMed = new int[,]
         {
             { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
             { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
@@ -76,7 +76,7 @@ namespace Laugicality.Structures
 
         };
 
-        private static readonly int[,] BysmalSmall = new int[,]
+        private static readonly int[,] _bysmalSmall = new int[,]
         {
             { 0,0,0,0,1,0,0,0,0},
             { 0,0,0,1,1,1,0,0,0},
@@ -98,13 +98,13 @@ namespace Laugicality.Structures
          * */
         public static void StructureGenBig(int xPosO, int yPosO)
         {
-            for (int i = 0; i < BysmalBig.GetLength(1); i++)
+            for (int i = 0; i < _bysmalBig.GetLength(1); i++)
             {
-                for (int j = 0; j < BysmalBig.GetLength(0); j++)
+                for (int j = 0; j < _bysmalBig.GetLength(0); j++)
                 {
                     if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                     {
-                        if (BysmalBig[j, i] == 1)
+                        if (_bysmalBig[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("BysmalOre"), true, true);
@@ -116,13 +116,13 @@ namespace Laugicality.Structures
 
         public static void StructureGenMed(int xPosO, int yPosO)
         {
-            for (int i = 0; i < BysmalMed.GetLength(1); i++)
+            for (int i = 0; i < _bysmalMed.GetLength(1); i++)
             {
-                for (int j = 0; j < BysmalMed.GetLength(0); j++)
+                for (int j = 0; j < _bysmalMed.GetLength(0); j++)
                 {
                     if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                     {
-                        if (BysmalMed[j, i] == 1)
+                        if (_bysmalMed[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("BysmalOre"), true, true);
@@ -134,13 +134,13 @@ namespace Laugicality.Structures
 
         public static void StructureGenSmall(int xPosO, int yPosO)
         {
-            for (int i = 0; i < BysmalSmall.GetLength(1); i++)
+            for (int i = 0; i < _bysmalSmall.GetLength(1); i++)
             {
-                for (int j = 0; j < BysmalSmall.GetLength(0); j++)
+                for (int j = 0; j < _bysmalSmall.GetLength(0); j++)
                 {
                     if (TileCheckSafe((int)(xPosO + i), (int)(yPosO + j)))
                     {
-                        if (BysmalSmall[j, i] == 1)
+                        if (_bysmalSmall[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("BysmalOre"), true, true);

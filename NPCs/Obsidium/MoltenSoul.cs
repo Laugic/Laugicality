@@ -6,10 +6,10 @@ namespace Laugicality.NPCs.Obsidium
 {
     public class MoltenSoul : ModNPC
     {
-        int shootDel = 0;
+        int _shootDel = 0;
         public override void SetDefaults()
         {
-            shootDel = 300;
+            _shootDel = 300;
             //npc.frameWidth = 40;
             //npc.frameHeight = 34;
             npc.width = 56;
@@ -40,12 +40,12 @@ namespace Laugicality.NPCs.Obsidium
             npc.rotation = 0;
             if (Main.rand.Next(3) == 0)
                 Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
-            shootDel--;
-            if (shootDel <= 0)
+            _shootDel--;
+            if (_shootDel <= 0)
             {
                 if (Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("MagmaBallLaunched"), (int)(npc.damage / 4f), 3, Main.myPlayer);
-                shootDel = 60 * 5;
+                _shootDel = 60 * 5;
             }
 
         }
