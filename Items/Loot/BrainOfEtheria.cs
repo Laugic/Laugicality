@@ -24,7 +24,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.etherialBrain = true;
+            modPlayer.EtherialBrain = true;
         }
         /*
         public override void AddRecipes()

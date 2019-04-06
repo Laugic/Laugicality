@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.ModLoader;
-using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
@@ -20,7 +19,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).etherialScarfCooldown = true;
+			player.GetModPlayer<LaugicalityPlayer>(mod).EtherialScarfCooldown = true;
 		}
 	}
 }

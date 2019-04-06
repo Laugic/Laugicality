@@ -5,12 +5,8 @@ using Terraria.ModLoader;
 using System;
 using Laugicality.Etherial;
 using System.IO;
-using System.Threading;
-using Laugicality.UI;
 using Terraria.UI;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 
 namespace Laugicality

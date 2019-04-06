@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 
@@ -25,9 +24,9 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0)
+            if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
-                modPlayer.etherialDestroyer = true;
+                modPlayer.EtherialDestroyer = true;
             }
         }
         /*

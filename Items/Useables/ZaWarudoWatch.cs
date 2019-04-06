@@ -1,6 +1,5 @@
 using Laugicality.NPCs;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Useables

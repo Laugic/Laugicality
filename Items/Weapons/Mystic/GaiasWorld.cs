@@ -1,14 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader.IO;
-using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {

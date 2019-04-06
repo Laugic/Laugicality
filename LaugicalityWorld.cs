@@ -7,8 +7,6 @@ using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Terraria.GameContent.Generation;
 using Terraria.ModLoader.IO;
-using Laugicality.Structures;
-using Terraria.DataStructures;
 
 namespace Laugicality
 {

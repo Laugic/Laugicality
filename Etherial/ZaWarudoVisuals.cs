@@ -1,11 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Laugicality;
-using Laugicality.NPCs;
-using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;

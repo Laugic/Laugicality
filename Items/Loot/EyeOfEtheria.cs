@@ -23,7 +23,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.etherVision = true;
+            modPlayer.EtherVision = true;
         }
         
     }

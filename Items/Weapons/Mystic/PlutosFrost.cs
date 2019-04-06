@@ -1,14 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader.IO;
-using Laugicality;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -44,7 +37,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 modPlayer.mysticDamage += .25f;
                 modPlayer.globalAbsorbRate *= 1.5f;

@@ -1,12 +1,6 @@
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ObjectData;
-using Terraria.Enums;
-using Terraria.GameContent.Tile_Entities;
 
 namespace Laugicality.Tiles
 {

@@ -2,10 +2,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
 using Laugicality.NPCs;
 using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles
@@ -188,7 +186,7 @@ namespace Laugicality.Projectiles
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 116, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-                if (modPlayer.etherialFrost && rand == 0 && modPlayer.SoulStoneV)
+                if (modPlayer.EtherialFrost && rand == 0 && modPlayer.SoulStoneV)
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
@@ -288,15 +286,15 @@ namespace Laugicality.Projectiles
             {
                 target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
             }
-            if (modPlayer.etherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
+            if (modPlayer.EtherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
             {
                 target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
             }
-            if (modPlayer.etherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
+            if (modPlayer.EtherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
             {
                 target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
             }
-            if (modPlayer.etherCog && (LaugicalityWorld.downedEtheria || modPlayer.etherable > 0))
+            if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
             {
                 target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
             }

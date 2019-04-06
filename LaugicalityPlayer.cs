@@ -4,19 +4,11 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.GameContent;
-using Terraria.GameContent.UI;
 using Terraria.GameInput;
-using Terraria.Graphics.Capture;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Laugicality.Items.Accessories;
 using Laugicality.NPCs;
-using Laugicality.Items.Placeable;
 
 namespace Laugicality
 {
@@ -308,7 +300,7 @@ namespace Laugicality
 
             CheckBysmalPowers();
             PreAccessories();
-            if (LaugicalityWorld.downedEtheria || etherable > 0)
+            if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessories();
         }
         
@@ -510,7 +502,7 @@ namespace Laugicality
             {
                 player.maxRunSpeed *= 1.1f;
             }
-            if (LaugicalityWorld.downedEtheria || etherable > 0)
+            if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessoriesPost();
         }
 
@@ -708,11 +700,11 @@ namespace Laugicality
             {
                 target.AddBuff(mod.BuffType("Slimed"), (int)((120 + 60 * rand)), false);
             }
-            if (etherialFrost)
+            if (EtherialFrost)
             {
                 target.AddBuff(mod.BuffType("Frostbite"), (int)((12 * 60 + 60 * rand)), false);
             }
-            if (etherialPipes)
+            if (EtherialPipes)
             {
                 target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
             }
@@ -767,7 +759,7 @@ namespace Laugicality
             {
                 DrawEtherialEffect(out r, out g, out b);
             }
-            if(etherialTank)
+            if(EtherialTank)
             {
                 DrawEtherialTankSteam();
             }

@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Laugicality.Items;
-using Laugicality.Items.Weapons.Mystic;
 
 
 namespace Laugicality

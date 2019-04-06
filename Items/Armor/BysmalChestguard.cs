@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (modPlayer.etherable > 0 || LaugicalityWorld.downedEtheria)
+            if (modPlayer.Etherable > 0 || LaugicalityWorld.downedEtheria)
                 item.defense = 40;
             else
                 item.defense = 20;

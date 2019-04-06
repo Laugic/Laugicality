@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using System;
-using System.Collections.Generic;
 
 namespace Laugicality.Projectiles
 {

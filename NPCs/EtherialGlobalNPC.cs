@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -1157,9 +1153,9 @@ namespace Laugicality.NPCs
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                if (npc.type == NPCID.ScorpionBlack && Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).etherVision)
+                if (npc.type == NPCID.ScorpionBlack && Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).EtherVision)
                     return true;
-                if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).etherVision)
+                if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).EtherVision)
                     return base.CanChat(npc);
                 return false;
             }
@@ -1211,7 +1207,7 @@ namespace Laugicality.NPCs
                         else
                         {
                             npc.dontTakeDamage = true;
-                            return modPlayer.etherVision;
+                            return modPlayer.EtherVision;
                         }
                     }
                     else
@@ -1220,7 +1216,7 @@ namespace Laugicality.NPCs
                         if (LaugicalityWorld.downedEtheria)
                         {
                             npc.dontTakeDamage = true;
-                            return modPlayer.etherVision;
+                            return modPlayer.EtherVision;
                         }
                         else
                         {
@@ -1235,7 +1231,7 @@ namespace Laugicality.NPCs
                         npc.dontTakeDamageFromHostiles = true;
                     else
                         npc.dontTakeDamageFromHostiles = invin;
-                    if (modPlayer.etherVision == false)
+                    if (modPlayer.EtherVision == false)
                         return !LaugicalityWorld.downedEtheria;
                     else
                         return true;

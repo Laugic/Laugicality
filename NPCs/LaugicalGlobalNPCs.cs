@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.IO;
 
 namespace Laugicality.NPCs
 {
@@ -630,10 +628,10 @@ namespace Laugicality.NPCs
             }
             if(attacker != -1)
             {
-                if(Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).etherCog)
+                if(Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).EtherCog)
                 {
                     Main.player[attacker].AddBuff(mod.BuffType("Annihilation"), 10 * 60, false);
-                    Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).annihilationDamageBoost += .2f;
+                    Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).AnnihilationDamageBoost += .2f;
                 }
             }
             if (plays == 0)
