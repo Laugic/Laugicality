@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,8 +9,6 @@ namespace Laugicality.Tiles
 {
     public class HighPriestess : ModTile
     {
-        private bool _updatedWorldInTick = false;
-
         public override void SetDefaults()
         {
             Main.tileSolidTop[Type] = false;
@@ -17,16 +16,16 @@ namespace Laugicality.Tiles
             Main.tileNoAttach[Type] = true;
             Main.tileTable[Type] = true;
             Main.tileLavaDeath[Type] = true;
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
+
             name.SetDefault("High Priestess");
             AddMapEntry(new Color(0, 150, 150), name);
             disableSmartCursor = true;
             dustType = mod.DustType("Etherial");
         }
-
-        
 
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
@@ -44,17 +43,8 @@ namespace Laugicality.Tiles
             }
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            _updatedWorldInTick = false;
-
-            return base.PreDraw(i, j, spriteBatch);
-        }
-
         public override void HitWire(int i, int j)
         {
-            if (_updatedWorldInTick) return;
-
             bool boss = false;
             Vector2 pos;
             pos.X = i * 16 - 24;
@@ -78,8 +68,6 @@ namespace Laugicality.Tiles
 
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
             }
-
-            _updatedWorldInTick = true;
         }
     }
 }
