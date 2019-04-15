@@ -21,11 +21,11 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             spawned = false;
 			projectile.width = 48;
 			projectile.height = 48;
-            projectile.timeLeft = 180;
+            projectile.timeLeft = 120;
             projectile.friendly = true;
             projectile.hostile = false;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            projectile.tileCollide = true;
         }
 
         public override void AI()

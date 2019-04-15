@@ -58,7 +58,7 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Slybertron");
             //Main.npcFrameCount[npc.type] = 2;
         }

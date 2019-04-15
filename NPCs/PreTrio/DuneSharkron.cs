@@ -23,7 +23,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Dune Sharkron");
         }
 

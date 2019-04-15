@@ -10,7 +10,7 @@ namespace Laugicality.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("True Day's Break");
+            DisplayName.SetDefault("True Sunrise");
             Tooltip.SetDefault("'Bring the sky'\nStriking enemies makes them emit True Sparks\nEnemies explode into True Sparks on death, spreading the Redemption.");
         }
 

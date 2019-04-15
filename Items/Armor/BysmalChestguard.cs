@@ -41,6 +41,8 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.setBonus = "Absorb the power of up to 3 Etherial creatures";
+            if(modPlayer.BysmalAbsorbDisabled)
+                player.setBonus += "\nLocked- Will not absorb any new bonuses";
             modPlayer.fullBysmal = 2;
 
             for (int i = 0; i < modPlayer.BysmalPowers.Count; i++)

@@ -57,7 +57,7 @@ namespace Laugicality.NPCs
             dmg2 = npc.damage;
             damageMult = npc.takenDamageMultiplier;
 
-            if (LaugicalityVars.znpCs.Contains(npc.type))
+            if (LaugicalityVars.ZNPCs.Contains(npc.type))
             {
                 zImmune = true;
             }
@@ -113,28 +113,28 @@ namespace Laugicality.NPCs
                     pool.Add(mod.NPCType("ObsidiumSkull"), 0.10f * spawnMod);
                     //pool.Add(mod.NPCType("ObsidiumDriller"), 0.05f * spawnMod);
                     pool.Add(NPCID.Skeleton, 0.25f * spawnMod);
-                    pool.Add(NPCID.BlackSlime, 0.15f * spawnMod);
-                    pool.Add(NPCID.MotherSlime, 0.15f * spawnMod);
-                    //pool.Add(mod.NPCType("MoltenSlime"), 0.45f);
+                    pool.Add(NPCID.BlackSlime, 0.2f * spawnMod);
+                    pool.Add(NPCID.MotherSlime, 0.2f * spawnMod);
+                    pool.Add(NPCID.Hellbat, 0.2f * spawnMod);
 
                     if (LaugicalityWorld.downedRagnar)
                     {
-                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.30f * spawnMod);
+                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.05f * spawnMod);
                         //pool.Add(mod.NPCType("MagmaCaster"), 0.30f * spawnMod);
                     }
                 }
                 else
                 {
-                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.15f * spawnMod);
+                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.05f * spawnMod);
                     //pool.Add(mod.NPCType("MoltenSlime"), 0.2f * spawnMod);
-                    pool.Add(mod.NPCType("MoltiochHead"), 0.05f * spawnMod);
-                    pool.Add(mod.NPCType("MoltenSoul"), 0.05f * spawnMod);
+                    pool.Add(mod.NPCType("MoltiochHead"), 0.015f * spawnMod);
+                    pool.Add(mod.NPCType("MoltenSoul"), 0.015f * spawnMod);
                     pool.Add(NPCID.SkeletonArcher, 0.25f * spawnMod);
                     pool.Add(NPCID.GiantBat, 0.25f * spawnMod);
                     pool.Add(NPCID.RedDevil, 0.25f * spawnMod);
                     if (LaugicalityWorld.downedRagnar)
                     {
-                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.05f * spawnMod);
+                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.015f * spawnMod);
                         //pool.Add(mod.NPCType("MagmaCaster"), 0.20f * spawnMod);
                         pool.Add(mod.NPCType("LavaTitan"), 0.01f * spawnMod);
                     }

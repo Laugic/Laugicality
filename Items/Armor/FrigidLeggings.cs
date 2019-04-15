@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Immunity to Frostburn, Chilled, and Frozen \n+10% Movement Speed");
+			Tooltip.SetDefault("Immunity to Frostburn, Chilled, and Frozen\n+10% Movement Speed");
 		}
 
 		public override void SetDefaults()
@@ -27,13 +27,11 @@ namespace Laugicality.Items.Armor
             player.buffImmune[46] = true;
             player.buffImmune[47] = true;
         }
-        
 
 		public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "ChilledBar", 14);
-            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

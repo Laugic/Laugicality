@@ -22,9 +22,11 @@ namespace Laugicality.Projectiles
         public float yTemp = 0;
         public bool zImmune = false;
         public bool frozen = false;
+        bool _justSpawned = false;
 
         public override void SetDefaults(Projectile projectile)
         {
+            _justSpawned = false;
             frozen = false;
             zImmune = false;
             ai = projectile.aiStyle;
@@ -104,7 +106,7 @@ namespace Laugicality.Projectiles
         {
             if (eDmg == 0)
                 eDmg = projectile.damage;
-
+            
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 
@@ -150,6 +152,11 @@ namespace Laugicality.Projectiles
                         }
                     }
                 }
+            }
+            if (!_justSpawned)
+            {
+                EtherialSpawn(projectile);
+                _justSpawned = true;
             }
 
             if (projectile.type == ProjectileID.StardustGuardian || projectile.type == ProjectileID.StardustGuardianExplosion)
@@ -244,6 +251,15 @@ namespace Laugicality.Projectiles
             }
         }
         
+        private void EtherialSpawn(Projectile projectile)
+        {
+            if(LaugicalityWorld.downedEtheria)
+            {
+                if (projectile.type == ProjectileID.Cthulunado)
+                    projectile.timeLeft *= 2;
+            }
+        }
+
 
         public override bool InstancePerEntity
         {
@@ -317,7 +333,14 @@ namespace Laugicality.Projectiles
             }
         }
 
-
+        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        {
+            if(projectile.type == ProjectileID.PhantasmalDeathray && LaugicalityWorld.downedEtheria)
+            {
+                target.AddBuff(mod.BuffType("TrueCurse"), 5 * 60);
+            }
+            base.OnHitPlayer(projectile, target, damage, crit);
+        }
 
         public void Explode(Vector2 center, float range, int damage)
         {

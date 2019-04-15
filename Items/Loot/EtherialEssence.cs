@@ -31,6 +31,5 @@ namespace Laugicality.Items.Loot
             recipe.SetResult(ItemID.TruffleWorm);
             recipe.AddRecipe();
         }
-        
     }
 }

@@ -7,8 +7,8 @@ namespace Laugicality.Items.Loot
 
         public override void SetDefaults()
         {
-            item.width = 22;
-            item.height = 22;
+            item.width = 16;
+            item.height = 16;
             item.maxStack = 99;
             item.useTurn = true;
             item.autoReuse = true;

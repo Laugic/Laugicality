@@ -36,7 +36,7 @@ namespace Laugicality.NPCs.SteamTrain
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Steam Train");
         }
 

@@ -9,7 +9,7 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Antarctica");
-            Tooltip.SetDefault("'A blizzard hails from above'\nWhen in the Etherial after defeating Etheria, deal more damage while stuck in enemies,\nand stay stuck in enemies for twice as long.");
+            Tooltip.SetDefault("'A blizzard hails from above'\nWhen in the Etherial after defeating Etheria, rain down more Hail,\nand stay stuck in enemies for twice as long.");
         }
         public override void SetDefaults()
         {
@@ -18,8 +18,8 @@ namespace Laugicality.Items.Weapons.Thrown
             item.noMelee = true;
             item.width = 12;
             item.height = 12;
-            item.useTime = 45;
-            item.useAnimation = 45;
+            item.useTime = 35;
+            item.useAnimation = 35;
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;

@@ -24,7 +24,7 @@ namespace Laugicality.Projectiles
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Loki Spiral");
+            DisplayName.SetDefault("Warlock Spiral");
         }
         public override void SetDefaults()
         {
@@ -36,8 +36,6 @@ namespace Laugicality.Projectiles
             power = 0;
             stopped = false;
             spawned = false;
-            //mystDmg = (float)projectile.damage;
-            //mystDur = 1f + projectile.knockBack;
             projectile.width = 24;
             projectile.height = 24;
             projectile.penetrate = -1;

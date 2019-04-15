@@ -60,8 +60,8 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
-            LaugicalityVars.znpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.ZNPCs.Add(npc.type);
             DisplayName.SetDefault("AnDio");
         }
 

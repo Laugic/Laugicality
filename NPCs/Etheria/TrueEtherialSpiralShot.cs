@@ -15,7 +15,7 @@ namespace Laugicality.NPCs.Etheria
         public bool bitherial = true;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("True Etherial Pulse");
         }
         public override void SetDefaults()

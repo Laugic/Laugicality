@@ -7,7 +7,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Throwing Damage and Velocity");
+            Tooltip.SetDefault("+33% Mystic Duration\n+10% Overflow Damage");
         }
 
         public override void SetDefaults()
@@ -21,16 +21,16 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.thrownDamage += .1f;
-            player.thrownVelocity += .1f;
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            modPlayer.MysticDuration += .25f;
+            modPlayer.OverflowDamage += .1f;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(3, 25);
-            recipe.AddIngredient(207, 2);
             recipe.AddIngredient(null, "DarkShard", 1);
+            recipe.AddIngredient(null, "ObsidiumBar", 10);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

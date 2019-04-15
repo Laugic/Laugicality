@@ -24,6 +24,7 @@ namespace Laugicality.Projectiles
         int index = 0;
         float vMag = 0;
         int shootDelay = 0;
+        int mouthOpen = 0;
         public override void SetDefaults()
         {
             justSpawned = false;
@@ -39,6 +40,7 @@ namespace Laugicality.Projectiles
             projectile.tileCollide = false;
             projectile.timeLeft *= 5;
             projectile.minion = true;
+            Main.projFrames[projectile.type] = 2;
         }
 
         private void CheckActive()
@@ -83,6 +85,7 @@ namespace Laugicality.Projectiles
             if(npcTarget != -1)
                 Shoot();
             GetDirection();
+            GetFrame();
         }
 
         private void GetTarget()
@@ -99,7 +102,7 @@ namespace Laugicality.Projectiles
                     if (Main.player[projectile.owner].Distance(npc.Center) <= range && projectile.Distance(npc.Center) < npcDistance)
                     {
                         npcTarget = npc.whoAmI;
-                        targetPos = npc.Center;
+                        //targetPos = npc.Center;
                         npcDistance = projectile.Distance(npc.Center);
                     }
                 }
@@ -143,9 +146,9 @@ namespace Laugicality.Projectiles
 
                 projectile.velocity.X = (projectile.velocity.X * 20f + diffX) / 21f;
                 projectile.velocity.Y = (projectile.velocity.Y * 20f + diffY) / 21f;
-                if (Math.Abs(projectile.velocity.X) <= .1f && Math.Abs(diffX) <= .1f)
+                if (Math.Abs(projectile.velocity.X) <= .2f && Math.Abs(diffX) <= .2f)
                     projectile.velocity.X = 0;
-                if (Math.Abs(projectile.velocity.Y) <= .1f && Math.Abs(diffY) <= .1f)
+                if (Math.Abs(projectile.velocity.Y) <= .2f && Math.Abs(diffY) <= .2f)
                     projectile.velocity.Y = 0;
             }
             else if (Main.myPlayer == projectile.owner && delay > 10 && npcDistance == 8000)
@@ -177,7 +180,18 @@ namespace Laugicality.Projectiles
         private void GetDust()
         {
             if (Main.rand.Next(8) == 0)
-                Dust.NewDust(projectile.Center, 0, 0, mod.DustType("ArcticHydraSummon"));
+                Dust.NewDust(projectile.Center, 0, 0, mod.DustType("ArcticHydra"));
+        }
+
+        private void GetFrame()
+        {
+            if (mouthOpen > 0)
+            {
+                mouthOpen--;
+                projectile.frame = 1;
+            }
+            else
+                projectile.frame = 0;
         }
 
         private void Shoot()
@@ -190,17 +204,18 @@ namespace Laugicality.Projectiles
             {
                 mag = speed / mag;
             }
-            vector *= mag;
+            vector *= mag * 3;
             if (shootDelay >= 60 && Main.myPlayer == projectile.owner && npcDistance != 8000 && npcTarget != -1)
             {
                 shootDelay = 0;
+                mouthOpen = 30;
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, vector.X, vector.Y, mod.ProjectileType("BysmalBlast2"), projectile.damage, 3f, projectile.owner);
             }
         }
 
         private void GetDirection()
         {
-            if (npcDistance == 8000)
+            //if (npcDistance == 8000)
             {
                 if (Main.player[projectile.owner].velocity.X > 0f)
                 {
@@ -211,7 +226,7 @@ namespace Laugicality.Projectiles
                     projectile.spriteDirection = 1;
                 }
             }
-            else
+            /*else
             {
                 if (projectile.velocity.X > 0f)
                 {
@@ -221,7 +236,7 @@ namespace Laugicality.Projectiles
                 {
                     projectile.spriteDirection = 1;
                 }
-            }
+            }*/
         }
     }
 }

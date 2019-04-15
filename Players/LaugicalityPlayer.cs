@@ -50,6 +50,8 @@ namespace Laugicality
         bool _boosted = false;
         float _ringBoost;
         float _fanBoost;
+        public float SnowDamage { get; set; } = 1f;
+        public bool BysmalAbsorbDisabled { get; set; } = false;
 
         //Music
         public bool zoneObsidium;
@@ -64,6 +66,7 @@ namespace Laugicality
         public override void SetupStartInventory(IList<Item> items)
         {
             MysticBurstDisabled = false;
+            BysmalAbsorbDisabled = false;
             inf = true;
             calm = true;
             ww = true;
@@ -164,6 +167,7 @@ namespace Laugicality
             if (!player.extraAccessory && !etherialSlot)
                 player.extraAccessorySlots = 0;
 
+            SnowDamage = 1f;
             ResetEtherial();
 
         }
@@ -484,6 +488,13 @@ namespace Laugicality
                 GetEtherialAccessoriesPost();
         }
 
+        public override void GetWeaponDamage(Item item, ref int damage)
+        {
+            if (item.ammo == AmmoID.Snowball)
+                damage = (int)((float)damage * SnowDamage);
+            base.GetWeaponDamage(item, ref damage);
+        }
+
         public override TagCompound Save()
         {
             return new TagCompound {
@@ -506,6 +517,7 @@ namespace Laugicality
                 {"VisMaxPermaBoost", VisMaxPermaBoost},
                 {"MundusMaxPermaBoost", MundusMaxPermaBoost},
                 {"MysticBurstDisabled", MysticBurstDisabled},
+                {"BysmalAbsorbDisabled", BysmalAbsorbDisabled},
             };
         }
 
@@ -537,6 +549,7 @@ namespace Laugicality
             VisMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
             MundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
             MysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
+            BysmalAbsorbDisabled = tag.GetBool("BysmalAbsorbDisabled");
             BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
         }
         

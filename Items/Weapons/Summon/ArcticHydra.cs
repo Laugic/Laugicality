@@ -31,7 +31,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType("ArcticHydraHead");
             item.shootSpeed = 0;
-            item.buffType = mod.BuffType("ArcticHydraSummon");
+            item.buffType = mod.BuffType("ArcticHydra");
             item.buffTime = 60;
         }
 

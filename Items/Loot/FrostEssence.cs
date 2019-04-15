@@ -7,13 +7,13 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Unleashes Ice Shards when struck. +8% Melee and Ranged crit");
+            Tooltip.SetDefault("Attacks inflict 'Frostburn'\n+25% Snowball Damage");
         }
 
         public override void SetDefaults()
         {
-            item.width = 24;
-            item.height = 24;
+            item.width = 16;
+            item.height = 16;
             item.value = 100;
             item.rare = 2;
             item.accessory = true;
@@ -22,19 +22,9 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.Frigid = true;
-            player.meleeCrit += 8;
-            player.rangedCrit += 8;
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            modPlayer.Frost = true;
+            modPlayer.SnowDamage += .25f;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(2328, 4);
-            recipe.AddTile(null, "AlchemicalInfuser");
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
     }
 }

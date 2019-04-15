@@ -148,6 +148,9 @@
     <Compile Include="Items\Placeable\ZincBrick.cs" />
     <Compile Include="Items\Placeable\ZincBrickWall.cs" />
     <Compile Include="Items\Placeable\ZincOre.cs" />
+    <Compile Include="Items\Useables\BysmalKey.cs" />
+    <Compile Include="Items\Weapons\Thrown\Antarctica.cs" />
+    <Compile Include="NPCs\Etherial\BossFights\EtherialEoC.cs" />
     <Compile Include="Players\LaugicalityPlayer.Etherial.cs" />
     <Compile Include="Etherial\EtherialVisuals.cs" />
     <Compile Include="Etherial\ZaWarudoVisuals.cs" />
@@ -573,7 +576,7 @@
     <Compile Include="LaugicalityWorld.cs" />
     <Compile Include="Mounts\Etheramind.cs" />
     <Compile Include="Mounts\SteamTrain.cs" />
-    <Compile Include="MysticItem.cs" />
+    <Compile Include="Items\MysticItem.cs" />
     <Compile Include="Players\LaugicalityPlayer.Mystic.cs" />
     <Compile Include="NPCs\Bosses\MechanicalCrawler.cs" />
     <Compile Include="NPCs\Bosses\MechanicalMimic.cs" />
@@ -717,6 +720,7 @@
     <Compile Include="Projectiles\BysmalDrill.cs" />
     <Compile Include="Projectiles\BysmalRipper.cs" />
     <Compile Include="Projectiles\BysmalRipperShadow.cs" />
+    <Compile Include="Projectiles\BysmalWand.cs" />
     <Compile Include="Projectiles\CoginatorConductor.cs" />
     <Compile Include="Projectiles\CoginatorP.cs" />
     <Compile Include="Projectiles\ConductorProjectile.cs" />
@@ -745,6 +749,7 @@
     <Compile Include="Projectiles\GearIO.cs" />
     <Compile Include="Projectiles\GearIO2.cs" />
     <Compile Include="Projectiles\GoldenSword.cs" />
+    <Compile Include="Projectiles\Hail.cs" />
     <Compile Include="Projectiles\HolyBlade.cs" />
     <Compile Include="Projectiles\HolyOrigin.cs" />
     <Compile Include="Projectiles\HolyStrike.cs" />

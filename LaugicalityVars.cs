@@ -39,10 +39,10 @@ namespace Laugicality
         }
         /* -------------- Etherial NPCs and Projectiles -------------- */
 
-        public static readonly HashSet<int> enpCs =
+        public static readonly HashSet<int> ENPCs =
             new HashSet<int>
             {
-                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114,  125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 456, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, _mod.NPCType("TitanBlast"), _mod.NPCType("LaserBall"), _mod.NPCType("AnDioLaserBall"), NPCID.Golem, 
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114,  125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, _mod.NPCType("TitanBlast"), _mod.NPCType("LaserBall"), _mod.NPCType("AnDioLaserBall"), NPCID.Golem, 
             };
 
         public static readonly HashSet<int> eProjectiles =
@@ -72,7 +72,7 @@ namespace Laugicality
             };
 
         //Bosses that are immune to time stop
-        public static readonly HashSet<int> znpCs =
+        public static readonly HashSet<int> ZNPCs =
             new HashSet<int>
             {
                 _mod.NPCType("LaserBall"), _mod.NPCType("AnDioLaserBall"),

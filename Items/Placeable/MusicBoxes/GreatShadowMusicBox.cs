@@ -6,7 +6,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Music Box (Great Shadow)");
+            DisplayName.SetDefault("Music Box (Surface Obsidium)");
             Tooltip.SetDefault("");
         }
 

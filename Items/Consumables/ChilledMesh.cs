@@ -41,10 +41,18 @@ namespace Laugicality.Items.Consumables
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SnowBlock, 25);
             recipe.AddIngredient(ItemID.IceBlock, 25);
-            recipe.AddIngredient(null, "ChilledBar", 8);
+            recipe.AddIngredient(ItemID.DemoniteBar, 12);
             recipe.AddTile(26);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
+
+            ModRecipe arecipe = new ModRecipe(mod);
+            arecipe.AddIngredient(ItemID.SnowBlock, 25);
+            arecipe.AddIngredient(ItemID.IceBlock, 25);
+            arecipe.AddIngredient(ItemID.CrimtaneBar, 12);
+            arecipe.AddTile(26);
+            arecipe.SetResult(this);
+            arecipe.AddRecipe();
         }
 	}
 }

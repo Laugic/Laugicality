@@ -84,6 +84,17 @@ namespace Laugicality
             VisUseRate = 1;
             MundusUseRate = 1;
             GlobalPotentiaUseRate = 1;
+
+            if (SporeShard > 0)
+                SporeShard -= 1;
+
+            LuxRegen = 0;
+            VisRegen = 0;
+            MundusRegen = 0;
+
+            LuxUnuseRegen = .01f;
+            VisUnuseRegen = .01f;
+            MundusUnuseRegen = .01f;
         }
 
         public override void PreUpdateBuffs()
@@ -91,6 +102,23 @@ namespace Laugicality
             LuxMax = 100;
             VisMax = 100;
             MundusMax = 100;
+        }
+
+        private void PotentiaRegen()
+        {
+            if (Lux + LuxRegen <= LuxMax + LuxMaxPermaBoost)
+                Lux += LuxRegen;
+            if (Vis + VisRegen <= VisMax + VisMaxPermaBoost)
+                Vis += VisRegen;
+            if (Mundus + MundusRegen <= MundusMax + MundusMaxPermaBoost)
+                Mundus += MundusRegen;
+
+            if (Lux + LuxUnuseRegen <= LuxMax + LuxMaxPermaBoost && MysticMode != 1)
+                Lux += LuxUnuseRegen;
+            if (Vis + VisUnuseRegen <= VisMax + VisMaxPermaBoost && MysticMode != 2)
+                Vis += VisUnuseRegen;
+            if (Mundus + MundusUnuseRegen <= MundusMax + MundusMaxPermaBoost && MysticMode != 3)
+                Mundus += MundusUnuseRegen;
         }
 
         public void MysticSwitch()
@@ -190,6 +218,8 @@ namespace Laugicality
 
         private void PostUpdateMysticBuffs()
         {
+            PotentiaRegen();
+
             if (AndioChestplate)
             {
                 if (Lux < (LuxMax + LuxMaxPermaBoost))
@@ -227,6 +257,18 @@ namespace Laugicality
         public int MysticHold { get; set; } = 0;
 
         public int UsingMysticItem { get; set; } = 0;
+
+        public float LuxRegen { get; set; } = 0;
+
+        public float VisRegen { get; set; } = 0;
+
+        public float MundusRegen { get; set; } = 0;
+
+        public float LuxUnuseRegen { get; set; } = .01f;
+
+        public float VisUnuseRegen { get; set; } = .01f;
+
+        public float MundusUnuseRegen { get; set; } = .01f;
 
         #endregion
 

@@ -16,7 +16,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Charger");
             //Main.npcFrameCount[npc.type] = 2;
         }

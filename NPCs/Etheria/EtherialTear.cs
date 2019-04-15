@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.Etheria
         public float vMag = 0f;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Etherial Tear");
         }
 

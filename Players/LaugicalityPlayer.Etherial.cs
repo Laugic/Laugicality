@@ -386,7 +386,7 @@ namespace Laugicality
                 }
             }
         }
-
+        
         // TODO Change this to BysmalPower class.
         public List<int> BysmalPowers { get; internal set; } = new List<int>();
 

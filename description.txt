@@ -5,7 +5,7 @@ A new class- The Mystic Class!
 A new dimension- The Etherial
 8 Boss fights
 A new level-up system in the form of the Soul Stone
-Over 350 new Items, including a new way to use Potions
+Over 420 new Items, including a new way to use Potions
 A new biome- The Obsidium
 7 and 1/3 new Armor sets
 And lots more planned features!
@@ -14,6 +14,3 @@ v0.13
 The Etherial Update
 All boss fights have unique attack patterns in the Etherial
 All Etherial drops now are beneficial to all classes and encourage different playstyles
-
-
-ATTENTION: There is a conflict between Enigma and Pinkysmod that causes worlds to not load. If you are experiencing an error that says something along the lines of "Backup failed to load", it is most likely because you have pinkysmod on. We have no idea what could be causing it, and pinkysmod seems to conflict with other mods as well, so we're fairly sure it's either on pinky's side or a bug with tModLoader, so there's not much we can do. Sorry for the inconvenience!

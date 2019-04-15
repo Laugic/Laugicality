@@ -35,6 +35,7 @@ namespace Laugicality.Items.Loot
         {
             player.QuickSpawnItem(mod.ItemType("FrostShard"), Main.rand.Next(2,4));
             player.QuickSpawnItem(mod.ItemType("FrostEssence"), 1);
+            player.QuickSpawnItem(mod.ItemType("ChilledBar"), Main.rand.Next(22, 36));
             int ran = Main.rand.Next(1, 7);
             if (ran == 1) player.QuickSpawnItem(ItemID.IceBoomerang, 1);
             if (ran == 2) player.QuickSpawnItem(ItemID.IceBlade, 1);
@@ -47,6 +48,7 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
             player.QuickSpawnItem(ItemID.SnowBlock, Main.rand.Next(40, 75));
             player.QuickSpawnItem(ItemID.IceBlock, Main.rand.Next(40, 75));
+
         }
         
     }

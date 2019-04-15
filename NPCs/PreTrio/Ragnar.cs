@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
             //Main.npcFrameCount[npc.type] = 2;
         }

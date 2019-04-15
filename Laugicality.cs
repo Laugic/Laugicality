@@ -176,7 +176,7 @@ namespace Laugicality
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron"), ItemType("SlybertronMusicBox"), TileType("SlybertronMusicBox"));
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ItemType("SteamTrainMusicBox"), TileType("SteamTrainMusicBox"));
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ItemType("EtheriaMusicBox"), TileType("EtheriaMusicBox"));
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/GreatShadow"), ItemType("GreatShadowMusicBox"), TileType("GreatShadowMusicBox"));
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ItemType("GreatShadowMusicBox"), TileType("GreatShadowMusicBox"));
 
 
                 mysticaUI = new LaugicalityUI();

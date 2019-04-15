@@ -23,6 +23,7 @@ namespace Laugicality.Projectiles
         int delay = 0;
         int range = 600;
         int origDmg = 150;
+        int counter = 0;
 
         public override void SetDefaults()
         {
@@ -62,6 +63,25 @@ namespace Laugicality.Projectiles
                 Seaking();
             else
                 Fall();
+            Hail();
+        }
+
+        private void Hail()
+        {
+            counter++;
+            if(stuck)
+            {
+                if (counter > 20 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && counter > 10))
+                {
+                    counter = 0;
+                    Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), mod.ProjectileType("Hail"), origDmg, 0, projectile.owner);
+                }
+            }
+            else if(counter > 10 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && counter > 5))
+            {
+                counter = 0;
+                Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), mod.ProjectileType("Hail"), origDmg, 0, projectile.owner);
+            }
         }
 
         private void Stuck()
@@ -81,66 +101,9 @@ namespace Laugicality.Projectiles
             projectile.knockBack = 8;
             projectile.damage = origDmg;
             projectile.tileCollide = true;
-            GetTarget();
-            MoveToTarget();
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2f;
-        }
-
-        private void MoveToTarget()
-        {
-            delay++;
-            if (Main.myPlayer == projectile.owner && delay > 10 && npcDistance != 8000)
-            {
-                float mag = 12f;
-
-                float diffX = targetPos.X - projectile.Center.X;
-                float diffY = targetPos.Y - projectile.Center.Y;
-                float dist = (float)Math.Sqrt((double)(diffX * diffX + diffY * diffY));
-                if (dist != 0)
-                    dist = mag / dist;
-                diffX *= dist;
-                diffY *= dist;
-
-                projectile.velocity.X = (projectile.velocity.X * 20f + diffX) / 21f;
-                projectile.velocity.Y = (projectile.velocity.Y * 20f + diffY) / 21f;
-                if (Math.Abs(projectile.velocity.X) <= .1f && Math.Abs(diffX) <= .1f)
-                    projectile.velocity.X = 0;
-                if (Math.Abs(projectile.velocity.Y) <= .1f && Math.Abs(diffY) <= .1f)
-                    projectile.velocity.Y = 0;
-            }
-            else if (Main.myPlayer == projectile.owner && delay > 10 && npcDistance == 8000)
-            {
-                projectile.velocity = projectile.DirectionTo(targetPos) * (projectile.Distance(targetPos) / 8);
-            }
-        }
-
-        private void GetTarget()
-        {
-            targetFound = false;
-            npcTarget = -1;
-            npcDistance = 8000;
-            foreach (NPC npc in Main.npc)
-            {
-                if (npc.damage > 0)
-                {
-                    Vector2 newMove = npc.Center - projectile.Center;
-                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                    if (Main.player[projectile.owner].Distance(npc.Center) <= range && projectile.Distance(npc.Center) < npcDistance)
-                    {
-                        npcTarget = npc.whoAmI;
-                        targetPos = npc.Center;
-                        npcDistance = projectile.Distance(npc.Center);
-                    }
-                }
-            }
-            if (npcTarget != -1)
-            {
-                if (!Main.npc[npcTarget].active)
-                {
-                    npcTarget = -1;
-                    npcDistance = 8000;
-                }
-            }
+            projectile.ai[0] += .01f;
+            projectile.velocity.Y += projectile.ai[0];
         }
         
         private void Fall()
@@ -149,6 +112,7 @@ namespace Laugicality.Projectiles
             projectile.velocity.Y += projectile.ai[0];
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2f;
         }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (!stuck)

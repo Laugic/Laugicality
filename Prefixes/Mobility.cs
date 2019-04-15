@@ -43,7 +43,7 @@ namespace Laugicality.Prefixes
 
         public override void Apply(Item item)
         {
-            item.GetGlobalItem<LaugicalityGlobalItem>().yeet = _power;
+            item.GetGlobalItem<LaugicalityGlobalItem>().Yeet = _power;
         }
 
         public override void ModifyValue(ref float valueMult)

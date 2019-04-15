@@ -43,21 +43,15 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nRegen the Potentia that you aren't actively using";
+            player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nIncreased regen for Potentia you aren't using.";
             modPlayer.MysticDamage += .12f;
             modPlayer.LuxMax += player.statManaMax2 / 3;
             modPlayer.VisMax += player.statManaMax2 / 3;
             modPlayer.MundusMax += player.statManaMax2 / 3;
 
-            if (modPlayer.MysticHold > 0)
-            {
-                if (modPlayer.Lux < modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost && modPlayer.MysticMode != 1)
-                    modPlayer.Lux += 1f / 20f;
-                if (modPlayer.Vis < modPlayer.VisMax + modPlayer.VisMaxPermaBoost && modPlayer.MysticMode != 2)
-                    modPlayer.Vis += 1f / 20f;
-                if (modPlayer.Mundus < modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost && modPlayer.MysticMode != 3)
-                    modPlayer.Mundus += 1f / 20f;
-            }
+            modPlayer.LuxUnuseRegen += .03f;
+            modPlayer.VisUnuseRegen += .03f;
+            modPlayer.MundusUnuseRegen += .03f;
         }
 
 		public override void AddRecipes()

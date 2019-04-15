@@ -8,7 +8,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("+7% Melee Speed and Range Crit Chance");
+			Tooltip.SetDefault("+10% Melee Speed and Range Crit Chance");
 		}
 
 		public override void SetDefaults()
@@ -22,15 +22,10 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.meleeSpeed += .07f;
-            player.rangedCrit += 7;
+            player.meleeSpeed += .1f;
+            player.rangedCrit += 10;
         }
-
-        public override void DrawHands(ref bool drawHands, ref bool drawArms)
-        {
-            drawHands = true;
-            drawArms = true;
-        }
+        
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

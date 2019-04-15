@@ -21,7 +21,7 @@ namespace Laugicality.Projectiles
 			projectile.width = 16;
 			projectile.height = 16;
 			//projectile.alpha = 255;
-            projectile.timeLeft = 180;
+            projectile.timeLeft = 100;
             projectile.friendly = true;
             projectile.hostile = false;
             projectile.ignoreWater = true;

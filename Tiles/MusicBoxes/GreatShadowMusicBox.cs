@@ -19,7 +19,7 @@ namespace Laugicality.Tiles.MusicBoxes
 			TileObjectData.addTile(Type);
 			disableSmartCursor = true;
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Great Shadow Music Box");
+			name.SetDefault("Surface Obsidium Music Box");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
 

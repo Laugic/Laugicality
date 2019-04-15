@@ -37,7 +37,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.enpCs.Add(npc.type);
+            LaugicalityVars.ENPCs.Add(npc.type);
             DisplayName.SetDefault("Hypothema");
         }
 
@@ -87,7 +87,7 @@ namespace Laugicality.NPCs.PreTrio
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             plays = numPlayers;
-            npc.lifeMax = 3000 + numPlayers * 800;
+            npc.lifeMax = 4000 + numPlayers * 800;
             npc.damage = 36;
             reload = 220;
             damage = 34;
@@ -359,6 +359,8 @@ namespace Laugicality.NPCs.PreTrio
                 }
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowBlock, Main.rand.Next(30, 60));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IceBlock, Main.rand.Next(30, 60));
+
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ChilledBar"), Main.rand.Next(16, 25));
             }
 
             if (Main.expertMode)

@@ -48,7 +48,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 targetPos = Main.player[npc.target].Center;
             }
             Movement();
-            npc.rotation = npc.ai[1] * (float)Math.Atan2(targetPos.Y - npc.Center.Y, targetPos.X - npc.Center.X);
+            npc.rotation = npc.ai[1] * -(float)(Math.PI / 2) + (float)(Math.PI / 2) + (float)Math.Atan2(targetPos.Y - npc.Center.Y, targetPos.X - npc.Center.X);
         }
 
         private void Movement()

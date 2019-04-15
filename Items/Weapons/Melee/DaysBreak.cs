@@ -10,7 +10,7 @@ namespace Laugicality.Items.Weapons.Melee
 	{
 		public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Day's Break");
+            DisplayName.SetDefault("Sunrise");
             Tooltip.SetDefault("'Bring the dawn'\nStriking enemies makes them emit sparks\nEnemies explode into sparks on death, spreading the dawn.");
 		}
 

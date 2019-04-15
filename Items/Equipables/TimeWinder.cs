@@ -8,7 +8,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Time Winder");
-            Tooltip.SetDefault("Greatly increased mobility while time is stopped");
+            Tooltip.SetDefault("+15% Increased Damage while time is stopped");
         }
 
         public override void SetDefaults()
@@ -25,9 +25,11 @@ namespace Laugicality.Items.Equipables
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(Laugicality.zaWarudo > 0)
             {
-                player.moveSpeed += 3f;
-                player.maxRunSpeed += 3f;
-                player.jumpSpeedBoost += 3f;
+                player.magicDamage += 0.15f;
+                player.meleeDamage += 0.15f;
+                player.rangedDamage += 0.15f;
+                player.thrownDamage += 0.15f;
+                player.minionDamage += 0.15f;
             }
         }
         public override void AddRecipes()

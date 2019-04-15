@@ -35,16 +35,17 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            player.setBonus = "Attacks inflict Frostburn.";
-            modPlayer.Frost = true;
-            
+            player.setBonus = "+4 Defense\n+25% Snowball Damage\nUnleash Ice Shards when struck.";
+            modPlayer.Frigid = true;
+            modPlayer.SnowDamage += .25f;
+            player.statDefense += 4;
+
         }
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "ChilledBar", 12);
-            recipe.AddIngredient(null, "FrostShard", 1);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
