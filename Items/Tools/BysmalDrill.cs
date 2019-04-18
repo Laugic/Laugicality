@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class BysmalDrill : ModItem
-	{
-		public override void SetStaticDefaults()
+    public class BysmalDrill : ModItem
+    {
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Drill-o-Tron 5000");
             Tooltip.SetDefault("'To the core.'");
-		}
+        }
 
         public override void SetDefaults()
         {
