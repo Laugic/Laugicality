@@ -50,6 +50,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Webmilio|AnyCPU'">
+    <OutputPath>bin\Debug Webmilio\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Webmilio|x86'">
+    <OutputPath>bin\x86\Debug Webmilio\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Backgrounds\ObsidiumBkgOld.cs" />
     <Compile Include="Buffs\Albus.cs" />
@@ -988,7 +994,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="Terraria">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+      <HintPath>bin\Debug\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -996,6 +1002,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"D:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+"D:\Program Files (x86)\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"
+exit 0
+)
+
+if "$(ConfigurationName)"=="Debug Webmilio" (
+"D:\\Steam\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"
+exit 0
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

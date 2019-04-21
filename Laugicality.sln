@@ -7,12 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laugicality", "Laugicality.
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Webmilio|Any CPU = Debug Webmilio|Any CPU
+		Debug Webmilio|x86 = Debug Webmilio|x86
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug Webmilio|Any CPU.ActiveCfg = Debug Webmilio|Any CPU
+		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug Webmilio|Any CPU.Build.0 = Debug Webmilio|Any CPU
+		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug Webmilio|x86.ActiveCfg = Debug Webmilio|x86
+		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug Webmilio|x86.Build.0 = Debug Webmilio|x86
 		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8298EAB6-0586-4BDA-9483-83624B66B13A}.Debug|x86.ActiveCfg = Debug|x86
