@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class TheSnowflake : ModItem
+    public class TheSnowflake : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 100000;
-            item.rare = 1;   
+            item.rare = ItemRarityID.Blue;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
             item.shoot = mod.ProjectileType("TheSnowflake"); 

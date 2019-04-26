@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-    public class WingClip : ModBuff
+    public class WingClip : LaugicalityBuff
     {
         public override void SetDefaults()
         {

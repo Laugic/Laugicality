@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class SandyShark : ModBuff
+	public class SandyShark : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

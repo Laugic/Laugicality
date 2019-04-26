@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class SteamTrainTreasureBag : ModItem
+    public class SteamTrainTreasureBag : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,9 +19,9 @@ namespace Laugicality.Items.Loot
             item.useTime = 45;
             item.useStyle = 1;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("SteamTrain");
+            bossBagNPC = mod.NPCType<NPCs.SteamTrain.SteamTrain>();
         }
 
         public override bool CanRightClick()
@@ -31,10 +32,11 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("SteamBar"), Main.rand.Next(20, 35));
-            player.QuickSpawnItem(mod.ItemType("SoulOfWrought"), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(mod.ItemType("SteamTank"), 1);
-            player.QuickSpawnItem(499, Main.rand.Next(10, 15));
+            player.QuickSpawnItem(mod.ItemType<SteamBar>(), Main.rand.Next(20, 35));
+            player.QuickSpawnItem(mod.ItemType<SoulOfWrought>(), Main.rand.Next(25, 40));
+            player.QuickSpawnItem(mod.ItemType<SteamTank>());
+
+            player.QuickSpawnItem(ItemID.GreaterHealingPotion, Main.rand.Next(10, 15));
         }
         
     }

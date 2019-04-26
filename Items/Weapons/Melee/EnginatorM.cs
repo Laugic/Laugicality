@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class EnginatorM : ModItem
+    public class EnginatorM : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +29,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.reuseDelay = 20;    //this is the item delay
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       //this make the item auto reuse
@@ -42,10 +44,10 @@ namespace Laugicality.Items.Weapons.Melee
         public override void AddRecipes()  //How to craft this item
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 16);
+            recipe.AddIngredient(mod, nameof(SteamBar), 16);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
-            recipe.AddIngredient(null, "Gear", 8);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(Gear), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

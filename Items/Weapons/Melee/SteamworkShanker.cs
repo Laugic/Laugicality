@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Laugicality.Items.Loot;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class SteamworkShanker : ModItem
+    public class SteamworkShanker : LaugicalityItem
     {
         public override void SetDefaults()
         {
@@ -18,7 +19,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = 10000;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.useTurn = true;
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Weapons.Melee
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 12);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
             recipe.AddIngredient(ItemID.Cog, 25);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

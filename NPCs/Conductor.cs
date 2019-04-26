@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,7 +49,7 @@ namespace Laugicality.NPCs
 			int num = npc.life > 0 ? 1 : 5;
 			for (int k = 0; k < num; k++)
 			{
-				Dust.NewDust(npc.position, npc.width, npc.height, mod.DustType("Steam"));
+				Dust.NewDust(npc.position, npc.width, npc.height, mod.DustType<Steam>());
 			}
 		}
 

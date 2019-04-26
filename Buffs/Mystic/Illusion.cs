@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs.Mystic
 {
-	public class Illusion : ModBuff
+	public class Illusion : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

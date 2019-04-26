@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-    public class ArcticHydra : ModItem
+    public class ArcticHydra : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 3;
             item.value = Item.buyPrice(0, 25, 0, 0);
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType("ArcticHydraHead");
             item.shootSpeed = 0;
@@ -51,7 +52,7 @@ namespace Laugicality.Items.Weapons.Summon
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 14);
-            recipe.AddIngredient(null, "EtherialEssence", 6);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 6);
             recipe.AddIngredient(ItemID.StaffoftheFrostHydra);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

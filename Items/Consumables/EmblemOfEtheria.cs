@@ -1,34 +1,39 @@
-﻿using Terraria;
+﻿using Laugicality.Items.Loot;
+using Laugicality.NPCs.Etheria;
+using Laugicality.Projectiles;
+using Laugicality.Projectiles.BossSummons;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
 namespace Laugicality.Items.Consumables
 {
-	public class EmblemOfEtheria : ModItem
+	public class EmblemOfEtheria : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Emblem of Etheria");
             Tooltip.SetDefault("Calls Etheria\n\'This seems like a terrible idea.\'");
         }
+
         public override void SetDefaults()
 		{
 			item.width = 32;
 			item.height = 32;
 			item.maxStack = 20;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.useAnimation = 45;
 			item.useTime = 45;
-			item.useStyle = 4;
+			item.useStyle = ItemUseStyleID.HoldingUp;
 			item.UseSound = SoundID.Item44;
 			item.consumable = true;
-			item.shoot = mod.ProjectileType("Nothing");
+			item.shoot = mod.ProjectileType<Nothing>();
 		}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("GeneralBossSpawn"), mod.NPCType("Etheria"), knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType<GeneralBossSpawn>(), mod.NPCType<Etheria>(), knockBack, player.whoAmI);
             return false;
         }
 
@@ -36,7 +41,7 @@ namespace Laugicality.Items.Consumables
         {
             if (Main.dayTime && !LaugicalityWorld.downedEtheria)
                 return false;
-            else if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
+            else if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
                 return false;
             return true;
         }
@@ -51,7 +56,7 @@ namespace Laugicality.Items.Consumables
 			recipe.AddRecipe();
 
             ModRecipe arecipe = new ModRecipe(mod);
-            arecipe.AddIngredient(null, "EtherialEssence", 15);
+            arecipe.AddIngredient(mod, nameof(EtherialEssence), 15);
             arecipe.AddTile(TileID.DemonAltar);
             arecipe.SetResult(this);
             arecipe.AddRecipe();

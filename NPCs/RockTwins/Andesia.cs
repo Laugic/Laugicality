@@ -163,7 +163,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.active = false;
 
             //Movement if only Andesia
-            if (NPC.CountNPCS(mod.NPCType("Dioritus")) == 0)
+            if (NPC.CountNPCS(mod.NPCType<Dioritus>()) == 0)
             {
                 //Checking which direction to move when spawned
                 if (dir == 0)
@@ -448,9 +448,9 @@ namespace Laugicality.NPCs.RockTwins
         public override bool CheckDead()
         {
             LaugicalityWorld.downedAndesia = true;
-            if (NPC.CountNPCS(mod.NPCType("Dioritus")) == 0 && NPC.CountNPCS(mod.NPCType("AnDio2")) == 0 && Main.netMode != 1)
+            if (NPC.CountNPCS(mod.NPCType<Dioritus>()) == 0 && NPC.CountNPCS(mod.NPCType("AnDio2")) == 0 && Main.netMode != 1)
             {
-                NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType("Dioritus"));
+                NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType<Dioritus>());
             }
             else
             {

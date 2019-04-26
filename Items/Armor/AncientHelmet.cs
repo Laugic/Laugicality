@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Laugicality.Items.Armor
 {
     [AutoloadEquip(EquipType.Head)]
-    public class AncientHelmet : ModItem
+    public class AncientHelmet : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +17,7 @@ namespace Laugicality.Items.Armor
             item.width = 34;
             item.height = 22;
             item.value = 10000;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.defense = 3;
         }
 

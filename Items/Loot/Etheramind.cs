@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
     [AutoloadEquip(EquipType.Wings)]
-    public class Etheramind : ModItem
+    public class Etheramind : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,14 +18,14 @@ namespace Laugicality.Items.Loot
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.expert = true;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
                 player.wingTimeMax = 210;
         }
@@ -32,7 +33,7 @@ namespace Laugicality.Items.Loot
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
     ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
                 ascentWhenFalling = 0.85f;
@@ -45,7 +46,7 @@ namespace Laugicality.Items.Loot
 
         public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
                 speed = 15f;

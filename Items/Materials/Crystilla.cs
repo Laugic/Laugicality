@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-    public class Crystilla : ModItem
+    public class Crystilla : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

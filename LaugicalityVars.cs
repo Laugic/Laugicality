@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using Laugicality.NPCs.Bosses;
+using Laugicality.NPCs.PreTrio;
+using Laugicality.NPCs.Slybertron;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -54,7 +57,7 @@ namespace Laugicality
         public static readonly HashSet<int> eBosses =
             new HashSet<int>
             {
-                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, _mod.NPCType("Hypothema"), NPCID.QueenBee, _mod.NPCType("Ragnar"), NPCID.SkeletronHead, _mod.NPCType("AnDio3"), NPCID.TheDestroyer, NPCID.SkeletronPrime, _mod.NPCType("TheAnnihilator"), _mod.NPCType("Slybertron"), _mod.NPCType("SteamTrain"), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
+                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, _mod.NPCType<Hypothema>(), NPCID.QueenBee, _mod.NPCType<Ragnar>(), NPCID.SkeletronHead, _mod.NPCType("AnDio3"), NPCID.TheDestroyer, NPCID.SkeletronPrime, _mod.NPCType<TheAnnihilator>(), _mod.NPCType<Slybertron>(), _mod.NPCType<NPCs.SteamTrain.SteamTrain>(), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
         //Projectiles that are immune to time stop

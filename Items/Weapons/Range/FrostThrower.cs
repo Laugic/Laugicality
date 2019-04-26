@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-	public class FrostThrower : ModItem
+	public class FrostThrower : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.noMelee = true;
 			item.knockBack = 8;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item34;
 			item.autoReuse = true;
 			item.shootSpeed = 18f;
@@ -66,10 +67,10 @@ namespace Laugicality.Items.Weapons.Range
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "FrostCannon", 1);
-            recipe.AddIngredient(null, "SoulOfSought", 6);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 6);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddRecipeGroup("TitaniumBars", 8);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

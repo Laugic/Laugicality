@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class BloodRage : ModBuff
+	public class BloodRage : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

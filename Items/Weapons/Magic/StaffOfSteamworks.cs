@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-    public class StaffOfSteamworks : ModItem
+    public class StaffOfSteamworks : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.noMelee = true;
             item.knockBack = 8;
             item.value = 10000;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.UseSound = SoundID.Item34;
             item.autoReuse = true;
             item.shootSpeed = 14f;
@@ -65,7 +66,7 @@ namespace Laugicality.Items.Weapons.Magic
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 12);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
             recipe.AddIngredient(ItemID.Cog, 20);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

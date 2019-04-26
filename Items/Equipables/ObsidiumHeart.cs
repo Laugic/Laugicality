@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-	public class ObsidiumHeart : ModItem
+	public class ObsidiumHeart : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,10 +19,10 @@ namespace Laugicality.Items.Equipables
             item.buffType = mod.BuffType("ObsidiumHeart");
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.maxStack = 1;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.useAnimation = 45;
 			item.useTime = 45;
-			item.useStyle = 4;
+			item.useStyle = ItemUseStyleID.HoldingUp;
 			item.UseSound = SoundID.Item4;
 		}
         

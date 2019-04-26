@@ -1,8 +1,9 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-    public class NullEmblem : ModItem
+    public class NullEmblem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Materials
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.AddIngredient(null, "NullShard", 4);
             recipe.SetResult(this);
             recipe.AddRecipe();

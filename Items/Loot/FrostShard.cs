@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class FrostShard : ModItem
+    public class FrostShard : LaugicalityItem
     {
 
         public override void SetDefaults()

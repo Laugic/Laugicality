@@ -1,3 +1,4 @@
+using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,10 +26,10 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = true;
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("Nothing");
+			item.shoot = mod.ProjectileType<Nothing>();
 			item.shootSpeed = 6f;
 		}
 
@@ -76,7 +77,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 10;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             MundusCost = 4;
         }
 

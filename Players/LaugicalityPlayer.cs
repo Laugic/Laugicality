@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Extensions;
+using Laugicality.Focuses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,10 +11,11 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using Laugicality.NPCs;
+using Laugicality.SoulStones;
 
 namespace Laugicality
 {
-    public partial class LaugicalityPlayer : ModPlayer
+    public sealed partial class LaugicalityPlayer : ModPlayer
     {
         //Potion Gems
         public bool inf = true;
@@ -85,6 +88,7 @@ namespace Laugicality
         public override void ResetEffects()
         {
             MysticReset();
+            ResetSoulStoneEffects();
 
             if (fullBysmal > 0)
                 fullBysmal -= 1; 
@@ -650,6 +654,13 @@ namespace Laugicality
             }
         }
 
+        public override void UpdateLifeRegen()
+        {
+            base.UpdateLifeRegen();
+
+            UpdateSoulStoneLifeRegen();
+        }
+
 
         public override bool PreItemCheck()
         {
@@ -660,7 +671,7 @@ namespace Laugicality
         }
 
         /// <summary>
-        /// Refactor This to be short
+        /// TODO Refactor This to be short
         /// </summary>
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -712,24 +723,6 @@ namespace Laugicality
                         Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
                 }
             }
-        }
-
-        public bool EtherialCheck()
-        {
-            return etherial;
-        }
-
-        public void Explode(Vector2 center, float range, int damage)
-        {
-            foreach (NPC npc in Main.npc)
-            {
-                float dist = Vector2.Distance(center, npc.Center);
-                if (dist <= range && npc.dontTakeDamage == false)
-                {
-                    npc.life -= damage;
-                }
-            }
-
         }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -1116,6 +1109,7 @@ namespace Laugicality
         // TODO Change this to a class.
         #region Soul Stone
 
+        public Focus Focus => FocusManager.Instance.Vitality;
         public int Class { get; set; }
 
         public bool SoulStoneVisuals { get; set; } = true;

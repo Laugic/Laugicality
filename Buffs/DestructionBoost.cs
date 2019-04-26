@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class DestructionBoost : ModBuff
+	public class DestructionBoost : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

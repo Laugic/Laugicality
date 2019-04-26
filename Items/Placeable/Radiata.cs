@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class Radiata : ModItem
+    public class Radiata : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

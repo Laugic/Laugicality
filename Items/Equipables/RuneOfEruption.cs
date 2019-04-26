@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Equipables
 {
-    public class RuneOfEruption : ModItem
+    public class RuneOfEruption : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +19,7 @@ namespace Laugicality.Items.Equipables
             item.width = 22;
             item.height = 36;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 
@@ -32,8 +34,8 @@ namespace Laugicality.Items.Equipables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "RuneOfTheAncients", 1);
             recipe.AddIngredient(null, "Eruption", 1);
-            recipe.AddIngredient(null, "SoulOfHaught", 8);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

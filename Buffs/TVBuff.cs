@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class TVBuff : ModBuff
+	public class TVBuff : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

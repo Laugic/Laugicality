@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Laugicality.Items.Loot;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-    public class Blitzfrig : ModItem
+    public class Blitzfrig : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.noMelee = true;
             item.knockBack = 5;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item122;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("BlitzBolt1");
@@ -48,7 +49,7 @@ namespace Laugicality.Items.Weapons.Magic
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 16);
-            recipe.AddIngredient(null, "EtherialEssence", 8);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 8);
             recipe.AddIngredient(ItemID.BlizzardStaff);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

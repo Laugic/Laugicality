@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class ToyTrain : ModItem
+    public class ToyTrain : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{

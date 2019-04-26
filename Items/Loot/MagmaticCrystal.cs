@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class MagmaticCrystal : ModItem
+    public class MagmaticCrystal : LaugicalityItem
     {
 
         public override void SetDefaults()

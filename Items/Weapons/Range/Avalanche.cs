@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-    public class Avalanche : ModItem
+    public class Avalanche : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,7 +30,7 @@ namespace Laugicality.Items.Weapons.Range
             item.noMelee = true;
             item.knockBack = 8;
             item.value = 10000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item34;
             item.autoReuse = true;
             item.shootSpeed = 18f;
@@ -76,7 +77,7 @@ namespace Laugicality.Items.Weapons.Range
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "FrostThrower", 1);
             recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(null, "EtherialEssence", 5);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

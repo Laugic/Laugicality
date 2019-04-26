@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Loot
 {
-    public class EtherialDestructionCore : ModItem
+    public class EtherialDestructionCore : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,13 +18,13 @@ namespace Laugicality.Items.Loot
             item.width = 32;
             item.height = 32;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
                 modPlayer.EtherialDestroyer = true;
@@ -34,7 +35,7 @@ namespace Laugicality.Items.Loot
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "DestructionCore", 1);
-            recipe.AddIngredient(null, "EtherialEssence", 6);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 6);
             recipe.AddTile(null, "AncientEnchanter");
             recipe.SetResult(this);
             recipe.AddRecipe();

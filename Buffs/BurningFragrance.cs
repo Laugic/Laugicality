@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class BurningFragrance : ModBuff
+	public class BurningFragrance : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

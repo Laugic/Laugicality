@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs.Mystic
 {
-	public class Hermes : ModBuff
+	public class Hermes : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

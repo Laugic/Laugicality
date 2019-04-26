@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class EtherBones : ModBuff
+	public class EtherBones : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

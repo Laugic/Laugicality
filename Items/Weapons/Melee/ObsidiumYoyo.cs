@@ -1,4 +1,5 @@
 ﻿using System;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class ObsidiumYoyo : ModItem
+	public class ObsidiumYoyo : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
 			item.damage = 22;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 
 			item.melee = true;
 			item.channel = true;
@@ -45,7 +46,7 @@ namespace Laugicality.Items.Weapons.Melee
 		public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 10);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 10);
             recipe.AddIngredient(null, "DarkShard", 1);
             recipe.AddTile(16);
             recipe.SetResult(this);

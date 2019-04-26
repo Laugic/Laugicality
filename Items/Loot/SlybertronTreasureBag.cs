@@ -1,9 +1,11 @@
+using Laugicality.NPCs.Slybertron;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class SlybertronTreasureBag : ModItem
+    public class SlybertronTreasureBag : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,9 +20,9 @@ namespace Laugicality.Items.Loot
             item.useTime = 45;
             item.useStyle = 1;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("Slybertron");
+            bossBagNPC = mod.NPCType<Slybertron>();
         }
 
         public override bool CanRightClick()

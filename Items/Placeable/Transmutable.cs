@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class Transmutable : ModItem
+    public class Transmutable : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -40,56 +40,56 @@ namespace Laugicality.Items.Placeable
             //Copper to Tin
             ModRecipe CTrecipe = new ModRecipe(mod);
             CTrecipe.AddIngredient(ItemID.CopperOre, 3);
-            CTrecipe.AddTile(null, "Transmutable");
+            CTrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             CTrecipe.SetResult(ItemID.TinOre, 3);
             CTrecipe.AddRecipe();
 
             //Tin to Copper
             ModRecipe TCrecipe = new ModRecipe(mod);
             TCrecipe.AddIngredient(ItemID.TinOre, 3);
-            TCrecipe.AddTile(null, "Transmutable");
+            TCrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             TCrecipe.SetResult(ItemID.CopperOre, 3);
             TCrecipe.AddRecipe();
 
             //Iron to Lead
             ModRecipe ILrecipe = new ModRecipe(mod);
             ILrecipe.AddIngredient(ItemID.IronOre, 3);
-            ILrecipe.AddTile(null, "Transmutable");
+            ILrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             ILrecipe.SetResult(ItemID.LeadOre, 3);
             ILrecipe.AddRecipe();
 
             //Lead to Iron
             ModRecipe LIrecipe = new ModRecipe(mod);
             LIrecipe.AddIngredient(ItemID.LeadOre, 3);
-            LIrecipe.AddTile(null, "Transmutable");
+            LIrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             LIrecipe.SetResult(ItemID.IronOre, 3);
             LIrecipe.AddRecipe();
 
             //Silver to Tungsten
             ModRecipe STrecipe = new ModRecipe(mod);
             STrecipe.AddIngredient(ItemID.SilverOre, 4);
-            STrecipe.AddTile(null, "Transmutable");
+            STrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             STrecipe.SetResult(ItemID.TungstenOre, 4);
             STrecipe.AddRecipe();
 
             //Tungsten to Silver
             ModRecipe TSrecipe = new ModRecipe(mod);
             TSrecipe.AddIngredient(ItemID.TungstenOre, 4);
-            TSrecipe.AddTile(null, "Transmutable");
+            TSrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             TSrecipe.SetResult(ItemID.SilverOre, 4);
             TSrecipe.AddRecipe();
 
             //Gold to Platinum
             ModRecipe GPrecipe = new ModRecipe(mod);
             GPrecipe.AddIngredient(ItemID.GoldOre, 4);
-            GPrecipe.AddTile(null, "Transmutable");
+            GPrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             GPrecipe.SetResult(ItemID.PlatinumOre, 4);
             GPrecipe.AddRecipe();
 
             //Platinum to Gold
             ModRecipe PGrecipe = new ModRecipe(mod);
             PGrecipe.AddIngredient(ItemID.PlatinumOre, 4);
-            PGrecipe.AddTile(null, "Transmutable");
+            PGrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             PGrecipe.SetResult(ItemID.GoldOre, 4);
             PGrecipe.AddRecipe();
 
@@ -97,56 +97,56 @@ namespace Laugicality.Items.Placeable
             //Copper to Tin
             ModRecipe CTBrecipe = new ModRecipe(mod);
             CTBrecipe.AddIngredient(ItemID.CopperBar, 3);
-            CTBrecipe.AddTile(null, "Transmutable");
+            CTBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             CTBrecipe.SetResult(ItemID.TinBar, 3);
             CTBrecipe.AddRecipe();
 
             //Tin to Copper
             ModRecipe TCBrecipe = new ModRecipe(mod);
             TCBrecipe.AddIngredient(ItemID.TinBar, 3);
-            TCBrecipe.AddTile(null, "Transmutable");
+            TCBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             TCBrecipe.SetResult(ItemID.CopperBar, 3);
             TCBrecipe.AddRecipe();
 
             //Iron to Lead
             ModRecipe ILBrecipe = new ModRecipe(mod);
             ILBrecipe.AddIngredient(ItemID.IronBar, 3);
-            ILBrecipe.AddTile(null, "Transmutable");
+            ILBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             ILBrecipe.SetResult(ItemID.LeadBar, 3);
             ILBrecipe.AddRecipe();
 
             //Lead to Iron
             ModRecipe LIBrecipe = new ModRecipe(mod);
             LIBrecipe.AddIngredient(ItemID.LeadBar, 3);
-            LIBrecipe.AddTile(null, "Transmutable");
+            LIBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             LIBrecipe.SetResult(ItemID.IronBar, 3);
             LIBrecipe.AddRecipe();
 
             //Silver to Tungsten
             ModRecipe STBrecipe = new ModRecipe(mod);
             STBrecipe.AddIngredient(ItemID.SilverBar, 4);
-            STBrecipe.AddTile(null, "Transmutable");
+            STBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             STBrecipe.SetResult(ItemID.TungstenBar, 4);
             STBrecipe.AddRecipe();
 
             //Tungsten to Silver
             ModRecipe TSBrecipe = new ModRecipe(mod);
             TSBrecipe.AddIngredient(ItemID.TungstenBar, 4);
-            TSBrecipe.AddTile(null, "Transmutable");
+            TSBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             TSBrecipe.SetResult(ItemID.SilverBar, 4);
             TSBrecipe.AddRecipe();
 
             //Gold to Platinum
             ModRecipe GPBrecipe = new ModRecipe(mod);
             GPBrecipe.AddIngredient(ItemID.GoldBar, 4);
-            GPBrecipe.AddTile(null, "Transmutable");
+            GPBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             GPBrecipe.SetResult(ItemID.PlatinumBar, 4);
             GPBrecipe.AddRecipe();
 
             //Platinum to Gold
             ModRecipe PGBrecipe = new ModRecipe(mod);
             PGBrecipe.AddIngredient(ItemID.PlatinumBar, 4);
-            PGBrecipe.AddTile(null, "Transmutable");
+            PGBrecipe.AddTile(mod, nameof(Tiles.TransmutationTable));
             PGBrecipe.SetResult(ItemID.GoldBar, 4);
             PGBrecipe.AddRecipe();
         }

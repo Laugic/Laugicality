@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Equipables
 {
-    public class CoreOfMysticism : ModItem
+    public class CoreOfMysticism : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +19,7 @@ namespace Laugicality.Items.Equipables
             item.width = 48;
             item.height = 48;
             item.value = 100;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.accessory = true;
         }
 
@@ -34,7 +36,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "DestructionCore", 1);
             recipe.AddIngredient(null, "IllusionCore", 1);
             recipe.AddIngredient(null, "ConjurationCore", 1);
-            recipe.AddIngredient(null, "SoulOfWrought", 8);
+            recipe.AddIngredient(mod, nameof(SoulOfWrought), 8);
             recipe.AddTile(null, "MineralEnchanter");
             recipe.SetResult(this);
             recipe.AddRecipe();

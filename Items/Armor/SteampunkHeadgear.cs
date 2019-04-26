@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class SteampunkHeadgear : ModItem
+	public class SteampunkHeadgear : LaugicalityItem
 	{
 public override void SetStaticDefaults()
         {
@@ -16,7 +18,7 @@ public override void SetStaticDefaults()
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.defense = 14;
 		}
 
@@ -42,8 +44,8 @@ public override void SetStaticDefaults()
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 12);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class Mariana : ModItem
+	public class Mariana : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useStyle = 1;
 			item.knockBack = 4;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
@@ -41,7 +41,7 @@ namespace Laugicality.Items.Weapons.Melee
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddRecipeGroup("GldBars", 5);
+            recipe.AddRecipeGroup(Laugicality.GOLD_BARS_GROUP, 5);
             recipe.AddRecipeGroup("SilverBars", 10);
             recipe.AddIngredient(ItemID.Seashell, 5);
             recipe.AddIngredient(ItemID.Coral, 5);

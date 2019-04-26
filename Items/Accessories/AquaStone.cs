@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class AquaStone : ModItem
+    public class AquaStone : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,13 +16,13 @@ namespace Laugicality.Items.Accessories
             item.width = 32;
             item.height = 32;
             item.value = 1000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[24] = true;

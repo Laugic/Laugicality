@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class DarkShard : ModItem
+    public class DarkShard : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

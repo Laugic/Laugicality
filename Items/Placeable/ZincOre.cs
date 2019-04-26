@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ZincOre : ModItem
+    public class ZincOre : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

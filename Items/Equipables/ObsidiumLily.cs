@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class ObsidiumLily : ModItem
+    public class ObsidiumLily : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +17,7 @@ namespace Laugicality.Items.Equipables
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
         }
 

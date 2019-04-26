@@ -1,8 +1,9 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-    public class MagmaSnapper : ModItem
+    public class MagmaSnapper : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -20,13 +21,13 @@ namespace Laugicality.Items.Materials
             item.useTime = 10;
             item.useStyle = 1;
             item.value = 0;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
         }
         /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.AddIngredient(null, "NullShard", 4);
             recipe.SetResult(this);
             recipe.AddRecipe();

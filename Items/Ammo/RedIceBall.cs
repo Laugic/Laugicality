@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Ammo
 {
-    public class RedIceBall : ModItem
+    public class RedIceBall : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -22,7 +22,7 @@ namespace Laugicality.Items.Ammo
             item.consumable = true;
             item.knockBack = 7f;
             item.value = 0;
-            item.rare = 0;
+            item.rare = ItemRarityID.White;
             item.shoot = mod.ProjectileType("RedIceBall");
             item.shootSpeed = 8f;
             item.ammo = AmmoID.Snowball;

@@ -377,11 +377,11 @@ public class SpriteProgressBar : UIElement
     public void DrawSelf(SpriteBatch spriteBatch)
     {
         #region Drawing
-        var frameHeight = FrameCount > 1 ? MainTexture.Height / FrameCount : MainTexture.Height;
-        var rect1 = new Rectangle(0, CurrentFrame * frameHeight, MainTexture.Width, frameHeight);
+        int frameHeight = FrameCount > 1 ? MainTexture.Height / FrameCount : MainTexture.Height;
+        Rectangle rect1 = new Rectangle(0, CurrentFrame * frameHeight, MainTexture.Width, frameHeight);
         if (Widths[0] != 0)
             rect1 = new Rectangle(0, 0, Widths[0], Heights[0]);
-        var rect2 = new Rectangle(0, 0, CalcLength(CurVal, MaxVal, BarTexture.Width), BarTexture.Height);
+        Rectangle rect2 = new Rectangle(0, 0, CalcLength(CurVal, MaxVal, BarTexture.Width), BarTexture.Height);
         if (Widths[1] != 0)
             rect2 = new Rectangle(0, 0, CalcLength(CurVal, MaxVal, Widths[1]), Heights[1]);
         spriteBatch.Draw
@@ -436,11 +436,11 @@ public class SpriteProgressBar : UIElement
     public void DrawSelf(SpriteBatch spriteBatch, int currentValue, int maxValue)
     {
         #region Drawing
-        var frameHeight = FrameCount > 1 ? MainTexture.Height / FrameCount : MainTexture.Height;
-        var rect1 = new Rectangle(0, CurrentFrame * frameHeight, MainTexture.Width, frameHeight);
+        int frameHeight = FrameCount > 1 ? MainTexture.Height / FrameCount : MainTexture.Height;
+        Rectangle rect1 = new Rectangle(0, CurrentFrame * frameHeight, MainTexture.Width, frameHeight);
         if (Widths[0] != 0)
             rect1 = new Rectangle(0, 0, Widths[0], Heights[0]);
-        var rect2 = new Rectangle(0, 0, CalcLength(currentValue, maxValue, BarTexture.Width), BarTexture.Height);
+        Rectangle rect2 = new Rectangle(0, 0, CalcLength(currentValue, maxValue, BarTexture.Width), BarTexture.Height);
         if (Widths[1] != 0)
             rect2 = new Rectangle(0, 0, CalcLength(currentValue, maxValue, Widths[1]), Heights[1]);
         spriteBatch.Draw

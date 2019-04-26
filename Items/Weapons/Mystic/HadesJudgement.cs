@@ -1,3 +1,5 @@
+using Laugicality.Items.Materials;
+using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +26,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noMelee = false;
             item.knockBack = 2;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
             item.shootSpeed = 6f;
@@ -46,7 +48,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             LuxCost = 0;
         }
 
@@ -100,7 +102,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 16);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
             recipe.AddIngredient(null, "LavaGem", 8);
             recipe.AddIngredient(null, "DarkShard");
             recipe.AddTile(16);

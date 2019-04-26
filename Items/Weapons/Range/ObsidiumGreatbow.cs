@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-	public class ObsidiumGreatbow : ModItem
+	public class ObsidiumGreatbow : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.noMelee = true; 
 			item.knockBack = 3;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item10;
 			item.autoReuse = true;
 			item.shoot = 10; 
@@ -39,7 +40,7 @@ namespace Laugicality.Items.Weapons.Range
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 16);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
             recipe.AddTile(16);
             recipe.SetResult(this);
 			recipe.AddRecipe();

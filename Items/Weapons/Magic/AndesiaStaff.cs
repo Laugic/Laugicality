@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-    public class AndesiaStaff : ModItem
+    public class AndesiaStaff : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = 100000;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             //item.reuseDelay = 20;    
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
@@ -57,7 +58,7 @@ namespace Laugicality.Items.Weapons.Magic
             }
             else
             {
-                item.shoot = mod.ProjectileType("Nothing");
+                item.shoot = mod.ProjectileType<Nothing>();
                 item.noUseGraphic = false;
             }
             return player.ownedProjectileCounts[mod.ProjectileType("AndesiaStaff")] < 1;

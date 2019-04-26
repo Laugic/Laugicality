@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Steamy : ModBuff
+	public class Steamy : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

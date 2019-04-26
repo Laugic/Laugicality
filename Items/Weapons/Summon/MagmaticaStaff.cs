@@ -12,10 +12,12 @@ using Terraria.ObjectData;
 using Terraria.Utilities;
 using Terraria.ModLoader;
 using Laugicality.Items;
+using Laugicality.Items.Materials;
+using Laugicality.Projectiles;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-    public class MagmaticaStaff : ModItem
+    public class MagmaticaStaff : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -34,10 +36,10 @@ namespace Laugicality.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 2f;
             item.value = 25000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item44;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
             item.buffType = mod.BuffType("MagmaticCore");
@@ -97,7 +99,7 @@ namespace Laugicality.Items.Weapons.Summon
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 14);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 14);
             recipe.AddIngredient(null, "DarkShard", 1);
             recipe.AddTile(16);
             recipe.SetResult(this);

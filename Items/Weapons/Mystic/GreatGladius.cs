@@ -1,3 +1,4 @@
+using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = false;
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -45,7 +46,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.scale = 2.25f;
         }
 
@@ -67,7 +68,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 45;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.scale = 2f;
         }
 

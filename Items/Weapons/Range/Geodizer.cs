@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-	public class Geodizer : ModItem
+	public class Geodizer : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.noMelee = true; //so the item's animation doesn't do damage
 			item.knockBack = 8;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item11;
 			item.autoReuse = true;
 			item.shootSpeed = 14f;

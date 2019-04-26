@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Laugicality.Items.Loot
 {
-    public class AndesiaCore : ModItem
+    public class AndesiaCore : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

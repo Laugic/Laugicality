@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class Aurora : ModItem
+    public class Aurora : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 100000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("Aurora");
@@ -42,10 +43,10 @@ namespace Laugicality.Items.Weapons.Melee
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "FrostBlade", 1);
-            recipe.AddIngredient(null, "SoulOfSought", 6);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 6);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddRecipeGroup("TitaniumBars", 8);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

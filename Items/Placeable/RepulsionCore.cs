@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class RepulsionCore : ModItem
+    public class RepulsionCore : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

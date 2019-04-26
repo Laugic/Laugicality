@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class DeinstCrystal : ModItem
+    public class DeinstCrystal : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +17,7 @@ namespace Laugicality.Items.Accessories
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 

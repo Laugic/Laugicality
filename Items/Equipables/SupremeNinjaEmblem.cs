@@ -1,9 +1,11 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class SupremeNinjaEmblem : ModItem
+    public class SupremeNinjaEmblem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +17,7 @@ namespace Laugicality.Items.Equipables
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
         }
 
@@ -27,7 +29,7 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "NinjaEmblem", 1);
-            recipe.AddIngredient(null, "EtherialEssence", 5);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
             recipe.AddTile(null, "AncientEnchanter");
             recipe.SetResult(this);
             recipe.AddRecipe();

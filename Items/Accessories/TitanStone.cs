@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class TitanStone : ModItem
+    public class TitanStone : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Accessories
             item.width = 32;
             item.height = 32;
             item.value = 1000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
             item.defense = 4;
         }
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.10f;
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneVisuals)
             {
                 if (modPlayer.inf)

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
 using Laugicality;
+using Laugicality.Projectiles;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -34,7 +35,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = true; 
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -71,7 +72,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = (int)(item.useTime);
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.UseSound = SoundID.Item1;
             item.scale = 1.5f;
         }
@@ -106,8 +107,8 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(1006, 16); //Chlorophyte
-            recipe.AddIngredient(null, "SoulOfSought", 8);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }*/

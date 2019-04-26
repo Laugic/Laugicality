@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class LavaGem : ModItem
+    public class LavaGem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

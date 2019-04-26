@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class Midnight : ModBuff
+	public class Midnight : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

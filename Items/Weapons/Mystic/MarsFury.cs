@@ -1,3 +1,5 @@
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +28,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = false;
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -61,7 +63,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -72,7 +74,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 10;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             VisCost = 4;
         }
 
@@ -118,11 +120,11 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(null, "HadesJudgement", 1);
             recipe.AddIngredient(null, "MagmaticCluster");
             recipe.AddIngredient(null, "MagmaticCrystal", 4);
-            recipe.AddIngredient(null, "SoulOfHaught", 8);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
             recipe.AddRecipeGroup("TitaniumBars", 6);
             recipe.AddIngredient(null, "RubrumDust", 4);
             recipe.AddIngredient(null, "AlbusDust", 2);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
             

@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Laugicality.Items.Materials;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    class Flarance : ModItem
+    class Flarance : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;          
             item.knockBack = 5;         
             item.value = 10000;         
-            item.rare = 2;              
+            item.rare = ItemRarityID.Green;              
             item.UseSound = SoundID.Item1;    
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("Flarance");
@@ -33,7 +34,7 @@ namespace Laugicality.Items.Weapons.Melee
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 12);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 12);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

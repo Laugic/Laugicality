@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class Drillinator : ModItem
+	public class Drillinator : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Tools
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = Item.sellPrice(0, 12, 0, 0);
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("Drillinator");

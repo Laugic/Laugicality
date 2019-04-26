@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class Holystone : ModItem
+    public class Holystone : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

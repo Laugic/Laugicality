@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Equipables
 {
-    public class Eruption : ModItem
+    public class Eruption : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Equipables
             item.width = 40;
             item.height = 36;
             item.value = 10000;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
 

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class ChakramOfTheViciousAssassin : ModItem
+    public class ChakramOfTheViciousAssassin : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
             item.shoot = mod.ProjectileType("ViciousAssassinMain");  

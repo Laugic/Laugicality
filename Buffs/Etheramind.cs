@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class Etheramind : ModBuff
+	public class Etheramind : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

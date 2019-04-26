@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Laugicality.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Laugicality.Items.SoulStone
+namespace Laugicality.SoulStones
 {
-    public class SoulStone : ModItem
+    public abstract class OldSoulStone : LaugicalityItem
     {
 
         //Throwing
@@ -47,7 +48,7 @@ namespace Laugicality.Items.SoulStone
             item.width = 30;
             item.height = 28;
             item.value = 10000;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
             item.accessory = true;
             //item.lifeRegen = 19;
@@ -55,8 +56,8 @@ namespace Laugicality.Items.SoulStone
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var mPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            var Class = mPlayer.Class;
+            LaugicalityPlayer mPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            int Class = mPlayer.Class;
 
             
 
@@ -276,7 +277,7 @@ namespace Laugicality.Items.SoulStone
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player ttPlayer = Main.player[Main.myPlayer];
-            var Class = ttPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
+            int Class = ttPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
             //Tooltips
             /*if (KS > 0)
             {
@@ -550,7 +551,7 @@ namespace Laugicality.Items.SoulStone
             }
         }
         
-        public override void AddRecipes()
+        /*public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeCrystal);
@@ -558,9 +559,7 @@ namespace Laugicality.Items.SoulStone
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
-
-
+        }*/
     }
     
 }

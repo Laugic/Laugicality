@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Spooked : ModBuff
+	public class Spooked : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

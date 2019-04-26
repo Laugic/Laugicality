@@ -1,8 +1,9 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-	public class Gear : ModItem
+	public class Gear : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +14,7 @@ namespace Laugicality.Items.Materials
 			item.width = 38;
 			item.height = 38;
 			item.maxStack = 99;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.useAnimation = 1;
 			item.useTime = 15;
 			item.useStyle = 1;

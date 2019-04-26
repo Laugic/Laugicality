@@ -1,8 +1,9 @@
+using Laugicality.Items.Materials;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ObsidiumChest : ModItem
+    public class ObsidiumChest : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Placeable
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 8);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 8);
             recipe.AddIngredient(22, 2);
             recipe.AddTile(16);
             recipe.SetResult(this);

@@ -12,10 +12,11 @@ using Terraria.ObjectData;
 using Terraria.Utilities;
 using Terraria.ModLoader;
 using Laugicality.Items;
+using Laugicality.Projectiles;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-    public class TheMessenger : ModItem
+    public class TheMessenger : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -34,10 +35,10 @@ namespace Laugicality.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 2f;
             item.value = 25000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item44;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
             item.buffType = mod.BuffType("RockTwins");

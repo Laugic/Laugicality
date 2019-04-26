@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class MineralEnchanter : ModItem
+    public class MineralEnchanter : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

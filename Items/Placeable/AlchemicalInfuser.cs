@@ -1,9 +1,10 @@
+using Laugicality.Items.Loot;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class AlchemicalInfuser : ModItem
+    public class AlchemicalInfuser : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -39,16 +40,16 @@ namespace Laugicality.Items.Placeable
             ModRecipe warrecipe = new ModRecipe(mod);
             warrecipe.AddRecipeGroup("Emblems");
             warrecipe.AddIngredient(ItemID.SoulofNight, 4);
-            warrecipe.AddIngredient(null, "SoulOfHaught", 4);
-            warrecipe.AddTile(134);
+            warrecipe.AddIngredient(mod, nameof(SoulOfHaught), 4);
+            warrecipe.AddTile(TileID.MythrilAnvil);
             warrecipe.SetResult(ItemID.WarriorEmblem);
             warrecipe.AddRecipe();
 
             ModRecipe ranrecipe = new ModRecipe(mod);
             ranrecipe.AddRecipeGroup("Emblems");
             ranrecipe.AddIngredient(ItemID.SoulofLight, 4);
-            ranrecipe.AddIngredient(null, "SoulOfHaught", 4);
-            ranrecipe.AddTile(134);
+            ranrecipe.AddIngredient(mod, nameof(SoulOfHaught), 4);
+            ranrecipe.AddTile(TileID.MythrilAnvil);
             ranrecipe.SetResult(ItemID.RangerEmblem);
             ranrecipe.AddRecipe();
 
@@ -56,31 +57,31 @@ namespace Laugicality.Items.Placeable
             sorrecipe.AddRecipeGroup("Emblems");
             sorrecipe.AddIngredient(ItemID.SoulofNight, 4);
             sorrecipe.AddIngredient(ItemID.SoulofLight, 4);
-            sorrecipe.AddTile(134);
+            sorrecipe.AddTile(TileID.MythrilAnvil);
             sorrecipe.SetResult(ItemID.SorcererEmblem);
             sorrecipe.AddRecipe();
 
             ModRecipe sumrecipe = new ModRecipe(mod);
             sumrecipe.AddRecipeGroup("Emblems");
             sumrecipe.AddIngredient(ItemID.SoulofLight, 4);
-            sumrecipe.AddIngredient(null, "SoulOfSought", 4);
-            sumrecipe.AddTile(134);
+            sumrecipe.AddIngredient(mod, nameof(SoulOfSought), 4);
+            sumrecipe.AddTile(TileID.MythrilAnvil);
             sumrecipe.SetResult(ItemID.SummonerEmblem);
             sumrecipe.AddRecipe();
 
             ModRecipe ninrecipe = new ModRecipe(mod);
             ninrecipe.AddRecipeGroup("Emblems");
             ninrecipe.AddIngredient(ItemID.SoulofNight, 4);
-            ninrecipe.AddIngredient(null, "SoulOfSought", 4);
-            ninrecipe.AddTile(134);
+            ninrecipe.AddIngredient(mod, nameof(SoulOfSought), 4);
+            ninrecipe.AddTile(TileID.MythrilAnvil);
             ninrecipe.SetResult(null, "NinjaEmblem");
             ninrecipe.AddRecipe();
 
             ModRecipe mysrecipe = new ModRecipe(mod);
             mysrecipe.AddRecipeGroup("Emblems");
-            mysrecipe.AddIngredient(null, "SoulOfHaught", 4);
-            mysrecipe.AddIngredient(null, "SoulOfSought", 4);
-            mysrecipe.AddTile(134);
+            mysrecipe.AddIngredient(mod, nameof(SoulOfHaught), 4);
+            mysrecipe.AddIngredient(mod, nameof(SoulOfSought), 4);
+            mysrecipe.AddTile(TileID.MythrilAnvil);
             mysrecipe.SetResult(null, "MysticEmblem");
             mysrecipe.AddRecipe();
 
@@ -103,7 +104,7 @@ namespace Laugicality.Items.Placeable
             enchrecipe2.AddRecipe();
 
             ModRecipe starfuryrecipe = new ModRecipe(mod);
-            starfuryrecipe.AddRecipeGroup("GldBars", 12);
+            starfuryrecipe.AddRecipeGroup(Laugicality.GOLD_BARS_GROUP, 12);
             starfuryrecipe.AddIngredient(ItemID.SunplateBlock, 24);
             starfuryrecipe.AddIngredient(null, "ArcaneShard", 8);
             starfuryrecipe.AddIngredient(null, "RegisDust", 6);

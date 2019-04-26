@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class ArtifactOfEnhancement : ModItem
+    public class ArtifactOfEnhancement : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Accessories
             item.width = 72;
             item.height = 72;
             item.value = 10000;
-            item.rare = 10;
+            item.rare = ItemRarityID.Red;
             item.accessory = true;
             item.defense = 4;
             item.lifeRegen = 2;
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneVisuals)
             {
                 if (modPlayer.spelunker)

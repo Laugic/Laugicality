@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality.NPCs;
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles
@@ -50,7 +51,7 @@ namespace Laugicality.Projectiles
         {
             if (eDmg == 0)
                 eDmg = projectile.damage;
-            var modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
 
             if (bitherial)
             {
@@ -187,7 +188,7 @@ namespace Laugicality.Projectiles
                 }
                 if (modPlayer.Steamified && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
-                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
                 if (modPlayer.Slimey && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
@@ -271,7 +272,7 @@ namespace Laugicality.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            var modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
 
             int rand = Main.rand.Next(4);
             if (modPlayer.Obsidium)

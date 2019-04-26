@@ -1,10 +1,11 @@
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-    public class BysmalDrill : ModItem
+    public class BysmalDrill : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Tools
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = Item.sellPrice(0, 12, 0, 0);
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("BysmalDrill");
@@ -65,8 +66,8 @@ namespace Laugicality.Items.Tools
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 18);
-            recipe.AddIngredient(null, "EtherialEssence", 10);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 10);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

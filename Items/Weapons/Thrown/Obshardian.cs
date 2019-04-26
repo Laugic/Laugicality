@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class Obshardian : ModItem
+    public class Obshardian : LaugicalityItem
     {
         public override void SetDefaults()
         {
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             //item.reuseDelay = 17;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
@@ -37,7 +38,7 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()  //How to craft this item
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 8);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 8);
             recipe.AddIngredient(null, "DarkShard", 1);
             recipe.AddTile(16);
             recipe.SetResult(this, 333);

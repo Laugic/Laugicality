@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class LichtCrystal : ModItem
+    public class LichtCrystal : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,13 +17,13 @@ namespace Laugicality.Items.Accessories
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);
             if (modPlayer.owl)
                 player.nightVision = true;

@@ -52,15 +52,15 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             bitherial = true;
             if (_index == 0)
             {
-                if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
+                if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
                     _index = Etheria.tearIndex;
             }
             npc.rotation += 3.14f / 20;
-            if (NPC.CountNPCS(mod.NPCType("Etheria")) > 0)
+            if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
             {
                 float mag = 128 * Etheria.scale;
                 Vector2 rot;
@@ -114,9 +114,9 @@ namespace Laugicality.NPCs.Etheria
 
         public override Color? GetAlpha(Color drawColor)
         {
-            var b = 125;
-            var b2 = 225;
-            var b3 = 255;
+            int b = 125;
+            int b2 = 225;
+            int b3 = 255;
             if (drawColor.R != (byte)b)
             {
                 drawColor.R = (byte)b;

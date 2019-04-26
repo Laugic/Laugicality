@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ObsidiumBrickWall : ModItem
+    public class ObsidiumBrickWall : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

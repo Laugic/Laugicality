@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -10,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-    public class ClockworkShotgun : ModItem
+    public class ClockworkShotgun : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -33,7 +34,7 @@ namespace Laugicality.Items.Weapons.Range
             item.noMelee = true;
             item.knockBack = 3;
             item.value = 10000;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             item.UseSound = SoundID.Item41;
             item.autoReuse = true;
             item.channel = true;
@@ -46,7 +47,7 @@ namespace Laugicality.Items.Weapons.Range
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.ClockworkAssaultRifle, 1);
-            recipe.AddIngredient(null, "SteamBar", 12);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
             recipe.AddIngredient(ItemID.Cog, 20);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

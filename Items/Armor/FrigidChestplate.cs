@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class FrigidChestplate : ModItem
+	public class FrigidChestplate : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +17,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.defense = 6;
         }
 

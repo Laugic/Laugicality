@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class SteamsparkJetboots : ModItem
+    public class SteamsparkJetboots : LaugicalityItem
     {
         Mod _calMod = ModLoader.GetMod("CalamityMod");
         public override void SetStaticDefaults()
@@ -17,7 +19,7 @@ namespace Laugicality.Items.Equipables
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
         }
 
@@ -41,15 +43,15 @@ namespace Laugicality.Items.Equipables
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(_calMod.ItemType("AngelTreads"), 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
-                recipe.AddIngredient(null, "SteamBar", 15);
-                recipe.AddIngredient(null, "Gear", 20);
+                recipe.AddIngredient(mod, nameof(SteamBar), 15);
+                recipe.AddIngredient(mod, nameof(Gear), 20);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);
                 recipe.AddIngredient(null, "SoulOfThought", 5);
-                recipe.AddIngredient(null, "SoulOfWrought", 5);
+                recipe.AddIngredient(mod, nameof(SoulOfWrought), 5);
                 recipe.AddIngredient(null, "SoulOfFraught", 5);
-                recipe.AddTile(134);
+                recipe.AddTile(TileID.MythrilAnvil);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
 
@@ -71,15 +73,15 @@ namespace Laugicality.Items.Equipables
                 recipe.AddIngredient(ItemID.FrostsparkBoots, 1);
                 recipe.AddIngredient(ItemID.LavaWaders, 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
-                recipe.AddIngredient(null, "SteamBar", 15);
-                recipe.AddIngredient(null, "Gear", 20);
+                recipe.AddIngredient(mod, nameof(SteamBar), 15);
+                recipe.AddIngredient(mod, nameof(Gear), 20);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);
                 recipe.AddIngredient(null, "SoulOfThought", 5);
-                recipe.AddIngredient(null, "SoulOfWrought", 5);
+                recipe.AddIngredient(mod, nameof(SoulOfWrought), 5);
                 recipe.AddIngredient(null, "SoulOfFraught", 5);
-                recipe.AddTile(134);
+                recipe.AddTile(TileID.MythrilAnvil);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
             }

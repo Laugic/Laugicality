@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-	public class Eruptor : ModItem
+	public class Eruptor : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -29,7 +31,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.noMelee = true;
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 4;
+			item.rare = ItemRarityID.LightRed;
 			item.UseSound = SoundID.Item19;
 			item.autoReuse = true;
 			item.shootSpeed = 20f;
@@ -59,14 +61,14 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 12);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 12);
             recipe.AddRecipeGroup("TitaniumBars", 6);
             recipe.AddIngredient(null, "MagmaticCluster");
             recipe.AddIngredient(null, "MagmaticCrystal", 4);
-            recipe.AddIngredient(null, "SoulOfHaught", 8);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
             recipe.AddIngredient(null, "VerdiDust", 4);
             recipe.AddIngredient(null, "AlbusDust", 2);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

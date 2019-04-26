@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,7 +43,7 @@ namespace Laugicality.NPCs.Slybertron
                 Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -8, mod.ProjectileType("GasBallUp"), damage, 3f, Main.myPlayer);
                 delay = 0;
             }
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), 0f, 0f);
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

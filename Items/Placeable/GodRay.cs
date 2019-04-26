@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class GodRay : ModItem
+    public class GodRay : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

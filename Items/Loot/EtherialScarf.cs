@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class EtherialScarf : ModItem
+    public class EtherialScarf : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Loot
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
         }
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Loot
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.2f;
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
                 modPlayer.EtherialScarf = true;
         }

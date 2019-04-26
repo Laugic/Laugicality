@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class Pyramind : ModItem
+    public class Pyramind : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Loot
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
         }

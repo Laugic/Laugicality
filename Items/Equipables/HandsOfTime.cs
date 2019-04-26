@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class HandsOfTime : ModItem
+    public class HandsOfTime : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +17,7 @@ namespace Laugicality.Items.Equipables
             item.width = 32;
             item.height = 32;
             item.value = 100;
-            item.rare = 6;
+            item.rare = ItemRarityID.LightPurple;
             item.accessory = true;
         }
 
@@ -31,7 +32,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "DioritusCore", 1);
             recipe.AddIngredient(null, "CogOfKnowledge", 1);
             recipe.AddIngredient(3081, 32);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

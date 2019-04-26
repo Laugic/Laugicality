@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class SuperManaGem : ModItem
+    public class SuperManaGem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Accessories
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 6;
+            item.rare = ItemRarityID.LightPurple;
             item.accessory = true;
         }
 

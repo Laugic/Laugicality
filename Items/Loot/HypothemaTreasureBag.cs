@@ -1,10 +1,11 @@
+using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class HypothemaTreasureBag : ModItem
+    public class HypothemaTreasureBag : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,14 +16,14 @@ namespace Laugicality.Items.Loot
             item.width = 30;
             item.height = 32;
             item.maxStack = 20;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 1;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("Hypothema");
+            bossBagNPC = mod.NPCType<Hypothema>();
         }
 
         public override bool CanRightClick()

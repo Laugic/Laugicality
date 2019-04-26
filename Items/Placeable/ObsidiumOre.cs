@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ObsidiumOre : ModItem
+    public class ObsidiumOre : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

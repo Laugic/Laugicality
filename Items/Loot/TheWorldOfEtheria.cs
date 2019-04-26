@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Loot
 {
-    public class TheWorldOfEtheria : ModItem
+    public class TheWorldOfEtheria : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Loot
             item.width = 48;
             item.height = 48;
             item.value = 100000;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.accessory = true;
         }
 

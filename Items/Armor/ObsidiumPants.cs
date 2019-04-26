@@ -1,10 +1,12 @@
+using Laugicality.Items.Materials;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class ObsidiumPants : ModItem
+	public class ObsidiumPants : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.defense = 7;
 		}
 
@@ -31,8 +33,8 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ObsidiumBar", 15);
-            recipe.AddIngredient(173, 10);
+			recipe.AddIngredient(mod, nameof(ObsidiumBar), 15);
+            recipe.AddIngredient(ItemID.Obsidian, 10);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

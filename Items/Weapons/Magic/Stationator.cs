@@ -1,10 +1,11 @@
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-	public class Stationator : ModItem
+	public class Stationator : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.noMelee = true;
 			item.knockBack = 5;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item34;
             item.autoReuse = true;
 			item.shoot = mod.ProjectileType("TrainScythe");
@@ -35,9 +36,9 @@ namespace Laugicality.Items.Weapons.Magic
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SteamBar", 16);
-            recipe.AddIngredient(null, "SoulOfWrought", 8);
-            recipe.AddTile(134);
+			recipe.AddIngredient(mod, nameof(SteamBar), 16);
+            recipe.AddIngredient(mod, nameof(SoulOfWrought), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class BysmalBoots : ModItem
+	public class BysmalBoots : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 26;
 			item.height = 26;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.defense = 14;
 		}
 
@@ -35,8 +37,8 @@ namespace Laugicality.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(null, "EtherialEssence", 4);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 4);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

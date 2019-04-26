@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Laugicality.NPCs.Bosses;
+using Laugicality.NPCs.PreTrio;
+using Laugicality.NPCs.Slybertron;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
@@ -7,7 +10,7 @@ using Terraria.ID;
 
 namespace Laugicality
 {
-    public partial class LaugicalityPlayer
+    public sealed partial class LaugicalityPlayer
     {
         public void CycleBysmalPowers(int newPower)
         {
@@ -141,13 +144,13 @@ namespace Laugicality
                 if (BysmalPowers.Contains(NPCID.BrainofCthulhu))
                     EtherialBrain = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("Hypothema")))
+                if (BysmalPowers.Contains(mod.NPCType<Hypothema>()))
                     EtherialFrost = true;
 
                 if (BysmalPowers.Contains(NPCID.QueenBee))
                     EtherialBees = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("Ragnar")))
+                if (BysmalPowers.Contains(mod.NPCType<Ragnar>()))
                     EtherialMagma = true;
 
                 if (BysmalPowers.Contains(NPCID.SkeletronHead))
@@ -165,13 +168,13 @@ namespace Laugicality
                 if (BysmalPowers.Contains(NPCID.SkeletronPrime))
                     EtherialPrime = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("TheAnnihilator")))
+                if (BysmalPowers.Contains(mod.NPCType<TheAnnihilator>()))
                     EtherCog = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("Slybertron")))
+                if (BysmalPowers.Contains(mod.NPCType<Slybertron>()))
                     EtherialPipes = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("SteamTrain")))
+                if (BysmalPowers.Contains(mod.NPCType<NPCs.SteamTrain.SteamTrain>()))
                     EtherialTank = true;
 
                 if (BysmalPowers.Contains(NPCID.Plantera))

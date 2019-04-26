@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs.Mystic
 {
-	public class Mystified : ModBuff
+	public class Mystified : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

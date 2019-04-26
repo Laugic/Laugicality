@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class DrillOTron10000 : ModItem
+	public class DrillOTron10000 : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Tools
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = Item.sellPrice(0, 12, 0, 0);
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("DrillOTron10000");
@@ -69,7 +69,7 @@ namespace Laugicality.Items.Tools
             recipe.AddIngredient(null, "BysmalDrill", 1);
             recipe.AddIngredient(1006, 12);
             recipe.AddIngredient(3456, 8);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

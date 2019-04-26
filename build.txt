@@ -1,10 +1,10 @@
 author = Laugic 
-version = 0.13
+version = 0.14
 displayName = [c/85C1E9:The Enigma Mod!]
 homepage = https://discord.gg/qa6QnZs
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.zip, *.user, obj\*, bin\*, .vs\*, .git\*, *.gitignore
 includePDB = true
+buildIgnore = *.csproj, *.zip, *.user, obj\*, bin\*, .vs\*, .git\*, *.gitignore
 languageVersion = 6

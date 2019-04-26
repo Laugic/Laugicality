@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -239,14 +240,14 @@ namespace Laugicality.NPCs.Bosses
             {
                 poof = false;
 
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
             }
 
             delay++;
@@ -286,7 +287,7 @@ namespace Laugicality.NPCs.Bosses
 
             if (plays < 1)
                 plays = 1;
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CogOfEtheria"), 1);

@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Lovestruck : ModBuff
+	public class Lovestruck : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

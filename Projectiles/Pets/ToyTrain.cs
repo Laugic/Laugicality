@@ -54,7 +54,7 @@ namespace Laugicality.Projectiles.Pets
             /*if (Math.Abs(projectile.velocity.Y) > 1f)
             {
                 Rectangle rect = projectile.getRect();
-                Dust.NewDust(new Vector2(rect.X, rect.Y+projectile.height), projectile.width, 0, mod.DustType("Steam"));
+                Dust.NewDust(new Vector2(rect.X, rect.Y+projectile.height), projectile.width, 0, mod.DustType<Steam>());
             }*/
         }
         

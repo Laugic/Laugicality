@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class CursedRelic : ModItem
+    public class CursedRelic : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace Laugicality.Items.Accessories
             item.width = 48;
             item.height = 48;
             item.value = 10000;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.accessory = true;
             item.defense = 4;
         }
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.10f;
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (modPlayer.SoulStoneVisuals && modPlayer.inf)
                 player.AddBuff(116, 2);
             player.magicDamage += 0.10f;

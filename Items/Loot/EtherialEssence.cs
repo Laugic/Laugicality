@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class EtherialEssence : ModItem
+    public class EtherialEssence : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Loot
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.DemonAltar);
-            recipe.AddIngredient(null, "EtherialEssence", 10);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 10);
             recipe.SetResult(ItemID.TruffleWorm);
             recipe.AddRecipe();
         }

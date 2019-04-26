@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class RockTwins : ModBuff
+	public class RockTwins : LaugicalityBuff
 	{
 		public override void SetDefaults()
         {

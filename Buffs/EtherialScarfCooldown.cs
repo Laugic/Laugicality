@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class EtherialScarfCooldown : ModBuff
+	public class EtherialScarfCooldown : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

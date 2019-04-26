@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-    public class ObsidiumBar : ModItem
+    public class ObsidiumBar : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

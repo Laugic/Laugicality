@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class FrostBlade : ModItem
+	public class FrostBlade : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useStyle = 1;
 			item.knockBack = 4;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;

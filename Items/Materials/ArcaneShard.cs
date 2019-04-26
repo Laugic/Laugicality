@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-	public class ArcaneShard : ModItem
+	public class ArcaneShard : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,7 +14,7 @@ namespace Laugicality.Items.Materials
 			item.width = 14;
 			item.height = 22;
 			item.maxStack = 99;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 			item.useAnimation = 1;
 			item.useTime = 15;
 			item.useStyle = 1;

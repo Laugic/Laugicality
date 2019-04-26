@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-    public class BottledPinkGel : ModItem
+    public class BottledPinkGel : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,10 +15,10 @@ namespace Laugicality.Items.Materials
             item.width = 28;
             item.height = 28;
             item.maxStack = 1;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             //item.UseSound = SoundID.Item9;
             item.consumable = true;
         }

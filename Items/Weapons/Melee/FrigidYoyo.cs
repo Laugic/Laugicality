@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class FrigidYoyo : ModItem
+	public class FrigidYoyo : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -30,7 +30,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
 			item.damage = 25;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
 
 			item.melee = true;
 			item.channel = true;

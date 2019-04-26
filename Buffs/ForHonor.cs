@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class ForHonor : ModBuff
+	public class ForHonor : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

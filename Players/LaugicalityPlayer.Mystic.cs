@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Laugicality
 {
-    public partial class LaugicalityPlayer
+    public sealed partial class LaugicalityPlayer
     {
         /// <summary>
         /// Refactor This to be short

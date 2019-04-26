@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Laugicality.Items.Loot;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,7 +7,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class BysmalBrand : ModItem
+    public class BysmalBrand : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -26,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10000;
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("Borealis");
@@ -38,7 +39,7 @@ namespace Laugicality.Items.Weapons.Melee
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "Aurora", 1);
             recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(null, "EtherialEssence", 5);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

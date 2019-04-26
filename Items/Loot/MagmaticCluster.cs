@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class MagmaticCluster : ModItem
+    public class MagmaticCluster : LaugicalityItem
     {
 
         public override void SetStaticDefaults()

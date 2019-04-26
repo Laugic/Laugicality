@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class Crystillium : ModItem
+    public class Crystillium : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,7 +18,7 @@ namespace Laugicality.Items.Equipables
             item.width = 32;
             item.height = 32;
             item.value = 1000;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
 

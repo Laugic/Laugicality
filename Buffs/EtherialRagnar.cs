@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class EtherialRagnar : ModBuff
+	public class EtherialRagnar : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

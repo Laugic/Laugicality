@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Laugicality.Items.Equipables
 {
-    public class ShroomSpore : ModItem
+    public class ShroomSpore : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Equipables
             item.width = 48;
             item.height = 48;
             item.value = 100;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
 

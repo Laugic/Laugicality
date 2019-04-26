@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class Lycoris : ModItem
+    public class Lycoris : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

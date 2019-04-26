@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class SteampunkBoots : ModItem
+	public class SteampunkBoots : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.defense = 14;
 		}
 
@@ -31,8 +33,8 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SteamBar", 18);
-            recipe.AddTile(134);
+			recipe.AddIngredient(mod, nameof(SteamBar), 18);
+            recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

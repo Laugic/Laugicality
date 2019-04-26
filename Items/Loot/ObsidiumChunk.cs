@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class ObsidiumChunk : ModItem
+    public class ObsidiumChunk : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,10 +16,10 @@ namespace Laugicality.Items.Loot
             item.width = 28;
             item.height = 28;
             item.maxStack = 20;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item9;
             item.consumable = true;
         }

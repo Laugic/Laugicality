@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class TimeExhausted : ModBuff
+	public class TimeExhausted : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

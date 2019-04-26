@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-    public class UltimateCall : ModItem
+    public class UltimateCall : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -26,10 +27,10 @@ namespace Laugicality.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 2f;
             item.value = 25000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item44;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
             item.buffType = mod.BuffType("UltimateLeaderBuff");

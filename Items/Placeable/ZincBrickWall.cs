@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ZincBrickWall : ModItem
+    public class ZincBrickWall : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

@@ -1,9 +1,11 @@
+using Laugicality.NPCs.PreTrio;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class DuneSharkronTreasureBag : ModItem
+    public class DuneSharkronTreasureBag : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,14 +16,14 @@ namespace Laugicality.Items.Loot
             item.width = 44;
             item.height = 34;
             item.maxStack = 20;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 1;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("DuneSharkron");
+            bossBagNPC = mod.NPCType<DuneSharkron>();
         }
 
         public override bool CanRightClick()

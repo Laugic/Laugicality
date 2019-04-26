@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Annihilation : ModBuff
+	public class Annihilation : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

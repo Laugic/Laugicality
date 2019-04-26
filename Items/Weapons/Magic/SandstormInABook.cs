@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-	public class SandstormInABook : ModItem
+	public class SandstormInABook : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.noMelee = true;
 			item.knockBack = 5;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("Sandball");

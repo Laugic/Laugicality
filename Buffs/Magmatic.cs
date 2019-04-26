@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class Magmatic : ModBuff
+	public class Magmatic : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

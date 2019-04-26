@@ -1,10 +1,11 @@
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class FatherTime : ModItem
+    public class FatherTime : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Equipables
             item.width = 58;
             item.height = 64;
             item.value = 100;
-            item.rare = 6;
+            item.rare = ItemRarityID.LightPurple;
             item.accessory = true;
         }
 
@@ -42,9 +43,9 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "Clockface", 1);
             recipe.AddIngredient(null, "HandsOfTime", 1);
             recipe.AddIngredient(ItemID.Ectoplasm, 8);
-            recipe.AddIngredient(null, "Gear", 20);
+            recipe.AddIngredient(mod, nameof(Gear), 20);
             recipe.AddIngredient(ItemID.Cog, 20);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

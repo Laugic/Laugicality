@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class AnDioYo : ModItem
+	public class AnDioYo : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -30,7 +30,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
 			item.damage = 32;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 
 			item.melee = true;
 			item.channel = true;

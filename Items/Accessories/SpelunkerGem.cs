@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class SpelunkerGem : ModItem
+    public class SpelunkerGem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,11 +16,11 @@ namespace Laugicality.Items.Accessories
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.UseSound = SoundID.Item9;
         }
 

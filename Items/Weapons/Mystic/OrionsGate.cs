@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
 using Laugicality;
+using Laugicality.Projectiles;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -31,7 +32,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
-            item.rare = 7;
+            item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item105;
             item.autoReuse = true;
             item.shootSpeed = 6f;
@@ -83,37 +84,37 @@ namespace Laugicality.Items.Weapons.Mystic
         
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 48;
             item.useTime = 20;
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.noUseGraphic = false;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 42;
             item.useTime = 90;
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 22f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.noUseGraphic = false;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 35;
             item.useTime = 40;
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 0f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.noUseGraphic = false;
         }
         /*
@@ -123,7 +124,7 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(ItemID.Pearlwood, 24);
             recipe.AddRecipeGroup("SilverBars", 8);
             recipe.AddIngredient(ItemID.SoulofLight, 6);
-            recipe.AddIngredient(null, "SoulOfSought", 4);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
             recipe.AddIngredient(ItemID.CrystalShard, 4);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

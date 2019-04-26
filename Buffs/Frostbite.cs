@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Frostbite : ModBuff
+	public class Frostbite : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

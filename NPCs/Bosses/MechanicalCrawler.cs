@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -43,7 +44,7 @@ namespace Laugicality.NPCs.Bosses
         public override void AI()
         {
             bitherial = true;
-            if (Main.rand.Next(0,14) == 0) Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Steam"), 0f, 0f);
+            if (Main.rand.Next(0,14) == 0) Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
             if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
             if (Main.dayTime) { npc.position.Y += 300; }
             if (despawn) { npc.position.Y += 300; }

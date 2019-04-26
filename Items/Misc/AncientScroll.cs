@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Misc
 {
-    public class AncientScroll : ModItem
+    public class AncientScroll : LaugicalityItem
     {
         string TableOfContents = "'A window into Mystica'\nGives information on the Mystic Class!\nInformation given is based on the amount of scrolls you have in a stack.\nTable of Contents:\n" +
                                  "1: Table of Contents (This page!)\n2: The Mystic Class\n3: Mysticism\n4: Potentia\n5: Duration\n6: Overflow\n7: Bursts\n8: Potentia Conversion\n9: The Origins";
@@ -32,7 +32,7 @@ namespace Laugicality.Items.Misc
             item.width = 16;
             item.height = 16;
             item.maxStack = 9;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.useAnimation = 1;
             item.useTime = 15;
             item.useStyle = 1;

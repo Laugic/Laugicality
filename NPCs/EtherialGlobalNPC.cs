@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Laugicality.NPCs.Bosses;
+using Laugicality.NPCs.PreTrio;
+using Laugicality.NPCs.RockTwins;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -70,30 +73,35 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 70000;
                 npc.life = npc.lifeMax;
             }
+
             if(npc.type == NPCID.EyeofCthulhu)
             {
                 npc.damage = 225;
                 npc.lifeMax = 80000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("DuneSharkron"))
+
+            if (npc.type == mod.NPCType<DuneSharkron>())
             {
                 npc.damage = 200;
                 npc.lifeMax = 80000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.EaterofWorldsHead)
             {
                 npc.damage = 250;
                 npc.lifeMax = 8000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.EaterofWorldsBody)
             {
                 npc.damage = 150;
                 npc.lifeMax = 10000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.EaterofWorldsTail)
             {
                 npc.damage = 100;
@@ -101,43 +109,50 @@ namespace Laugicality.NPCs
                 npc.defense = 45;
                 npc.life = npc.lifeMax;
             }
+
             if(npc.type == NPCID.BrainofCthulhu)
             {
                 npc.damage = 200;
                 npc.lifeMax = 60000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("Hypothema"))
+
+            if (npc.type == mod.NPCType<Hypothema>())
             {
                 npc.damage = 200;
                 npc.lifeMax = 70000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.QueenBee)
             {
                 npc.damage = 230;
                 npc.lifeMax = 80000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("Ragnar"))
+
+            if (npc.type == mod.NPCType<Ragnar>())
             {
                 npc.damage = 250;
                 npc.lifeMax = 100000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.SkeletronHead)
             {
                 npc.damage = 280;
                 npc.lifeMax = 80000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.SkeletronHand)
             {
                 npc.damage = 200;
                 npc.lifeMax = 18000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("Dioritus"))
+
+            if (npc.type == mod.NPCType<Dioritus>())
             {
                 npc.damage = 250;
                 npc.lifeMax = 50000;
@@ -145,6 +160,7 @@ namespace Laugicality.NPCs
                 npc.defense = 40;
                 npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
+
             if (npc.type == mod.NPCType("Andesia"))
             {
                 npc.damage = 250;
@@ -153,6 +169,7 @@ namespace Laugicality.NPCs
                 npc.defense = 40;
                 npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
+
             if (npc.type == mod.NPCType("AnDio3"))
             {
                 npc.damage = 250;
@@ -161,114 +178,133 @@ namespace Laugicality.NPCs
                 npc.defense = 60;
                 npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
+
             if (npc.type == NPCID.WallofFlesh)
             {
                 npc.damage = 250;
                 npc.lifeMax = 150000;
                 npc.life = npc.lifeMax;
             }
+
             if(npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer || npc.type == mod.NPCType("Terratome"))
             {
                 npc.damage = 275;
                 npc.lifeMax = 150000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.SkeletronPrime)
             {
                 npc.damage = 250;
                 npc.lifeMax = 125000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.PrimeCannon || npc.type == NPCID.PrimeLaser || npc.type == NPCID.PrimeSaw || npc.type == NPCID.PrimeVice)
             {
                 npc.damage = 200;
                 npc.lifeMax = 150000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.TheDestroyerBody || npc.type == NPCID.TheDestroyerTail)
             {
                 npc.damage = 250;
                 npc.lifeMax = 500000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.Probe)
             {
                 npc.damage = 175;
                 npc.lifeMax = 10000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("TheAnnihilator"))
+
+            if (npc.type == mod.NPCType<TheAnnihilator>())
             {
                 npc.damage = 300;
                 npc.lifeMax = 225000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == mod.NPCType("SuperMechanicalMinion") || npc.type == mod.NPCType("SuperMechanicalCrawler") || npc.type == mod.NPCType("MechanicalCrawler") || npc.type == mod.NPCType("MechanicalMimic") || npc.type == mod.NPCType("MechanicalShelly") || npc.type == mod.NPCType("MechanicalSlimer") || npc.type == mod.NPCType("MechanicalCreeper"))
             {
                 npc.damage = 200;
                 npc.lifeMax = 20000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("Slybertron"))
+
+            if (npc.type == mod.NPCType<Slybertron.Slybertron>())
             {
                 npc.damage = 250;
                 npc.lifeMax = 250000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == mod.NPCType("GearSlime") || npc.type == mod.NPCType("SparkSlime") || npc.type == mod.NPCType("PipeSlime"))
             {
                 npc.damage = 250;
                 npc.lifeMax = 20000;
                 npc.life = npc.lifeMax;
             }
-            if (npc.type == mod.NPCType("SteamTrain"))
+
+            if (npc.type == mod.NPCType<SteamTrain.SteamTrain>())
             {
                 npc.damage = 275;
                 npc.lifeMax = 200000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.Plantera)
             {
                 npc.damage = 300;
                 npc.lifeMax = 250000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight || npc.type == mod.NPCType("SuperGolemFist"))
             {
                 npc.damage = 300;
                 npc.lifeMax = 175000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.GolemHead || npc.type == NPCID.Golem || npc.type == NPCID.GolemHeadFree)
             {
                 npc.damage = 300;
                 npc.lifeMax = 175000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.DukeFishron)
             {
                 npc.damage = 320;
                 npc.lifeMax = 275000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == mod.NPCType("EtherialEoC"))
             {
                 npc.damage = 300;
                 npc.lifeMax = 300000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == NPCID.MoonLordHand || npc.type == NPCID.MoonLordHead || npc.type == NPCID.MoonLordCore)
             {
                 npc.damage = 300;
                 npc.lifeMax = 250000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == mod.NPCType("SuperServant") && NPC.CountNPCS(NPCID.MoonLordCore) > 0)
             {
                 npc.damage = 200;
                 npc.lifeMax = 50000;
                 npc.life = npc.lifeMax;
             }
+
             if (npc.type == mod.NPCType("EtherialEoC"))
             {
                 npc.damage = 250;
@@ -289,7 +325,7 @@ namespace Laugicality.NPCs
                 {
                     EyeofCthulhuAI(npc);
                 }
-                if(npc.type == mod.NPCType("DuneSharkron"))
+                if(npc.type == mod.NPCType<DuneSharkron>())
                 {
                     DuneSharkronAI(npc);
                 }
@@ -297,7 +333,7 @@ namespace Laugicality.NPCs
                 {
                     BrainOfCthulhuAI(npc);
                 }
-                if (npc.type == mod.NPCType("Hypothema"))
+                if (npc.type == mod.NPCType<Hypothema>())
                 {
                     HypothemaAI(npc);
                 }
@@ -305,7 +341,7 @@ namespace Laugicality.NPCs
                 {
                     QueenBeeAI(npc);
                 }
-                if (npc.type == mod.NPCType("Ragnar"))
+                if (npc.type == mod.NPCType<Ragnar>())
                 {
                     RagnarAI(npc);
                 }
@@ -341,7 +377,7 @@ namespace Laugicality.NPCs
                 {
                     DestroyerAI(npc);
                 }
-                if (npc.type == mod.NPCType("TheAnnihilator"))
+                if (npc.type == mod.NPCType<TheAnnihilator>())
                 {
                     AnnihilatorAI(npc);
                 }
@@ -349,7 +385,7 @@ namespace Laugicality.NPCs
                 {
                     AnnihilatorCrawlerAI(npc);
                 }
-                if (npc.type == mod.NPCType("Slybertron"))
+                if (npc.type == mod.NPCType<Slybertron.Slybertron>())
                 {
                     SlybertronAI(npc);
                 }
@@ -1008,7 +1044,7 @@ namespace Laugicality.NPCs
                     player.AddBuff(BuffID.ShadowFlame, 8 * 60, true);
                 if (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.Creeper)
                     player.AddBuff(BuffID.Obstructed, 8 * 60, true);
-                if (npc.type == mod.NPCType("TheAnnihilator") || npc.type == mod.NPCType("MechanicalCrawler") || npc.type == mod.NPCType("MechanicalMimic") || npc.type == mod.NPCType("MechanicalShelly") || npc.type == mod.NPCType("MechanicalSlimer") || npc.type == mod.NPCType("MehcanicalCreeper"))
+                if (npc.type == mod.NPCType<TheAnnihilator>() || npc.type == mod.NPCType("MechanicalCrawler") || npc.type == mod.NPCType("MechanicalMimic") || npc.type == mod.NPCType("MechanicalShelly") || npc.type == mod.NPCType("MechanicalSlimer") || npc.type == mod.NPCType("MehcanicalCreeper"))
                     player.AddBuff(mod.BuffType("Frostbite"), 8 * 60, true);
                 if (npc.type == NPCID.DukeFishron && _counter <= 0)
                 {
@@ -1020,7 +1056,7 @@ namespace Laugicality.NPCs
 
         public override void NPCLoot(NPC npc)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria)
             {
                 if (npc.boss && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != NPCID.EaterofWorldsHead) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(5, 11));
@@ -1111,7 +1147,7 @@ namespace Laugicality.NPCs
                     {
                         foreach (Player player in Main.player)
                         {
-                            var modPlayer2 = player.GetModPlayer<LaugicalityPlayer>(mod);
+                            LaugicalityPlayer modPlayer2 = player.GetModPlayer<LaugicalityPlayer>(mod);
                             if (LaugicalityVars.eBosses.Contains(npc.type) && !modPlayer2.BysmalPowers.Contains(npc.type))
                             {
                                 if (modPlayer2.fullBysmal > 0)
@@ -1210,9 +1246,9 @@ namespace Laugicality.NPCs
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                var b = 125;
-                var b2 = 225;
-                var b3 = 255;
+                int b = 125;
+                int b2 = 225;
+                int b3 = 255;
                 if (drawColor.R != (byte)b)
                 {
                     drawColor.R = (byte)b;
@@ -1235,7 +1271,7 @@ namespace Laugicality.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
         {
-            var modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
             if (!bitherial)
             {
                 if (!friend || !_invin)

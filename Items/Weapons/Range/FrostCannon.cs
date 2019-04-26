@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-	public class FrostCannon : ModItem
+	public class FrostCannon : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.noMelee = true;
 			item.knockBack = 8;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item34;
 			item.autoReuse = true;
 			item.shootSpeed = 14f;

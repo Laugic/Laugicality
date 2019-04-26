@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Laugicality.Items.Armor
 {
     [AutoloadEquip(EquipType.Legs)]
-    public class AncientGreaves : ModItem
+    public class AncientGreaves : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +17,7 @@ namespace Laugicality.Items.Armor
             item.width = 34;
             item.height = 22;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.defense = 4;
         }
 

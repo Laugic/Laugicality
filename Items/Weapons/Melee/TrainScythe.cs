@@ -1,3 +1,6 @@
+using Laugicality.Dusts;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -5,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-	public class TrainScythe : ModItem
+	public class TrainScythe : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -24,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 10000;
-			item.rare = 7;
+			item.rare = ItemRarityID.Lime;
 			item.UseSound = SoundID.Item71;
 			item.autoReuse = true;
         }
@@ -32,10 +35,10 @@ namespace Laugicality.Items.Weapons.Melee
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SteamBar", 16);
-            recipe.AddIngredient(null, "SoulOfWrought", 8);
-            recipe.AddIngredient(null, "Gear", 8);
-            recipe.AddTile(134);
+			recipe.AddIngredient(mod, nameof(SteamBar), 16);
+            recipe.AddIngredient(mod, nameof(SoulOfWrought), 8);
+            recipe.AddIngredient(mod, nameof(Gear), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
@@ -44,7 +47,7 @@ namespace Laugicality.Items.Weapons.Melee
 		{
 			if (Main.rand.Next(2) == 0)
 			{
-				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, mod.DustType("Steam"));
+				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, mod.DustType<Steam>());
 			}
 		}
 

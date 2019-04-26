@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class AncientShard : ModItem
+    public class AncientShard : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

@@ -1,9 +1,11 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class SupremeEmblem : ModItem
+    public class SupremeEmblem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Equipables
             item.width = 38;
             item.height = 48;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
         }
@@ -38,7 +40,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "SupremeSummonerEmblem", 1);
             recipe.AddIngredient(null, "SupremeNinjaEmblem", 1);
             recipe.AddIngredient(null, "SupremeMysticEmblem", 1);
-            recipe.AddIngredient(null, "EtherialEssence", 5);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
             recipe.AddTile(null, "AncientEnchanter");
             recipe.SetResult(this);
             recipe.AddRecipe();

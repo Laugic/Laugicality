@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class FrigidEssence : ModItem
+    public class FrigidEssence : LaugicalityItem
     {
 
         public override void SetDefaults()

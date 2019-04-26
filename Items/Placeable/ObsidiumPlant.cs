@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class ObsidiumPlant : ModItem
+    public class ObsidiumPlant : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

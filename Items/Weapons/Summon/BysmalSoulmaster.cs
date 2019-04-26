@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-    public class BysmalSoulmaster : ModItem
+    public class BysmalSoulmaster : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.noMelee = true;
             item.knockBack = 5;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item122;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("SoulmasterOrb");
@@ -65,7 +66,7 @@ namespace Laugicality.Items.Weapons.Summon
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 15);
-            recipe.AddIngredient(null, "EtherialEssence", 8);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 8);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

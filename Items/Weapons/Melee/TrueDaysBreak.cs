@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class TrueDaysBreak : ModItem
+    public class TrueDaysBreak : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;
             item.knockBack = 4;
             item.value = 10000;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 16f;

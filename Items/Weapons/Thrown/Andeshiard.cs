@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class Andeshiard : ModItem
+    public class Andeshiard : LaugicalityItem
     {
         public override void SetDefaults()
         {
@@ -22,7 +22,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
             item.shoot = mod.ProjectileType("Andeshiard");  

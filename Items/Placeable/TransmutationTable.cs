@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class TransmutationTable : ModItem
+    public class TransmutationTable : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

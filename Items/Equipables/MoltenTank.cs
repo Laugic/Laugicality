@@ -1,9 +1,11 @@
+using Laugicality.Items.Materials;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class MoltenTank : ModItem
+    public class MoltenTank : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +17,7 @@ namespace Laugicality.Items.Equipables
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
 
@@ -30,7 +32,7 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "ObsidiumBar", 10);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 10);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

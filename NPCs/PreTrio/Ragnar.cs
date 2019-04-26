@@ -93,8 +93,8 @@ namespace Laugicality.NPCs.PreTrio
         {
             bitherial = true;
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
-            var player = Main.player[npc.target];
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            Player player = Main.player[npc.target];
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (Main.player[npc.target].statLife <= 0) npc.position.Y += 60;
             if (modPlayer.zoneObsidium == false)
                 npc.dontTakeDamage = true;

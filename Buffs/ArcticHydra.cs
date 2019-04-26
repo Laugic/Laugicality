@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-    public class ArcticHydra : ModBuff
+    public class ArcticHydra : LaugicalityBuff
     {
         public override void SetDefaults()
         {

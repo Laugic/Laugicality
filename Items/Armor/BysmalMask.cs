@@ -1,10 +1,12 @@
+using Laugicality.Items.Loot;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class BysmalMask : ModItem
+	public class BysmalMask : LaugicalityItem
 	{
         public override void SetStaticDefaults()
 		{
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 6;
+			item.rare = ItemRarityID.LightPurple;
 			item.defense = 16;
 		}
         
@@ -39,8 +41,8 @@ namespace Laugicality.Items.Armor
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 15);
-            recipe.AddIngredient(null, "EtherialEssence", 4);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 4);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

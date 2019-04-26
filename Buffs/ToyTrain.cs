@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class ToyTrain : ModBuff
+	public class ToyTrain : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

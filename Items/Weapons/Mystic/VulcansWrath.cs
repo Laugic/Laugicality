@@ -1,3 +1,5 @@
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +28,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = false; 
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -95,11 +97,11 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 16);
-            recipe.AddIngredient(null, "SoulOfWrought", 8);
+            recipe.AddIngredient(mod, nameof(SteamBar), 16);
+            recipe.AddIngredient(mod, nameof(SoulOfWrought), 8);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
-            recipe.AddIngredient(null, "Gear", 12);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(Gear), 12);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

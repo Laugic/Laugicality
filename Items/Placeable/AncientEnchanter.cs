@@ -1,8 +1,9 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class AncientEnchanter : ModItem
+    public class AncientEnchanter : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +29,7 @@ namespace Laugicality.Items.Placeable
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(1225, 12);
+            recipe.AddIngredient(ItemID.HallowedBar, 12);
             recipe.AddIngredient(2766, 8);
             recipe.AddIngredient(1508, 4);
             recipe.SetResult(this);

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
+using Laugicality.Dusts;
 using Laugicality.NPCs;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
@@ -24,7 +25,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
         
     }

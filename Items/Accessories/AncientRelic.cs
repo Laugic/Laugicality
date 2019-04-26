@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class AncientRelic : ModItem
+    public class AncientRelic : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,13 +16,13 @@ namespace Laugicality.Items.Accessories
             item.width = 48;
             item.height = 48;
             item.value = 10000;
-            item.rare = 8;
+            item.rare = ItemRarityID.Yellow;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.lavaImmune = true;
             player.fireWalk = true;
             player.buffImmune[24] = true;

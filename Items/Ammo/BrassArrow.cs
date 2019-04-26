@@ -1,9 +1,10 @@
+using Laugicality.Items.Loot;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Ammo
 {
-	public class BrassArrow : ModItem
+	public class BrassArrow : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -20,7 +21,7 @@ namespace Laugicality.Items.Ammo
 			item.consumable = true;
 			item.knockBack = 4f;
 			item.value = 10;
-			item.rare = 6;
+			item.rare = ItemRarityID.LightPurple;
 			item.shoot = mod.ProjectileType("BrassArrow");
 			item.shootSpeed = 14f;
 			item.ammo = AmmoID.Arrow;
@@ -29,7 +30,7 @@ namespace Laugicality.Items.Ammo
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 1);
+            recipe.AddIngredient(mod, nameof(SteamBar), 1);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this, 33);
 			recipe.AddRecipe();

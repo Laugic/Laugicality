@@ -1,4 +1,5 @@
 using Laugicality.Buffs;
+using Laugicality.Items.Loot;
 using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Summon
 {
-	public class Antenna : ModItem
+	public class Antenna : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Weapons.Summon
 			item.noMelee = true;
 			item.knockBack = 3;
 			item.value = Item.buyPrice(0, 25, 0, 0);
-			item.rare = 7;
+			item.rare = ItemRarityID.Lime;
 			item.UseSound = SoundID.Item44;
 			item.shoot = mod.ProjectileType(nameof(TV));
 			item.shootSpeed = 12f;
@@ -57,8 +58,8 @@ namespace Laugicality.Items.Weapons.Summon
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(134);
-            recipe.AddIngredient(null, "SteamBar", 12);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
             recipe.AddIngredient(null, "SoulOfThought", 20);
             recipe.AddIngredient(1344, 40);
             recipe.SetResult(this);

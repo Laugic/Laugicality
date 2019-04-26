@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {
-	public class NovaFragment : ModItem
+	public class NovaFragment : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +16,7 @@ namespace Laugicality.Items.Materials
 			item.width = 20;
             item.height = 20;
 			item.maxStack = 99;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.useAnimation = 1;
 			item.useTime = 15;
 			item.useStyle = 1;

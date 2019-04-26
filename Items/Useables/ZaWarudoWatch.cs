@@ -1,10 +1,11 @@
 using Laugicality.NPCs;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Useables
 {
-    public class ZaWarudoWatch : ModItem
+    public class ZaWarudoWatch : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,23 +18,23 @@ namespace Laugicality.Items.Useables
             item.width = 42;
             item.height = 42;
             item.value = 100;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
             item.expert = true;
         }
 
         public override bool CanUseItem(Player player)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             return !modPlayer.zCool;
         }
 
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {
                 Laugicality.zaWarudo = modPlayer.zaWarudoDuration;

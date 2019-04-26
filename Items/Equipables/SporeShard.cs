@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class SporeShard : ModItem
+    public class SporeShard : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,7 +17,7 @@ namespace Laugicality.Items.Equipables
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 1;
+            item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
 

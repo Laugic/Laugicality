@@ -1,10 +1,11 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class AnDioChestplate : ModItem
+	public class AnDioChestplate : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.defense = 16;
         }
 
@@ -59,7 +60,7 @@ namespace Laugicality.Items.Armor
             recipe.AddIngredient(null, "AndesiaCore", 1);
             recipe.AddIngredient(3086, 32);
             recipe.AddRecipeGroup("TitaniumBars", 24);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

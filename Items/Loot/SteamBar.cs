@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class SteamBar : ModItem
+    public class SteamBar : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

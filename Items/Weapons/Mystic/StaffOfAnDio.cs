@@ -24,7 +24,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = true; 
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -79,7 +79,7 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(3081, 25);
             recipe.AddIngredient(3086, 25);
             recipe.AddRecipeGroup("TitaniumBars", 8);
-            recipe.AddTile(134);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

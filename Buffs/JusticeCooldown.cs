@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class JusticeCooldown : ModBuff
+	public class JusticeCooldown : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

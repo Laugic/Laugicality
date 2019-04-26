@@ -1,9 +1,12 @@
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Useables
 {
-    public class SteampunkWatch : ModItem
+    public class SteampunkWatch : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,10 +19,10 @@ namespace Laugicality.Items.Useables
             item.width = 42;
             item.height = 42;
             item.value = 100;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.useAnimation = 45;
             item.useTime = 45;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
         }
         
         
@@ -35,14 +38,14 @@ namespace Laugicality.Items.Useables
         {
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(null, "SteamBar", 8);
-                recipe.AddIngredient(null, "Gear", 20);
+                recipe.AddIngredient(mod, nameof(SteamBar), 8);
+                recipe.AddIngredient(mod, nameof(Gear), 20);
                 recipe.AddIngredient(null, "AndesiaCore", 1);
                 recipe.AddIngredient(null, "DioritusCore", 1);
                 recipe.AddIngredient(null, "CogOfKnowledge", 1);
                 recipe.AddIngredient(null, "SteamTank", 1);
                 recipe.AddIngredient(null, "Pipeworks", 1);
-                recipe.AddTile(134);
+                recipe.AddTile(TileID.MythrilAnvil);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
             }

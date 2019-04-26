@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class EtherialTank : ModItem
+    public class EtherialTank : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,14 +16,14 @@ namespace Laugicality.Items.Loot
             item.width = 24;
             item.height = 24;
             item.value = 100;
-            item.rare = 4;
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
             item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
                 modPlayer.EtherialTank = true;

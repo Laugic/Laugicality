@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Slimed : ModBuff
+	public class Slimed : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

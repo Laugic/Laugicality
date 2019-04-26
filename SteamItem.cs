@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Laugicality.Items;
 using Terraria;
 using Terraria.ModLoader;
 
 
 namespace Laugicality
 {
-    public abstract class SteamItem : ModItem
+    public abstract class SteamItem : LaugicalityItem
     {
 
         public static int steamTier = 1;
@@ -24,7 +25,7 @@ namespace Laugicality
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            var tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+            TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
             if (tt != null)
             {
                 // take reverse for 'damage',  grab translation

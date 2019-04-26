@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Spored : ModBuff
+	public class Spored : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

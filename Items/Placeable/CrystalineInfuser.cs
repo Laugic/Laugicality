@@ -1,8 +1,9 @@
+using Laugicality.Items.Materials;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class CrystalineInfuser : ModItem
+    public class CrystalineInfuser : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,7 +30,7 @@ namespace Laugicality.Items.Placeable
         {
             ModRecipe arecipe = new ModRecipe(mod);
             arecipe.AddTile(null, "LaugicalWorkbench");
-            arecipe.AddIngredient(null, "ObsidiumBar", 8);
+            arecipe.AddIngredient(mod, nameof(ObsidiumBar), 8);
             arecipe.AddIngredient(null, "DarkShard", 1);
             arecipe.AddIngredient(null, "LavaGem", 4);
             arecipe.SetResult(this);

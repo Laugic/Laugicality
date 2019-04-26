@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Consumables.Potions
 {
-	public class LiquidAquos : ModItem
+	public class LiquidAquos : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +15,7 @@ namespace Laugicality.Items.Consumables.Potions
 			item.width = 24;
 			item.height = 24;
 			item.maxStack = 30;
-			item.rare = 1;
+			item.rare = ItemRarityID.Blue;
             item.useAnimation = 15;
             item.useTime = 15;
             item.useStyle = 2;

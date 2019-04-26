@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items
 {
-    public abstract class MysticItem : ModItem
+    public abstract class MysticItem : LaugicalityItem
     {
         public abstract void Destruction(LaugicalityPlayer modPlayer);
 
@@ -33,7 +33,7 @@ namespace Laugicality.Items
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            var tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
+            TooltipLine tt = tooltips.FirstOrDefault(x => x.Name == "Damage" && x.mod == "Terraria");
             int index = tooltips.FindIndex(x => x.Name == "Damage" && x.mod == "Terraria");
             if (tt != null)
             {

@@ -1,10 +1,11 @@
+using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class RagnarTreasureBag : ModItem
+    public class RagnarTreasureBag : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,9 +20,9 @@ namespace Laugicality.Items.Loot
             item.useTime = 45;
             item.useStyle = 1;
             item.consumable = true;
-            item.rare = 11;
+            item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("Ragnar");
+            bossBagNPC = mod.NPCType<Ragnar>();
         }
 
         public override bool CanRightClick()

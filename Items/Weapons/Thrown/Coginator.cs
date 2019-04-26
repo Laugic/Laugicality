@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class Coginator : ModItem
+    public class Coginator : LaugicalityItem
     {
         public override void SetDefaults()
         {
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("CoginatorP");
@@ -36,8 +37,8 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 4);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SteamBar), 4);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this, 75);
             recipe.AddRecipe();
         }

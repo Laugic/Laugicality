@@ -1,9 +1,10 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-    public class SteamTank : ModItem
+    public class SteamTank : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,14 +16,14 @@ namespace Laugicality.Items.Loot
             item.width = 38;
             item.height = 48;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             player.jumpSpeedBoost += 2f;
             player.moveSpeed += 0.5f;
             modPlayer.MysticDamage += 0.12f;

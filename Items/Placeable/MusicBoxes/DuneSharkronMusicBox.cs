@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable.MusicBoxes
 {
-    public class DuneSharkronMusicBox : ModItem
+    public class DuneSharkronMusicBox : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -30,7 +30,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(1225, 20);
+            recipe.AddIngredient(ItemID.HallowedBar, 20);
             recipe.AddIngredient(1006, 8);
             recipe.AddIngredient(2766, 8);
             recipe.AddIngredient(1508, 4);

@@ -1,3 +1,5 @@
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +29,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = true; 
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -59,7 +61,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = (int)(item.useTime);
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType("Nothing");
+            item.shoot = mod.ProjectileType<Nothing>();
             item.UseSound = SoundID.Item1;
             LuxCost = 10;
         }
@@ -99,8 +101,8 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(ItemID.SpookyWood, 40);
             recipe.AddIngredient(ItemID.Pumpkin, 12);
             recipe.AddIngredient(ItemID.Ectoplasm, 8);
-            recipe.AddIngredient(null, "SoulOfHaught", 8);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

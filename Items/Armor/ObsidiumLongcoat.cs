@@ -1,10 +1,12 @@
+using Laugicality.Items.Materials;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Armor
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class ObsidiumLongcoat : ModItem
+	public class ObsidiumLongcoat : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +18,7 @@ namespace Laugicality.Items.Armor
 			item.width = 34;
 			item.height = 22;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.defense = 8;
         }
 
@@ -31,7 +33,7 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ObsidiumBar", 20);
+			recipe.AddIngredient(mod, nameof(ObsidiumBar), 20);
             recipe.AddIngredient(null, "DarkShard", 1);
             recipe.AddIngredient(null, "LavaGem", 6);
             recipe.AddTile(16);

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class FrigidPickaxe : ModItem
+	public class FrigidPickaxe : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,7 +22,7 @@ namespace Laugicality.Items.Tools
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
@@ -32,7 +32,7 @@ namespace Laugicality.Items.Tools
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "ChilledBar", 14);
             recipe.AddIngredient(null, "FrostShard", 1);
-            recipe.AddIngredient(173, 10);
+            recipe.AddIngredient(ItemID.Obsidian, 10);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

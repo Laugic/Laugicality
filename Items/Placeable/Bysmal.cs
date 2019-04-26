@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class Bysmal : ModItem
+    public class Bysmal : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -32,7 +32,7 @@ namespace Laugicality.Items.Placeable
             recipe.AddRecipe();
 
             ModRecipe Erecipe = new ModRecipe(mod);
-            Erecipe.AddIngredient(null, "EtherialEssence");
+            Erecipe.AddIngredient(mod, nameof(EtherialEssence));
             Erecipe.SetResult(this, 20);
             Erecipe.AddRecipe();
         }*/

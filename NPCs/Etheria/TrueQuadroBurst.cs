@@ -55,9 +55,9 @@ namespace Laugicality.NPCs.Etheria
 
         public override Color? GetAlpha(Color drawColor)
         {
-            var b = 225;
-            var b2 = 125;
-            var b3 = 155;
+            int b = 225;
+            int b2 = 125;
+            int b3 = 155;
             if (drawColor.R != (byte)b)
             {
                 drawColor.R = (byte)b;

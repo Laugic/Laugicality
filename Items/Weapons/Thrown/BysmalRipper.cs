@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Laugicality.Items.Loot;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class BysmalRipper : ModItem
+    public class BysmalRipper : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("BysmalRipper");
@@ -38,7 +39,7 @@ namespace Laugicality.Items.Weapons.Thrown
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 18);
-            recipe.AddIngredient(null, "EtherialEssence", 8);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 8);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

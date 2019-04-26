@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class FragmentedMind : ModBuff
+	public class FragmentedMind : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

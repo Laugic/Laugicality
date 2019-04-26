@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Laugicality.Items.Loot;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
-    public class JetDagger : ModItem
+    public class JetDagger : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("JetDagger");
@@ -38,7 +39,7 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 18);
+            recipe.AddIngredient(mod, nameof(SteamBar), 18);
             recipe.AddIngredient(null, "SoulOfFraught", 8);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

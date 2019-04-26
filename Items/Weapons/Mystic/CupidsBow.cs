@@ -1,3 +1,4 @@
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.noMelee = true;
 			item.knockBack = 2;
 			item.value = 10000;
-			item.rare = 5;
+			item.rare = ItemRarityID.Pink;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
@@ -98,7 +99,7 @@ namespace Laugicality.Items.Weapons.Mystic
             recipe.AddIngredient(ItemID.Pearlwood, 24);
             recipe.AddRecipeGroup("SilverBars", 8);
             recipe.AddIngredient(ItemID.SoulofLight, 6);
-            recipe.AddIngredient(null, "SoulOfSought", 4);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
             recipe.AddIngredient(ItemID.CrystalShard, 4);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);

@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class TrueDawn : ModBuff
+	public class TrueDawn : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

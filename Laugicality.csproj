@@ -51,7 +51,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Webmilio|AnyCPU'">
-    <OutputPath>bin\Debug Webmilio\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Webmilio|x86'">
     <OutputPath>bin\x86\Debug Webmilio\</OutputPath>
@@ -85,6 +88,7 @@
     <Compile Include="Buffs\Incineration.cs" />
     <Compile Include="Buffs\JumpBoost.cs" />
     <Compile Include="Buffs\JusticeCooldown.cs" />
+    <Compile Include="Buffs\LaugicalityBuff.cs" />
     <Compile Include="Buffs\Lovestruck.cs" />
     <Compile Include="Buffs\Magmatic.cs" />
     <Compile Include="Buffs\MagmaticCore.cs" />
@@ -114,7 +118,7 @@
     <Compile Include="Buffs\Steamy.cs" />
     <Compile Include="Buffs\TimeExhausted.cs" />
     <Compile Include="Buffs\ToyTrain.cs" />
-    <Compile Include="Buffs\TrainMount.cs" />
+    <Compile Include="Mounts\SteamTrain\SteamTrainMountBuff.cs" />
     <Compile Include="Buffs\TrueCurse.cs" />
     <Compile Include="Buffs\TrueDawn.cs" />
     <Compile Include="Buffs\TVBuff.cs" />
@@ -141,6 +145,13 @@
     <Compile Include="Dusts\Steam.cs" />
     <Compile Include="Dusts\TrainSteam.cs" />
     <Compile Include="Dusts\White.cs" />
+    <Compile Include="Extensions\ItemCheckExtensions.cs" />
+    <Compile Include="Focuses\Focus.cs" />
+    <Compile Include="Focuses\FocusEffect.cs" />
+    <Compile Include="Focuses\FocusManager.cs" />
+    <Compile Include="Focuses\VitalityFocus.cs" />
+    <Compile Include="Managers\Manager.cs" />
+    <Compile Include="Managers\IHasUnlocalizedName.cs" />
     <Compile Include="Items\Armor\AncientArmor.cs" />
     <Compile Include="Items\Armor\AncientGreaves.cs" />
     <Compile Include="Items\Armor\AncientHelmet.cs" />
@@ -150,6 +161,7 @@
     <Compile Include="Items\Equipables\SporeShard.cs" />
     <Compile Include="Items\Equipables\TheBloodOfOld.cs" />
     <Compile Include="Items\Equipables\TheDarkOfOld.cs" />
+    <Compile Include="Items\LaugicalityItem.cs" />
     <Compile Include="Items\Placeable\Transmutable.cs" />
     <Compile Include="Items\Placeable\ZincBrick.cs" />
     <Compile Include="Items\Placeable\ZincBrickWall.cs" />
@@ -363,7 +375,7 @@
     <Compile Include="Items\Equipables\Thermaltite.cs" />
     <Compile Include="Items\Equipables\TimeWinder.cs" />
     <Compile Include="Items\Equipables\ToyTrain.cs" />
-    <Compile Include="Items\Equipables\TrainWhistle.cs" />
+    <Compile Include="Mounts\SteamTrain\TrainWhistle.cs" />
     <Compile Include="Items\LaugicalityGlobalItem.cs" />
     <Compile Include="Items\Loot\AncientShard.cs" />
     <Compile Include="Items\Loot\AndesiaCore.cs" />
@@ -473,25 +485,8 @@
     <Compile Include="Items\Placeable\RepulsionCore.cs" />
     <Compile Include="Items\Placeable\SteamVENT.cs" />
     <Compile Include="Items\Placeable\TransmutationTable.cs" />
-    <Compile Include="Items\SoulStone\AssassinStone.cs" />
-    <Compile Include="Items\SoulStone\ConjurerStone.cs" />
-    <Compile Include="Items\SoulStone\DestructionistStone.cs" />
-    <Compile Include="Items\SoulStone\HunterStone.cs" />
-    <Compile Include="Items\SoulStone\IllusionistStone.cs" />
-    <Compile Include="Items\SoulStone\MageStone.cs" />
-    <Compile Include="Items\SoulStone\NecromancerStone.cs" />
-    <Compile Include="Items\SoulStone\NinjaStone.cs" />
-    <Compile Include="Items\SoulStone\PaladinStone.cs" />
-    <Compile Include="Items\SoulStone\RogueStone.cs" />
-    <Compile Include="Items\SoulStone\ShamanStone.cs" />
-    <Compile Include="Items\SoulStone\SharpshooterStone.cs" />
-    <Compile Include="Items\SoulStone\SorcererStone.cs" />
-    <Compile Include="Items\SoulStone\SoulStone.cs" />
-    <Compile Include="Items\SoulStone\TankStone.cs" />
-    <Compile Include="Items\SoulStone\ThiefStone.cs" />
-    <Compile Include="Items\SoulStone\WarlockStone.cs" />
-    <Compile Include="Items\SoulStone\WarriorStone.cs" />
-    <Compile Include="Items\SoulStone\WizardStone.cs" />
+    <Compile Include="Players\LaugicalityPlayer.SoulStone.cs" />
+    <Compile Include="SoulStones\OldSoulStone.cs" />
     <Compile Include="Items\Tools\BysmalDrill.cs" />
     <Compile Include="Items\Tools\Drillinator.cs" />
     <Compile Include="Items\Tools\DrillOTron10000.cs" />
@@ -580,8 +575,7 @@
     <Compile Include="Players\LaugicalityPlayer.cs" />
     <Compile Include="LaugicalityVars.cs" />
     <Compile Include="LaugicalityWorld.cs" />
-    <Compile Include="Mounts\Etheramind.cs" />
-    <Compile Include="Mounts\SteamTrain.cs" />
+    <Compile Include="Mounts\SteamTrain\SteamTrainMount.cs" />
     <Compile Include="Items\MysticItem.cs" />
     <Compile Include="Players\LaugicalityPlayer.Mystic.cs" />
     <Compile Include="NPCs\Bosses\MechanicalCrawler.cs" />
@@ -899,6 +893,8 @@
     <Compile Include="Projectiles\WarlockStaff2.cs" />
     <Compile Include="Projectiles\WarlockStaff3.cs" />
     <Compile Include="Projectiles\YellowIceBall.cs" />
+    <Compile Include="SoulStones\SoulStone.cs" />
+    <Compile Include="SoulStones\SoulStoneAbilityCooldownBuff.cs" />
     <Compile Include="SteamItem.cs" />
     <Compile Include="Structures\BysmalVeins.cs" />
     <Compile Include="Structures\HeartWorld.cs" />
@@ -990,11 +986,11 @@
     </Reference>
     <Reference Include="ReLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\ReLogic.dll</HintPath>
+      <HintPath>libs\ReLogic.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Terraria">
-      <HintPath>bin\Debug\Terraria.exe</HintPath>
+      <HintPath>libs\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -30,7 +31,7 @@ namespace Laugicality.NPCs.Slybertron
 		public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), 0f, 0f);
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)

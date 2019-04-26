@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Laugicality.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -50,7 +51,7 @@ namespace Laugicality.Projectiles
         {
             for (int k = 0; k < 5; k++)
             {
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Steam"), projectile.oldVelocity.X * 0.25f, projectile.oldVelocity.Y * 0.25f);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), projectile.oldVelocity.X * 0.25f, projectile.oldVelocity.Y * 0.25f);
             }
             Main.PlaySound(SoundID.Item10, projectile.position);
         }

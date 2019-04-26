@@ -72,7 +72,7 @@ namespace Laugicality
 
         public override TagCompound Save()
         {
-            var downed = new List<string>();
+            List<string> downed = new List<string>();
             bool obs = false;
             int pwr = 0;
             if (downedAnnihilator) downed.Add("annihilator");
@@ -101,7 +101,7 @@ namespace Laugicality
 
         public override void Load(TagCompound tag)
         {
-            var downed = tag.GetList<string>("downed");
+            IList<string> downed = tag.GetList<string>("downed");
             downedAnnihilator = downed.Contains("annihilator");
             downedSlybertron = downed.Contains("slybertron");
             downedSteamTrain = downed.Contains("steamtrain");

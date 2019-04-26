@@ -1,4 +1,6 @@
 ﻿using System;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -8,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class GearIO : ModItem
+    public class GearIO : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -30,7 +32,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.shootSpeed = 16f;
             item.knockBack = 2.5f;
             item.damage = 100;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
 
             item.melee = true;
             item.channel = true;
@@ -45,8 +47,8 @@ namespace Laugicality.Items.Weapons.Melee
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "SteamBar", 12);
-            recipe.AddIngredient(null, "Gear", 10);
+            recipe.AddIngredient(mod, nameof(SteamBar), 12);
+            recipe.AddIngredient(mod, nameof(Gear), 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

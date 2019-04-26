@@ -1,3 +1,4 @@
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
-            item.rare = 3;
+            item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 6f;
@@ -99,9 +100,9 @@ namespace Laugicality.Items.Weapons.Mystic
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "Yuletide", 1);
             recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(null, "EtherialEssence", 15);
-            recipe.AddIngredient(null, "SoulOfSought", 8);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 15);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

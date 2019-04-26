@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class AntitherialBlock : ModItem
+    public class AntitherialBlock : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {

@@ -1,8 +1,9 @@
+using Laugicality.Items.Loot;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
-    public class EtherialBlock : ModItem
+    public class EtherialBlock : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -32,7 +33,7 @@ namespace Laugicality.Items.Placeable
             recipe.AddRecipe();
 
             ModRecipe erecipe = new ModRecipe(mod);
-            erecipe.AddIngredient(null, "EtherialEssence");
+            erecipe.AddIngredient(mod, nameof(EtherialEssence));
             erecipe.SetResult(this, 20);
             erecipe.AddRecipe();
         }

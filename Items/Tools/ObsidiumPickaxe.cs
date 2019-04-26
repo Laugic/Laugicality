@@ -1,9 +1,10 @@
+using Laugicality.Items.Materials;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class ObsidiumPickaxe : ModItem
+	public class ObsidiumPickaxe : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Tools
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
@@ -30,8 +31,8 @@ namespace Laugicality.Items.Tools
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "ObsidiumBar", 14);
-            recipe.AddIngredient(173, 10);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 14);
+            recipe.AddIngredient(ItemID.Obsidian, 10);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

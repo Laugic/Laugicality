@@ -4,7 +4,7 @@ using Laugicality.NPCs;
 
 namespace Laugicality.Buffs
 {
-	public class Verdi : ModBuff
+	public class Verdi : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

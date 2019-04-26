@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
-    public class HolyBlade : ModItem
+    public class HolyBlade : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 100000;
-            item.rare = 9;
+            item.rare = ItemRarityID.Cyan;
             //item.reuseDelay = 20;    
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       

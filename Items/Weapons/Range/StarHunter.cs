@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {
-	public class StarHunter : ModItem
+	public class StarHunter : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
         {
@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.noMelee = true;
 			item.knockBack = 3;
 			item.value = 10000;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.UseSound = SoundID.Item5;
 			item.autoReuse = true;
             item.channel = true;

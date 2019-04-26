@@ -1,9 +1,10 @@
+using Laugicality.Items.Loot;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Tools
 {
-	public class FrostburnPickaxe : ModItem
+	public class FrostburnPickaxe : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Tools
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 10000;
-			item.rare = 2;
+			item.rare = ItemRarityID.Green;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
@@ -33,9 +34,9 @@ namespace Laugicality.Items.Tools
             recipe.AddIngredient(null, "FrigidPickaxe", 1);
             recipe.AddIngredient(null, "ObsidiumPickaxe", 1);
             recipe.AddIngredient(null, "MagmaticCrystal", 1);
-            recipe.AddIngredient(null, "SoulOfSought", 4);
-            recipe.AddIngredient(null, "SoulOfHaught", 4);
-            recipe.AddTile(134);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 4);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

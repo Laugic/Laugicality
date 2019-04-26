@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
-	public class SoulOfFraught : ModItem
+	public class SoulOfFraught : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Loot
 			item.height = refItem.height;
 			item.maxStack = 999;
 			item.value = 1000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
             item.scale *= 1.5f;
         }
 

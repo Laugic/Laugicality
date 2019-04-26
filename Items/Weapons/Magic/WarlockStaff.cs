@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-	public class WarlockStaff : ModItem
+	public class WarlockStaff : LaugicalityItem
     {
         private int reload = 0;
         private int reloadMax = 12;
@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.noMelee = true;
 			item.knockBack = 5;
 			item.value = 10000;
-			item.rare = 9;
+			item.rare = ItemRarityID.Cyan;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("WarlockStaff3");

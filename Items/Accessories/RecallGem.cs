@@ -1,8 +1,9 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Accessories
 {
-    public class RecallGem : ModItem
+    public class RecallGem : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -14,7 +15,7 @@ namespace Laugicality.Items.Accessories
             item.width = 16;
             item.height = 28;
             item.value = 100;
-            item.rare = 2;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
         }
        

@@ -1,10 +1,11 @@
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Magic
 {
-	public class Volcite : ModItem
+	public class Volcite : LaugicalityItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.noMelee = true;
 			item.knockBack = 5;
 			item.value = 10000;
-			item.rare = 3;
+			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = mod.ProjectileType("Volcite");
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Weapons.Magic
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ObsidiumBar", 16);
+			recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
 			recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

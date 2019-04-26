@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-	public class DartCopter : ModBuff
+	public class DartCopter : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{

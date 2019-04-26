@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Laugicality.Items.Loot;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Useables
 {
-    public class BysmalKey : ModItem
+    public class BysmalKey : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,10 +19,10 @@ namespace Laugicality.Items.Useables
             item.width = 32;
             item.height = 32;
             item.value = 100;
-            item.rare = 5;
+            item.rare = ItemRarityID.Pink;
             item.useAnimation = 30;
             item.useTime = 30;
-            item.useStyle = 4;
+            item.useStyle = ItemUseStyleID.HoldingUp;
         }
 
         public override bool UseItem(Player player)
@@ -48,7 +49,7 @@ namespace Laugicality.Items.Useables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "BysmalBar", 4);
-            recipe.AddIngredient(null, "EtherialEssence", 2);
+            recipe.AddIngredient(mod, nameof(EtherialEssence), 2);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

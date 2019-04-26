@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs.Mystic
 {
-	public class Conjuration : ModBuff
+	public class Conjuration : LaugicalityBuff
 	{
 		public override void SetDefaults()
 		{
