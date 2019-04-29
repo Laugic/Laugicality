@@ -38,7 +38,7 @@ namespace Laugicality.SoulStones
 
             if (laugicalityPlayer.Focus == null)
             {
-                tooltips.Add(new TooltipLine(mod, "SoulStoneNoPlayerFocus", "You must have a selected focus to use the Soul Stone!")
+                tooltips.Add(new TooltipLine(mod, "SoulStoneNoPlayerFocus", "You must select a Focus to use the Soul Stone!")
                 {
                     overrideColor = Color.Red
                 });

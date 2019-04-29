@@ -90,7 +90,7 @@ namespace Laugicality
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             CheckBysmalPowers();
-
+            if (!SoulStonePreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource)) return false;
             if (EtherialBones)
             {
                 player.AddBuff(mod.BuffType("EtherBones"), 10 * 60, true);
