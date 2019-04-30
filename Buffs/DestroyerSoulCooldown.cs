@@ -15,7 +15,7 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<LaugicalityPlayer>().destroyerCooldown = true;
+            player.GetModPlayer<LaugicalityPlayer>().DestroyerCooldown = true;
         }
     }
 }

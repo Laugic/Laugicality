@@ -6,14 +6,22 @@ namespace Laugicality.Focuses
     {
         private static FocusManager _instance;
 
-        internal override void DefaultInitialize()
+        protected override void DefaultInitialize()
         {
             Vitality = Add(new VitalityFocus());
 
-            Vitality.RegisterAlliedFocus();
-
-
+            ForAllItems(f => f.ManagerEndInitialization());
             base.DefaultInitialize();
+        }
+
+        public override bool Remove(Focus item)
+        {
+            if (Locked) return false;
+            if (!byIndex.Contains(item)) return false;
+
+            byIndex.Remove(item);
+            byNames.Remove(item.UnlocalizedName);
+            return true;
         }
 
         public Focus Vitality { get; private set; }

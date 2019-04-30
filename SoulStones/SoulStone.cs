@@ -50,9 +50,13 @@ namespace Laugicality.SoulStones
                 overrideColor = laugicalityPlayer.Focus.AssociatedColor
             });
 
-            foreach (FocusEffect effect in laugicalityPlayer.Focus)
+            for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
+            {
+                FocusEffect effect = laugicalityPlayer.Focus.GetEffect(i);
+
                 if (effect.Condition(laugicalityPlayer))
                     tooltips.Add(effect.Tooltip);
+            }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -60,9 +64,13 @@ namespace Laugicality.SoulStones
             base.UpdateAccessory(player, hideVisual);
             LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>();
 
-            foreach (FocusEffect effect in laugicalityPlayer.Focus)
+            for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount)
+            {
+                FocusEffect effect = laugicalityPlayer.Focus.GetEffect(i);
+
                 if (effect.Condition(laugicalityPlayer))
                     effect.Effect(laugicalityPlayer, hideVisual);
+            }
         }
     }
 }

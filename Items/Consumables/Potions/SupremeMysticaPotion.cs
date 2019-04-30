@@ -38,7 +38,7 @@ namespace Laugicality.Items.Consumables.Potions
                 modPlayer.Vis = (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * (1 + (modPlayer.VisOverflow * modPlayer.GlobalOverflow - 1) / 2);
             if (modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2))
                 modPlayer.Mundus = (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2);
-            player.AddBuff(mod.BuffType("Mysticality3"), 60 * 60, true);
+            player.AddBuff(mod.BuffType<Mysticality3>(), 60 * 60, true);
             return true;
         }
 

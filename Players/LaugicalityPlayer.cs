@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Laugicality.Buffs;
 using Laugicality.Extensions;
 using Laugicality.Focuses;
 using Microsoft.Xna.Framework;
@@ -822,7 +823,7 @@ namespace Laugicality
 
                 foreach (Item item in player.inventory)
                 {
-                    if (item.type == mod.ItemType("SupremeMysticaPotion"))
+                    if (item.type == mod.ItemType<SupremeMysticaPotion>())
                     {
                         mysticaPotion = true;
                         item.stack -= 1;
@@ -836,7 +837,7 @@ namespace Laugicality
                         if (Mundus < (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2))
                             Mundus = (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2);
 
-                        player.AddBuff(mod.BuffType("Mysticality3"), 60 * 60, true);
+                        player.AddBuff(mod.BuffType<Mysticality3>(), 60 * Constants.TICKS_PER_SECONDS, true);
                     }
 
                     if (mysticaPotion)
@@ -847,18 +848,23 @@ namespace Laugicality
                 {
                     foreach (Item item in player.inventory)
                     {
-                        if (item.type == mod.ItemType("GreaterMysticaPotion"))
+                        if (item.type == mod.ItemType<GreaterMysticaPotion>())
                         {
                             mysticaPotion = true;
                             item.stack -= 1;
+
                             Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 3);
-                            if(Lux < LuxMax + LuxMaxPermaBoost)
-                            Lux = LuxMax + LuxMaxPermaBoost;
+
+                            if (Lux < LuxMax + LuxMaxPermaBoost)
+                                Lux = LuxMax + LuxMaxPermaBoost;
+
                             if (Vis < VisMax + VisMaxPermaBoost)
                                 Vis = VisMax + VisMaxPermaBoost;
+
                             if (Mundus < MundusMax + MundusMaxPermaBoost)
                                 Mundus = MundusMax + MundusMaxPermaBoost;
-                            player.AddBuff(mod.BuffType("Mysticality2"), 60 * 60, true);
+
+                            player.AddBuff(mod.BuffType<Mysticality2>(), 60 * Constants.TICKS_PER_SECONDS, true);
                         }
 
                         if (mysticaPotion)

@@ -39,7 +39,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return (player.ZoneRockLayerHeight && LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType("Andesia")) < 1 && NPC.CountNPCS(mod.NPCType<Dioritus>()) < 1 && NPC.CountNPCS(mod.NPCType("AnDio3")) < 1);
+            return (player.ZoneRockLayerHeight && LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType("Andesia")) < 1 && NPC.CountNPCS(mod.NPCType<Dioritus>()) < 1 && NPC.CountNPCS(mod.NPCType<AnDio3>()) < 1);
         }
 
         public override void AddRecipes()

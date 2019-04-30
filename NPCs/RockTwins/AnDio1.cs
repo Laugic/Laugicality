@@ -37,7 +37,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.spriteDirection = 0;
             
             //Disabling if AnDio is on
-            if (NPC.CountNPCS(mod.NPCType("AnDio3")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 1)
+            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 1)
             {
                 npc.active = false;
                 //if(Main.netMode != 1)
@@ -60,7 +60,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.frame.Y = frameHeight * 10;
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/boom"));
                 if(Main.netMode != 1)
-                    NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType("AnDio3"));
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType<AnDio3>());
                 spawned = true;
                 npc.active = false;
             }

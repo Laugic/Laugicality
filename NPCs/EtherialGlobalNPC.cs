@@ -170,7 +170,7 @@ namespace Laugicality.NPCs
                 npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
             }
 
-            if (npc.type == mod.NPCType("AnDio3"))
+            if (npc.type == mod.NPCType<AnDio3>())
             {
                 npc.damage = 250;
                 npc.lifeMax = 120000;
@@ -353,7 +353,7 @@ namespace Laugicality.NPCs
                 {
                     DungeonGuardianAI(npc);
                 }
-                if (npc.type == mod.NPCType("AnDio3"))
+                if (npc.type == mod.NPCType<AnDio3>())
                 {
                     AnDioAI(npc);
                 }

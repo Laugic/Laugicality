@@ -213,7 +213,7 @@ namespace Laugicality
                     player.AddBuff(mod.BuffType("ForHonor"), 180 + (int)(120 * MysticDuration));
                 }
             }
-            Laugicality.instance.mysticaUI.CyclePositions(MysticMode);
+            Laugicality.instance.MysticaUI.CyclePositions(MysticMode);
         }
 
         private void PostUpdateMysticBuffs()

@@ -7,6 +7,7 @@ using Laugicality.Etherial;
 using System.IO;
 using Terraria.UI;
 using System.Collections.Generic;
+using Laugicality.Focuses;
 using Laugicality.Items.Consumables;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
@@ -16,14 +17,11 @@ namespace Laugicality
 {
     public class Laugicality : Mod
     {
-        public const string GOLD_BARS_GROUP = "GldBars";
-
-        internal LaugicalityUI mysticaUI;
+        public const string GOLD_BARS_GROUP = "GldBars";        
 
         internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility; // ;) ;)
 
         public static Laugicality instance;
-
         public static int zaWarudo = 0;
 
         public Laugicality()
@@ -39,7 +37,7 @@ namespace Laugicality
 
         }
 
-        //Recipe Groups
+        #region Recipe Groups
         public override void AddRecipeGroups()
         {
             //Emblems
@@ -110,37 +108,7 @@ namespace Laugicality
                 ItemID.PinkDungeonTable  //Pink
             }));
         }
-
-        //BossChecklist
-        public override void PostSetupContent()
-        {
-            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
-
-            if (bossChecklist != null)
-            {
-                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType<MechanicalMonitor>()));
-                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType<SteamCrown>()));
-                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType<SuspiciousTrainWhistle>()));
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ItemType<TastyMorsel>()));
-                bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType<ChilledMesh>()));
-                bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ItemType<MoltenMess>()));
-                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType<EmblemOfEtheria>()));
-                bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ItemType<AncientAwakener>()));
-                bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
-            }
-
-            Mod achMod = ModLoader.GetMod("AchievementLibs");
-
-            int[] rewardsBleedingHeart = { ItemType("ObsidiumHeart") };
-            int[] rewardsBleedingHeartCount = { 1 };
-
-            if (achMod != null)
-            {
-                achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
-                //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
-            }
-        }
-
+        #endregion
 
         public override void Load()
         {
@@ -169,10 +137,10 @@ namespace Laugicality
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ItemType<GreatShadowMusicBox>(), TileType<Tiles.MusicBoxes.GreatShadowMusicBox>());
 
 
-                mysticaUI = new LaugicalityUI();
-                mysticaUI.Activate();
+                MysticaUI = new LaugicalityUI();
+                MysticaUI.Activate();
                 MysticaUserInterface = new UserInterface();
-                MysticaUserInterface.SetState(mysticaUI);
+                MysticaUserInterface.SetState(MysticaUI);
             }
 
             toggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
@@ -182,6 +150,44 @@ namespace Laugicality
             soulStoneAbility = RegisterHotKey("Soul Stone Ability (1)", "Mouse3");
         }
 
+        public override void PostSetupContent()
+        {
+            #region BossChecklist
+
+            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+
+            if (bossChecklist != null)
+            {
+                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType<MechanicalMonitor>()));
+                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType<SteamCrown>()));
+                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType<SuspiciousTrainWhistle>()));
+                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ItemType<TastyMorsel>()));
+                bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType<ChilledMesh>()));
+                bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ItemType<MoltenMess>()));
+                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType<EmblemOfEtheria>()));
+                bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ItemType<AncientAwakener>()));
+                bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
+            }
+
+            #endregion
+
+            #region AchMod
+
+            Mod achMod = ModLoader.GetMod("AchievementLibs");
+
+            int[] rewardsBleedingHeart = { ItemType("ObsidiumHeart") };
+            int[] rewardsBleedingHeartCount = { 1 };
+
+            if (achMod != null)
+            {
+                achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
+                //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
+            }
+
+            #endregion
+
+            FocusManager.Instance.PostSetupFocuses();
+        }
 
         public override void Unload()
         {
@@ -213,33 +219,12 @@ namespace Laugicality
                 zaWarudo--;
         }
 
-        /*
-        public override void UpdateUI(GameTime gameTime)
-        {
-            if (mysticaUserInterface != null && LaugicalityUI.visible)
-                mysticaUserInterface.Update(gameTime);
-        }
-        */
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 
             if (mouseTextIndex != -1)
-            {
-                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                    "Enigma: Mystica",
-                    delegate
-                    {
-                        LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
-                        if (mysticPlayer.MysticHold > 0)
-                        {
-                            mysticaUI.Draw(Main.spriteBatch);
-                        }
-                        return true;
-                    },
-                    InterfaceScaleType.UI)
-                );
-            }
+                layers.Insert(mouseTextIndex, new EnigmaMysticaInterface(MysticaUI));
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -269,8 +254,7 @@ namespace Laugicality
         }
 
         public UserInterface MysticaUserInterface { get; private set; }
-
-        public Mod CalamityMod { get; } = ModLoader.GetMod("Calamity");
+        public LaugicalityUI MysticaUI { get; private set; }
     }
 
 }

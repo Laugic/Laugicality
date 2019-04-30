@@ -1,3 +1,4 @@
+using Laugicality.NPCs.RockTwins;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType("AnDio3");
+            bossBagNPC = mod.NPCType<AnDio3>();
         }
 
         public override bool CanRightClick()
