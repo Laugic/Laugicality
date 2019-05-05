@@ -73,6 +73,7 @@
     <Compile Include="Buffs\Connected.cs" />
     <Compile Include="Buffs\DartCopter.cs" />
     <Compile Include="Buffs\Dawn.cs" />
+    <Compile Include="Buffs\DestroyerSoulCooldown.cs" />
     <Compile Include="Buffs\DestructionBoost.cs" />
     <Compile Include="Buffs\Etheramind.cs" />
     <Compile Include="Buffs\EtherBones.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Buffs\JumpBoost.cs" />
     <Compile Include="Buffs\JusticeCooldown.cs" />
     <Compile Include="Buffs\LaugicalityBuff.cs" />
+    <Compile Include="Buffs\LavaRegen.cs" />
     <Compile Include="Buffs\Lovestruck.cs" />
     <Compile Include="Buffs\Magmatic.cs" />
     <Compile Include="Buffs\MagmaticCore.cs" />
@@ -994,6 +996,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="libs\" />
     <Folder Include="Prefixes\Mystic\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
