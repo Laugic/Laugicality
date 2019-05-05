@@ -159,7 +159,7 @@ namespace Laugicality.NPCs.RockTwins
             posY = npc.Center.Y;
             
             //Disabling if AnDio is on
-            if (NPC.CountNPCS(mod.NPCType("AnDio3")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 0)
+            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 0)
                 npc.active = false;
 
             //Movement if only Andesia

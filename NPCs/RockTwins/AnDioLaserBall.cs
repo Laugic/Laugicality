@@ -46,7 +46,7 @@ namespace Laugicality.NPCs.RockTwins
         }
 		public override bool CheckActive()
 		{
-			if(NPC.CountNPCS(mod.NPCType("AnDio3")) < 1)
+			if(NPC.CountNPCS(mod.NPCType<AnDio3>()) < 1)
 				return false;
 			return true;
 		}

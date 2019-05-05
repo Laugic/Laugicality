@@ -98,7 +98,7 @@ namespace Laugicality.NPCs.RockTwins
             damage = 32;
             //bossBag = mod.ItemType("RagnarTreasureBag");
             //npc.scale = 2f;
-            if (NPC.CountNPCS(mod.NPCType("AnDio3")) > 1)
+            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 1)
             {
                 npc.active = false;
                 npc.life = 0;
@@ -112,7 +112,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.damage = 99;
             reload = 220;
             damage = 40;
-            if (NPC.CountNPCS(mod.NPCType("AnDio3")) > 1)
+            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 1)
             {
                 npc.active = false;
                 npc.life = 0;
@@ -154,7 +154,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.ai[0] -= 3.14f / 120;
             
             //Disabling if AnDio is on
-            if (NPC.CountNPCS(mod.NPCType("AnDio3")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 0)
+            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 0 || NPC.CountNPCS(mod.NPCType("AnDio2")) > 0 || NPC.CountNPCS(mod.NPCType("AnDio1")) > 0)
                 npc.active = false;
 
             //Movement if only Dioritus

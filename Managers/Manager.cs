@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Laugicality.Focuses;
+using System;
 using System.Collections.Generic;
 
 namespace Laugicality.Managers
@@ -10,15 +11,25 @@ namespace Laugicality.Managers
         protected readonly Dictionary<string, T> byNames = new Dictionary<string, T>();
 
 
-        internal virtual void DefaultInitialize()
+        internal bool TryDefaultInitialize()
+        {
+            if (Locked) return false;
+
+            DefaultInitialize();
+            return true;
+        }
+
+        protected virtual void DefaultInitialize()
         {
             Initialized = true;
+            Locked = true;
         }
 
 
         public virtual T Add(T item)
         {
             if (byIndex.Contains(item) || byNames.ContainsKey(item.UnlocalizedName)) return byNames[item.UnlocalizedName];
+            if (Locked) return item;
 
             byIndex.Add(item);
             byNames.Add(item.UnlocalizedName, item);
@@ -27,6 +38,7 @@ namespace Laugicality.Managers
 
         public virtual bool Remove(T item)
         {
+            if (Locked) return false;
             if (!byIndex.Contains(item)) return false;
 
             byIndex.Remove(item);
@@ -65,5 +77,6 @@ namespace Laugicality.Managers
         public int Count => byIndex.Count;
 
         public bool Initialized { get; private set; }
+        public bool Locked { get; private set; }
     }
 }

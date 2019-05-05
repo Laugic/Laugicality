@@ -1,6 +1,7 @@
 using Laugicality.Items.Loot;
 using Laugicality.NPCs.Bosses;
 using Laugicality.NPCs.PreTrio;
+using Laugicality.NPCs.RockTwins;
 using Laugicality.NPCs.Slybertron;
 using Terraria;
 using Terraria.ID;
@@ -76,7 +77,7 @@ namespace Laugicality.Items.Armor
                 if (modPlayer.BysmalPowers[i] == (NPCID.SkeletronHead))
                     player.setBonus += "\nWhile in the Etherial, after taking damage, your damage is boosted by the percentage of your health that was taken for 10 seconds.\nIf this buff is still active when damage is taken again, the boost is stacked.";
 
-                if (modPlayer.BysmalPowers[i] == (mod.NPCType("AnDio3")))
+                if (modPlayer.BysmalPowers[i] == (mod.NPCType<AnDio3>()))
                     player.setBonus += "\nYour projectiles are immune to Time Stop when in the Etherial";
 
                 if (modPlayer.BysmalPowers[i] == (NPCID.Retinazer) || modPlayer.BysmalPowers[i] == (NPCID.Spazmatism))

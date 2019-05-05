@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Laugicality.Buffs;
 using Laugicality.NPCs.Bosses;
 using Laugicality.NPCs.PreTrio;
+using Laugicality.NPCs.RockTwins;
 using Laugicality.NPCs.Slybertron;
 using Terraria;
 using Terraria.ModLoader;
@@ -90,10 +92,13 @@ namespace Laugicality
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             CheckBysmalPowers();
-            if (!SoulStonePreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource)) return false;
+
+            if (!SoulStonePreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource))
+                return false;
+
             if (EtherialBones)
             {
-                player.AddBuff(mod.BuffType("EtherBones"), 10 * 60, true);
+                player.AddBuff(mod.BuffType<EtherBones>(), 10 * 60, true);
                 EtherBonesDamageBoost += ((float)damage / (float)player.statLifeMax2);
             }
 
@@ -156,7 +161,7 @@ namespace Laugicality
                 if (BysmalPowers.Contains(NPCID.SkeletronHead))
                     EtherialBones = true;
 
-                if (BysmalPowers.Contains(mod.NPCType("AnDio3")))
+                if (BysmalPowers.Contains(mod.NPCType<AnDio3>()))
                     EtherialAnDio = true;
 
                 if (BysmalPowers.Contains(NPCID.Retinazer) || BysmalPowers.Contains(NPCID.Spazmatism))

@@ -94,7 +94,7 @@ namespace Laugicality.Focuses
 
         private static void DownedDestroyerEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.destroyerEffect = true;
+            laugicalityPlayer.DestroyerEffect = true;
         }
 
         private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

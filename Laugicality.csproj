@@ -120,6 +120,7 @@
     <Compile Include="Buffs\Steamy.cs" />
     <Compile Include="Buffs\TimeExhausted.cs" />
     <Compile Include="Buffs\ToyTrain.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Mounts\SteamTrain\SteamTrainMountBuff.cs" />
     <Compile Include="Buffs\TrueCurse.cs" />
     <Compile Include="Buffs\TrueDawn.cs" />
@@ -965,6 +966,7 @@
     <Compile Include="Tiles\TransmutationTable.cs" />
     <Compile Include="Tiles\Zinc.cs" />
     <Compile Include="Tiles\ZincBrick.cs" />
+    <Compile Include="UI\EnigmaMysticaInterface.cs" />
     <Compile Include="UI\LaugicalityUI.cs" />
     <Compile Include="Walls\ObsidiumBrickWall.cs" />
     <Compile Include="Walls\ObsidiumRockWall.cs" />

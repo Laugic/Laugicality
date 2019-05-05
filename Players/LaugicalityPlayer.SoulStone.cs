@@ -6,14 +6,12 @@ namespace Laugicality
     public sealed partial class LaugicalityPlayer
     {
         private const int HONEY_BASE_LIFE_REGEN = 1;
-        public bool destroyerEffect = false;
-        public bool destroyerCooldown = false;
 
         internal void ResetSoulStoneEffects()
         {
             HoneyRegenMultiplier = 1;
-            destroyerEffect = false;
-            destroyerCooldown = false;
+            DestroyerEffect = false;
+            DestroyerCooldown = false;
         }
 
         internal void UpdateSoulStoneLifeRegen()
@@ -22,16 +20,20 @@ namespace Laugicality
                 player.lifeRegen += HONEY_BASE_LIFE_REGEN * HoneyRegenMultiplier - HONEY_BASE_LIFE_REGEN;
         }
 
-        public bool SoulStonePreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        internal bool SoulStonePreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if(destroyerEffect && !destroyerCooldown && damage >= 60)
+            if(DestroyerEffect && !DestroyerCooldown && damage >= 60)
             {
-                player.AddBuff(mod.BuffType<DestroyerSoulCooldown>(), 90 * 60);
+                player.AddBuff(mod.BuffType<DestroyerSoulCooldown>(), 90 * Constants.TICKS_PER_SECONDS);
                 return false;
             }
+
             return true;
         }
 
         public int HoneyRegenMultiplier { get; set; }
+
+        public bool DestroyerEffect { get; set; }
+        public bool DestroyerCooldown { get; set; }
     }
 }

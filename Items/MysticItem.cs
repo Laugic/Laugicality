@@ -229,7 +229,7 @@ namespace Laugicality.Items
             modPlayer.CurrentMundusCost = MundusCost;
             Hold = 2;
 
-            Laugicality.instance.mysticaUI.Update();
+            Laugicality.instance.MysticaUI.Update();
         }
 
         private string GetMysticType()
