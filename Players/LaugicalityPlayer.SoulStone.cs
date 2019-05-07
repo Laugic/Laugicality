@@ -1,4 +1,6 @@
 ﻿using Laugicality.Buffs;
+using Laugicality.Focuses;
+using Laugicality.SoulStones;
 using Terraria.DataStructures;
 
 namespace Laugicality
@@ -11,7 +13,11 @@ namespace Laugicality
         {
             HoneyRegenMultiplier = 1;
             DestroyerEffect = false;
+            MoonLordEffect = false;
+            SteamTrainEffect = false;
             DestroyerCooldown = false;
+            if (!player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()))
+                MoonLordLifeMult = 1f;
         }
 
         internal void UpdateSoulStoneLifeRegen()
@@ -24,10 +30,28 @@ namespace Laugicality
         {
             if(DestroyerEffect && !DestroyerCooldown && damage >= 60)
             {
-                player.AddBuff(mod.BuffType<DestroyerSoulCooldown>(), 90 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(mod.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 return false;
             }
 
+            if(SteamTrainEffect && !player.HasBuff(Laugicality.instance.BuffType<SteamTrainSoulCooldownBuff>()) && player.GetModPlayer<LaugicalityPlayer>().Focus == FocusManager.Instance.Vitality)
+            {
+                if (player.statLife < player.statLifeMax2)
+                {
+                    player.statLife = player.statLifeMax2;
+                    player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 150 * Constants.TICKS_PER_SECONDS);
+                    return false;
+                }
+            }
+
+            if(MoonLordEffect && !player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()) && player.GetModPlayer<LaugicalityPlayer>().Focus == FocusManager.Instance.Vitality && player.statLifeMax2 > 100 && damage >= player.statLife)
+            {
+                MoonLordLifeMult *= .5f;
+                player.statLifeMax2 = (int)(MoonLordLifeMult * player.statLifeMax2);
+                player.statLife = player.statLifeMax2;
+                player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
+                return false;
+            }
             return true;
         }
 
@@ -35,5 +59,8 @@ namespace Laugicality
 
         public bool DestroyerEffect { get; set; }
         public bool DestroyerCooldown { get; set; }
+        public bool SteamTrainEffect { get; set; }
+        public float MoonLordLifeMult { get; set; }
+        public bool MoonLordEffect { get; set; }
     }
 }

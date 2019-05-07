@@ -73,7 +73,7 @@
     <Compile Include="Buffs\Connected.cs" />
     <Compile Include="Buffs\DartCopter.cs" />
     <Compile Include="Buffs\Dawn.cs" />
-    <Compile Include="Buffs\DestroyerSoulCooldown.cs" />
+    <Compile Include="Buffs\DestroyerSoulCooldownBuff.cs" />
     <Compile Include="Buffs\DestructionBoost.cs" />
     <Compile Include="Buffs\Etheramind.cs" />
     <Compile Include="Buffs\EtherBones.cs" />
@@ -96,6 +96,7 @@
     <Compile Include="Buffs\MagmaticCore.cs" />
     <Compile Include="Buffs\MagmaticVeins.cs" />
     <Compile Include="Buffs\Midnight.cs" />
+    <Compile Include="Buffs\MoonLordSoulCooldownBuff.cs" />
     <Compile Include="Buffs\Mysticality.cs" />
     <Compile Include="Buffs\Mysticality2.cs" />
     <Compile Include="Buffs\Mysticality3.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Buffs\Spooked.cs" />
     <Compile Include="Buffs\Spored.cs" />
     <Compile Include="Buffs\Steamified.cs" />
+    <Compile Include="Buffs\SteamTrainSoulCooldownBuff.cs" />
     <Compile Include="Buffs\Steamy.cs" />
     <Compile Include="Buffs\TimeExhausted.cs" />
     <Compile Include="Buffs\ToyTrain.cs" />

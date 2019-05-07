@@ -64,7 +64,7 @@ namespace Laugicality.SoulStones
             base.UpdateAccessory(player, hideVisual);
             LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>();
 
-            for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount)
+            for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
             {
                 FocusEffect effect = laugicalityPlayer.Focus.GetEffect(i);
 

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
-    public class DestroyerSoulCooldown : LaugicalityBuff
+    public class DestroyerSoulCooldownBuff : LaugicalityBuff
     {
         public override void SetDefaults()
         {

@@ -185,8 +185,6 @@ namespace Laugicality
             }
 
             #endregion
-
-            FocusManager.Instance.PostSetupFocuses();
         }
 
         public override void Unload()

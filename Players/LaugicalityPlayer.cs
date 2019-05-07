@@ -13,6 +13,7 @@ using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using Laugicality.NPCs;
 using Laugicality.SoulStones;
+using Laugicality.Items.Consumables.Potions;
 
 namespace Laugicality
 {
@@ -1064,6 +1065,26 @@ namespace Laugicality
                 mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
         }
 
+        public float GetGlobalDamage()
+        {
+            float globalDamage = player.meleeDamage;
+
+            if (player.rangedDamage < globalDamage)
+                globalDamage = player.rangedDamage;
+
+            if (player.magicDamage < globalDamage)
+                globalDamage = player.magicDamage;
+
+            if (player.thrownDamage < globalDamage)
+                globalDamage = player.thrownDamage;
+
+            if (player.minionDamage < globalDamage)
+                globalDamage = player.minionDamage;
+
+            if (globalDamage > 1)
+                return globalDamage;
+            return 1f;
+        }
 
         #region Buffs
 
