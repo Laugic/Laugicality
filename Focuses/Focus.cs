@@ -35,8 +35,9 @@ namespace Laugicality.Focuses
 
         internal void ManagerEndInitialization()
         {
-            if (EnemiesCount < 2) throw new Exception("All foci must have at least two enemies.");
-            if (NemesesCount < 1) throw new Exception("All foci must have at least one nemesis.");
+            /* Enable this again when we have enough schools.
+             if (EnemiesCount < 2) throw new Exception("All foci must have at least two enemies.");
+             if (NemesesCount < 1) throw new Exception("All foci must have at least one nemesis.");*/
 
             _finalEnemies = _enemies.AsReadOnly();
             _finalNemeses = _nemeses.AsReadOnly();

@@ -12,7 +12,7 @@ namespace Laugicality.Focuses
         public VitalityFocus() : base("VitalityFocus", "Vitality", Color.Gold, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedKingSlime", "+2 Life Regen while Jumping") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }), 
-            /*new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedEyeOfCthulhu", "+25 Max Life during the Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
+            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedEyeOfCthulhu", "+25 Max Life during the Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
             new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedDuneSHarkron", "+25 Max Life during the Day") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
             new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedWorldEvilBoss", "If you are losing life, lose 2 less life (to a minimum of 1)") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
             new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedHypothema", "Increased defense when affected by a life draining debuff") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
@@ -31,7 +31,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedGolem", "Greatly increased life regen while standing still") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
             new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedDukeFishron", "Being in liquid triples regeneration from Honey (again)") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
             new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedEtheria", "+20% Max Life while in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
-            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedMoonLord", "If you would die from taking damage, your Max Life is reduced by 50%\nand you return to your max life. If your Max Life is under 100, this effect does not trigger.\nThis effect lasts for 90 seconds, after which your Max Life will return to normal.") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),*/
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedMoonLord", "If you would die from taking damage, your Max Life is reduced by 50%\nand you return to your max life. If your Max Life is under 100, this effect does not trigger.\nThis effect lasts for 90 seconds, after which your Max Life will return to normal.") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
 
@@ -168,6 +168,7 @@ namespace Laugicality.Focuses
         private static void DownedMoonLordEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             laugicalityPlayer.MoonLordEffect = true;
+
             if(laugicalityPlayer.MoonLordLifeMult > 1f)
                 laugicalityPlayer.player.statLifeMax2 = (int)(laugicalityPlayer.MoonLordLifeMult * laugicalityPlayer.player.statLifeMax2);
         }
