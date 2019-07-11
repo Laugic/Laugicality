@@ -147,8 +147,6 @@ namespace Laugicality.Items
             return -1;
         }*/
 
-
-
         public override void GetWeaponDamage(Player player, ref int damage)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
