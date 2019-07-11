@@ -21,7 +21,7 @@ namespace Laugicality.Items.Materials
 			item.useTime = 15;
 			item.useStyle = 1;
 		}
-        
+        /*
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
@@ -30,6 +30,6 @@ namespace Laugicality.Items.Materials
             recipe.AddTile(412);
             recipe.SetResult(this, 2);
             recipe.AddRecipe();
-        }
+        }*/
 	}
 }

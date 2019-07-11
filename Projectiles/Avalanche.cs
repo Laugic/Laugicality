@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Laugicality;
 using Laugicality.NPCs;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles
 {
@@ -37,7 +38,7 @@ namespace Laugicality.Projectiles
 
             projectile.velocity.Y += projectile.ai[0];
             projectile.ai[0] += 0.04f;
-            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
 

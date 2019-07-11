@@ -7,13 +7,13 @@ namespace Laugicality.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Purple Iceball");
+            DisplayName.SetDefault("Ebonchunk");
             Tooltip.SetDefault("The corrupt ice is much thicker, and even able to bounce.");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 12;
+            item.damage = 9;
             item.ranged = true;
             item.width = 8;
             item.height = 8;

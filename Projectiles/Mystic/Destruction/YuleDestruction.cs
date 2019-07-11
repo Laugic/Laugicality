@@ -19,8 +19,8 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             homing = true;
             vMag = 16f;
             spawned = false;
-			projectile.width = 48;
-			projectile.height = 48;
+			projectile.width = 24;
+			projectile.height = 24;
             projectile.timeLeft = 120;
             projectile.friendly = true;
             projectile.hostile = false;

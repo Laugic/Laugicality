@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -37,7 +38,7 @@ namespace Laugicality.NPCs.Etheria
         public override void AI()
         {
             bitherial = true;
-            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), 0f, 0f);
+            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
             delay += 1;
                 projectile.velocity *= .95f;
             if(delay >= 100 && Main.netMode != 1)

@@ -11,6 +11,7 @@ namespace Laugicality.Buffs
             Description.SetDefault("Your Moon Lord effect is on Cooldown.");
             Main.debuff[Type] = false;
             Main.buffNoSave[Type] = true;
+            canBeCleared = false;
         }
     }
 }

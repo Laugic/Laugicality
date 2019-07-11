@@ -460,7 +460,7 @@ namespace Laugicality.NPCs.RockTwins
                 if (laserCharge > 240)
                 {
                     if (NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) > 1)
-                        Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
+                        Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
                     if (Main.netMode != 1 && NPC.CountNPCS(mod.NPCType("AnDioLaserBall")) > 1)
                     {
                         if(Laugicality.zaWarudo < 4 * 60)

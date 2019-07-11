@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles
 {
-	public class Eruption : ModProjectile
+	public class EruptionProjectile : ModProjectile
 	{
 		public override void SetDefaults()
 		{

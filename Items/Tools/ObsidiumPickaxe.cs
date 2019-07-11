@@ -19,7 +19,7 @@ namespace Laugicality.Items.Tools
 			item.height = 40;
 			item.useTime = 15;
 			item.useAnimation = 30;
-			item.pick = 90;
+			item.pick = 100;
 			item.useStyle = 1;
 			item.knockBack = 6;
 			item.value = 10000;

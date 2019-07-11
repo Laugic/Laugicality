@@ -1,3 +1,4 @@
+using Laugicality.NPCs.SteamTrain;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +22,6 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<NPCs.SteamTrain.SteamTrain>();
         }
 
         public override bool CanRightClick()
@@ -38,6 +38,7 @@ namespace Laugicality.Items.Loot
 
             player.QuickSpawnItem(ItemID.GreaterHealingPotion, Main.rand.Next(10, 15));
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<SteamTrain>();
     }
 }

@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useTime = 25;
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
-			item.damage = 25;
+			item.damage = 38;
 			item.rare = ItemRarityID.Blue;
 
 			item.melee = true;

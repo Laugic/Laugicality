@@ -33,12 +33,12 @@ namespace Laugicality.UI
         public static SpriteProgressBar MysticBurstBar;
         public static Texture2D MysticBurstBGTexture;
         public static Texture2D MysticBurstBarTexture;
-        Vector2 TopPosBase = new Vector2();
-        Vector2 MidPosBase = new Vector2();
-        Vector2 BotPosBase = new Vector2();
-        Vector2 TopPos = new Vector2();
-        Vector2 MidPos = new Vector2();
-        Vector2 BotPos = new Vector2();
+        Vector2 TopPosBase = new Vector2((Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(3f / 2f * Math.PI) * 100) / Main.UIScale, (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(3f / 2f * Math.PI) * 100 + 25) / Main.UIScale);
+        Vector2 MidPosBase = new Vector2((Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(5f / 6f * Math.PI) * 100) / Main.UIScale, (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(5f / 6f * Math.PI) * 100 + 25) / Main.UIScale);
+        Vector2 BotPosBase = new Vector2((Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(1f / 6f * Math.PI) * 100) / Main.UIScale, (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(1f / 6f * Math.PI) * 100 + 25) / Main.UIScale);
+        Vector2 TopPos = new Vector2(0, 0);
+        Vector2 MidPos = new Vector2(0, 0);
+        Vector2 BotPos = new Vector2(0, 0);
         Vector2 MysticBurstPos = new Vector2();
         int position = 1;
         float topTheta = -100;
@@ -55,21 +55,21 @@ namespace Laugicality.UI
 
         static LaugicalityUI()
         {
-          visible = true;
-          LuxBGTexture = ModLoader.GetTexture("Laugicality/UI/LuxBG");
-          LuxBarTexture = ModLoader.GetTexture("Laugicality/UI/LuxBar");
-          LuxFGTexture = ModLoader.GetTexture("Laugicality/UI/LuxFG");
-          MundusBGTexture = ModLoader.GetTexture("Laugicality/UI/MundusBG");
-          MundusBarTexture = ModLoader.GetTexture("Laugicality/UI/MundusBar");
-          MundusFGTexture = ModLoader.GetTexture("Laugicality/UI/MundusFG");
-          VisBGTexture = ModLoader.GetTexture("Laugicality/UI/VisBG");
-          VisBarTexture = ModLoader.GetTexture("Laugicality/UI/VisBar");
-          VisFGTexture = ModLoader.GetTexture("Laugicality/UI/VisFG");
-          OverflowBGTexture = ModLoader.GetTexture("Laugicality/UI/OverflowBG");
-          OverflowBarTexture = ModLoader.GetTexture("Laugicality/UI/OverflowBar");
-          OverflowFGTexture = ModLoader.GetTexture("Laugicality/UI/OverflowFG");
-          MysticBurstBGTexture = ModLoader.GetTexture("Laugicality/UI/MysticBurstBG");
-          MysticBurstBarTexture = ModLoader.GetTexture("Laugicality/UI/MysticBurstBar");
+              visible = true;
+              LuxBGTexture = Laugicality.instance.GetTexture("UI/LuxBG");
+              LuxBarTexture = Laugicality.instance.GetTexture("UI/LuxBar");
+              LuxFGTexture = Laugicality.instance.GetTexture("UI/LuxFG");
+              MundusBGTexture = Laugicality.instance.GetTexture("UI/MundusBG");
+              MundusBarTexture = Laugicality.instance.GetTexture("UI/MundusBar");
+              MundusFGTexture = Laugicality.instance.GetTexture("UI/MundusFG");
+              VisBGTexture = Laugicality.instance.GetTexture("UI/VisBG");
+              VisBarTexture = Laugicality.instance.GetTexture("UI/VisBar");
+              VisFGTexture = Laugicality.instance.GetTexture("UI/VisFG");
+              OverflowBGTexture = Laugicality.instance.GetTexture("UI/OverflowBG");
+              OverflowBarTexture = Laugicality.instance.GetTexture("UI/OverflowBar");
+              OverflowFGTexture = Laugicality.instance.GetTexture("UI/OverflowFG");
+              MysticBurstBGTexture = Laugicality.instance.GetTexture("UI/MysticBurstBG");
+              MysticBurstBarTexture = Laugicality.instance.GetTexture("UI/MysticBurstBar");
         }
 
         public override void OnInitialize()

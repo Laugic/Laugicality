@@ -297,6 +297,46 @@ namespace Laugicality
             }
         }
 
+        public static int GetCurseCount()
+        {
+            int count = 0;
+            int numBosses = CountDownedBosses();
+            if (numBosses >= 5)
+                count++;
+            if (numBosses >= 10)
+                count++;
+            if (numBosses >= 15)
+                count++;
+            if (numBosses >= 20)
+                count++;
+            return count;
+        }
 
+        public static int CountDownedBosses()
+        {
+            int count = 0;
+            if (NPC.downedSlimeKing) count++;
+            if (NPC.downedBoss1) count++;
+            if (downedDuneSharkron) count++;
+            if (NPC.downedBoss2) count++;
+            if (downedHypothema) count++;
+            if (NPC.downedQueenBee) count++;
+            if (downedRagnar) count++;
+            if (NPC.downedBoss3) count++;
+            if (downedAnDio) count++;
+            if (Main.hardMode) count++;
+            if (NPC.downedMechBoss2) count++;
+            if (NPC.downedMechBoss1) count++;
+            if (NPC.downedMechBoss3) count++;
+            if (downedAnnihilator) count++;
+            if (downedSlybertron) count++;
+            if (downedSteamTrain) count++;
+            if (NPC.downedPlantBoss) count++;
+            if (NPC.downedGolemBoss) count++;
+            if (NPC.downedFishron) count++;
+            if (downedEtheria || downedTrueEtheria) count++;
+            if (NPC.downedMoonlord) count++;
+            return count;
+        }
     }
 }

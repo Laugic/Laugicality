@@ -6,6 +6,7 @@ using Laugicality.NPCs;
 using System;
 using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
+using Laugicality.Buffs;
 
 namespace Laugicality.Projectiles
 {
@@ -164,7 +165,7 @@ namespace Laugicality.Projectiles
                 projectile.damage = (int)(2000 * Main.player[projectile.owner].minionDamage);
 
             int rand = Main.rand.Next(60);
-            if (projectile.friendly && projectile.damage > 0)
+            /*if (projectile.friendly && projectile.damage > 0)
             {
                 if (modPlayer.Obsidium && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
@@ -198,7 +199,7 @@ namespace Laugicality.Projectiles
                 {
                     Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
-            }
+            }*/
 
             bool zProjImmune = false;
             Player projOwner = Main.player[projectile.owner];
@@ -273,64 +274,93 @@ namespace Laugicality.Projectiles
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+            if(!modPlayer.NoDebuffDamage)
+                InflictDebuffs(projectile, target, damage, knockback, crit);
+        }
 
-            int rand = Main.rand.Next(4);
-            if (modPlayer.Obsidium)
+        private void InflictDebuffs(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod);
+            int rand = Main.rand.Next(5);
+            if (Main.myPlayer == projectile.owner)
             {
-                target.AddBuff(24, (int)(3 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.Frost)
-            {
-                target.AddBuff(BuffID.Frostburn, (int)(3 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.SkeletonPrime)
-            {
-                target.AddBuff(39, (int)(4 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.Doucheron)
-            {
-                target.AddBuff(70, (int)(4 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.QueenBee)
-            {
-                target.AddBuff(20, (int)(4 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.Steamified)
-            {
-                target.AddBuff(mod.BuffType("Steamy"), (int)(3 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.Slimey)
-            {
-                target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.EtherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
-            {
-                target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
-            }
-            if (modPlayer.EtherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
-            {
-                target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
-            }
-            if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
-            {
-                target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
-            }
-
-            if (modPlayer.crysMag && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))
-            {
-                if (crit)
+                if (modPlayer.Obsidium)
                 {
-                    float mag = 6f;
-                    float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    if (Main.myPlayer == projectile.owner)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
-                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    if (Main.myPlayer == projectile.owner)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
-                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    if (Main.myPlayer == projectile.owner)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    target.AddBuff(24, (int)(3 * 60 + 60 * rand), false);
                 }
+                if (modPlayer.Frost)
+                {
+                    target.AddBuff(BuffID.Frostburn, (int)(3 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.Poison)
+                {
+                    target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.SkeletonPrime)
+                {
+                    target.AddBuff(39, (int)(4 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.Doucheron)
+                {
+                    target.AddBuff(70, (int)(4 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.QueenBee)
+                {
+                    target.AddBuff(20, (int)(4 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.CursedFlame)
+                {
+                    target.AddBuff(BuffID.CursedInferno, (int)(4 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.Steamified)
+                {
+                    target.AddBuff(mod.BuffType("Steamy"), (int)(3 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.Lovestruck)
+                {
+                    target.AddBuff(mod.BuffType<Lovestruck>(), (int)(4 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.Slimey)
+                {
+                    target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.JunglePlague && projectile.type != mod.ProjectileType<JunglePlagueSpore>() && projectile.type != mod.ProjectileType<JunglePlagueSporeSpread>())
+                {
+                    if (target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
+                        target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration = 180 + 60 * rand;
+                }
+                if (modPlayer.EtherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
+                {
+                    target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
+                }
+                if (modPlayer.EtherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
+                {
+                    target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
+                }
+                if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
+                {
+                    target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
+                }
+                /*
+                if (modPlayer.critExplosion && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))
+                {
+                    if (crit)
+                    {
+                        float mag = 6f;
+                        float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        if (Main.myPlayer == projectile.owner)
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                        theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        if (Main.myPlayer == projectile.owner)
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                        theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
+                        if (Main.myPlayer == projectile.owner)
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    }
+                }*/
+
+                if (target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult < modPlayer.DebuffMult)
+                    target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult = modPlayer.DebuffMult;
             }
         }
 

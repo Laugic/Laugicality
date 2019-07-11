@@ -61,8 +61,12 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     delay = 0;
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 181, (int)(projectile.damage * 0.80f), 3f, Main.myPlayer);
-						for (int k = 0; k < 5; k++)
+                        if (!player.strongBees)
+                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 181, (int)(projectile.damage), 2f, projectile.owner);
+                        else
+                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 566, (int)(projectile.damage * 1.5f), 2f, projectile.owner);
+
+                        for (int k = 0; k < 5; k++)
 						{
 							int num234 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y + 20) - projectile.velocity, projectile.width, projectile.height, 153, Main.rand.NextFloat(-1f, 1f), 3f, 50, default(Color), 1f);
 							Dust dust3 = Main.dust[num234];

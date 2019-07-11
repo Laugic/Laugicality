@@ -23,7 +23,6 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<Hypothema>();
         }
 
         public override bool CanRightClick()
@@ -51,6 +50,7 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(ItemID.IceBlock, Main.rand.Next(40, 75));
 
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<Hypothema>();
     }
 }

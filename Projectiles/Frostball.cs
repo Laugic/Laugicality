@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles
@@ -11,8 +12,7 @@ namespace Laugicality.Projectiles
 			projectile.width = 14;
 			projectile.height = 14;
 			projectile.friendly = true;
-			projectile.magic = true;
-			//projectile.penetrate = 1;
+			projectile.ranged = true;
 			projectile.timeLeft = 600;
 		}
 
@@ -22,8 +22,6 @@ namespace Laugicality.Projectiles
             projectile.ai[0] += 0.01f;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-
         }
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
@@ -31,7 +29,10 @@ namespace Laugicality.Projectiles
 			projectile.Kill();
             return true;
 		}
-        
-        
-	}
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Frostburn, 120 + Main.rand.Next(60));
+        }
+    }
 }

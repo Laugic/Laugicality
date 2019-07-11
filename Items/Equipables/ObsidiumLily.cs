@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Obsidium Lily");
-            Tooltip.SetDefault("Attack stats are increased for a time after being submerged in Lava");
+            Tooltip.SetDefault("Immunity to Lava, Burning, and 'On Fire!'\n+10% Damage and +5 Defense in the Obsidium and Underworld");
         }
 
         public override void SetDefaults()
@@ -23,8 +23,12 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if(player.lavaWet)
-                player.AddBuff(mod.BuffType("BurningFragrance"), 60 * 15);
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>();
+            if(player.ZoneUnderworldHeight || modPlayer.zoneObsidium)
+            {
+                modPlayer.DamageBoost(.1f);
+                player.statDefense += 5;
+            }
         }
     }
 }

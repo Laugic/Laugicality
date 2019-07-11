@@ -23,7 +23,6 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<DuneSharkron>();
         }
 
         public override bool CanRightClick()
@@ -35,16 +34,20 @@ namespace Laugicality.Items.Loot
         public override void OpenBossBag(Player player)
         {
             player.QuickSpawnItem(mod.ItemType("AncientShard"), Main.rand.Next(2,4));
-            player.QuickSpawnItem(mod.ItemType("Crystilla"), Main.rand.Next(6, 11));
+            player.QuickSpawnItem(mod.ItemType("Crystilla"), Main.rand.Next(8, 15));
             player.QuickSpawnItem(mod.ItemType("Pyramind"), 1);
-            int ran = Main.rand.Next(1, 5);
-            if (ran == 1) player.QuickSpawnItem(934, 1);
-            if (ran == 2) player.QuickSpawnItem(857, 1);
-            if (ran == 3) player.QuickSpawnItem(848, 1);
-            if (ran == 4) player.QuickSpawnItem(866, 1);
+            int ran = Main.rand.Next(1, 8);
+            if (ran == 1) player.QuickSpawnItem(ItemID.SandstorminaBottle, 1);
+            if (ran == 2) player.QuickSpawnItem(ItemID.FlyingCarpet, 1);
+            if (ran == 3) player.QuickSpawnItem(ItemID.BandofRegeneration, 1);
+            if (ran == 4) player.QuickSpawnItem(ItemID.MagicMirror, 1);
+            if (ran == 5) player.QuickSpawnItem(ItemID.CloudinaBottle, 1);
+            if (ran == 6) player.QuickSpawnItem(ItemID.HermesBoots, 1);
+            if (ran == 7) player.QuickSpawnItem(ItemID.EnchantedBoomerang, 1);
 
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<DuneSharkron>();
     }
 }

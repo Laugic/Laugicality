@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Laugicality.Dusts;
 
 namespace Laugicality.Tiles
 {
@@ -24,7 +25,7 @@ namespace Laugicality.Tiles
             name.SetDefault("High Priestess");
             AddMapEntry(new Color(0, 150, 150), name);
             disableSmartCursor = true;
-            dustType = mod.DustType("Etherial");
+            dustType = mod.DustType<EtherialDust>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -39,7 +40,7 @@ namespace Laugicality.Tiles
             pos.Y = j * 16 - 24;
             for (int k = 0; k < 12; k++)
             {
-                Dust.NewDust(pos, 64, 64, mod.DustType("Etherial"), 0f, 0f);
+                Dust.NewDust(pos, 64, 64, mod.DustType<EtherialDust>(), 0f, 0f);
             }
         }
 
@@ -64,7 +65,7 @@ namespace Laugicality.Tiles
                 LaugicalityWorld.downedEtheria = !LaugicalityWorld.downedEtheria;
 
                 for(int k = 0; k < 12; k++)
-                    Dust.NewDust(pos, 64, 64, mod.DustType("Etherial"), 0f, 0f);
+                    Dust.NewDust(pos, 64, 64, mod.DustType<EtherialDust>(), 0f, 0f);
 
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
             }

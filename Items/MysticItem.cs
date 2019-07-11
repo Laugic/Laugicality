@@ -154,22 +154,21 @@ namespace Laugicality.Items
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 
             int originalDmg = damage;
-            float globalDmg = player.meleeDamage;
+            float globalDamageMult = player.meleeDamage;
 
-            if (player.rangedDamage < globalDmg)
-                globalDmg = player.rangedDamage;
+            if (player.rangedDamage < globalDamageMult)
+                globalDamageMult = player.rangedDamage;
 
-            if (player.magicDamage < globalDmg)
-                globalDmg = player.magicDamage;
+            if (player.magicDamage < globalDamageMult)
+                globalDamageMult = player.magicDamage;
 
-            if (player.thrownDamage < globalDmg)
-                globalDmg = player.thrownDamage;
+            if (player.thrownDamage < globalDamageMult)
+                globalDamageMult = player.thrownDamage;
 
-            if (player.minionDamage < globalDmg)
-                globalDmg = player.minionDamage;
-
-            if (globalDmg > 1)
-                damage = (int)(originalDmg * globalDmg);
+            if (player.minionDamage < globalDamageMult)
+                globalDamageMult = player.minionDamage;
+            
+            damage = (int)(originalDmg * globalDamageMult);
 
             damage = (int)(damage * modPlayer.MysticDamage);
 

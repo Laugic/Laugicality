@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -6,14 +7,9 @@ namespace Laugicality.NPCs.PreTrio
 {
 	public class Sandnado : ModProjectile
 	{
-        public int delay = 0;
-        public int delMax = 200;
-        public bool bitherial = true;
-        public float theta = 0f;
-        public float tVel = 0f;
-        public float vel = 0f;
-        public float distance = 0;
-        public float vMax = 7f;
+        int delay = 0;
+        float theta = 0;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sandnado");
@@ -21,71 +17,85 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void SetDefaults()
         {
-            LaugicalityVars.eProjectiles.Add(projectile.type);
-            theta = 0;
-            distance = 0;
-            tVel = 0f;
-            vel = 0f;
-            bitherial = true;
-            delMax = 4;
             delay = 0;
-            projectile.width = 16;
-			projectile.height = 16;
-			//projectile.alpha = 255;
+            LaugicalityVars.eProjectiles.Add(projectile.type);
+            projectile.width = 160;
+			projectile.height = 42;
             projectile.timeLeft = 300;
             projectile.friendly = false;
             projectile.hostile = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            //projectile.rotation = (float)(Main.rand.Next(5) * 3.14 / 4);
+            Main.projFrames[projectile.type] = 6;
         }
 
 		public override void AI()
         {
-            bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Sandy"), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
-            
-            projectile.rotation += 0.02f;
-            if (Main.rand.Next(4) == 0 && Main.netMode != 1)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4+Main.rand.Next(0,9), -Main.rand.Next(5,8),  mod.ProjectileType("SandnadoUp"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-
-            double targetX = Main.LocalPlayer.position.X;
-            double targetY = Main.LocalPlayer.position.Y;
-            distance = (float)Math.Sqrt((targetX - projectile.position.X) * (targetX - projectile.position.X) + (targetY - projectile.position.Y) * (targetY - projectile.position.Y));
-            /*
-            if (Main.LocalPlayer.statLife > 0 && distance > 240)
-            {
-                vMax = 11f;
-            }
+            if(projectile.ai[1] == 1)
+                Movement();
             else
-                vMax = 3f;*/
-            vMax = 4f;
-            tVel = distance / 10;
+                MovementAnimation();
+            FrameAnimation();
+            SpawnSandnadoLayers();
+        }
 
-            if (vel < tVel && (float)Math.Abs(vel) < vMax)
-            {
-                vel += .1f;
-                vel *= 1.01f;
-            }
-            if (vel > tVel)
-            {
-                vel -= .1f;
-                vel *= .99f;
-            }
+        private void Movement()
+        {
+            if (projectile.Center.X < Main.player[projectile.owner].Center.X - 4)
+                projectile.velocity.X = 2;
+            else if (projectile.Center.X > Main.player[projectile.owner].Center.X + 4)
+                projectile.velocity.X = -2;
+            else
+                projectile.velocity.X = 0;
+            if(projectile.Center.Y < Main.player[projectile.owner].Center.Y + 12)
+                projectile.velocity.Y = 2;
+            else if (projectile.Center.Y > Main.player[projectile.owner].Center.Y - 20)
+                projectile.velocity.Y = -1;
+            else
+                projectile.velocity.Y = 0;
+        }
 
-            delay++;
-            if(delay >= delMax)
-            {
-                delay = 0;
-                projectile.velocity.X = (float)Math.Abs((projectile.position.X - targetX) / distance * vel);
-                if (targetX < projectile.position.X)
-                    projectile.velocity.X *= -1;
-                projectile.velocity.Y = (float)Math.Abs((projectile.position.Y - targetY) / distance * vel);
-                if (targetY < projectile.position.Y)
-                    projectile.velocity.Y *= -1;
-            }
-            
+        private void MovementAnimation()
+        {
+            projectile.scale = projectile.ai[1] / 4f + .5f;
+            theta += (float)Math.PI / 60;
+            projectile.position.Y = Main.projectile[(int)projectile.ai[0]].position.Y - projectile.height * (projectile.ai[1] - 1) + 1;
+            projectile.position.X = Main.projectile[(int)projectile.ai[0]].position.X + (float)Math.Cos(theta) * 12 * (projectile.ai[1] - 1);
+            if (!Main.projectile[(int)projectile.ai[0]].active)
+                projectile.Kill();
         }
         
+        private void FrameAnimation()
+        {
+            projectile.frameCounter++;
+            if (projectile.frameCounter > 2)
+            {
+                projectile.frame++;
+                projectile.frameCounter = 0;
+            }
+            if (projectile.frame > 5)
+            {
+                projectile.frame = 0;
+            }
+        }
+
+        private void SpawnSandnadoLayers()
+        {
+            if (delay >= 0)
+                delay++;
+            if (delay > 15 && projectile.ai[1] < 5)
+            {
+                delay = -2;
+                if (projectile.ai[1] != 1 && Main.myPlayer == projectile.owner)
+                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<Sandnado>(), projectile.damage, 0, projectile.owner, projectile.ai[0], projectile.ai[1] + 1);
+                else if (Main.myPlayer == projectile.owner)
+                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<Sandnado>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, projectile.ai[1] + 1);
+            }
+        }
+
+        public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
+        {
+            target.velocity.Y = -26f;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Laugicality.Buffs;
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,8 +48,8 @@ namespace Laugicality.Items.Consumables.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "GreaterMysticaPotion", 2);
-            recipe.AddIngredient(null, "LiquidAlbus", 1);
-            recipe.AddIngredient(null, "MagmaticCrystal", 3);
+            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 2);
+            recipe.AddIngredient(mod.ItemType<MagmaticCrystal>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this, 2);
             recipe.AddRecipe();

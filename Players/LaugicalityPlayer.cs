@@ -14,6 +14,10 @@ using Terraria.GameInput;
 using Laugicality.NPCs;
 using Laugicality.SoulStones;
 using Laugicality.Items.Consumables.Potions;
+using Laugicality.NPCs.PreTrio;
+using Laugicality.Projectiles;
+using Laugicality.Dusts;
+using Laugicality.Items.Equipables;
 
 namespace Laugicality
 {
@@ -41,6 +45,7 @@ namespace Laugicality
 
         //Misc
         public bool zImmune;
+        public bool zMove;
         public bool zCool;
         public int zaWarudoDuration;
         public float xTemp;
@@ -49,7 +54,7 @@ namespace Laugicality
         public int zCoolDown = 1800;
         public float theta;
         public bool obsHeart;
-        public bool crysMag;
+        public bool FireTrail { get; set; } = false;
         public bool frostbite;
         public int fullBysmal;
         bool _boosted = false;
@@ -57,6 +62,20 @@ namespace Laugicality
         float _fanBoost;
         public float SnowDamage { get; set; } = 1f;
         public bool BysmalAbsorbDisabled { get; set; } = false;
+        public bool Poison { get; set; } = false;
+        public bool CursedFlame { get; set; } = false;
+        public bool JunglePlague { get; set; } = false;
+        public float DebuffMult { get; set; } = 1f;
+        public bool NoDebuffDamage { get; set; } = false;
+        public bool TrueFireTrail { get; set; } = false;
+        public bool ShadowflameTrail { get; set; } = false;
+        public bool CrystalliteTrail { get; set; } = false;
+        public bool SteamTrail { get; set; } = false;
+        public bool BysmalTrail { get; set; } = false;
+        public bool Blaze { get; set; } = false;
+        public bool Carapace { get; set; } = false;
+        public bool PrismVeil { get; set; } = false;
+
 
         //Music
         public bool zoneObsidium;
@@ -118,7 +137,7 @@ namespace Laugicality
 
             Slimey = false;
             Magmatic = false;
-            crysMag = false;
+            FireTrail = false;
             theta += 3.14f / 40f;
             UltraBoisSummon = false;
             obsHeart = false;
@@ -135,6 +154,7 @@ namespace Laugicality
             NoRegen = false;
             TrueCurse = false;
             zImmune = false;
+            zMove = false;
             zCool = false;
             etherialMusic = false;
             Rocks = false;
@@ -159,6 +179,18 @@ namespace Laugicality
             Spores = false;
             frostbite = false;
             ArcticHydraSummon = false;
+            Poison = false;
+            CursedFlame = false;
+            JunglePlague = false;
+            NoDebuffDamage = false;
+            TrueFireTrail = false;
+            ShadowflameTrail = false;
+            CrystalliteTrail = false;
+            SteamTrail = false;
+            BysmalTrail = false;
+            Blaze = false;
+            Carapace = false;
+            PrismVeil = false;
 
             if (player.extraAccessory)
             {
@@ -174,6 +206,7 @@ namespace Laugicality
                 player.extraAccessorySlots = 0;
 
             SnowDamage = 1f;
+            DebuffMult = 1f;
             ResetEtherial();
 
         }
@@ -238,7 +271,7 @@ namespace Laugicality
 
                 if (Main.rand.Next(25) == 0)
                 {
-                    int rand = Main.rand.Next(6);
+                    int rand = Main.rand.Next(7);
 
                     switch (rand)
                     {
@@ -246,19 +279,22 @@ namespace Laugicality
                             caughtType = ItemID.LavaCharm;
                             break;
                         case 1:
-                            caughtType = mod.ItemType("ObsidiumLily");
+                            caughtType = mod.ItemType<ObsidiumLily>();
                             break;
                         case 2:
-                            caughtType = mod.ItemType("FireDust");
+                            caughtType = mod.ItemType<FireDust>();
                             break;
                         case 3:
-                            caughtType = mod.ItemType("Eruption");
+                            caughtType = mod.ItemType<Eruption>();
                             break;
                         case 4:
-                            caughtType = mod.ItemType("CrystalizedMagma");
+                            caughtType = mod.ItemType<CrystalizedMagma>();
+                            break;
+                        case 5:
+                            caughtType = mod.ItemType<Ragnashia>();
                             break;
                         default:
-                            caughtType = mod.ItemType("MagmaHeart");
+                            caughtType = mod.ItemType<MagmaHeart>();
                             break;
                     }
                 }
@@ -295,19 +331,21 @@ namespace Laugicality
         {
             if (Laugicality.zaWarudo > 0 && zImmune == false)
             {
-                player.velocity.X = 0;
-                player.velocity.Y = 0;
                 player.AddBuff(mod.BuffType("TrueCurse"), 1, true);
-
-                if (xTemp == 0 || yTemp == 0)
+                if (!zMove)
                 {
-                    xTemp = player.position.X;
-                    yTemp = player.position.Y;
-                }
-                else
-                {
-                    player.position.X = xTemp;
-                    player.position.Y = yTemp;
+                    player.velocity.X = 0;
+                    player.velocity.Y = 0;
+                    if (xTemp == 0 || yTemp == 0)
+                    {
+                        xTemp = player.position.X;
+                        yTemp = player.position.Y;
+                    }
+                    else
+                    {
+                        player.position.X = xTemp;
+                        player.position.Y = yTemp;
+                    }
                 }
             }
             else if (Frosty)
@@ -342,7 +380,7 @@ namespace Laugicality
             if (MysticErupting > 0)
             {
                 if (Main.rand.Next(4) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("Eruption"), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("EruptionProjectile"), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
             }
 
             if (MysticSpiralBurst > 0)
@@ -490,20 +528,37 @@ namespace Laugicality
             {
                 player.maxRunSpeed *= 1.1f;
             }
+            if (Blaze)
+                BlazeEffect();
             if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessoriesPost();
         }
 
-        public override void GetWeaponDamage(Item item, ref int damage)
+        private void BlazeEffect()
+        {
+            foreach (NPC npc in Main.npc)
+            {
+                float range = 120;
+                if (npc.active && !npc.friendly && (npc.damage > 0 || npc.type == NPCID.TargetDummy) && !npc.dontTakeDamage && !npc.buffImmune[BuffID.Frostburn] && Vector2.Distance(player.Center, npc.Center) <= range)
+                {
+                    if (npc.FindBuffIndex(BuffID.OnFire) == -1)
+                    {
+                        npc.AddBuff(BuffID.OnFire, 2 * 60, false);
+                    }
+                }
+            }
+        }
+
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult)
         {
             if (item.ammo == AmmoID.Snowball)
-                damage = (int)((float)damage * SnowDamage);
-            base.GetWeaponDamage(item, ref damage);
+                mult = mult * SnowDamage;
+            base.ModifyWeaponDamage(item, ref add, ref mult);
         }
 
         public override TagCompound Save()
         {
-            return new TagCompound {
+            TagCompound tag = new TagCompound {
                 {"Class", Class },
                 {"Etherial", etherial },
                 {"ESlot", etherialSlot },
@@ -524,7 +579,10 @@ namespace Laugicality
                 {"MundusMaxPermaBoost", MundusMaxPermaBoost},
                 {"MysticBurstDisabled", MysticBurstDisabled},
                 {"BysmalAbsorbDisabled", BysmalAbsorbDisabled},
+                {"FocusName", FocusName},
             };
+            tag.Add("Focus", Focus != null ? Focus.UnlocalizedName : "");
+            return tag;
         }
 
         public override void UpdateBiomeVisuals()
@@ -557,6 +615,12 @@ namespace Laugicality
             MysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
             BysmalAbsorbDisabled = tag.GetBool("BysmalAbsorbDisabled");
             BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
+            FocusName = tag.GetString("FocusName");
+
+            string focus = tag.GetString("Focus");
+
+            if (!string.IsNullOrWhiteSpace(focus))
+                Focus = FocusManager.Instance[focus];
         }
         
         public override void UpdateBiomes()
@@ -654,6 +718,12 @@ namespace Laugicality
                 player.lifeRegenTime = 0;
                 player.lifeRegen -= 4;
             }
+
+            SoulStoneBadLifeRegen();
+            if (player.lifeRegen < 0)
+                LosingLife = true;
+            else
+                LosingLife = false;
         }
 
         public override void UpdateLifeRegen()
@@ -677,59 +747,58 @@ namespace Laugicality
         /// </summary>
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            int rand = Main.rand.Next(4);
+            if (!NoDebuffDamage)
+                InflictDebuffs(item, target, damage, knockback, crit);
+        }
 
+        private void InflictDebuffs(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            int rand = Main.rand.Next(5);
             if (Obsidium)
-                target.AddBuff(BuffID.OnFire, (int)((120 + 60 * rand)), false);
+                target.AddBuff(BuffID.OnFire, (int)((180 + 60 * rand)), false);
 
             if (Frost)
-                target.AddBuff(BuffID.Frostburn, (int)((120 + 60 * rand)), false);
+                target.AddBuff(BuffID.Frostburn, (int)((180 + 60 * rand)), false);
+
+            if (Poison)
+                target.AddBuff(BuffID.Poisoned, (int)((180 + 60 * rand)), false);
 
             if (SkeletonPrime)
-                target.AddBuff(39, (int)((120 + 60 * rand)), false);
+                target.AddBuff(39, (int)((180 + 60 * rand)), false);
 
             if (Doucheron)
-                target.AddBuff(70, (int)((120 + 60 * rand)), false);
+                target.AddBuff(70, (int)((180 + 60 * rand)), false);
 
             if (QueenBee)
-                target.AddBuff(20, (int)((120 + 60 * rand)), false);
+                target.AddBuff(20, (int)((180 + 60 * rand)), false);
+
+            if (CursedFlame)
+                target.AddBuff(BuffID.CursedInferno, (int)((4 * 60 + 60 * rand)), false);
 
             if (Steamified)
-                target.AddBuff(mod.BuffType("Steamy"), (int)((120 + 60 * rand)), false);
+                target.AddBuff(mod.BuffType("Steamy"), (int)((180 + 60 * rand)), false);
+
+            if (Lovestruck)
+                target.AddBuff(mod.BuffType<Lovestruck>(), (int)((4 * 60 + 60 * rand)), false);
 
             if (Slimey)
-                target.AddBuff(mod.BuffType("Slimed"), (int)((120 + 60 * rand)), false);
+                target.AddBuff(mod.BuffType("Slimed"), (int)((180 + 60 * rand)), false);
+
+            if (JunglePlague && target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
+                target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration = 180 + 60 * rand;
 
             if (EtherialFrost)
                 target.AddBuff(mod.BuffType("Frostbite"), (int)((12 * 60 + 60 * rand)), false);
 
             if (EtherialPipes)
                 target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
-
-            if (crysMag)
-            {
-                if (crit)
-                {
-                    float mag = 6f;
-                    float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
-                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
-                    theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
-                }
-            }
+            
+            if (target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult < DebuffMult)
+                target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult = DebuffMult;
         }
 
         public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
-
             if (etherialTrail > 0)
             {
                 DrawEtherialTrailEffect();
@@ -750,7 +819,43 @@ namespace Laugicality
                 DrawEtherialTankSteam();
             }
 
-            if(MysticHold > 0)
+            if(FireTrail && Math.Abs(player.velocity.X) > 3)
+            {
+                if(Main.rand.Next(8) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 2 - Main.rand.Next(4), Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodFireball>(), (int)(8 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (TrueFireTrail && Math.Abs(player.velocity.X) > 2)
+            {
+                if (Main.rand.Next(6) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<TrueGoodFireball>(), (int)(16 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (ShadowflameTrail && Math.Abs(player.velocity.X) > 2)
+            {
+                if (Main.rand.Next(6) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodShadowflame>(), (int)(24 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (CrystalliteTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
+            {
+                if (Main.rand.Next(6) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<CrystalliteOrb>(), (int)(28 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (SteamTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
+            {
+                if (Main.rand.Next(6) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<SteamTrailProj>(), (int)(32 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (BysmalTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
+            {
+                if (Main.rand.Next(6) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<BysmalTrailProj>(), (int)(36 * GetGlobalDamage()), 0, player.whoAmI);
+            }
+
+            if (MysticHold > 0)
             {
                 //DrawMysticUI();
             }
@@ -762,9 +867,27 @@ namespace Laugicality
 
             if (Main.rand.Next(0, 4) == 0)
             {
-                Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
             }
         }
+
+        public void DustBurst(int dustType, int amount)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, dustType, 0f, 0f);
+            }
+        }
+
+        public void DustTrail(int dustType, int chance)
+        {
+            if (chance > 0)
+            {
+                if (Main.rand.Next(chance) == 0)
+                    Dust.NewDust(player.Center, 4, 4, dustType, 0f, 0f);
+            }
+        }
+
 
         private void DrawSteamEffect(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, out bool fullBright)
         {
@@ -905,8 +1028,110 @@ namespace Laugicality
                 SoulStoneMovement = !SoulStoneMovement;
                 Main.NewText("Soul Stone and Potion Crystal mobility effects: " + SoulStoneMovement.ToString(), 250, 250, 0);
             }
+
+            if (Laugicality.restockNearby.JustPressed)
+            {
+                List<Item> items = new List<Item>();
+                List<int> types = new List<int>();
+                List<int> positions = new List<int>();
+
+                for (int i = 0; i < player.inventory.Length; i++)
+                {
+                    Item item = player.inventory[i];
+                    if (item.stack < item.maxStack && item != null && item.type > 0)
+                    {
+                        items.Add(item);
+                        types.Add(item.type);
+                        positions.Add(i);
+                    }
+                }
+                //Restack(ref items, ref types, ref positions);
+                FindChests(ref items, ref types, ref positions);
+                Main.NewText("Inventory restocked!", 250, 250, 250);
+            }
         }
 
+        private void FindChests(ref List<Item> items, ref List<int> types, ref List<int> positions)
+        {   
+            foreach (Chest chest in Main.chest)
+            {
+                if (chest == null)
+                    continue;
+
+                if (Distance(player.position.X, player.position.Y, chest.x * 16, chest.y * 16) < 200)
+                {
+                    Restock(chest, ref items, ref types, ref positions);
+                }
+            }
+        }
+
+        private void Restock(Chest chest, ref List<Item> items, ref List<int> types, ref List<int> positions)
+        {
+            foreach (Item chestItem in chest.item)
+            {
+                if (types.Contains(chestItem.type) && chestItem.stack > 1)
+                {
+                    while (chestItem.stack > 1 && FindFirst(types, items, chestItem).stack < FindFirst(types, items, chestItem).maxStack)
+                    {
+                        if((chestItem.stack - 1) - (FindFirst(types, items, chestItem).maxStack - FindFirst(types, items, chestItem).stack) >= 0)
+                        {
+                            chestItem.stack -= (FindFirst(types, items, chestItem).maxStack - FindFirst(types, items, chestItem).stack);
+                            FindFirst(types, items, chestItem).stack = FindFirst(types, items, chestItem).maxStack;
+                            player.inventory[positions[items.IndexOf(FindFirst(types, items, chestItem))]].stack = FindFirst(types, items, chestItem).stack;
+                            positions.RemoveAt(items.IndexOf(FindFirst(types, items, chestItem)));
+                            types.Remove(chestItem.type);
+                            items.Remove(chestItem);
+                        }
+                        else
+                        {
+                            FindFirst(types, items, chestItem).stack += chestItem.stack - 1;
+                            player.inventory[positions[items.IndexOf(FindFirst(types, items, chestItem))]].stack = FindFirst(types, items, chestItem).stack;
+                            chestItem.stack = 1;
+                        }
+
+                        if (FindFirst(types, items, chestItem) == null)
+                            break;
+                    }
+                }
+            }
+        }
+
+        private Item FindFirst(List<int> types, List<Item> items, Item findItem)
+        {
+            foreach (int item in types)
+            {
+                if (item == findItem.type)
+                    return items[types.IndexOf(item)];
+            }
+            return null;
+        }
+
+        private void ListChestElements(Chest chest)
+        {
+            string output = "Chest contains: ";
+            foreach (Item chestItem in chest.item)
+            {
+                if (chestItem != null)
+                    output += chestItem.Name + ", ";
+            }
+            Main.NewText(output, 250, 250, 250);
+        }
+
+        private void ListItems(List<Item> items)
+        {
+            string output = "Current items: ";
+            foreach (Item item in items)
+            {
+                if (item != null)
+                    output += item.Name + ", ";
+            }
+            Main.NewText(output, 250, 250, 250);
+        }
+
+        public float Distance(float x1, float y1, float x2, float y2)
+        {
+            return (float)Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        }
 
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
@@ -919,21 +1144,25 @@ namespace Laugicality
                 ArmorEffectPlayerHurt();
                 MysticSwitchCool = 120;
             }
+            AccessoryEffectOnHurt();
+            SoulStonePostHurt(pvp, quiet, damage, hitDirection, crit);
         }
 
         private void ArmorEffectPlayerHurt()
         {
-            if (AndioChestguard && player.statLife < player.statLifeMax2 / 4 && zCool == false)
-                ZaWarudo();
-
-            if (AndioChestplate && player.statLife < player.statLifeMax2 / 4 && zCool == false)
+            if ((AndioChestguard || AndioChestplate || AnDioCapacityEffect) && player.statLife < player.statLifeMax2 / 4 && zCool == false)
                 ZaWarudo();
         }
         
+        private void AccessoryEffectOnHurt()
+        {
+            if (Carapace)
+                player.AddBuff(mod.BuffType<CarapaceDamageBuff>(), 8 * 60);
+        }
 
         private void ZaWarudo()
         {
-            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
+            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
 
             if(Laugicality.zaWarudo < zaWarudoDuration)
@@ -1065,6 +1294,23 @@ namespace Laugicality
                 mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
         }
 
+        public void DamageBoost(float amount)
+        {
+            player.meleeDamage += amount;
+            player.rangedDamage += amount;
+            player.magicDamage += amount;
+            player.thrownDamage += amount;
+            player.minionDamage += amount;
+        }
+
+        public void CritBoost(int amount)
+        {
+            player.meleeCrit += amount;
+            player.magicCrit += amount;
+            player.thrownCrit += amount;
+            player.rangedCrit += amount;
+        }
+
         public float GetGlobalDamage()
         {
             float globalDamage = player.meleeDamage;
@@ -1080,10 +1326,8 @@ namespace Laugicality
 
             if (player.minionDamage < globalDamage)
                 globalDamage = player.minionDamage;
-
-            if (globalDamage > 1)
-                return globalDamage;
-            return 1f;
+            
+            return globalDamage;
         }
 
         #region Buffs
@@ -1111,7 +1355,7 @@ namespace Laugicality
         public int Connected { get; set; }
 
         public int Verdi { get; set; }
-
+        
         #endregion
 
         #region Summons
@@ -1136,7 +1380,7 @@ namespace Laugicality
         // TODO Change this to a class.
         #region Soul Stone
 
-        public Focus Focus => FocusManager.Instance.Vitality;
+        public Focus Focus { get; set; }
         public int Class { get; set; }
 
         public bool SoulStoneVisuals { get; set; } = true;
@@ -1164,6 +1408,8 @@ namespace Laugicality
         public bool Spores { get; set; }
 
         public bool Slimey { get; set; }
+
+        public bool LosingLife { get; set; }
 
         #endregion // TODO Verify if name matches.
     }

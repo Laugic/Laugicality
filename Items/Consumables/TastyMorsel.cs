@@ -12,7 +12,7 @@ namespace Laugicality.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons Dune Sharkron in the daylight \n\'Mmm... Looks delicious.\'");
+            Tooltip.SetDefault("Summons Dune Sharkron in the desert \n\'Mmm... Looks delicious.\'");
         }
 
         public override void SetDefaults()

@@ -22,7 +22,6 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<Slybertron>();
         }
 
         public override bool CanRightClick()
@@ -38,6 +37,7 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(mod.ItemType("Pipeworks"), 1);
             player.QuickSpawnItem(499, Main.rand.Next(10, 15));
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<Slybertron>();
     }
 }

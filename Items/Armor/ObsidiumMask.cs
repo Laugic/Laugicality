@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -55,8 +56,8 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, nameof(ObsidiumBar), 10);
-            recipe.AddIngredient(null, "LavaGem", 4);
+            recipe.AddIngredient(mod.ItemType<ObsidiumBar>(), 10);
+            recipe.AddIngredient(mod.ItemType<LavaGem>(), 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

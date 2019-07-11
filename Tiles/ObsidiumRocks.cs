@@ -28,7 +28,7 @@ namespace Laugicality.Tiles
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
         {
-            if ((i % 10) < 5)
+            if ((i % 16) < 8)
             {
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
@@ -41,7 +41,7 @@ namespace Laugicality.Tiles
 
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
         {
-            frameYOffset = i % 5 * 18;
+            frameYOffset = i % 8 * 18;
         }
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)

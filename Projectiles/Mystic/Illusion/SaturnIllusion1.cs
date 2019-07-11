@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Laugicality.Buffs;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -24,7 +25,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.scale *= .85f;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            buffID = mod.BuffType("Orbital");
+            buffID = mod.BuffType<OrbitalBuff>();
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

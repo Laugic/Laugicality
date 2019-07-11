@@ -12,6 +12,7 @@ namespace Laugicality.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Suspicious Steam Whistle");
             Tooltip.SetDefault("Summons Steam Train");
         }
 

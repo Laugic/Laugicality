@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystallized Magma");
-            Tooltip.SetDefault("Critical strikes release magma shards");
+            Tooltip.SetDefault("Leave a trail of fire as you run");
         }
 
         public override void SetDefaults()
@@ -24,7 +24,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            modPlayer.crysMag = true;
+            modPlayer.FireTrail = true;
         }
     }
 }

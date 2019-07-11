@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Laugicality.Dusts;
 
 namespace Laugicality.NPCs.Etheria
 {
@@ -40,7 +41,7 @@ namespace Laugicality.NPCs.Etheria
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
             if (projectile.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref projectile.velocity);

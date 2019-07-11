@@ -10,7 +10,7 @@ namespace Laugicality.SoulStones
             DisplayName.SetDefault("Soul Stone Ability Cooldown");
             Description.SetDefault("You used your Soul Stone's ability recently!");
 
-            Main.buffNoSave[Type] = false;
+            Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
             canBeCleared = false;
         }

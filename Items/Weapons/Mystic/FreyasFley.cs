@@ -16,7 +16,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void SetMysticDefaults()
         {
-            item.damage = 8;
+            item.damage = 11;
             item.width = 52;
             item.height = 50;
             item.useTime = 18;
@@ -34,7 +34,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 8;
+            item.damage = 10;
             item.useTime = 9;
             item.useAnimation = item.useTime;
             item.knockBack = 1;
@@ -45,7 +45,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 8;
+            item.damage = 10;
             item.damage = (int)(item.damage * modPlayer.IllusionDamage);
             item.useTime = 35;
             item.useAnimation = 35;
@@ -57,7 +57,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 8;
+            item.damage = 12;
             item.useTime = 50;
             item.useAnimation = 50;
             item.knockBack = 5;

@@ -1,3 +1,4 @@
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,8 +9,8 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lycoris Radiata");
-            Tooltip.SetDefault("'Plants of hell'");
+            DisplayName.SetDefault("Brimlin");
+            Tooltip.SetDefault("'Plants of hell'\nGrows on Lycoris");
         }
 
         public override void SetDefaults()
@@ -25,6 +26,7 @@ namespace Laugicality.Items.Placeable
             item.consumable = true;
             item.value = 150;
             item.createTile = mod.TileType("ObsidiumPlantBulbs");
+            item.rare = ItemRarityID.Blue;
         }
 
         public override void UpdateInventory(Player player)
@@ -43,9 +45,20 @@ namespace Laugicality.Items.Placeable
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Hellforge);
-            recipe.AddIngredient(null, "LavaGem");
-            recipe.AddIngredient(null, "ObsidiumRock", 4);
-            recipe.SetResult(null, "Lycoris", 4);
+            recipe.AddIngredient(this);
+            recipe.AddIngredient(mod.ItemType<LavaGem>(), 4);
+            recipe.AddIngredient(mod.ItemType<ObsidiumOre>(), 8);
+            recipe.AddIngredient(mod.ItemType<RubrumDust>(), 4);
+            recipe.SetResult(ItemID.LifeCrystal);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddTile(TileID.Hellforge);
+            recipe.AddIngredient(this);
+            recipe.AddIngredient(mod.ItemType<LavaGem>(), 4);
+            recipe.AddIngredient(ItemID.Hellstone, 8);
+            recipe.AddIngredient(mod.ItemType<RubrumDust>(), 4);
+            recipe.SetResult(ItemID.LifeCrystal);
             recipe.AddRecipe();
         }
     }

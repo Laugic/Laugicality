@@ -1,4 +1,6 @@
+using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,9 +35,9 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, nameof(ObsidiumBar), 20);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "LavaGem", 6);
+            recipe.AddIngredient(mod.ItemType<ObsidiumBar>(), 20);
+            recipe.AddIngredient(mod.ItemType<LavaGem>(), 8);
+            recipe.AddIngredient(mod.ItemType<DarkShard>(), 1);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

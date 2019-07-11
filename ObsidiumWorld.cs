@@ -1,4 +1,5 @@
-﻿using Laugicality.Structures;
+﻿using Laugicality.Items.Equipables;
+using Laugicality.Structures;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -352,7 +353,7 @@ namespace Laugicality
 
         private static int GetObsidiumLoot()
         {
-            int[] obsidiumLoot = new int[] { Laugicality.instance.ItemType("Eruption"), Laugicality.instance.ItemType("ObsidiumLily"), Laugicality.instance.ItemType("MagmaHeart"), Laugicality.instance.ItemType("FireDust"), Laugicality.instance.ItemType("CrystalizedMagma"), };
+            int[] obsidiumLoot = new int[] { Laugicality.instance.ItemType("Eruption"), Laugicality.instance.ItemType("FireDust"), Laugicality.instance.ItemType("CrystalizedMagma"), Laugicality.instance.ItemType("ObsidiumLily"), Laugicality.instance.ItemType("MagmaHeart"), Laugicality.instance.ItemType<Ragnashia>(), };
 
             if (obsidiumPosition < obsidiumLoot.GetLength(0))
                 return obsidiumLoot[obsidiumPosition];

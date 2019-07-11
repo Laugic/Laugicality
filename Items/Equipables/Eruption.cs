@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Eruption");
-            Tooltip.SetDefault("Release an Eruption when changing Mysticism.");
+            Tooltip.SetDefault("Release an Eruption when changing Mysticism.\n+5% Mystic Burst Damage");
         }
 
         public override void SetDefaults()
@@ -26,6 +26,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             modPlayer.MysticEruption = true;
+            modPlayer.MysticBurstDamage += .05f;
         }
         
     }

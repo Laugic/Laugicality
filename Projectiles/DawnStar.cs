@@ -37,7 +37,6 @@ namespace Laugicality.Projectiles
         
 		public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item14, projectile.position);
             for (int k = 0; k < 18; k++)
 			{
 				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Dawn"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);

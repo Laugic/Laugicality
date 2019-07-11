@@ -119,6 +119,13 @@ namespace Laugicality
                 Vis += VisUnuseRegen;
             if (Mundus + MundusUnuseRegen <= MundusMax + MundusMaxPermaBoost && MysticMode != 3)
                 Mundus += MundusUnuseRegen;
+
+            if(player.statLife < 1)
+            {
+                Lux = LuxMax + LuxMaxPermaBoost;
+                Vis = VisMax + VisMaxPermaBoost;
+                Mundus = MundusMax + MundusMaxPermaBoost;
+            }
         }
 
         public void MysticSwitch()
@@ -212,8 +219,21 @@ namespace Laugicality
                     player.AddBuff(mod.BuffType("ForGlory"), 180 + (int)(120 * MysticDuration));
                     player.AddBuff(mod.BuffType("ForHonor"), 180 + (int)(120 * MysticDuration));
                 }
+                if(MysticSwitchCool > 0)
+                    PostBurstEffects();
             }
             Laugicality.instance.MysticaUI.CyclePositions(MysticMode);
+        }
+
+        private void PostBurstEffects()
+        {
+            if (PrismVeil)
+            {
+                if (MysticSwitchCool < 3 * 60 * MysticSwitchCoolRate)
+                    MysticSwitchCool = 3 * 60 * MysticSwitchCoolRate;
+                player.immune = true;
+                player.immuneTime = 60;
+            }
         }
 
         private void PostUpdateMysticBuffs()

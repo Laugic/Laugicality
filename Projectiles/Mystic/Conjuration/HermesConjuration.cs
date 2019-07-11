@@ -21,6 +21,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            projectile.tileCollide = true;
         }
         
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -39,7 +40,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         {
             for (int i = 0; i < 4; i++)
             {
-                if (Main.netMode != 1)
+                if (projectile.owner == Main.myPlayer)
                     Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), mod.ProjectileType("HermesConjurationHoming"), projectile.damage, 3f, Main.myPlayer);
             }
             projectile.Kill();

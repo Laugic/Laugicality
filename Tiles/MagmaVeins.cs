@@ -35,5 +35,13 @@ namespace Laugicality.Tiles
             return false;
         }
 
+        public override void RandomUpdate(int i, int j)
+        {
+            if (Main.tile[i, j - 1].type == 0 && Main.tile[i + 1, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.tile[i + 1, j - 2].type == 0 && Main.tile[i, j].active())
+            {
+                if (Main.rand.Next(16) == 0)
+                    WorldGen.PlaceObject(i, j - 1, mod.TileType<ObsidiumHeart>(), true, 0, -1, -1);
+            }
+        }
     }
 }

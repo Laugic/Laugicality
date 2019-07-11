@@ -28,8 +28,8 @@ namespace Laugicality.Tiles
         
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 0.2f;
-            g = 0.1f;
+            r = 0.4f;
+            g = 0.2f;
             b = 0f;
         }
         

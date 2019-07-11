@@ -8,13 +8,13 @@ namespace Laugicality.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Red Iceball");
+            DisplayName.SetDefault("Crimchunk");
             Tooltip.SetDefault("The crimson ice is much heavier, and more damaging.");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 18;
+            item.damage = 13;
             item.ranged = true;
             item.width = 8;
             item.height = 8;

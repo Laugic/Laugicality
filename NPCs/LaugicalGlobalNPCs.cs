@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Laugicality.Items.Weapons.Mystic;
+using Laugicality.Items.Loot;
 
 namespace Laugicality.NPCs
 {
@@ -39,7 +41,10 @@ namespace Laugicality.NPCs
         public bool incineration = false;
         public float damageMult = 1f;
         public int attacker = -1;
-        
+        public float DebuffDamageMult { get; set; } = 1f;
+        public int JunglePlagueDuration { get; set; } = 0;
+        public bool Orbital { get; set; } = false;
+
         public override void SetDefaults(NPC npc)
         {
             incineration = false;
@@ -80,21 +85,22 @@ namespace Laugicality.NPCs
             mFied = false;
             hermes = false;
             lovestruck = false;
-            frigid = false; 
+            frigid = false;
             mysticCrit = 4;
+            Orbital = false;
+
             npc.takenDamageMultiplier = damageMult;
-            if(zTimeInstanced < zTime)
-            {
+            if (zTimeInstanced < zTime)
                 zTimeInstanced = zTime;
-            }
+
             if (zTime > 0)
-            {
                 zTime--;
-            }
+
             if (zTimeInstanced > 0)
-            {
                 zTimeInstanced--;
-            }
+
+            if (JunglePlagueDuration > 0)
+                JunglePlagueDuration--;
         }
 
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
@@ -156,9 +162,7 @@ namespace Laugicality.NPCs
             if (spored)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(2);
                 if (damage < 2)
                 {
@@ -168,9 +172,7 @@ namespace Laugicality.NPCs
             if (slimed)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(2);
                 if (damage < 2)
                 {
@@ -180,9 +182,7 @@ namespace Laugicality.NPCs
             if (furious)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(8);
                 if (damage < 8)
                 {
@@ -192,9 +192,7 @@ namespace Laugicality.NPCs
             if (incineration)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(8);
                 if (damage < 8)
                 {
@@ -204,9 +202,7 @@ namespace Laugicality.NPCs
             if (hermes)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(4);
                 if (damage < 4)
                 {
@@ -217,9 +213,7 @@ namespace Laugicality.NPCs
             if (spooked)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(24);
                 if (damage < 24)
                 {
@@ -230,9 +224,7 @@ namespace Laugicality.NPCs
             if (frostbite)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(320);
                 if (damage < 320)
                 {
@@ -242,9 +234,7 @@ namespace Laugicality.NPCs
             if (steamified)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(80);
                 if (damage < 80)
                 {
@@ -272,9 +262,7 @@ namespace Laugicality.NPCs
             if (trueDawn)
             {
                 if (npc.lifeRegen > 0)
-                {
                     npc.lifeRegen = 0;
-                }
                 npc.lifeRegen -= (int)(24);
                 if (damage < 24)
                 {
@@ -283,6 +271,16 @@ namespace Laugicality.NPCs
                 if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("TrueDawnSpark"), 40, 3f, Main.myPlayer);
             }
+            if(Orbital)
+            {
+                npc.knockBackResist = -5f;
+            }
+            if(DebuffDamageMult > 1)
+            {
+                npc.lifeRegen = (int)(npc.lifeRegen * DebuffDamageMult);
+            }
+            if (damage < npc.lifeRegen)
+                damage = npc.lifeRegen;
         }
         public override bool PreAI(NPC npc)
         {
@@ -343,7 +341,7 @@ namespace Laugicality.NPCs
             }
             if (mFied)
             {
-                if (Main.rand.Next(4) < 3)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Lightning"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
@@ -375,7 +373,7 @@ namespace Laugicality.NPCs
             }
             if (hermes)
             {
-                if (Main.rand.Next(4) < 3)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Hermes"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
@@ -389,11 +387,11 @@ namespace Laugicality.NPCs
                 }
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
             }
-            if (lovestruck)
+            if (lovestruck && !npc.boss)
             {
-                if (Main.rand.Next(4) < 3)
+                if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Pink"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType<HeartDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -407,7 +405,7 @@ namespace Laugicality.NPCs
             }
             if (frigid)
             {
-                if (Main.rand.Next(4) < 3)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Frost"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
@@ -424,7 +422,7 @@ namespace Laugicality.NPCs
 
             if (furious)
             {
-                if (Main.rand.Next(4) < 2)
+                if (Main.rand.Next(3) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Magma"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
@@ -440,7 +438,7 @@ namespace Laugicality.NPCs
             }
             if (bubbly)
             {
-                if (Main.rand.Next(8) < 2)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Bubble"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
@@ -455,7 +453,7 @@ namespace Laugicality.NPCs
             }
             if (dawn || trueDawn)
             {
-                if (Main.rand.Next(8) < 2)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Dawn"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
@@ -470,9 +468,9 @@ namespace Laugicality.NPCs
             }
             if (frostbite)
             {
-                if (Main.rand.Next(4) < 2)
+                if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Etherial"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType<EtherialDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -486,7 +484,7 @@ namespace Laugicality.NPCs
             }
             if (steamified)
             {
-                if (Main.rand.Next(4) < 2)
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType<Steam>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
@@ -502,7 +500,23 @@ namespace Laugicality.NPCs
             }
             if (spooked)
             {
-                if (Main.rand.Next(4) < 2)
+                if (Main.rand.Next(4) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Spooked"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.4f, 0.0f, 0.4f);
+            }
+            if (Orbital)
+            {
+                if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Spooked"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
@@ -637,8 +651,7 @@ namespace Laugicality.NPCs
             }
             if (plays == 0)
                 plays = 1;
-            //Soul Drops
-            if(lovestruck)
+            if(lovestruck && !npc.boss)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 58); //Drop Hearts
                 if(Main.rand.Next(1, 3) == 1)
@@ -646,6 +659,7 @@ namespace Laugicality.NPCs
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 58);
                 }
             }
+            //Soul Drops
             if (npc.lifeMax > 5 && npc.value > 0f && Main.hardMode)
             {
                 if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneSkyHeight && Main.rand.Next(3) == 0)
@@ -670,28 +684,17 @@ namespace Laugicality.NPCs
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TastyMorsel"), 1);
             }
-            //Soul Fragments
-            if (npc.type == NPCID.QueenBee && Main.expertMode)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HonifiedSoulCrystal"), 1);
-            }
-            if (npc.type == 35 && Main.expertMode)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NecroticSoulCrystal"), 1);
-            }
-            if (npc.type == 113 && Main.expertMode)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("HellishSoulCrystal"), 1);
-            }
-            if (npc.type == NPCID.Plantera && Main.expertMode)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("NaturalSoulCrystal"), 1);
-            }
-            if (npc.type == 439 && Main.expertMode)
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("LunarSoulCrystal"), 1);
-            }
+            if(npc.type == NPCID.IceQueen)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<RoyalIce>(), 1);
+            GetWeaponDrops(npc);
+        }
 
+        private void GetWeaponDrops(NPC npc)
+        {
+            if(npc.type == NPCID.Mothron && Main.rand.Next(4) == 0)
+            {
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<SaturnsRings>(), 1);
+            }
         }
 
         public override bool InstancePerEntity

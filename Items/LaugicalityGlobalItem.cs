@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Laugicality.Items.Equipables;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -25,6 +26,63 @@ namespace Laugicality.Items
             myClone.Yeet = Yeet;
             return myClone;
 		}
+
+        public override void OpenVanillaBag(string context, Player player, int arg)
+        {
+            base.OpenVanillaBag(context, player, arg);
+            if (arg == ItemID.EaterOfWorldsBossBag)
+            {
+                int rand = Main.rand.Next(6);
+                switch (rand)
+                {
+                    case 1:
+                        player.QuickSpawnItem(mod.ItemType<DarkfootBoots>(), 1);
+                        break;
+                    case 2:
+                        player.QuickSpawnItem(ItemID.ShadowOrb, 1);
+                        break;
+                    case 3:
+                        player.QuickSpawnItem(ItemID.Vilethorn, 1);
+                        break;
+                    case 4:
+                        player.QuickSpawnItem(ItemID.BandofStarpower, 1);
+                        break;
+                    case 5:
+                        player.QuickSpawnItem(ItemID.BallOHurt, 1);
+                        break;
+                    default:
+                        player.QuickSpawnItem(ItemID.Musket, 1);
+                        player.QuickSpawnItem(ItemID.MusketBall, 100);
+                        break;
+                }
+            }
+            if (arg == ItemID.BrainOfCthulhuBossBag)
+            {
+                int rand = Main.rand.Next(6);
+                switch (rand)
+                {
+                    case 1:
+                        player.QuickSpawnItem(mod.ItemType<BloodfootBoots>(), 1);
+                        break;
+                    case 2:
+                        player.QuickSpawnItem(ItemID.CrimsonHeart, 1);
+                        break;
+                    case 3:
+                        player.QuickSpawnItem(ItemID.CrimsonRod, 1);
+                        break;
+                    case 4:
+                        player.QuickSpawnItem(ItemID.PanicNecklace, 1);
+                        break;
+                    case 5:
+                        player.QuickSpawnItem(ItemID.TheRottedFork, 1);
+                        break;
+                    default:
+                        player.QuickSpawnItem(ItemID.TheUndertaker, 1);
+                        player.QuickSpawnItem(ItemID.MusketBall, 100);
+                        break;
+                }
+            }
+        }
 
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {

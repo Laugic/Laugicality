@@ -87,6 +87,8 @@ namespace Laugicality
                 if (npc.life <= 0)
                     npc.life = 1;
             }
+
+            SoulStoneHitByNPC(npc, ref damage, ref crit);
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -107,7 +109,7 @@ namespace Laugicality
                 player.AddBuff(mod.BuffType("JusticeCooldown"), 90 * 60, true);
                 player.statLife += damage;
                 player.immune = true;
-                player.immuneTime = 1 * 60;
+                player.immuneTime = 2 * 60;
 
                 return false;
             }

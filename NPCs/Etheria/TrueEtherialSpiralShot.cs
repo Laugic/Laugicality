@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Laugicality.Items.Loot;
 
 namespace Laugicality.NPCs.Etheria
 {
@@ -88,7 +89,7 @@ namespace Laugicality.NPCs.Etheria
         }
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumChunk"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialEssence>());
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System;
 
 namespace Laugicality.SoulStones
 {
@@ -34,7 +35,7 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(tooltips);
-            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
+            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
 
             if (laugicalityPlayer.Focus == null)
             {
@@ -52,24 +53,82 @@ namespace Laugicality.SoulStones
 
             for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
             {
-                FocusEffect effect = laugicalityPlayer.Focus.GetEffect(i);
+                if (laugicalityPlayer.Focus.GetEffect(i).Condition(laugicalityPlayer))
+                    tooltips.Add(laugicalityPlayer.Focus.GetEffect(i).Tooltip);
+            }
 
-                if (effect.Condition(laugicalityPlayer))
-                    tooltips.Add(effect.Tooltip);
+            if(LaugicalityWorld.GetCurseCount() > 0)
+            {
+                tooltips.Add(new TooltipLine(Laugicality.instance, "CurseLine", "----Curses----")
+                {
+                    overrideColor = Color.Red
+                });
+
+                GetCurseTooltips(tooltips);
+            }
+        }
+
+        private static void GetCurseTooltips(List<TooltipLine> tooltips)
+        {
+            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+
+            for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
+            {
+                for (int j = 0; j < laugicalityPlayer.Focus.NemesesCount; j++)
+                {
+                    if (laugicalityPlayer.Focus.Nemeses[j].GetCurse(i).Condition(laugicalityPlayer))
+                        tooltips.Add(laugicalityPlayer.Focus.Nemeses[j].GetCurse(i).Tooltip);
+                }
+            }
+
+            for (int i = 0; i < Math.Floor((float)LaugicalityWorld.GetCurseCount() / 2f) && i < laugicalityPlayer.Focus.CursesCount; i++)
+            {
+                for (int j = 0; j < laugicalityPlayer.Focus.EnemiesCount; j++)
+                {
+                    if (laugicalityPlayer.Focus.Enemies[j].GetCurse(i).Condition(laugicalityPlayer))
+                        tooltips.Add(laugicalityPlayer.Focus.Enemies[j].GetCurse(i).Tooltip);
+                }
             }
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            base.UpdateAccessory(player, hideVisual);
-            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>();
+            if (Main.LocalPlayer != player)
+                return;
+
+            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
 
             for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
             {
-                FocusEffect effect = laugicalityPlayer.Focus.GetEffect(i);
+                if (laugicalityPlayer.Focus.GetEffect(i).Condition(laugicalityPlayer))
+                    laugicalityPlayer.Focus.GetEffect(i).Effect(laugicalityPlayer, hideVisual);
+            }
 
-                if (effect.Condition(laugicalityPlayer))
-                    effect.Effect(laugicalityPlayer, hideVisual);
+            if(LaugicalityWorld.GetCurseCount() > 0)
+                GetCurseEffects(player, hideVisual);
+            base.UpdateAccessory(player, hideVisual);
+        }
+
+        private static void GetCurseEffects(Player player, bool hideVisual)
+        {
+            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+
+            for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
+            {
+                for (int j = 0; j < laugicalityPlayer.Focus.NemesesCount; j++)
+                {
+                    if (laugicalityPlayer.Focus.Nemeses[j].GetCurse(i).Condition(laugicalityPlayer))
+                        laugicalityPlayer.Focus.Nemeses[j].GetCurse(i).Effect(laugicalityPlayer, hideVisual);
+                }
+            }
+
+            for (int i = 0; i < Math.Floor((float)LaugicalityWorld.GetCurseCount() / 2f) && i < laugicalityPlayer.Focus.CursesCount; i++)
+            {
+                for (int j = 0; j < laugicalityPlayer.Focus.EnemiesCount; j++)
+                {
+                    if (laugicalityPlayer.Focus.Enemies[j].GetCurse(i).Condition(laugicalityPlayer))
+                        laugicalityPlayer.Focus.Enemies[j].GetCurse(i).Effect(laugicalityPlayer, hideVisual);
+                }
             }
         }
     }

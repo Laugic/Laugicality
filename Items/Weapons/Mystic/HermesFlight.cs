@@ -52,7 +52,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 20;
+            item.damage = 15;
             item.useTime = 20;
             item.useAnimation = item.useTime;
             item.knockBack = 4;
@@ -63,7 +63,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 25;
+            item.damage = 22;
             item.useTime = 16;
             item.useAnimation = 16;
             item.knockBack = 2;
@@ -74,7 +74,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 18;
+            item.damage = 15;
             item.useTime = 22;
             item.useAnimation = 22;
             item.knockBack = 5;

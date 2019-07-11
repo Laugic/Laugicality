@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magma Heart");
-            Tooltip.SetDefault("Movement Speed is greatly increased for a time after being submerged in Lava");
+            Tooltip.SetDefault("+15% Damage, +10 Defense, and Increased Mobility for a time after being submerged in Lava");
         }
 
         public override void SetDefaults()
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if(player.lavaWet)
-                player.AddBuff(mod.BuffType("MagmaticVeins"), 60 * 15);
+                player.AddBuff(mod.BuffType<MagmaticVeins>(), 60 * 15);
         }
     }
 }

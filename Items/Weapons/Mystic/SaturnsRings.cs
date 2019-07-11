@@ -11,7 +11,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Saturn's Rings");
-            Tooltip.SetDefault("'The majesty of Space' \nIllusion inflicts 'Starstruck'. Killing a Starstuck enemy boosts your damage and Life Regen.\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'The majesty of Space'\nIllusion inflicts 'Orbital'. Orbital enemies take more damage and knockback.\nFires different projectiles based on Mysticism");
         }
         
         public override void SetMysticDefaults()
@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
-            item.rare = ItemRarityID.LightPurple;
+            item.rare = ItemRarityID.Yellow;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 6f;
@@ -92,18 +92,5 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 8f;
             item.shoot = mod.ProjectileType("SaturnConjuration1");
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Pearlwood, 24);
-            recipe.AddRecipeGroup("SilverBars", 8);
-            recipe.AddIngredient(ItemID.SoulofLight, 6);
-            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
-            recipe.AddIngredient(ItemID.CrystalShard, 4);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
     }
 }

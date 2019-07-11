@@ -1,0 +1,247 @@
+﻿using Laugicality.Buffs;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace Laugicality.Focuses
+{
+    public sealed class FerocityFocus : Focus
+    {
+        public FerocityFocus() : base("FerocityFocus", "Ferocity", Color.Red, new FocusEffect[]
+        {
+            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedKingSlime", "Attacks inflict 'Slimed'") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
+            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedEyeOfCthulhu", "+5% Damage at Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
+            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDuneSharkron", "Increased damage the lower your life is") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
+            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWorldEvilBoss", "Gain 'Blood Rage' when struck, increasing damage for a time.") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
+            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedHypothema", "Attacks inflict 'Frostburn'") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
+            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedQueenBee", "Attacks inflict 'Poison', Thorns effect") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
+            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedRagnar", "Increased damage for a time after submerging in Lava") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
+            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletron", "+8% Crit Chance") { overrideColor = new Color(0x83, 0x91, 0x92) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedAnDio", "Increased damage while Time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
+            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWallOfFleshEffect", "Debuffs deal 25% more damage. Attacks inflict 'On Fire'") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
+            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedTwinsEffect", "Attacks inflict 'Cursed Flame'") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
+            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDestroyerEffect", "Enemies that collide with you take 200% of the damage dealt to you") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
+            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied twice") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedAnnihilator", "Pressing the Ability Key makes you deal 25% more damage and take 80% more damage. Can be stacked up to 2 times, then resets to 0.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSlybertron", "+10% Damage when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSteamTrain", "The faster you move, the higher your damage") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedPlantera", "Attacks inflict 'Jungle Plague'") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
+            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedGolem", "The longer you stand still without shooting while a boss is alive, the higher your damage.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
+            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDukeFishron", "+10% Damage when in liquid") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
+            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedEtheria", "'+20% Damage in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedMoonLord", "Your Ability now makes you deal 100% more damage and makes you take 200% more damage per stack") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
+        }, new FocusEffect[]
+        {
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.instance, "FerocityFocusCurse1", "-5% Damage") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.instance, "FerocityFocusCurse2", "Your critical strike chance is halved") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.instance, "FerocityFocusCurse3", "-20% Damage when above 50% Life") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.instance, "FerocityFocusCurse4", "You cannot inflict special debuffs") { overrideColor = Color.Red }),
+        })
+        {
+
+        }
+
+        private static void DownedKingSlimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.Slimey = true;
+        }
+
+        private static void DownedEyeOfCthulhuEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (!Main.dayTime)
+                DamageBoost(laugicalityPlayer, .05f);
+        }
+
+        private static void DownedDuneSharkronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            DamageBoost(laugicalityPlayer, .1f * ((laugicalityPlayer.player.statLifeMax2 - laugicalityPlayer.player.statLife) / laugicalityPlayer.player.statLifeMax2));
+        }
+
+        private static void DownedWorldEvilBossEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.BloodRage = true;
+        }
+
+        private static void DownedHypothemaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.Frost = true;
+        }
+
+        private static void DownedQueenBeeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.Poison = true;
+            laugicalityPlayer.player.thorns += .33f;
+        }
+
+        private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (laugicalityPlayer.player.lavaWet)
+                laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<LavaRegen>(), 15 * 60);
+        }
+
+        private static void DownedSkeletronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            CritBoost(laugicalityPlayer, 8);
+        }
+
+        private static void DownedAnDioEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if(Laugicality.zaWarudo > 0)
+                DamageBoost(laugicalityPlayer, .15f);
+        }
+
+        private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.DebuffMult += .25f;
+            laugicalityPlayer.Obsidium = true;
+        }
+
+        private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.CursedFlame = true;
+        }
+
+        private static void DownedDestroyerEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.player.thorns += 2f;
+        }
+
+        private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            DamageBoost(laugicalityPlayer, laugicalityPlayer.GetGlobalDamage() / 2);
+        }
+
+        private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (Laugicality.soulStoneAbility.JustPressed)
+            {
+                laugicalityPlayer.AbilityCount++;
+                if (laugicalityPlayer.AbilityCount > 2)
+                    laugicalityPlayer.AbilityCount = 0;
+                Main.NewText("You have currently stacked the ability " + laugicalityPlayer.AbilityCount.ToString() + " times.", 225, 225, 225);
+            }
+            if(laugicalityPlayer.AbilityCount > 0)
+            {
+                if (NPC.downedMoonlord)
+                {
+                    DamageBoost(laugicalityPlayer, 1f * laugicalityPlayer.AbilityCount);
+                    laugicalityPlayer.player.endurance -= 2f * laugicalityPlayer.AbilityCount;
+                }
+                else
+                {
+                    DamageBoost(laugicalityPlayer, .25f * laugicalityPlayer.AbilityCount);
+                    laugicalityPlayer.player.endurance -= .8f * laugicalityPlayer.AbilityCount;
+                }
+            }
+        }
+
+        private static void DownedSlybertronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (laugicalityPlayer.player.potionDelay > 0)
+                DamageBoost(laugicalityPlayer, .1f);
+        }
+
+        private static void DownedSteamTrainEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            float moveSpeed = 0;
+            moveSpeed = (float)Math.Abs(laugicalityPlayer.player.velocity.X) / 50f;
+            if (moveSpeed > .25f)
+                moveSpeed = .25f;
+            laugicalityPlayer.player.thrownDamage += moveSpeed;
+            laugicalityPlayer.player.rangedDamage += moveSpeed;
+            laugicalityPlayer.player.magicDamage += moveSpeed;
+            laugicalityPlayer.player.minionDamage += moveSpeed;
+            laugicalityPlayer.player.meleeDamage += moveSpeed;
+        }
+
+        private static void DownedPlanteraEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.JunglePlague = true;
+        }
+
+        private static void DownedGolemEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            bool bossActive = false;
+            foreach (NPC npc in Main.npc)
+            {
+                if (npc.boss)
+                    bossActive = true;
+            }
+            if(!bossActive || laugicalityPlayer.player.velocity.X != 0 || laugicalityPlayer.player.velocity.Y != 0)
+            {
+                laugicalityPlayer.GolemBoost = 0;
+            }
+            else
+            {
+                if (laugicalityPlayer.GolemBoost < .5f)
+                    laugicalityPlayer.GolemBoost += .002f;
+            }
+        }
+
+        private static void DownedDukeFishronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (laugicalityPlayer.player.wet || laugicalityPlayer.player.honeyWet || laugicalityPlayer.player.lavaWet)
+                DamageBoost(laugicalityPlayer, .1f);
+        }
+
+        private static void DownedEtheriaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if (LaugicalityWorld.downedEtheria || laugicalityPlayer.Etherable > 0)
+                DamageBoost(laugicalityPlayer, .2f);
+        }
+
+        private static void DownedMoonLordEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            //Yeet
+        }
+
+
+
+        //Curses
+        private static void CurseEffect1(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            DamageBoost(laugicalityPlayer, -.05f);
+        }
+
+        private static void CurseEffect2(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.player.meleeCrit /= 2;
+            laugicalityPlayer.player.magicCrit /= 2;
+            laugicalityPlayer.player.rangedCrit /= 2;
+            laugicalityPlayer.player.thrownCrit /= 2;
+        }
+
+        private static void CurseEffect3(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            if(laugicalityPlayer.player.statLife > laugicalityPlayer.player.statLifeMax2 / 2)
+                DamageBoost(laugicalityPlayer, -.2f);
+        }
+
+        private static void CurseEffect4(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
+        {
+            laugicalityPlayer.NoDebuffDamage = true;
+        }
+
+        private static void DamageBoost(LaugicalityPlayer laugicalityPlayer, float Boost)
+        {
+            laugicalityPlayer.player.meleeDamage += Boost;
+            laugicalityPlayer.player.minionDamage += Boost;
+            laugicalityPlayer.player.magicDamage += Boost;
+            laugicalityPlayer.player.rangedDamage += Boost;
+            laugicalityPlayer.player.thrownDamage += Boost;
+        }
+
+        private static void CritBoost(LaugicalityPlayer laugicalityPlayer, int Boost)
+        {
+            laugicalityPlayer.player.meleeCrit += Boost;
+            laugicalityPlayer.player.magicCrit += Boost;
+            laugicalityPlayer.player.rangedCrit += Boost;
+            laugicalityPlayer.player.thrownCrit += Boost;
+        }
+    }
+}

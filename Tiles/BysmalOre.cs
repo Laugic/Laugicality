@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
+using Laugicality.Dusts;
 
 namespace Laugicality.Tiles
 {
@@ -19,7 +20,7 @@ namespace Laugicality.Tiles
             mineResist = 2.5f;
             minPick = 200;
             soundType = 21;
-            dustType = mod.DustType("Etherial");
+            dustType = mod.DustType<EtherialDust>();
             drop = mod.ItemType("Bysmal");
         }
         

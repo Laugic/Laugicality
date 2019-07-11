@@ -1,3 +1,4 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -27,9 +28,16 @@ namespace Laugicality.Items.Placeable
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(13); //Bottle
+            recipe.AddTile(TileID.Bottles);
             recipe.AddIngredient(null, "ObsidiumPlant");
             recipe.SetResult(this, 4);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddTile(TileID.Hellforge);
+            recipe.AddIngredient(null, "LavaGem");
+            recipe.AddIngredient(null, "ObsidiumRock", 4);
+            recipe.SetResult(null, "Lycoris", 4);
             recipe.AddRecipe();
         }
     }

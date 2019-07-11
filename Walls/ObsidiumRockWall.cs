@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Walls
@@ -7,7 +8,6 @@ namespace Laugicality.Walls
 	{
 		public override void SetDefaults()
 		{
-			//Main.wallHouse[Type] = true;
 			dustType = 1;
 			AddMapEntry(new Color(20, 20, 32));
             drop = mod.ItemType("ObsidiumRockWall");
@@ -17,6 +17,14 @@ namespace Laugicality.Walls
 		{
 			num = fail ? 1 : 3;
 		}
-		
-	}
+
+        public override void RandomUpdate(int i, int j)
+        {
+            if (Main.tile[i, j].liquid > 1 && !Main.tile[i, j].lava())
+                Main.tile[i, j].liquid = 1;
+            else if (Main.tile[i, j].liquid == 1 && !Main.tile[i, j].lava())
+                Main.tile[i, j].liquid = 0;
+            base.RandomUpdate(i, j);
+        }
+    }
 }

@@ -18,6 +18,7 @@ namespace Laugicality.Projectiles.Mystic
             overflowed = false;
             durationed = false;
             duration = 1;
+            LaugicalityVars.eProjectiles.Add(projectile.type);
         }
 
         public override bool PreAI()

@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,15 +41,15 @@ namespace Laugicality.Items.Useables
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             LaugicalityWorld.downedEtheria = !LaugicalityWorld.downedEtheria;
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
-            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
             modPlayer.etherialTrail = 80;
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
             return true;

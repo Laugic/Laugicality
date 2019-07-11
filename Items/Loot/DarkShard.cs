@@ -6,7 +6,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magmatic Shard");
+            DisplayName.SetDefault("Magma Shard");
             Tooltip.SetDefault("");
         }
 

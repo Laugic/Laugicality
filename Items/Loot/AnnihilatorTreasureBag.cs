@@ -23,7 +23,6 @@ namespace Laugicality.Items.Loot
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<TheAnnihilator>();
         }
 
         public override bool CanRightClick()
@@ -39,6 +38,7 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(mod.ItemType("CogOfKnowledge"), 1);
             player.QuickSpawnItem(499, Main.rand.Next(10, 15));
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<TheAnnihilator>();
     }
 }

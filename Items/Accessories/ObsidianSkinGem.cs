@@ -24,8 +24,7 @@ namespace Laugicality.Items.Accessories
         {
             player.lavaImmune = true;
             player.fireWalk = true;
-            player.buffImmune[24] = true;
-
+            player.buffImmune[BuffID.OnFire] = true;
         }
 
         public override void AddRecipes()

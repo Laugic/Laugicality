@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Laugicality.Items.Weapons.Range;
 
 namespace Laugicality.Items.Weapons.Range
 {
@@ -14,7 +15,7 @@ namespace Laugicality.Items.Weapons.Range
 	{
 		public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Fires a stream of frost");
+            Tooltip.SetDefault("Fires a stream of frost\nConverts Snowballs into Frostballs");
 		}
 
 		public override void SetDefaults()
@@ -50,7 +51,7 @@ namespace Laugicality.Items.Weapons.Range
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(2));
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
-                if(i == 0) 
+                if(type == ProjectileID.SnowBallFriendly) 
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("Frostball"), damage, knockBack, player.whoAmI);
                 else
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
@@ -66,10 +67,17 @@ namespace Laugicality.Items.Weapons.Range
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "FrostCannon", 1);
-            recipe.AddIngredient(mod, nameof(SoulOfSought), 6);
+            recipe.AddIngredient(mod.ItemType<SMG>(), 1);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
             recipe.AddIngredient(ItemID.FrostCore, 1);
-            recipe.AddRecipeGroup("TitaniumBars", 8);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(mod.ItemType<FrostCannon>(), 1);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
+            recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

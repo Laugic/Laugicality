@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles
 {
@@ -30,7 +31,7 @@ namespace Laugicality.Projectiles
 
         public override void AI()
         {
-            if(Main.rand.Next(8) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
+            if(Main.rand.Next(8) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
             if (!stopped)
             {
                 projectile.velocity.X *= .9f;

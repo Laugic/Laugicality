@@ -32,7 +32,6 @@ namespace Laugicality.Items.Tools
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "ChilledBar", 14);
             recipe.AddIngredient(null, "FrostShard", 1);
-            recipe.AddIngredient(ItemID.Obsidian, 10);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

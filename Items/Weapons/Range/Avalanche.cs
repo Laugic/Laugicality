@@ -14,13 +14,13 @@ namespace Laugicality.Items.Weapons.Range
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Unleash frigid hell.'\nWhile in the Etherial after defeating Etheria, shoot an Avalanche twice as often");
+            Tooltip.SetDefault("'Unleash frigid hell.'\nWhile in the Etherial after defeating Etheria, shoot an Avalanche twice as often\n50% chance not to consume ammo");
         }
         int counter = 0;
         public override void SetDefaults()
         {
             counter = 0;
-            item.damage = 60;
+            item.damage = 50;
             item.ranged = true;
             item.width = 106;
             item.height = 58;
@@ -36,6 +36,13 @@ namespace Laugicality.Items.Weapons.Range
             item.shootSpeed = 18f;
             item.useAmmo = AmmoID.Snowball;
             item.shoot = ProjectileID.SnowBallFriendly;
+        }
+
+        public override bool ConsumeAmmo(Player player)
+        {
+            if (Main.rand.Next(2) == 0)
+                return false;
+            return base.ConsumeAmmo(player);
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

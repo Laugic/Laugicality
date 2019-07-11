@@ -33,7 +33,7 @@ namespace Laugicality.Items.Useables
 
         public override bool UseItem(Player player)
         {
-            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
+            Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {

@@ -17,9 +17,12 @@ namespace Laugicality
 {
     public class Laugicality : Mod
     {
-        public const string GOLD_BARS_GROUP = "GldBars";        
+        public const string GOLD_BARS_GROUP = "GldBars";
+        public const string EVIL_BARS_GROUP = "EnigmaEvilBars";
+        public const string DOUBLE_JUMP_GROUP = "EnigmaDoubleJump";
+        public const string COLORED_BALLOON_GROUP = "EnigmaColoredBalloon";
 
-        internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility; // ;) ;)
+        internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility, restockNearby;
 
         public static Laugicality instance;
         public static int zaWarudo = 0;
@@ -107,6 +110,33 @@ namespace Laugicality
                 ItemID.GreenDungeonTable, //Green
                 ItemID.PinkDungeonTable  //Pink
             }));
+
+            //Evil Bars
+            RecipeGroup.RegisterGroup(EVIL_BARS_GROUP, new RecipeGroup(() => Lang.misc[37] + " Evil Bar", new int[]
+            {
+                ItemID.DemoniteBar,
+                ItemID.CrimtaneBar
+            }));
+
+            //DoubleJump
+            RecipeGroup.RegisterGroup(DOUBLE_JUMP_GROUP, new RecipeGroup(() => Lang.misc[37] + " Double Jump Bottle", new int[]
+            {
+                ItemID.CloudinaBottle,
+                ItemID.SandstorminaBottle,
+                ItemID.BlizzardinaBottle,
+                ItemID.TsunamiInABottle
+            }));
+
+            //ColoredBalloon
+            RecipeGroup.RegisterGroup(COLORED_BALLOON_GROUP, new RecipeGroup(() => Lang.misc[37] + " Colored Balloon", new int[]
+            {
+                ItemID.BlueHorseshoeBalloon,
+                ItemID.WhiteHorseshoeBalloon,
+                ItemID.YellowHorseshoeBalloon,
+                ItemID.BalloonHorseshoeFart,
+                ItemID.BalloonHorseshoeHoney,
+                ItemID.BalloonHorseshoeSharkron,
+            }));
         }
         #endregion
 
@@ -147,7 +177,8 @@ namespace Laugicality
             toggleSoulStoneV = RegisterHotKey("Toggle Visual Effects", "V");
             toggleSoulStoneM = RegisterHotKey("Toggle Mobility Effects", "C");
             quickMystica = RegisterHotKey("Quick Mystica", "G");
-            soulStoneAbility = RegisterHotKey("Soul Stone Ability (1)", "Mouse3");
+            soulStoneAbility = RegisterHotKey("Soul Stone Ability", "Mouse3");
+            restockNearby = RegisterHotKey("Restock from Nearby Chests", "N");
         }
 
         public override void PostSetupContent()
@@ -249,6 +280,11 @@ namespace Laugicality
         enum EnigmaMessageType : byte
         {
             ZaWarudoTime,
+        }
+
+        public override void Close()
+        {
+            base.Close();
         }
 
         public UserInterface MysticaUserInterface { get; private set; }

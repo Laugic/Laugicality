@@ -17,30 +17,51 @@ namespace Laugicality.Items.Loot
             item.width = 32;
             item.height = 46;
             item.maxStack = 20;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 1;
             item.consumable = true;
             item.rare = ItemRarityID.Purple;
             item.expert = true;
-            bossBagNPC = mod.NPCType<AnDio3>();
         }
 
         public override bool CanRightClick()
         {
             return true;
         }
-
-
+        
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("DioritusCore"), Main.rand.Next(1, 3));
-            player.QuickSpawnItem(mod.ItemType("AndesiaCore"), Main.rand.Next(1, 3));
+            player.QuickSpawnItem(mod.ItemType("DioritusCore"), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(mod.ItemType("AndesiaCore"), Main.rand.Next(2, 4));
             player.QuickSpawnItem(3081, Main.rand.Next(10, 31));
             player.QuickSpawnItem(3086, Main.rand.Next(10, 31));
             player.QuickSpawnItem(mod.ItemType("ZaWarudoWatch"), 1);
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
+
+            int anDioItem = 0;
+            int rand = Main.rand.Next(6);
+            switch (rand)
+            {
+                case 0:
+                    anDioItem = ItemID.DarkLance;
+                    break;
+                case 1:
+                    anDioItem = ItemID.Flamelash;
+                    break;
+                case 2:
+                    anDioItem = ItemID.FlowerofFire;
+                    break;
+                case 3:
+                    anDioItem = ItemID.Sunfury;
+                    break;
+                case 4:
+                    anDioItem = ItemID.HellwingBow;
+                    break;
+                default:
+                    anDioItem = ItemID.ImpStaff;
+                    break;
+            }
+            player.QuickSpawnItem(anDioItem, 1);
         }
-        
+
+        public override int BossBagNPC => mod.NPCType<AnDio3>();
     }
 }

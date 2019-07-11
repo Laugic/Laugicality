@@ -7,13 +7,13 @@ namespace Laugicality.Items.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Pink Iceball");
+            DisplayName.SetDefault("Pearlfrost Ball");
             Tooltip.SetDefault("The hallowed ice is much lighter, and able to fly much farther.");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 12;
+            item.damage = 13;
             item.ranged = true;
             item.width = 8;
             item.height = 8;
