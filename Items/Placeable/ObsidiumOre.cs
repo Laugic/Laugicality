@@ -23,18 +23,5 @@ namespace Laugicality.Items.Placeable
             item.value = 0;
             item.createTile = mod.TileType("ObsidiumOreBlock");
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(9, 20);
-            recipe.AddIngredient(170, 8);
-            recipe.AddIngredient(31, 8);
-            recipe.AddIngredient(8, 4);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }
-        */
     }
 }

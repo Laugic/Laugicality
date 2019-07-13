@@ -71,15 +71,15 @@ namespace Laugicality
                 CapacityCurse4Applied = false;
                 MoonLordEffectApplied = false;
             }
-            if (FocusName == FOCUS_NAME_CAPACITY && SkeletronPrimeEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+            if (FocusName == FOCUS_NAME_CAPACITY && SkeletronPrimeEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= (int)(player.statLifeMax2 * .51f))
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardianPrime>(), 99, 4, player.whoAmI);
             }
-            if (FocusName == FOCUS_NAME_CAPACITY && GolemEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+            if (FocusName == FOCUS_NAME_CAPACITY && GolemEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= (int)(player.statLifeMax2 * .51f))
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyGolemProj>(), 0, 4, player.whoAmI);
             }
-            if (FocusName == FOCUS_NAME_CAPACITY && MoonLordEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+            if (FocusName == FOCUS_NAME_CAPACITY && MoonLordEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= (int)(player.statLifeMax2 * .51f))
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyTrueEyeProj>(), (int)(150 * GetGlobalDamage()), 4, player.whoAmI);
             }

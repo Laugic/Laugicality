@@ -169,6 +169,7 @@ namespace Laugicality
 
                 MysticaUI = new LaugicalityUI();
                 MysticaUI.Activate();
+                MysticaUI.Load();
                 MysticaUserInterface = new UserInterface();
                 MysticaUserInterface.SetState(MysticaUI);
             }
@@ -221,6 +222,8 @@ namespace Laugicality
         public override void Unload()
         {
             instance = null;
+            MysticaUI.Unload();
+            MysticaUserInterface = null;
         }
 
         public override void UpdateMusic(ref int music, ref MusicPriority musicPriority)

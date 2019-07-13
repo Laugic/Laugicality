@@ -16,6 +16,9 @@ namespace Laugicality.UI
         {
             LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
 
+            if (mysticPlayer == null)
+                return true;
+
             if (mysticPlayer.MysticHold > 0)
                 mysticaUI.Draw(Main.spriteBatch);
 
