@@ -17,27 +17,23 @@ namespace Laugicality.Items.Weapons.Melee
         }
         public override void SetDefaults()
         {
-            item.damage = 50;           
-            item.melee = true;             
+            item.damage = 50;
+            item.melee = true;
             item.noMelee = false;
             item.width = 60;
             item.height = 60;
-            item.useTime = 20;       
-            item.useAnimation = 20;   
+            item.useTime = 20;
+            item.useAnimation = 20;
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 100000;
             item.rare = ItemRarityID.Green;
-            //item.reuseDelay = 20;    
             item.UseSound = SoundID.Item1;
-            item.autoReuse = true;       
-            //item.shoot = mod.ProjectileType("EnginatorP");  
-            item.shootSpeed = 16f;     
+            item.autoReuse = true;
+            item.shootSpeed = 16f;
             item.useTurn = true;
-            item.maxStack = 1;      
-            item.consumable = false;  
-            //item.noUseGraphic = true;
-
+            item.maxStack = 1;
+            item.consumable = false;
         }
 
         public override bool AltFunctionUse(Player player)

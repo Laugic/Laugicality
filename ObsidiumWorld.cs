@@ -1,5 +1,7 @@
-﻿using Laugicality.Items.Equipables;
+﻿using Laugicality.Items.Consumables.Potions;
+using Laugicality.Items.Equipables;
 using Laugicality.Structures;
+using Laugicality.Tiles;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -164,7 +166,7 @@ namespace Laugicality
             GenerateFeature(xO, yO, 50, (ushort)mod.TileType("Lycoris"), 3, 6, 140 * sizeMult);
             GenerateFeature(xO, yO, 75, (ushort)mod.TileType("Radiata"), 3, 5, 180 * sizeMult);
             GenerateFeature(xO, yO, 75, (ushort)mod.TileType("Lycoris"), 3, 5, 140 * sizeMult);
-            GenerateFeature(xO, yO, 100, (ushort)mod.TileType("ObsidiumBrick"), 12, 18, 50 * sizeMult);
+            GenerateFeature(xO, yO, 100, (ushort)mod.TileType<SootTile>(), 12, 18, 25 * sizeMult);
             GenerateFeature(xO, yO, 300, (ushort)mod.TileType("ObsidiumOreBlock"), 6, 14, 8);
         }
         
@@ -377,7 +379,7 @@ namespace Laugicality
 
         private static int[] GetObsidiumPotionLoot()
         {
-            int[] potLoot = new int[] { Laugicality.instance.ItemType("MysticPowerPotion"), Laugicality.instance.ItemType("JumpBoostPotion"), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
+            int[] potLoot = new int[] { Laugicality.instance.ItemType<DestructionPotion>(), Laugicality.instance.ItemType<IllusionPotion>(), Laugicality.instance.ItemType<ConjurationPotion>(), Laugicality.instance.ItemType<JumpBoostPotion>(), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
             int potPos = Main.rand.Next(potLoot.GetLength(0));
             int potCount = Main.rand.Next(2, 5);
             int[] pot = { 0, 0 };

@@ -11,8 +11,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerHead);
-            npc.width = 96;
-            npc.height = 96;
+            npc.width = 110;
+            npc.height = 110;
             npc.damage = 60;
             npc.defense = 12;
             npc.lifeMax = 2000;
@@ -61,8 +61,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerBody);
-            npc.width = 96;
-            npc.height = 96;
+            npc.width = 110;
+            npc.height = 110;
             npc.damage = 30;
             npc.defense = 38;
             npc.lifeMax = 500;
@@ -81,8 +81,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerTail);
-            npc.width = 96;
-            npc.height = 96;
+            npc.width = 110;
+            npc.height = 110;
             npc.damage = 40;
             npc.defense = 28;
             npc.lifeMax = 4000;

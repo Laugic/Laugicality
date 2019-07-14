@@ -6,12 +6,10 @@ namespace Laugicality.NPCs.Obsidium
 {
     public class MoltenSoul : ModNPC
     {
-        int _shootDel = 0;
+        int shootDel = 0;
         public override void SetDefaults()
         {
-            _shootDel = 300;
-            //npc.frameWidth = 40;
-            //npc.frameHeight = 34;
+            shootDel = 300;
             npc.width = 56;
             npc.height = 56;
             npc.damage = 60;
@@ -27,27 +25,19 @@ namespace Laugicality.NPCs.Obsidium
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
         }
-        /*
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (LaugicalityWorld.obsidiumTiles > 150 && Main.hardMode)
-                return SpawnCondition.Cavern.Chance * 0.15f;
-            else return 0f;
-        }*/
 
         public override void AI()
         {
             npc.rotation = 0;
             if (Main.rand.Next(3) == 0)
                 Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
-            _shootDel--;
-            if (_shootDel <= 0)
+            shootDel--;
+            if (shootDel <= 0)
             {
                 if (Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("MagmaBallLaunched"), (int)(npc.damage / 4f), 3, Main.myPlayer);
-                _shootDel = 60 * 5;
+                shootDel = 60 * 5;
             }
-
         }
 
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)

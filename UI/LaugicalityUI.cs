@@ -42,7 +42,7 @@ namespace Laugicality.UI
         private Vector2 TopPos = new Vector2(0, 0);
         private Vector2 MidPos = new Vector2(0, 0);
         private Vector2 BotPos = new Vector2(0, 0);
-        private Vector2 MysticBurstPos = new Vector2();
+        private Vector2 MysticBurstPos = new Vector2(0, 0);
 
         int position = 1;
         float topTheta = -100;

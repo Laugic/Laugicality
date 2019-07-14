@@ -26,16 +26,6 @@ namespace Laugicality.Tiles
             Main.tileMerge[58][mod.TileType("ObsidiumBrick")] = true;
             Main.tileMerge[58][mod.TileType("ObsidiumOreBlock")] = true;
             Main.tileMerge[58][mod.TileType("ObsidiumRock")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumBrick")][mod.TileType("Radiata")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumOreBlock")][mod.TileType("Radiata")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumRock")][mod.TileType("Radiata")] = true;
-            Main.tileMerge[58][mod.TileType("Radiata")] = true;
-            Main.tileMerge[56][mod.TileType("Radiata")] = true;
-            Main.tileMerge[mod.TileType("Radiata")][mod.TileType("ObsidiumBrick")] = true;
-            Main.tileMerge[mod.TileType("Radiata")][mod.TileType("ObsidiumOreBlock")] = true;
-            Main.tileMerge[mod.TileType("Radiata")][mod.TileType("ObsidiumRock")] = true;
-            Main.tileMerge[mod.TileType("Radiata")][58] = true;
-            Main.tileMerge[mod.TileType("Radiata")][56] = true;
             Main.tileLighted[Type] = false;
             AddMapEntry(new Color(50, 50, 50));
             mineResist = 1f;

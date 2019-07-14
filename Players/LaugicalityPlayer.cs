@@ -18,6 +18,7 @@ using Laugicality.NPCs.PreTrio;
 using Laugicality.Projectiles;
 using Laugicality.Dusts;
 using Laugicality.Items.Equipables;
+using Laugicality.Projectiles.Accessory;
 
 namespace Laugicality
 {
@@ -657,7 +658,7 @@ namespace Laugicality
         public override Texture2D GetMapBackgroundImage()
         {
             if (zoneObsidium)
-                return mod.GetTexture("ObsidiumBiomeMapBackground");
+                return mod.GetTexture("Backgrounds/ObsidiumBiomeMapBackground");
 
             return null;
         }
@@ -672,8 +673,6 @@ namespace Laugicality
         /// </summary>
         public override void UpdateBadLifeRegen()
         {
-            
-            //Main.NewText(mysticDuration.ToString(), 250, 250, 0);
             if (HalfDef)
             {
                 player.statDefense /= 2;

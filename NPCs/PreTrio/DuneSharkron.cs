@@ -46,7 +46,7 @@ namespace Laugicality.NPCs.PreTrio
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = 4500 + numPlayers * 1500;
-            npc.damage = 80;
+            npc.damage = 70;
         }
 
         private void Enrage()

@@ -19,6 +19,7 @@ namespace Laugicality.Tiles
             mineResist = 1f;
             minPick = 60;
             drop = mod.ItemType("ObsidiumOre");
+            dustType = 1;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

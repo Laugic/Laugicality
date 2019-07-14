@@ -2,6 +2,7 @@ using Laugicality.Dusts;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Laugicality.Projectiles;
+using Laugicality.Projectiles.Accessory;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -217,8 +218,7 @@ namespace Laugicality.Items.Equipables
             {
                 float mag = Main.rand.NextFloat() * 4 + 2;
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                if (Main.netMode != 1)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType<SteamTrailProj>(), (int)(32 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType<SteamTrailProj>(), (int)(32 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
             }
         }
 

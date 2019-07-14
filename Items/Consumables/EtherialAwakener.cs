@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Consumables
 {
@@ -13,7 +14,6 @@ namespace Laugicality.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Etherial Crown");
             Tooltip.SetDefault("Summons Dioritus");
         }
 
@@ -26,7 +26,6 @@ namespace Laugicality.Items.Consumables
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = ItemUseStyleID.HoldingUp;
-			//item.UseSound = SoundID.Item44;
 			item.consumable = true;
 			item.shoot = mod.ProjectileType<Nothing>();
 		}

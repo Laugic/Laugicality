@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Consumables
 {

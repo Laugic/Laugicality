@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Laugicality.Items;
 using Laugicality.Items.Materials;
 using Laugicality.Projectiles;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Weapons.Summon
 {

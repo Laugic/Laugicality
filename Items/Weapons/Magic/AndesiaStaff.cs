@@ -7,6 +7,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Weapons.Magic
 {
@@ -20,28 +21,24 @@ namespace Laugicality.Items.Weapons.Magic
         }
         public override void SetDefaults()
         {
-            item.damage = 50;           
-            item.magic = true;             
+            item.damage = 50;
+            item.magic = true;
             item.noMelee = true;
             item.mana = 4;
             item.width = 88;
             item.height = 88;
-            item.useTime = 10;       
-            item.useAnimation = 10;   
+            item.useTime = 10;
+            item.useAnimation = 10;
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = 100000;
             item.rare = ItemRarityID.Green;
-            //item.reuseDelay = 20;    
             item.UseSound = SoundID.Item1;
-            item.autoReuse = true;       
-            //item.shoot = mod.ProjectileType("EnginatorP");  
-            item.shootSpeed = 0f;     
+            item.autoReuse = true;
+            item.shootSpeed = 0f;
             item.useTurn = true;
-            item.maxStack = 1;      
-            item.consumable = false;  
-            //item.noUseGraphic = true;
-
+            item.maxStack = 1;
+            item.consumable = false;
         }
 
         public override bool AltFunctionUse(Player player)
@@ -74,7 +71,6 @@ namespace Laugicality.Items.Weapons.Magic
             return true;
         }
 
-        //(int)(Main.mouseX + Main.screenPosition.X), (int)(Main.mouseY + Main.screenPosition.Y)
         public override void AddRecipes()  
         {
             ModRecipe recipe = new ModRecipe(mod);

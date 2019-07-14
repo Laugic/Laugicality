@@ -40,8 +40,7 @@ namespace Laugicality.Items.Weapons.Melee
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f / 180f;
                 float mag = 600 + Main.rand.Next(200);
-                //if(Main.netMode != 1)
-                    Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), mod.ProjectileType("TrueDawnStar"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), mod.ProjectileType("TrueDawnStar"), damage, 3, Main.myPlayer);
             }
             int numberProjectiles = Main.rand.Next(1, 4);
             for (int i = 0; i < numberProjectiles; i++)
@@ -49,8 +48,7 @@ namespace Laugicality.Items.Weapons.Melee
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
                 float scale = 1.1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
-                //if (Main.netMode != 1)
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("TrueGoldenSword"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("TrueGoldenSword"), damage, knockBack, player.whoAmI);
             }
             return true;
         }

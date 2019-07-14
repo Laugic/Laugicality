@@ -19,29 +19,28 @@ namespace Laugicality.Items.Weapons.Thrown
         }
         public override void SetDefaults()
         {
-            item.damage = 110;           //this is the item damage
-            item.thrown = true;             //this make the item do throwing damage
+            item.damage = 110;
+            item.thrown = true;
             item.noMelee = true;
             item.width = 106;
             item.height = 74;
-            item.useTime = 20;       //this is how fast you use the item
-            item.useAnimation = 20;   //this is how fast the animation when the item is used
+            item.useTime = 20;
+            item.useAnimation = 20;
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 10;
             item.rare = ItemRarityID.Orange;
-            item.reuseDelay = 20;    //this is the item delay
+            item.reuseDelay = 20;
             item.UseSound = SoundID.Item1;
-            item.autoReuse = true;       //this make the item auto reuse
-            item.shoot = mod.ProjectileType("EnginatorP");  //javelin projectile
-            item.shootSpeed = 16f;     //projectile speed
+            item.autoReuse = true;
+            item.shoot = mod.ProjectileType("EnginatorTProj");
+            item.shootSpeed = 16f;
             item.useTurn = true;
-            item.maxStack = 1;       //this is the max stack of this item
-            item.consumable = false;  //this make the item consumable when used
+            item.maxStack = 1;
+            item.consumable = false;
             item.noUseGraphic = true;
-
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod, nameof(SteamBar), 16);

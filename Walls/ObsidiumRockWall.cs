@@ -20,10 +20,11 @@ namespace Laugicality.Walls
 
         public override void RandomUpdate(int i, int j)
         {
-            if (Main.tile[i, j].liquid > 1 && !Main.tile[i, j].lava())
-                Main.tile[i, j].liquid = 1;
-            else if (Main.tile[i, j].liquid == 1 && !Main.tile[i, j].lava())
+            if (Main.tile[i, j].liquid > 1 && !Main.tile[i, j].lava() && Main.tile[i, j].type < 1)
+            {
                 Main.tile[i, j].liquid = 0;
+                Main.tile[i, j].ClearTile();
+            }
             base.RandomUpdate(i, j);
         }
     }

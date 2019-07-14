@@ -1,4 +1,5 @@
 ﻿using Laugicality.Projectiles;
+using Laugicality.Projectiles.SoulStone;
 using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
 using System;
@@ -171,6 +172,7 @@ namespace Laugicality.Focuses
 
         private static void DownedPlanteraEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
+            laugicalityPlayer.player.SporeSac();
             laugicalityPlayer.player.sporeSac = true;
         }
 

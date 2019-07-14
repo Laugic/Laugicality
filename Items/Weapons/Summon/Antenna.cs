@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Laugicality.Projectiles.Summon;
 
 namespace Laugicality.Items.Weapons.Summon
 {
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Summon
 			item.value = Item.buyPrice(0, 25, 0, 0);
 			item.rare = ItemRarityID.Lime;
 			item.UseSound = SoundID.Item44;
-			item.shoot = mod.ProjectileType(nameof(TV));
+			item.shoot = mod.ProjectileType<TV>();
 			item.shootSpeed = 12f;
 			item.buffType = mod.BuffType(nameof(TVBuff));
 			item.buffTime = 3600;

@@ -1,4 +1,5 @@
 using Laugicality.Projectiles;
+using Laugicality.Projectiles.Summon;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -18,7 +19,7 @@ namespace Laugicality.Buffs
 		{
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
 
-			if (player.ownedProjectileCounts[mod.ProjectileType(nameof(TV))] > 0)
+			if (player.ownedProjectileCounts[mod.ProjectileType<TV>()] > 0)
 				modPlayer.TVSummon = true;
 
             if (!modPlayer.TVSummon)

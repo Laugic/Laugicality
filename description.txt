@@ -15,6 +15,3 @@ Revamped the Soul Stone!
 Added Focus Stones that benefit different playstyles instead of different classes.
 All Enigma and Vanilla bosses give unique bonuses based on which Focus Stone you pick.
 Added new Curse System
-
-**NOTICE:**
-Please restart Terraria after changing your mod list and reloading mods. If you hover over a Mystic Weapon without doing this, your game will crash! (but it wont crash when you launch it again)

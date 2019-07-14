@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
 using Laugicality;
 using Laugicality.Projectiles;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Weapons.Mystic
 {

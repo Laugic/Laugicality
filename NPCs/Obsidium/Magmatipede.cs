@@ -13,8 +13,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerHead);
-            npc.width = 80;
-            npc.height = 80;
+            npc.width = 94;
+            npc.height = 94;
             npc.damage = 40;
             npc.defense = 10;
             npc.lifeMax = 800;
@@ -63,8 +63,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerBody);
-            npc.width = 80;
-            npc.height = 80;
+            npc.width = 94;
+            npc.height = 94;
             npc.damage = 25;
             npc.defense = 30;
             npc.lifeMax = 100;
@@ -83,8 +83,8 @@ namespace Laugicality.NPCs.Obsidium
 		public override void SetDefaults()
         {
             npc.CloneDefaults(NPCID.DiggerTail);
-            npc.width = 80;
-            npc.height = 80;
+            npc.width = 94;
+            npc.height = 94;
             npc.damage = 30;
             npc.defense = 26;
             npc.lifeMax = 800;
@@ -112,8 +112,8 @@ namespace Laugicality.NPCs.Obsidium
 
 		public override void Init()
 		{
-			minLength = 8;
-			maxLength = 10;
+			minLength = 6;
+			maxLength = 8;
 			tailType = mod.NPCType<MagmatipedeTail>();
 			bodyType = mod.NPCType<MagmatipedeBody>();
 			headType = mod.NPCType<MagmatipedeHead>();
