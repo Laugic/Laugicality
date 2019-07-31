@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles.SoulStone
         public override void AI()
         {
             NPC npc = Main.npc[(int)projectile.ai[0]];
-            if (!npc.active || collided)
+            if (!npc.active || collided || projectile.damage == 0)
                 Despawn();
             else
                 HomeIn(npc);

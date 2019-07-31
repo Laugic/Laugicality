@@ -81,6 +81,7 @@ namespace Laugicality.NPCs.PreTrio
                 return;
             Enrage();
             FollowAI();
+            npc.netUpdate = true;
         }
 
         private void FollowAI()

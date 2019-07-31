@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -22,7 +23,7 @@ namespace Laugicality.Tiles
             name.SetDefault("Alchemical Infuser");
             AddMapEntry(new Color(170, 200, 120), name);
             disableSmartCursor = true;
-            //adjTiles = new int[] { TileID.WorkBenches };
+            adjTiles = new int[] { TileID.Tables };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

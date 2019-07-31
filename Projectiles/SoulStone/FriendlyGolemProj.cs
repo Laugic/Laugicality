@@ -47,7 +47,7 @@ namespace Laugicality.Projectiles.SoulStone
                     projectile.spriteDirection = 1;
             }
             Wander();
-            if (!Main.player[projectile.owner].active)
+            if (!Main.player[projectile.owner].active || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FocusName != Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_CAPACITY || !Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().GolemEffect)
                 projectile.Kill();
         }
 

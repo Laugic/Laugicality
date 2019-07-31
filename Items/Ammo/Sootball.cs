@@ -15,7 +15,7 @@ namespace Laugicality.Items.Ammo
 
         public override void SetDefaults()
         {
-            item.damage = 13;
+            item.damage = 9;
             item.ranged = true;
             item.width = 8;
             item.height = 8;

@@ -1,5 +1,6 @@
 ﻿using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +11,7 @@ namespace Laugicality.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Brass F.A.N.");
-            Tooltip.SetDefault("It's a 'Fast Acceleration Node'\nBoosts you to the left.");
+            Tooltip.SetDefault("It's a 'Fast Acceleration Node'\nBoosts you horizontally");
         }
 
         public override void SetDefaults()
@@ -28,6 +29,13 @@ namespace Laugicality.Items.Placeable
             item.createTile = mod.TileType("BrassFAN");
         }
 
+        public override void UpdateInventory(Player player)
+        {
+            if (player.direction == 1)
+                item.createTile = mod.TileType("BrassFANRight");
+            else
+                item.createTile = mod.TileType("BrassFAN");
+        }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

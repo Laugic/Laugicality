@@ -285,7 +285,7 @@ namespace Laugicality.Items
             switch (modPlayer.MysticMode)
             {
                 case 1:
-                    if (modPlayer.Lux > LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
+                    if (modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
                     {
                         modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
                         if (modPlayer.Lux < 0)
@@ -303,7 +303,7 @@ namespace Laugicality.Items
                         return false;
                     break;
                 case 2:
-                    if (modPlayer.Vis > VisCost * modPlayer.VisUseRate * modPlayer.GlobalPotentiaUseRate)
+                    if (modPlayer.Vis >= VisCost * modPlayer.VisUseRate * modPlayer.GlobalPotentiaUseRate)
                     {
                         modPlayer.Vis -= VisCost * modPlayer.VisUseRate * modPlayer.GlobalPotentiaUseRate;
                         if (modPlayer.Vis < 0)
@@ -321,7 +321,7 @@ namespace Laugicality.Items
                         return false;
                     break;
                 case 3:
-                    if (modPlayer.Mundus > MundusCost * modPlayer.MundusUseRate * modPlayer.GlobalPotentiaUseRate)
+                    if (modPlayer.Mundus >= MundusCost * modPlayer.MundusUseRate * modPlayer.GlobalPotentiaUseRate)
                     {
                         modPlayer.Mundus -= MundusCost * modPlayer.MundusUseRate * modPlayer.GlobalPotentiaUseRate;
                         if (modPlayer.Mundus < 0)

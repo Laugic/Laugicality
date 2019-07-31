@@ -76,10 +76,6 @@ namespace Laugicality
             VisMax = 100;
             MundusMax = 100;
 
-            CurrentLuxCost = 0;
-            CurrentVisCost = 0;
-            CurrentMundusCost = 0;
-
             LuxUseRate = 1;
             VisUseRate = 1;
             MundusUseRate = 1;

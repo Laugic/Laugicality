@@ -15,3 +15,4 @@ Revamped the Soul Stone!
 Added Focus Stones that benefit different playstyles instead of different classes.
 All Enigma and Vanilla bosses give unique bonuses based on which Focus Stone you pick.
 Added new Curse System
+Revamped the Pre Trio boss fights

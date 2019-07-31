@@ -18,7 +18,7 @@ namespace Laugicality.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.addTile(Type);
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Brass F.A.N. MkR");
+            name.SetDefault("Brass F.A.N.");
             AddMapEntry(new Color(220, 200, 100), name);
             disableSmartCursor = false;
             animationFrameHeight = 54;
@@ -46,7 +46,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 112, 64, mod.ItemType("BrassFANRight"));
+            Item.NewItem(i * 16, j * 16, 112, 64, mod.ItemType("BrassFAN"));
         }
     }
 }

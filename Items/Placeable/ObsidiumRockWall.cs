@@ -17,7 +17,7 @@ namespace Laugicality.Items.Placeable
             item.useTurn = true;
             item.autoReuse = true;
             item.useAnimation = 15;
-            item.useTime = 10;
+            item.useTime = 5;
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;

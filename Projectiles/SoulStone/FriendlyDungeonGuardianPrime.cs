@@ -39,7 +39,7 @@ namespace Laugicality.Projectiles.SoulStone
             }
             else
                 Wander();
-            if (!Main.player[projectile.owner].active)
+            if (!Main.player[projectile.owner].active || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FocusName != Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_CAPACITY || !Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().SkeletronPrimeEffect)
                 projectile.Kill();
         }
         
@@ -51,11 +51,11 @@ namespace Laugicality.Projectiles.SoulStone
 
         public void GetTarget()
         {
-            float dist = 250;
+            float dist = 500;
 
             foreach(NPC npc in Main.npc)
             {
-                if(npc.damage > 0)
+                if(npc.damage > 0 && npc.type != NPCID.TargetDummy)
                 {
                     if (npc.Distance(projectile.Center) < dist)
                     {
@@ -69,6 +69,11 @@ namespace Laugicality.Projectiles.SoulStone
                     }
                 }
             }
+            if (projectile.Distance(Main.player[projectile.owner].Center) > dist * 2)
+            {
+                projectile.ai[0] = 0;
+                Wander();
+            }
         }
 
         public void HomeIn(NPC npc)
@@ -76,6 +81,8 @@ namespace Laugicality.Projectiles.SoulStone
             projectile.rotation += .08f;
             projectile.velocity = projectile.DirectionTo(npc.Center) * 6;
             counter = 0;
+            if (!npc.active || npc.life < 1 || npc.type == NPCID.TargetDummy)
+                projectile.ai[0] = 0;
         }
 
         public void Wander()

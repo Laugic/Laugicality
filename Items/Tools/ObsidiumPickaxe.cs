@@ -8,7 +8,7 @@ namespace Laugicality.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("'Not quite Molten'");
+			Tooltip.SetDefault("'It's molten inside'");
 		}
 
 		public override void SetDefaults()
