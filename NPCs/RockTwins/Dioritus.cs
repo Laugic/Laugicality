@@ -127,7 +127,7 @@ namespace Laugicality.NPCs.RockTwins
 
             //DESPAWN
             int despawn = 0;
-            if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.player[npc.target].ZoneRockLayerHeight == false)
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.player[npc.target].statLife < 1|| Main.player[npc.target].ZoneRockLayerHeight == false)
             {
                 npc.TargetClosest(true);
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.dayTime)
@@ -158,7 +158,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.active = false;
 
             //Movement if only Dioritus
-            if (NPC.CountNPCS(mod.NPCType("Andesia")) == 0)
+            //if (NPC.CountNPCS(mod.NPCType("Andesia")) == 0)
             {
                 //Checking if it should initiate phase 3 already
                 if (LaugicalityWorld.downedAndesia && LaugicalityWorld.downedDioritus && NPC.CountNPCS(mod.NPCType("Andesia")) == 0 && Main.netMode != 1)
@@ -242,7 +242,7 @@ namespace Laugicality.NPCs.RockTwins
                     }
                 }
             }
-            else if(Main.player[npc.target].statLife > 0)
+            /*else if(Main.player[npc.target].statLife > 0)
             {
                 reload = 320;
                 int mag = 320;
@@ -268,7 +268,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.velocity.Y = (float)Math.Abs((npc.position.Y - targetY) / distance * vel);
                 if (targetY < npc.position.Y)
                     npc.velocity.Y *= -1;
-            }
+            }*/
 
 
             //Attacks

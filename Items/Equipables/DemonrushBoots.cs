@@ -33,9 +33,9 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += .25f;
+            player.moveSpeed += .15f;
 
-            float dashSpeed = player.maxRunSpeed * 3 + 6;
+            float dashSpeed = 12;
             int dashCooldownMax = 60;
             int trailLength = 45;
             int verticalCooldownMax = 45;

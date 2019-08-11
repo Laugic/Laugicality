@@ -12,7 +12,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice\nGrants the ability to double jump\nNegates fall damage\n10% increased movement speed");
+            Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice\nGrants the ability to double jump\nNegates fall damage\n15% increased movement speed");
         }
 
         public override void SetDefaults()
@@ -26,12 +26,13 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += .1f;
-            player.accRunSpeed += 5f;
+            player.moveSpeed += .15f;
+            player.accRunSpeed += 4.5f;
             player.rocketBoots = 3;
             player.iceSkate = true;
             player.doubleJumpBlizzard = true;
             player.noFallDmg = true;
+            player.jumpSpeedBoost += 3;
         }
 
         public override void AddRecipes()

@@ -31,11 +31,11 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += .25f;
+            player.moveSpeed += .15f;
             int dashCooldownMax = 60;
             int trailLength = 45;
 
-            float dashSpeed = player.maxRunSpeed * 2 + 6;
+            float dashSpeed = 12;
 
             if (!player.mount.Active && player.grappling[0] == -1 && dashCooldown <= 0)
             {

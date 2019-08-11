@@ -18,13 +18,14 @@ namespace Laugicality.Items.Equipables
         int dashCooldown = 0;
         int trail = 0;
         int rocketBootTime = 0;
-        int rocketBootTimeMax = 7 * 60;
+        int rocketBootTimeMax = 5 * 60 + 30;
         float rocketAccel = .25f;
         int dashDir = 0;
+        float maxVel = 13;
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Dimension-tearing speed\nDominion over everything\nGrants the ability to tele-dash\nBecome immune for a time while dashing\nLeave a Frigid trail\nIncreased Damage, Movement Speed, and Defense in the Etherial");
+            Tooltip.SetDefault("Dimension-tearing speed\nDominion over everything\nGrants the ability to super dash\nBecome immune for a time while dashing\nLeave a Frigid trail\nIncreased Damage, Movement Speed, and Defense in the Etherial");
         }
 
         public override void SetDefaults()
@@ -39,9 +40,9 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.jumpSpeedBoost += 6;
-            player.moveSpeed += .75f;
-            player.maxRunSpeed += 8f;
+            player.jumpSpeedBoost += 5;
+            player.moveSpeed += .6f;
+            player.maxRunSpeed += 6.5f;
             player.iceSkate = true;
             player.doubleJumpBlizzard = true;
             player.noFallDmg = true;
@@ -81,10 +82,11 @@ namespace Laugicality.Items.Equipables
             if (player.controlJump && rocketBootTime < rocketBootTimeMax)
             {
                 if (rocketAccel < accelMax)
-                    rocketAccel += .025f;
-                player.velocity.Y -= rocketAccel;
+                    rocketAccel += .075f;
+                if (player.velocity.Y > -maxVel)
+                    player.velocity.Y -= rocketAccel;
                 if (player.velocity.Y > 0)
-                    player.velocity.Y *= .9f;
+                    player.velocity.Y *= .8f;
                 RocketDust(player);
                 rocketBootTime++;
                 player.fallStart = (int)player.position.Y / 16;
@@ -95,7 +97,7 @@ namespace Laugicality.Items.Equipables
                 }
             }
             else
-                rocketAccel = .2f;
+                rocketAccel = .6f;
         }
 
         private void RocketDust(Player player)
@@ -124,11 +126,11 @@ namespace Laugicality.Items.Equipables
 
         private void Dashes(Player player)
         {
-            float dashSpeed = 28;
+            float dashSpeed = 25;
             int dashCooldownMax = 45;
             int trailLength = 45;
             int verticalCooldownMax = 45;
-            int immuneTime = 22;
+            int immuneTime = 20;
             float warpDist = 0;
 
             if (!player.mount.Active && player.grappling[0] == -1 && dashCooldown <= 0)
@@ -240,7 +242,7 @@ namespace Laugicality.Items.Equipables
                 trail--;
                 player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<EtherialDust>(), 2);
             }
-            if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0)
+            if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.Y) < .25f)
             {
                 rocketBootTime = 0;
             }

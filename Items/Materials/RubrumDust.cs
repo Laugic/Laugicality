@@ -28,9 +28,6 @@ namespace Laugicality.Items.Materials
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this, 2);
             recipe.AddRecipe();
-
-            
-
         }
 	}
 }

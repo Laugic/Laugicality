@@ -47,7 +47,6 @@ namespace Laugicality.Structures
 
         public static void StructureGen(int xPosO, int yPosO, bool mirrored)
         {
-            //Obsidium Heart
             /**
              * 0 = Do Nothing
              * 1 = Obsidium Rock

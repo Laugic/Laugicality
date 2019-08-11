@@ -3,6 +3,7 @@ using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -18,9 +19,10 @@ namespace Laugicality.Items.Equipables
         int trail = 0;
         int dustType = DustID.Shadowflame;
         int rocketBootTime = 0;
-        int rocketBootTimeMax = 4 * 60;
+        int rocketBootTimeMax = 3 * 60;
         float rocketAccel = .2f;
         int dashDir = 0;
+        float maxVel = 10;
 
         public override void SetStaticDefaults()
         {
@@ -40,9 +42,9 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.jumpSpeedBoost += 4;
-            player.moveSpeed += .5f;
-            player.maxRunSpeed += 5f;
+            player.jumpSpeedBoost += 3;
+            player.moveSpeed += .3f;
+            player.maxRunSpeed += 4f;
             player.iceSkate = true;
             player.doubleJumpBlizzard = true;
             player.noFallDmg = true;
@@ -66,10 +68,11 @@ namespace Laugicality.Items.Equipables
             if(player.controlJump && rocketBootTime < rocketBootTimeMax)
             {
                 if (rocketAccel < accelMax)
-                    rocketAccel += .02f;
-                player.velocity.Y -= rocketAccel;
+                    rocketAccel += .05f;
+                if (player.velocity.Y > -maxVel)
+                    player.velocity.Y -= rocketAccel;
                 if (player.velocity.Y > 0)
-                    player.velocity.Y *= .9f;
+                    player.velocity.Y *= .8f;
                 RocketDust(player);
                 rocketBootTime++;
                 player.fallStart = (int)player.position.Y / 16;
@@ -80,7 +83,7 @@ namespace Laugicality.Items.Equipables
                 }
             }
             else
-                rocketAccel = .2f;
+                rocketAccel = .5f;
         }
 
         private void RocketDust(Player player)
@@ -109,12 +112,12 @@ namespace Laugicality.Items.Equipables
 
         private void Dashes(Player player)
         {
-            float dashSpeed = 20;
+            float dashSpeed = 18;
             int dashCooldownMax = 50;
             int trailLength = 45;
             int verticalCooldownMax = 45;
-            int maxJumps = 5;
-            int immuneTime = 20;
+            int maxJumps = 4;
+            int immuneTime = 15;
 
             if (!player.mount.Active && player.grappling[0] == -1 && dashCooldown <= 0)
             {
@@ -207,7 +210,7 @@ namespace Laugicality.Items.Equipables
                 trail--;
                 player.GetModPlayer<LaugicalityPlayer>().DustTrail(dustType, 2);
             }
-            if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0)
+            if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.Y) < .25f)
             {
                 jumpDashes = 0;
                 rocketBootTime = 0;
@@ -224,6 +227,8 @@ namespace Laugicality.Items.Equipables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<FrostwarpBoots>());
             recipe.AddIngredient(mod.ItemType<AquaflameWaders>());
+            recipe.AddIngredient(mod.ItemType<Shadowflame>(), 4);
+            recipe.AddIngredient(ItemID.SoulofFlight, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality.Items.Weapons.Mystic;
 using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 
 namespace Laugicality.NPCs
 {
@@ -686,6 +687,8 @@ namespace Laugicality.NPCs
             }
             if(npc.type == NPCID.IceQueen)
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<RoyalIce>(), 1);
+            if(npc.type == NPCID.GoblinSummoner)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<Shadowflame>(), Main.rand.Next(2, 5));
             GetWeaponDrops(npc);
         }
 

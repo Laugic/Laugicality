@@ -166,9 +166,7 @@ namespace Laugicality.Items
             if (player.minionDamage < globalDamageMult)
                 globalDamageMult = player.minionDamage;
             
-            damage = (int)(originalDmg * globalDamageMult);
-
-            damage = (int)(damage * modPlayer.MysticDamage);
+            damage = (int)(originalDmg * (globalDamageMult + modPlayer.MysticDamage - 1));
 
             switch (modPlayer.MysticMode)
             {

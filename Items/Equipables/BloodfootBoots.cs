@@ -31,7 +31,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             int dashCooldownMax = 90;
-            float dashSpeed = player.maxRunSpeed * 2 + 6;
+            float dashSpeed = 11;
 
             if (!player.mount.Active && player.grappling[0] == -1 && dashCooldown <= 0)
             {

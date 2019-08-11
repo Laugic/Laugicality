@@ -820,38 +820,38 @@ namespace Laugicality
 
             if(FireTrail && Math.Abs(player.velocity.X) > 3)
             {
-                if(Main.rand.Next(8) == 0)
+                if(Main.rand.Next(12) == 0)
                     Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 2 - Main.rand.Next(4), Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodFireball>(), (int)(8 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (TrueFireTrail && Math.Abs(player.velocity.X) > 2)
             {
-                if (Main.rand.Next(6) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<TrueGoodFireball>(), (int)(16 * GetGlobalDamage()), 0, player.whoAmI);
+                if (Main.rand.Next(12) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<TrueGoodFireball>(), (int)(15 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (ShadowflameTrail && Math.Abs(player.velocity.X) > 2)
             {
-                if (Main.rand.Next(6) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodShadowflame>(), (int)(24 * GetGlobalDamage()), 0, player.whoAmI);
+                if (Main.rand.Next(15) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodShadowflame>(), (int)(18 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (CrystalliteTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
-                if (Main.rand.Next(6) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<CrystalliteOrb>(), (int)(28 * GetGlobalDamage()), 0, player.whoAmI);
+                if (Main.rand.Next(14) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<CrystalliteOrb>(), (int)(24 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (SteamTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
-                if (Main.rand.Next(6) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<SteamTrailProj>(), (int)(32 * GetGlobalDamage()), 0, player.whoAmI);
+                if (Main.rand.Next(10) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<SteamTrailProj>(), (int)(26 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (BysmalTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
-                if (Main.rand.Next(6) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<BysmalTrailProj>(), (int)(36 * GetGlobalDamage()), 0, player.whoAmI);
+                if (Main.rand.Next(10) == 0)
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<BysmalTrailProj>(), (int)(30 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (MysticHold > 0)

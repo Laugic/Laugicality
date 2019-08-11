@@ -130,7 +130,7 @@ namespace Laugicality.NPCs.RockTwins
 
             //DESPAWN
             int despawn = 0;
-            if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.player[npc.target].ZoneRockLayerHeight == false)
+            if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.player[npc.target].statLife < 1 || Main.player[npc.target].ZoneRockLayerHeight == false)
             {
                 npc.TargetClosest(true);
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead || Main.dayTime)
@@ -163,7 +163,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.active = false;
 
             //Movement if only Andesia
-            if (NPC.CountNPCS(mod.NPCType<Dioritus>()) == 0)
+            //if (NPC.CountNPCS(mod.NPCType<Dioritus>()) == 0)
             {
                 //Checking which direction to move when spawned
                 if (dir == 0)
@@ -299,7 +299,7 @@ namespace Laugicality.NPCs.RockTwins
                     }
                 }
             }
-            else if (Main.player[npc.target].statLife > 0)
+            /*else if (Main.player[npc.target].statLife > 0)
             {
                 int dio = (int)npc.ai[3];
                 Main.npc[dio].ai[3] = npc.whoAmI;
@@ -327,7 +327,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.velocity.Y = (float)Math.Abs((npc.position.Y - targetY) / distance * vel);
                 if (targetY < npc.position.Y)
                     npc.velocity.Y *= -1;
-            }
+            }*/
             
             //Attacks
             delay--;

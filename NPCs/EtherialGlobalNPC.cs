@@ -115,6 +115,15 @@ namespace Laugicality.NPCs
                 npc.damage = 200;
                 npc.lifeMax = 60000;
                 npc.life = npc.lifeMax;
+                npc.knockBackResist = 0f;
+            }
+
+            if (npc.type == NPCID.Creeper)
+            {
+                npc.damage = 100;
+                npc.lifeMax = 4000;
+                npc.life = npc.lifeMax;
+                npc.knockBackResist = 0f;
             }
 
             if (npc.type == mod.NPCType<Hypothema>())
@@ -562,6 +571,7 @@ namespace Laugicality.NPCs
 
         private void BrainOfCthulhuAI(NPC npc)
         {
+            npc.knockBackResist = 0f;
             BrainOfCthulhuHealthEffect(npc);
         }
 
@@ -1043,7 +1053,10 @@ namespace Laugicality.NPCs
                 if (npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail)
                     player.AddBuff(BuffID.ShadowFlame, 8 * 60, true);
                 if (npc.type == NPCID.BrainofCthulhu || npc.type == NPCID.Creeper)
+                {
                     player.AddBuff(BuffID.Obstructed, 8 * 60, true);
+                    player.AddBuff(BuffID.Confused, 4 * 60, true);
+                }
                 if (npc.type == mod.NPCType<TheAnnihilator>() || npc.type == mod.NPCType("MechanicalCrawler") || npc.type == mod.NPCType("MechanicalMimic") || npc.type == mod.NPCType("MechanicalShelly") || npc.type == mod.NPCType("MechanicalSlimer") || npc.type == mod.NPCType("MehcanicalCreeper"))
                     player.AddBuff(mod.BuffType("Frostbite"), 8 * 60, true);
                 if (npc.type == NPCID.DukeFishron && _counter <= 0)

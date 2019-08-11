@@ -19,7 +19,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frostwarp Boots");
-            Tooltip.SetDefault("Allows the wearer to dash, fly, and run super fast\nGrants the ability to double jump\nNegates fall damage\n50% Increased movement speed\nCan dash multiple times in the air\nBecome immune for a time while dashing");
+            Tooltip.SetDefault("Allows the wearer to dash, fly, and run super fast\nGrants the ability to double jump\nNegates fall damage\n20% Increased movement speed\nCan dash multiple times in the air\nBecome immune for a time while dashing");
         }
 
         public override void SetDefaults()
@@ -34,9 +34,10 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += .5f;
-            player.accRunSpeed += 5f;
+            player.moveSpeed += .2f;
+            player.accRunSpeed += 4.5f;
             player.rocketBoots = 3;
+            player.jumpSpeedBoost += 3;
             player.iceSkate = true;
             player.doubleJumpBlizzard = true;
             player.noFallDmg = true;
@@ -155,6 +156,8 @@ namespace Laugicality.Items.Equipables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod.ItemType<WarpburstBoots>());
             recipe.AddIngredient(mod.ItemType<FrostburstBoots>());
+            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 4);
+            recipe.AddIngredient(mod.ItemType<SoulOfHaught>(), 4);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

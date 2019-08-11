@@ -34,14 +34,14 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.moveSpeed += .4f;
+            player.moveSpeed += .25f;
             Dashes(player);
             Delays(player);            
         }
 
         private void Dashes(Player player)
         {
-            float dashSpeed = player.maxRunSpeed * 3 + 8;
+            float dashSpeed = 15;
             int dashCooldownMax = 60;
             int trailLength = 45;
             int verticalCooldownMax = 45;
