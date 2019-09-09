@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Laugicality.Items;
 using Terraria;
 using Terraria.ModLoader;
 
-
-namespace Laugicality
+namespace Laugicality.Items
 {
     public abstract class SteamItem : LaugicalityItem
     {
