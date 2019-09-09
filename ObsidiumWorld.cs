@@ -203,11 +203,11 @@ namespace Laugicality
 
         private void DecorationStructures(int xO, int yO)
         {
-            int s = Main.rand.Next(7);
+            int s = Main.rand.Next(8);
             int structX = xO - 225 * sizeMult + Main.rand.Next(225 * sizeMult * 2);
             int structY = yO - 275 * sizeMult + Main.rand.Next(275 * sizeMult / 2);
 
-            for (int q = 0; q < 7 * sizeMult; q++)
+            for (int q = 0; q < 12 * sizeMult; q++)
             {
                 s = GenerateDecorationStructure(s, structX, structY);
                 Point16 newStructurePosition = new Point16(structX, structY);
@@ -230,7 +230,7 @@ namespace Laugicality
                     PickDecorationStructure(s, structX, structY, mirrored);
 
                     s++;
-                    if (s >= 7)
+                    if (s >= 8)
                         s = 0;
                 }
             }
@@ -239,16 +239,8 @@ namespace Laugicality
 
         private Point16 AlterStructureLocation(int xO, int yO, int structX, int structY)
         {
-            structX += Main.rand.Next(225 * sizeMult);
-            if (structX > xO + 225 * sizeMult)
-            {
-                structX -= 225 * sizeMult * 2;
-                structY += Main.rand.Next(275 * sizeMult / 4, 275 * sizeMult / 2);
-                if (structY > yO + 275 * sizeMult)
-                {
-                    structY -= 275 * sizeMult * 2;
-                }
-            }
+            structX = Main.rand.Next(-250 * sizeMult, 250 * sizeMult) + xO;
+            structY = Main.rand.Next(-275 * sizeMult, 275 * sizeMult) + yO;
             Point16 structurePosition = new Point16(structX, structY);
             return structurePosition;
         }
@@ -278,6 +270,9 @@ namespace Laugicality
                 case 6:
                     LavaCave3.StructureGen(structX, structY, mirrored);
                     break;
+                case 7:
+                    LivingLycoris.StructureGen(structX, structY, mirrored);
+                    break;
                 default:
                     LavaCave1.StructureGen(structX, structY, mirrored);
                     break;
@@ -286,13 +281,12 @@ namespace Laugicality
 
         private void LootStructures(int xO, int yO)
         {
-            int s = Main.rand.Next(3);
             int structX = xO - 225 * sizeMult + Main.rand.Next(225 * sizeMult * 2);
             int structY = yO - 275 * sizeMult + Main.rand.Next(275 * sizeMult / 2);
 
-            for (int q = 0; q < 5 * sizeMult; q++)
+            for (int q = 0; q < 10 * sizeMult; q++)
             {
-                s = GenerateLootStructure(s, structX, structY);
+                GenerateLootStructure(structX, structY);
                 Point16 newStructurePosition = new Point16(structX, structY);
                 newStructurePosition = AlterStructureLocation(xO, yO, structX, structY);
                 structX = newStructurePosition.X;
@@ -300,38 +294,14 @@ namespace Laugicality
             }
         }
 
-        private int GenerateLootStructure(int s, int structX, int structY)
+        private void GenerateLootStructure(int structX, int structY)
         {
             if (TileCheckSafe(structX, structY))
             {
                 if (Main.tile[structX, structY].wall == (ushort)mod.WallType("ObsidiumRockWall"))
                 {
-                    bool mirrored = false;
-                    if (Main.rand.Next(2) == 0)
-                        mirrored = true;
-
-                    PickLootStructure(s, structX, structY, mirrored);
-                    s++;
-                    if (s >= 3)
-                        s = 0;
+                    ObsidiumHouses.GenerateHouse(structX, structY);
                 }
-            }
-            return s;
-        }
-
-        private void PickLootStructure(int s, int structX, int structY, bool mirrored)
-        {
-            switch (s)
-            {
-                case 0:
-                    LivingLycoris.StructureGen(structX, structY, mirrored);
-                    break;
-                case 1:
-                    ObsidiumHouse1.StructureGen(structX, structY, mirrored);
-                    break;
-                case 2:
-                    ObsidiumHouse2.StructureGen(structX, structY, mirrored);
-                    break;
             }
         }
 

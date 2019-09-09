@@ -1,4 +1,5 @@
 ﻿using Laugicality.Items.Equipables;
+using Laugicality.Prefixes;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -108,6 +109,20 @@ namespace Laugicality.Items
 
                 return mod.PrefixType(pref);
             }
+            if(item.ranged && Main.rand.Next(30) == 0)
+            {
+                return mod.PrefixType<CarefulPrefix>();
+            }
+            if (item.melee && Main.rand.Next(30) == 0)
+            {
+                if(Main.rand.Next(2) == 0)
+                    return mod.PrefixType<ColossalPrefix>();
+                return mod.PrefixType<HallowedPrefix>();
+            }
+            if (item.magic && Main.rand.Next(30) == 0)
+            {
+                return mod.PrefixType<KnowledgeablePrefix>();
+            }
 
             return -1;
         }
@@ -188,5 +203,6 @@ namespace Laugicality.Items
         public int MeleeDmg { get; set; } = -1;
 
         public int Yeet { get; set; }
+
     }
 }

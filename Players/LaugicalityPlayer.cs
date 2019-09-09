@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Laugicality.Buffs;
@@ -76,6 +77,7 @@ namespace Laugicality
         public bool Blaze { get; set; } = false;
         public bool Carapace { get; set; } = false;
         public bool PrismVeil { get; set; } = false;
+        public bool HoldingBarrier { get; set; } = false;
 
 
         //Music
@@ -192,6 +194,7 @@ namespace Laugicality
             Blaze = false;
             Carapace = false;
             PrismVeil = false;
+            HoldingBarrier = false;
 
             if (player.extraAccessory)
             {
@@ -783,8 +786,11 @@ namespace Laugicality
             if (Slimey)
                 target.AddBuff(mod.BuffType("Slimed"), (int)((180 + 60 * rand)), false);
 
-            if (JunglePlague && target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
-                target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration = 180 + 60 * rand;
+            if (JunglePlague)
+            {
+                target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
+                target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
+            }
 
             if (EtherialFrost)
                 target.AddBuff(mod.BuffType("Frostbite"), (int)((12 * 60 + 60 * rand)), false);
@@ -1295,11 +1301,7 @@ namespace Laugicality
 
         public void DamageBoost(float amount)
         {
-            player.meleeDamage += amount;
-            player.rangedDamage += amount;
-            player.magicDamage += amount;
-            player.thrownDamage += amount;
-            player.minionDamage += amount;
+            player.allDamage += amount;
         }
 
         public void CritBoost(int amount)
@@ -1312,21 +1314,7 @@ namespace Laugicality
 
         public float GetGlobalDamage()
         {
-            float globalDamage = player.meleeDamage;
-
-            if (player.rangedDamage < globalDamage)
-                globalDamage = player.rangedDamage;
-
-            if (player.magicDamage < globalDamage)
-                globalDamage = player.magicDamage;
-
-            if (player.thrownDamage < globalDamage)
-                globalDamage = player.thrownDamage;
-
-            if (player.minionDamage < globalDamage)
-                globalDamage = player.minionDamage;
-            
-            return globalDamage;
+            return player.allDamage;
         }
 
         #region Buffs

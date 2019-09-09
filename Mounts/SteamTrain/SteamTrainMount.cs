@@ -25,7 +25,7 @@ namespace Laugicality.Mounts.SteamTrain
 			mountData.acceleration = 0.04f;
 			mountData.jumpSpeed = 4f;
 			mountData.blockExtraJumps = true;
-			mountData.totalFrames = 4;
+			mountData.totalFrames = 6;
 			mountData.constantJump = true;
 
 			int[] array = new int[mountData.totalFrames];
@@ -35,14 +35,14 @@ namespace Laugicality.Mounts.SteamTrain
 			}
 
 			mountData.playerYOffsets = array;
-			mountData.xOffset = 13;
+			mountData.xOffset = 75;
 			mountData.bodyFrame = 3;
-			mountData.yOffset = -12;
+			mountData.yOffset = -2;
 			mountData.playerHeadOffset = 22;
-			mountData.standingFrameCount = 4;
-			mountData.standingFrameDelay = 12;
+			mountData.standingFrameCount = 6;
+			mountData.standingFrameDelay = 999999;
 			mountData.standingFrameStart = 0;
-			mountData.runningFrameCount = 4;
+			mountData.runningFrameCount = 6;
 			mountData.runningFrameDelay = 12;
 			mountData.runningFrameStart = 0;
 			mountData.flyingFrameCount = 0;
@@ -51,8 +51,8 @@ namespace Laugicality.Mounts.SteamTrain
 			mountData.inAirFrameCount = 1;
 			mountData.inAirFrameDelay = 12;
 			mountData.inAirFrameStart = 0;
-			mountData.idleFrameCount = 4;
-			mountData.idleFrameDelay = 12;
+			mountData.idleFrameCount = 6;
+			mountData.idleFrameDelay = 999999;
 			mountData.idleFrameStart = 0;
 			mountData.idleFrameLoop = true;
 			mountData.swimFrameCount = mountData.inAirFrameCount;

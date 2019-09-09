@@ -23,7 +23,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedRagnar", "Increased damage for a time after submerging in Lava") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
             new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletron", "+8% Crit Chance") { overrideColor = new Color(0x83, 0x91, 0x92) }),
             new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedAnDio", "Increased damage while Time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
-            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWallOfFleshEffect", "Debuffs deal 25% more damage. Attacks inflict 'On Fire'") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
+            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWallOfFleshEffect", "+8% Damage. Attacks inflict 'On Fire'") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
             new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedTwinsEffect", "Attacks inflict 'Cursed Flame'") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
             new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDestroyerEffect", "Enemies that collide with you take 200% of the damage dealt to you") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
             new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied twice") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
@@ -31,7 +31,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSlybertron", "+10% Damage when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSteamTrain", "The faster you move, the higher your damage") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedPlantera", "Attacks inflict 'Jungle Plague'") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
-            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedGolem", "The longer you stand still without shooting while a boss is alive, the higher your damage.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
+            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedGolem", "The longer you stand still without moving while a boss is alive, the higher your damage.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
             new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDukeFishron", "+10% Damage when in liquid") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
             new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedEtheria", "'+20% Damage in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
             new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedMoonLord", "Your Ability now makes you deal 100% more damage and makes you take 200% more damage per stack") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
@@ -97,7 +97,7 @@ namespace Laugicality.Focuses
 
         private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.DebuffMult += .25f;
+            laugicalityPlayer.player.allDamage += .08f;
             laugicalityPlayer.Obsidium = true;
         }
 
@@ -113,7 +113,7 @@ namespace Laugicality.Focuses
 
         private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            DamageBoost(laugicalityPlayer, laugicalityPlayer.GetGlobalDamage() / 2);
+            DamageBoost(laugicalityPlayer, (laugicalityPlayer.GetGlobalDamage() - 1) / 2);
         }
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -152,11 +152,7 @@ namespace Laugicality.Focuses
             moveSpeed = (float)Math.Abs(laugicalityPlayer.player.velocity.X) / 50f;
             if (moveSpeed > .25f)
                 moveSpeed = .25f;
-            laugicalityPlayer.player.thrownDamage += moveSpeed;
-            laugicalityPlayer.player.rangedDamage += moveSpeed;
-            laugicalityPlayer.player.magicDamage += moveSpeed;
-            laugicalityPlayer.player.minionDamage += moveSpeed;
-            laugicalityPlayer.player.meleeDamage += moveSpeed;
+            laugicalityPlayer.player.allDamage += moveSpeed;
         }
 
         private static void DownedPlanteraEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -181,6 +177,7 @@ namespace Laugicality.Focuses
                 if (laugicalityPlayer.GolemBoost < .5f)
                     laugicalityPlayer.GolemBoost += .002f;
             }
+            laugicalityPlayer.player.allDamage += laugicalityPlayer.GolemBoost;
         }
 
         private static void DownedDukeFishronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -229,11 +226,7 @@ namespace Laugicality.Focuses
 
         private static void DamageBoost(LaugicalityPlayer laugicalityPlayer, float Boost)
         {
-            laugicalityPlayer.player.meleeDamage += Boost;
-            laugicalityPlayer.player.minionDamage += Boost;
-            laugicalityPlayer.player.magicDamage += Boost;
-            laugicalityPlayer.player.rangedDamage += Boost;
-            laugicalityPlayer.player.thrownDamage += Boost;
+            laugicalityPlayer.player.allDamage += Boost;
         }
 
         private static void CritBoost(LaugicalityPlayer laugicalityPlayer, int Boost)

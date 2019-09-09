@@ -29,11 +29,7 @@ namespace Laugicality.Items.Armor
             if (modPlayer.Etherable > 0|| LaugicalityWorld.downedEtheria)
                 dmgBoost += .1f;
 
-            player.thrownDamage += dmgBoost;
-            player.rangedDamage += dmgBoost;
-            player.magicDamage += dmgBoost;
-            player.minionDamage += dmgBoost;
-            player.meleeDamage += dmgBoost;
+            player.allDamage += dmgBoost;
         }
 
 

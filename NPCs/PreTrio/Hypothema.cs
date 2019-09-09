@@ -255,7 +255,7 @@ namespace Laugicality.NPCs.PreTrio
 
         private void Attacks()
         {
-            if (npc.Center.Y < Main.player[npc.target].Center.Y - 60 && Math.Abs(npc.Center.X - Main.player[npc.target].Center.X) < 140)
+            if (npc.Center.Y < Main.player[npc.target].Center.Y - 140 && Math.Abs(npc.Center.X - Main.player[npc.target].Center.X) < 250)
                 Hail();
         }
 
@@ -281,10 +281,10 @@ namespace Laugicality.NPCs.PreTrio
 
         private void DespawnCheck(NPC npc)
         {
-            if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+            if (Main.player[npc.target].statLife < 1 || Vector2.Distance(Main.player[npc.target].Center, npc.Center) > 2500)
             {
                 npc.TargetClosest(true);
-                if (!Main.player[npc.target].active || Main.player[npc.target].dead)
+                if (Main.player[npc.target].statLife < 1 || Vector2.Distance(Main.player[npc.target].Center, npc.Center) > 2500)
                 {
                     if (despawn == 0)
                         despawn++;

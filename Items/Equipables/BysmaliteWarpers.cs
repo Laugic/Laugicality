@@ -25,7 +25,7 @@ namespace Laugicality.Items.Equipables
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Dimension-tearing speed\nDominion over everything\nGrants the ability to super dash\nBecome immune for a time while dashing\nLeave a Frigid trail\nIncreased Damage, Movement Speed, and Defense in the Etherial");
+            Tooltip.SetDefault("Dimension-tearing speed\nDominion over everything\nGrants the ability to tele-dash\nBecome immune for a time while dashing\nLeave a Frigid trail\nIncreased Damage, Movement Speed, and Defense in the Etherial");
         }
 
         public override void SetDefaults()

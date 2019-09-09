@@ -29,9 +29,9 @@ namespace Laugicality.Focuses
             new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedAnDio", "Taking damage below 25% life automatically stops time. You are immune while time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
             new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedWallOfFleshEffect", "Taking more than 1 damage is reduced to 1 damage once every 2 minutes") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
             new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedTwinsEffect", "Taking damage creates a Shadow Double that follows you and deals damage to enemies") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
-            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedDestroyerEffect", "You are immune to knockback. Burst into lasers when damaged") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
+            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedDestroyerEffect", "Taking damage when below 66% life spawns a friendly Probe") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
             new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedSkeletronPrimeEffect", "Call a Dungeon Guardian Prime to fight for you when below 50% life") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedAnnihilator", "Pressing the Ability Key makes you take 1 damage.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedAnnihilator", "Pressing the Ability Key makes you take 1 damage. 5 second cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedSlybertron", "Have an Electrosphere Aura around you which deals damage to enemies in a short range while you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedSteamTrain", "Deal more damage when Immune. Immune time increased") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "CapacityFocusDownedPlantera", "Innate Spore Sack") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
@@ -128,7 +128,6 @@ namespace Laugicality.Focuses
 
         private static void DownedDestroyerEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.noKnockback = true;
             laugicalityPlayer.DestroyerCapacityEffect = true;
         }
 
@@ -166,6 +165,7 @@ namespace Laugicality.Focuses
         private static void DownedSteamTrainEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             laugicalityPlayer.SteamTrainEffect = true;
+            laugicalityPlayer.player.longInvince = true;
             if (laugicalityPlayer.player.immuneTime > 0 && laugicalityPlayer.player.immune)
                 laugicalityPlayer.DamageBoost(.1f);
         }

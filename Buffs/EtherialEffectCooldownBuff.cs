@@ -16,11 +16,7 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.thrownDamage += 0.2f;
-            player.rangedDamage += 0.2f;
-            player.magicDamage += 0.2f;
-            player.minionDamage += 0.2f;
-            player.meleeDamage += 0.2f;
+            player.allDamage += 0.2f;
 
             player.statDefense += 20;
         }

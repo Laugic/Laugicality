@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Laugicality.Items.Weapons.Mystic;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Plague;
 
 namespace Laugicality.NPCs
 {
@@ -44,6 +45,7 @@ namespace Laugicality.NPCs
         public int attacker = -1;
         public float DebuffDamageMult { get; set; } = 1f;
         public int JunglePlagueDuration { get; set; } = 0;
+        public bool JunglePlague { get; set; } = false;
         public bool Orbital { get; set; } = false;
 
         public override void SetDefaults(NPC npc)
@@ -89,6 +91,7 @@ namespace Laugicality.NPCs
             frigid = false;
             mysticCrit = 4;
             Orbital = false;
+            JunglePlague = false;
 
             npc.takenDamageMultiplier = damageMult;
             if (zTimeInstanced < zTime)
@@ -139,7 +142,7 @@ namespace Laugicality.NPCs
                     pool.Add(mod.NPCType("MoltenSoul"), 0.015f * spawnMod);
                     pool.Add(NPCID.SkeletonArcher, 0.25f * spawnMod);
                     pool.Add(NPCID.GiantBat, 0.25f * spawnMod);
-                    pool.Add(NPCID.RedDevil, 0.25f * spawnMod);
+                    //pool.Add(NPCID.Giant, 0.25f * spawnMod);
                     if (LaugicalityWorld.downedRagnar)
                     {
                         pool.Add(mod.NPCType("MagmatipedeHead"), 0.015f * spawnMod);
@@ -258,7 +261,7 @@ namespace Laugicality.NPCs
             if (dawn)
             {
                 if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("DawnSpark"), 20, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType<GoldenBubble>(), 20, 3f, Main.myPlayer);
             }
             if (trueDawn)
             {
@@ -272,7 +275,12 @@ namespace Laugicality.NPCs
                 if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType("TrueDawnSpark"), 40, 3f, Main.myPlayer);
             }
-            if(Orbital)
+            if (JunglePlague)
+            {
+                if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType<JunglePlagueSpore>(), 75, 3f, Main.myPlayer);
+            }
+            if (Orbital)
             {
                 npc.knockBackResist = -5f;
             }
@@ -456,7 +464,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType("Dawn"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, mod.DustType<GoldenBubbleDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -626,6 +634,15 @@ namespace Laugicality.NPCs
                         int damage = 45;
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("TrueDawnSpark"), damage, 3f, Main.myPlayer);
                     }
+                }
+            }
+            if (JunglePlague)
+            {
+                if (Main.netMode != 1)
+                {
+                    int rand = Main.rand.Next(3, 7);
+                    for (int i = 0; i < rand; i++)
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), mod.ProjectileType<JunglePlagueSporeSpread>(), 75, 3f, Main.myPlayer);
                 }
             }
             if (steamified)

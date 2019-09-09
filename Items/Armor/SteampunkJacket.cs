@@ -24,11 +24,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.thrownDamage += 0.08f;
-            player.rangedDamage += 0.08f;
-            player.magicDamage += 0.08f;
-            player.minionDamage += 0.08f;
-            player.meleeDamage += 0.08f;
+            player.allDamage += 0.08f;
             player.thrownCrit += 8;
             player.rangedCrit += 8;
             player.magicCrit += 8;

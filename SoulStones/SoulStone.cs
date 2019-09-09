@@ -6,6 +6,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Items.Materials;
+using Laugicality.Tiles;
 
 namespace Laugicality.SoulStones
 {
@@ -130,6 +132,16 @@ namespace Laugicality.SoulStones
                         laugicalityPlayer.Focus.Enemies[j].GetCurse(i).Effect(laugicalityPlayer, hideVisual);
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LifeCrystal);
+            recipe.AddIngredient(mod.ItemType<ArcaneShard>(), 10);
+            recipe.AddTile(mod.TileType<AlchemicalInfuser>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

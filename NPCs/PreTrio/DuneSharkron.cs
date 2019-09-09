@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,8 +12,11 @@ namespace Laugicality.NPCs.PreTrio
     {
         public bool Enraged { get; set; }
         public int MovementPhaseCounter { get; set; } = 0;
+        public int MovementPhaseSteps { get; set; } = 0;
+        public int MovementPhase { get; set; } = 0;
         public Vector2 targetPos;
         public int AttackCounter { get; set; } = 0;
+        public int AttackDelay { get; set; } = 0;
         private int DespawnCounter { get; set; } = 0;
 
         public override void SetStaticDefaults()
@@ -28,7 +32,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.damage = 35;
             npc.defense = 12;
             npc.aiStyle = 103;
-            npc.lifeMax = 3000;
+            npc.lifeMax = 2000;
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.npcSlots = 15f;
@@ -45,7 +49,7 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 4500 + numPlayers * 1500;
+            npc.lifeMax = 3500 + numPlayers * 1500;
             npc.damage = 70;
         }
 
@@ -64,7 +68,7 @@ namespace Laugicality.NPCs.PreTrio
 
         private bool CheckDespawn()
         {
-            if (Main.player[npc.target].statLife < 1 || Vector2.Distance(Main.player[npc.target].Center, npc.Center) > 2000)
+            if (Main.player[npc.target].statLife < 1 || Vector2.Distance(Main.player[npc.target].Center, npc.Center) > 3500)
             {
                 DespawnCounter++;
                 if (DespawnCounter > 300)
@@ -80,19 +84,48 @@ namespace Laugicality.NPCs.PreTrio
             if(CheckDespawn())
                 return;
             Enrage();
-            FollowAI();
+            PickMovement();
+            MakeDust();
             npc.netUpdate = true;
+        }
+
+        private void PickMovement()
+        {
+            switch(MovementPhase)
+            {
+                case 1:
+                    DashAI();
+                    break;
+                case 2:
+                    SuperJumpAI();
+                    break;
+                case 3:
+                    LeapAboveAI();
+                    break;
+                default:
+                    FollowAI();
+                    break;
+            }
+            SpriteDirection();
+        }
+
+        private void SpriteDirection()
+        {
+            Player player = Main.player[npc.target];
+            if (npc.Center.X < player.Center.X)
+                npc.spriteDirection = -1;
+            else
+                npc.spriteDirection = 1;
         }
 
         private void FollowAI()
         {
             Player player = Main.player[npc.target];
+            npc.aiStyle = 103;
             MovementPhaseCounter++;
             if (MovementPhaseCounter == 5 * 60 && npc.life < npc.lifeMax * 2 / 3)
             {
-                if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, new Vector2(0, -4), mod.ProjectileType<Sandnado>(), npc.damage / 4, 3f, npc.target, 0, 1);
-
+                SandnadoSpawn();
                 CrystalBurst(12);
             }
             if (MovementPhaseCounter > 5 * 60)
@@ -102,11 +135,8 @@ namespace Laugicality.NPCs.PreTrio
             if (MovementPhaseCounter > 5 * 60 + 30)
             {
                 MovementPhaseCounter = 0;
+                MovementPhase = ChangeMovementPhase(MovementPhase);
             }
-            if (npc.Center.X < player.Center.X)
-                npc.spriteDirection = -1;
-            else
-                npc.spriteDirection = 1;
             if (npc.Center.X < player.Center.X - 800)
                 npc.velocity.X = 8;
             if (npc.Center.X > player.Center.X + 800)
@@ -115,6 +145,193 @@ namespace Laugicality.NPCs.PreTrio
                 npc.velocity.Y = -8;
             if (npc.Center.Y < player.Center.Y)
                 CrystalRain();
+            if (npc.Center.Y > player.Center.Y + 300)
+                npc.velocity.Y -= .5f;
+        }
+
+        private void DashAI()
+        {
+            Player player = Main.player[npc.target];
+            npc.aiStyle = -1;
+
+            if (AttackDelay > 0)
+            {
+                AttackDelay--;
+                npc.velocity.X *= .99f;
+            }
+            else if (MovementPhaseSteps % 2 == 0)
+            {
+                if(npc.Center.X > player.Center.X - 600)
+                {
+                    if (npc.velocity.X > -12)
+                        npc.velocity.X -= .4f;
+                    else
+                        npc.velocity.X *= .98f;
+                }
+                else
+                {
+                    AttackDelay = 2 * 60;
+                    CrystalBurst(20);
+                    if(MovementPhaseSteps == 0 && npc.life < npc.lifeMax / 2)
+                        SandnadoSpawn();
+                    MovementPhaseSteps++;
+                    npc.velocity = npc.DirectionTo(player.Center) * 25;
+                    if (MovementPhaseSteps > 4)
+                        MovementPhase = ChangeMovementPhase(MovementPhase);
+                }
+            }
+            else
+            {
+                if (npc.Center.X < player.Center.X + 600)
+                {
+                    if (npc.velocity.X < 12)
+                        npc.velocity.X += .4f;
+                    else
+                        npc.velocity.X *= .98f;
+                }
+                else
+                {
+                    AttackDelay = 2 * 60;
+                    CrystalBurst(20);
+                    if (MovementPhaseSteps == 3 && npc.life < npc.lifeMax / 2)
+                        SandnadoSpawn();
+                    MovementPhaseSteps++;
+                    npc.velocity = npc.DirectionTo(player.Center) * 25;
+                    if (MovementPhaseSteps > 4)
+                        MovementPhase = ChangeMovementPhase(MovementPhase);
+                }
+            }
+
+            if (npc.Center.Y > player.Center.Y + 300)
+                npc.velocity.Y -= .5f;
+            else
+                npc.velocity.Y += .4f;
+
+            if (Math.Abs(npc.velocity.Y) > 20)
+                npc.velocity.Y *= 98f;
+
+            if (npc.Center.Y < player.Center.Y)
+                CrystalRain();
+        }
+
+        private void SuperJumpAI()
+        {
+            Player player = Main.player[npc.target];
+            npc.aiStyle = -1;
+
+            if (AttackDelay > 0)
+                AttackDelay--;
+
+            if (npc.Center.X < player.Center.X - 80)
+                npc.velocity.X += .1f;
+            else if (npc.Center.X > player.Center.X + 80)
+                npc.velocity.X -= .1f;
+            else if (npc.Center.Y > player.Center.Y + 180 && AttackDelay == 0)
+            {
+                npc.velocity.Y = -20;
+                AttackDelay = 2 * 60;
+                if (MovementPhaseCounter == 0)
+                {
+                    npc.velocity.X *= .5f;
+                    MovementPhaseCounter++;
+                    MovementPhaseSteps++;
+
+                    SandnadoSpawn();
+                    CrystalBurst(12);
+                    if (MovementPhaseSteps > 2)
+                        MovementPhase = ChangeMovementPhase(MovementPhase);
+                }
+            }
+            else if (MovementPhaseCounter > 0)
+                MovementPhaseCounter = 0;
+            else
+                npc.velocity.X *= .9f;
+
+            if (npc.Center.Y < player.Center.Y)
+                CrystalRain();
+            if (npc.Center.Y > player.Center.Y + 300)
+                npc.velocity.Y -= .5f;
+            if(npc.velocity.Y < 8)
+                npc.velocity.Y += .4f;
+        }
+
+        private void LeapAboveAI()
+        {
+            Player player = Main.player[npc.target];
+            npc.aiStyle = -1;
+            if (MovementPhaseSteps % 2 == 0)
+            {
+                if (npc.Center.X > player.Center.X - 800)
+                {
+                    if (npc.velocity.X > -12)
+                        npc.velocity.X -= .4f;
+                    else
+                        npc.velocity.X *= .98f;
+                }
+                else if(npc.Center.Y > player.Center.Y + 150)
+                {
+                    MovementPhaseSteps++;
+                    npc.velocity.X = 28;
+                    npc.velocity.Y = -24;
+                    if (MovementPhaseSteps > 4)
+                        MovementPhase = ChangeMovementPhase(MovementPhase);
+                }
+                else
+                {
+                    npc.velocity.X *= .98f;
+                    if (npc.Center.Y > player.Center.Y + 200)
+                        npc.velocity.Y -= .8f;
+                    else
+                        npc.velocity.Y += .4f;
+                }
+            }
+            else
+            {
+                if (npc.Center.X < player.Center.X + 800)
+                {
+                    if (npc.velocity.X < 12)
+                        npc.velocity.X += .4f;
+                    else
+                        npc.velocity.X *= .98f;
+                }
+                else if (npc.Center.Y > player.Center.Y + 150)
+                {
+                    MovementPhaseSteps++;
+                    npc.velocity.X = -28;
+                    npc.velocity.Y = -24;
+                    if (MovementPhaseSteps > 4)
+                        MovementPhase = ChangeMovementPhase(MovementPhase);
+                }
+                else
+                {
+                    npc.velocity.X *= .98f;
+                    if (npc.Center.Y > player.Center.Y + 200)
+                        npc.velocity.Y -= .8f;
+                    else
+                        npc.velocity.Y += .4f;
+                }
+            }
+            if (npc.Center.Y > player.Center.Y + 300)
+                npc.velocity.Y -= .5f;
+            npc.velocity.Y += .4f;
+            if (npc.Center.Y < player.Center.Y)
+                CrystalRain();
+            CrystalRain();
+        }
+
+        private int ChangeMovementPhase(int prevPhase)
+        {
+            MovementPhaseSteps = 0;
+            MovementPhaseCounter = 0;
+            AttackDelay = 0;
+            if (prevPhase == 0)
+                return Main.rand.Next(1, 4);
+            return 0;
+        }
+
+        private void SandnadoSpawn()
+        {
+            Projectile.NewProjectile(npc.Center, new Vector2(0, -4), mod.ProjectileType<Sandnado>(), npc.damage / 4, 3f, npc.target, 0, 1);
         }
 
         private void CrystalRain()
@@ -145,8 +362,7 @@ namespace Laugicality.NPCs.PreTrio
             {
                 float theta = Main.rand.NextFloat() * (float)Math.PI;
                 float mag = Main.rand.NextFloat() * 3 + 3;
-                if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
+                Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
             }
         }
 
@@ -159,6 +375,12 @@ namespace Laugicality.NPCs.PreTrio
                 npc.velocity = npc.DirectionTo(targetPos) * mag;
             }
             return dist;
+        }
+
+        private void MakeDust()
+        {
+            if(Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].type != 0)
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<White>(), 0f, 0f);
         }
 
         public override void NPCLoot()

@@ -22,11 +22,7 @@ namespace Laugicality.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.magicDamage += 0.10f;
-            player.meleeDamage += 0.10f;
-            player.rangedDamage += 0.10f;
-            player.thrownDamage += 0.10f;
-            player.minionDamage += 0.10f;
+            player.allDamage += 0.10f;
         }
 
         public override void AddRecipes()

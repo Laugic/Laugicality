@@ -13,7 +13,7 @@ namespace Laugicality.Focuses
     {
         public VitalityFocus() : base("VitalityFocus", "Vitality", Color.Gold, new FocusEffect[]
         {
-            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedKingSlime", "+2 Life Regen while Jumping") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
+            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedKingSlime", "+4 Life Regen while Jumping") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedEyeOfCthulhu", "+25 Max Life during the Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
             new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedDuneSharkron", "+25 Max Life during the Day") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
             new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedWorldEvilBoss", "If you are losing life, lose 2 less life (to a minimum of 1)") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
@@ -25,8 +25,8 @@ namespace Laugicality.Focuses
             new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedWallOfFleshEffect", "Pressing the Ability Key will heal you for 15% of your max life. 30 second cooldown.") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
             new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedTwinsEffect", "Increased life regen while flying") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
             new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedDestroyerEffect", "Prevent a lethal hit of damage if it does over 50 damage once every 90 seconds") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
-            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedSkeletronPrimeEffect", "Increased life regen while flying") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, Yeet, new TooltipLine(Laugicality.instance, "VitalityFocusDownedAnnihilator", "Ability cooldown reduced to 20 seconds. Attacks inflict 'Lovestruck'") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedSkeletronPrimeEffect", "Half your global damage modifier is applied to your Max Life") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedAnnihilator", "Ability cooldown reduced to 20 seconds. Attacks inflict 'Lovestruck'") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedSlybertron", "Increased life regen when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedSteamTrain", "Taking damage when not at full health returns you to full health instead once every 150 seconds.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "VitalityFocusDownedPlantera", "Greatly increased life regen when grappled to a tile") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
@@ -48,7 +48,7 @@ namespace Laugicality.Focuses
         private static void DownedKingSlimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.velocity.Y != 0f)
-                laugicalityPlayer.player.lifeRegen += 2;
+                laugicalityPlayer.player.lifeRegen += 4;
         }
 
         private static void DownedEyeOfCthulhuEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -119,7 +119,7 @@ namespace Laugicality.Focuses
 
         private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            float globalDmg = laugicalityPlayer.GetGlobalDamage();
+            float globalDmg = laugicalityPlayer.player.allDamage - 1;
             laugicalityPlayer.player.statLifeMax2 = (int)(laugicalityPlayer.player.statLifeMax2 + laugicalityPlayer.player.statLifeMax2 * globalDmg / 2);
         }
 

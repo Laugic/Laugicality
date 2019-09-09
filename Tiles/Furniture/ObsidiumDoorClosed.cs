@@ -41,7 +41,7 @@ namespace Laugicality.Tiles.Furniture
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Door");
-            AddMapEntry(new Color(200, 200, 200), name);
+            AddMapEntry(new Color(100, 100, 50), name);
             dustType = mod.DustType("Magma");
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.ClosedDoor };

@@ -95,7 +95,7 @@ namespace Laugicality.Projectiles.Summon
             npcDistance = 8000;
             foreach (NPC npc in Main.npc)
             {
-                if (npc.damage > 0)
+                if (npc.damage > 0 && !npc.friendly)
                 {
                     Vector2 newMove = npc.Center - projectile.Center;
                     float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);

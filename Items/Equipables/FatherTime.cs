@@ -27,11 +27,7 @@ namespace Laugicality.Items.Equipables
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(Laugicality.zaWarudo > 0)
             {
-                player.magicDamage += 0.15f;
-                player.meleeDamage += 0.15f;
-                player.rangedDamage += 0.15f;
-                player.thrownDamage += 0.15f;
-                player.minionDamage += 0.15f;
+                player.allDamage += 0.15f;
             }
             modPlayer.zaWarudoDuration += (int)(1.75 * 60);
             modPlayer.zCoolDown -= 10 * 60;

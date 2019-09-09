@@ -30,7 +30,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedTwinsEffect", "Increased Flight Time if worn under wings") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
             new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedDestroyerEffect", "Immunity to Knockback") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
             new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSkeletronPrimeEffect", "Innate Ankh Charm") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedAnnihilator", "Pressing the Ability Key destroys hostile projectiles and gives you 5 seconds of immunity. 90 second cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedAnnihilator", "Pressing the Ability Key destroys hostile projectiles and gives you 4 seconds of immunity. 90 second cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSlybertron", "Taking a healing potion gives less Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSteamTrain", "You are immune to 'Steamy'. Attacks inflict 'Steamy'") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedPlantera", "You are immune while grappled to a tile, but also True Cursed") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
@@ -142,7 +142,7 @@ namespace Laugicality.Focuses
 
         private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.wingTimeMax += 4 * 60;
+            laugicalityPlayer.player.wingTimeMax += 2 * 60;
         }
 
         private static void DownedDestroyerEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

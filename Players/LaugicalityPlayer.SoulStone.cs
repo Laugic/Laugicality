@@ -13,7 +13,7 @@ namespace Laugicality
 {
     public sealed partial class LaugicalityPlayer
     {
-        private const int HONEY_BASE_LIFE_REGEN = 1;
+        private const int HONEY_BASE_LIFE_REGEN = 2;
         public string FOCUS_NAME_CAPACITY = "Capacity";
         public string FOCUS_NAME_VITALITY = "Vitality";
         public string FOCUS_NAME_TENACITY = "Tenacity";
@@ -117,7 +117,7 @@ namespace Laugicality
                 }
             }
 
-            if (DestroyerEffect && !DestroyerCooldown && damage >= 50)
+            if (DestroyerEffect && !DestroyerCooldown && damage >= 50 && damage > player.statLife)
             {
                 player.AddBuff(mod.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
@@ -221,14 +221,9 @@ namespace Laugicality
             {
                 Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<ShadowDoubleProj>(), (int)(60 * GetGlobalDamage()), 0, player.whoAmI);
             }
-            if (DestroyerCapacityEffect)
+            if (DestroyerCapacityEffect && player.statLife < player.statLifeMax2 * .66)
             {
-                int rand = Main.rand.Next(3, 7);
-                for (int i = 0; i < rand; i++)
-                {
-                    float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                    Projectile.NewProjectile(player.Center, new Vector2((float)Math.Cos(theta) * 8, (float)Math.Sin(theta) * 8), ProjectileID.MiniRetinaLaser, (int)(60 * GetGlobalDamage()), 4f);
-                }
+                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyProbeProj>(), (int)(60 * GetGlobalDamage()), 4f, player.whoAmI);
             }
             if (FishronEffect)
             {
@@ -236,7 +231,7 @@ namespace Laugicality
                 for (int i = 0; i < rand; i++)
                 {
                     float theta = -Main.rand.NextFloat() * (float)Math.PI;
-                    Projectile.NewProjectile(player.Center, new Vector2((float)Math.Cos(theta) * 6, (float)Math.Sin(theta) * 6), ProjectileID.MiniSharkron, (int)(75 * GetGlobalDamage()), 4f);
+                    Projectile.NewProjectile(player.Center, new Vector2((float)Math.Cos(theta) * 6, (float)Math.Sin(theta) * 6), ProjectileID.MiniSharkron, (int)(75 * GetGlobalDamage()), 4f, player.whoAmI);
                 }
             }
             if (EtheriaEffect)
@@ -298,7 +293,7 @@ namespace Laugicality
 
             if(KingSlimeStomp && player.velocity.Y > 4)
             {
-                player.ApplyDamageToNPC(npc, damage * 2, 4f, 0, false);
+                player.ApplyDamageToNPC(npc, player.statDefense + damage + 4, 4f, 0, false);
             }
         }
 

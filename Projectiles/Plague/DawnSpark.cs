@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Laugicality.Projectiles.Melee
+namespace Laugicality.Projectiles.Plague
 {
 	public class DawnSpark : ModProjectile
 	{

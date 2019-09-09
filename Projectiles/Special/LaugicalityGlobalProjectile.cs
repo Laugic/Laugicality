@@ -325,10 +325,10 @@ namespace Laugicality.Projectiles.Special
                 {
                     target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
                 }
-                if (modPlayer.JunglePlague && projectile.type != mod.ProjectileType<JunglePlagueSpore>() && projectile.type != mod.ProjectileType<JunglePlagueSporeSpread>())
+                if (modPlayer.JunglePlague && projectile.type != mod.ProjectileType<JunglePlagueSpore>())
                 {
-                    if (target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
-                        target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration = 180 + 60 * rand;
+                    target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)(3 * 60 + 60 * rand), false);
+                    target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
                 }
                 if (modPlayer.EtherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
                 {

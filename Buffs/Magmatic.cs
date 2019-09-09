@@ -18,11 +18,7 @@ namespace Laugicality.Buffs
             player.moveSpeed += 3f;
             player.maxRunSpeed += 3f;
             player.jumpSpeedBoost += 3f;
-            player.thrownDamage += 0.1f;
-            player.rangedDamage += 0.1f;
-            player.magicDamage += 0.1f;
-            player.minionDamage += 0.1f;
-            player.meleeDamage += 0.1f;
+            player.allDamage += 0.1f;
         }
         
 	}

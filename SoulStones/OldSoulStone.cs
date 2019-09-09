@@ -132,11 +132,7 @@ namespace Laugicality.SoulStones
             {
                 if (LaugicalityVars.boss3Damage.Contains(Class))
                 {
-                    player.thrownDamage += 0.05f;
-                    player.rangedDamage += 0.05f;
-                    player.magicDamage += 0.05f;
-                    player.minionDamage += 0.05f;
-                    player.meleeDamage += 0.05f;
+                    player.allDamage += 0.05f;
                 }
                 if (LaugicalityVars.boss3Defense.Contains(Class))
                     player.statDefense += 5;
@@ -154,11 +150,7 @@ namespace Laugicality.SoulStones
             {
                 if (LaugicalityVars.hardDamage.Contains(Class))
                 {
-                    player.thrownDamage += 0.05f;
-                    player.rangedDamage += 0.05f;
-                    player.magicDamage += 0.05f;
-                    player.minionDamage += 0.05f;
-                    player.meleeDamage += 0.05f;
+                    player.allDamage += 0.05f;
                 }
                 if (LaugicalityVars.hardRegen.Contains(Class))
                     player.lifeRegen += 2;
@@ -263,11 +255,7 @@ namespace Laugicality.SoulStones
             }
             if (NPC.downedMoonlord)
             {
-                player.thrownDamage += 0.10f;
-                player.rangedDamage += 0.10f;
-                player.magicDamage += 0.10f;
-                player.minionDamage += 0.10f;
-                player.meleeDamage += 0.10f;
+                player.allDamage += 0.10f;
                 player.statDefense += 12;
             }
         }

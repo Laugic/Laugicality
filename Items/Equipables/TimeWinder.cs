@@ -26,11 +26,7 @@ namespace Laugicality.Items.Equipables
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             if(Laugicality.zaWarudo > 0)
             {
-                player.magicDamage += 0.15f;
-                player.meleeDamage += 0.15f;
-                player.rangedDamage += 0.15f;
-                player.thrownDamage += 0.15f;
-                player.minionDamage += 0.15f;
+                player.allDamage += 0.15f;
             }
         }
         public override void AddRecipes()

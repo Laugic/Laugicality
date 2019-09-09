@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Range
 			item.useTime = 15;
 			item.useAnimation = 15;
 			item.useStyle = 5;
-			item.noMelee = true; //so the item's animation doesn't do damage
+			item.noMelee = true;
 			item.knockBack = 8;
 			item.value = 10000;
 			item.rare = ItemRarityID.Green;

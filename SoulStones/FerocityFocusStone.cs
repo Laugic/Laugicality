@@ -1,5 +1,7 @@
 ﻿using Laugicality.Focuses;
 using Laugicality.Items;
+using Laugicality.Items.Materials;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,6 +37,16 @@ namespace Laugicality.SoulStones
         {
             player.GetModPlayer<LaugicalityPlayer>().Focus = FocusManager.Instance.Ferocity;
             player.GetModPlayer<LaugicalityPlayer>().FocusName = player.GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_FEROCITY;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.Ruby);
+            recipe.AddIngredient(mod.ItemType<ArcaneShard>(), 3);
+            recipe.AddTile(mod.TileType<AlchemicalInfuser>());
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

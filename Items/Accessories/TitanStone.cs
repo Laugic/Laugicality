@@ -34,11 +34,7 @@ namespace Laugicality.Items.Accessories
             {
                 player.thorns = 0.333333343f;
             }
-            player.magicDamage += 0.10f;
-            player.meleeDamage += 0.10f;
-            player.rangedDamage += 0.10f;
-            player.thrownDamage += 0.10f;
-            player.minionDamage += 0.10f;
+            player.allDamage += 0.10f;
             player.meleeCrit += 10;
             player.rangedCrit += 10;
             player.magicCrit += 10;

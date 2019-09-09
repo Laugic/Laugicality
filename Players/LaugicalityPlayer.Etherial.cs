@@ -254,16 +254,12 @@ namespace Laugicality
 
             if (EtherialBees && player.honey)
             {
-                player.lifeRegen += 8;
+                modPlayer.HoneyRegenMultiplier *= 3;
                 player.statDefense += 15;
 
                 const float dmgBoost = .15f;
 
-                player.thrownDamage += dmgBoost;
-                player.rangedDamage += dmgBoost;
-                player.magicDamage += dmgBoost;
-                player.minionDamage += dmgBoost;
-                player.meleeDamage += dmgBoost;
+                player.allDamage += dmgBoost;
             }
 
             if (EtherialMagma)
@@ -276,11 +272,7 @@ namespace Laugicality
                     if (EtherBonesDamageBoost > 1)
                         EtherBonesDamageBoost = 1;
 
-                    player.thrownDamage += EtherBonesDamageBoost;
-                    player.rangedDamage += EtherBonesDamageBoost;
-                    player.magicDamage += EtherBonesDamageBoost;
-                    player.minionDamage += EtherBonesDamageBoost;
-                    player.meleeDamage += EtherBonesDamageBoost;
+                    player.allDamage += EtherBonesDamageBoost;
                 }
                 else
                     EtherBonesDamageBoost = 0;
@@ -293,19 +285,7 @@ namespace Laugicality
             {
                 int originalDef = player.statDefense;
 
-                float globalDmg = player.meleeDamage - 1;
-
-                if (player.rangedDamage - 1 < globalDmg)
-                    globalDmg = player.rangedDamage - 1;
-
-                if (player.magicDamage - 1 < globalDmg)
-                    globalDmg = player.magicDamage - 1;
-
-                if (player.thrownDamage - 1 < globalDmg)
-                    globalDmg = player.thrownDamage - 1;
-
-                if (player.minionDamage - 1 < globalDmg)
-                    globalDmg = player.minionDamage - 1;
+                float globalDmg = player.allDamage - 1;
 
                 if (globalDmg > 0)
                 {
@@ -320,11 +300,7 @@ namespace Laugicality
             {
                 float lifePercentage = (float)(player.statLifeMax2 - player.statLife) / (float)player.statLifeMax2;
 
-                player.thrownDamage += lifePercentage;
-                player.rangedDamage += lifePercentage;
-                player.magicDamage += lifePercentage;
-                player.minionDamage += lifePercentage;
-                player.meleeDamage += lifePercentage;
+                player.allDamage += lifePercentage;
             }
 
             if (EtherCog)
@@ -334,11 +310,7 @@ namespace Laugicality
                     if (AnnihilationDamageBoost > 1)
                         AnnihilationDamageBoost = 1;
 
-                    player.thrownDamage += AnnihilationDamageBoost;
-                    player.rangedDamage += AnnihilationDamageBoost;
-                    player.magicDamage += AnnihilationDamageBoost;
-                    player.minionDamage += AnnihilationDamageBoost;
-                    player.meleeDamage += AnnihilationDamageBoost;
+                    player.allDamage += AnnihilationDamageBoost;
                 }
                 else
                     AnnihilationDamageBoost = 0;
@@ -348,11 +320,7 @@ namespace Laugicality
             {
                 float moveSpeed = (float)Math.Abs(player.velocity.X) / 25f;
 
-                player.thrownDamage += moveSpeed;
-                player.rangedDamage += moveSpeed;
-                player.magicDamage += moveSpeed;
-                player.minionDamage += moveSpeed;
-                player.meleeDamage += moveSpeed;
+                player.allDamage += moveSpeed;
             }
 
             if (EtherialSpores)
@@ -364,11 +332,7 @@ namespace Laugicality
 
                     const float dmgBoost = .5f;
 
-                    player.thrownDamage += dmgBoost;
-                    player.rangedDamage += dmgBoost;
-                    player.magicDamage += dmgBoost;
-                    player.minionDamage += dmgBoost;
-                    player.meleeDamage += dmgBoost;
+                    player.allDamage += dmgBoost;
                 }
             }
 
@@ -388,11 +352,7 @@ namespace Laugicality
 
                     const float dmgBoost = .4f;
 
-                    player.thrownDamage += dmgBoost;
-                    player.rangedDamage += dmgBoost;
-                    player.magicDamage += dmgBoost;
-                    player.minionDamage += dmgBoost;
-                    player.meleeDamage += dmgBoost;
+                    player.allDamage += dmgBoost;
                 }
             }
         }

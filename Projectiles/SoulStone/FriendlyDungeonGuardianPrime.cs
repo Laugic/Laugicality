@@ -32,7 +32,7 @@ namespace Laugicality.Projectiles.SoulStone
             if (projectile.ai[0] != 0)
             {
                 NPC npc = Main.npc[(int)projectile.ai[0]];
-                if (!npc.active)
+                if (npc.life < 1)
                     projectile.ai[0] = 0;
                 else
                     HomeIn(npc);
@@ -55,7 +55,7 @@ namespace Laugicality.Projectiles.SoulStone
 
             foreach(NPC npc in Main.npc)
             {
-                if(npc.damage > 0 && npc.type != NPCID.TargetDummy)
+                if(npc.damage > 0 && npc.type != NPCID.TargetDummy && !npc.townNPC)
                 {
                     if (npc.Distance(projectile.Center) < dist)
                     {
@@ -69,7 +69,7 @@ namespace Laugicality.Projectiles.SoulStone
                     }
                 }
             }
-            if (projectile.Distance(Main.player[projectile.owner].Center) > dist * 2)
+            if (projectile.Distance(Main.player[projectile.owner].Center) > 800)
             {
                 projectile.ai[0] = 0;
                 Wander();

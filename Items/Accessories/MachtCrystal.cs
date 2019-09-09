@@ -29,11 +29,7 @@ namespace Laugicality.Items.Accessories
                 if (modPlayer.inf)
                     player.AddBuff(116, 2);
             }
-            player.magicDamage += 0.10f;
-            player.meleeDamage += 0.10f;
-            player.rangedDamage += 0.10f;
-            player.thrownDamage += 0.10f;
-            player.minionDamage += 0.10f;
+            player.allDamage += 0.10f;
             player.meleeCrit += 10;
             player.rangedCrit += 10;
             player.magicCrit += 10;

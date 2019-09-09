@@ -9,6 +9,7 @@ namespace Laugicality.NPCs.PreTrio
 	{
         int delay = 0;
         float theta = 0;
+        int num = 1;
 
         public override void SetStaticDefaults()
         {
@@ -17,6 +18,7 @@ namespace Laugicality.NPCs.PreTrio
 
 		public override void SetDefaults()
         {
+            num = 1;
             delay = 0;
             LaugicalityVars.eProjectiles.Add(projectile.type);
             projectile.width = 160;
@@ -81,15 +83,15 @@ namespace Laugicality.NPCs.PreTrio
 
         private void SpawnSandnadoLayers()
         {
-            if (delay >= 0)
-                delay++;
-            if (delay > 15 && projectile.ai[1] < 5)
+            if(num < 5)
             {
-                delay = -2;
-                if (projectile.ai[1] != 1 && Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<Sandnado>(), projectile.damage, 0, projectile.owner, projectile.ai[0], projectile.ai[1] + 1);
-                else if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<Sandnado>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, projectile.ai[1] + 1);
+                delay++;
+                if (delay > 15)
+                {
+                    delay = 0;
+                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<SandnadoUp>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, num + 1);
+                    num++;
+                }
             }
         }
 

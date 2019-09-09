@@ -214,7 +214,7 @@ namespace Laugicality
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+            int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
             int xO = Main.maxTilesX / 2;
             int yO = (int)(Main.maxTilesY * .7f);
             tasks.Insert(genIndex + 1, new PassLegacy("Generating Obsidian Cavern", delegate (GenerationProgress progress)
@@ -223,7 +223,7 @@ namespace Laugicality
                 GenerateObsidium(xO, yO);
             }));
 
-            int genIndex2 = tasks.FindIndex(genpass => genpass.Name.Equals("Larva"));
+            int genIndex2 = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
             tasks.Insert(genIndex2 + 2, new PassLegacy("Obsidium Features", delegate (GenerationProgress progress)
             {
                 progress.Message = "Obsidium Core";

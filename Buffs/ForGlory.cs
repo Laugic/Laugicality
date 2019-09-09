@@ -15,13 +15,9 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			//player.GetModPlayer<LaugicalityPlayer>(mod).mysticDamage += 0.15f;
             player.bleed = true;
-            player.thrownDamage += 0.15f;
-            player.rangedDamage += 0.15f;
-            player.magicDamage += 0.15f;
-            player.minionDamage += 0.15f;
-            player.meleeDamage += 0.15f;
+            player.allDamage += 0.15f;
+            player.lifeRegen = 0;
         }
         
 	}

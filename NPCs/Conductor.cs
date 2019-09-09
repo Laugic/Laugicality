@@ -61,27 +61,6 @@ namespace Laugicality.NPCs
             }
 			return false;
 		}
-        /*
-		public override bool CheckConditions(int left, int right, int top, int bottom)
-		{
-			int score = 0;
-			for (int x = left; x <= right; x++)
-			{
-				for (int y = top; y <= bottom; y++)
-				{
-					int type = Main.tile[x, y].type;
-					if (type == mod.TileType("ExampleBlock") || type == mod.TileType("ExampleChair") || type == mod.TileType("ExampleWorkbench") || type == mod.TileType("ExampleBed") || type == mod.TileType("ExampleDoorOpen") || type == mod.TileType("ExampleDoorClosed"))
-					{
-						score++;
-					}
-					if (Main.tile[x, y].wall == mod.WallType("ExampleWall"))
-					{
-						score++;
-					}
-				}
-			}
-			return score >= (right - left) * (bottom - top) / 2;
-		}*/
 
 		public override string TownNPCName()
 		{
@@ -148,34 +127,13 @@ namespace Laugicality.NPCs
                 case 4:
                     return "I wonder what happened to all of the Moldyrians. You wouldn't happen to have seen one recently, would you?";
                 case 5:
-                    return "'What is the meaning of life?' I for one think the answer probably involves lots of steam.";
+                    return "'What is the meaning of life?' I, for one, think the answer probably involves lots of steam.";
                 case 6:
                     return "Hm? How did I get these items that call giant mechanical abominations at a whim? Through the power of Steam, of course!";
                 default:
 					return "Would you like to talk about Trains?";
 			}
 		}
-
-		/* 
-		// Consider using this alternate approach to choosing a random thing. Very useful for a variety of use cases.
-		// The WeightedRandom class needs "using Terraria.Utilities;" to use
-		public override string GetChat()
-		{
-			WeightedRandom<string> chat = new WeightedRandom<string>();
-
-			int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-			if (partyGirl >= 0 && Main.rand.Next(4) == 0)
-			{
-				chat.Add("Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?");
-			}
-			chat.Add("Sometimes I feel like I'm different from everyone else here.");
-			chat.Add("What's your favorite color? My favorite colors are white and black.");
-			chat.Add("What? I don't have any arms or legs? Oh, don't be ridiculous!");
-			chat.Add("This message has a weight of 5, meaning it appears 5 times more often.", 5.0);
-			chat.Add("This message has a weight of 0.1, meaning it appears 10 times as rare.", 0.1);
-			return chat; // chat is implicitly cast to a string. You can also do "return chat.Get();" if that makes you feel better
-		}
-		*/
 
 		public override void SetChatButtons(ref string button, ref string button2)
 		{
@@ -214,41 +172,6 @@ namespace Laugicality.NPCs
             shop.item[nextSlot].SetDefaults(mod.ItemType("SuspiciousTrainWhistle"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
-
-
-            /*
-			if (Main.LocalPlayer.GetModPlayer<ExamplePlayer>(mod).ZoneExample)
-			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleWings"));
-				nextSlot++;
-			}
-            
-			if (Main.moonPhase < 2)
-			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleSword"));
-				nextSlot++;
-			}
-			else if (Main.moonPhase < 4)
-			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleGun"));
-				nextSlot++;
-				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleBullet"));
-				nextSlot++;
-			}
-			else if (Main.moonPhase < 6)
-			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("ExampleStaff"));
-				nextSlot++;
-			}
-			else
-			{
-			}
-			// Here is an example of how your npc can sell items from other mods.
-			if (ModLoader.GetLoadedMods().Contains("SummonersAssociation"))
-			{
-				shop.item[nextSlot].SetDefaults(ModLoader.GetMod("SummonersAssociation").ItemType("BloodTalisman"));
-				nextSlot++;
-			}*/
         }
 
 		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -272,7 +195,7 @@ namespace Laugicality.NPCs
 		public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
 		{
 			multiplier = 12f;
-			randomOffset = 2f;
+			randomOffset = 1f;
 		}
 	}
 }

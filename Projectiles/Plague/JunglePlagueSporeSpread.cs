@@ -1,4 +1,5 @@
-﻿using Laugicality.NPCs;
+﻿using Laugicality.Buffs;
+using Laugicality.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -25,15 +26,20 @@ namespace Laugicality.Projectiles.Plague
 
         public override void AI()
         {
-            if (projectile.velocity.Y > -3)
-                projectile.velocity.Y -= .05f;
+            projectile.velocity *= .98f;
+            projectile.alpha += 3;
+            if (projectile.alpha > 250)
+                projectile.Kill();
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             int rand = Main.rand.Next(5);
             if (target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
-                target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration = 180 + 60 * rand;
+            {
+                target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
+                target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
+            }
         }
     }
 }

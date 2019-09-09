@@ -21,8 +21,10 @@ namespace Laugicality.Projectiles.Plague
 
         public override void AI()
         {
-            if (projectile.velocity.Y > -3)
-                projectile.velocity.Y -= .05f;
+            projectile.velocity *= .98f;
+            projectile.alpha += 3;
+            if (projectile.alpha > 250)
+                projectile.Kill();
         }
     }
 }

@@ -28,11 +28,7 @@ namespace Laugicality.Items.Armor
             moveSpeed = (float)Math.Abs(player.velocity.X) / 30f;
             if (moveSpeed > .2f)
                 moveSpeed = .2f;
-            player.thrownDamage += moveSpeed;
-            player.rangedDamage += moveSpeed;
-            player.magicDamage += moveSpeed;
-            player.minionDamage += moveSpeed;
-            player.meleeDamage += moveSpeed;
+            player.allDamage += moveSpeed;
         }
         
         public override void AddRecipes()

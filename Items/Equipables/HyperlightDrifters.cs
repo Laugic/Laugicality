@@ -25,7 +25,7 @@ namespace Laugicality.Items.Equipables
 
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Light speed\nDominion over everything\nGrants the ability to super dash\nBecome immune for a time while dashing\nLeave a Cosmic trail\n+10% Damage");
+            Tooltip.SetDefault("Light speed\nDominion over everything\nGrants the ability to hyper-dash\nBecome immune for a time while dashing\nLeave a Cosmic trail\n+10% Damage");
         }
 
         public override void SetDefaults()
@@ -246,7 +246,7 @@ namespace Laugicality.Items.Equipables
                 rocketBootTime = 0;
             }
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -256,6 +256,6 @@ namespace Laugicality.Items.Equipables
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

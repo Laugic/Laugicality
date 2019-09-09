@@ -28,12 +28,12 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedTwinsEffect", "+6 Defense when flying") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
             new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedDestroyerEffect", "Prevent a lethal hit of damage if it does over 50 damage once every 90 seconds") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
             new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied to your defense") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedAnnihilator", "Pressing the Ability Key makes you invincible for 5 seconds. 60 Second Cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedAnnihilator", "Pressing the Ability Key makes you invincible for 4 seconds. 60 Second Cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedSlybertron", "+8 Defense when you have potion sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedSteamTrain", "Negate contact damage once every 90 seconds") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
             new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedPlantera", "+8 Defense when you are grappling") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
             new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedGolem", "+15 Defense and immune to Knockback when standing still") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
-            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedDukeFishron", "Being in liquid drastically increases defense") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
+            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedDukeFishron", "Being in liquid greatly increases defense") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
             new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedEtheria", "Take 20% less damage in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
             new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "TenacityFocusDownedMoonLord", "Negate a hit of damage once every 30 seconds") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
@@ -121,8 +121,8 @@ namespace Laugicality.Focuses
 
         private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if(laugicalityPlayer.DefenseCounter < 120 * 200)
-                laugicalityPlayer.DefenseCounter += 1 / 60f;
+            if(laugicalityPlayer.DefenseCounter < 250)
+                laugicalityPlayer.DefenseCounter += 1 / 120f;
             laugicalityPlayer.player.statDefense += (int)(laugicalityPlayer.DefenseCounter);
         }
 
@@ -139,8 +139,8 @@ namespace Laugicality.Focuses
 
         private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            float globalDmg = laugicalityPlayer.GetGlobalDamage();
-            laugicalityPlayer.player.statDefense = (int)(laugicalityPlayer.player.statDefense + laugicalityPlayer.player.statDefense * globalDmg / 2);
+            float globalDmg = laugicalityPlayer.player.allDamage - 1;
+            laugicalityPlayer.player.statDefense = (int)(laugicalityPlayer.player.statDefense + laugicalityPlayer.player.statDefense * (globalDmg) / 2);
         }
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -148,7 +148,7 @@ namespace Laugicality.Focuses
             if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.immune = true;
-            laugicalityPlayer.player.immuneTime += 5 * 60;
+            laugicalityPlayer.player.immuneTime += 4 * 60;
 
             laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>(), 60 * 60);
         }
@@ -184,7 +184,7 @@ namespace Laugicality.Focuses
         {
             if (laugicalityPlayer.player.wet || laugicalityPlayer.player.honeyWet || laugicalityPlayer.player.lavaWet)
             {
-                laugicalityPlayer.player.statDefense += 15;
+                laugicalityPlayer.player.statDefense += 20;
             }
         }
 

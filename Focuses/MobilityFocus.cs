@@ -120,7 +120,7 @@ namespace Laugicality.Focuses
 
         private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.wingTimeMax += 120;
+            laugicalityPlayer.player.wingTimeMax += 2 * 60;
         }
 
         private static void DownedDestroyerEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -130,10 +130,9 @@ namespace Laugicality.Focuses
 
         private static void DownedSkeletronPrimeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if(laugicalityPlayer.GetGlobalDamage() > 0)
-            {
-                laugicalityPlayer.player.maxRunSpeed *= (1 + laugicalityPlayer.GetGlobalDamage() / 2);
-            }
+            laugicalityPlayer.player.maxRunSpeed *= (1 + (laugicalityPlayer.player.allDamage - 1) / 2);
+            laugicalityPlayer.player.moveSpeed *= (1 + (laugicalityPlayer.player.allDamage - 1) / 2);
+            laugicalityPlayer.player.accRunSpeed *= (1 + (laugicalityPlayer.player.allDamage - 1) / 2);
         }
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -156,11 +155,7 @@ namespace Laugicality.Focuses
             moveSpeed = (float)Math.Abs(laugicalityPlayer.player.velocity.X) / 50f;
             if (moveSpeed > .25f)
                 moveSpeed = .25f;
-            laugicalityPlayer.player.thrownDamage += moveSpeed;
-            laugicalityPlayer.player.rangedDamage += moveSpeed;
-            laugicalityPlayer.player.magicDamage += moveSpeed;
-            laugicalityPlayer.player.minionDamage += moveSpeed;
-            laugicalityPlayer.player.meleeDamage += moveSpeed;
+            laugicalityPlayer.player.allDamage += moveSpeed;
         }
 
         private static void DownedPlanteraEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -169,6 +164,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.moveSpeed += .25f;
                 laugicalityPlayer.player.maxRunSpeed *= 1.25f;
+                laugicalityPlayer.player.accRunSpeed *= 1.25f;
             }
         }
 
