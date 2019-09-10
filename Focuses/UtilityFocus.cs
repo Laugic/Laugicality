@@ -240,7 +240,7 @@ namespace Laugicality.Focuses
 
         private static void CurseEffect2(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.NoNoKnockback = true;
+            laugicalityPlayer.CancelNoKnockback = true;
         }
 
         private static void CurseEffect3(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

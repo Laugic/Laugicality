@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Laugicality.Managers;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace Laugicality.Focuses
 {
@@ -59,7 +60,54 @@ namespace Laugicality.Focuses
         }
 
 
+        /*public virtual bool PlayerPreHurt(LaugicalityPlayer laugicalityPlayer, bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            List<FocusEffect> activeFocusEffects = GetActives(laugicalityPlayer);
+
+            for (int i = 0; i < activeFocusEffects.Count; i++)
+                if (!activeFocusEffects[i].PlayerPreHurt(laugicalityPlayer, this, pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource))
+                    return false;
+
+            return true;
+        }
+
+        public virtual void PlayerPostHurt(LaugicalityPlayer laugicalityPlayer, bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+            List<FocusEffect> activeFocusEffects = GetActives(laugicalityPlayer);
+
+            for (int i = 0; i < activeFocusEffects.Count; i++)
+                activeFocusEffects[i].PlayerPostHurt(laugicalityPlayer, this, pvp, quiet, damage, hitDirection, crit);
+        }*/
+
+
         #region Accessors
+
+        private List<FocusEffect> GetActives(LaugicalityPlayer laugicalityPlayer, List<FocusEffect> focusEffects)
+        {
+            List<FocusEffect> activeEffects = new List<FocusEffect>(focusEffects);
+
+            for (int i = 0; i < focusEffects.Count; i++)
+                if (activeEffects[i].Condition(laugicalityPlayer))
+                    activeEffects.Add(_effects[i]);
+
+            return activeEffects;
+        }
+
+        public List<FocusEffect> GetActives(LaugicalityPlayer laugicalityPlayer)
+        {
+            List<FocusEffect> activeEffects = GetActiveEffects(laugicalityPlayer);
+            List<FocusEffect> activeCurses = GetActiveCurses(laugicalityPlayer);
+
+            List<FocusEffect> all = new List<FocusEffect>(activeEffects.Count + activeCurses.Count);
+            all.AddRange(activeEffects);
+            all.AddRange(activeCurses);
+
+            return all;
+        }
+
+        public List<FocusEffect> GetActiveEffects(LaugicalityPlayer laugicalityPlayer) => GetActives(laugicalityPlayer, _effects);
+        public List<FocusEffect> GetActiveCurses(LaugicalityPlayer laugicalityPlayer) => GetActives(laugicalityPlayer, _curses);
+
 
         public FocusEffect GetEffect(int index) => _effects[index];
         public FocusEffect GetCurse(int index) => _curses[index];

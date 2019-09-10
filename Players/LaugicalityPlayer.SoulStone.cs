@@ -14,12 +14,13 @@ namespace Laugicality
     public sealed partial class LaugicalityPlayer
     {
         private const int HONEY_BASE_LIFE_REGEN = 2;
-        public string FOCUS_NAME_CAPACITY = "Capacity";
-        public string FOCUS_NAME_VITALITY = "Vitality";
-        public string FOCUS_NAME_TENACITY = "Tenacity";
-        public string FOCUS_NAME_MOBILITY = "Mobility";
-        public string FOCUS_NAME_UTILITY = "Utility";
-        public string FOCUS_NAME_FEROCITY = "Ferocity";
+        public const string 
+            FOCUS_NAME_CAPACITY = "Capacity",
+            FOCUS_NAME_VITALITY = "Vitality",
+            FOCUS_NAME_TENACITY = "Tenacity",
+            FOCUS_NAME_MOBILITY = "Mobility",
+            FOCUS_NAME_UTILITY = "Utility",
+            FOCUS_NAME_FEROCITY = "Ferocity";
 
         internal void ResetSoulStoneEffects()
         {
@@ -41,7 +42,7 @@ namespace Laugicality
             QueenBeeEffect = false;
             FishronEffect = false;
             EtheriaEffect = false;
-            NoNoKnockback = false;
+            CancelNoKnockback = false;
 
             if (!player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()))
                 MoonLordLifeMult = 1f;
@@ -88,10 +89,8 @@ namespace Laugicality
 
         internal bool SoulStonePreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if(NoNoKnockback)
-            {
+            if(CancelNoKnockback)
                 player.noKnockback = false;
-            }
 
             if (FocusName == FOCUS_NAME_CAPACITY)
                 CapacityPreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
@@ -323,7 +322,7 @@ namespace Laugicality
         public int HoneyRegenMultiplier { get; set; }
         public int Counter { get; set; }
         public int DungeonGuardianCounter { get; set; }
-        public bool NoNoKnockback { get; set; }
+        public bool CancelNoKnockback { get; set; }
 
         public bool KingSlimeStomp { get; set; }
         public bool SharkronEffect { get; set; }
