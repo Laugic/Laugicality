@@ -89,6 +89,8 @@ namespace Laugicality
         public Vector2 shakeO;
         public bool shakeReset;
 
+        private Focus _focus;
+
 
         public static LaugicalityPlayer Get() => Get(Main.LocalPlayer);
         public static LaugicalityPlayer Get(Player player) => player.GetModPlayer<LaugicalityPlayer>();
@@ -421,6 +423,12 @@ namespace Laugicality
             CheckRing();
             CheckFan();
             CheckFanRight();
+        }
+
+        public override void OnEnterWorld(Player player)
+        {
+            if (player.whoAmI == Main.myPlayer)
+                new LaugicalityPlayerSynchronizationPacket().Send();
         }
 
         private void CheckVent()
@@ -1371,7 +1379,21 @@ namespace Laugicality
         // TODO Change this to a class.
         #region Soul Stone
 
-        public Focus Focus { get; set; }
+        public Focus Focus
+        {
+            get => _focus;
+            set
+            {
+                if (_focus == value)
+                    return;
+
+                _focus = value;
+
+                if (Main.myPlayer == player.whoAmI)
+                    new FocusChangedPacket().Send();
+            }
+        }
+
         public int Class { get; set; }
 
         public bool SoulStoneVisuals { get; set; } = true;

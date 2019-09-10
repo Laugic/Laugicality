@@ -12,6 +12,7 @@ using Laugicality.Items.Consumables;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
 using Terraria.Graphics.Shaders;
+using WebmilioCommons.Networking;
 
 namespace Laugicality
 {
@@ -261,7 +262,9 @@ namespace Laugicality
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            int zTime = reader.ReadInt32();
+            NetworkPacketLoader.HandlePacket(reader, whoAmI);
+
+            /*int zTime = reader.ReadInt32();
             zaWarudo = zTime;
             Main.NewText(zTime.ToString(), 150, 50, 50);
 
@@ -277,7 +280,7 @@ namespace Laugicality
                 default:
                     ErrorLogger.Log("Laugicality: Unknown Message type: " + msgType);
                     break;
-            }
+            }*/
         }
 
         enum EnigmaMessageType : byte

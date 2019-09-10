@@ -98,7 +98,10 @@ namespace Laugicality.SoulStones
             if (Main.LocalPlayer != player)
                 return;
 
-            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(Main.LocalPlayer);
+
+            if (laugicalityPlayer.Focus == null)
+                return;
 
             for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
             {
