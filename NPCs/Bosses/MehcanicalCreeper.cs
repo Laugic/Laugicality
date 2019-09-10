@@ -16,7 +16,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Mechanical Spikinator");
         }
 

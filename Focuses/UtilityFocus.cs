@@ -17,33 +17,33 @@ namespace Laugicality.Focuses
     {
         public UtilityFocus() : base("UtilityFocus", "Utility", Color.Purple, new FocusEffect[]
         {
-            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedKingSlime", "You are immune to slimes") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
-            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedEyeOfCthulhu", "Hunter & Shine potion effects") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
-            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedDuneSharkron", "Immune to fall damage") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
-            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedWorldEvilBoss", "Immune to Confusion, Cursed Flames. Immune to Contact Damage once every 2 minutes") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
-            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedHypothema", "Immune to cold debuffs (including 'Frostburn')") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
-            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedQueenBee", "Super Bees, Immune to Poison") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
-            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedRagnar", "Immunity to Lava, 'On Fire', and 'Burning'. Wrath potions are 50% more effective") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
-            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSkeletron", "Immune to Cursed & Darkness. Night Owl & Dangersense potion effects") { overrideColor = new Color(0x83, 0x91, 0x92) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedAnDio", "Decreased cooldown of Time Stop. You are Immune to Time Stop") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
-            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedWallOfFleshEffect", "Spelunker Effect, Ironskin and Regen Potions are 50% stronger, +15% Mining Speed") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
-            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedTwinsEffect", "Increased Flight Time if worn under wings") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
-            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedDestroyerEffect", "Immunity to Knockback") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
-            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSkeletronPrimeEffect", "Innate Ankh Charm") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedAnnihilator", "Pressing the Ability Key destroys hostile projectiles and gives you 4 seconds of immunity. 90 second cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSlybertron", "Taking a healing potion gives less Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedSteamTrain", "You are immune to 'Steamy'. Attacks inflict 'Steamy'") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedPlantera", "You are immune while grappled to a tile, but also True Cursed") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
-            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedGolem", "Increase to all stats during the Daytime") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
-            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedDukeFishron", "Free movement in liquids. Increased Mobility while in liquids") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
-            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedEtheria", "Immune to 'Frostbite' and Etherial Spirits") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
-            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "UtilityFocusDownedMoonLord", "You cannot lose life to life draining debuffs") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
+            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedKingSlime", "You are immune to slimes") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
+            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedEyeOfCthulhu", "Hunter & Shine potion effects") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
+            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedDuneSharkron", "Immune to fall damage") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
+            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedWorldEvilBoss", "Immune to Confusion, Cursed Flames. Immune to Contact Damage once every 2 minutes") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
+            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedHypothema", "Immune to cold debuffs (including 'Frostburn')") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
+            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedQueenBee", "Super Bees, Immune to Poison") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
+            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedRagnar", "Immunity to Lava, 'On Fire', and 'Burning'. Wrath potions are 50% more effective") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
+            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedSkeletron", "Immune to Cursed & Darkness. Night Owl & Dangersense potion effects") { overrideColor = new Color(0x83, 0x91, 0x92) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedAnDio", "Decreased cooldown of Time Stop. You are Immune to Time Stop") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
+            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedWallOfFleshEffect", "Spelunker Effect, Ironskin and Regen Potions are 50% stronger, +15% Mining Speed") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
+            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedTwinsEffect", "Increased Flight Time if worn under wings") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
+            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedDestroyerEffect", "Immunity to Knockback") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
+            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedSkeletronPrimeEffect", "Innate Ankh Charm") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedAnnihilator", "Pressing the Ability Key destroys hostile projectiles and gives you 4 seconds of immunity. 90 second cooldown") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedSlybertron", "Taking a healing potion gives less Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedSteamTrain", "You are immune to 'Steamy'. Attacks inflict 'Steamy'") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedPlantera", "You are immune while grappled to a tile, but also True Cursed") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
+            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedGolem", "Increase to all stats during the Daytime") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
+            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedDukeFishron", "Free movement in liquids. Increased Mobility while in liquids") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
+            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedEtheria", "Immune to 'Frostbite' and Etherial Spirits") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedMoonLord", "You cannot lose life to life draining debuffs") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.instance, "UtilityFocusCurse1", "+5% Damage Taken") { overrideColor = Color.Purple }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.instance, "UtilityFocusCurse2", "You cannot be immune to knockback") { overrideColor = Color.Purple }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.instance, "UtilityFocusCurse3", "Debuffs deal double damage when you are above 50% life") { overrideColor = Color.Purple }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.instance, "UtilityFocusCurse4", "You are immune to most positive buffs") { overrideColor = Color.Purple }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "UtilityFocusCurse1", "+5% Damage Taken") { overrideColor = Color.Purple }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "UtilityFocusCurse2", "You cannot be immune to knockback") { overrideColor = Color.Purple }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "UtilityFocusCurse3", "Debuffs deal double damage when you are above 50% life") { overrideColor = Color.Purple }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "UtilityFocusCurse4", "You are immune to most positive buffs") { overrideColor = Color.Purple }),
         })
         {
 
@@ -165,7 +165,7 @@ namespace Laugicality.Focuses
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             foreach(Projectile projectile in Main.projectile)
             {
@@ -175,7 +175,7 @@ namespace Laugicality.Focuses
                     projectile.Kill();
             }
 
-            laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>(), 90 * 60);
+            laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 90 * 60);
         }
 
         private static void DownedSlybertronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -185,7 +185,7 @@ namespace Laugicality.Focuses
 
         private static void DownedSteamTrainEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Steamy>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Steamy>()] = true;
             laugicalityPlayer.Steamified = true;
         }
 
@@ -195,7 +195,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.immune = true;
                 laugicalityPlayer.player.immuneTime = 2;
-                laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<TrueCurse>(), 2);
+                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<TrueCurse>(), 2);
             }
         }
 
@@ -222,8 +222,8 @@ namespace Laugicality.Focuses
 
         private static void DownedEtheriaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Frostbite>()] = true;
-            laugicalityPlayer.player.npcTypeNoAggro[Laugicality.instance.NPCType<EtherialSpirit>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Frostbite>()] = true;
+            laugicalityPlayer.player.npcTypeNoAggro[Laugicality.Instance.NPCType<EtherialSpirit>()] = true;
         }
 
         private static void DownedMoonLordEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -267,15 +267,15 @@ namespace Laugicality.Focuses
             laugicalityPlayer.player.buffImmune[BuffID.Summoning] = true;
             laugicalityPlayer.player.buffImmune[BuffID.Swiftness] = true;
             laugicalityPlayer.player.buffImmune[BuffID.Warmth] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<DestructionBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<IllusionBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<ConjurationBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Albus>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Aquos>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Aura>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Rubrum>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Regis>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.instance.BuffType<Verdi>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<DestructionBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<IllusionBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<ConjurationBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Albus>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Aquos>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Aura>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Rubrum>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Regis>()] = true;
+            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Verdi>()] = true;
         }
     }
 }

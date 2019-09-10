@@ -38,6 +38,12 @@ namespace Laugicality.Items
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             damage = (int)(damage * modPlayer.steamDamage);
         }
+
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(player);
+        }
+
         /*
         //Steam item
         //VV

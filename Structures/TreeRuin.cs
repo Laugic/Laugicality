@@ -84,17 +84,17 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("Lycoris"), true, true);
                             }
                             if (_structureArray[j, i] == 3)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("Radiata"), true, true);
                             }
                             if (_structureArray[j, i] == 4)
                             {
@@ -136,17 +136,17 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Lycoris"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("Lycoris"), true, true);
                             }
                             if (_structureArray[j, i] == 3)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("Radiata"), true, true);
                             }
                             if (_structureArray[j, i] == 4)
                             {

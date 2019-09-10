@@ -218,7 +218,7 @@ namespace Laugicality
                 if(MysticSwitchCool > 0)
                     PostBurstEffects();
             }
-            Laugicality.instance.MysticaUI.CyclePositions(MysticMode);
+            Laugicality.Instance.MysticaUI.CyclePositions(MysticMode);
         }
 
         private void PostBurstEffects()

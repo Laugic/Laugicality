@@ -97,11 +97,14 @@ namespace Laugicality.NPCs
 		public override string GetChat()
 		{
 			int steampunker = NPC.FindFirstNPC(NPCID.Steampunker);
+
             _chatIndex++;
+
             if (TownNPCName() == "Laugic" && _chatIndex % 9 == 0)
                 return "Heyo " + Main.LocalPlayer.name + ". How're you enjoying Enigma so far? I mean uh- ahem... Trains?";
-            if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).MysticDamage > 1 && _chatIndex % 10 == 0)
+            if (LaugicalityPlayer.Get().MysticDamage > 1 && _chatIndex % 10 == 0)
                 return "Oh, you aren't one of those 'Mystics' are you? The Moldyrians have such an ancient way of thinking. Steam power is where it's at!";
+
 			if (steampunker >= 0 && Main.rand.Next(3) == 0)
 			{
                 switch (_chatIndex % 3)
@@ -114,6 +117,7 @@ namespace Laugicality.NPCs
                         return "A jetpack? Please. Tell " + Main.npc[steampunker].GivenName + " those went out of style a few centuries ago. Jetboots are the best you can get! Besides trains, of course.";
                 }
 			}
+
 			switch (_chatIndex % 8)
 			{
 				case 0:
@@ -135,40 +139,42 @@ namespace Laugicality.NPCs
 			}
 		}
 
-		public override void SetChatButtons(ref string button, ref string button2)
-		{
-			button = Lang.inter[28].Value;
-		}
+		public override void SetChatButtons(ref string button, ref string button2) => button = Lang.inter[28].Value;
 
-		public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
 		{
 			if (firstButton)
-			{
-				shop = true;
-			}
-		}
+                shop = true;
+        }
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
             shop.item[nextSlot].SetDefaults(mod.ItemType("Gear"));
             nextSlot++;
+
 			shop.item[nextSlot].SetDefaults(mod.ItemType("ToyTrain"));
 			nextSlot++;
+
             shop.item[nextSlot].SetDefaults(544);
             shop.item[nextSlot].value = 50000;
             nextSlot++;
+
             shop.item[nextSlot].SetDefaults(556);
             shop.item[nextSlot].value = 50000;
             nextSlot++;
+
             shop.item[nextSlot].SetDefaults(557);
             shop.item[nextSlot].value = 50000;
             nextSlot++;
+
             shop.item[nextSlot].SetDefaults(mod.ItemType("MechanicalMonitor"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
+
             shop.item[nextSlot].SetDefaults(mod.ItemType("SteamCrown"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
+
             shop.item[nextSlot].SetDefaults(mod.ItemType("SuspiciousTrainWhistle"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;

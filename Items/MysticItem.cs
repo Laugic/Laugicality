@@ -209,14 +209,14 @@ namespace Laugicality.Items
             modPlayer.CurrentMundusCost = MundusCost;
             Hold = 2;
 
-            Laugicality.instance.MysticaUI.Update();
+            Laugicality.Instance.MysticaUI.Update();
         }
 
         private string GetMysticType()
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
 
-            switch (modPlayer.MysticMode)
+            switch (laugicalityPlayer.MysticMode)
             {
                 case 1:
                     return "[c/F1C40F:- Destruction -]";
@@ -231,16 +231,16 @@ namespace Laugicality.Items
 
         private string GetMysticaType()
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
 
-            switch (modPlayer.MysticMode)
+            switch (laugicalityPlayer.MysticMode)
             {
                 case 1:
-                    return "Uses " + (modPlayer.CurrentLuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate) + " lux";
+                    return "Uses " + (laugicalityPlayer.CurrentLuxCost * laugicalityPlayer.LuxUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " lux";
                 case 2:
-                    return "Uses " + (modPlayer.CurrentVisCost * modPlayer.VisUseRate * modPlayer.GlobalPotentiaUseRate) + " vis";
+                    return "Uses " + (laugicalityPlayer.CurrentVisCost * laugicalityPlayer.VisUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " vis";
                 case 3:
-                    return "Uses " + (modPlayer.CurrentMundusCost * modPlayer.MundusUseRate * modPlayer.GlobalPotentiaUseRate) + " mundus";
+                    return "Uses " + (laugicalityPlayer.CurrentMundusCost * laugicalityPlayer.MundusUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " mundus";
             }
 
             return "mystica";

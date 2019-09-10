@@ -65,20 +65,20 @@ namespace Laugicality.UI
 
         public void Load()
         {
-            LuxBGTexture = Laugicality.instance.GetTexture("UI/LuxBG");
-            LuxBarTexture = Laugicality.instance.GetTexture("UI/LuxBar");
-            LuxFGTexture = Laugicality.instance.GetTexture("UI/LuxFG");
-            MundusBGTexture = Laugicality.instance.GetTexture("UI/MundusBG");
-            MundusBarTexture = Laugicality.instance.GetTexture("UI/MundusBar");
-            MundusFGTexture = Laugicality.instance.GetTexture("UI/MundusFG");
-            VisBGTexture = Laugicality.instance.GetTexture("UI/VisBG");
-            VisBarTexture = Laugicality.instance.GetTexture("UI/VisBar");
-            VisFGTexture = Laugicality.instance.GetTexture("UI/VisFG");
-            OverflowBGTexture = Laugicality.instance.GetTexture("UI/OverflowBG");
-            OverflowBarTexture = Laugicality.instance.GetTexture("UI/OverflowBar");
-            OverflowFGTexture = Laugicality.instance.GetTexture("UI/OverflowFG");
-            MysticBurstBGTexture = Laugicality.instance.GetTexture("UI/MysticBurstBG");
-            MysticBurstBarTexture = Laugicality.instance.GetTexture("UI/MysticBurstBar");
+            LuxBGTexture = Laugicality.Instance.GetTexture("UI/LuxBG");
+            LuxBarTexture = Laugicality.Instance.GetTexture("UI/LuxBar");
+            LuxFGTexture = Laugicality.Instance.GetTexture("UI/LuxFG");
+            MundusBGTexture = Laugicality.Instance.GetTexture("UI/MundusBG");
+            MundusBarTexture = Laugicality.Instance.GetTexture("UI/MundusBar");
+            MundusFGTexture = Laugicality.Instance.GetTexture("UI/MundusFG");
+            VisBGTexture = Laugicality.Instance.GetTexture("UI/VisBG");
+            VisBarTexture = Laugicality.Instance.GetTexture("UI/VisBar");
+            VisFGTexture = Laugicality.Instance.GetTexture("UI/VisFG");
+            OverflowBGTexture = Laugicality.Instance.GetTexture("UI/OverflowBG");
+            OverflowBarTexture = Laugicality.Instance.GetTexture("UI/OverflowBar");
+            OverflowFGTexture = Laugicality.Instance.GetTexture("UI/OverflowFG");
+            MysticBurstBGTexture = Laugicality.Instance.GetTexture("UI/MysticBurstBG");
+            MysticBurstBarTexture = Laugicality.Instance.GetTexture("UI/MysticBurstBar");
 
             LuxBar = new SpriteProgressBar
             (

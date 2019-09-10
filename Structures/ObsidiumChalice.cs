@@ -79,7 +79,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {
@@ -95,7 +95,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("ObsidiumOreBlock"), true, true);
                             }
                             if (_structureArray[j, i] == 9)
                             {
@@ -110,7 +110,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {
@@ -126,7 +126,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 4)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumOreBlock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("ObsidiumOreBlock"), true, true);
                             }
                             if (_structureArray[j, i] == 9)
                             {

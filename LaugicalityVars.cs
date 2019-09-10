@@ -1,17 +1,19 @@
 ﻿using System.Collections.Generic;
 using Laugicality.NPCs.Bosses;
+using Laugicality.NPCs.Obsidium;
 using Laugicality.NPCs.PreTrio;
 using Laugicality.NPCs.RockTwins;
 using Laugicality.NPCs.Slybertron;
+using Laugicality.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality
 {
-    class LaugicalityVars //A list of all of the important vars!
+    internal class LaugicalityVars //A list of all of the important vars!
     {
         // TODO Change this to an actual instance of Laugicality, taken from LaugicalityMod.
-        static Mod _mod = ModLoader.GetMod("Laugicality");
+        public static Mod Mod => Laugicality.Instance;
 
         public enum ClassType
         {
@@ -43,10 +45,10 @@ namespace Laugicality
         }
         /* -------------- Etherial NPCs and Projectiles -------------- */
 
-        public static readonly HashSet<int> ENPCs =
+        public static readonly HashSet<int> eNPCs =
             new HashSet<int>
             {
-                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114,  125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, _mod.NPCType("TitanBlast"), _mod.NPCType("LaserBall"), _mod.NPCType("AnDioLaserBall"), NPCID.Golem, 
+                4, 50, 266, 267, 13, 14, 15, 222, 35, 36, 113, 114,  125, 126, 127, 128, 129, 130, 134, 135, 136, NPCID.DungeonGuardian, NPCID.PrimeLaser, 139, 262, 263, 264, 265, 245, 246, 247, 248, 249, 439, 440, 396, 397, 398, 400, 370, 371, 372, 373, 454, 455, 457, 458, 459, 452, 454, 455, 456, 422, 493, 507, 517, 438, NPCID.TargetDummy, 379, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573, 574, 575, 576, 577, 578, NPCID.SandElemental, NPCID.IceGolem, Mod.NPCType<TitanBlast>(), Mod.NPCType<LaserBall>(), Mod.NPCType<AnDioLaserBall>(), NPCID.Golem, 
             };
 
         public static readonly HashSet<int> eProjectiles =
@@ -58,7 +60,7 @@ namespace Laugicality
         public static readonly HashSet<int> eBosses =
             new HashSet<int>
             {
-                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, _mod.NPCType<Hypothema>(), NPCID.QueenBee, _mod.NPCType<Ragnar>(), NPCID.SkeletronHead, _mod.NPCType<AnDio3>(), NPCID.TheDestroyer, NPCID.SkeletronPrime, _mod.NPCType<TheAnnihilator>(), _mod.NPCType<Slybertron>(), _mod.NPCType<NPCs.SteamTrain.SteamTrain>(), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
+                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, Mod.NPCType<Hypothema>(), NPCID.QueenBee, Mod.NPCType<Ragnar>(), NPCID.SkeletronHead, Mod.NPCType<AnDio3>(), NPCID.TheDestroyer, NPCID.SkeletronPrime, Mod.NPCType<TheAnnihilator>(), Mod.NPCType<Slybertron>(), Mod.NPCType<NPCs.SteamTrain.SteamTrain>(), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
         //Projectiles that are immune to time stop
@@ -72,14 +74,14 @@ namespace Laugicality
         public static readonly HashSet<int> ezProjectiles =
             new HashSet<int>
             {
-                _mod.ProjectileType("AndeBall"), _mod.ProjectileType("AndeEngery"), _mod.ProjectileType("AndeLaser3"), _mod.ProjectileType("AndeShard"), _mod.ProjectileType("AnDioEnergy"), _mod.ProjectileType("AnDioLaserBall"), _mod.ProjectileType("AnDioSpiral"), _mod.ProjectileType("AnDioSpiral2"), _mod.ProjectileType("DioBall"), _mod.ProjectileType("DioBallShot"), _mod.ProjectileType("DioEnergy"), _mod.ProjectileType("DioEnergyHoming"), _mod.ProjectileType("DioShard"),
+                Mod.ProjectileType<AndeBall>(), Mod.ProjectileType<AndeEnergy>(), Mod.ProjectileType<AndeLaser3>(), Mod.ProjectileType<AndeShard>(), Mod.ProjectileType<AnDioEnergy>(), Mod.ProjectileType<AnDioSpiral>(), Mod.ProjectileType<AnDioSpiral2>(), Mod.ProjectileType<DioBall>(), Mod.ProjectileType<DioBallShot>(), Mod.ProjectileType<DioEnergy>(), Mod.ProjectileType<DioEnergyHoming>(), Mod.ProjectileType<DioShard>(),
             };
 
         //Bosses that are immune to time stop
-        public static readonly HashSet<int> ZNPCs =
+        public static readonly HashSet<int> zNPCs =
             new HashSet<int>
             {
-                _mod.NPCType("LaserBall"), _mod.NPCType("AnDioLaserBall"),
+                Mod.NPCType<LaserBall>(), Mod.NPCType<AnDioLaserBall>(),
             };
 
         public static readonly HashSet<int> eBad =
@@ -105,8 +107,9 @@ namespace Laugicality
         public static readonly HashSet<int> obsidiumTiles =
             new HashSet<int>
             {
-                0, _mod.TileType("ObsidiumRock"), _mod.TileType("ObsidiumBrick"), _mod.TileType("Lycoris"), _mod.TileType("Radiata"), _mod.TileType("ObsidiumOreBlock"), TileID.Obsidian,
+                 Mod.TileType<ObsidiumRock>(), Mod.TileType<ObsidiumBrick>(), Mod.TileType<Lycoris>(), Mod.TileType<Radiata>(), Mod.TileType<ObsidiumOreBlock>(), TileID.Obsidian,
             };
+
         /* -------------- SLIMEKING -------------- */
         public static readonly HashSet<int> slimeThrow =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Assasin, (int)LaugicalityVars.ClassType.Ninja, (int)LaugicalityVars.ClassType.Thief };

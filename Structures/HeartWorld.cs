@@ -159,17 +159,17 @@ namespace Laugicality.Structures
                         if (_heartStructure[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("ObsidiumRock"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
                         }
                         if (_heartStructure[j, i] == 2)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType<ObsidiumCore>(), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType<ObsidiumCore>(), true, true);
                         }
                         if (_heartStructure[j, i] == 3)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.instance.TileType("Radiata"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("Radiata"), true, true);
                         }
                         if (_heartStructure[j, i] == 4)
                         {
@@ -187,7 +187,7 @@ namespace Laugicality.Structures
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
                             WorldGen.KillWall(xPosO + i, yPosO + j);
-                            WorldGen.PlaceWall(xPosO + i, yPosO + j, Laugicality.instance.WallType<ObsidiumRockWall>(), true);
+                            WorldGen.PlaceWall(xPosO + i, yPosO + j, Laugicality.Instance.WallType<ObsidiumRockWall>(), true);
                         }
                     }
                 }

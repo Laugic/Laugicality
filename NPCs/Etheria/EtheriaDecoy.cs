@@ -38,7 +38,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             delay = 0;
             DisplayName.SetDefault("Etherial Shadow");
             Main.npcFrameCount[npc.type] = 5;

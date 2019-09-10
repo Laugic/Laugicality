@@ -14,33 +14,33 @@ namespace Laugicality.Focuses
     {
         public MobilityFocus() : base("MobilityFocus", "Mobility", Color.Green, new FocusEffect[]
         {
-            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedKingSlime", "Increased Jump Height") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }), 
-            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedEyeOfCthulhu", "Increased movement speed when below 50% life") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
-            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedDuneSharkron", "Innate magic carpet effect") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
-            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedWorldEvilBoss", "+10% Increased Movement Speed and Run Speed") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
-            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedHypothema", "Immunity to cold debuffs (including Chilled and Frostburn)") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
-            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedQueenBee", "When not moving vertically, increased Run Speed") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
-            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedRagnar", "Greatly increased Mobility while in the Obsidium, while in the Underworld, or while affected by a debuff") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
-            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedSkeletron", "Low chance to dodge an attack when hit") { overrideColor = new Color(0x83, 0x91, 0x92) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedAnDio", "Greatly increased Mobility while Time is stopped. You can move during Time Stop.") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
-            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedWallOfFleshEffect", "Pressing the Ability Key teleports you to the mouse. 15 second cooldown.") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
-            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedTwinsEffect", "Increased wing flight time if worn under wings") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
-            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedDestroyerEffect", "You are immune to Knockback") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
-            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied to your Run Speed") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedAnnihilator", "Cooldown of the teleportation Ability reduced to 8 seconds. Become immune after teleporting") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedSlybertron", "Increased Jump Height and Wing acceleration when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedSteamTrain", "The faster you move, the higher your damage. +10% Max Run Speed.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedPlantera", "Large movement boost when under 50% life") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
-            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedGolem", "When standing still, charge up energy. Moving releases it in a burst of speed.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
-            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedDukeFishron", "Free movement in liquids. Greatly increased Mobility while in liquids.") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
-            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedEtheria", "+20% Max Run Speed and Movement Speed while in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
-            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "MobilityFocusDownedMoonLord", "'+50% Movement speed, +10% Max Run Speed. Chance to dodge attacks based on how fast you are moving") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
+            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedKingSlime", "Increased Jump Height") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }), 
+            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedEyeOfCthulhu", "Increased movement speed when below 50% life") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
+            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedDuneSharkron", "Innate magic carpet effect") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
+            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedWorldEvilBoss", "+10% Increased Movement Speed and Run Speed") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
+            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedHypothema", "Immunity to cold debuffs (including Chilled and Frostburn)") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
+            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedQueenBee", "When not moving vertically, increased Run Speed") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
+            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedRagnar", "Greatly increased Mobility while in the Obsidium, while in the Underworld, or while affected by a debuff") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
+            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedSkeletron", "Low chance to dodge an attack when hit") { overrideColor = new Color(0x83, 0x91, 0x92) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedAnDio", "Greatly increased Mobility while Time is stopped. You can move during Time Stop.") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
+            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedWallOfFleshEffect", "Pressing the Ability Key teleports you to the mouse. 15 second cooldown.") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
+            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedTwinsEffect", "Increased wing flight time if worn under wings") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
+            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedDestroyerEffect", "You are immune to Knockback") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
+            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied to your Run Speed") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedAnnihilator", "Cooldown of the teleportation Ability reduced to 8 seconds. Become immune after teleporting") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedSlybertron", "Increased Jump Height and Wing acceleration when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedSteamTrain", "The faster you move, the higher your damage. +10% Max Run Speed.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedPlantera", "Large movement boost when under 50% life") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
+            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedGolem", "When standing still, charge up energy. Moving releases it in a burst of speed.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
+            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedDukeFishron", "Free movement in liquids. Greatly increased Mobility while in liquids.") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
+            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedEtheria", "+20% Max Run Speed and Movement Speed while in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedMoonLord", "'+50% Movement speed, +10% Max Run Speed. Chance to dodge attacks based on how fast you are moving") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.instance, "MobilityFocusCurse1", "-5% Movement Speed & Max Run Speed") { overrideColor = Color.Green }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.instance, "MobilityFocusCurse2", "Taking damage slows you down for a time.") { overrideColor = Color.Green }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.instance, "MobilityFocusCurse3", "Reduced movement speed when above 50% Life") { overrideColor = Color.Green }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.instance, "MobilityFocusCurse4", "You cannot fly") { overrideColor = Color.Green }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "MobilityFocusCurse1", "-5% Movement Speed & Max Run Speed") { overrideColor = Color.Green }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "MobilityFocusCurse2", "Taking damage slows you down for a time.") { overrideColor = Color.Green }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "MobilityFocusCurse3", "Reduced movement speed when above 50% Life") { overrideColor = Color.Green }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "MobilityFocusCurse4", "You cannot fly") { overrideColor = Color.Green }),
         })
         {
 
@@ -105,17 +105,17 @@ namespace Laugicality.Focuses
 
         private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.Center = Main.MouseWorld;
             if(LaugicalityWorld.downedAnnihilator)
             {
-                laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>(), 8 * 60);
+                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 8 * 60);
                 laugicalityPlayer.player.immune = true;
                 laugicalityPlayer.player.immuneTime = 2 * 60;
             }
             else
-                laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<SoulStoneAbilityCooldownBuff>(), 15 * 60);
+                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 15 * 60);
         }
 
         private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

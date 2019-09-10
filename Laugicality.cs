@@ -24,11 +24,11 @@ namespace Laugicality
 
         internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility, restockNearby;
 
-        public static Laugicality instance;
         public static int zaWarudo = 0;
 
         public Laugicality()
         {
+            Instance = this;
 
             Properties = new ModProperties()
             {
@@ -142,7 +142,6 @@ namespace Laugicality
 
         public override void Load()
         {
-            instance = this;
             zaWarudo = 0;
 
             if (!Main.dedServ)
@@ -221,7 +220,8 @@ namespace Laugicality
 
         public override void Unload()
         {
-            instance = null;
+            Instance = null;
+
             MysticaUI.Unload();
             MysticaUserInterface = null;
         }
@@ -289,6 +289,9 @@ namespace Laugicality
         {
             base.Close();
         }
+
+
+        public static Laugicality Instance { get; private set; }
 
         public UserInterface MysticaUserInterface { get; private set; }
         public LaugicalityUI MysticaUI { get; private set; }

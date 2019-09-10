@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.Etheria
         public float vMag = 0f;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("True Etherial Tear");
         }
 
@@ -52,18 +52,23 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
             bitherial = true;
+
             if (_index == 0)
             {
                 if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
                     _index = Etheria.tearIndex;
             }
+
             npc.rotation += 3.14f / 20;
+
             if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
             {
                 float mag = 128 * Etheria.scale;
                 Vector2 rot;
+
                 rot.X = (float)Math.Cos(Etheria.thetaSlow + 3.14f * _index / 4) * mag;
                 rot.Y = (float)Math.Sin(Etheria.thetaSlow + 3.14f * _index / 4) * mag;
                 _targetPos = Etheria.center + rot;
@@ -73,10 +78,13 @@ namespace Laugicality.NPCs.Etheria
                 npc.active = false;
                 npc.life = 0;
             }
+
             _delay++;
+
             if(_delay > 300)
             {
                 _delay = 0;
+
                 if (Main.netMode != 1)
                 {
                     Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
@@ -85,6 +93,7 @@ namespace Laugicality.NPCs.Etheria
 
             float dist = Vector2.Distance(_targetPos, npc.Center);
             tVel = dist / 15;
+
             if (vMag < vMax && vMag < tVel)
             {
                 vMag += vAccel;

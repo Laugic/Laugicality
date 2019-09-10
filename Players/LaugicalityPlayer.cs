@@ -90,6 +90,11 @@ namespace Laugicality
         public Vector2 shakeO;
         public bool shakeReset;
 
+
+        public static LaugicalityPlayer Get() => Get(Main.LocalPlayer);
+        public static LaugicalityPlayer Get(Player player) => player.GetModPlayer<LaugicalityPlayer>();
+
+
         public override void SetupStartInventory(IList<Item> items)
         {
             MysticBurstDisabled = false;

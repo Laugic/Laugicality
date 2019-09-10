@@ -22,7 +22,7 @@ namespace Laugicality.NPCs.PreTrio
         public int AttackCounter { get; set; } = 0;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Hypothema");
         }
 

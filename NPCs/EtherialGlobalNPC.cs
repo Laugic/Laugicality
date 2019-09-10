@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using Laugicality.Items.Loot;
 using Laugicality.NPCs.Bosses;
+using Laugicality.NPCs.Etherial.BossFights;
 using Laugicality.NPCs.PreTrio;
 using Laugicality.NPCs.RockTwins;
 using Terraria;
@@ -49,7 +51,7 @@ namespace Laugicality.NPCs
         //Boss Fights V
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (LaugicalityWorld.downedEtheria && (LaugicalityVars.ENPCs.Contains(npc.type) || etherial || bitherial))
+            if (LaugicalityWorld.downedEtheria && (LaugicalityVars.eNPCs.Contains(npc.type) || etherial || bitherial))
             {
                 npc.damage = (int)(npc.damage * 1.33 + 40);
                 npc.defense = (int)(npc.defense / 2);
@@ -74,7 +76,7 @@ namespace Laugicality.NPCs
                 npc.life = npc.lifeMax;
             }
 
-            if(npc.type == NPCID.EyeofCthulhu)
+            if (npc.type == NPCID.EyeofCthulhu)
             {
                 npc.damage = 225;
                 npc.lifeMax = 80000;
@@ -110,7 +112,7 @@ namespace Laugicality.NPCs
                 npc.life = npc.lifeMax;
             }
 
-            if(npc.type == NPCID.BrainofCthulhu)
+            if (npc.type == NPCID.BrainofCthulhu)
             {
                 npc.damage = 200;
                 npc.lifeMax = 60000;
@@ -195,7 +197,7 @@ namespace Laugicality.NPCs
                 npc.life = npc.lifeMax;
             }
 
-            if(npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer || npc.type == mod.NPCType("Terratome"))
+            if (npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer || npc.type == mod.NPCType("Terratome"))
             {
                 npc.damage = 275;
                 npc.lifeMax = 150000;
@@ -324,17 +326,17 @@ namespace Laugicality.NPCs
 
         public void EtherialPostAI(NPC npc)
         {
-            if(LaugicalityWorld.downedEtheria)
+            if (LaugicalityWorld.downedEtheria)
             {
                 if (npc.type == NPCID.KingSlime)
                 {
                     KingSlimeAI(npc);
                 }
-                if(npc.type == NPCID.EyeofCthulhu)
+                if (npc.type == NPCID.EyeofCthulhu)
                 {
                     EyeofCthulhuAI(npc);
                 }
-                if(npc.type == mod.NPCType<DuneSharkron>())
+                if (npc.type == mod.NPCType<DuneSharkron>())
                 {
                     DuneSharkronAI(npc);
                 }
@@ -410,7 +412,7 @@ namespace Laugicality.NPCs
                 {
                     DukeFishronAI(npc);
                 }
-                if(npc.type == NPCID.MoonLordFreeEye)
+                if (npc.type == NPCID.MoonLordFreeEye)
                 {
                     if (!_spawnCheck)
                     {
@@ -421,7 +423,7 @@ namespace Laugicality.NPCs
                         }
                     }
                 }
-                if(npc.type == mod.NPCType("EtherialEoC"))
+                if (npc.type == mod.NPCType("EtherialEoC"))
                 {
                     EyeofCthulhuAI(npc);
                     EtherialEoCAI(npc);
@@ -439,7 +441,7 @@ namespace Laugicality.NPCs
                 npc.TargetClosest(true);
             }
             npc.netUpdate = true;
-            if(_targetPos.X == 0 && _targetPos.Y == 0)
+            if (_targetPos.X == 0 && _targetPos.Y == 0)
                 _targetPos = Main.player[npc.target].position;
         }
 
@@ -481,7 +483,7 @@ namespace Laugicality.NPCs
             if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 10 * (_phase + 1))))
             {
                 _phase++;
-                if(Main.netMode != 1)
+                if (Main.netMode != 1)
                 {
                     int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperSlime"));
                     Main.npc[n].ai[0] = npc.whoAmI;
@@ -494,7 +496,7 @@ namespace Laugicality.NPCs
         {
             _movementCounter++;
             _theta += 3.14f / 30;
-            if(_movementType == 0)
+            if (_movementType == 0)
             {
                 vMax = 25f;
                 if (_movementCounter > 120)
@@ -508,7 +510,7 @@ namespace Laugicality.NPCs
                         _movementCounter2 = 0;
                         _jumping = false;
                     }
-                    if(!_jumping)
+                    if (!_jumping)
                         _targetPos.Y += 800;
                 }
                 if (_jumping)
@@ -517,7 +519,7 @@ namespace Laugicality.NPCs
                     _targetPos.Y -= 400;
                 }
             }
-            if(_movementType == 1)
+            if (_movementType == 1)
             {
                 vMax = 12f;
                 _targetPos = Main.player[npc.target].Center;
@@ -548,7 +550,7 @@ namespace Laugicality.NPCs
                     Main.npc[n].ai[1] = NPC.CountNPCS(mod.NPCType("SuperServant"));
                 }
             }
-            if(npc.life < 30000)
+            if (npc.life < 30000)
             {
                 npc.damage = 250;
             }
@@ -596,12 +598,12 @@ namespace Laugicality.NPCs
 
         private void HypothemaHealthEffect(NPC npc)
         {
-            if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 4 * (_phase + 1))) )
+            if (npc.life < (int)(npc.lifeMax - (npc.lifeMax / 4 * (_phase + 1))))
             {
                 _phase++;
             }
-            if(NPC.CountNPCS(NPCID.IceGolem) < _phase && Vector2.Distance(npc.Center, Main.player[npc.target].Center) < 320)
-            { 
+            if (NPC.CountNPCS(NPCID.IceGolem) < _phase && Vector2.Distance(npc.Center, Main.player[npc.target].Center) < 320)
+            {
                 if (Main.netMode != 1)
                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.IceGolem);
             }
@@ -611,18 +613,18 @@ namespace Laugicality.NPCs
         {
             _counter++;
             _counter2++;
-            if(_counter > 1 * 60 + (int)(60 * (npc.life / npc.lifeMax)))
+            if (_counter > 1 * 60 + (int)(60 * (npc.life / npc.lifeMax)))
             {
                 _counter = 0;
                 if (Main.netMode != 1)
                 {
-                    if(Main.rand.Next(2) == 0)
+                    if (Main.rand.Next(2) == 0)
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
                     else
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperBee"));
                 }
             }
-            if(_counter2 > 4 * 60 + (int)(2 * 60 * (npc.life / npc.lifeMax)))
+            if (_counter2 > 4 * 60 + (int)(2 * 60 * (npc.life / npc.lifeMax)))
             {
                 _counter2 = 0;
                 if (Main.netMode != 1 && NPC.CountNPCS(mod.NPCType("SuperHornet")) < 8)
@@ -669,7 +671,7 @@ namespace Laugicality.NPCs
 
         private void SkeletronAI(NPC npc)
         {
-            if(NPC.CountNPCS(NPCID.DungeonGuardian) < 1 || (NPC.CountNPCS(NPCID.DungeonGuardian) < 2 && npc.life < npc.lifeMax / 2))
+            if (NPC.CountNPCS(NPCID.DungeonGuardian) < 1 || (NPC.CountNPCS(NPCID.DungeonGuardian) < 2 && npc.life < npc.lifeMax / 2))
             {
                 if (Main.netMode != 1)
                     NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, NPCID.DungeonGuardian);
@@ -681,12 +683,12 @@ namespace Laugicality.NPCs
             float dist = Vector2.Distance(Main.player[npc.target].Center, npc.Center);
             if (_counter > 0)
                 _counter--;
-            if(_counter > 1 * 60 + 30)
+            if (_counter > 1 * 60 + 30)
             {
                 npc.velocity.X = 0;
                 npc.velocity.Y = 0;
             }
-            if ((dist > 1200  || Main.rand.Next(5 * 60) == 0 ) && Main.player[npc.target].statLife > 1 && _counter == 0)
+            if ((dist > 1200 || Main.rand.Next(5 * 60) == 0) && Main.player[npc.target].statLife > 1 && _counter == 0)
             {
                 _counter = 2 * 60;
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
@@ -698,10 +700,10 @@ namespace Laugicality.NPCs
         private void AnDioAI(NPC npc)
         {
             _counter++;
-            if(_counter > 16 * 60)
+            if (_counter > 16 * 60)
             {
                 _counter = 0;
-                if(Laugicality.zaWarudo < 10 * 60)
+                if (Laugicality.zaWarudo < 10 * 60)
                 {
                     Laugicality.zaWarudo = 10 * 60;
                     LaugicalGlobalNPCs.zTime = 10 * 60;
@@ -709,7 +711,7 @@ namespace Laugicality.NPCs
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
             }
         }
-        
+
         private void WallofFleshAI(NPC npc)
         {
             WallofFleshHealthEffects(npc);
@@ -737,7 +739,7 @@ namespace Laugicality.NPCs
 
         private void WallofFleshCheckPlayer(NPC npc)
         {
-            foreach(Player player in Main.player)
+            foreach (Player player in Main.player)
             {
                 if (npc.position.X > player.position.X && _direction == 1)
                 {
@@ -775,7 +777,7 @@ namespace Laugicality.NPCs
             }
 
             _counter++;
-            if(_counter >= 8 * 60)
+            if (_counter >= 8 * 60)
             {
                 _counter = 0;
                 MirrorTeleport(npc, true);
@@ -784,12 +786,12 @@ namespace Laugicality.NPCs
 
         private void SpazmatismAI(NPC npc)
         {
-            if(Main.rand.Next(8 * 60) == 0)
+            if (Main.rand.Next(8 * 60) == 0)
             {
                 MirrorTeleport(npc, true);
             }
         }
-        
+
         private void SkeletronPrimeAI(NPC npc)
         {
             if (!_spawnCheck)
@@ -805,7 +807,7 @@ namespace Laugicality.NPCs
         private void DestroyerAI(NPC npc)
         {
             _counter++;
-            if(_counter >= 5)
+            if (_counter >= 5)
             {
                 _counter = 0;
                 //Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 33);
@@ -826,7 +828,7 @@ namespace Laugicality.NPCs
             MoveToTarget(npc);
             DespawnCheck(npc);
             _counter++;
-            if(_counter > (NPC.CountNPCS(mod.NPCType("SuperMechanicalMinion")) + 2) * 60)
+            if (_counter > (NPC.CountNPCS(mod.NPCType("SuperMechanicalMinion")) + 2) * 60)
             {
                 _counter = 0;
                 int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperMechanicalMinion"));
@@ -851,15 +853,15 @@ namespace Laugicality.NPCs
 
         private void SlybertronAI(NPC npc)
         {
-            if(!_spawnCheck)
+            if (!_spawnCheck)
             {
                 Main.NewText("Steampunk Slimes are falling from the sky!", 230, 200, 40);
                 _spawnCheck = true;
             }
-            if(Main.rand.Next(2 * 60) == 0)
+            if (Main.rand.Next(2 * 60) == 0)
             {
                 int rand = Main.rand.Next(3);
-                if(rand == 0)
+                if (rand == 0)
                 {
                     int n = NPC.NewNPC((int)Main.player[npc.target].Center.X - 200 + Main.rand.Next(400), (int)Main.player[npc.target].Center.Y - 500, mod.NPCType("GearSlime"));
                 }
@@ -872,7 +874,7 @@ namespace Laugicality.NPCs
                     int n = NPC.NewNPC((int)Main.player[npc.target].Center.X - 200 + Main.rand.Next(400), (int)Main.player[npc.target].Center.Y - 500, mod.NPCType("SparkSlime"));
                 }
             }
-            if(npc.life < npc.lifeMax / 2)
+            if (npc.life < npc.lifeMax / 2)
             {
                 Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
             }
@@ -894,7 +896,7 @@ namespace Laugicality.NPCs
                         Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(_theta) * mag, (float)Math.Sin(_theta) * mag, mod.ProjectileType("EtherialSpore"), (int)(npc.damage * .5), 3, Main.myPlayer);
                 }
             }
-            if(npc.life <= npc.lifeMax / 2)
+            if (npc.life <= npc.lifeMax / 2)
             {
                 Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
             }
@@ -902,10 +904,10 @@ namespace Laugicality.NPCs
 
         private void GolemAI(NPC npc)
         {
-            if(!_spawnCheck)
+            if (!_spawnCheck)
             {
                 _spawnCheck = true;
-                if(Main.netMode != 1)
+                if (Main.netMode != 1)
                 {
                     int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperGolemFist"));
                     Main.npc[n].ai[0] = npc.whoAmI;
@@ -1015,7 +1017,7 @@ namespace Laugicality.NPCs
         private bool Teleport(NPC npc, float threshold, float goalX, float goalY)
         {
             float dist = Vector2.Distance(Main.player[npc.target].Center, npc.Center);
-            if(dist > threshold && Main.player[npc.target].statLife > 1)
+            if (dist > threshold && Main.player[npc.target].statLife > 1)
             {
                 npc.position.X = goalX;
                 npc.position.Y = goalY;
@@ -1028,7 +1030,7 @@ namespace Laugicality.NPCs
         private void MirrorTeleport(NPC npc, bool burst)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
-            if(burst && Main.player[npc.target].statLife > 1)
+            if (burst && Main.player[npc.target].statLife > 1)
             {
                 for (int i = 0; i < 8; i++)
                 {
@@ -1069,111 +1071,124 @@ namespace Laugicality.NPCs
 
         public override void NPCLoot(NPC npc)
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
             if (LaugicalityWorld.downedEtheria)
             {
                 if (npc.boss && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != NPCID.EaterofWorldsHead) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(5, 11));
+
                 if (npc.type == 4)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EyeOfEtheria"), 1);
                 }
+
                 if (npc.type == 113)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEnergy"), 1);
                 }
+
                 if (npc.type == 50)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialGel"), 1);
                 }
+
                 if (npc.type == 35)
                 {
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialSkull"), 1);
-                    foreach(NPC dungeonGuardian in Main.npc)
+                    foreach (NPC dungeonGuardian in Main.npc)
                     {
                         if (dungeonGuardian.type == NPCID.DungeonGuardian)
                             dungeonGuardian.active = false;
                     }
                 }
+
                 if (npc.type == 13)
                 {
                     if (NPC.CountNPCS(13) < 2 && NPC.CountNPCS(14) < 2)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialScarf"), 1);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(5, 11));
-                        if (modPlayer.fullBysmal > 0)
-                            modPlayer.CycleBysmalPowers(13);
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialScarf>(), 1);
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialEssence>(), Main.rand.Next(5, 11));
+
+                        if (laugicalityPlayer.fullBysmal > 0)
+                            laugicalityPlayer.CycleBysmalPowers(13);
                     }
                 }
+
                 if (npc.type == NPCID.EaterofWorldsHead || npc.type == NPCID.EaterofWorldsBody || npc.type == NPCID.EaterofWorldsTail)
                 {
                     if (Main.rand.Next(6) == 0 && Main.netMode != 1)
-                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperCorruptor"));
-                }
-                if (npc.type == 266)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("BrainOfEtheria"), 1);
-                }
-                if (npc.type == 222)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialPack"), 1);
-                }
-                if (npc.type == 245)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("StoneOfEtheria"), 1);
-                }
-                if (npc.type == 262)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialSac"), 1);
-                }
-                if (npc.type == 398)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialGlobe"), 1);
-                }
-                if (npc.type == 134)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialDestructionCore"), 1);
-                }
-                if (npc.type == 125 && NPC.CountNPCS(126) == 0)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialConjurationCore"), 1);
-                    if (modPlayer.fullBysmal > 0)
-                        modPlayer.CycleBysmalPowers(125);
-                }
-                if (npc.type == 126 && NPC.CountNPCS(125) == 0)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialConjurationCore"), 1);
-                    if (modPlayer.fullBysmal > 0)
-                        modPlayer.CycleBysmalPowers(125);
-                }
-                if (npc.type == 127)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialIllusionCore"), 1);
-                }
-                if (npc.type == 370)
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialTruffle"), 1);
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType<SuperCorruptor>());
                 }
 
-                if (!modPlayer.BysmalAbsorbDisabled)
+                if (npc.type == NPCID.BrainofCthulhu)
                 {
-                    if (Main.netMode == 2)
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<BrainOfEtheria>(), 1);
+                }
+
+                if (npc.type == NPCID.QueenBee)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialPack>(), 1);
+                }
+
+                if (npc.type == NPCID.Golem)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<StoneOfEtheria>(), 1);
+                }
+
+                if (npc.type == NPCID.Plantera)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialSac>(), 1);
+                }
+
+                if (npc.type == NPCID.MoonLordCore)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialGlobe>(), 1);
+                }
+
+                if (npc.type == NPCID.TheDestroyer)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialDestructionCore>(), 1);
+                }
+
+                if (npc.type == 125 && NPC.CountNPCS(126) == 0 || npc.type == 126 && NPC.CountNPCS(125) == 0)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialConjurationCore>(), 1);
+
+                    if (laugicalityPlayer.fullBysmal > 0)
+                        laugicalityPlayer.CycleBysmalPowers(125);
+                }
+
+                if (npc.type == NPCID.SkeletronPrime)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialIllusionCore>(), 1);
+                }
+
+                if (npc.type == NPCID.DukeFishron)
+                {
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialTruffle>(), 1);
+                }
+
+                if (!laugicalityPlayer.BysmalAbsorbDisabled)
+                {
+                    if (Main.netMode == NetmodeID.Server)
                     {
-                        foreach (Player player in Main.player)
+                        for (int i = 0; i < Main.player.Length; i++)
                         {
-                            LaugicalityPlayer modPlayer2 = player.GetModPlayer<LaugicalityPlayer>(mod);
-                            if (LaugicalityVars.eBosses.Contains(npc.type) && !modPlayer2.BysmalPowers.Contains(npc.type))
+                            LaugicalityPlayer iLaugicalityPlayer = LaugicalityPlayer.Get(Main.player[i]);
+
+                            if (LaugicalityVars.eBosses.Contains(npc.type) && !iLaugicalityPlayer.BysmalPowers.Contains(npc.type))
                             {
-                                if (modPlayer2.fullBysmal > 0)
-                                    modPlayer2.CycleBysmalPowers(npc.type);
+                                if (iLaugicalityPlayer.fullBysmal > 0)
+                                    iLaugicalityPlayer.CycleBysmalPowers(npc.type);
                             }
                         }
                     }
-                    else if (Main.netMode == 0)
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        if (LaugicalityVars.eBosses.Contains(npc.type) && !modPlayer.BysmalPowers.Contains(npc.type))
+                        if (LaugicalityVars.eBosses.Contains(npc.type) && !laugicalityPlayer.BysmalPowers.Contains(npc.type))
                         {
-                            if (modPlayer.fullBysmal > 0)
-                                modPlayer.CycleBysmalPowers(npc.type);
+                            if (laugicalityPlayer.fullBysmal > 0)
+                                laugicalityPlayer.CycleBysmalPowers(npc.type);
                         }
                     }
                 }
@@ -1225,9 +1240,9 @@ namespace Laugicality.NPCs
             }
             if (bitherial)
             {
-                LaugicalityVars.ENPCs.Add(npc.type);
+                LaugicalityVars.eNPCs.Add(npc.type);
             }
-            if (LaugicalityVars.ENPCs.Contains(npc.type))
+            if (LaugicalityVars.eNPCs.Contains(npc.type))
             {
                 bitherial = true;
             }

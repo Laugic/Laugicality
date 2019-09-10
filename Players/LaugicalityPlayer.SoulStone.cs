@@ -43,7 +43,7 @@ namespace Laugicality
             EtheriaEffect = false;
             NoNoKnockback = false;
 
-            if (!player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()))
+            if (!player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()))
                 MoonLordLifeMult = 1f;
 
             AnDioCapacityEffect = false;
@@ -125,7 +125,7 @@ namespace Laugicality
                 return false;
             }
 
-            if(SteamTrainEffect && !player.HasBuff(Laugicality.instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_VITALITY)
+            if(SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_VITALITY)
             {
                 if (player.statLife < player.statLifeMax2)
                 {
@@ -147,7 +147,7 @@ namespace Laugicality
                 player.immuneTime = 2 * 60;
                 return false;
             }
-            if (MoonLordEffect && !player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+            if (MoonLordEffect && !player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
             {
                 player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 30 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
@@ -161,7 +161,7 @@ namespace Laugicality
         {
             if (CapacityCurse1)
                 damage += 5;
-            if(WallOfFleshEffect && !player.HasBuff(Laugicality.instance.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
+            if(WallOfFleshEffect && !player.HasBuff(Laugicality.Instance.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
             {
                 damage = 1;
                 player.AddBuff(mod.BuffType<WallOfFleshEffectCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
@@ -277,14 +277,14 @@ namespace Laugicality
         {
             if (FocusName == FOCUS_NAME_CAPACITY)
                 CapacityHitByNPC(npc, ref damage, ref crit);
-            if (SteamTrainEffect && !player.HasBuff(Laugicality.instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+            if (SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
             {
                 player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
             }
 
-            if (EvilBossEffect && !player.HasBuff(Laugicality.instance.BuffType<EvilBossCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+            if (EvilBossEffect && !player.HasBuff(Laugicality.Instance.BuffType<EvilBossCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
             {
                 player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
