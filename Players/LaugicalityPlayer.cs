@@ -557,11 +557,12 @@ namespace Laugicality
             }
         }
 
-        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult)
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
         {
             if (item.ammo == AmmoID.Snowball)
                 mult = mult * SnowDamage;
-            base.ModifyWeaponDamage(item, ref add, ref mult);
+
+            base.ModifyWeaponDamage(item, ref add, ref mult, ref flat);
         }
 
         public override TagCompound Save()
