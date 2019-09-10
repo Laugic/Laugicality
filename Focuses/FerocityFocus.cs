@@ -12,7 +12,7 @@ namespace Laugicality.Focuses
 {
     public sealed class FerocityFocus : Focus
     {
-        public FerocityFocus() : base("FerocityFocus", "Ferocity", Color.Red, new FocusEffect[]
+        public FerocityFocus() : base(LaugicalityPlayer.FOCUS_NAME_FEROCITY, "Ferocity", Color.Red, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedKingSlime", "Attacks inflict 'Slimed'") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedEyeOfCthulhu", "+5% Damage at Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

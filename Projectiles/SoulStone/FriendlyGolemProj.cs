@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality;
+using Laugicality.Extensions;
 
 
 namespace Laugicality.Projectiles.SoulStone
@@ -31,6 +32,7 @@ namespace Laugicality.Projectiles.SoulStone
         {
             CheckActive();
             GetTarget();
+
             if (projectile.ai[0] != 0)
             {
                 NPC npc = Main.npc[(int)projectile.ai[0]];
@@ -46,8 +48,15 @@ namespace Laugicality.Projectiles.SoulStone
                 else
                     projectile.spriteDirection = 1;
             }
+
             Wander();
-            if (!Main.player[projectile.owner].active || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FocusName != Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_CAPACITY || !Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().GolemEffect)
+
+            if (!Main.player[projectile.owner].active)
+                projectile.Kill();
+
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(Main.player[projectile.owner]);
+
+            if (!laugicalityPlayer.Focus.IsCapacity() || !laugicalityPlayer.GolemEffect)
                 projectile.Kill();
         }
 

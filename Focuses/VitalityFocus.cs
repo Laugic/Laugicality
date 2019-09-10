@@ -11,7 +11,7 @@ namespace Laugicality.Focuses
 {
     public sealed class VitalityFocus : Focus
     {
-        public VitalityFocus() : base("VitalityFocus", "Vitality", Color.Gold, new FocusEffect[]
+        public VitalityFocus() : base(LaugicalityPlayer.FOCUS_NAME_VITALITY, "Vitality", Color.Gold, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "VitalityFocusDownedKingSlime", "+4 Life Regen while Jumping") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "VitalityFocusDownedEyeOfCthulhu", "+25 Max Life during the Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

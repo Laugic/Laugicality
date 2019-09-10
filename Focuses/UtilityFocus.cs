@@ -15,7 +15,7 @@ namespace Laugicality.Focuses
 {
     public sealed class UtilityFocus : Focus
     {
-        public UtilityFocus() : base("UtilityFocus", "Utility", Color.Purple, new FocusEffect[]
+        public UtilityFocus() : base(LaugicalityPlayer.FOCUS_NAME_UTILITY, "Utility", Color.Purple, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedKingSlime", "You are immune to slimes") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "UtilityFocusDownedEyeOfCthulhu", "Hunter & Shine potion effects") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

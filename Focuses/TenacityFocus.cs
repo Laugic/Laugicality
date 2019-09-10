@@ -13,7 +13,7 @@ namespace Laugicality.Focuses
 {
     public sealed class TenacityFocus : Focus
     {
-        public TenacityFocus() : base("TenacityFocus", "Tenacity", Color.Silver, new FocusEffect[]
+        public TenacityFocus() : base(LaugicalityPlayer.FOCUS_NAME_TENACITY, "Tenacity", Color.Silver, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedKingSlime", "You are immune to slimes") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedEyeOfCthulhu", "Movement speed increased for a time after taking damage") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

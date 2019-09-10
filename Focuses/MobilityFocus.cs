@@ -12,7 +12,7 @@ namespace Laugicality.Focuses
 {
     public sealed class MobilityFocus : Focus
     {
-        public MobilityFocus() : base("MobilityFocus", "Mobility", Color.Green, new FocusEffect[]
+        public MobilityFocus() : base(LaugicalityPlayer.FOCUS_NAME_MOBILITY, "Mobility", Color.Green, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedKingSlime", "Increased Jump Height") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }), 
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedEyeOfCthulhu", "Increased movement speed when below 50% life") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

@@ -16,7 +16,7 @@ namespace Laugicality.Focuses
 {
     public sealed class CapacityFocus : Focus
     {
-        public CapacityFocus() : base("CapacityFocus", "Capacity", Color.Blue, new FocusEffect[]
+        public CapacityFocus() : base(LaugicalityPlayer.FOCUS_NAME_CAPACITY, "Capacity", Color.Blue, new FocusEffect[]
         {
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedKingSlime", "If you take contact damage while falling, stomp on the enemy that deals the damage") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedEyeOfCthulhu", "Release Eyes when damaged") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),

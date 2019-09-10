@@ -36,7 +36,6 @@ namespace Laugicality.SoulStones
         public override void RightClick(Player player)
         {
             player.GetModPlayer<LaugicalityPlayer>().Focus = FocusManager.Instance.Ferocity;
-            player.GetModPlayer<LaugicalityPlayer>().FocusName = player.GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_FEROCITY;
         }
 
         public override void AddRecipes()
