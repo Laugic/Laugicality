@@ -14,12 +14,14 @@ namespace Laugicality.UI.FocusUI
             FocusUserInterface.SetState(FocusUIState);
         }
 
+
         protected override bool DrawSelf()
         {
             FocusUIState?.Draw(Main.spriteBatch);
 
             return true;
         }
+
 
         /// Needed for UI to be clickable. Otherwise, you cannot interact with it, like clicking on it
         public UserInterface FocusUserInterface { get; }

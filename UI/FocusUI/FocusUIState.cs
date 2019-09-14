@@ -41,19 +41,19 @@ namespace Laugicality.UI.FocusUI
             image.HAlign = 0.5f;
             image.VAlign = 0.5f;
 
+            // Change this to use player's focus (DrawSelf)
             FocusBonusButton button = new FocusBonusButton(Laugicality.Instance.GetTexture("SoulStones/CapacityFocusStone"), FocusManager.Instance.Utility.Effects[0]);
 
             button.HAlign = 0.6f;
             button.VAlign = 0.5f;
 
             FocusPanel.Append(button);
-
             FocusPanel.Append(image);
-
             MainPanel.Append(FocusPanel);
 
             base.Append(MainPanel);
         }
+
 
         public override void Update(GameTime gameTime)
         {
@@ -69,6 +69,7 @@ namespace Laugicality.UI.FocusUI
 
             Recalculate();
         }
+
 
         public UIPanel MainPanel { get; private set; }
 

@@ -12,6 +12,7 @@ namespace Laugicality.UI
             this.mysticaUI = mysticaUI;
         }
 
+
         protected override bool DrawSelf()
         {
             LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
