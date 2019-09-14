@@ -11,6 +11,8 @@ using Laugicality.Focuses;
 using Laugicality.Items.Consumables;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
+using Laugicality.UI.FocusUI;
+using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 
 namespace Laugicality
@@ -171,6 +173,8 @@ namespace Laugicality
                 MysticaUI.Load();
                 MysticaUserInterface = new UserInterface();
                 MysticaUserInterface.SetState(MysticaUI);
+
+                FocusLayer = new FocusLayer(new FocusUIState());
             }
 
             toggleMystic = RegisterHotKey("Toggle Mysticism", "Mouse2");
@@ -224,6 +228,19 @@ namespace Laugicality
 
             MysticaUI.Unload();
             MysticaUserInterface = null;
+
+            FocusLayer = null;
+        }
+
+
+        public override void UpdateUI(GameTime gameTime)
+        {
+            if (FocusLayer != null)
+                if (FocusLayer.FocusUIState.Visible)
+                {
+                    FocusLayer.FocusUIState.Update(gameTime);
+                    FocusLayer.FocusUserInterface.Update(gameTime);
+                }
         }
 
         public override void UpdateMusic(ref int music, ref MusicPriority musicPriority)
@@ -280,6 +297,7 @@ namespace Laugicality
             }
         }
 
+
         enum EnigmaMessageType : byte
         {
             ZaWarudoTime,
@@ -295,6 +313,8 @@ namespace Laugicality
 
         public UserInterface MysticaUserInterface { get; private set; }
         public LaugicalityUI MysticaUI { get; private set; }
+
+        public FocusLayer FocusLayer { get; private set; }
     }
 
 }
