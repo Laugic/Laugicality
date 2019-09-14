@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
 using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 

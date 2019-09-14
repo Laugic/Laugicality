@@ -1,6 +1,5 @@
 ﻿using Laugicality.Items.Materials;
 using Laugicality.NPCs.PreTrio;
-using Laugicality.Projectiles;
 using Laugicality.Projectiles.BossSummons;
 using Terraria;
 using Terraria.ID;

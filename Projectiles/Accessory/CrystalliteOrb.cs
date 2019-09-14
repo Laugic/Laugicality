@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using System;
-using Laugicality.Dusts;
 using Terraria.ID;
 
 namespace Laugicality.Projectiles.Accessory

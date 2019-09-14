@@ -1,9 +1,6 @@
 ﻿using Laugicality.Dusts;
-using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {

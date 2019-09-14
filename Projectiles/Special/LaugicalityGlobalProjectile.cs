@@ -3,8 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality.NPCs;
-using System;
-using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Buffs;
 using Laugicality.Projectiles.Plague;

@@ -1,5 +1,4 @@
 using Laugicality.Items.Loot;
-using Laugicality.Projectiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

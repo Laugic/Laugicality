@@ -1,7 +1,4 @@
-﻿using Laugicality.Dusts;
-using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
-using Laugicality.Items.Placeable;
+﻿using Laugicality.Items.Loot;
 using Laugicality.Projectiles.Accessory;
 using Microsoft.Xna.Framework;
 using System;

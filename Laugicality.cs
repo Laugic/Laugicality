@@ -7,7 +7,6 @@ using Laugicality.Etherial;
 using System.IO;
 using Terraria.UI;
 using System.Collections.Generic;
-using Laugicality.Focuses;
 using Laugicality.Items.Consumables;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;

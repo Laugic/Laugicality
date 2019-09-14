@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.ModLoader;
 using Laugicality.NPCs;
 
 namespace Laugicality.Buffs

@@ -1,7 +1,5 @@
-using Laugicality.Projectiles;
 using Laugicality.Projectiles.Summon;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {

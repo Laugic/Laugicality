@@ -1,5 +1,4 @@
 ﻿using Laugicality.Items.Loot;
-using Laugicality.Projectiles;
 using Laugicality.Projectiles.BossSummons;
 using Laugicality.Tiles;
 using Terraria;

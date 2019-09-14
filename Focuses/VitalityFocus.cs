@@ -2,8 +2,6 @@
 using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 

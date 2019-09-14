@@ -1,9 +1,6 @@
 ﻿using Laugicality.Items.Loot;
-using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality.NPCs;
 
 namespace Laugicality.Items.Weapons.Melee
 {

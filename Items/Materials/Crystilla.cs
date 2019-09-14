@@ -1,7 +1,4 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Laugicality.Items.Materials
+﻿namespace Laugicality.Items.Materials
 {
     public class Crystilla : LaugicalityItem
     {

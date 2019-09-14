@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
-using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
 

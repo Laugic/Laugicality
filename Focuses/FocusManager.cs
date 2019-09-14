@@ -1,12 +1,10 @@
-﻿using Laugicality.Managers;
+﻿using WebmilioCommons.Managers;
 
 namespace Laugicality.Focuses
 {
-    public sealed class FocusManager : Manager<Focus>
+    public sealed class FocusManager : SingletonManager<FocusManager, Focus>
     {
-        private static FocusManager _instance;
-
-        protected override void DefaultInitialize()
+        public override void DefaultInitialize()
         {
             Vitality = Add(new VitalityFocus());
             Tenacity = Add(new TenacityFocus());
@@ -15,43 +13,28 @@ namespace Laugicality.Focuses
             Ferocity = Add(new FerocityFocus());
             Capacity = Add(new CapacityFocus());
 
-            Focus[] enemies = { Mobility, Ferocity };
-            Vitality.RegisterEnemies(enemies);
+            Vitality.RegisterEnemies(new Focus[] { Mobility, Ferocity });
             Vitality.RegisterNemeses(Utility);
-            enemies[0] = Utility;
-            enemies[1] = Capacity;
-            Tenacity.RegisterEnemies(enemies);
+
+            Tenacity.RegisterEnemies(new Focus[] { Utility, Capacity });
             Tenacity.RegisterNemeses(Ferocity);
-            enemies[0] = Ferocity;
-            enemies[1] = Vitality;
-            Mobility.RegisterEnemies(enemies);
+
+            Mobility.RegisterEnemies(new Focus[] { Ferocity, Vitality });
             Mobility.RegisterNemeses(Capacity);
-            enemies[0] = Capacity;
-            enemies[1] = Tenacity;
-            Utility.RegisterEnemies(enemies);
+
+            Utility.RegisterEnemies(new Focus[] { Capacity, Tenacity });
             Utility.RegisterNemeses(Vitality);
-            enemies[0] = Vitality;
-            enemies[1] = Mobility;
-            Ferocity.RegisterEnemies(enemies);
+
+            Ferocity.RegisterEnemies(new Focus[] { Vitality, Mobility });
             Ferocity.RegisterNemeses(Tenacity);
-            enemies[0] = Tenacity;
-            enemies[1] = Utility;
-            Capacity.RegisterEnemies(enemies);
+
+            Capacity.RegisterEnemies(new Focus[] { Tenacity, Utility });
             Capacity.RegisterNemeses(Mobility);
 
             ForAllItems(f => f.ManagerEndInitialization());
             base.DefaultInitialize();
         }
 
-        public override bool Remove(Focus item)
-        {
-            if (Locked) return false;
-            if (!byIndex.Contains(item)) return false;
-
-            byIndex.Remove(item);
-            byNames.Remove(item.UnlocalizedName);
-            return true;
-        }
 
         public Focus Vitality { get; private set; }
 
@@ -64,19 +47,5 @@ namespace Laugicality.Focuses
         public Focus Ferocity { get; private set; }
 
         public Focus Capacity { get; private set; }
-
-        public static FocusManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new FocusManager();
-
-                if (!_instance.Initialized)
-                    _instance.DefaultInitialize();
-
-                return _instance;
-            }
-        }
     }
 }

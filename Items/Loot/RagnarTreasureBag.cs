@@ -2,7 +2,6 @@ using Laugicality.Items.Equipables;
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {

@@ -1,12 +1,6 @@
-﻿using Laugicality.Projectiles;
-using Laugicality.Projectiles.SoulStone;
+﻿using Laugicality.Projectiles.SoulStone;
 using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

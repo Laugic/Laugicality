@@ -1,8 +1,4 @@
-﻿using Laugicality.NPCs;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Plague
 {

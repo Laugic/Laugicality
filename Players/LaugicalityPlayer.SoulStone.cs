@@ -1,8 +1,5 @@
 ﻿using Laugicality.Buffs;
-using Laugicality.Projectiles;
-using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.SoulStone;
-using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
 using System;
 using Laugicality.Extensions;

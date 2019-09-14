@@ -1,7 +1,4 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Laugicality.Items.Placeable
+﻿namespace Laugicality.Items.Placeable
 {
     public class GodRay : LaugicalityItem
     {

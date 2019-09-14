@@ -1,12 +1,7 @@
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Range
 {

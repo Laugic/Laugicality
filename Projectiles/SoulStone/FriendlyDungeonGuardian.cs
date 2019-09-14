@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System;
-using Microsoft.Xna.Framework;
+﻿using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
 
 
 namespace Laugicality.Projectiles.SoulStone

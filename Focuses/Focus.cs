@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Laugicality.Managers;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+using WebmilioCommons.Managers;
 
 namespace Laugicality.Focuses
 {

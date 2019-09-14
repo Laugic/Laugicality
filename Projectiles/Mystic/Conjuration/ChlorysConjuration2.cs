@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {

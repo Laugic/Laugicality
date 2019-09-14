@@ -1,6 +1,5 @@
 ﻿using Laugicality.Tiles;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {

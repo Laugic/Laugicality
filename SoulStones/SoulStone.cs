@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Laugicality.Focuses;
 using Laugicality.Items;
 using Microsoft.Xna.Framework;
 using Terraria;

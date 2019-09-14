@@ -1,5 +1,4 @@
 using System;
-using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
