@@ -261,7 +261,7 @@ namespace Laugicality
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            NetworkPacketLoader.HandlePacket(reader, whoAmI);
+            NetworkPacketLoader.Instance.HandlePacket(reader, whoAmI);
 
             /*int zTime = reader.ReadInt32();
             zaWarudo = zTime;
