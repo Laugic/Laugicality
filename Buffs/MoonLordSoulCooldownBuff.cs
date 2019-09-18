@@ -8,7 +8,7 @@ namespace Laugicality.Buffs
         {
             DisplayName.SetDefault("Moon Lord Soul Cooldown");
             Description.SetDefault("Your Moon Lord effect is on Cooldown.");
-            Main.debuff[Type] = false;
+            Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = false;
         }

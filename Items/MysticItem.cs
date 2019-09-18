@@ -145,13 +145,13 @@ namespace Laugicality.Items
             }
 
             return -1;
-        }*/
+        }
 
         public override void GetWeaponDamage(Player player, ref int damage)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-
-            damage = (int)(damage * (player.allDamage + modPlayer.MysticDamage - 1));
+            float damageMult = 1f;
+            damageMult = modPlayer.MysticDamage + (player.allDamage - 1);
 
             switch (modPlayer.MysticMode)
             {
@@ -180,6 +180,42 @@ namespace Laugicality.Items
 
             if (modPlayer.MysticBurstDisabled)
                 damage = (int)(damage * 1.05f);
+
+            modPlayer.MysticHold = 2;
+        }*/
+
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
+        {
+            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            mult += modPlayer.MysticDamage - 1;
+
+            switch (modPlayer.MysticMode)
+            {
+                case 1:
+                    mult += modPlayer.DestructionDamage - 1;
+                    if (modPlayer.Lux > modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost)
+                        mult += modPlayer.OverflowDamage - 1;
+                    else
+                        mult += modPlayer.AntiflowDamage - 1;
+                    break;
+                case 2:
+                    mult += modPlayer.IllusionDamage - 1;
+                    if (modPlayer.Vis > modPlayer.VisMax + modPlayer.VisMaxPermaBoost)
+                        mult += modPlayer.OverflowDamage - 1;
+                    else
+                        mult += modPlayer.AntiflowDamage - 1;
+                    break;
+                case 3:
+                    mult += modPlayer.ConjurationDamage - 1;
+                    if (modPlayer.Mundus > modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost)
+                        mult += modPlayer.OverflowDamage - 1;
+                    else
+                        mult += modPlayer.AntiflowDamage - 1;
+                    break;
+            }
+
+            if (modPlayer.MysticBurstDisabled)
+                mult += .05f;
 
             modPlayer.MysticHold = 2;
         }

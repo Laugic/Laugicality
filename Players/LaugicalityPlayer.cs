@@ -1214,24 +1214,15 @@ namespace Laugicality
         private void SpawnMiniEye()
         {
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
-
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
 
             if (Main.rand.Next(0, 2) == 0)
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                    mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                    mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
 
             if (Main.rand.Next(0, 2) == 0)
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                    mod.ProjectileType("MiniEye"), 16, 3f, player.whoAmI);
+                    mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
         }
 
         private void SpawnSandBall()

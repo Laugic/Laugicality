@@ -92,6 +92,7 @@ namespace Laugicality.Focuses
         {
             laugicalityPlayer.player.buffImmune[BuffID.Frostburn] = true;
             laugicalityPlayer.player.buffImmune[BuffID.Frozen] = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Chilled] = true;
             laugicalityPlayer.player.resistCold = true;
         }
 

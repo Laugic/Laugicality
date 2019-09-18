@@ -25,8 +25,9 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.allDamage += 0.2f;
+            player.GetModPlayer<LaugicalityPlayer>().DamageBoost(.2f);
         }
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);

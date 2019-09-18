@@ -2,6 +2,7 @@
 using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Focuses
@@ -15,7 +16,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedDuneSharkron", "You are immune to fall damage") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
             new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedWorldEvilBoss", "+5 Defense when below 50% Life") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
             new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedHypothema", "Increased defense when affected by a life draining debuff") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
-            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedQueenBee", "Immune to 'Poison' and 'Venom'. If you would be Poisoned or Venomed, heal 10 life instead") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
+            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedQueenBee", "Immune to 'Poison' and 'Venom'") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
             new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedRagnar", "Increased Defense for a time after submerging in Lava") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
             new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedSkeletron", "+5 Defense at Night") { overrideColor = new Color(0x83, 0x91, 0x92) }),
             new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedAnDio", "Don't take damage while Time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
@@ -79,7 +80,7 @@ namespace Laugicality.Focuses
 
         private static void DownedWorldEvilBossEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (laugicalityPlayer.player.statLife < laugicalityPlayer.player.statLifeMax2 / 2)
+            if ((float)laugicalityPlayer.player.statLife < (float)laugicalityPlayer.player.statLifeMax2 / 2f)
                 laugicalityPlayer.player.statDefense += 5;
         }
 
@@ -90,7 +91,9 @@ namespace Laugicality.Focuses
 
         private static void DownedQueenBeeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.QueenBeeEffect = true;
+            //laugicalityPlayer.QueenBeeEffect = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Poisoned] = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Venom] = true;
         }
 
         private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -107,10 +110,10 @@ namespace Laugicality.Focuses
 
         private static void DownedAnDioEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if(Laugicality.zaWarudo > 0)
+            if (Laugicality.zaWarudo > 0)
             {
-                laugicalityPlayer.player.immune = false;
-                laugicalityPlayer.player.immuneTime = 2;
+                laugicalityPlayer.player.immune = true;
+                laugicalityPlayer.player.immuneTime = 60;
             }
         }
 

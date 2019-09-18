@@ -15,7 +15,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedKingSlime", "If you take contact damage while falling, stomp on the enemy that deals the damage") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
             new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedEyeOfCthulhu", "Release Eyes when damaged") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
             new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedDuneSharkron", "Launch enemies affected by gravity into the air on contact") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
-            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedWorldEvilBoss", "Blood Rage when damaged") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
+            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedWorldEvilBoss", "Gain 'Blood Rage' when struck, increasing damage for a time") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
             new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedHypothema", "Frost Touch- Inflict Frostburn on enemies in a short radius around you") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
             new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedQueenBee", "Taking damage creates a ring of Thorns around you that damage and knock back enemies") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
             new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.Instance, "CapacityFocusDownedRagnar", "Reduced damage from lava. Increased Damage and Defense while On Fire") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
@@ -90,8 +90,8 @@ namespace Laugicality.Focuses
             laugicalityPlayer.player.lavaRose = true;
             if(laugicalityPlayer.player.onFire)
             {
-                laugicalityPlayer.DamageBoost(.15f);
-                laugicalityPlayer.player.statDefense += 10;
+                laugicalityPlayer.DamageBoost(.25f);
+                laugicalityPlayer.player.statDefense += 15;
             }
         }
 
@@ -106,7 +106,7 @@ namespace Laugicality.Focuses
             if(Laugicality.zaWarudo > 0)
             {
                 laugicalityPlayer.player.immune = true;
-                laugicalityPlayer.player.immuneTime = 2;
+                laugicalityPlayer.player.immuneTime = 60;
             }
         }
 

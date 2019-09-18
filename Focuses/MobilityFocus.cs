@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Focuses
@@ -30,7 +31,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedGolem", "When standing still, charge up energy. Moving releases it in a burst of speed.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
             new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedDukeFishron", "Free movement in liquids. Greatly increased Mobility while in liquids.") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
             new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedEtheria", "+20% Max Run Speed and Movement Speed while in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
-            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedMoonLord", "'+50% Movement speed, +10% Max Run Speed. Chance to dodge attacks based on how fast you are moving") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "MobilityFocusDownedMoonLord", "+50% Movement speed, +10% Max Run Speed. Chance to dodge attacks based on how fast you are moving") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
             new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "MobilityFocusCurse1", "-5% Movement Speed & Max Run Speed") { overrideColor = Color.Green }),
@@ -49,8 +50,12 @@ namespace Laugicality.Focuses
 
         private static void DownedEyeOfCthulhuEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (laugicalityPlayer.player.statLife < laugicalityPlayer.player.statLifeMax2 / 2)
+            if (laugicalityPlayer.player.statLife < laugicalityPlayer.player.statLifeMax2 / 2 + 1)
+            {
                 laugicalityPlayer.player.moveSpeed += .25f;
+                laugicalityPlayer.player.maxRunSpeed += .25f;
+                laugicalityPlayer.player.accRunSpeed += .25f;
+            }
         }
 
         private static void DownedDuneSharkronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -62,17 +67,24 @@ namespace Laugicality.Focuses
         {
             laugicalityPlayer.player.moveSpeed += .1f;
             laugicalityPlayer.player.maxRunSpeed *= 1.1f;
+            laugicalityPlayer.player.accRunSpeed *= 1.1f;
         }
 
         private static void DownedHypothemaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             laugicalityPlayer.player.resistCold = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Frostburn] = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Frozen] = true;
+            laugicalityPlayer.player.buffImmune[BuffID.Chilled] = true;
         }
 
         private static void DownedQueenBeeEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.velocity.Y == 0)
+            {
                 laugicalityPlayer.player.maxRunSpeed *= 1.2f;
+                laugicalityPlayer.player.accRunSpeed *= 1.2f;
+            }
         }
 
         private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -81,6 +93,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.moveSpeed += .15f;
                 laugicalityPlayer.player.maxRunSpeed *= 1.15f;
+                laugicalityPlayer.player.accRunSpeed *= 1.15f;
             }
         }
 
@@ -96,6 +109,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.moveSpeed += 1;
                 laugicalityPlayer.player.maxRunSpeed *= 1.5f;
+                laugicalityPlayer.player.accRunSpeed *= 1.5f;
             }
         }
 
@@ -198,6 +212,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.moveSpeed += .2f;
                 laugicalityPlayer.player.maxRunSpeed *= 1.2f;
+                laugicalityPlayer.player.accRunSpeed *= 1.2f;
             }
         }
 
@@ -205,6 +220,7 @@ namespace Laugicality.Focuses
         {
             laugicalityPlayer.player.moveSpeed += .5f;
             laugicalityPlayer.player.maxRunSpeed *= 1.1f;
+            laugicalityPlayer.player.accRunSpeed *= 1.1f;
             laugicalityPlayer.MoonLordEffect = true;
         }
 
@@ -213,6 +229,7 @@ namespace Laugicality.Focuses
         {
             laugicalityPlayer.player.moveSpeed *= .95f;
             laugicalityPlayer.player.maxRunSpeed *= .95f;
+            laugicalityPlayer.player.accRunSpeed *= .95f;
         }
 
         private static void CurseEffect2(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

@@ -56,7 +56,7 @@ namespace Laugicality.Items.Equipables
                 currMaxPotentia = 1;
 
             player.lifeRegen += (int)(6 * (1 - (currPotentia / currMaxPotentia)));
-            modPlayer.MysticDamage += .2f * (1-(player.statLife / player.statLifeMax2));
+            modPlayer.MysticDamage += .2f * (1-((float)player.statLife / (float)player.statLifeMax2));
         }
 
         public override void AddRecipes()
