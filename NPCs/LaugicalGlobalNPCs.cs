@@ -66,7 +66,7 @@ namespace Laugicality.NPCs
             dmg2 = npc.damage;
             damageMult = npc.takenDamageMultiplier;
 
-            if (LaugicalityVars.ZNPCs.Contains(npc.type))
+            if (LaugicalityVars.zNPCs.Contains(npc.type))
             {
                 zImmune = true;
             }

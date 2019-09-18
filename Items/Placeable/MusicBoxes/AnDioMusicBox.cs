@@ -1,5 +1,3 @@
-using Terraria.ModLoader;
-
 namespace Laugicality.Items.Placeable.MusicBoxes
 {
     public class AnDioMusicBox : LaugicalityItem

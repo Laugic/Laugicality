@@ -1,11 +1,6 @@
 using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Laugicality;
-using Laugicality.NPCs;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {

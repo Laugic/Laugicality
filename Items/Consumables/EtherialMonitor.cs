@@ -1,6 +1,5 @@
 ﻿using Laugicality.Items.Loot;
 using Laugicality.NPCs.Bosses;
-using Laugicality.Projectiles;
 using Laugicality.Projectiles.BossSummons;
 using Terraria;
 using Terraria.ModLoader;

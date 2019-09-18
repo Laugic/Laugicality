@@ -1,10 +1,8 @@
 ﻿using Laugicality.Buffs;
-using Laugicality.Projectiles;
-using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.SoulStone;
-using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
 using System;
+using Laugicality.Extensions;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,12 +12,13 @@ namespace Laugicality
     public sealed partial class LaugicalityPlayer
     {
         private const int HONEY_BASE_LIFE_REGEN = 2;
-        public string FOCUS_NAME_CAPACITY = "Capacity";
-        public string FOCUS_NAME_VITALITY = "Vitality";
-        public string FOCUS_NAME_TENACITY = "Tenacity";
-        public string FOCUS_NAME_MOBILITY = "Mobility";
-        public string FOCUS_NAME_UTILITY = "Utility";
-        public string FOCUS_NAME_FEROCITY = "Ferocity";
+        public const string 
+            FOCUS_NAME_CAPACITY = "Capacity",
+            FOCUS_NAME_VITALITY = "Vitality",
+            FOCUS_NAME_TENACITY = "Tenacity",
+            FOCUS_NAME_MOBILITY = "Mobility",
+            FOCUS_NAME_UTILITY = "Utility",
+            FOCUS_NAME_FEROCITY = "Ferocity";
 
         internal void ResetSoulStoneEffects()
         {
@@ -41,9 +40,9 @@ namespace Laugicality
             QueenBeeEffect = false;
             FishronEffect = false;
             EtheriaEffect = false;
-            NoNoKnockback = false;
+            CancelNoKnockback = false;
 
-            if (!player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()))
+            if (!player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()))
                 MoonLordLifeMult = 1f;
 
             AnDioCapacityEffect = false;
@@ -67,53 +66,70 @@ namespace Laugicality
         {
             if (player.honey)
                 player.lifeRegen += HONEY_BASE_LIFE_REGEN * HoneyRegenMultiplier - HONEY_BASE_LIFE_REGEN;
+
             if(!player.immune)
             {
                 CapacityCurse4Applied = false;
                 MoonLordEffectApplied = false;
             }
-            if (FocusName == FOCUS_NAME_CAPACITY && SkeletronPrimeEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+
+            if (Focus != null)
             {
-                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardianPrime>(), 99, 4, player.whoAmI);
-            }
-            if (FocusName == FOCUS_NAME_CAPACITY && GolemEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
-            {
-                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyGolemProj>(), 0, 4, player.whoAmI);
-            }
-            if (FocusName == FOCUS_NAME_CAPACITY && MoonLordEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
-            {
-                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyTrueEyeProj>(), (int)(150 * GetGlobalDamage()), 4, player.whoAmI);
+                if (Focus.IsCapacity())
+                {
+                    if (SkeletronPrimeEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    {
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardianPrime>(), 99, 4, player.whoAmI);
+                    }
+
+                    if (GolemEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    {
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyGolemProj>(), 0, 4, player.whoAmI);
+                    }
+
+                    if (MoonLordEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    {
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyTrueEyeProj>(), (int)(150 * GetGlobalDamage()), 4, player.whoAmI);
+                    }
+                }
             }
         }
 
         internal bool SoulStonePreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            if(NoNoKnockback)
-            {
+            if(CancelNoKnockback)
                 player.noKnockback = false;
-            }
 
-            if (FocusName == FOCUS_NAME_CAPACITY)
+            if (Focus == null)
+                return true;
+
+            if (Focus.IsCapacity())
                 CapacityPreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource);
 
-            if (SkeletronEffect && FocusName == FOCUS_NAME_MOBILITY && Main.rand.Next(25) == 0)
+            if (Focus.IsMobility())
             {
-                player.immune = true;
-                player.immuneTime = 2 * 60;
-                return false;
-            }
-
-            if (MoonLordEffect && FocusName == FOCUS_NAME_MOBILITY)
-            {
-                int mobChance = 50;
-                mobChance -= (int)(Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y));
-                if (mobChance < 4)
-                    mobChance = 4;
-                if (Main.rand.Next(mobChance) == 0)
+                if (SkeletronEffect && Main.rand.Next(25) == 0)
                 {
                     player.immune = true;
                     player.immuneTime = 2 * 60;
                     return false;
+                }
+
+                if (MoonLordEffect)
+                {
+                    int mobChance = 50;
+                    mobChance -= (int)(Math.Abs(player.velocity.X) + Math.Abs(player.velocity.Y));
+
+                    if (mobChance < 4)
+                        mobChance = 4;
+
+                    if (Main.rand.Next(mobChance) == 0)
+                    {
+                        player.immune = true;
+                        player.immuneTime = 2 * 60;
+
+                        return false;
+                    }
                 }
             }
 
@@ -122,38 +138,47 @@ namespace Laugicality
                 player.AddBuff(mod.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
+
                 return false;
             }
 
-            if(SteamTrainEffect && !player.HasBuff(Laugicality.instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_VITALITY)
+            if (Focus.IsVitality())
             {
-                if (player.statLife < player.statLifeMax2)
+                if (SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()))
                 {
+                    if (player.statLife < player.statLifeMax2)
+                    {
+                        player.statLife = player.statLifeMax2;
+                        player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 150 * Constants.TICKS_PER_SECONDS);
+                        player.immune = true;
+                        player.immuneTime = 2 * 60;
+
+                        return false;
+                    }
+                }
+
+                if (MoonLordEffect && player.statLifeMax2 > 100 && damage >= player.statLife)
+                {
+                    MoonLordLifeMult *= .5f;
+                    player.statLifeMax2 = (int) (MoonLordLifeMult * player.statLifeMax2);
                     player.statLife = player.statLifeMax2;
-                    player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 150 * Constants.TICKS_PER_SECONDS);
+                    player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                     player.immune = true;
                     player.immuneTime = 2 * 60;
+
                     return false;
                 }
             }
 
-            if(MoonLordEffect && FocusName == FOCUS_NAME_VITALITY && player.statLifeMax2 > 100 && damage >= player.statLife)
-            {
-                MoonLordLifeMult *= .5f;
-                player.statLifeMax2 = (int)(MoonLordLifeMult * player.statLifeMax2);
-                player.statLife = player.statLifeMax2;
-                player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
-                player.immune = true;
-                player.immuneTime = 2 * 60;
-                return false;
-            }
-            if (MoonLordEffect && !player.HasBuff(Laugicality.instance.BuffType<MoonLordSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+            if (MoonLordEffect && !player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()) && Focus.IsTenacity())
             {
                 player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 30 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
+
                 return false;
             }
+
             return true;
         }
 
@@ -161,7 +186,7 @@ namespace Laugicality
         {
             if (CapacityCurse1)
                 damage += 5;
-            if(WallOfFleshEffect && !player.HasBuff(Laugicality.instance.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
+            if(WallOfFleshEffect && !player.HasBuff(Laugicality.Instance.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
             {
                 damage = 1;
                 player.AddBuff(mod.BuffType<WallOfFleshEffectCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
@@ -174,25 +199,31 @@ namespace Laugicality
 
         internal void SoulStonePostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
+            if (Focus == null)
+                return;
+
             if(MobilityCurse2)
                 player.AddBuff(mod.BuffType<MobilityCurseBuff>(), 4 * Constants.TICKS_PER_SECONDS);
 
-            if (QueenBeeEffect && FocusName == FOCUS_NAME_TENACITY)
+            if (QueenBeeEffect && Focus.IsTenacity())
             {
                 if(player.HasBuff(BuffID.Poisoned))
                 {
                     player.buffImmune[BuffID.Poisoned] = true;
                     player.statLife += 10;
                 }
+
                 if (player.HasBuff(BuffID.Venom))
                 {
                     player.buffImmune[BuffID.Venom] = true;
                     player.statLife += 10;
                 }
             }
+
             if (DefenseCounter > 0)
                 DefenseCounter = 0;
-            if (FocusName == FOCUS_NAME_CAPACITY)
+
+            if (Focus.IsCapacity())
                 CapacityPostHurt(pvp, quiet, damage, hitDirection, crit);
         }
 
@@ -242,31 +273,37 @@ namespace Laugicality
 
         internal void SoulStoneBadLifeRegen()
         {
-            if (HypothemaEffect && player.lifeRegen < 0 && (FocusName == FOCUS_NAME_VITALITY || FocusName == FOCUS_NAME_TENACITY))
+            if (HypothemaEffect && player.lifeRegen < 0 && (Focus.IsVitality() || Focus.IsTenacity()))
                 player.statDefense += 8;
+
             if(UtilityCurse3 && player.lifeRegen < 0)
             {
                 player.lifeRegen -= player.lifeRegen / 2;
             }
+
             if (VitalityCurse2 && player.lifeRegen < 0)
             {
                 player.lifeRegen -= 2;
             }
+
             if (VitalityCurse3 && player.statLife >= player.statLifeMax2 / 2)
             {
                 player.lifeRegen = 0;
             }
+
             if (VitalityCurse4)
             {
                 if (player.statLifeMax2 > player.statLifeMax)
                     player.statLifeMax2 = player.statLifeMax;
             }
-            if (EvilBossEffect && FocusName == FOCUS_NAME_VITALITY)
+
+            if (EvilBossEffect && Focus.IsVitality())
             {
                 if (player.lifeRegen < 0)
                     player.lifeRegen = player.lifeRegen >= -3 ? (player.lifeRegen + 2) : -1;
             }
-            if (MoonLordEffect && FocusName == FOCUS_NAME_UTILITY)
+
+            if (MoonLordEffect && Focus.IsVitality())
             {
                 if (player.lifeRegen < 0)
                     player.lifeRegen = 0;
@@ -275,16 +312,20 @@ namespace Laugicality
 
         internal void SoulStoneHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (FocusName == FOCUS_NAME_CAPACITY)
+            if (Focus != null)
+                return;
+
+            if (Focus.IsCapacity())
                 CapacityHitByNPC(npc, ref damage, ref crit);
-            if (SteamTrainEffect && !player.HasBuff(Laugicality.instance.BuffType<SteamTrainSoulCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+
+            if (SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()) && Focus.IsCapacity())
             {
                 player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
             }
 
-            if (EvilBossEffect && !player.HasBuff(Laugicality.instance.BuffType<EvilBossCooldownBuff>()) && FocusName == FOCUS_NAME_TENACITY)
+            if (EvilBossEffect && !player.HasBuff(Laugicality.Instance.BuffType<EvilBossCooldownBuff>()) && Focus.IsTenacity())
             {
                 player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
@@ -303,10 +344,12 @@ namespace Laugicality
             {
                 damage = (int)(damage * 1.5);
             }
+
             if(!npc.noGravity && SharkronEffect)
             {
                 npc.velocity.Y = -15;
             }
+
             if(DungeonGuardianCounter <= 0 && SkeletronEffect)
             {
                 if(npc.boss)
@@ -316,6 +359,7 @@ namespace Laugicality
 
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
                 float mag = 700;
+
                 Projectile.NewProjectile(player.Center + new Vector2((float)(Math.Cos(theta) * mag), (float)(Math.Sin(theta) * mag)), new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardian>(), 999, 5f, player.whoAmI, npc.whoAmI);
             }
         }
@@ -323,7 +367,7 @@ namespace Laugicality
         public int HoneyRegenMultiplier { get; set; }
         public int Counter { get; set; }
         public int DungeonGuardianCounter { get; set; }
-        public bool NoNoKnockback { get; set; }
+        public bool CancelNoKnockback { get; set; }
 
         public bool KingSlimeStomp { get; set; }
         public bool SharkronEffect { get; set; }
@@ -364,7 +408,5 @@ namespace Laugicality
         public bool VitalityCurse4 { get; set; }
         public bool CapacityCurse4 { get; set; }
         public bool CapacityCurse4Applied { get; set; }
-
-        public string FocusName { get; set; }
     }
 }

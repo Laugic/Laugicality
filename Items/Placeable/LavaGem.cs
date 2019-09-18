@@ -1,5 +1,3 @@
-using Terraria.ModLoader;
-
 namespace Laugicality.Items.Placeable
 {
     public class LavaGem : LaugicalityItem

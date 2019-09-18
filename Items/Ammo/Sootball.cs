@@ -1,5 +1,4 @@
-﻿using Laugicality.Items.Loot;
-using Laugicality.Items.Placeable;
+﻿using Laugicality.Items.Placeable;
 using Terraria.ID;
 using Terraria.ModLoader;
 

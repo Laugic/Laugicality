@@ -1,7 +1,5 @@
 ﻿using Laugicality.Buffs;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Plague

@@ -26,7 +26,7 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("The Annihilator");
             Main.npcFrameCount[npc.type] = 8;
         }
@@ -287,7 +287,7 @@ namespace Laugicality.NPCs.Bosses
 
             if (plays < 1)
                 plays = 1;
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
             if (LaugicalityWorld.downedEtheria)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CogOfEtheria"), 1);

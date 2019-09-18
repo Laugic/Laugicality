@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Dusts;
 

@@ -1,5 +1,4 @@
 using Laugicality.Items.Equipables;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,7 +11,12 @@ namespace Laugicality.Tiles
 
         public override bool Drop(int i, int j, int type)
         {
-            if(Main.tile[i, j].type == TileID.ShadowOrbs && Main.rand.Next(6) == 0)
+            Tile tile = Main.tile[i, j];
+
+            if (tile == null)
+                return base.Drop(i, j, type);
+
+            if (tile.type == TileID.ShadowOrbs && Main.rand.Next(6) == 0)
             {
                 if(i % 2 == 0 && j % 2 == 0)
                 {
@@ -23,6 +27,7 @@ namespace Laugicality.Tiles
                 }
                 return false;
             }
+
             return base.Drop(i, j, type);
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Laugicality.Items.Loot;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

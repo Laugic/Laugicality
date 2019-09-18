@@ -1,5 +1,4 @@
 ﻿using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
 {

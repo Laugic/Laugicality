@@ -1,6 +1,5 @@
 using Laugicality.Buffs;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Laugicality.Mounts.SteamTrain
 {

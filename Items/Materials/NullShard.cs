@@ -1,5 +1,3 @@
-using Terraria.ModLoader;
-
 namespace Laugicality.Items.Materials
 {
     public class NullShard : LaugicalityItem

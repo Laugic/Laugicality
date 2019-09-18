@@ -1,7 +1,4 @@
-﻿using Laugicality.Dusts;
-using Laugicality.Items.Accessories;
-using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
+﻿using Laugicality.Items.Accessories;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

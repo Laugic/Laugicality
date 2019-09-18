@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
+using Laugicality.Extensions;
 
 
 namespace Laugicality.Projectiles.SoulStone
@@ -39,7 +38,13 @@ namespace Laugicality.Projectiles.SoulStone
             }
             else
                 Wander();
-            if (!Main.player[projectile.owner].active || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FocusName != Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().FOCUS_NAME_CAPACITY || !Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().SkeletronPrimeEffect)
+
+            if (!Main.player[projectile.owner].active)
+                projectile.Kill();
+
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(Main.player[projectile.owner]);
+
+            if (!laugicalityPlayer.Focus.IsCapacity() || !laugicalityPlayer.SkeletronPrimeEffect)
                 projectile.Kill();
         }
         

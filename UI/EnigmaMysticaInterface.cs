@@ -14,12 +14,12 @@ namespace Laugicality.UI
 
         protected override bool DrawSelf()
         {
-            LaugicalityPlayer mysticPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>();
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
 
-            if (mysticPlayer == null)
+            if (laugicalityPlayer == null)
                 return true;
 
-            if (mysticPlayer.MysticHold > 0)
+            if (laugicalityPlayer.MysticHold > 0)
                 mysticaUI.Draw(Main.spriteBatch);
 
             return true;

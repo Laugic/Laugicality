@@ -43,7 +43,7 @@ namespace Laugicality.NPCs.Etheria
         public static float scale = 1;
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             delay = 0;
             DisplayName.SetDefault("Etheria");
             Main.npcFrameCount[npc.type] = 5;

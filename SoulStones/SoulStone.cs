@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Laugicality.Focuses;
 using Laugicality.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -37,7 +36,7 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(tooltips);
-            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
 
             if (laugicalityPlayer.Focus == null)
             {
@@ -48,7 +47,7 @@ namespace Laugicality.SoulStones
                 return;
             }
 
-            tooltips.Add(new TooltipLine(Laugicality.instance, "SoulStoneDisplayFocusName", "Your focus is " + laugicalityPlayer.Focus.DisplayName + '.')
+            tooltips.Add(new TooltipLine(Laugicality.Instance, "SoulStoneDisplayFocusName", "Your focus is " + laugicalityPlayer.Focus.DisplayName + '.')
             {
                 overrideColor = laugicalityPlayer.Focus.AssociatedColor
             });
@@ -61,7 +60,7 @@ namespace Laugicality.SoulStones
 
             if(LaugicalityWorld.GetCurseCount() > 0)
             {
-                tooltips.Add(new TooltipLine(Laugicality.instance, "CurseLine", "----Curses----")
+                tooltips.Add(new TooltipLine(Laugicality.Instance, "CurseLine", "----Curses----")
                 {
                     overrideColor = Color.Red
                 });
@@ -72,7 +71,7 @@ namespace Laugicality.SoulStones
 
         private static void GetCurseTooltips(List<TooltipLine> tooltips)
         {
-            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
 
             for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
             {
@@ -98,7 +97,10 @@ namespace Laugicality.SoulStones
             if (Main.LocalPlayer != player)
                 return;
 
-            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(Main.LocalPlayer);
+
+            if (laugicalityPlayer.Focus == null)
+                return;
 
             for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
             {
@@ -113,7 +115,7 @@ namespace Laugicality.SoulStones
 
         private static void GetCurseEffects(Player player, bool hideVisual)
         {
-            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.instance);
+            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
 
             for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
             {

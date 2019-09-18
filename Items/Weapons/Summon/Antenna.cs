@@ -1,6 +1,5 @@
 using Laugicality.Buffs;
 using Laugicality.Items.Loot;
-using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

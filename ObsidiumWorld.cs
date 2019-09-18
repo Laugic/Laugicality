@@ -308,7 +308,7 @@ namespace Laugicality
         public static void PlaceObsidiumChest(int x, int y, ushort floorType)
         {
             ClearSpaceForChest(x, y, floorType);
-            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)Laugicality.instance.TileType("ObsidiumChest"), false, 0);
+            int chestIndex = WorldGen.PlaceChest(x, y, (ushort)Laugicality.Instance.TileType("ObsidiumChest"), false, 0);
 
             int specialItem = GetObsidiumLoot();
             obsidiumPosition++;
@@ -325,7 +325,7 @@ namespace Laugicality
 
         private static int GetObsidiumLoot()
         {
-            int[] obsidiumLoot = new int[] { Laugicality.instance.ItemType("Eruption"), Laugicality.instance.ItemType("FireDust"), Laugicality.instance.ItemType("CrystalizedMagma"), Laugicality.instance.ItemType("ObsidiumLily"), Laugicality.instance.ItemType("MagmaHeart"), Laugicality.instance.ItemType<Ragnashia>(), };
+            int[] obsidiumLoot = new int[] { Laugicality.Instance.ItemType("Eruption"), Laugicality.Instance.ItemType("FireDust"), Laugicality.Instance.ItemType("CrystalizedMagma"), Laugicality.Instance.ItemType("ObsidiumLily"), Laugicality.Instance.ItemType("MagmaHeart"), Laugicality.Instance.ItemType<Ragnashia>(), };
 
             if (obsidiumPosition < obsidiumLoot.GetLength(0))
                 return obsidiumLoot[obsidiumPosition];
@@ -349,7 +349,7 @@ namespace Laugicality
 
         private static int[] GetObsidiumPotionLoot()
         {
-            int[] potLoot = new int[] { Laugicality.instance.ItemType<DestructionPotion>(), Laugicality.instance.ItemType<IllusionPotion>(), Laugicality.instance.ItemType<ConjurationPotion>(), Laugicality.instance.ItemType<JumpBoostPotion>(), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
+            int[] potLoot = new int[] { Laugicality.Instance.ItemType<DestructionPotion>(), Laugicality.Instance.ItemType<IllusionPotion>(), Laugicality.Instance.ItemType<ConjurationPotion>(), Laugicality.Instance.ItemType<JumpBoostPotion>(), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
             int potPos = Main.rand.Next(potLoot.GetLength(0));
             int potCount = Main.rand.Next(2, 5);
             int[] pot = { 0, 0 };
@@ -380,7 +380,7 @@ namespace Laugicality
 
         private static int[] GetObsidiumMiscLoot()
         {
-            int[] mscLoot = new int[] { Laugicality.instance.ItemType("LavaGem"), Laugicality.instance.ItemType("ArcaneShard"), Laugicality.instance.ItemType("LavaGem"), Laugicality.instance.ItemType("RubrumDust"), Laugicality.instance.ItemType("AlbusDust"), Laugicality.instance.ItemType("VerdiDust") };
+            int[] mscLoot = new int[] { Laugicality.Instance.ItemType("LavaGem"), Laugicality.Instance.ItemType("ArcaneShard"), Laugicality.Instance.ItemType("LavaGem"), Laugicality.Instance.ItemType("RubrumDust"), Laugicality.Instance.ItemType("AlbusDust"), Laugicality.Instance.ItemType("VerdiDust") };
             int mscPos = Main.rand.Next(mscLoot.GetLength(0));
             int mscCount = Main.rand.Next(2, 6);
             int[] msc = { 0, 0 };

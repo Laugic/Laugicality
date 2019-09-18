@@ -7,11 +7,11 @@ using Laugicality.Etherial;
 using System.IO;
 using Terraria.UI;
 using System.Collections.Generic;
-using Laugicality.Focuses;
 using Laugicality.Items.Consumables;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
 using Terraria.Graphics.Shaders;
+using WebmilioCommons.Networking;
 
 namespace Laugicality
 {
@@ -24,11 +24,11 @@ namespace Laugicality
 
         internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility, restockNearby;
 
-        public static Laugicality instance;
         public static int zaWarudo = 0;
 
         public Laugicality()
         {
+            Instance = this;
 
             Properties = new ModProperties()
             {
@@ -142,7 +142,6 @@ namespace Laugicality
 
         public override void Load()
         {
-            instance = this;
             zaWarudo = 0;
 
             if (!Main.dedServ)
@@ -221,7 +220,8 @@ namespace Laugicality
 
         public override void Unload()
         {
-            instance = null;
+            Instance = null;
+
             MysticaUI.Unload();
             MysticaUserInterface = null;
         }
@@ -261,7 +261,9 @@ namespace Laugicality
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            int zTime = reader.ReadInt32();
+            NetworkPacketLoader.Instance.HandlePacket(reader, whoAmI);
+
+            /*int zTime = reader.ReadInt32();
             zaWarudo = zTime;
             Main.NewText(zTime.ToString(), 150, 50, 50);
 
@@ -277,7 +279,7 @@ namespace Laugicality
                 default:
                     ErrorLogger.Log("Laugicality: Unknown Message type: " + msgType);
                     break;
-            }
+            }*/
         }
 
         enum EnigmaMessageType : byte
@@ -289,6 +291,9 @@ namespace Laugicality
         {
             base.Close();
         }
+
+
+        public static Laugicality Instance { get; private set; }
 
         public UserInterface MysticaUserInterface { get; private set; }
         public LaugicalityUI MysticaUI { get; private set; }

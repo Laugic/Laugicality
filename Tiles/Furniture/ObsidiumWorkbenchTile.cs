@@ -1,5 +1,4 @@
-﻿using Laugicality.Items.Placeable;
-using Laugicality.Items.Placeable.Furniture;
+﻿using Laugicality.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -9,17 +9,17 @@ namespace Laugicality.NPCs.Etherial.BossFights
     {
         public bool bitherial = false;
         public bool etherial = true;
-        int _delay = 0;
-        int _shootDelay = 0;
-        int _index = 0;
-        Vector2 _targetPos;
+        private int _delay = 0;
+        private int _shootDelay = 0;
+        private int _index = 0;
+        private Vector2 _targetPos;
         public float tVel = 0f;
         public float vel = 0f;
         public float vMax = 10f;
         public float vAccel = .2f;
         public float vMag = 0f;
-        float _theta = 0;
-        int _targetType = 0;
+        private float _theta = 0;
+        private int _targetType = 0;
 
         public override void SetDefaults()
         {

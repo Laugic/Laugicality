@@ -2,8 +2,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Laugicality;
-using Laugicality.NPCs;
 using System;
 using Laugicality.Dusts;
 

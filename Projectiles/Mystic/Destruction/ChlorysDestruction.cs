@@ -1,11 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Laugicality;
-using Laugicality.NPCs;
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
 {

@@ -1,8 +1,4 @@
-﻿using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
+﻿using Terraria;
 
 namespace Laugicality.Items.Placeable
 {

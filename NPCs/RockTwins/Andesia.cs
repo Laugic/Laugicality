@@ -53,7 +53,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Andesia");
         }
 

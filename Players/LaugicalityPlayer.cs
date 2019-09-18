@@ -1,9 +1,7 @@
 using System;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Laugicality.Buffs;
-using Laugicality.Extensions;
 using Laugicality.Focuses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,10 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using Laugicality.NPCs;
-using Laugicality.SoulStones;
 using Laugicality.Items.Consumables.Potions;
-using Laugicality.NPCs.PreTrio;
-using Laugicality.Projectiles;
 using Laugicality.Dusts;
 using Laugicality.Items.Equipables;
 using Laugicality.Projectiles.Accessory;
@@ -90,6 +85,13 @@ namespace Laugicality
         public Vector2 shakeO;
         public bool shakeReset;
 
+        private Focus _focus;
+
+
+        public static LaugicalityPlayer Get() => Get(Main.LocalPlayer);
+        public static LaugicalityPlayer Get(Player player) => player.GetModPlayer<LaugicalityPlayer>();
+
+
         public override void SetupStartInventory(IList<Item> items)
         {
             MysticBurstDisabled = false;
@@ -115,7 +117,7 @@ namespace Laugicality
             ResetSoulStoneEffects();
 
             if (fullBysmal > 0)
-                fullBysmal -= 1; 
+                fullBysmal -= 1;
 
             if (shakeDur > 0)
             {
@@ -254,7 +256,7 @@ namespace Laugicality
 
                 if (NPC.downedBoss2)
                 {
-                    if(Main.rand.Next(3) == 0)
+                    if (Main.rand.Next(3) == 0)
                         caughtType = mod.ItemType("ObsidiumOre");
 
                     if (Main.rand.Next(4) == 0)
@@ -318,7 +320,7 @@ namespace Laugicality
             }
 
             CheckBysmalPowers();
-            
+
             if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessories();
         }
@@ -371,7 +373,7 @@ namespace Laugicality
                 yTemp = 0;
             }
         }
-        
+
 
         private void PostAccessories()
         {
@@ -419,11 +421,17 @@ namespace Laugicality
             CheckFanRight();
         }
 
+        public override void OnEnterWorld(Player player)
+        {
+            if (player.whoAmI == Main.myPlayer)
+                new LaugicalityPlayerSynchronizationPacket().Send();
+        }
+
         private void CheckVent()
         {
             if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("SteamVENT"))
             {
-                if(player.velocity.Y >= 0)
+                if (player.velocity.Y >= 0)
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
 
                 player.velocity.Y = -25;
@@ -483,7 +491,7 @@ namespace Laugicality
             else
                 _fanBoost = 0;
         }
-        
+
         private void CheckFanRight()
         {
             float hSpeed = player.velocity.X;
@@ -553,11 +561,12 @@ namespace Laugicality
             }
         }
 
-        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult)
+        public override void ModifyWeaponDamage(Item item, ref float add, ref float mult, ref float flat)
         {
             if (item.ammo == AmmoID.Snowball)
                 mult = mult * SnowDamage;
-            base.ModifyWeaponDamage(item, ref add, ref mult);
+
+            base.ModifyWeaponDamage(item, ref add, ref mult, ref flat);
         }
 
         public override TagCompound Save()
@@ -583,9 +592,9 @@ namespace Laugicality
                 {"MundusMaxPermaBoost", MundusMaxPermaBoost},
                 {"MysticBurstDisabled", MysticBurstDisabled},
                 {"BysmalAbsorbDisabled", BysmalAbsorbDisabled},
-                {"FocusName", FocusName},
+                { nameof(Focus), Focus != null ? Focus.UnlocalizedName : "" }
             };
-            tag.Add("Focus", Focus != null ? Focus.UnlocalizedName : "");
+
             return tag;
         }
 
@@ -619,20 +628,19 @@ namespace Laugicality
             MysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
             BysmalAbsorbDisabled = tag.GetBool("BysmalAbsorbDisabled");
             BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
-            FocusName = tag.GetString("FocusName");
 
             string focus = tag.GetString("Focus");
 
             if (!string.IsNullOrWhiteSpace(focus))
                 Focus = FocusManager.Instance[focus];
         }
-        
+
         public override void UpdateBiomes()
         {
             zoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
             etherialMusic = etherial;
         }
-        
+
         public override bool CustomBiomesMatch(Player other)
         {
             LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
@@ -797,7 +805,7 @@ namespace Laugicality
 
             if (EtherialPipes)
                 target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
-            
+
             if (target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult < DebuffMult)
                 target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult = DebuffMult;
         }
@@ -819,14 +827,14 @@ namespace Laugicality
                 DrawEtherialEffect(out r, out g, out b);
             }
 
-            if(EtherialTank)
+            if (EtherialTank)
             {
                 DrawEtherialTankSteam();
             }
 
-            if(FireTrail && Math.Abs(player.velocity.X) > 3)
+            if (FireTrail && Math.Abs(player.velocity.X) > 3)
             {
-                if(Main.rand.Next(12) == 0)
+                if (Main.rand.Next(12) == 0)
                     Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 2 - Main.rand.Next(4), Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodFireball>(), (int)(8 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
@@ -878,7 +886,7 @@ namespace Laugicality
 
         public void DustBurst(int dustType, int amount)
         {
-            for(int i = 0; i < amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 Dust.NewDust(player.position + player.velocity, player.width, player.height, dustType, 0f, 0f);
             }
@@ -973,7 +981,7 @@ namespace Laugicality
                         break;
                 }
 
-                if(!mysticaPotion)
+                if (!mysticaPotion)
                 {
                     foreach (Item item in player.inventory)
                     {
@@ -1057,7 +1065,7 @@ namespace Laugicality
         }
 
         private void FindChests(ref List<Item> items, ref List<int> types, ref List<int> positions)
-        {   
+        {
             foreach (Chest chest in Main.chest)
             {
                 if (chest == null)
@@ -1078,7 +1086,7 @@ namespace Laugicality
                 {
                     while (chestItem.stack > 1 && FindFirst(types, items, chestItem).stack < FindFirst(types, items, chestItem).maxStack)
                     {
-                        if((chestItem.stack - 1) - (FindFirst(types, items, chestItem).maxStack - FindFirst(types, items, chestItem).stack) >= 0)
+                        if ((chestItem.stack - 1) - (FindFirst(types, items, chestItem).maxStack - FindFirst(types, items, chestItem).stack) >= 0)
                         {
                             chestItem.stack -= (FindFirst(types, items, chestItem).maxStack - FindFirst(types, items, chestItem).stack);
                             FindFirst(types, items, chestItem).stack = FindFirst(types, items, chestItem).maxStack;
@@ -1158,7 +1166,7 @@ namespace Laugicality
             if ((AndioChestguard || AndioChestplate || AnDioCapacityEffect) && player.statLife < player.statLifeMax2 / 4 && zCool == false)
                 ZaWarudo();
         }
-        
+
         private void AccessoryEffectOnHurt()
         {
             if (Carapace)
@@ -1170,7 +1178,7 @@ namespace Laugicality
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
 
-            if(Laugicality.zaWarudo < zaWarudoDuration)
+            if (Laugicality.zaWarudo < zaWarudoDuration)
             {
                 Laugicality.zaWarudo = zaWarudoDuration;
                 LaugicalGlobalNPCs.zTime = zaWarudoDuration;
@@ -1342,7 +1350,7 @@ namespace Laugicality
         public int Connected { get; set; }
 
         public int Verdi { get; set; }
-        
+
         #endregion
 
         #region Summons
@@ -1367,7 +1375,21 @@ namespace Laugicality
         // TODO Change this to a class.
         #region Soul Stone
 
-        public Focus Focus { get; set; }
+        public Focus Focus
+        {
+            get => _focus;
+            set
+            {
+                if (_focus == value)
+                    return;
+
+                _focus = value;
+
+                if (Main.myPlayer == player.whoAmI)
+                    new FocusChangedPacket().Send();
+            }
+        }
+
         public int Class { get; set; }
 
         public bool SoulStoneVisuals { get; set; } = true;

@@ -17,7 +17,7 @@ namespace Laugicality.NPCs.Obsidium
         int _attackDelay = 0;
         public override void SetDefaults()
         {
-            LaugicalityVars.ENPCs.Add(npc.type);
+            LaugicalityVars.eNPCs.Add(npc.type);
             _attackDelay = 0;
             vMag = 0f;
             vMax = 2f;

@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Laugicality.Items;
 using Terraria;
 using Terraria.ModLoader;
 
-
-namespace Laugicality
+namespace Laugicality.Items
 {
     public abstract class SteamItem : LaugicalityItem
     {
@@ -40,6 +38,12 @@ namespace Laugicality
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
             damage = (int)(damage * modPlayer.steamDamage);
         }
+
+        public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(player);
+        }
+
         /*
         //Steam item
         //VV

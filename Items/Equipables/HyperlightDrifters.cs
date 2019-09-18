@@ -1,14 +1,10 @@
 ﻿using Laugicality.Dusts;
-using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
-using Laugicality.Projectiles;
 using Laugicality.Projectiles.Accessory;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {

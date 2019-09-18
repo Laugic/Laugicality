@@ -1,10 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Laugicality;
-using Laugicality.NPCs;
+﻿using Terraria;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {

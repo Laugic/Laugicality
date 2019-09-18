@@ -11,10 +11,12 @@ namespace Laugicality.NPCs.RockTwins
         public int laserBallNum = 0;
         public static int life = 2;
         public bool zImmune = true;
+
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Laser Ball"); 
 		}
+
         public override void SetDefaults()
         {
             zImmune = true;
@@ -44,12 +46,14 @@ namespace Laugicality.NPCs.RockTwins
             npc.netAlways = true;
             npc.scale = 2f;
         }
+
 		public override bool CheckActive()
 		{
 			if(NPC.CountNPCS(mod.NPCType<AnDio3>()) < 1)
 				return false;
 			return true;
 		}
+
         public override void OnHitPlayer(Player player, int damage, bool crit)
 		{
 			//player.AddBuff(BuffID.Shadowflame, 300, true);
@@ -59,6 +63,7 @@ namespace Laugicality.NPCs.RockTwins
 		{
 			return Color.White;
 		}
+
 		public override void AI()
 		{
             if (npc.life > life)
@@ -83,6 +88,5 @@ namespace Laugicality.NPCs.RockTwins
                 Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Blue"), 0f, 0f);
             }
 		}
-		
     }
 }

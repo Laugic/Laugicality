@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using System.IO;
 
 namespace Laugicality.NPCs.Etherial.BossFights
 {

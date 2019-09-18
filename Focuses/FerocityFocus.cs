@@ -1,10 +1,6 @@
 ﻿using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -12,35 +8,35 @@ namespace Laugicality.Focuses
 {
     public sealed class FerocityFocus : Focus
     {
-        public FerocityFocus() : base("FerocityFocus", "Ferocity", Color.Red, new FocusEffect[]
+        public FerocityFocus() : base(LaugicalityPlayer.FOCUS_NAME_FEROCITY, "Ferocity", Color.Red, new FocusEffect[]
         {
-            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedKingSlime", "Attacks inflict 'Slimed'") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
-            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedEyeOfCthulhu", "+5% Damage at Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
-            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDuneSharkron", "Increased damage the lower your life is") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
-            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWorldEvilBoss", "Gain 'Blood Rage' when struck, increasing damage for a time.") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
-            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedHypothema", "Attacks inflict 'Frostburn'") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
-            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedQueenBee", "Attacks inflict 'Poison', Thorns effect") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
-            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedRagnar", "Increased damage for a time after submerging in Lava") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
-            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletron", "+8% Crit Chance") { overrideColor = new Color(0x83, 0x91, 0x92) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedAnDio", "Increased damage while Time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
-            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedWallOfFleshEffect", "+8% Damage. Attacks inflict 'On Fire'") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
-            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedTwinsEffect", "Attacks inflict 'Cursed Flame'") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
-            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDestroyerEffect", "Enemies that collide with you take 200% of the damage dealt to you") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
-            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied twice") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
-            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedAnnihilator", "Pressing the Ability Key makes you deal 25% more damage and take 80% more damage. Can be stacked up to 2 times, then resets to 0.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSlybertron", "+10% Damage when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedSteamTrain", "The faster you move, the higher your damage") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
-            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedPlantera", "Attacks inflict 'Jungle Plague'") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
-            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedGolem", "The longer you stand still without moving while a boss is alive, the higher your damage.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
-            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedDukeFishron", "+10% Damage when in liquid") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
-            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedEtheria", "'+20% Damage in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
-            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.instance, "FerocityFocusDownedMoonLord", "Your Ability now makes you deal 100% more damage and makes you take 200% more damage per stack") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
+            new FocusEffect(p => NPC.downedSlimeKing, DownedKingSlimeEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedKingSlime", "Attacks inflict 'Slimed'") { overrideColor = new Color(0x2B, 0x9D, 0xE9) }),
+            new FocusEffect(p => NPC.downedBoss1, DownedEyeOfCthulhuEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedEyeOfCthulhu", "+5% Damage at Night") { overrideColor = new Color(0xB0, 0x3A, 0x2E) }),
+            new FocusEffect(p => LaugicalityWorld.downedDuneSharkron, DownedDuneSharkronEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedDuneSharkron", "Increased damage the lower your life is") { overrideColor = new Color(0xF4, 0xE6, 0x92) }),
+            new FocusEffect(p => NPC.downedBoss2, DownedWorldEvilBossEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedWorldEvilBoss", "Gain 'Blood Rage' when struck, increasing damage for a time.") { overrideColor = new Color(0x88, 0x4E, 0xA0)}),
+            new FocusEffect(p => LaugicalityWorld.downedHypothema, DownedHypothemaEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedHypothema", "Attacks inflict 'Frostburn'") { overrideColor = new Color(0x98, 0xE1, 0xEA) }),
+            new FocusEffect(p => NPC.downedQueenBee, DownedQueenBeeEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedQueenBee", "Attacks inflict 'Poison', Thorns effect") { overrideColor = new Color(0xF3, 0x9C, 0x12)}),
+            new FocusEffect(p => LaugicalityWorld.downedRagnar, DownedRagnarEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedRagnar", "Increased damage for a time after submerging in Lava") { overrideColor = new Color(0xED, 0x4B, 0x23) }),
+            new FocusEffect(p => NPC.downedBoss3, DownedSkeletronEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedSkeletron", "+8% Crit Chance") { overrideColor = new Color(0x83, 0x91, 0x92) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnDio, DownedAnDioEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedAnDio", "Increased damage while Time is stopped") { overrideColor = new Color(0x42, 0x86, 0xF4) }),
+            new FocusEffect(p => Main.hardMode, DownedWallOfFleshEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedWallOfFleshEffect", "+8% Damage. Attacks inflict 'On Fire'") { overrideColor = new Color(0xAC, 0x39, 0x5A) }),
+            new FocusEffect(p => NPC.downedMechBoss2, DownedTwinsEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedTwinsEffect", "Attacks inflict 'Cursed Flame'") { overrideColor = new Color(0x2B, 0xD3, 0x4D) }),
+            new FocusEffect(p => NPC.downedMechBoss1, DownedDestroyerEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedDestroyerEffect", "Enemies that collide with you take 200% of the damage dealt to you") { overrideColor = new Color(0xDF, 0x0A, 0x0A) }),
+            new FocusEffect(p => NPC.downedMechBoss3, DownedSkeletronPrimeEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedSkeletronPrimeEffect", "Half of your global damage modifier is applied twice") { overrideColor = new Color(0xAA, 0xAA, 0xAA) }),
+            new FocusEffect(p => LaugicalityWorld.downedAnnihilator, DownedAnnihilatorEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedAnnihilator", "Pressing the Ability Key makes you deal 25% more damage and take 80% more damage. Can be stacked up to 2 times, then resets to 0.") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSlybertron, DownedSlybertronEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedSlybertron", "+10% Damage when you have Potion Sickness") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => LaugicalityWorld.downedSteamTrain, DownedSteamTrainEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedSteamTrain", "The faster you move, the higher your damage") { overrideColor = new Color(0xF9, 0xEB, 0x90) }),
+            new FocusEffect(p => NPC.downedPlantBoss, DownedPlanteraEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedPlantera", "Attacks inflict 'Jungle Plague'") { overrideColor = new Color(0x81, 0xD8, 0x79) }),
+            new FocusEffect(p => NPC.downedGolemBoss, DownedGolemEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedGolem", "The longer you stand still without moving while a boss is alive, the higher your damage.") { overrideColor = new Color(0xCC, 0x88, 0x37) }),
+            new FocusEffect(p => NPC.downedFishron, DownedDukeFishronEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedDukeFishron", "+10% Damage when in liquid") { overrideColor = new Color(0x37, 0xC4, 0xCC) }),
+            new FocusEffect(p => LaugicalityWorld.downedEtheria || LaugicalityWorld.downedTrueEtheria, DownedEtheriaEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedEtheria", "'+20% Damage in the Etherial") { overrideColor = new Color(0x85, 0xCB, 0xF7) }),
+            new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "FerocityFocusDownedMoonLord", "Your Ability now makes you deal 100% more damage and makes you take 200% more damage per stack") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.instance, "FerocityFocusCurse1", "-5% Damage") { overrideColor = Color.Red }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.instance, "FerocityFocusCurse2", "Your critical strike chance is halved") { overrideColor = Color.Red }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.instance, "FerocityFocusCurse3", "-20% Damage when above 50% Life") { overrideColor = Color.Red }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.instance, "FerocityFocusCurse4", "You cannot inflict special debuffs") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse1", "-5% Damage") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse2", "Your critical strike chance is halved") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse3", "-20% Damage when above 50% Life") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse4", "You cannot inflict special debuffs") { overrideColor = Color.Red }),
         })
         {
 
@@ -81,7 +77,7 @@ namespace Laugicality.Focuses
         private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.lavaWet)
-                laugicalityPlayer.player.AddBuff(Laugicality.instance.BuffType<LavaRegen>(), 15 * 60);
+                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<LavaRegen>(), 15 * 60);
         }
 
         private static void DownedSkeletronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

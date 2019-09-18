@@ -1,5 +1,3 @@
-using Terraria.ModLoader;
-
 namespace Laugicality.Items.Loot
 {
     public class FrigidEssence : LaugicalityItem

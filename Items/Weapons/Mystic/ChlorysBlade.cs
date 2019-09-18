@@ -1,9 +1,5 @@
-﻿using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
-using Terraria;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Mystic.Destruction;
 using Laugicality.Projectiles.Mystic.Illusion;
 using Laugicality.Projectiles.Mystic.Conjuration;

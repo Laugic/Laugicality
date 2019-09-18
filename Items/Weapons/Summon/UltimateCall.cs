@@ -1,9 +1,7 @@
 using System;
-using Laugicality.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Items.Weapons.Summon

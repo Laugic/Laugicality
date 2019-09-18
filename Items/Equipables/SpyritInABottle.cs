@@ -1,6 +1,5 @@
 ﻿using Laugicality.Items.Consumables.Potions;
 using Laugicality.Items.Loot;
-using Laugicality.Items.Materials;
 using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
