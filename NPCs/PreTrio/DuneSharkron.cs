@@ -85,13 +85,14 @@ namespace Laugicality.NPCs.PreTrio
                 return;
             Enrage();
             PickMovement();
+            CheckBounce();
             MakeDust();
             npc.netUpdate = true;
         }
 
         private void PickMovement()
         {
-            switch(MovementPhase)
+            switch (MovementPhase)
             {
                 case 1:
                     DashAI();
@@ -178,6 +179,10 @@ namespace Laugicality.NPCs.PreTrio
                     npc.velocity = npc.DirectionTo(player.Center) * 25;
                     if (MovementPhaseSteps > 4)
                         MovementPhase = ChangeMovementPhase(MovementPhase);
+                    if (npc.velocity.Y > 16)
+                        npc.velocity.Y = 16;
+                    else if (npc.velocity.Y < -16)
+                        npc.velocity.Y = -16;
                 }
             }
             else
@@ -199,6 +204,10 @@ namespace Laugicality.NPCs.PreTrio
                     npc.velocity = npc.DirectionTo(player.Center) * 25;
                     if (MovementPhaseSteps > 4)
                         MovementPhase = ChangeMovementPhase(MovementPhase);
+                    if (npc.velocity.Y > 16)
+                        npc.velocity.Y = 16;
+                    else if(npc.velocity.Y < -16)
+                        npc.velocity.Y = -16;
                 }
             }
 
@@ -207,8 +216,10 @@ namespace Laugicality.NPCs.PreTrio
             else
                 npc.velocity.Y += .4f;
 
-            if (Math.Abs(npc.velocity.Y) > 20)
-                npc.velocity.Y *= 98f;
+            if (npc.velocity.Y > 16)
+                npc.velocity.Y = 16;
+            else if (npc.velocity.Y < -16)
+                npc.velocity.Y = -16;
 
             if (npc.Center.Y < player.Center.Y)
                 CrystalRain();
@@ -364,6 +375,13 @@ namespace Laugicality.NPCs.PreTrio
                 float mag = Main.rand.NextFloat() * 3 + 3;
                 Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
             }
+        }
+
+        private void CheckBounce()
+        {
+            Player player = Main.player[npc.target];
+            if (npc.position.Y > player.position.Y + 800)
+                npc.velocity.Y = -16;
         }
 
         private float MoveToTarget(float mag)
