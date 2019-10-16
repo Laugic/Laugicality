@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Melee
         {
             float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f/180f;
             float mag = 600;
-            Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), mod.ProjectileType("DawnStar"), damage, 3, Main.myPlayer);
+            Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), mod.ProjectileType("DawnStar"), damage, 3, Main.myPlayer);
             return true;
         }
 

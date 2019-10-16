@@ -27,8 +27,8 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void SetDefaults()
         {
-            npc.width = 160;
-            npc.height = 70;
+            npc.width = 150;
+            npc.height = 60;
             npc.damage = 35;
             npc.defense = 12;
             npc.aiStyle = 103;
@@ -44,7 +44,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron");
             bossBag = mod.ItemType("DuneSharkronTreasureBag");
-            npc.scale = 1.5f;
+            npc.scale = 1.25f;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

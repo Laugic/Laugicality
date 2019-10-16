@@ -15,7 +15,7 @@ namespace Laugicality.Items.Weapons.Melee
 
 		public override void SetDefaults()
 		{
-            item.scale *= 1.75f;
+            item.scale *= 1.25f;
 			item.damage = 66;
 			item.melee = true;
 			item.width = 64;

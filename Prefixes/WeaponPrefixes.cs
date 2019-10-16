@@ -13,6 +13,7 @@ namespace Laugicality.Prefixes
             damageMult = 1.33333f;
             useTimeMult = 1.15f;
             shootSpeedMult = 1.15f;
+            critBonus = 15;
         }
     }
     public class KnowledgeablePrefix : ModPrefix

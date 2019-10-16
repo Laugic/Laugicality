@@ -10,12 +10,12 @@ namespace Laugicality.Items.Weapons.Melee
         public override void SetDefaults()
         {
             item.scale = 1f;
-            item.damage = 100;
+            item.damage = 80;
             item.melee = true;
             item.width = 60;
             item.height = 60;
-            item.useTime = 35;
-            item.useAnimation = 35;
+            item.useTime = 25;
+            item.useAnimation = 25;
             item.useStyle = 5;
             item.knockBack = 6;
             item.value = 10000;

@@ -19,7 +19,6 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.scale *= 1.2f;
             item.damage = 35;
             item.ranged = true;
             item.width = 44;
@@ -52,12 +51,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override bool ConsumeAmmo(Player player)
         {
-            return Main.rand.NextFloat() >= .50f;
-        }
-
-        public override void HoldItem(Player player)
-        {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            return Main.rand.NextFloat() >= .33f;
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

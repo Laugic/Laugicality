@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,13 +16,13 @@ namespace Laugicality.Items.Weapons.Magic
 
 		public override void SetDefaults()
 		{
-			item.damage = 24;
+			item.damage = 35;
 			item.magic = true;
-			item.mana = 10;
+			item.mana = 20;
 			item.width = 28;
 			item.height = 30;
-			item.useTime = 26;
-			item.useAnimation = 26;
+			item.useTime = 90;
+			item.useAnimation = 90;
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 5;
@@ -29,17 +30,17 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("Sandball");
-			item.shootSpeed = 12f;
+			item.shoot = mod.ProjectileType<BookSandstormBottom>();
+			item.shootSpeed = 4f;
 		}
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Book, 1);
-            recipe.AddIngredient(169, 16);
-			recipe.AddIngredient(null, "AncientShard", 1);
-            recipe.AddTile(101);
+            recipe.AddIngredient(ItemID.FossilOre, 6);
+            recipe.AddIngredient(null, "AncientShard", 1);
+            recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
