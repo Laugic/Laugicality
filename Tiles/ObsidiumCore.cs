@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +18,7 @@ namespace Laugicality.Tiles
             mineResist = .5f;
             minPick = 50;
             dustType = ModContent.DustType<Magma>();
-            drop = ModContent.ItemType("ObsidiumCore");
+            drop = ModContent.ItemType<Items.Placeable.ObsidiumCore>();
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)

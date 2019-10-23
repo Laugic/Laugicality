@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using System.IO;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Placeable;
 
 namespace Laugicality.NPCs.Obsidium
 {
@@ -114,9 +116,9 @@ namespace Laugicality.NPCs.Obsidium
 		{
 			minLength = 6;
 			maxLength = 8;
-			tailType = mod.NPCType<MagmatipedeTail>();
-			bodyType = mod.NPCType<MagmatipedeBody>();
-			headType = mod.NPCType<MagmatipedeHead>();
+			tailType = ModContent.NPCType<MagmatipedeTail>();
+			bodyType = ModContent.NPCType<MagmatipedeBody>();
+			headType = ModContent.NPCType<MagmatipedeHead>();
 			speed = 18.5f;
 			turnSpeed = 0.2f;
             npc.buffImmune[24] = true;
@@ -126,9 +128,9 @@ namespace Laugicality.NPCs.Obsidium
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedRagnar && Main.rand.Next(2) == 0)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumChunk"));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ObsidiumChunk>());
             else
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumOre"), Main.rand.Next(2, 5));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ObsidiumOre>(), Main.rand.Next(2, 5));
         }
     }
 

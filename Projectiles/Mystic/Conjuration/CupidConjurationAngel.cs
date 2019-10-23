@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Dusts;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -68,7 +70,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             //Movement
             Player player = Main.player[projectile.owner];
             if (index == 0)
-                index = player.ownedProjectileCounts[ModContent.ProjectileType("CupidConjurationAngel")];
+                index = player.ownedProjectileCounts[ModContent.ProjectileType<CupidConjurationAngel>()];
             projectile.tileCollide = false;
             theta += (float)(Math.PI / 120);
             float mag = 48;
@@ -102,7 +104,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("CupidArrow"), (int)(projectile.damage / 1f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<CupidArrow>(), (int)(projectile.damage / 1f), 3, Main.myPlayer);
                     }
                     reload = 0;
                 }
@@ -110,7 +112,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("CupidHoming"), (int)(projectile.damage / 1f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<CupidHoming>(), (int)(projectile.damage / 1f), 3, Main.myPlayer);
                     }
                     reload = 0;
                 }
@@ -118,13 +120,13 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("CupidBurst"), (int)(projectile.damage / 1f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<CupidBurst>(), (int)(projectile.damage / 1f), 3, Main.myPlayer);
                     }
                     reload = 0;
                 }
             }
             if(Main.rand.Next(8) == 0)
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Pink"), 0, 0);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Pink>(), 0, 0);
         }
     }
 }

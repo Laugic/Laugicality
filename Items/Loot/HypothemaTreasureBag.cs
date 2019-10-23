@@ -1,3 +1,4 @@
+using Laugicality.Items.Materials;
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
@@ -33,9 +34,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(ModContent.ItemType("FrostShard"), Main.rand.Next(2,4));
-            player.QuickSpawnItem(ModContent.ItemType("FrostEssence"), 1);
-            player.QuickSpawnItem(ModContent.ItemType("ChilledBar"), Main.rand.Next(22, 36));
+            player.QuickSpawnItem(ModContent.ItemType<FrostShard>(), Main.rand.Next(2,4));
+            player.QuickSpawnItem(ModContent.ItemType<FrostEssence>(), 1);
+            player.QuickSpawnItem(ModContent.ItemType<ChilledBar>(), Main.rand.Next(22, 36));
             int ran = Main.rand.Next(1, 7);
             if (ran == 1) player.QuickSpawnItem(ItemID.IceBoomerang, 1);
             if (ran == 2) player.QuickSpawnItem(ItemID.IceBlade, 1);
@@ -51,6 +52,6 @@ namespace Laugicality.Items.Loot
 
         }
 
-        public override int BossBagNPC => mod.NPCType<Hypothema>();
+        public override int BossBagNPC => ModContent.NPCType<Hypothema>();
     }
 }

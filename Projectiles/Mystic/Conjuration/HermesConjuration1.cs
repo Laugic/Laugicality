@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -19,7 +20,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<HermesDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             projectile.tileCollide = true;
         }
 
@@ -28,7 +29,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             for (int i = 0; i < 4; i++)
             {
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), ModContent.ProjectileType("HermesConjurationHoming"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), ModContent.ProjectileType<HermesConjurationHoming>(), projectile.damage, 3f, Main.myPlayer);
             }
             projectile.Kill();
             Main.PlaySound(SoundID.Item10, projectile.position);
@@ -40,7 +41,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             for (int i = 0; i < 4; i++)
             {
                 if (projectile.owner == Main.myPlayer)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), ModContent.ProjectileType("HermesConjurationHoming"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4 + Main.rand.Next(8), -4 + Main.rand.Next(8), ModContent.ProjectileType<HermesConjurationHoming>(), projectile.damage, 3f, Main.myPlayer);
             }
             projectile.Kill();
             Main.PlaySound(SoundID.Item10, projectile.position);

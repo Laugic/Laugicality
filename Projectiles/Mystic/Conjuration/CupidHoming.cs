@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -60,7 +61,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 }
             }
             if(Main.rand.Next(4) == 0)
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Pink"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Pink>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
     }
 }

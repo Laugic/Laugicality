@@ -23,7 +23,7 @@ namespace Laugicality.Items.Armor
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType("FrigidChestplate") && legs.type == ModContent.ItemType("FrigidLeggings");
+			return body.type == ModContent.ItemType<FrigidChestplate>() && legs.type == ModContent.ItemType<FrigidLeggings>();
         }
 
 

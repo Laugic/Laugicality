@@ -20,7 +20,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("Daggoritus");  
+            item.shoot = ModContent.ProjectileType<Projectiles.Thrown.DaggoritusProjectile>();  
             item.shootSpeed = 10f;     
             item.useTurn = true;
             item.maxStack = 1;       

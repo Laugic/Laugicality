@@ -1,3 +1,5 @@
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -36,13 +38,13 @@ namespace Laugicality.NPCs.RockTwins
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Blue"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Blue>(), 0f, 0f);
             projectile.velocity *= 1.05f;
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(ModContent.BuffType("ForHonor"), 300, true);
+            player.AddBuff(ModContent.BuffType<ForHonor>(), 300, true);
         }
 
     }

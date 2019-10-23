@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -24,7 +26,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 300;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;
-            buffID = ModContent.BuffType("Spooked");
+            buffID = ModContent.BuffType<SpookedBuff>();
         }
 
 		public override Color? GetAlpha(Color lightColor)
@@ -51,7 +53,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			timer++;
 			if (timer > 8)
 			{
-				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, -1f), ModContent.ProjectileType("HallowsEveIllusion2"), (int)(projectile.damage * 0.35f), 1f, Main.myPlayer);
+				Projectile.NewProjectile(projectile.position.X, projectile.position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, -1f), ModContent.ProjectileType<HallowsEveIllusion2>(), (int)(projectile.damage * 0.35f), 1f, Main.myPlayer);
 				timer = 0;
 			}
         }

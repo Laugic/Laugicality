@@ -1,4 +1,5 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Melee;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("Borealis");
+            item.shoot = ModContent.ProjectileType<Borealis>();
             item.shootSpeed = 18f;
         }
 
@@ -46,9 +47,9 @@ namespace Laugicality.Items.Weapons.Melee
         {
             if(!LaugicalityVars.ENPCs.Contains(target.type) && !LaugicalityVars.etherial.Contains(target.type) && target.damage > 0 && target.boss == false)
             {
-                target.GetGlobalNPC<EtherialGlobalNPC>(mod).etherial = true;
+                target.GetGlobalNPC<EtherialGlobalNPC>().etherial = true;
             }
-            target.AddBuff(ModContent.BuffType("Frostbite"), 2 * 60);
+            target.AddBuff(ModContent.BuffType<Frostbite>(), 2 * 60);
         }*/
     }
 }

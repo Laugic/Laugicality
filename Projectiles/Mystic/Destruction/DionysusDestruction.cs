@@ -34,7 +34,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 		{
 			if (Main.myPlayer == projectile.owner)
 			{
-               Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, ModContent.ProjectileType("DionysusExplosion"), (int)projectile.damage, 3f, Main.myPlayer);
+               Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0f, 0f, ModContent.ProjectileType<DionysusExplosion>(), (int)projectile.damage, 3f, Main.myPlayer);
 			}
 		}
     }

@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -15,14 +17,14 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.friendly = true;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
-            buffID = ModContent.BuffType("Frigid");
+            buffID = ModContent.BuffType<Frigid>();
             baseDuration = 2 * 60;
         }
 
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Frost>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
 

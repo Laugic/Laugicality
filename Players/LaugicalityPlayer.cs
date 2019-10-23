@@ -21,6 +21,10 @@ using Laugicality.Projectiles.Accessory;
 using Laugicality.Projectiles.Magic;
 using Laugicality.Projectiles.Mystic.Burst;
 using Laugicality.Projectiles.SoulStone;
+using BrassFAN = Laugicality.Tiles.BrassFAN;
+using BrassFANRight = Laugicality.Tiles.BrassFANRight;
+using BrassRING = Laugicality.Tiles.BrassRING;
+using SteamVENT = Laugicality.Tiles.SteamVENT;
 
 namespace Laugicality
 {
@@ -435,7 +439,7 @@ namespace Laugicality
 
         private void CheckVent()
         {
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("SteamVENT"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<SteamVENT>())
             {
                 if (player.velocity.Y >= 0)
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
@@ -450,7 +454,7 @@ namespace Laugicality
             float minVSpeed = 10;
             float maxVSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassRING") && vSpeed < 0)
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassRING>() && vSpeed < 0)
             {
                 if (_ringBoost == 0 && Math.Abs(player.velocity.Y) > 1)
                 {
@@ -477,7 +481,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassFAN"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFAN>())
             {
                 if (_fanBoost == 0)
                 {
@@ -504,7 +508,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassFANRight"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFAN>())
             {
                 if (_fanBoost == 0)
                 {
@@ -528,11 +532,11 @@ namespace Laugicality
         /*
         private void CheckRepCore()
         {
-            if (Main.tile[(int)(player.Center.X / 16 + player.velocity.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("RepulsionCore") && Math.Abs(player.velocity.X) > 4)
+            if (Main.tile[(int)(player.Center.X / 16 + player.velocity.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<RepulsionCore>() && Math.Abs(player.velocity.X) > 4)
             {
                 player.velocity.X = -player.velocity.X;
             }
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16 + player.velocity.Y / 16)].type == ModContent.TileType("RepulsionCore") && Math.Abs(player.velocity.Y) > 4)
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16 + player.velocity.Y / 16)].type == ModContent.TileType<RepulsionCore>() && Math.Abs(player.velocity.Y) > 4)
             {
                 player.velocity.Y = -player.velocity.Y;
             }

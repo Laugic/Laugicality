@@ -27,7 +27,7 @@ namespace Laugicality.Projectiles.Melee
             {
                 delay = 4;
                 if(Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 48, ModContent.ProjectileType("HolyStrike"), (int)(projectile.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, 0, 48, ModContent.ProjectileType<HolyStrike>(), (int)(projectile.damage), 3, Main.myPlayer);
             }
         }
 	}

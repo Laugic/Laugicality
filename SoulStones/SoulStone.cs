@@ -36,7 +36,7 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(tooltips);
-            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
 
             if (laugicalityPlayer.Focus == null)
             {
@@ -71,7 +71,7 @@ namespace Laugicality.SoulStones
 
         private static void GetCurseTooltips(List<TooltipLine> tooltips)
         {
-            LaugicalityPlayer laugicalityPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
 
             for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
             {
@@ -115,7 +115,7 @@ namespace Laugicality.SoulStones
 
         private static void GetCurseEffects(Player player, bool hideVisual)
         {
-            LaugicalityPlayer laugicalityPlayer = player.GetModPlayer<LaugicalityPlayer>(Laugicality.Instance);
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(player);
 
             for (int i = 0; i < LaugicalityWorld.GetCurseCount() && i < laugicalityPlayer.Focus.CursesCount; i++)
             {
@@ -141,7 +141,7 @@ namespace Laugicality.SoulStones
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeCrystal);
             recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 10);
-            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
+            recipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

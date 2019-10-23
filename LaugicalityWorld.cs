@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -209,7 +210,7 @@ namespace Laugicality
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            obsidiumTiles = tileCounts[56] + tileCounts[ModContent.TileType<ObsidiumRock>()] +  tileCounts[ModContent.TileType("Lycoris")] + tileCounts[ModContent.TileType("Radiata")];
+            obsidiumTiles = tileCounts[56] + tileCounts[ModContent.TileType<Tiles.ObsidiumRock>()] +  tileCounts[ModContent.TileType<Lycoris>()] + tileCounts[ModContent.TileType<Tiles.Radiata>()];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

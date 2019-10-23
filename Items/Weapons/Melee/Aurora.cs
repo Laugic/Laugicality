@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("Aurora");
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.AuroraProjectile>();
             item.shootSpeed = 16f;
             item.useTurn = true;
             item.maxStack = 1;

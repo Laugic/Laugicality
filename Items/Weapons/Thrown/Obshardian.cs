@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Weapons.Thrown
             //item.reuseDelay = 17;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("ObshardianP");  
+            item.shoot = ModContent.ProjectileType<ObshardianP>();  
             item.shootSpeed = 16f;     
             item.useTurn = true;
             item.maxStack = 999;       

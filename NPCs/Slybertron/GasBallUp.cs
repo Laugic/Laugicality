@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
@@ -38,7 +39,7 @@ namespace Laugicality.NPCs.Slybertron
             delay += 1;
             if(delay == 30)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 8, ModContent.ProjectileType("GasBallDown"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 8, ModContent.ProjectileType<GasBallDown>(), damage, 3f, Main.myPlayer);
                 delay = 0;
             }
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), 0f, 0f);
@@ -47,7 +48,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.electroShockHits += 1;
-            int debuff = ModContent.BuffType("Steamy");
+            int debuff = ModContent.BuffType<Steamy>();
             if (debuff >= 0)
             {
                 player.AddBuff(debuff, 90, true);

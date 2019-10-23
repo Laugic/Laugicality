@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Dusts;
+using Laugicality.Items.Placeable;
 
 namespace Laugicality.Tiles
 {
@@ -21,7 +22,7 @@ namespace Laugicality.Tiles
             minPick = 225;
             soundType = 21;
             dustType = ModContent.DustType<EtherialDust>();
-            drop = ModContent.ItemType("Bysmal");
+            drop = ModContent.ItemType<Bysmal>();
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)

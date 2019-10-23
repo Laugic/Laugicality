@@ -1,3 +1,4 @@
+using Laugicality.Items.Useables;
 using Laugicality.NPCs.RockTwins;
 using Terraria;
 using Terraria.ID;
@@ -29,11 +30,11 @@ namespace Laugicality.Items.Loot
         
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(ModContent.ItemType("DioritusCore"), Main.rand.Next(2, 4));
-            player.QuickSpawnItem(ModContent.ItemType("AndesiaCore"), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(ModContent.ItemType<DioritusCore>(), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(ModContent.ItemType<AndesiaCore>(), Main.rand.Next(2, 4));
             player.QuickSpawnItem(3081, Main.rand.Next(10, 31));
             player.QuickSpawnItem(3086, Main.rand.Next(10, 31));
-            player.QuickSpawnItem(ModContent.ItemType("ZaWarudoWatch"), 1);
+            player.QuickSpawnItem(ModContent.ItemType<ZaWarudoWatch>(), 1);
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
 
             int anDioItem = 0;
@@ -62,6 +63,6 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(anDioItem, 1);
         }
 
-        public override int BossBagNPC => mod.NPCType<AnDio3>();
+        public override int BossBagNPC => ModContent.NPCType<AnDio3>();
     }
 }

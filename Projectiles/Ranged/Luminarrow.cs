@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles.Ranged
 {
@@ -32,7 +33,7 @@ namespace Laugicality.Projectiles.Ranged
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<White>(), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
             if (!stopped)
             {
                 projectile.velocity.X *= .92f;

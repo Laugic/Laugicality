@@ -1,3 +1,6 @@
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -44,11 +47,11 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 if(Main.rand.Next(2) == 0)
                 {
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("ZuesBoltDestruction2"), damage, 3f, player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<ZuesBoltDestruction2>(), damage, 3f, player.whoAmI, 0f, 0f);
                 }
                 else
                 {
-                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("ZuesBoltDestruction1"), damage, 3f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<ZuesBoltDestruction1>(), damage, 3f, player.whoAmI, 0f, 0f);
                 }
             }
             if (modPlayer.MysticMode == 3)
@@ -77,7 +80,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType("ZuesBoltIllusion1");
+            item.shoot = ModContent.ProjectileType<ZuesBoltIllusion1>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -90,7 +93,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("HallowsEveConjuration1");
+            item.shoot = ModContent.ProjectileType<HallowsEveConjuration1>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

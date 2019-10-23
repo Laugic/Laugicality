@@ -1,3 +1,7 @@
+using Laugicality.Dusts;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Placeable;
+using Laugicality.Projectiles.NPCProj;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -62,7 +66,7 @@ namespace Laugicality.NPCs.Obsidium
                     if (Main.rand.Next(4) == 0)
                     {
                         if (Main.netMode != 1)
-                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, npc.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), ModContent.ProjectileType("EruptionEvil"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                            Projectile.NewProjectile(npc.Center.X, npc.Center.Y, npc.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), ModContent.ProjectileType<EruptionEvil>(), (int)(npc.damage / 2), 3, Main.myPlayer);
                     }
                 }
                 else
@@ -87,9 +91,9 @@ namespace Laugicality.NPCs.Obsidium
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedRagnar && Main.rand.Next(2) == 0)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumChunk"));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ObsidiumChunk>());
             else
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumOre"), Main.rand.Next(2, 5));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ObsidiumOre>(), Main.rand.Next(2, 5));
         }
         
     }

@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -24,7 +25,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 
             projectile.velocity.Y += .15f;
 
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Rainbow>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -33,7 +34,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             {
                 for (int k = 0; k < 8; k++)
 				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType("GemShard"), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType<GemShard>(), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
 				}	
 			}
             projectile.penetrate--;
@@ -66,7 +67,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 projectile.ai[0] += 0.2f;
                 for (int k = 0; k < 8; k++)
 				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType("GemShard"), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType<GemShard>(), (int)(projectile.damage * 0.80f), 2f, projectile.owner, 0f, Main.rand.Next(6));
 				}
 			}
             Main.PlaySound(SoundID.Item10, projectile.position);

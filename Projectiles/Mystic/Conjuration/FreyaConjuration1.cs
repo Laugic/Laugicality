@@ -56,7 +56,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, ModContent.ProjectileType("FreyaConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, ModContent.ProjectileType<FreyaConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
 					}
 					sporeTimer = 0;
                 }

@@ -52,7 +52,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(ItemID.FireflyinaBottle);
             recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 5);
             recipe.AddIngredient(ModContent.ItemType<MysticaPotion>(), 1);
-            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
+            recipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 
@@ -42,11 +42,11 @@ namespace Laugicality.Projectiles.Magic
             }
 
             timer++;
-            if (timer > 4 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && timer > 2))
+            if (timer > 4 || ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(Main.player[projectile.owner]).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && timer > 2))
             {
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(0.15f, 1.6f), projectile.velocity.Y * Main.rand.NextFloat(0.15f, 1.5f), ModContent.ProjectileType("BlitzBolt2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(0.15f, 1.6f), projectile.velocity.Y * Main.rand.NextFloat(0.15f, 1.5f), ModContent.ProjectileType<BlitzBolt2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
                 timer = 0;
             }

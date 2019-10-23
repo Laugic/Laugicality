@@ -1,4 +1,5 @@
-﻿using Terraria;
+using Laugicality.Buffs;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic
@@ -62,9 +63,9 @@ namespace Laugicality.Projectiles.Mystic
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
 
             if (modPlayer.Incineration > 0)
-                target.AddBuff(ModContent.BuffType("Incineration"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
+                target.AddBuff(ModContent.BuffType<Incineration>(), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
             if (modPlayer.SporeShard > 0)
-                target.AddBuff(ModContent.BuffType("Spored"), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
+                target.AddBuff(ModContent.BuffType<Spored>(), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
         }
     }
 }

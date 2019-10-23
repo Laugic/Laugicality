@@ -1,4 +1,4 @@
-﻿using Terraria.ID;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -22,7 +22,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = ModContent.TileType("HolystoneBrick");
+            item.createTile = ModContent.TileType<Tiles.HolystoneBrick>();
         }
 
         public override void AddRecipes()

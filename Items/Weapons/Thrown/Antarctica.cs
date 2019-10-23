@@ -1,6 +1,10 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
+using Laugicality.Projectiles.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Items.Weapons.Thrown
 {
@@ -26,7 +30,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("Antarctica");
+            item.shoot = ModContent.ProjectileType<AntarcticaProjectile>();
             item.shootSpeed = 26f;
             item.useTurn = true;
             item.maxStack = 1;
@@ -38,9 +42,9 @@ namespace Laugicality.Items.Weapons.Thrown
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.NorthPole);
-            recipe.AddIngredient(null, "BysmalBar", 15);
+            recipe.AddIngredient(null, nameof(BysmalBar), 15);
             recipe.AddIngredient(mod, nameof(EtherialEssence), 6);
-            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.AddTile(null, nameof(AlchemicalInfuser));
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

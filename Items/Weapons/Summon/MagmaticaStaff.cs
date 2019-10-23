@@ -1,10 +1,12 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality.Items.Materials;
 using Laugicality.Projectiles.Special;
+using Laugicality.Projectiles.Summon;
 
 namespace Laugicality.Items.Weapons.Summon
 {
@@ -33,7 +35,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.shoot = ModContent.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
-            item.buffType = ModContent.BuffType("MagmaticCore");
+            item.buffType = ModContent.BuffType<MagmaticCoreBuff>();
             item.buffTime = 3600;
         }
     
@@ -70,7 +72,7 @@ namespace Laugicality.Items.Weapons.Summon
 		    num79 = 0f;
 		    vector2.X = (float)Main.mouseX + Main.screenPosition.X;
 		    vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
-		    Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType("MagmaticCore"), num73, num74, i, 0f, 0f);
+		    Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType<MagmaticCoreProjectile>(), num73, num74, i, 0f, 0f);
 		    return player.altFunctionUse != 2;
         }
 

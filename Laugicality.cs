@@ -8,6 +8,8 @@ using System.IO;
 using Terraria.UI;
 using System.Collections.Generic;
 using Laugicality.Items.Consumables;
+using Laugicality.Items.Equipables;
+using Laugicality.Items.Materials;
 using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
 using Terraria.Graphics.Shaders;
@@ -50,9 +52,9 @@ namespace Laugicality
                 ItemID.WarriorEmblem,
                 ItemID.SorcererEmblem,
                 ItemID.SummonerEmblem,
-                ItemType("NullEmblem"),
-                ItemType("MysticEmblem"),
-                ItemType("NinjaEmblem")
+                ModContent.ItemType<NullEmblem>(),
+                ModContent.ItemType<MysticEmblem>(),
+                ModContent.ItemType<NinjaEmblem>()
             }));
 
 
@@ -153,17 +155,17 @@ namespace Laugicality
                 SkyManager.Instance["Laugicality:ZaWarudo"] = new ZaWarudoVisual();
 
                 // Register a new music box
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron"), ItemType<DuneSharkronMusicBox>(), TileType<Tiles.MusicBoxes.DuneSharkronMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Hypothema"), ItemType<HypothemaMusicBox>(), TileType<Tiles.MusicBoxes.HypothemaMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium"), ItemType<ObsidiumMusicBox>(), TileType<Tiles.MusicBoxes.ObsidiumMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar"), ItemType<RagnarMusicBox>(), TileType<Tiles.MusicBoxes.RagnarMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/RockPhase3"), ItemType<DioritusMusicBox>(), TileType<Tiles.MusicBoxes.DioritusMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/AnDio"), ItemType<AnDioMusicBox>(), TileType<Tiles.MusicBoxes.AnDioMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator"), ItemType<AnnihilatorMusicBox>(), TileType<Tiles.MusicBoxes.AnnihilatorMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron"), ItemType<SlybertronMusicBox>(), TileType<Tiles.MusicBoxes.SlybertronMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ItemType<SteamTrainMusicBox>(), TileType<Tiles.MusicBoxes.SteamTrainMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ItemType<EtheriaMusicBox>(), TileType<Tiles.MusicBoxes.EtheriaMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ItemType<GreatShadowMusicBox>(), TileType<Tiles.MusicBoxes.GreatShadowMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron"), ModContent.ItemType<DuneSharkronMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.DuneSharkronMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Hypothema"), ModContent.ItemType<HypothemaMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.HypothemaMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium"), ModContent.ItemType<ObsidiumMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.ObsidiumMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar"), ModContent.ItemType<RagnarMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.RagnarMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/RockPhase3"), ModContent.ItemType<DioritusMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.DioritusMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/AnDio"), ModContent.ItemType<AnDioMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.AnDioMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator"), ModContent.ItemType<AnnihilatorMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.AnnihilatorMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron"), ModContent.ItemType<SlybertronMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SlybertronMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ModContent.ItemType<SteamTrainMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SteamTrainMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ModContent.ItemType<EtheriaMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.EtheriaMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ModContent.ItemType<GreatShadowMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GreatShadowMusicBox>());
 
 
                 MysticaUI = new LaugicalityUI();
@@ -189,14 +191,14 @@ namespace Laugicality
 
             if (bossChecklist != null)
             {
-                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ItemType<MechanicalMonitor>()));
-                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ItemType<SteamCrown>()));
-                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ItemType<SuspiciousTrainWhistle>()));
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ItemType<TastyMorsel>()));
-                bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ItemType<ChilledMesh>()));
-                bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ItemType<MoltenMess>()));
-                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ItemType<EmblemOfEtheria>()));
-                bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ItemType<AncientAwakener>()));
+                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ModContent.ItemType<MechanicalMonitor>()));
+                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ModContent.ItemType<SteamCrown>()));
+                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ModContent.ItemType<SuspiciousTrainWhistle>()));
+                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ModContent.ItemType<TastyMorsel>()));
+                bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ModContent.ItemType<ChilledMesh>()));
+                bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ModContent.ItemType<MoltenMess>()));
+                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ModContent.ItemType<EmblemOfEtheria>()));
+                bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ModContent.ItemType<AncientAwakener>()));
                 bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
             }
 
@@ -206,13 +208,13 @@ namespace Laugicality
 
             Mod achMod = ModLoader.GetMod("AchievementLibs");
 
-            int[] rewardsBleedingHeart = { ItemType("ObsidiumHeart") };
+            int[] rewardsBleedingHeart = { ModContent.ItemType<ObsidiumHeart>() };
             int[] rewardsBleedingHeartCount = { 1 };
 
             if (achMod != null)
             {
-                achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
-                //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
+                achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
+                //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
             }
 
             #endregion
@@ -230,7 +232,7 @@ namespace Laugicality
         {
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
-                if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<LaugicalityPlayer>(this).zoneObsidium)
+                if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneObsidium)
                 {
                     if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");

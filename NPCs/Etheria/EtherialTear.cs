@@ -55,10 +55,10 @@ namespace Laugicality.NPCs.Etheria
             bitherial = true;
             if (_index == 0)
             {
-                if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
+                if (NPC.CountNPCS(ModContent.NPCType<Etheria>()) > 0)
                     _index = Etheria.tearIndex;
             }
-            if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
+            if (NPC.CountNPCS(ModContent.NPCType<Etheria>()) > 0)
             {
                 float mag = 96 * Etheria.scale;
                 Vector2 rot;
@@ -77,7 +77,7 @@ namespace Laugicality.NPCs.Etheria
                 _delay = 0;
                 if (Main.netMode != 1)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / 4), 3, Main.myPlayer);
                 }
             }
 

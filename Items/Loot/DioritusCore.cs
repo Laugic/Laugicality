@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(ModContent.BuffType("ForGlory"), 1, true);
+            player.AddBuff(ModContent.BuffType<ForGlory>(), 1, true);
         }
 
         /*

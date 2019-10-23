@@ -23,7 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("AlchemicalInfuser");
+            item.createTile = ModContent.TileType<Tiles.AlchemicalInfuser>();
         }
 
         public override void AddRecipes()
@@ -90,7 +90,7 @@ namespace Laugicality.Items.Placeable
             enchrecipe1.AddIngredient(null, "ArcaneShard", 12);
             enchrecipe1.AddIngredient(null, "AquosDust", 6);
             enchrecipe1.AddIngredient(null, "RubrumDust", 4);
-            enchrecipe1.AddTile(ModContent.TileType("AlchemicalInfuser"));
+            enchrecipe1.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             enchrecipe1.SetResult(ItemID.EnchantedSword);
             enchrecipe1.AddRecipe();
 
@@ -99,7 +99,7 @@ namespace Laugicality.Items.Placeable
             enchrecipe2.AddIngredient(null, "ArcaneShard", 12);
             enchrecipe2.AddIngredient(null, "AquosDust", 6);
             enchrecipe2.AddIngredient(null, "RubrumDust", 4);
-            enchrecipe2.AddTile(ModContent.TileType("AlchemicalInfuser"));
+            enchrecipe2.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             enchrecipe2.SetResult(ItemID.EnchantedSword);
             enchrecipe2.AddRecipe();
 
@@ -109,14 +109,14 @@ namespace Laugicality.Items.Placeable
             starfuryrecipe.AddIngredient(null, "ArcaneShard", 8);
             starfuryrecipe.AddIngredient(null, "RegisDust", 6);
             starfuryrecipe.AddIngredient(null, "AuraDust", 4);
-            starfuryrecipe.AddTile(ModContent.TileType("AlchemicalInfuser"));
+            starfuryrecipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             starfuryrecipe.SetResult(ItemID.Starfury);
             starfuryrecipe.AddRecipe();
 
             ModRecipe golemcellrecipe = new ModRecipe(mod);
             golemcellrecipe.AddIngredient(2766, 4); //Solar Tablet Fragment
             golemcellrecipe.AddIngredient(ItemID.HallowedBar, 1);
-            golemcellrecipe.AddTile(ModContent.TileType("AncientEnchanter"));
+            golemcellrecipe.AddTile(ModContent.TileType<Tiles.AncientEnchanter>());
             golemcellrecipe.SetResult(ItemID.LihzahrdPowerCell);
             golemcellrecipe.AddRecipe();
         }

@@ -31,7 +31,7 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return head.type == ModContent.ItemType("DioritusHelmet") && legs.type == ModContent.ItemType("AndesiaLeggings");
+            return head.type == ModContent.ItemType<DioritusHelmet>() && legs.type == ModContent.ItemType<AndesiaLeggings>();
         }
 
         public override void UpdateArmorSet(Player player)

@@ -1,3 +1,4 @@
+using Laugicality.Tiles;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable

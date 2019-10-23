@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -43,7 +44,7 @@ namespace Laugicality.NPCs.TheGreatShadow
                 theta = 6.28f * (float)random.NextDouble();
                 dustPos.X = projectile.Center.X + mag*(float)Math.Cos(theta);
                 dustPos.Y = projectile.Center.Y + mag*(float)Math.Sin(theta);
-                Dust.NewDustPerfect(dustPos, ModContent.DustType("Black"), null);
+                Dust.NewDustPerfect(dustPos, ModContent.DustType<Black>(), null);
             }
         }
 

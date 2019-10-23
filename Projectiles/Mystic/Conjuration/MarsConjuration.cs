@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -25,14 +26,14 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             if(projectile.timeLeft <= 2)
             {
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<MarsGeyeser>(), projectile.damage, 3f, Main.myPlayer);
                 projectile.Kill();
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<MarsGeyeser>(), projectile.damage, 3f, Main.myPlayer);
             projectile.Kill();
             return false;
         }
@@ -40,7 +41,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<MarsGeyeser>(), projectile.damage, 3f, Main.myPlayer);
             projectile.Kill();
         }
     }

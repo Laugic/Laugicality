@@ -1,3 +1,4 @@
+using Laugicality.Tiles;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Loot
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = ModContent.TileType("MagmaVeins");
+            item.createTile = ModContent.TileType<MagmaVeins>();
         }
         /*
         public override void AddRecipes()

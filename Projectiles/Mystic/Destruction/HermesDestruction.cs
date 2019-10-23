@@ -1,5 +1,6 @@
 using Terraria;
 using System;
+using Laugicality.Dusts;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<HermesDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
     }

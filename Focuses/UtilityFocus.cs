@@ -219,7 +219,7 @@ namespace Laugicality.Focuses
         private static void DownedEtheriaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             laugicalityPlayer.player.buffImmune[ModContent.BuffType<Frostbite>()] = true;
-            laugicalityPlayer.player.npcTypeNoAggro[Laugicality.Instance.NPCType<EtherialSpirit>()] = true;
+            laugicalityPlayer.player.npcTypeNoAggro[ModContent.NPCType<EtherialSpirit>()] = true;
         }
 
         private static void DownedMoonLordEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

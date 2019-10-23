@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Items.Loot;
+using Laugicality.NPCs.Etheria;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -111,7 +113,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 _delay = Main.rand.Next(0, 120);
                 if (Main.netMode != 1 && _targetType == 0)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / 4), 3, Main.myPlayer);
                 }
                 _targetType = 1 - _targetType;
             }
@@ -133,7 +135,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), 1);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>(), 1);
         }
     }
 }

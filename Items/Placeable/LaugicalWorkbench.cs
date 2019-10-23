@@ -21,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("LaugicalWorkbench");
+            item.createTile = ModContent.TileType<Tiles.LaugicalWorkbench>();
         }
 
         public override void AddRecipes()

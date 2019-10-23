@@ -1,3 +1,4 @@
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -44,7 +45,7 @@ namespace Laugicality.NPCs.Obsidium
         /*
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (NPC.CountNPCS(mod.NPCType("LavaTitan")) == 0 && LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer && LaugicalityWorld.downedRagnar && Main.hardMode)
+            if (NPC.CountNPCS(ModContent.NPCType<LavaTitan>()) == 0 && LaugicalityWorld.obsidiumTiles > 150 && spawnInfo.spawnTileY > WorldGen.rockLayer && LaugicalityWorld.downedRagnar && Main.hardMode)
                 return SpawnCondition.Cavern.Chance * .075f;
             else return 0f;
         }*/
@@ -64,7 +65,7 @@ namespace Laugicality.NPCs.Obsidium
                     _attack = false;
                     for (int i = 0; i < 8; i++)
                     {
-                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TitanBlast"));
+                        int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<TitanBlast>());
                         Main.npc[n].ai[0] = npc.whoAmI;
                         Main.npc[n].ai[1] = i;
                     }
@@ -151,7 +152,7 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MagmaticCluster"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MagmaticCluster>());
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Laugicality.SoulStones
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Sapphire);
             recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 3);
-            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
+            recipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

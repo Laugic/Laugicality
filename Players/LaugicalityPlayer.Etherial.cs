@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Laugicality.NPCs.Bosses;
 using Laugicality.NPCs.PreTrio;
 using Laugicality.NPCs.RockTwins;
@@ -61,13 +62,13 @@ namespace Laugicality
 
             if (EtherialBrain && !EtherialBrainCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
             {
-                npc.AddBuff(ModContent.BuffType("FragmentedMind"), 15 * 60, false);
+                npc.AddBuff(ModContent.BuffType<FragmentedMind>(), 15 * 60, false);
 
                 if (damage >= player.statLife)
                 {
                     if (EtherialBrain && !EtherialBrainCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
                     {
-                        player.AddBuff(ModContent.BuffType("FragmentedMind"), 60 * 60 * 3, true);
+                        player.AddBuff(ModContent.BuffType<FragmentedMind>(), 60 * 60 * 3, true);
                         player.immune = true;
                         player.immuneTime = 2 * 60;
                         player.statLife += 300;
@@ -75,7 +76,7 @@ namespace Laugicality
                         Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
 
                         for (int i = 0; i < 20; i++)
-                            Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Etherial>(), 0f, 0f);
+                            Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
                     }
                 }
             }
@@ -106,7 +107,7 @@ namespace Laugicality
 
             if(EtherialTwins && !JusticeCooldown)
             {
-                player.AddBuff(ModContent.BuffType("JusticeCooldown"), 90 * 60, true);
+                player.AddBuff(ModContent.BuffType<JusticeCooldown>(), 90 * 60, true);
                 player.statLife += damage;
                 player.immune = true;
                 player.immuneTime = 2 * 60;
@@ -118,11 +119,11 @@ namespace Laugicality
             {
                 if (EtherialScarf && !EtherialScarfCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
                 {
-                    player.AddBuff(ModContent.BuffType("EtherialScarfCooldown"), 60 * 60 * 1, true);
+                    player.AddBuff(ModContent.BuffType<EtherialScarfCooldown>(), 60 * 60 * 1, true);
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
 
                     for (int i = 0; i < 20; i++)
-                        Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Etherial>(), 0f, 0f);
+                        Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
 
                     player.immune = true;
                     player.immuneTime = 2 * 60;
@@ -151,19 +152,19 @@ namespace Laugicality
                 if (BysmalPowers.Contains(NPCID.BrainofCthulhu))
                     EtherialBrain = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<Hypothema>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<Hypothema>()))
                     EtherialFrost = true;
 
                 if (BysmalPowers.Contains(NPCID.QueenBee))
                     EtherialBees = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<Ragnar>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<Ragnar>()))
                     EtherialMagma = true;
 
                 if (BysmalPowers.Contains(NPCID.SkeletronHead))
                     EtherialBones = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<AnDio3>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<AnDio3>()))
                     EtherialAnDio = true;
 
                 if (BysmalPowers.Contains(NPCID.Retinazer) || BysmalPowers.Contains(NPCID.Spazmatism))
@@ -175,13 +176,13 @@ namespace Laugicality
                 if (BysmalPowers.Contains(NPCID.SkeletronPrime))
                     EtherialPrime = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<TheAnnihilator>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<TheAnnihilator>()))
                     EtherCog = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<Slybertron>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<Slybertron>()))
                     EtherialPipes = true;
 
-                if (BysmalPowers.Contains(mod.NPCType<NPCs.SteamTrain.SteamTrain>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<NPCs.SteamTrain.SteamTrain>()))
                     EtherialTank = true;
 
                 if (BysmalPowers.Contains(NPCID.Plantera))
@@ -210,7 +211,7 @@ namespace Laugicality
             }
 
             if (EtherialMagma && player.lavaWet)
-                player.AddBuff(ModContent.BuffType("EtherialRagnar"), 15 * 60);
+                player.AddBuff(ModContent.BuffType<EtherialRagnar>(), 15 * 60);
 
             if (EtherialAnDio)
                 modPlayer.zProjImmune = true;

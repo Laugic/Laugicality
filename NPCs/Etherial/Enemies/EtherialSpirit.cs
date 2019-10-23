@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Items.Loot;
+using Laugicality.NPCs.Etheria;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -38,7 +40,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
                 if (npc.boss)
                     canSpawn = false;
             }
-            if (LaugicalityWorld.downedEtheria && canSpawn && NPC.CountNPCS(mod.NPCType("EtherialSpirit")) < 2)
+            if (LaugicalityWorld.downedEtheria && canSpawn && NPC.CountNPCS(ModContent.NPCType<EtherialSpirit>()) < 2)
                 return .035f;
             else return 0f;
         }
@@ -78,7 +80,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
 
             if (Main.netMode != 1 && Main.rand.Next(280) == 0)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 6), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / 6), 3, Main.myPlayer);
             }
         }
 
@@ -108,7 +110,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
         
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), Main.rand.Next(3, 5));            
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>(), Main.rand.Next(3, 5));            
         }
     }
 }

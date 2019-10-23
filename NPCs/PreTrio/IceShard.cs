@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -82,7 +83,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if(LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType<Frostbite>(), 4 * 60, true);
             }
             if (Main.expertMode)
             {

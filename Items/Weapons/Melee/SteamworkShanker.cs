@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useTurn = true;
             item.noUseGraphic = true;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("SteamworkShanker");
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.SteamworkShankerProjectile>();
         }
 
         public override bool CanUseItem(Player player)

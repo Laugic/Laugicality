@@ -1,5 +1,7 @@
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -73,7 +75,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
-            item.shoot = ModContent.ProjectileType("VulcanIllusion");
+            item.shoot = ModContent.ProjectileType<VulcanIllusion>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -87,7 +89,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 20f;
-            item.shoot = ModContent.ProjectileType("VulcanConjuration");
+            item.shoot = ModContent.ProjectileType<VulcanConjuration>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

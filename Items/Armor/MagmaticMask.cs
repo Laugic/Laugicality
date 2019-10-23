@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ModContent.ItemType("MagmaticLongcoat") && legs.type == ModContent.ItemType("MagmaticBoots");
+            return body.type == ModContent.ItemType<MagmaticLongcoat>() && legs.type == ModContent.ItemType<MagmaticBoots>();
         }
 
         public override void UpdateArmorSet(Player player)
@@ -38,7 +39,7 @@ namespace Laugicality.Items.Armor
             modPlayer.MysticSwitchCoolRate += 2;
 
             if (player.lavaWet)
-                player.AddBuff(ModContent.BuffType("Magmatic"), 60 * 15);
+                player.AddBuff(ModContent.BuffType<Magmatic>(), 60 * 15);
         }
 
 

@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Summon;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,7 +33,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item122;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("SoulmasterOrb");
+            item.shoot = ModContent.ProjectileType<SoulmasterOrb>();
             item.shootSpeed = 14f;
         }
 
@@ -56,7 +57,7 @@ namespace Laugicality.Items.Weapons.Summon
             float mag = 8;
             for(int i = 0; i < 8; i++)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("SoulmasterOrb"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType<SoulmasterOrb>(), damage, 3f, player.whoAmI);
                 theta += (float)Math.PI / 4;
             }
             return false;

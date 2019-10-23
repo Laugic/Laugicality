@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,7 +38,7 @@ namespace Laugicality.NPCs.RockTwins
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Red"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Red>(), 0f, 0f);
             if (projectile.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref projectile.velocity);
@@ -83,7 +85,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(ModContent.BuffType("ForGlory"), 300, true);
+            player.AddBuff(ModContent.BuffType<ForGlory>(), 300, true);
         }
 
     }

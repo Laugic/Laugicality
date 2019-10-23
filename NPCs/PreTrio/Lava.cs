@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Laugicality.Dusts;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

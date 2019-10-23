@@ -4,6 +4,7 @@ using Laugicality.Walls;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Structures
 {
@@ -12,14 +13,14 @@ namespace Laugicality.Structures
         private static int numRooms = 0;
         private static int direction = 0;
         private static int roomHeight = 0;
-        private static int blockType = Laugicality.Instance.TileType<ObsidiumBrick>();
+        private static int blockType = ModContent.TileType<Tiles.ObsidiumBrick>();
         private static int platformType = TileID.Platforms;
-        private static int wallType = Laugicality.Instance.WallType<ObsidiumBrickWall>();
+        private static int wallType = ModContent.WallType<ObsidiumBrickWall>();
         private static int x = 0;
         private static int y = 0;
 
-        private static List<int> nonOverrideBlocks = new List<int> { blockType, platformType, Laugicality.Instance.TileType<ObsidiumDoorClosed>(), Laugicality.Instance.TileType<LavaGemLanternTile>(), Laugicality.Instance.TileType<LavaGemLampTile>() , Laugicality.Instance.TileType<LavaGemLanternTile>(),
-            Laugicality.Instance.TileType<ObsidiumTableTile>(), Laugicality.Instance.TileType<ObsidiumDresserTile>(), Laugicality.Instance.TileType<ObsidiumBedTile>(), Laugicality.Instance.TileType<ObsidiumSinkTile>(), Laugicality.Instance.TileType<ObsidiumWorkbenchTile>() };
+        private static List<int> nonOverrideBlocks = new List<int> { blockType, platformType, ModContent.TileType<ObsidiumDoorClosed>(), ModContent.TileType<LavaGemLanternTile>(), ModContent.TileType<LavaGemLampTile>() , ModContent.TileType<LavaGemLanternTile>(),
+            ModContent.TileType<ObsidiumTableTile>(), ModContent.TileType<ObsidiumDresserTile>(), ModContent.TileType<ObsidiumBedTile>(), ModContent.TileType<ObsidiumSinkTile>(), ModContent.TileType<ObsidiumWorkbenchTile>() };
 
         public static void GenerateHouse(int i, int j)
         {
@@ -65,7 +66,7 @@ namespace Laugicality.Structures
                 WorldGen.KillTile(x + chestPos + 1, y + height - 2);
                 WorldGen.KillTile(x + chestPos, y + height - 3);
                 WorldGen.KillTile(x + chestPos + 1, y + height - 3);
-                LaugicalityWorld.PlaceObsidiumChest(x + chestPos, y + height - 2, (ushort)Laugicality.Instance.TileType<ObsidiumBrick>());
+                LaugicalityWorld.PlaceObsidiumChest(x + chestPos, y + height - 2, (ushort)ModContent.TileType<ObsidiumBrick>());
             }
             for(int i = 2; i < width - 4; i++)
             {
@@ -82,7 +83,7 @@ namespace Laugicality.Structures
                         WorldGen.KillTile(x + i + 2, y + height - 3);
                         WorldGen.KillTile(x + i + 3, y + height - 3);
 
-                        WorldGen.PlaceObject(x + i + 1, y + height - 2, Laugicality.Instance.TileType<ObsidiumBedTile>());
+                        WorldGen.PlaceObject(x + i + 1, y + height - 2, ModContent.TileType<ObsidiumBedTile>());
                     }
                     else if (Main.tile[x + i, y + height - 2].type == 0 && Main.tile[x + i + 1, y + height - 2].type == 0 && Main.tile[x + i + 2, y + height - 2].type == 0 && Main.rand.Next(width - 2) == 0)
                     {
@@ -94,12 +95,12 @@ namespace Laugicality.Structures
                         WorldGen.KillTile(x + i + 2, y + height - 3);
 
                         if (Main.rand.Next(4) == 0)
-                            WorldGen.PlaceObject(x + i + 1, y + height - 2, Laugicality.Instance.TileType<ObsidiumDresserTile>());
+                            WorldGen.PlaceObject(x + i + 1, y + height - 2, ModContent.TileType<ObsidiumDresserTile>());
                         else
                         {
-                            WorldGen.PlaceObject(x + i + 1, y + height - 2, Laugicality.Instance.TileType<ObsidiumTableTile>());
+                            WorldGen.PlaceObject(x + i + 1, y + height - 2, ModContent.TileType<ObsidiumTableTile>());
                             if(Main.tile[x + i, y + height - 4].type == 0)
-                                WorldGen.PlaceObject(x + i, y + height - 4, Laugicality.Instance.TileType<LavaGemCandleTile>());
+                                WorldGen.PlaceObject(x + i, y + height - 4, ModContent.TileType<LavaGemCandleTile>());
                         }
                     }
                     else if (Main.tile[x + i, y + height - 2].type == 0 && Main.tile[x + i + 1, y + height - 2].type == 0 && Main.rand.Next(width - 4) == 0)
@@ -110,24 +111,24 @@ namespace Laugicality.Structures
                         WorldGen.KillTile(x + i + 1, y + height - 3);
 
                         if (Main.rand.Next(width * 3) == 0)
-                            LaugicalityWorld.PlaceObsidiumChest(x + Main.rand.Next(2, width - 4), y + height - 2, (ushort)Laugicality.Instance.TileType<ObsidiumBrick>());
+                            LaugicalityWorld.PlaceObsidiumChest(x + Main.rand.Next(2, width - 4), y + height - 2, (ushort)ModContent.TileType<ObsidiumBrick>());
                         else if (Main.rand.Next(width * 3) == 0)
                             WorldGen.AddLifeCrystal(x + i, y + height - 2);
                         else if (Main.rand.Next(2) == 0)
-                            WorldGen.PlaceObject(x + i, y + height - 2, Laugicality.Instance.TileType<ObsidiumSinkTile>());
+                            WorldGen.PlaceObject(x + i, y + height - 2, ModContent.TileType<ObsidiumSinkTile>());
                         else
                         {
-                            WorldGen.PlaceObject(x + i, y + height - 2, Laugicality.Instance.TileType<ObsidiumWorkbenchTile>());
+                            WorldGen.PlaceObject(x + i, y + height - 2, ModContent.TileType<ObsidiumWorkbenchTile>());
                             if (Main.tile[x + i, y + height - 3].type == 0)
-                                WorldGen.PlaceObject(x + i, y + height - 3, Laugicality.Instance.TileType<LavaGemCandleTile>());
+                                WorldGen.PlaceObject(x + i, y + height - 3, ModContent.TileType<LavaGemCandleTile>());
                         }
                     }
                     else if (Main.tile[x + i, y + height - 2].type == 0 && Main.rand.Next(width - 6) == 0)
                     {
                         if (Main.tile[x + i, y + height - 3].type == 0 && Main.tile[x + i, y + height - 4].type == 0 && Main.rand.Next(2) == 0)
-                            WorldGen.PlaceObject(x + i, y + height - 2, Laugicality.Instance.TileType<LavaGemLampTile>());
+                            WorldGen.PlaceObject(x + i, y + height - 2, ModContent.TileType<LavaGemLampTile>());
                         else if(Main.tile[x + i, y + 1].type == 0 && Main.tile[x + i, y + 2].type == 0)
-                            WorldGen.PlaceObject(x + i, y + 1, Laugicality.Instance.TileType<LavaGemLanternTile>());
+                            WorldGen.PlaceObject(x + i, y + 1, ModContent.TileType<LavaGemLanternTile>());
                     }
                 }
             }
@@ -242,7 +243,7 @@ namespace Laugicality.Structures
                     WorldGen.KillTile(x + width - 1, y + height - 2);
                     WorldGen.KillTile(x + width - 1, y + height - 3);
                     WorldGen.KillTile(x + width - 1, y + height - 4);
-                    WorldGen.PlaceObject(x + width - 1, y + height - 3, Laugicality.Instance.TileType<ObsidiumDoorClosed>());
+                    WorldGen.PlaceObject(x + width - 1, y + height - 3, ModContent.TileType<ObsidiumDoorClosed>());
                 }
             }
 

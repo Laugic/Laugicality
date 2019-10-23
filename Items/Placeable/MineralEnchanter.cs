@@ -21,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("MineralEnchanter");
+            item.createTile = ModContent.TileType<Tiles.MineralEnchanterProjectile>();
         }
 
         public override void AddRecipes()

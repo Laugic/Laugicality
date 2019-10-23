@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Laugicality.Buffs.Mystic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -129,9 +130,9 @@ namespace Laugicality.Items
                 if (Main.rand.Next(10) != 9)
                 {
                     string pref = ChooseMysticPrefix();
-                    //return mod.PrefixType("Chaotic");
+                    //return ModContent.PrefixType("Chaotic");
                     if (pref != "")
-                        return mod.PrefixType(pref);
+                        return ModContent.PrefixType(pref);
                     else
                         return -1;
                 }
@@ -141,7 +142,7 @@ namespace Laugicality.Items
             /*
             if (item.accessory || item.damage > 0 && item.maxStack == 1 && rand.NextBool(30))
             {
-                return mod.PrefixType(rand.Next(2) == 0 ? "Awesome" : "ReallyAwesome");
+                return ModContent.PrefixType(rand.Next(2) == 0 ? "Awesome" : "ReallyAwesome");
             }
 
             return -1;
@@ -227,15 +228,15 @@ namespace Laugicality.Items
             switch (modPlayer.MysticMode)
             {
                 case 1 :
-                    player.AddBuff(ModContent.BuffType("Destruction"), 1, true);
+                    player.AddBuff(ModContent.BuffType<Destruction>(), 1, true);
                     Destruction(modPlayer);
                     break;
                 case 2:
-                    player.AddBuff(ModContent.BuffType("Illusion"), 1, true);
+                    player.AddBuff(ModContent.BuffType<Illusion>(), 1, true);
                     Illusion(modPlayer);
                     break;
                 case 3:
-                    player.AddBuff(ModContent.BuffType("Conjuration"), 1, true);
+                    player.AddBuff(ModContent.BuffType<Conjuration>(), 1, true);
                     Conjuration(modPlayer);
                     break;
             }

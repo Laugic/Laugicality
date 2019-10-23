@@ -1,6 +1,7 @@
 ﻿using Laugicality.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using System;
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;

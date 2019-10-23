@@ -24,7 +24,7 @@ namespace Laugicality.Mounts.SteamTrain
 			item.rare = ItemRarityID.LightRed;
 			item.UseSound = SoundID.Item79;
 			item.noMelee = true;
-			item.mountType = mod.MountType<SteamTrainMount>();
+			item.mountType = ModContent.MountType<SteamTrainMount>();
 		}
 
 		public override void AddRecipes()

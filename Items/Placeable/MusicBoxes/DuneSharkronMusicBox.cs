@@ -22,7 +22,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("DuneSharkronMusicBox");
+            item.createTile = ModContent.TileType<Tiles.MusicBoxes.DuneSharkronMusicBox>();
             item.accessory = true;
         }
         /*

@@ -58,13 +58,13 @@ namespace Laugicality.NPCs.Etheria
 
             if (_index == 0)
             {
-                if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
+                if (NPC.CountNPCS(ModContent.NPCType<Etheria>()) > 0)
                     _index = Etheria.tearIndex;
             }
 
             npc.rotation += 3.14f / 20;
 
-            if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
+            if (NPC.CountNPCS(ModContent.NPCType<Etheria>()) > 0)
             {
                 float mag = 128 * Etheria.scale;
                 Vector2 rot;
@@ -87,7 +87,7 @@ namespace Laugicality.NPCs.Etheria
 
                 if (Main.netMode != 1)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<TrueEtherialYeet>(), (int)(npc.damage / 2), 3, Main.myPlayer);
                 }
             }
 

@@ -1,5 +1,7 @@
 using System;
 using Laugicality.Dusts;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -43,7 +45,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron");
-            bossBag = ModContent.ItemType("DuneSharkronTreasureBag");
+            bossBag = ModContent.ItemType<DuneSharkronTreasureBag>();
             npc.scale = 1.25f;
         }
 
@@ -405,12 +407,12 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("Etheramind"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Etheramind>(), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("AncientShard"), Main.rand.Next(1, 3));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("Crystilla"), Main.rand.Next(4, 11));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientShard>(), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Crystilla>(), Main.rand.Next(4, 11));
 
                 int ran = Main.rand.Next(1, 8);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandstorminaBottle, 1);

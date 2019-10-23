@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -46,7 +46,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             {
                 delay = 0;
                 if ( Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 2, -projectile.velocity.Y / 2, ModContent.ProjectileType("SaturnIllusion2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 2, -projectile.velocity.Y / 2, ModContent.ProjectileType<SaturnIllusion2>(), projectile.damage, 3f, Main.myPlayer);
             }
         }
     }

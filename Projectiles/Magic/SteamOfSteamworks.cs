@@ -1,6 +1,7 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles.Magic
@@ -30,7 +31,7 @@ namespace Laugicality.Projectiles.Magic
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Steamy"), 4 * 60, true);
+            target.AddBuff(ModContent.BuffType<Steamy>(), 4 * 60, true);
         }
     }
 }

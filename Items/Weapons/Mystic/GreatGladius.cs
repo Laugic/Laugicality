@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Mystic.Conjuration;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -80,8 +81,8 @@ namespace Laugicality.Items.Weapons.Mystic
                 target.AddBuff(BuffID.Daybreak, (int)(4 * 60 * modPlayer.MysticDuration));
             if (modPlayer.MysticMode == 3)
             {
-                if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[ModContent.ProjectileType("GreatGladiusConjuration1")] < 2)
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);
+                if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[ModContent.ProjectileType<GreatGladiusConjuration1>()] < 2)
+                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<GreatGladiusConjuration1>(), damage, knockback, Main.myPlayer);
             }
         }
         /*

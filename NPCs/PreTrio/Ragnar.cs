@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Items.Loot;
+using Laugicality.NPCs.Obsidium;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -73,7 +75,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.buffImmune[24] = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
             damage = 32;
-            bossBag = ModContent.ItemType("RagnarTreasureBag");
+            bossBag = ModContent.ItemType<RagnarTreasureBag>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -250,35 +252,31 @@ namespace Laugicality.NPCs.PreTrio
             if (shoot == 1 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ModContent.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ModContent.ProjectileType<RockFalling>(), (int)(damage * .7), 3, Main.myPlayer);
                 if (Main.expertMode)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("RockLooseMini"), damage / 2, 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<RockLooseMini>(), damage / 2, 3, Main.myPlayer);
             }
             //Big Boom
             if (shoot == 2 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, ModContent.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, ModContent.ProjectileType<RockFalling>(), (int)(damage * .7), 3, Main.myPlayer);
 
                 if (Main.expertMode && npc.life < npc.lifeMax * 2 / 3)
                 {
                     if (attacking)
                     {
                         if (Main.rand.Next(3) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmaCaster"));
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmaCaster>());
                         else if (Main.rand.Next(2) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmatipedeHead"));
-                        else
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("ObsidiumElemental"));
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmatipedeHead>());
                     }
                     else if (Main.rand.Next(5) == 0)
                     {
                         if (Main.rand.Next(3) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmaCaster"));
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmaCaster>());
                         else if (Main.rand.Next(2) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("MagmatipedeHead"));
-                        else
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), mod.NPCType("ObsidiumElemental"));
+                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmatipedeHead>());
                     }
                 }
                 attacking = false;
@@ -299,7 +297,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MoltenEtheria"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MoltenEtheria>(), 1);
             }
 
             if (Main.expertMode)
@@ -308,7 +306,7 @@ namespace Laugicality.NPCs.PreTrio
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("DarkShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DarkShard>(), Main.rand.Next(1, 3));
                 int ran = Main.rand.Next(1, 7);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 49, 1);
                 if (ran == 2) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicMirror, 1);

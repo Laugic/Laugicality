@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,20 +26,20 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("ObsidiumPlantBulbs");
+            item.createTile = ModContent.TileType<ObsidiumPlantBulbs>();
             item.rare = ItemRarityID.Blue;
         }
 
         public override void UpdateInventory(Player player)
         {
             if (item.stack % 4 == 0)
-                item.createTile = ModContent.TileType("ObsidiumPlantBulbs");
+                item.createTile = ModContent.TileType<ObsidiumPlantBulbs>();
             if (item.stack % 4 == 1)
-                item.createTile = ModContent.TileType("ObsidiumPlantHeart");
+                item.createTile = ModContent.TileType<ObsidiumPlantHeart>();
             if (item.stack % 4 == 2)
-                item.createTile = ModContent.TileType("ObsidiumPlantLeaves");
+                item.createTile = ModContent.TileType<ObsidiumPlantLeaves>();
             if (item.stack % 4 == 3)
-                item.createTile = ModContent.TileType("ObsidiumPlantMine");
+                item.createTile = ModContent.TileType<ObsidiumPlantMine>();
         }
         
         public override void AddRecipes()

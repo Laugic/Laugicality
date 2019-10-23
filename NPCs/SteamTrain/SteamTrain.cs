@@ -1,4 +1,7 @@
 using System;
+using Laugicality.Buffs;
+using Laugicality.Items.Loot;
+using Laugicality.NPCs.Slybertron;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -75,7 +78,7 @@ namespace Laugicality.NPCs.SteamTrain
             npc.noTileCollide = true;
             npc.netAlways = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain");
-            bossBag = ModContent.ItemType("SteamTrainTreasureBag");
+            bossBag = ModContent.ItemType<SteamTrainTreasureBag>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -225,26 +228,26 @@ namespace Laugicality.NPCs.SteamTrain
                 if (delta.Y < 0)
                 {
                     Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
-                    Projectile.NewProjectile(npc.position.X + 312, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 522, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 732, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 942, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("GasBallUp"), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 312, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 522, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 732, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 942, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<GasBallUp>(), npc.damage / 3, 3f, Main.myPlayer);
                 }
                 else
                 {
-                    //Projectile.NewProjectile(npc.position.X + 312, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 522, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("SteamyShadow"), npc.damage / 3, 3f, Main.myPlayer);
-                    //Projectile.NewProjectile(npc.position.X + 732, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("Coginatore"), npc.damage / 3, 3f, Main.myPlayer);
-                    //Projectile.NewProjectile(npc.position.X + 942, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("SteamyShadow"), npc.damage / 3, 3f, Main.myPlayer);
-                    //Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, 8, ModContent.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
+                    //Projectile.NewProjectile(npc.position.X + 312, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<Coginator>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 522, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<SteamyShadow>(), npc.damage / 3, 3f, Main.myPlayer);
+                    //Projectile.NewProjectile(npc.position.X + 732, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<Coginatore>(), npc.damage / 3, 3f, Main.myPlayer);
+                    //Projectile.NewProjectile(npc.position.X + 942, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<Coginator>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 1156, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<SteamyShadow>(), npc.damage / 3, 3f, Main.myPlayer);
+                    //Projectile.NewProjectile(npc.position.X + 1372, npc.position.Y + 60, 0, 8, ModContent.ProjectileType<Coginator>(), npc.damage / 3, 3f, Main.myPlayer);
                 }
                 if (phase != _phase_Normaldrive)
                 {
-                    Projectile.NewProjectile(npc.position.X + 1572, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.position.X + 102, npc.position.Y + 60, 0, -8, ModContent.ProjectileType("Coginator"), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 1572, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<Coginator>(), npc.damage / 3, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.position.X + 102, npc.position.Y + 60, 0, -8, ModContent.ProjectileType<Coginator>(), npc.damage / 3, 3f, Main.myPlayer);
                 }
                 delay = 0;
 
@@ -317,7 +320,7 @@ namespace Laugicality.NPCs.SteamTrain
                 maxVaccel = 48f;
                 maxDelay = 24;
                 npc.damage = _baseDamage + 60;
-                Main.player[npc.target].AddBuff(ModContent.BuffType("WingClip"), 2, true);
+                Main.player[npc.target].AddBuff(ModContent.BuffType<WingClip>(), 2, true);
             }
         }
 
@@ -326,7 +329,7 @@ namespace Laugicality.NPCs.SteamTrain
         {
             if (Main.expertMode)
             {
-                int debuff = ModContent.BuffType("Steamy");
+                int debuff = ModContent.BuffType<Steamy>();
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -338,16 +341,16 @@ namespace Laugicality.NPCs.SteamTrain
         {
             if (plays == 0)
                 plays = 1;
-            LaugicalityPlayer modPlayer = Main.LocalLaugicalityPlayer.Get(player);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialTank"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialTank>(), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SteamBar"), Main.rand.Next(15, 30));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SteamBar>(), Main.rand.Next(15, 30));
 
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SoulOfWrought"), Main.rand.Next(20, 40));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfWrought>(), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)

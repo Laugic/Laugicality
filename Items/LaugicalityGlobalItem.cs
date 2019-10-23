@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Equipables;
+using Laugicality.Items.Equipables;
 using Laugicality.Prefixes;
 using System.Collections.Generic;
 using System.IO;
@@ -89,39 +89,39 @@ namespace Laugicality.Items
         {
             if (item.accessory && item.stack == 1 && rand.NextBool(80))
             {
-                string pref = "Yeeting";
+                byte pref;
 
                 switch(rand.Next(4))
                 {
-                    case 0:
-                        pref = "Swift";
+                    /*case 0:
+                        pref = ModContent.PrefixType<Swift>();
                         break;
                     case 1:
-                        pref = "Speedy";
+                        pref = ModContent.PrefixType<Speedy>();
                         break;
                     case 2:
-                        pref = "Zippy";
-                        break;
+                        pref = ModContent.PrefixType<Zippy>();
+                        break;*/
                     default:
-                        pref = "Yeeting";
+                        pref = ModContent.PrefixType<Yeeting>();
                         break;
                 }
 
-                return mod.PrefixType(pref);
+                return pref;
             }
             if(item.ranged && Main.rand.Next(30) == 0)
             {
-                return mod.PrefixType<CarefulPrefix>();
+                return ModContent.PrefixType<CarefulPrefix>();
             }
             if (item.melee && Main.rand.Next(30) == 0)
             {
                 if(Main.rand.Next(2) == 0)
-                    return mod.PrefixType<ColossalPrefix>();
-                return mod.PrefixType<HallowedPrefix>();
+                    return ModContent.PrefixType<ColossalPrefix>();
+                return ModContent.PrefixType<HallowedPrefix>();
             }
             if (item.magic && Main.rand.Next(30) == 0)
             {
-                return mod.PrefixType<KnowledgeablePrefix>();
+                return ModContent.PrefixType<KnowledgeablePrefix>();
             }
 
             return -1;
@@ -152,7 +152,9 @@ namespace Laugicality.Items
             }
             
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && modPlayer.zImmune)
+
+            // TODO Wait for Webmilio's Commons 0.1.8
+            /* (NPC.CountNPCS(ModContent.NPCType<ZaWarudo>()) >= 1 && modPlayer.zImmune)
             {
                 if (!modPlayer.zProjImmune && MeleeDmg == 1)
                 {
@@ -174,7 +176,7 @@ namespace Laugicality.Items
 
                 if (MeleeDmg == 1)
                     item.noMelee = false;
-            }
+            }*/
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

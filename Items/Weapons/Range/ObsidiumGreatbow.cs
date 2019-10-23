@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -52,7 +53,7 @@ namespace Laugicality.Items.Weapons.Range
 		{
 			if (type == ProjectileID.WoodenArrowFriendly) 
 			{
-				type = ModContent.ProjectileType("ObsidiumArrow"); 
+				type = ModContent.ProjectileType<ObsidiumArrow>(); 
 			}
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(5)); // 30 degree spread.
                                                                                                                 // If you want to randomize the speed to stagger the projectiles

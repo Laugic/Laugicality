@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Laugicality.NPCs.Etheria;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -85,7 +86,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         /*
         public override void NPCLoot()
         {
-            if (Main.rand.Next(4) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), 1);
+            if (Main.rand.Next(4) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>(), 1);
         }*/
 
         private void MirrorTeleport(NPC npc, bool burst)
@@ -96,7 +97,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 {
                     if (Main.netMode != 1)
                     {
-                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EtherialSpiralShot>());
                         Main.npc[N].ai[0] = npc.whoAmI;
                         Main.npc[N].ai[1] = i;
                     }

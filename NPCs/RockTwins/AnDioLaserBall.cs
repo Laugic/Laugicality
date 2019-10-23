@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -49,7 +50,7 @@ namespace Laugicality.NPCs.RockTwins
 
 		public override bool CheckActive()
 		{
-			if(NPC.CountNPCS(mod.NPCType<AnDio3>()) < 1)
+			if(NPC.CountNPCS(ModContent.NPCType<AnDio3>()) < 1)
 				return false;
 			return true;
 		}
@@ -74,7 +75,7 @@ namespace Laugicality.NPCs.RockTwins
                 laserBallNum = Andesia.laserBallNum;
                 Andesia.laserBallNum++;
             }
-            flameCount = NPC.CountNPCS(mod.NPCType("AnDioLaserBall"));
+            flameCount = NPC.CountNPCS(ModContent.NPCType<AnDioLaserBall>());
             float divisions = 6.28f / flameCount;
             float flameTheta = AnDio3.theta + laserBallNum * divisions;
             double targetX = AnDio3.posX + AnDio3.dist * Math.Cos(flameTheta) - npc.width / 2;
@@ -85,7 +86,7 @@ namespace Laugicality.NPCs.RockTwins
             
             for (int k = 0; k < 2; k++)
             {                                                                                               
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType("Blue"), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Blue>(), 0f, 0f);
             }
 		}
     }

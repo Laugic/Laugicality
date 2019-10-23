@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Laugicality.Buffs;
 using Laugicality.Dusts;
+using Laugicality.Items.Consumables;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +10,11 @@ using Terraria.ModLoader;
 using Laugicality.Items.Weapons.Mystic;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.NPCs.Obsidium;
+using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.Plague;
+using Laugicality.Projectiles.Ranged;
+using Bubble = Laugicality.Projectiles.Plague.Bubble;
 
 namespace Laugicality.NPCs
 {
@@ -115,14 +121,14 @@ namespace Laugicality.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.LaugicalityPlayer.Get(player).zoneObsidium)
+            if (LaugicalityPlayer.Get(spawnInfo.player).zoneObsidium)
             {
                 pool.Clear();
                 float spawnMod = .25f;
                 if (!Main.hardMode)
                 {
-                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.10f * spawnMod);
-                    //pool.Add(mod.NPCType("ObsidiumDriller"), 0.05f * spawnMod);
+                    pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.10f * spawnMod);
+                    //pool.Add(ModContent.NPCType<ObsidiumDriller>(), 0.05f * spawnMod);
                     pool.Add(NPCID.Skeleton, 0.25f * spawnMod);
                     pool.Add(NPCID.BlackSlime, 0.2f * spawnMod);
                     pool.Add(NPCID.MotherSlime, 0.2f * spawnMod);
@@ -130,24 +136,24 @@ namespace Laugicality.NPCs
 
                     if (LaugicalityWorld.downedRagnar)
                     {
-                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.05f * spawnMod);
-                        //pool.Add(mod.NPCType("MagmaCaster"), 0.30f * spawnMod);
+                        pool.Add(ModContent.NPCType<MagmatipedeHead>(), 0.05f * spawnMod);
+                        //pool.Add(ModContent.NPCType<MagmaCaster>(), 0.30f * spawnMod);
                     }
                 }
                 else
                 {
-                    pool.Add(mod.NPCType("ObsidiumSkull"), 0.05f * spawnMod);
-                    //pool.Add(mod.NPCType("MoltenSlime"), 0.2f * spawnMod);
-                    pool.Add(mod.NPCType("MoltiochHead"), 0.015f * spawnMod);
-                    pool.Add(mod.NPCType("MoltenSoul"), 0.015f * spawnMod);
+                    pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.05f * spawnMod);
+                    //pool.Add(ModContent.NPCType<MoltenSlime>(), 0.2f * spawnMod);
+                    pool.Add(ModContent.NPCType<MoltiochHead>(), 0.015f * spawnMod);
+                    pool.Add(ModContent.NPCType<MoltenSoul>(), 0.015f * spawnMod);
                     pool.Add(NPCID.SkeletonArcher, 0.25f * spawnMod);
                     pool.Add(NPCID.GiantBat, 0.25f * spawnMod);
                     //pool.Add(NPCID.Giant, 0.25f * spawnMod);
                     if (LaugicalityWorld.downedRagnar)
                     {
-                        pool.Add(mod.NPCType("MagmatipedeHead"), 0.015f * spawnMod);
-                        //pool.Add(mod.NPCType("MagmaCaster"), 0.20f * spawnMod);
-                        pool.Add(mod.NPCType("LavaTitan"), 0.01f * spawnMod);
+                        pool.Add(ModContent.NPCType<MagmatipedeHead>(), 0.015f * spawnMod);
+                        //pool.Add(ModContent.NPCType<MagmaCaster>(), 0.20f * spawnMod);
+                        pool.Add(ModContent.NPCType<LavaTitan>(), 0.01f * spawnMod);
                     }
                 }
             }
@@ -256,7 +262,7 @@ namespace Laugicality.NPCs
             if(bubbly)
             {
                 if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType("Bubble"), 20, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType<Bubble>(), 20, 3f, Main.myPlayer);
             }
             if (dawn)
             {
@@ -273,7 +279,7 @@ namespace Laugicality.NPCs
                     damage = (24);
                 }
                 if (Main.rand.Next(1 * 60) == 0 && Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType("TrueDawnSpark"), 40, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType<TrueDawnSpark>(), 40, 3f, Main.myPlayer);
             }
             if (JunglePlague)
             {
@@ -304,7 +310,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(13) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("TrainSteam"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<TrainSteam>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -320,7 +326,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(13) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Shroom"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<ShroomDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -384,7 +390,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Hermes"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<HermesDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -416,7 +422,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Frost"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Frost>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -449,7 +455,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Bubble"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Dusts.Bubble>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -511,7 +517,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Spooked"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<SpookedDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -527,7 +533,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType("Spooked"), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<SpookedDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -588,15 +594,15 @@ namespace Laugicality.NPCs
                     float mag = 6f;
                     float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                     int damage = 80;
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<ObsidiumArrowHead>(), damage, 3f, Main.myPlayer);
                     theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<ObsidiumArrowHead>(), damage, 3f, Main.myPlayer);
                     theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<ObsidiumArrowHead>(), damage, 3f, Main.myPlayer);
                     theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<ObsidiumArrowHead>(), damage, 3f, Main.myPlayer);
                     theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<ObsidiumArrowHead>(), damage, 3f, Main.myPlayer);
                 }
             }
             if (bubbly)
@@ -605,7 +611,7 @@ namespace Laugicality.NPCs
                 {
                     int rand = Main.rand.Next(3, 7);
                     for(int i = 0; i < rand; i++)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType("Bubble"), 20, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (-1 + 2 * Main.rand.Next(2)) * 4, Main.rand.Next(-5, 2), ModContent.ProjectileType<Bubble>(), 20, 3f, Main.myPlayer);
                 }
             }
             if (dawn)
@@ -618,7 +624,7 @@ namespace Laugicality.NPCs
                         float mag = 8f;
                         float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         int damage = 32;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("DawnSpark"), damage, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<DawnSpark>(), damage, 3f, Main.myPlayer);
                     }
                 }
             }
@@ -632,7 +638,7 @@ namespace Laugicality.NPCs
                         float mag = 8f;
                         float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         int damage = 45;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("TrueDawnSpark"), damage, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<TrueDawnSpark>(), damage, 3f, Main.myPlayer);
                     }
                 }
             }
@@ -655,16 +661,16 @@ namespace Laugicality.NPCs
                         float mag = 8f;
                         float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         int damage = 1000;
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("VulcanConjuration"), damage, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType<VulcanConjuration>(), damage, 3f, Main.myPlayer);
                     }
                 }
             }
             if(attacker != -1)
             {
-                if(Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).EtherCog)
+                if(LaugicalityPlayer.Get(Main.player[attacker]).EtherCog)
                 {
-                    Main.player[attacker].AddBuff(ModContent.BuffType("Annihilation"), 10 * 60, false);
-                    Main.player[attacker].GetModPlayer<LaugicalityPlayer>(mod).AnnihilationDamageBoost += .2f;
+                    Main.player[attacker].AddBuff(ModContent.BuffType<Annihilation>(), 10 * 60, false);
+                    LaugicalityPlayer.Get(Main.player[attacker]).AnnihilationDamageBoost += .2f;
                 }
             }
             if (plays == 0)
@@ -682,25 +688,25 @@ namespace Laugicality.NPCs
             {
                 if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneSkyHeight && Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SoulOfSought"));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfSought>());
                 }
                 if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].ZoneUnderworldHeight && Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SoulOfHaught"));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfHaught>());
                 }
-                if (Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)].GetModPlayer<LaugicalityPlayer>(mod).zoneObsidium && Main.rand.Next(3) == 0)
+                if (LaugicalityPlayer.Get(Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)]).zoneObsidium && Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SoulOfHaught"));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfHaught>());
                 }
             }
             //Misc Materials
             if (npc.type == 113)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("NullShard"), Main.rand.Next(1,4));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<NullShard>(), Main.rand.Next(1,4));
             }
             if (npc.type == 4)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("TastyMorsel"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<TastyMorsel>(), 1);
             }
             if(npc.type == NPCID.IceQueen)
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RoyalIce>(), 1);

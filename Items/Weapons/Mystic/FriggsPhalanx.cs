@@ -2,6 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
 
@@ -53,14 +56,14 @@ namespace Laugicality.Items.Weapons.Mystic
                             Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 566, (int)(damage * 1.5), knockBack, player.whoAmI);
                     }
                     else
-                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("FriggDestruction"), damage, knockBack, player.whoAmI);
+                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<FriggDestruction>(), damage, knockBack, player.whoAmI);
                 }
             }
             if(modPlayer.MysticMode == 2)
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                 float mag = 360;
-                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -4 * (float)Math.Cos(theta), -4 * (float)Math.Sin(theta), ModContent.ProjectileType("FriggIllusion"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -4 * (float)Math.Cos(theta), -4 * (float)Math.Sin(theta), ModContent.ProjectileType<FriggIllusion>(), damage, 3, Main.myPlayer);
             }
             return true;
         }
@@ -94,7 +97,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = ModContent.ProjectileType("FriggConjuration");
+            item.shoot = ModContent.ProjectileType<FriggConjuration>();
             MundusCost = 16;
         }
 

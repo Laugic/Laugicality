@@ -1,4 +1,5 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Summon;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,9 +29,9 @@ namespace Laugicality.Items.Weapons.Summon
             item.value = Item.buyPrice(0, 25, 0, 0);
             item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item44;
-            item.shoot = ModContent.ProjectileType("ArcticHydraHead");
+            item.shoot = ModContent.ProjectileType<ArcticHydraHead>();
             item.shootSpeed = 0;
-            item.buffType = ModContent.BuffType("ArcticHydra");
+            item.buffType = ModContent.BuffType<Buffs.ArcticHydraBuff>();
             item.buffTime = 60;
         }
 

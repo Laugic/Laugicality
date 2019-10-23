@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -39,7 +40,7 @@ namespace Laugicality.Tiles
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Obsidium Chest";
-			chestDrop = ModContent.ItemType("ObsidiumChest");
+			chestDrop = ModContent.ItemType<Items.Placeable.ObsidiumChest>();
 		}
 
 		public override bool HasSmartInteract()
@@ -179,7 +180,7 @@ namespace Laugicality.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Obsidium Chest";
 				if (player.showItemIconText == "Obsidium Chest")
 				{
-					player.showItemIcon2 = ModContent.ItemType("ObsidiumChest");
+					player.showItemIcon2 = ModContent.ItemType<Items.Placeable.ObsidiumChest>();
 					player.showItemIconText = "";
 				}
 			}

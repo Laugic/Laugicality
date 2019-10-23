@@ -215,21 +215,21 @@ namespace Laugicality.NPCs.Etheria
             {
                 float dir = (float)Math.Atan2(npc.DirectionTo(Main.player[npc.target].Center).Y, npc.DirectionTo(Main.player[npc.target].Center).X);
                 /*if(phase <= 4)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType("QuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType<QuadroBurst>(), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 else
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir + 3.14), 8 * (float)Math.Sin(dir + 3.14), ModContent.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType<TrueQuadroBurst>(), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir + 3.14), 8 * (float)Math.Sin(dir + 3.14), ModContent.ProjectileType<TrueQuadroBurst>(), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }*/
                 attack = 0;
             }
             if(attack == 2 && Main.netMode != 1)
             {
                 if (phase <= 4)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 else
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<TrueEtherialYeet>(), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }
                 attack = 0;
             }
@@ -246,7 +246,7 @@ namespace Laugicality.NPCs.Etheria
                     {
                         for (int i = 0; i < 8; i++)
                         {
-                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EtherialSpiralShot>());
                             Main.npc[n].ai[0] = npc.whoAmI;
                             Main.npc[n].ai[1] = i;
                         }
@@ -255,7 +255,7 @@ namespace Laugicality.NPCs.Etheria
                     {
                         for (int i = 0; i < 12; i++)
                         {
-                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TrueEtherialSpiralShot"));
+                            int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<TrueEtherialSpiralShot>());
                             Main.npc[n].ai[0] = npc.whoAmI;
                             Main.npc[n].ai[1] = i;
                         }

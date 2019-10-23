@@ -1,5 +1,6 @@
 using System;
 using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -93,7 +94,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.noTileCollide = false;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
             damage = 40;
-            bossBag = ModContent.ItemType("SlybertronTreasureBag");
+            bossBag = ModContent.ItemType<SlybertronTreasureBag>();
 
         }
 
@@ -110,7 +111,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void AI()
         {
             npc.spriteDirection = 0;
-            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType("TrainSteam"), 0f, 0f);
+            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<TrainSteam>(), 0f, 0f);
             bitherial = true;
             //Despawn check
             if (Main.player[npc.target].statLife == 0) { spawned = 0; npc.aiStyle = 0; npc.noTileCollide = true; }

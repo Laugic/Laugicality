@@ -40,7 +40,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     delay = 0;
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-16, 16), projectile.Center.Y - 6 + Main.rand.Next(16), 0, 10, ModContent.ProjectileType("DionysusConjuration2"), (int)(projectile.damage), 3f, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-16, 16), projectile.Center.Y - 6 + Main.rand.Next(16), 0, 10, ModContent.ProjectileType<DionysusConjuration2>(), (int)(projectile.damage), 3f, Main.myPlayer);
                     }
                 }
             }

@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("SteamVENT");
+            item.createTile = ModContent.TileType<Tiles.SteamVENT>();
         }
 
         public override void AddRecipes()

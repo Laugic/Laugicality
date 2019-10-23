@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Thrown;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +27,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("AnDiuriken");
+            item.shoot = ModContent.ProjectileType<AnDiurikenThrownProjectile>();
             item.shootSpeed = 16f;     
             item.useTurn = true;
             item.maxStack = 4;       
@@ -37,7 +38,7 @@ namespace Laugicality.Items.Weapons.Thrown
 
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[ModContent.ProjectileType("AnDiuriken")] < item.stack;
+            return player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Thrown.AnDiurikenThrownProjectile>()] < item.stack;
         }
 
         public override void AddRecipes()  

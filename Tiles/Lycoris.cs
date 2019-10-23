@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -10,12 +11,12 @@ namespace Laugicality.Tiles
         {
             Main.tileSolid[Type] = true;
             Main.tileLighted[Type] = true;
-            Main.tileMerge[ModContent.TileType("Lycoris")][ModContent.TileType("Radiata")] = true;
-            Main.tileMerge[ModContent.TileType("Radiata")][ModContent.TileType("Lycoris")] = true;
+            Main.tileMerge[ModContent.TileType<Lycoris>()][ModContent.TileType<Tiles.Radiata>()] = true;
+            Main.tileMerge[ModContent.TileType<Tiles.Radiata>()][ModContent.TileType<Lycoris>()] = true;
             AddMapEntry(new Color(225, 50, 0));
             mineResist = .5f;
             minPick = 10;
-            drop = ModContent.ItemType("Lycoris");
+            drop = ModContent.ItemType<Items.Placeable.Lycoris>();
             dustType = ModContent.DustType<Magma>();
             //soundType = 21;
             //soundStyle = 1;
@@ -40,61 +41,61 @@ namespace Laugicality.Tiles
             {
                 if(CheckTile(i, j - 1))
                 {
-                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumGrass"), true, 0, -1, -1);
+                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumGrass>(), true, 0, -1, -1);
                 }
             }
             else if(randm < 12)
             {
-                if(Check2Tiles(i, j-1) && Main.tile[i,j + 1].type == ModContent.TileType("Lycoris"))
+                if(Check2Tiles(i, j-1) && Main.tile[i,j + 1].type == ModContent.TileType<Lycoris>())
                 {
                     int chance = Main.rand.Next(2);
                     if(chance == 0)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantGrass"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantGrass>(), true, 0, -1, -1);
                     else
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantGrass2"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantGrass2>(), true, 0, -1, -1);
                 }
                 else if(CheckTile(i, j - 1))
-                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumGrass"), true, 0, -1, -1);
+                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumGrass>(), true, 0, -1, -1);
             }
             else if(randm < 14)
             {
-                if (Check4Tiles(i, j - 1) && Main.tile[i, j].type == ModContent.TileType("Lycoris") && Main.tile[i + 1, j].type == ModContent.TileType("Lycoris") && Main.tile[i + 2, j].type == ModContent.TileType("Lycoris") && Main.tile[i + 3, j].type == ModContent.TileType("Lycoris"))
+                if (Check4Tiles(i, j - 1) && Main.tile[i, j].type == ModContent.TileType<Lycoris>() && Main.tile[i + 1, j].type == ModContent.TileType<Lycoris>() && Main.tile[i + 2, j].type == ModContent.TileType<Lycoris>() && Main.tile[i + 3, j].type == ModContent.TileType<Lycoris>())
                 {
                     int chance = Main.rand.Next(4);
                     if (chance == 0)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantBulbs"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantBulbs>(), true, 0, -1, -1);
                     if (chance == 1)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantHeart"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantHeart>(), true, 0, -1, -1);
                     if (chance == 2)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantLeaves"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantLeaves>(), true, 0, -1, -1);
                     if (chance == 3)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantMine"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantMine>(), true, 0, -1, -1);
                 }
-                else if (Check2Tiles(i, j - 1) && Main.tile[i, j + 1].type == ModContent.TileType("Lycoris"))
+                else if (Check2Tiles(i, j - 1) && Main.tile[i, j + 1].type == ModContent.TileType<Lycoris>())
                 {
                     int chance = Main.rand.Next(2);
                     if (chance == 0)
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantGrass"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantGrass>(), true, 0, -1, -1);
                     else
-                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumPlantGrass2"), true, 0, -1, -1);
+                        Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumPlantGrass2>(), true, 0, -1, -1);
                 }
                 else if (CheckTile(i, j - 1))
-                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType("ObsidiumGrass"), true, 0, -1, -1);
+                    Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumGrass>(), true, 0, -1, -1);
             }
             /*randm = Main.rand.Next(60);
             if (randm < 9)
             {
                 if (CheckTile(i, j + 1))
                 {
-                    Terraria.WorldGen.PlaceTile(i, j + 1, ModContent.TileType("ObsidiumVine"), true);
+                    Terraria.WorldGen.PlaceTile(i, j + 1, ModContent.TileType<ObsidiumVine>(), true);
                 }
-                else if(Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
+                else if(Main.tile[i, j + 1].type == ModContent.TileType<ObsidiumVine>())
                 {
                     for (int k = 1; k < 12; k++)
                     {
-                        if (Main.tile[i, j + k].type != ModContent.TileType("ObsidiumVine") && Main.tile[i, j + k].type == 0)
+                        if (Main.tile[i, j + k].type != ModContent.TileType<ObsidiumVine>() && Main.tile[i, j + k].type == 0)
                         {
-                            Terraria.WorldGen.PlaceTile(i, j + k, ModContent.TileType("ObsidiumVine"), true);
+                            Terraria.WorldGen.PlaceTile(i, j + k, ModContent.TileType<ObsidiumVine>(), true);
                             break;
                         }
                     }
@@ -140,7 +141,7 @@ namespace Laugicality.Tiles
         {
             if (j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type == ModContent.TileType<ObsidiumVine>())
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
         }

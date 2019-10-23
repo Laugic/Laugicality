@@ -1,4 +1,7 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -51,7 +54,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); 
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("DionysusIllusion"), damage, knockBack, player.whoAmI);
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<DionysusIllusion>(), damage, knockBack, player.whoAmI);
                 }
                 return false;
             }
@@ -65,7 +68,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = ModContent.ProjectileType("DionysusDestruction");
+            item.shoot = ModContent.ProjectileType<DionysusDestruction>();
             item.UseSound = SoundID.Item1;
             item.scale = 1.25f;
             LuxCost = 6;
@@ -92,7 +95,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 20f;
-            item.shoot = ModContent.ProjectileType("DionysusConjuration");
+            item.shoot = ModContent.ProjectileType<DionysusConjuration>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

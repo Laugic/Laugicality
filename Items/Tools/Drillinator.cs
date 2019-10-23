@@ -31,7 +31,7 @@ namespace Laugicality.Items.Tools
             item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("Drillinator");
+            item.shoot = ModContent.ProjectileType<Projectiles.Tools.DrillinatorProjectile>();
             item.shootSpeed = 40f;
         }
 

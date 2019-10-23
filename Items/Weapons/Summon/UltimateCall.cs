@@ -1,8 +1,10 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Laugicality.Projectiles.Special;
+using Laugicality.Projectiles.Summon;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Summon
@@ -33,7 +35,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.shoot = ModContent.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
-            item.buffType = ModContent.BuffType("UltimateLeaderBuff");
+            item.buffType = ModContent.BuffType<UltimateLeaderBuff>();
             item.buffTime = 3600;
         }
     
@@ -70,10 +72,10 @@ namespace Laugicality.Items.Weapons.Summon
 		    num79 = 0f;
 		    vector2.X = (float)Main.mouseX + Main.screenPosition.X;
 		    vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
-            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType("UltimateLeader1"), num73, num74, i, 0f, 0f);
-            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType("UltimateLeader2"), num73, num74, i, 0f, 0f);
-            if (player.ownedProjectileCounts[ModContent.ProjectileType("UltimateLeader3")] == 0)
-                Projectile.NewProjectile(player.position.X, player.position.Y - 32, num78, num79, ModContent.ProjectileType("UltimateLeader3"), num73, num74, i, 0f, 0f);
+            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType<UltimateLeader1>(), num73, num74, i, 0f, 0f);
+            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType<UltimateLeader2>(), num73, num74, i, 0f, 0f);
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<UltimateLeader3>()] == 0)
+                Projectile.NewProjectile(player.position.X, player.position.Y - 32, num78, num79, ModContent.ProjectileType<UltimateLeader3>(), num73, num74, i, 0f, 0f);
 
 
             return player.altFunctionUse != 2;

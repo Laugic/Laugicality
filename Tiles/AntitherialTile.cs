@@ -1,3 +1,4 @@
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace Laugicality.Tiles
             mineResist = .5f;
             minPick = 0;
             dustType = 90;
-            drop = ModContent.ItemType("AntitherialBlock");
+            drop = ModContent.ItemType<AntitherialBlock>();
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)

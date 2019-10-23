@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles.Thrown
 {
@@ -27,7 +28,7 @@ namespace Laugicality.Projectiles.Thrown
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), 0, 0);
+            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<White>(), 0, 0);
             Vector2 move = Vector2.Zero;
             float distance = 1400f;
             Vector2 newMove = Main.MouseWorld - projectile.Center;

@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Blue;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("TheSnowflake"); 
+            item.shoot = ModContent.ProjectileType<TheSnowflakeProjectile>(); 
             item.shootSpeed = 6f;     
             item.useTurn = true;
             item.maxStack = 999;       

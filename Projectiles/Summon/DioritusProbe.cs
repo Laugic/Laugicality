@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using System;
+using Laugicality.Dusts;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Summon
@@ -40,7 +41,7 @@ namespace Laugicality.Projectiles.Summon
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
             inertia = 12f;
-            shoot = ModContent.ProjectileType("DaggorShard");
+            shoot = ModContent.ProjectileType<DaggorShard>();
             shootCool = 30f;
             shootSpeed = 18f;
         }
@@ -66,7 +67,7 @@ namespace Laugicality.Projectiles.Summon
             {
                 if (Main.rand.Next(5) == 0)
                 {
-                    int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType("White"));
+                    int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType<White>());
                     Main.dust[dust].velocity.Y -= 1.2f;
                 }
             }
@@ -79,7 +80,7 @@ namespace Laugicality.Projectiles.Summon
                     {
                         dustVel.Normalize();
                     }
-                    int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("White"));
+                    int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<White>());
                     Main.dust[dust].velocity -= 1.2f * dustVel;
                 }
             }
@@ -90,7 +91,7 @@ namespace Laugicality.Projectiles.Summon
         {
             Player player = Main.player[projectile.owner];
             if (index == 0)
-                index = player.ownedProjectileCounts[ModContent.ProjectileType("DioritusProbe")];
+                index = player.ownedProjectileCounts[ModContent.ProjectileType<DioritusProbe>()];
             float spacing = (float)projectile.width * spacingMult;
             projectile.tileCollide = false;
             theta += (float)(Math.PI / 40);

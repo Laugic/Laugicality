@@ -1,4 +1,7 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,14 +45,14 @@ namespace Laugicality.Items.Weapons.Mystic
                 _counter--;
             if (modPlayer.MysticMode == 2 && _counter <= 0)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
                 _counter = 6;
             }
             return true;
@@ -86,7 +89,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 38;
             item.knockBack = 2;
             item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType("MarsConjuration");
+            item.shoot = ModContent.ProjectileType<MarsConjuration>();
             MundusCost = 20;
         }
 
@@ -96,7 +99,7 @@ namespace Laugicality.Items.Weapons.Mystic
             LuxCost = 8;
             if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
             {
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType("MarsDestruction"), damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<MarsDestruction>(), damage, knockback, Main.myPlayer);
 
                 modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
                 if (modPlayer.Lux < 0)

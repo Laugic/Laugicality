@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Laugicality.NPCs.Etheria;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -147,7 +148,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
             if(counter >= 4 * 60)
             {
                 counter = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 4), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / 4), 3, Main.myPlayer);
             }
         }
 

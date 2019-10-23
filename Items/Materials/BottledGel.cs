@@ -32,7 +32,7 @@ namespace Laugicality.Items.Materials
                 _time++;
             else
             {
-                player.QuickSpawnItem(ModContent.ItemType("BottledPinkGel"), 1);
+                player.QuickSpawnItem(ModContent.ItemType<BottledPinkGel>(), 1);
                 item.stack -= 1;
             }
         }

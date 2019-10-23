@@ -1,3 +1,5 @@
+using Laugicality.Dusts;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -13,7 +15,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(250, 100, 50));
             mineResist = 1f;
             minPick = 60;
-            drop = ModContent.ItemType("DarkShard");
+            drop = ModContent.ItemType<DarkShard>();
             dustType = ModContent.DustType<Magma>();
             //soundType = 21;
             //soundStyle = 1;

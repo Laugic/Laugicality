@@ -24,7 +24,7 @@ namespace Laugicality.Items.Armor
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType("ShroomChest") && legs.type == ModContent.ItemType("ShroomPants");
+			return body.type == ModContent.ItemType<ShroomChest>() && legs.type == ModContent.ItemType<ShroomPants>();
         }
 
 

@@ -1,3 +1,5 @@
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -33,7 +35,7 @@ namespace Laugicality.Projectiles.Mystic.Burst
                 else
                     dir = 1;
             }
-            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<ShroomDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             if (projectile.velocity.Y < 2)
                 projectile.velocity.Y += .1f;
             if(dir == 1)
@@ -53,7 +55,7 @@ namespace Laugicality.Projectiles.Mystic.Burst
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Spored"), 90, true);
+            target.AddBuff(ModContent.BuffType<Spored>(), 90, true);
         }
     }
 }

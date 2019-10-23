@@ -1,4 +1,5 @@
-﻿using Terraria;
+using Laugicality.Buffs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Consumables.Potions
             modPlayer.Lux = modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost;
             modPlayer.Vis = modPlayer.VisMax + modPlayer.VisMaxPermaBoost;
             modPlayer.Mundus = modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost;
-            player.AddBuff(ModContent.BuffType("Mysticality"), 60 * 60, true);
+            player.AddBuff(ModContent.BuffType<Mysticality>(), 60 * 60, true);
             return true;
         }
 

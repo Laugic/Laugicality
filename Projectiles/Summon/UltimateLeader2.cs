@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles.Summon
 {
@@ -42,7 +43,7 @@ namespace Laugicality.Projectiles.Summon
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
             Player player = Main.player[projectile.owner];
             if (index == 0)
-                index = player.ownedProjectileCounts[ModContent.ProjectileType("UltimateLeader2")] + 1;
+                index = player.ownedProjectileCounts[ModContent.ProjectileType<UltimateLeader2>()] + 1;
             projectile.tileCollide = false;
             theta = LaugicalityPlayer.Get(player).theta + 3.14f / 4 * index;
             float mag = 48 + index * 16;
@@ -82,7 +83,7 @@ namespace Laugicality.Projectiles.Summon
 
             if (Main.rand.Next(5) == 0)
             {
-                int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType("White"));
+                int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType<White>());
                 Main.dust[dust].velocity.Y -= 1.2f;
             }
             Lighting.AddLight((int)(projectile.Center.X / 16f), (int)(projectile.Center.Y / 16f), 0.6f, 0.9f, 0.3f);

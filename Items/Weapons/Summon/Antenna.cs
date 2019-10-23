@@ -32,7 +32,7 @@ namespace Laugicality.Items.Weapons.Summon
 			item.UseSound = SoundID.Item44;
 			item.shoot = ModContent.ProjectileType<TV>();
 			item.shootSpeed = 12f;
-			item.buffType = ModContent.BuffType(nameof(TVBuff));
+			item.buffType = ModContent.BuffType<TVBuff>();
 			item.buffTime = 3600;
 		}
 		

@@ -28,7 +28,7 @@ namespace Laugicality.Tiles
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 56, //TileID.Obsidian
-				ModContent.TileType<ObsidiumRock>()
+				ModContent.TileType<Tiles.ObsidiumRock>()
             };
             TileObjectData.addTile(Type);
         }

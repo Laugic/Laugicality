@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Laugicality.Projectiles.Melee
@@ -24,7 +26,7 @@ namespace Laugicality.Projectiles.Melee
 
 		public override void AI()
 		{
-			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Dawn"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<DawnDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
@@ -33,13 +35,13 @@ namespace Laugicality.Projectiles.Melee
 		{
 			for (int k = 0; k < 8; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Dawn"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<DawnDust>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
 		}
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-                target.AddBuff(ModContent.BuffType("TrueDawn"), 6 * 60 + Main.rand.Next(6 * 60));
+                target.AddBuff(ModContent.BuffType<TrueDawn>(), 6 * 60 + Main.rand.Next(6 * 60));
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {

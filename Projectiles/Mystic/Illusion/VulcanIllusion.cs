@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Laugicality.Dusts;
 using Terraria.ModLoader;
@@ -15,7 +16,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            buffID = ModContent.BuffType("Steamy");
+            buffID = ModContent.BuffType<Steamy>();
         }
 
         public override void AI()

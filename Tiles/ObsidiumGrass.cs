@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -13,7 +14,7 @@ namespace Laugicality.Tiles
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
             dustType = ModContent.DustType<Magma>();
-            //drop = ModContent.ItemType("LavaGem");
+            //drop = ModContent.ItemType<LavaGem>();
             ModTranslation name = CreateMapEntryName();
             //name.SetDefault("LavaGem");
             //AddMapEntry(new Color(180, 50, 0), name);
@@ -24,7 +25,7 @@ namespace Laugicality.Tiles
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 ModContent.TileType<Lycoris>(),
-                ModContent.TileType<Radiata>()
+                ModContent.TileType<Tiles.Radiata>()
             };
             TileObjectData.addTile(Type);
         }

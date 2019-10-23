@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using System;
+using Laugicality.Dusts;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Summon
@@ -67,7 +68,7 @@ namespace Laugicality.Projectiles.Summon
             {
                 if (Main.rand.Next(5) == 0)
                 {
-                    int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType("White"));
+                    int dust = Dust.NewDust(projectile.position, projectile.width / 2, projectile.height / 2, ModContent.DustType<White>());
                     Main.dust[dust].velocity.Y -= 1.2f;
                 }
             }
@@ -80,7 +81,7 @@ namespace Laugicality.Projectiles.Summon
                     {
                         dustVel.Normalize();
                     }
-                    int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("White"));
+                    int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<White>());
                     Main.dust[dust].velocity -= 1.2f * dustVel;
                 }
             }
@@ -92,7 +93,7 @@ namespace Laugicality.Projectiles.Summon
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
             Player player = Main.player[projectile.owner];
             if (index == 0)
-                index = player.ownedProjectileCounts[ModContent.ProjectileType("UltimateLeader1")] + 1;
+                index = player.ownedProjectileCounts[ModContent.ProjectileType<UltimateLeader1>()] + 1;
             float spacing = (float)projectile.width * spacingMult;
             projectile.tileCollide = false;
             theta = LaugicalityPlayer.Get(player).theta + 3.14f / 4 * index;
@@ -124,7 +125,7 @@ namespace Laugicality.Projectiles.Summon
                 _reload--;
             else
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("UltimateLeader4"), (int)(projectile.damage * 2), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<UltimateLeader4>(), (int)(projectile.damage * 2), 3, Main.myPlayer);
                 _reload = _reloadMax - 4 + Main.rand.Next(9);
             }
 

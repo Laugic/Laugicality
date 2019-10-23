@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -25,7 +26,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.penetrate = 3;
-            buffID = ModContent.BuffType("Furious");
+            buffID = ModContent.BuffType<Furious>();
         }
 
         public override void AI()

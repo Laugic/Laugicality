@@ -1,4 +1,5 @@
-﻿using Terraria;
+using Laugicality.Projectiles.Summon;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
@@ -16,7 +17,7 @@ namespace Laugicality.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-			if (player.ownedProjectileCounts[ModContent.ProjectileType("UltimateLeader1")] > 0)
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<UltimateLeader1>()] > 0)
 			{
 				modPlayer.UltraBoisSummon = true;
 			}

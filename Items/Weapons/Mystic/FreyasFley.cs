@@ -1,3 +1,6 @@
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,7 +42,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType("FreyaDestruction");
+            item.shoot = ModContent.ProjectileType<FreyaDestruction>();
             LuxCost = 3;
         }
 
@@ -51,7 +54,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 35;
             item.knockBack = 1;
             item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType("FreyaIllusion");
+            item.shoot = ModContent.ProjectileType<FreyaIllusion>();
             VisCost = 10;
         }
 
@@ -62,7 +65,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = ModContent.ProjectileType("FreyaConjuration1");
+            item.shoot = ModContent.ProjectileType<FreyaConjuration1>();
             MundusCost = 14;
         }
 

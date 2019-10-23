@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Materials;
+using Laugicality.Items.Materials;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.rare = ItemRarityID.Green;              
             item.UseSound = SoundID.Item1;    
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("Flarance");
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.FlaranceProjectile>();
             item.shootSpeed = 14f;
         }
 

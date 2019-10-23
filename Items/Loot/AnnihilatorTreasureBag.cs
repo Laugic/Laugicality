@@ -33,12 +33,12 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(ModContent.ItemType("SteamBar"), Main.rand.Next(20, 35));
-            player.QuickSpawnItem(ModContent.ItemType("SoulOfThought"), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(ModContent.ItemType("CogOfKnowledge"), 1);
+            player.QuickSpawnItem(ModContent.ItemType<SteamBar>(), Main.rand.Next(20, 35));
+            player.QuickSpawnItem(ModContent.ItemType<SoulOfThought>(), Main.rand.Next(25, 40));
+            player.QuickSpawnItem(ModContent.ItemType<CogOfKnowledge>(), 1);
             player.QuickSpawnItem(499, Main.rand.Next(10, 15));
         }
 
-        public override int BossBagNPC => mod.NPCType<TheAnnihilator>();
+        public override int BossBagNPC => ModContent.NPCType<TheAnnihilator>();
     }
 }

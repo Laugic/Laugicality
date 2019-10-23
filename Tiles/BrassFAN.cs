@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Laugicality.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -21,7 +22,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(220, 200, 100), name);
             disableSmartCursor = false;
             animationFrameHeight = 54;
-            dustType = ModContent.DustType("Brass");
+            dustType = ModContent.DustType<Brass>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -45,7 +46,7 @@ namespace Laugicality.Tiles
         
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 112, 64, ModContent.ItemType("BrassFAN"));
+            Item.NewItem(i * 16, j * 16, 112, 64, ModContent.ItemType<Items.Placeable.BrassFAN>());
         }
     }
 }

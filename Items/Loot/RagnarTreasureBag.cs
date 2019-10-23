@@ -68,6 +68,6 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
         }
 
-        public override int BossBagNPC => mod.NPCType<Ragnar>();
+        public override int BossBagNPC => ModContent.NPCType<Ragnar>();
     }
 }

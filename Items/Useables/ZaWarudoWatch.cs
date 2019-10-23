@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Laugicality.NPCs;
 using Terraria;
 using Terraria.ID;
@@ -43,9 +44,9 @@ namespace Laugicality.Items.Useables
             foreach ( Player player2 in Main.player){
                 
             if (modPlayer.AndioChestguard == true)
-                player.AddBuff(ModContent.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
+                player.AddBuff(ModContent.BuffType<TimeExhausted>(), modPlayer.zCoolDown, true);
             else
-                player.AddBuff(ModContent.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
+                player.AddBuff(ModContent.BuffType<TimeExhausted>(), modPlayer.zCoolDown, true);
             }
             return true;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -84,7 +85,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType<Frostbite>(), 4 * 60, true);
             }
         }
     }

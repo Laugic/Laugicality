@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +26,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("BrassRING");
+            item.createTile = ModContent.TileType<Tiles.BrassRING>();
         }
 
         public override void AddRecipes()

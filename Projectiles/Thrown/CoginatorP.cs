@@ -1,3 +1,5 @@
+using Laugicality.Buffs;
+using Laugicality.Items.Weapons.Thrown;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -23,7 +25,7 @@ namespace Laugicality.Projectiles.Thrown
                 projectile.Kill();
                 if(Main.rand.Next(2) == 0)
                 {
-                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, ModContent.ItemType("Coginator"), 1);
+                    Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, ModContent.ItemType<Coginator>(), 1);
                 }
                 Main.PlaySound(0, (int)projectile.position.X, (int)projectile.position.Y, 10);
             }
@@ -33,7 +35,7 @@ namespace Laugicality.Projectiles.Thrown
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Steamy"), 120);
+            target.AddBuff(ModContent.BuffType<Steamy>(), 120);
         }
     }
 }

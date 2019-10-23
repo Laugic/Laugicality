@@ -31,13 +31,13 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), mod.NPCType<Hypothema>(), knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), ModContent.NPCType<Hypothema>(), knockBack, player.whoAmI);
             return false;
         }
 
         public override bool CanUseItem(Player player)
         {
-            return (player.ZoneSnow && NPC.CountNPCS(mod.NPCType<Hypothema>()) < 1);
+            return (player.ZoneSnow && NPC.CountNPCS(ModContent.NPCType<Hypothema>()) < 1);
         }
 
         public override void AddRecipes()

@@ -1,3 +1,6 @@
+using Laugicality.Dusts;
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles.NPCProj;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +38,7 @@ namespace Laugicality.NPCs.Obsidium
             if (shootDel <= 0)
             {
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("MagmaBallLaunched"), (int)(npc.damage / 4f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<MagmaBallLaunched>(), (int)(npc.damage / 4f), 3, Main.myPlayer);
                 shootDel = 60 * 5;
             }
         }
@@ -47,7 +50,7 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MagmaticCrystal"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MagmaticCrystal>());
         }
     }
 }

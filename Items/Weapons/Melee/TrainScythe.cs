@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
@@ -53,7 +54,7 @@ namespace Laugicality.Items.Weapons.Melee
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(ModContent.BuffType("Steamy"), 2 * 60);
+			target.AddBuff(ModContent.BuffType<Steamy>(), 2 * 60);
 		}
 	}
 }

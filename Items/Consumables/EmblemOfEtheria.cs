@@ -33,7 +33,7 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), mod.NPCType<Etheria>(), knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), ModContent.NPCType<Etheria>(), knockBack, player.whoAmI);
             return false;
         }
 
@@ -41,7 +41,7 @@ namespace Laugicality.Items.Consumables
         {
             if (Main.dayTime && !LaugicalityWorld.downedEtheria)
                 return false;
-            else if (NPC.CountNPCS(mod.NPCType<Etheria>()) > 0)
+            else if (NPC.CountNPCS(ModContent.NPCType<Etheria>()) > 0)
                 return false;
             return true;
         }

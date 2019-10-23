@@ -1,4 +1,6 @@
-﻿using Terraria;
+using Laugicality.Projectiles.Magic;
+using Laugicality.Projectiles.Special;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
@@ -30,7 +32,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.rare = 9;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("BysmalBlast");
+            item.shoot = ModContent.ProjectileType<BysmalBlast>();
             item.shootSpeed = 24f;
         }
 
@@ -38,9 +40,9 @@ namespace Laugicality.Items.Weapons.Magic
         {
             Vector2 target = Main.MouseWorld;
             Vector2 vel = player.DirectionTo(target) * item.shootSpeed;
-            int n = Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType("BysmalWand"), (int)(item.damage), 3, Main.myPlayer);
+            int n = Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType<Projectiles.Magic.BysmalWandProjectile>(), (int)(item.damage), 3, Main.myPlayer);
             Main.projectile[n].ai[0] = 1;
-            int M = Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType("BysmalWand"), (int)(item.damage), 3, Main.myPlayer);
+            int M = Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType<BysmalWandProjectile>(), (int)(item.damage), 3, Main.myPlayer);
             Main.projectile[M].ai[0] = -1;
             if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 2) && LaugicalityWorld.downedTrueEtheria)
                 return true;

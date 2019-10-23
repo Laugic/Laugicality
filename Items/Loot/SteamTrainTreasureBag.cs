@@ -39,6 +39,6 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(ItemID.GreaterHealingPotion, Main.rand.Next(10, 15));
         }
 
-        public override int BossBagNPC => mod.NPCType<SteamTrain>();
+        public override int BossBagNPC => ModContent.NPCType<SteamTrain>();
     }
 }

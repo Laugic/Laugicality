@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using System.IO;
+using Laugicality.Items.Loot;
 using Terraria.ModLoader;
 
 namespace Laugicality.NPCs.Obsidium
@@ -112,9 +113,9 @@ namespace Laugicality.NPCs.Obsidium
 		{
 			minLength = 9;
 			maxLength = 12;
-			tailType = mod.NPCType<MoltiochTail>();
-			bodyType = mod.NPCType<MoltiochBody>();
-			headType = mod.NPCType<MoltiochHead>();
+			tailType = ModContent.NPCType<MoltiochTail>();
+			bodyType = ModContent.NPCType<MoltiochBody>();
+			headType = ModContent.NPCType<MoltiochHead>();
 			speed = 20f;
 			turnSpeed = 0.2f;
             npc.buffImmune[24] = true;
@@ -123,7 +124,7 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MagmaticCrystal"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MagmaticCrystal>());
         }
     }
     

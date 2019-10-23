@@ -1,5 +1,6 @@
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -103,11 +104,11 @@ namespace Laugicality.Items.Weapons.Range
 
             float scale = 1f - (Main.rand.NextFloat() * .2f);
             perturbedSpeed = perturbedSpeed * scale;
-            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<BrassArrowProjectile>(), damage, knockBack, player.whoAmI);
             
             if(type == ProjectileID.WoodenArrowFriendly)
             {
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<BrassArrowProjectile>(), damage, knockBack, player.whoAmI);
                 return false;
             }
             return true;

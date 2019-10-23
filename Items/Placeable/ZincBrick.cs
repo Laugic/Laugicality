@@ -21,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = ModContent.TileType<ZincBrick>();
+            item.createTile = ModContent.TileType<Tiles.ZincBrick>();
         }
 
 

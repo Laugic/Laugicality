@@ -19,7 +19,6 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			projectile.friendly = true;
             projectile.ignoreWater = true;
 			projectile.extraUpdates = 10;
-            buffID = ModContent.BuffType("CosmicDisarray");
         }
 
         public override void AI()

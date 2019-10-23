@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Laugicality.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,7 +35,7 @@ namespace Laugicality.Items.Useables
                 Main.NewText("Your soul has been released.", 150, 100, 0);
             for (int i = 0; i < 12; i++)
             {
-                Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType("Sandy"), 0f, 0f);
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Sandy>(), 0f, 0f);
             }
             return true;
         }

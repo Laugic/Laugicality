@@ -1,5 +1,8 @@
 using System;
+using Laugicality.Buffs;
 using Laugicality.Dusts;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -44,7 +47,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hypothema");
-            bossBag = ModContent.ItemType("HypothemaTreasureBag");
+            bossBag = ModContent.ItemType<HypothemaTreasureBag>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -306,7 +309,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType<Frostbite>(), 4 * 60, true);
             }
             if (Main.expertMode)
             {
@@ -317,14 +320,14 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void NPCLoot()
         {
-            LaugicalityPlayer modPlayer = Main.LocalLaugicalityPlayer.Get(player);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialFrost"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialFrost>(), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("FrostShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<FrostShard>(), Main.rand.Next(1, 3));
                 if (Main.rand.Next(0, 3) != 0)
                 {
                     int ran = Main.rand.Next(1, 7);
@@ -338,7 +341,7 @@ namespace Laugicality.NPCs.PreTrio
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowBlock, Main.rand.Next(30, 60));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IceBlock, Main.rand.Next(30, 60));
 
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ChilledBar"), Main.rand.Next(16, 25));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<ChilledBar>(), Main.rand.Next(16, 25));
             }
 
             if (Main.expertMode)

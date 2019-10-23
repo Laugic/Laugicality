@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Laugicality.Tiles;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = ModContent.TileType("EtherialTile");
+            item.createTile = ModContent.TileType<EtherialTile>();
         }
 
         public override void AddRecipes()

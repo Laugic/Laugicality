@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -38,17 +39,17 @@ namespace Laugicality.NPCs.Slybertron
             delay += 1;
             if(delay == 100 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, ModContent.ProjectileType<ElectroshockP2>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, ModContent.ProjectileType<ElectroshockP2>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, ModContent.ProjectileType<ElectroshockP2>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, ModContent.ProjectileType<ElectroshockP2>(), damage, 3f, Main.myPlayer);
             }
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.electroShockHits += 1;
-            int debuff = ModContent.BuffType("Steamy");
+            int debuff = ModContent.BuffType<Steamy>();
             if (debuff >= 0)
             {
                 player.AddBuff(debuff, 90, true);

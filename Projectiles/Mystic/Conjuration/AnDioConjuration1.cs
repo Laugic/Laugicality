@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -42,7 +43,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 					Vector2 vector12 = Vector2.UnitX * 0f;
 					vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(10f, 10f);
 					vector12 = vector12.RotatedBy((double)projectile.velocity.ToRotation(), default(Vector2));
-					int num104 = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType("White"), 0f, 0f, 75, default(Color), 1.25f);
+					int num104 = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<White>(), 0f, 0f, 75, default(Color), 1.25f);
 					Main.dust[num104].scale = 1.75f;
 					Main.dust[num104].noGravity = true;
 					Main.dust[num104].position = projectile.Center + vector12;
@@ -51,21 +52,21 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 					num103 = num + 1;
 				}
 				
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
             }
         }
 
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<White>(), 0f, 0f);
             delay++;
             Player player = Main.player[projectile.owner];
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
@@ -74,14 +75,14 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     delay = 0;
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("AnDioConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
             }
 

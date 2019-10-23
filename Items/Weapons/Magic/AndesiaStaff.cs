@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -45,7 +46,7 @@ namespace Laugicality.Items.Weapons.Magic
         {
             if (player.altFunctionUse == 2)
             {
-                item.shoot = ModContent.ProjectileType("AndesiaStaff");
+                item.shoot = ModContent.ProjectileType<Projectiles.Magic.AndesiaStaffProjectile>();
                 item.noUseGraphic = true;
             }
             else
@@ -53,15 +54,15 @@ namespace Laugicality.Items.Weapons.Magic
                 item.shoot = ModContent.ProjectileType<Nothing>();
                 item.noUseGraphic = false;
             }
-            return player.ownedProjectileCounts[ModContent.ProjectileType("AndesiaStaff")] < 1;
+            return player.ownedProjectileCounts[ModContent.ProjectileType<AndesiaStaffProjectile>()] < 1;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             if(Main.player[Main.myPlayer] == player)
             {
-                Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) - 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType("Dioritite"), (int)(item.damage), 3, Main.myPlayer);
-                Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) + 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType("Andesimite"), (int)(item.damage), 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) - 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType<Dioritite>(), (int)(item.damage), 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) - 3 + Main.rand.Next(0, 6), (int)(Main.MouseWorld.Y) + 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType<Andesimite>(), (int)(item.damage), 3, Main.myPlayer);
             }
             return true;
         }

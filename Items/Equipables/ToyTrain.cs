@@ -1,3 +1,5 @@
+using Laugicality.Buffs;
+using Laugicality.Projectiles.Pets;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,8 +17,8 @@ namespace Laugicality.Items.Equipables
 		public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.ZephyrFish);
-            item.shoot = ModContent.ProjectileType("ToyTrain");
-			item.buffType = ModContent.BuffType("ToyTrain");
+            item.shoot = ModContent.ProjectileType<ToyTrainProjectile>();
+			item.buffType = ModContent.BuffType<ToyTrainBuff>();
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.UseSound = SoundID.Item79;
         }

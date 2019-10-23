@@ -1,3 +1,4 @@
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -18,7 +19,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(150, 50, 50), name);
             mineResist = 1f;
             minPick = 60;
-            drop = ModContent.ItemType("ObsidiumOre");
+            drop = ModContent.ItemType<ObsidiumOre>();
             dustType = 1;
         }
 

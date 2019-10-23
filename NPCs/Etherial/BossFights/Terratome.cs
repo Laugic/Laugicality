@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using Laugicality.Items.Loot;
+using Laugicality.NPCs.Etheria;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -143,13 +145,13 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 shootDelay = Main.rand.Next(0, 60);
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<EtherialYeet>(), (int)(npc.damage / 2), 3, Main.myPlayer);
             }
         }
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), 5);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>(), 5);
         }
 
         private void MirrorTeleport(NPC npc, bool burst)
@@ -162,7 +164,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
                     if (Main.netMode != 1)
                     {
-                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                        int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EtherialSpiralShot>());
                         Main.npc[N].ai[0] = npc.whoAmI;
                         Main.npc[N].ai[1] = i;
                     }

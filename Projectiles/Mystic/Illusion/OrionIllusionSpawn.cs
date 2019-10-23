@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
@@ -33,7 +33,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
                 delay = 0;
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 24, ModContent.ProjectileType("OrionIllusion"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 24, ModContent.ProjectileType<OrionIllusion>(), projectile.damage, 3f, Main.myPlayer);
                 }
             }
         }

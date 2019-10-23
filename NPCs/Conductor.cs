@@ -1,4 +1,8 @@
 using Laugicality.Dusts;
+using Laugicality.Items.Consumables;
+using Laugicality.Items.Equipables;
+using Laugicality.Items.Materials;
+using Laugicality.Projectiles.NPCProj;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -149,10 +153,10 @@ namespace Laugicality.NPCs
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType("Gear"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<Gear>());
             nextSlot++;
 
-			shop.item[nextSlot].SetDefaults(ModContent.ItemType("ToyTrain"));
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType<ToyTrain>());
 			nextSlot++;
 
             shop.item[nextSlot].SetDefaults(544);
@@ -167,15 +171,15 @@ namespace Laugicality.NPCs
             shop.item[nextSlot].value = 50000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType("MechanicalMonitor"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<MechanicalMonitor>());
             shop.item[nextSlot].value = 60000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType("SteamCrown"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SteamCrown>());
             shop.item[nextSlot].value = 60000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType("SuspiciousTrainWhistle"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SuspiciousTrainWhistle>());
             shop.item[nextSlot].value = 60000;
             nextSlot++;
         }
@@ -194,7 +198,7 @@ namespace Laugicality.NPCs
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
 		{
-			projType = ModContent.ProjectileType("ConductorProjectile");
+			projType = ModContent.ProjectileType<ConductorProjectile>();
 			attackDelay = 1;
 		}
 

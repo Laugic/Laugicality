@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -78,7 +79,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.coginatorHits += 1;
-            int debuff = ModContent.BuffType("Steamy");
+            int debuff = ModContent.BuffType<Steamy>();
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);

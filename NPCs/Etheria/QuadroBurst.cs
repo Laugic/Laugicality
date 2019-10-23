@@ -44,7 +44,7 @@ namespace Laugicality.NPCs.Etheria
                 _spawned++;
                 _delay = 0;
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 4, -projectile.velocity.Y / 4, ModContent.ProjectileType("EtherialPulsar"), (int)(projectile.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 4, -projectile.velocity.Y / 4, ModContent.ProjectileType<EtherialPulsar>(), (int)(projectile.damage), 3, Main.myPlayer);
             }
             if(_spawned >=4)
                 projectile.Kill();

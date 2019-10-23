@@ -1,3 +1,4 @@
+using Laugicality.Items.Loot;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,7 +21,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("Andeshiard");  
+            item.shoot = ModContent.ProjectileType<Projectiles.Thrown.AndeshiardThrownProjectile>();  
             item.shootSpeed = 16f;     
             item.useTurn = true;
             item.maxStack = 1;       
@@ -31,7 +32,7 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()  
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "AndesiaCore", 1);
+            recipe.AddIngredient(null, nameof(AndesiaCore), 1);
             recipe.AddIngredient(3081, 25);
             recipe.AddIngredient(3086, 25);
             recipe.AddTile(16);

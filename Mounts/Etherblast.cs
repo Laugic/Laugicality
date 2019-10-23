@@ -37,8 +37,8 @@ namespace Laugicality.Mounts
             if(delay > 60 && Main.myPlayer == projectile.owner)
             {
                 delay = 0;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8, 0, ModContent.ProjectileType("EtherblastP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8, 0, ModContent.ProjectileType("EtherblastP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 8, 0, ModContent.ProjectileType<EtherblastP2>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -8, 0, ModContent.ProjectileType<EtherblastP2>(), damage, 3f, Main.myPlayer);
             }
         }
         

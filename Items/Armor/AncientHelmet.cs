@@ -1,4 +1,4 @@
-﻿using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ModContent.ItemType("AncientArmor") && legs.type == ModContent.ItemType("AncientGreaves");
+            return body.type == ModContent.ItemType<AncientArmor>() && legs.type == ModContent.ItemType<AncientGreaves>();
         }
 
 

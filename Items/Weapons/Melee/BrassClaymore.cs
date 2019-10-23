@@ -1,4 +1,5 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Buffs;
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -41,7 +42,7 @@ namespace Laugicality.Items.Weapons.Melee
         
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Steamy"), 5 * 60);
+            target.AddBuff(ModContent.BuffType<Steamy>(), 5 * 60);
         }
     }
 }

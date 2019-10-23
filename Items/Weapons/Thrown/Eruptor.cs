@@ -1,5 +1,6 @@
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Thrown;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -31,7 +32,7 @@ namespace Laugicality.Items.Weapons.Thrown
 			item.UseSound = SoundID.Item19;
 			item.autoReuse = true;
 			item.shootSpeed = 20f;
-            item.shoot = ModContent.ProjectileType("Eruptor");
+            item.shoot = ModContent.ProjectileType<EruptorProjectile>();
             item.noUseGraphic = true;
         }
 

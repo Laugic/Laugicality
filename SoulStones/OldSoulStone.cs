@@ -265,13 +265,15 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player ttPlayer = Main.player[Main.myPlayer];
-            int Class = ttLaugicalityPlayer.Get(player).Class;
+            int Class = LaugicalityPlayer.Get(ttPlayer).Class;
+
             //Tooltips
             /*if (KS > 0)
             {
                 TooltipLine lineKSTT = new TooltipLine(mod, "", KSTT);
                 tooltips.Add(lineKSTT);
             }*/
+
             //Class
             if      (Class == (int)LaugicalityVars.ClassType.Undefined      ) { TooltipLine lineClass = new TooltipLine(mod, "", "Your Soul is not Bound. \nCraft one of the class Stones to bind it!"); tooltips.Add(lineClass); }
             else if (Class == (int)LaugicalityVars.ClassType.Warrior        ) { TooltipLine lineClass = new TooltipLine(mod, "", "Warrior"); tooltips.Add(lineClass); }

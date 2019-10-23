@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Laugicality.Items.Loot;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
@@ -95,9 +96,9 @@ namespace Laugicality.NPCs.Etherial.BossFights
         {
             minLength = 12;
             maxLength = 16;
-            tailType = mod.NPCType<SuperLeechTail>();
-            bodyType = mod.NPCType<SuperLeechBody>();
-            headType = mod.NPCType<SuperLeechHead>();
+            tailType = ModContent.NPCType<SuperLeechTail>();
+            bodyType = ModContent.NPCType<SuperLeechBody>();
+            headType = ModContent.NPCType<SuperLeechHead>();
             speed = 18f;
             turnSpeed = 0.25f;
             npc.buffImmune[24] = true;
@@ -105,7 +106,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>());
         }
     }
     

@@ -1,3 +1,5 @@
+using Laugicality.Buffs;
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -17,7 +19,7 @@ namespace Laugicality.Projectiles.Plague
 
 		public override void AI()
 		{
-			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Dawn"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<DawnDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             projectile.scale *= .95f;
             if (projectile.scale < .05f)
                 projectile.Kill();
@@ -27,14 +29,14 @@ namespace Laugicality.Projectiles.Plague
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Dawn"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<DawnDust>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (target.damage > 0)
-                target.AddBuff(ModContent.BuffType("Dawn"), 4 * 60 + Main.rand.Next(2 * 60));
+                target.AddBuff(ModContent.BuffType<DawnBuff>(), 4 * 60 + Main.rand.Next(2 * 60));
 		}
 	}
 }

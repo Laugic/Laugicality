@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -32,7 +33,7 @@ namespace Laugicality.Projectiles.Thrown
         public override void AI()
         {
             projectile.rotation += 1.57f / 20;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), 0, 0);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<White>(), 0, 0);
             Vector2 targetPos = Main.MouseWorld;
             float dist = Vector2.Distance(targetPos, projectile.Center);
             float tVel = dist / 15;
@@ -57,14 +58,14 @@ namespace Laugicality.Projectiles.Thrown
             int damage = projectile.damage;
             if (Main.myPlayer == projectile.owner)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("ViciousAssassinShard"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType<ViciousAssassinShard>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
             }
         }
     }

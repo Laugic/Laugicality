@@ -32,14 +32,14 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), mod.NPCType<Ragnar>(), knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), ModContent.NPCType<Ragnar>(), knockBack, player.whoAmI);
             return false;
         }
 
         public override bool CanUseItem(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            return (modPlayer.zoneObsidium && LaugicalityWorld.downedEtheria && NPC.CountNPCS(mod.NPCType<Ragnar>()) < 1);
+            return (modPlayer.zoneObsidium && LaugicalityWorld.downedEtheria && NPC.CountNPCS(ModContent.NPCType<Ragnar>()) < 1);
         }
 
         public override void AddRecipes()

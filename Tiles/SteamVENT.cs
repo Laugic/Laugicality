@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+using Laugicality.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -20,7 +21,7 @@ namespace Laugicality.Tiles
             name.SetDefault("Steam V.E.N.T.");
             AddMapEntry(new Color(200, 200, 100), name);
             disableSmartCursor = false;
-            dustType = ModContent.DustType("Brass");
+            dustType = ModContent.DustType<Brass>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

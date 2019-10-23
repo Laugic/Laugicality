@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Ammo
 			item.knockBack = 4f;
 			item.value = 10;
 			item.rare = ItemRarityID.LightPurple;
-			item.shoot = ModContent.ProjectileType("BrassArrow");
+			item.shoot = ModContent.ProjectileType<BrassArrowProjectile>();
 			item.shootSpeed = 14f;
 			item.ammo = AmmoID.Arrow;
 		}

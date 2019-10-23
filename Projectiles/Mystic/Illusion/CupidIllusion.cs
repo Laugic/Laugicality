@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
@@ -21,7 +22,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			projectile.timeLeft = 600;
 			projectile.ignoreWater = true;
 			projectile.tileCollide = true;
-            buffID = ModContent.BuffType("Lovestruck");
+            buffID = ModContent.BuffType<Lovestruck>();
         }
     }
 }

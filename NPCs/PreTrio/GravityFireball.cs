@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -36,7 +37,7 @@ namespace Laugicality.NPCs.PreTrio
             float mag = Main.rand.Next(2, 6);
             newVel.X += (float)Math.Cos(theta) * mag;
             newVel.Y += (float)Math.Sin(theta) * mag;
-            Dust.NewDust(projectile.position - projectile.velocity, projectile.width, projectile.height, ModContent.DustType("SuperMagma"), newVel.X, newVel.Y);
+            Dust.NewDust(projectile.position - projectile.velocity, projectile.width, projectile.height, ModContent.DustType<SuperMagma>(), newVel.X, newVel.Y);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) - 1.57f;
             delay++;
             if (delay > 30)

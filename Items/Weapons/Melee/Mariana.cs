@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Bubbly"), 4 * 60 + Main.rand.Next(2 * 60));        //Add Onfire buff to the NPC for 1 second
+            target.AddBuff(ModContent.BuffType<Bubbly>(), 4 * 60 + Main.rand.Next(2 * 60));        //Add Onfire buff to the NPC for 1 second
         }
 
         public override void AddRecipes()

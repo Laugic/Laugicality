@@ -49,7 +49,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 float vX = mag * (float)Math.Cos(theta);
                 float vY = -mag * (float)Math.Sin(theta);
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("VulcanConjuration3"), (int)(projectile.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<VulcanConjuration3>(), (int)(projectile.damage), 3, Main.myPlayer);
                 projectile.Kill();
             }
         }

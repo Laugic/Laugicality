@@ -1,4 +1,5 @@
-﻿using Terraria;
+using Laugicality.Projectiles.Pets;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,8 +16,8 @@ namespace Laugicality.Items.Equipables
             //item.CloneDefaults(ItemID.ZephyrFish);
             item.width = 28;
 			item.height = 28;
-            item.shoot = ModContent.ProjectileType("ObsidiumHeart");
-            item.buffType = ModContent.BuffType("ObsidiumHeart");
+            item.shoot = ModContent.ProjectileType<ObsidiumHeartProjectile>();
+            item.buffType = ModContent.BuffType<Buffs.ObsidiumHeartBuff>();
             item.value = Item.sellPrice(0, 10, 0, 0);
             item.maxStack = 1;
 			item.rare = ItemRarityID.Orange;

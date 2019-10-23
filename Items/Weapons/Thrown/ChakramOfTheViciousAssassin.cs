@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Cyan;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = ModContent.ProjectileType("ViciousAssassinMain");  
+            item.shoot = ModContent.ProjectileType<ViciousAssassinMain>();  
             item.shootSpeed = 20f;     
             item.useTurn = true;
             item.maxStack = 1;       

@@ -1,3 +1,6 @@
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +31,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = ModContent.ProjectileType("HermesDestruction");
+			item.shoot = ModContent.ProjectileType<HermesDestruction>();
 			item.shootSpeed = 6f;
 		}
 
@@ -43,7 +46,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("HermesDestruction"), damage, knockBack, player.whoAmI);
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<HermesDestruction>(), damage, knockBack, player.whoAmI);
                 }
 
             }
@@ -57,7 +60,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12;
-            item.shoot = ModContent.ProjectileType("HermesDestruction");
+            item.shoot = ModContent.ProjectileType<HermesDestruction>();
             LuxCost = 8;
         }
 
@@ -68,7 +71,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 16;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("HermesIllusion");
+            item.shoot = ModContent.ProjectileType<HermesIllusion>();
             VisCost = 4;
         }
 
@@ -79,7 +82,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 22;
             item.knockBack = 5;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("HermesConjuration1");
+            item.shoot = ModContent.ProjectileType<HermesConjuration1>();
             MundusCost = 8;
         }
 

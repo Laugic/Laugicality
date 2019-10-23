@@ -1,3 +1,5 @@
+using Laugicality.Dusts;
+using Laugicality.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -29,7 +31,7 @@ namespace Laugicality.Projectiles.Summon
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			inertia = 20f;
-			shoot = ModContent.ProjectileType("LightningBall");
+			shoot = ModContent.ProjectileType<LightningBall>();
             shootCool = 25f;
 			shootSpeed = 12f;
 		}

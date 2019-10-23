@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -104,7 +105,7 @@ namespace Laugicality.Projectiles.Thrown
         
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Steamy"), 120);       //Add Onfire buff to the NPC for 1 second
+            target.AddBuff(ModContent.BuffType<Steamy>(), 120);       //Add Onfire buff to the NPC for 1 second
         }
     }
 }

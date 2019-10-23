@@ -25,7 +25,7 @@ public override void SetStaticDefaults()
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType("SteampunkJacket") && legs.type == ModContent.ItemType("SteampunkBoots");
+			return body.type == ModContent.ItemType<SteampunkJacket>() && legs.type == ModContent.ItemType<SteampunkBoots>();
         }
 
 

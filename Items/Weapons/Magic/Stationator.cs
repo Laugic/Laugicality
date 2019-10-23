@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +30,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item34;
             item.autoReuse = true;
-			item.shoot = ModContent.ProjectileType("TrainScythe");
+			item.shoot = ModContent.ProjectileType<TrainScytheProjectile>();
 			item.shootSpeed = 14f;
 		}
 

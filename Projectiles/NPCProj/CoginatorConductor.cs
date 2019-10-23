@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace Laugicality.Projectiles.NPCProj
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("Steamy"), 120);
+            target.AddBuff(ModContent.BuffType<Steamy>(), 120);
         }
     }
 }

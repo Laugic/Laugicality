@@ -1,3 +1,6 @@
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,7 +45,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 for(int i = 0; i < 3; i++)
                 {
                     if(Main.player[Main.myPlayer] == player)
-                        Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, ModContent.ProjectileType("YuleConjuration"), (int)(item.damage), 3, Main.myPlayer);
+                        Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, ModContent.ProjectileType<YuleConjuration>(), (int)(item.damage), 3, Main.myPlayer);
                 }
             }
             return true;
@@ -55,7 +58,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 10;
-            item.shoot = ModContent.ProjectileType("YuleDestruction");
+            item.shoot = ModContent.ProjectileType<YuleDestruction>();
             LuxCost = 4;
         }
 
@@ -66,7 +69,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 25;
             item.knockBack = 1;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("YuleIllusion");
+            item.shoot = ModContent.ProjectileType<YuleIllusion>();
             VisCost = 8;
         }
 

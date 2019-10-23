@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -56,10 +57,10 @@ namespace Laugicality.Projectiles.Summon
             if (!justSpawned)
             {
                 justSpawned = true;
-                GetMinionSlots(player.ownedProjectileCounts[ModContent.ProjectileType("ArcticHydraHead")]);
-                range = 200 + 50 * player.ownedProjectileCounts[ModContent.ProjectileType("ArcticHydraHead")];
+                GetMinionSlots(player.ownedProjectileCounts[ModContent.ProjectileType<ArcticHydraHead>()]);
+                range = 200 + 50 * player.ownedProjectileCounts[ModContent.ProjectileType<ArcticHydraHead>()];
                 projectile.damage += index * 20;
-                if ((Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
+                if ((LaugicalityPlayer.Get(Main.player[projectile.owner]).Etherable > 2 || LaugicalityWorld.downedEtheria) && LaugicalityWorld.downedTrueEtheria)
                 {
                     projectile.damage += 20 * index;
                     range = range * 2;
@@ -67,7 +68,7 @@ namespace Laugicality.Projectiles.Summon
                 targetPos.X = player.Center.X;
                 targetPos.Y = player.Center.Y;
                 theta = (float)(Main.rand.NextDouble() * Math.PI * 2);
-                index = player.ownedProjectileCounts[ModContent.ProjectileType("ArcticHydraHead")];
+                index = player.ownedProjectileCounts[ModContent.ProjectileType<ArcticHydraHead>()];
                 offSet.X = 10 * index * (float)Math.Cos(Math.PI / 4 * index);
                 if (index == 1)
                     offSet.X = 20;
@@ -178,7 +179,7 @@ namespace Laugicality.Projectiles.Summon
         private void GetDust()
         {
             if (Main.rand.Next(8) == 0)
-                Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType("ArcticHydra"));
+                Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<ArcticHydra>());
         }
 
         private void GetFrame()
@@ -207,7 +208,7 @@ namespace Laugicality.Projectiles.Summon
             {
                 shootDelay = 0;
                 mouthOpen = 30;
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, vector.X, vector.Y, ModContent.ProjectileType("BysmalBlast2"), projectile.damage, 3f, projectile.owner);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, vector.X, vector.Y, ModContent.ProjectileType<BysmalBlast2>(), projectile.damage, 3f, projectile.owner);
             }
         }
 

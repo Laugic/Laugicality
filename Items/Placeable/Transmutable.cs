@@ -23,7 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = ModContent.TileType("Transmutable");
+            item.createTile = ModContent.TileType<Tiles.Transmutable>();
         }
         
         public override void AddRecipes()

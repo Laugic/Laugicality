@@ -1,4 +1,5 @@
-﻿using Terraria;
+using Laugicality.Projectiles.Melee;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Weapons.Melee
 
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(silver: 1);
-			item.shoot = ModContent.ProjectileType("AnDioYoProjectile");
+			item.shoot = ModContent.ProjectileType<AnDioYoProjectile>();
 		}
 
 		public override void AddRecipes()

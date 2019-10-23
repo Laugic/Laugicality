@@ -1,5 +1,7 @@
-﻿using Terraria;
+using Laugicality.Tiles;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Structures
 {
@@ -107,7 +109,7 @@ namespace Laugicality.Structures
                         if (_bysmalBig[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("BysmalOre"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModContent.TileType<BysmalOre>(), true, true);
                         }
                     }
                 }
@@ -125,7 +127,7 @@ namespace Laugicality.Structures
                         if (_bysmalMed[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("BysmalOre"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModContent.TileType<BysmalOre>(), true, true);
                         }
                     }
                 }
@@ -143,7 +145,7 @@ namespace Laugicality.Structures
                         if (_bysmalSmall[j, i] == 1)
                         {
                             WorldGen.KillTile(xPosO + i, yPosO + j);
-                            WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("BysmalOre"), true, true);
+                            WorldGen.PlaceTile(xPosO + i, yPosO + j, ModContent.TileType<BysmalOre>(), true, true);
                         }
                     }
                 }

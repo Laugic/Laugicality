@@ -1,4 +1,5 @@
 using Laugicality.Dusts;
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -14,7 +15,7 @@ namespace Laugicality.Tiles
             Main.tileLighted[Type] = true;
             dustType = ModContent.DustType<Magma>();
 
-            //drop = ModContent.ItemType("LavaGem");
+            //drop = ModContent.ItemType<LavaGem>();
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lycoris Radiata");
 
@@ -28,7 +29,7 @@ namespace Laugicality.Tiles
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
 				ModContent.TileType<Lycoris>(),
-                ModContent.TileType<Radiata>()
+                ModContent.TileType<Tiles.Radiata>()
             };
             TileObjectData.addTile(Type);
         }
@@ -54,7 +55,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 64, 64, ModContent.ItemType("ObsidiumPlant"));
+            Item.NewItem(i * 16, j * 16, 64, 64, ModContent.ItemType<ObsidiumPlant>());
         }
     }
 }

@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
@@ -22,7 +23,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 
         public override void AI()
         {
-            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("GalacticLight"));
+            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<GalacticLight>());
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
 
@@ -47,7 +48,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             Main.PlaySound(SoundID.Item14, projectile.position);
             for (int k = 0; k < 18; k++)
             {
-                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("White"));
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<White>());
                 Main.dust[dust].noGravity = true;
             }
             projectile.position.X = projectile.position.X + (float)(projectile.width / 2);

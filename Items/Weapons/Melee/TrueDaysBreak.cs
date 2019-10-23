@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
+using Laugicality.Buffs;
+using Laugicality.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,7 +31,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 16f;
-            item.shoot = ModContent.ProjectileType("TrueGoldenSword");
+            item.shoot = ModContent.ProjectileType<TrueGoldenSword>();
             item.scale *= 1.25f;
         }
 
@@ -40,7 +42,7 @@ namespace Laugicality.Items.Weapons.Melee
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f / 180f;
                 float mag = 600 + Main.rand.Next(200);
-                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), ModContent.ProjectileType("TrueDawnStar"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -25 * (float)Math.Cos(theta), -25 * (float)Math.Sin(theta), ModContent.ProjectileType<TrueDawnStar>(), damage, 3, Main.myPlayer);
             }
             int numberProjectiles = Main.rand.Next(1, 4);
             for (int i = 0; i < numberProjectiles; i++)
@@ -48,20 +50,20 @@ namespace Laugicality.Items.Weapons.Melee
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
                 float scale = 1.1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("TrueGoldenSword"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<TrueGoldenSword>(), damage, knockBack, player.whoAmI);
             }
             return true;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType("TrueDawn"), 12 * 60 + Main.rand.Next(8 * 60));
+            target.AddBuff(ModContent.BuffType<TrueDawn>(), 12 * 60 + Main.rand.Next(8 * 60));
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType("DaysBreak"));
+            recipe.AddIngredient(ModContent.ItemType<DaysBreak>());
             recipe.AddRecipeGroup("TitaniumBars", 12);
             recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddIngredient(ItemID.LargeDiamond, 1);

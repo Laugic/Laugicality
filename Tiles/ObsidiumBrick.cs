@@ -14,7 +14,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(40, 40, 40));
             mineResist = 1f;
             minPick = 20;
-            drop = ModContent.ItemType("ObsidiumBrick");
+            drop = ModContent.ItemType<Items.Placeable.ObsidiumBrick>();
             soundType = 21;
             dustType = 1;
             //soundStyle = 1;

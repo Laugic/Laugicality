@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using System;
+using Laugicality.Dusts;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
@@ -30,7 +31,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f * 3;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Frost"), 0, 0);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Frost>(), 0, 0);
             Vector2 targetPos = Main.MouseWorld;
             float dist = Vector2.Distance(targetPos, projectile.Center);
             float tVel = dist / 15;

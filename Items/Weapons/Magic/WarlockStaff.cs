@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
@@ -32,7 +33,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Cyan;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = ModContent.ProjectileType("WarlockStaff3");
+			item.shoot = ModContent.ProjectileType<WarlockStaff3>();
 			item.shootSpeed = 36f;
 		}
 
@@ -44,7 +45,7 @@ namespace Laugicality.Items.Weapons.Magic
             if (reload <= 0)
             {
                 reload = reloadMax;
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType("WarlockStaff1"), (int)(item.damage) * 4, 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, vel.X, vel.Y, ModContent.ProjectileType<WarlockStaff1>(), (int)(item.damage) * 4, 3, Main.myPlayer);
             }
             return true;
         }/*

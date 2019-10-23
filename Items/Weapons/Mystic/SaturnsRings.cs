@@ -1,4 +1,7 @@
-﻿using Terraria;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
+using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
@@ -68,7 +71,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 18f;
-            item.shoot = ModContent.ProjectileType("SaturnDestruction");
+            item.shoot = ModContent.ProjectileType<SaturnDestruction>();
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -79,7 +82,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 18f;
-            item.shoot = ModContent.ProjectileType("SaturnIllusion1");
+            item.shoot = ModContent.ProjectileType<SaturnIllusion1>();
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -90,7 +93,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("SaturnConjuration1");
+            item.shoot = ModContent.ProjectileType<SaturnConjuration1>();
         }
     }
 }

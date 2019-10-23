@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -102,7 +103,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         }
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(ModContent.BuffType("Frostbite"), 5 * 60, true);
+            player.AddBuff(ModContent.BuffType<Frostbite>(), 5 * 60, true);
         }
 
     }

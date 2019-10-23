@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +18,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			projectile.penetrate = -1;
 			projectile.timeLeft = 90;
 			aiType = ProjectileID.SpikyBall;
-            buffID = ModContent.BuffType("Spooked");
+            buffID = ModContent.BuffType<SpookedBuff>();
         }
 
         public override void AI()

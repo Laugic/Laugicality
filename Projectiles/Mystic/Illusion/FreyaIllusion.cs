@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 300;
             projectile.ignoreWater = true;
             Main.projFrames[projectile.type] = 2;
-            buffID = ModContent.BuffType("Spored");
+            buffID = ModContent.BuffType<Spored>();
             projectile.tileCollide = true;
         }
 

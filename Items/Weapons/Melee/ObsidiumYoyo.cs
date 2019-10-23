@@ -1,4 +1,4 @@
-﻿using Laugicality.Items.Materials;
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Melee
 
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(silver: 1);
-			item.shoot = ModContent.ProjectileType("ObsidiumYoyo");
+			item.shoot = ModContent.ProjectileType<Projectiles.Melee.ObsidiumYoyoProjectile>();
 		}
 
 		public override void AddRecipes()

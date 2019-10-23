@@ -148,7 +148,8 @@ namespace Laugicality.Focuses
                     laugicalityPlayer.SlybertronCounter = 15;
                     if (Main.netMode != 1)
                     {
-                        Projectile.NewProjectile(laugicalityPlayer.player.Center, new Vector2(0, 0), Laugicality.Instance.ProjectileType<ElectroAura>(), (int)(48 * laugicalityPlayer.GetGlobalDamage()), 0, laugicalityPlayer.player.whoAmI);
+                        Projectile.NewProjectile(laugicalityPlayer.player.Center, new Vector2(0, 0), 
+                            ModContent.ProjectileType<ElectroAura>(), (int)(48 * laugicalityPlayer.GetGlobalDamage()), 0, laugicalityPlayer.player.whoAmI);
                     }
                 }
                 else

@@ -1,3 +1,4 @@
+using Laugicality.Items.Materials;
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
@@ -33,9 +34,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(ModContent.ItemType("AncientShard"), Main.rand.Next(2,4));
-            player.QuickSpawnItem(ModContent.ItemType("Crystilla"), Main.rand.Next(8, 15));
-            player.QuickSpawnItem(ModContent.ItemType("Pyramind"), 1);
+            player.QuickSpawnItem(ModContent.ItemType<AncientShard>(), Main.rand.Next(2,4));
+            player.QuickSpawnItem(ModContent.ItemType<Crystilla>(), Main.rand.Next(8, 15));
+            player.QuickSpawnItem(ModContent.ItemType<Pyramind>(), 1);
             int ran = Main.rand.Next(1, 8);
             if (ran == 1) player.QuickSpawnItem(ItemID.SandstorminaBottle, 1);
             if (ran == 2) player.QuickSpawnItem(ItemID.FlyingCarpet, 1);
@@ -48,6 +49,6 @@ namespace Laugicality.Items.Loot
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
         }
 
-        public override int BossBagNPC => mod.NPCType<DuneSharkron>();
+        public override int BossBagNPC => ModContent.NPCType<DuneSharkron>();
     }
 }

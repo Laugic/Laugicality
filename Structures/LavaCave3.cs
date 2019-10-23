@@ -1,4 +1,6 @@
-﻿using Terraria;
+using Laugicality.Tiles;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Structures
 {
@@ -84,7 +86,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + _structureArray.GetLength(1) - i, yPosO + j, ModContent.TileType<Tiles.ObsidiumRock>(), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {
@@ -111,7 +113,7 @@ namespace Laugicality.Structures
                             if (_structureArray[j, i] == 1)
                             {
                                 WorldGen.KillTile(xPosO + i, yPosO + j);
-                                WorldGen.PlaceTile(xPosO + i, yPosO + j, Laugicality.Instance.TileType("ObsidiumRock"), true, true);
+                                WorldGen.PlaceTile(xPosO + i, yPosO + j, ModContent.TileType<Tiles.ObsidiumRock>(), true, true);
                             }
                             if (_structureArray[j, i] == 2)
                             {

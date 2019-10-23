@@ -39,10 +39,10 @@ namespace Laugicality.NPCs.RockTwins
             /*
             if (spawned && Main.netMode != 1)
             {
-                NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType<AnDio3>());
+                NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, ModContent.NPCType<AnDio3>());
                 spawned = false;
             }
-            if (NPC.CountNPCS(mod.NPCType<AnDio3>()) >= 1)
+            if (NPC.CountNPCS(ModContent.NPCType<AnDio3>()) >= 1)
             {
                 npc.active = false;
             }*/
@@ -62,7 +62,7 @@ namespace Laugicality.NPCs.RockTwins
                 npc.frame.Y = frameHeight * 7;
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zurg"));
                 if (Main.netMode != 1)
-                    NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, mod.NPCType<AnDio3>());
+                    NPC.NewNPC((int)npc.Center.X, (int)npc.position.Y + npc.height, ModContent.NPCType<AnDio3>());
                 npc.active = false;
                 spawned = true;
             }

@@ -1,4 +1,7 @@
 using Laugicality.Items.Materials;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -59,7 +62,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 20;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType("HadesIllusion");
+            item.shoot = ModContent.ProjectileType<HadesIllusion>();
             VisCost = 8;
         }
 
@@ -70,7 +73,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 65;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType("HadesConjuration");
+            item.shoot = ModContent.ProjectileType<HadesConjuration>();
             MundusCost = 20;
         }
 
@@ -80,7 +83,7 @@ namespace Laugicality.Items.Weapons.Mystic
             LuxCost = 16;
             if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
             {
-                Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, ModContent.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, ModContent.ProjectileType<HadesExplosion>(), damage, knockback, Main.myPlayer);
                 
                 modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
                 if (modPlayer.Lux < 0)

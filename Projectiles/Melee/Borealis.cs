@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 using Laugicality.Dusts;
+using Laugicality.Projectiles.Special;
 
 namespace Laugicality.Projectiles.Melee
 {
@@ -35,7 +36,7 @@ namespace Laugicality.Projectiles.Melee
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             int power = Main.rand.Next(4, 7);
-            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(Main.player[projectile.owner]).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                     power *= 2;
             while (power > 0)
             {
@@ -43,7 +44,7 @@ namespace Laugicality.Projectiles.Melee
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<BysmalBlast>(), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();
@@ -55,7 +56,7 @@ namespace Laugicality.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             int power = Main.rand.Next(4, 7);
-            if ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(Main.player[projectile.owner]).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                 power *= 2;
             while (power > 0)
             {
@@ -63,7 +64,7 @@ namespace Laugicality.Projectiles.Melee
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<BysmalBlast>(), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();

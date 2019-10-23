@@ -1,3 +1,4 @@
+using Laugicality.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
-            item.shoot = ModContent.ProjectileType("Frostball");
+            item.shoot = ModContent.ProjectileType<FrostballProjectile>();
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

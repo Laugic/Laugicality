@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -39,9 +40,9 @@ namespace Laugicality.Tiles
             frameXOffset = 0;
             if (j > 2 && j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type != ModContent.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type != ModContent.TileType<ObsidiumVine>())
                     frameYOffset = 36;
-                else if (Main.tile[i, j - 1].type == ModContent.TileType("Lycoris") || Main.tile[i, j - 1].type == ModContent.TileType("Radiata"))
+                else if (Main.tile[i, j - 1].type == ModContent.TileType<Lycoris>() || Main.tile[i, j - 1].type == ModContent.TileType<Tiles.Radiata>())
                     frameYOffset = 0;
                 else
                     frameYOffset = 18;
@@ -63,7 +64,7 @@ namespace Laugicality.Tiles
         {
             if(j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type == ModContent.TileType<ObsidiumVine>())
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
         }

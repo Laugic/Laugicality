@@ -1,4 +1,5 @@
 using System;
+using Laugicality.NPCs.Etheria;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -107,18 +108,18 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         private void CircleRagnar()
         {
-            float theta = Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armTheta + (float)Math.PI / 2 * npc.ai[0];
+            float theta = Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armTheta + (float)Math.PI / 2 * npc.ai[0];
             targetPos = Main.npc[(int)npc.ai[1]].Center;
-            targetPos.X += (float)Math.Cos(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armDist;
-            targetPos.Y += (float)Math.Sin(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armDist;
+            targetPos.X += (float)Math.Cos(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armDist;
+            targetPos.Y += (float)Math.Sin(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armDist;
         }
 
         private void CirclePlayer()
         {
-            float theta = Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armTheta + (float)Math.PI / 2 * npc.ai[0];
+            float theta = Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armTheta + (float)Math.PI / 2 * npc.ai[0];
             targetPos = Main.player[Main.npc[(int)npc.ai[1]].target].Center;
-            targetPos.X += (float)Math.Cos(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armDist;
-            targetPos.Y += (float)Math.Sin(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>(mod).armDist;
+            targetPos.X += (float)Math.Cos(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armDist;
+            targetPos.Y += (float)Math.Sin(theta) * Main.npc[(int)npc.ai[1]].GetGlobalNPC<EtherialGlobalNPC>().armDist;
         }
 
         private void HoverPlayer()
@@ -173,7 +174,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("EtherialSpiralShot"));
+                    int N = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EtherialSpiralShot>());
                     Main.npc[N].ai[0] = npc.whoAmI;
                     Main.npc[N].ai[1] = i;
                 }

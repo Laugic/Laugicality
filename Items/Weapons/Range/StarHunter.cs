@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -74,14 +75,14 @@ namespace Laugicality.Items.Weapons.Range
             {
                 reload2 = reloadMax2;
 
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 14, 0, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -14, 0, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 14, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, -14, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 10, 10, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 10, -10, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -10, -10, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -10, 10, ModContent.ProjectileType("Luminarrow"), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 14, 0, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -14, 0, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 14, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, -14, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 10, 10, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 10, -10, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -10, -10, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -10, 10, ModContent.ProjectileType<Luminarrow>(), (int)(item.damage / 1.2f), 3, Main.myPlayer);
             }
             //Normal shot
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
@@ -93,7 +94,7 @@ namespace Laugicality.Items.Weapons.Range
             theta += rotSp;
             if (theta >= 3.14158265f * 2)
                 theta -= 3.14158265f * 2;
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("LuminarrowHead"), (int)(item.damage) / 2, 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType<LuminarrowHead>(), (int)(item.damage) / 2, 3, Main.myPlayer);
 
             //Normal shot
             if (reload <= 0)

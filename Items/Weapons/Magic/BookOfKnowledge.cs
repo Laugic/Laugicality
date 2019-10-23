@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item33;
             item.autoReuse = true;
-			item.shoot = ModContent.ProjectileType("LightningBall");
+			item.shoot = ModContent.ProjectileType<LightningBall>();
 			item.shootSpeed = 14f;
 		}
 

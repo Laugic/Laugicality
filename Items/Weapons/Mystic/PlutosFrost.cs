@@ -1,4 +1,7 @@
 using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Mystic.Conjuration;
+using Laugicality.Projectiles.Mystic.Destruction;
+using Laugicality.Projectiles.Mystic.Illusion;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,7 +56,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     if (Main.player[Main.myPlayer] == player)
-                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
+                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<PlutoIllusion>(), damage, knockBack, player.whoAmI);
                 }
 
             }
@@ -67,7 +70,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 6;
             item.shootSpeed = 14f;
-            item.shoot = ModContent.ProjectileType("PlutoDestruction");
+            item.shoot = ModContent.ProjectileType<PlutoDestruction>();
             LuxCost = 5;
         }
 
@@ -78,7 +81,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
-            item.shoot = ModContent.ProjectileType("PlutoIllusion");
+            item.shoot = ModContent.ProjectileType<PlutoIllusion>();
             item.noUseGraphic = false;
             VisCost = 6;
         }
@@ -90,7 +93,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 24f;
-            item.shoot = ModContent.ProjectileType("PlutoConjuration");
+            item.shoot = ModContent.ProjectileType<PlutoConjuration>();
             item.noUseGraphic = false;
             MundusCost = 16;
         }

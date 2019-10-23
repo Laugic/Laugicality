@@ -1,4 +1,5 @@
-﻿using Laugicality.Items.Loot;
+using Laugicality.Items.Loot;
+using Laugicality.Projectiles.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Ammo
             item.knockBack = 7f;
             item.value = 0;
             item.rare = ItemRarityID.White;
-            item.shoot = ModContent.ProjectileType("Frostball");
+            item.shoot = ModContent.ProjectileType<FrostballProjectile>();
             item.shootSpeed = 14f;
             item.ammo = AmmoID.Snowball;
         }

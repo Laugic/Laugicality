@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -52,7 +53,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
         {
             for (int k = 0; k < 1; k++)
             {
-				int num234 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y) - projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Blue"), 0f, 0f, 125, default(Color), 1f);
+				int num234 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y) - projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Blue>(), 0f, 0f, 125, default(Color), 1f);
 				Dust dust3 = Main.dust[num234];
 				dust3 = Main.dust[num234];
 				dust3.velocity *= 0.65f;

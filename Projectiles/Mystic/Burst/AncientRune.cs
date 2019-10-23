@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -29,12 +30,12 @@ namespace Laugicality.Projectiles.Mystic.Burst
 		public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Sandy"), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Sandy>(), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
             
             projectile.rotation += 0.02f;
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
             if (Main.rand.Next(4) == 0 && Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4+Main.rand.Next(0,9), -Main.rand.Next(3,7),  ModContent.ProjectileType("AncientRuneUp"), (int)(12 * modPlayer.MysticDamage * modPlayer.MysticBurstDamage), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -4+Main.rand.Next(0,9), -Main.rand.Next(3,7),  ModContent.ProjectileType<AncientRuneUp>(), (int)(12 * modPlayer.MysticDamage * modPlayer.MysticBurstDamage), 3, Main.myPlayer);
             
         }
         

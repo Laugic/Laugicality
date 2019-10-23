@@ -33,11 +33,11 @@ namespace Laugicality.Items.Consumables
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), mod.NPCType<TheAnnihilator>(), knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), ModContent.NPCType<TheAnnihilator>(), knockBack, player.whoAmI);
             return false;
         }
 
-        public override bool CanUseItem(Player player) => !Main.dayTime && NPC.CountNPCS(mod.NPCType<TheAnnihilator>()) < 1;
+        public override bool CanUseItem(Player player) => !Main.dayTime && NPC.CountNPCS(ModContent.NPCType<TheAnnihilator>()) < 1;
 
         public override void AddRecipes()
 		{

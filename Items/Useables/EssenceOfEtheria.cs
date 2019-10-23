@@ -1,4 +1,5 @@
 using Laugicality.Dusts;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +24,7 @@ namespace Laugicality.Items.Useables
             item.useTime = 45;
             item.useStyle = ItemUseStyleID.HoldingUp;
             item.expert = true;
-            item.createTile = ModContent.TileType("HighPriestess");
+            item.createTile = ModContent.TileType<HighPriestess>();
         }
 
         public override bool CanUseItem(Player player)

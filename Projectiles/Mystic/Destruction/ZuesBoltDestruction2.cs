@@ -41,7 +41,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             {
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(-0.65f, -0.25f), projectile.velocity.Y * Main.rand.NextFloat(-0.65f, -0.25f), ModContent.ProjectileType("ZuesBoltDestruction3"), (int)(projectile.damage * 0.5f), 2f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(-0.65f, -0.25f), projectile.velocity.Y * Main.rand.NextFloat(-0.65f, -0.25f), ModContent.ProjectileType<ZuesBoltDestruction3>(), (int)(projectile.damage * 0.5f), 2f, Main.myPlayer);
                 }
                 timer2 = 0;
             }
@@ -72,7 +72,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 		{
 			 for (int k = 0; k < 15; k++)
 			{
-				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType("ZuesBoltDestruction3"), (int)(projectile.damage * 0.75f), 2f, projectile.owner, 1f, 0f);
+				Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType<ZuesBoltDestruction3>(), (int)(projectile.damage * 0.75f), 2f, projectile.owner, 1f, 0f);
 			}
 			for (int k = 0; k < 10; k++)
 			{

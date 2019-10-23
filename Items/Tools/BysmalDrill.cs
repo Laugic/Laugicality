@@ -32,7 +32,7 @@ namespace Laugicality.Items.Tools
             item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
-            item.shoot = ModContent.ProjectileType("BysmalDrill");
+            item.shoot = ModContent.ProjectileType<Projectiles.Tools.BysmalDrillProjectile>();
             item.shootSpeed = 40f;
         }
 
