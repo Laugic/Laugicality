@@ -40,7 +40,7 @@ namespace Laugicality.Projectiles.Melee
             {
                 reload = 30;
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4 - Main.rand.Next(8), 4 - Main.rand.Next(8), mod.ProjectileType("AnDioYoShot"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 4 - Main.rand.Next(8), 4 - Main.rand.Next(8), ModContent.ProjectileType("AnDioYoShot"), projectile.damage, 3f, Main.myPlayer);
             }
         }
 	}

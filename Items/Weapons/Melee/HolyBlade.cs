@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Melee
 {
@@ -38,11 +39,11 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            if(player.ownedProjectileCounts[mod.ProjectileType("HolyOrigin")] == 0)
+            if(player.ownedProjectileCounts[ModContent.ProjectileType("HolyOrigin")] == 0)
             {
                 if (Main.player[Main.myPlayer] == player)
                 {
-                    Projectile.NewProjectile((int)(target.position.X), (int)(target.position.Y) - 1200, 0, 0, mod.ProjectileType("HolyOrigin"), (int)(item.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile((int)(target.position.X), (int)(target.position.Y) - 1200, 0, 0, ModContent.ProjectileType("HolyOrigin"), (int)(item.damage), 3, Main.myPlayer);
                 }
             }
         }/*

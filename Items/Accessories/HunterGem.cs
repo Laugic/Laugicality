@@ -31,8 +31,8 @@ namespace Laugicality.Items.Accessories
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).hunter = !player.GetModPlayer<LaugicalityPlayer>(mod).hunter;
-            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).hunter.ToString(), 250, 250, 0);
+            LaugicalityPlayer.Get(player).hunter = !LaugicalityPlayer.Get(player).hunter;
+            Main.NewText(LaugicalityPlayer.Get(player).hunter.ToString(), 250, 250, 0);
             return true;
         }
         public override void AddRecipes()

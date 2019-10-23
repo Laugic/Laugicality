@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("GaiaDestruction");
+            item.shoot = ModContent.ProjectileType("GaiaDestruction");
             item.shootSpeed = 6f;
         }
 
@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 6;
             item.shootSpeed = 10;
-            item.shoot = mod.ProjectileType("GaiaDestruction");
+            item.shoot = ModContent.ProjectileType("GaiaDestruction");
             LuxCost = 7;
         }
 
@@ -49,7 +49,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("GaiaIllusion");
+            item.shoot = ModContent.ProjectileType("GaiaIllusion");
             VisCost = 10;
         }
 
@@ -60,7 +60,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 32;
             item.knockBack = 3;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("GaiaConjuration");
+            item.shoot = ModContent.ProjectileType("GaiaConjuration");
             MundusCost = 12;
         }
 

@@ -33,10 +33,10 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 counter = 0;
                 if (Main.netMode != 1)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 0, mod.ProjectileType("Electroshock"), (int)(npc.damage / 2), 3, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 0, mod.ProjectileType("Electroshock"), (int)(npc.damage / 2), 3, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -4, mod.ProjectileType("Electroshock"), (int)(npc.damage / 2), 3, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 4, mod.ProjectileType("Electroshock"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 0, ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 0, ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -4, ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 4, ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 2), 3, Main.myPlayer);
                 }
             }
             MovementCheck();

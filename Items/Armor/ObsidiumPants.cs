@@ -34,8 +34,8 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<ObsidiumBar>(), 15);
-            recipe.AddIngredient(mod.ItemType<ObsidiumRock>(), 20);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumBar>(), 15);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 20);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

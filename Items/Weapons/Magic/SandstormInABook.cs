@@ -30,7 +30,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType<BookSandstormBottom>();
+			item.shoot = ModContent.ProjectileType<BookSandstormBottom>();
 			item.shootSpeed = 4f;
 		}
 

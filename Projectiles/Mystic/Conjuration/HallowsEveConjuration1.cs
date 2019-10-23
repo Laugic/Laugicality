@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -97,15 +98,15 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 							int choice = Main.rand.Next(3);
 							if (choice == 0)
 							{
-								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y, mod.ProjectileType("HallowsEveConjuration2"), (int)(projectile.damage * 1f), 3f, projectile.owner);
+								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y, ModContent.ProjectileType("HallowsEveConjuration2"), (int)(projectile.damage * 1f), 3f, projectile.owner);
 							}
 							else if (choice == 1)
 							{
-								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y - 5f, mod.ProjectileType("HallowsEveConjuration3"), (int)(projectile.damage * 1.25f), 3f, projectile.owner);
+								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y - 5f, ModContent.ProjectileType("HallowsEveConjuration3"), (int)(projectile.damage * 1.25f), 3f, projectile.owner);
 							}
 							else
 							{
-								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y, mod.ProjectileType("HallowsEveConjuration4"), (int)(projectile.damage * 0.75f), 3f, projectile.owner);
+								Projectile.NewProjectile(projectile.Center.X + offset, projectile.Center.Y, vector.X, vector.Y, ModContent.ProjectileType("HallowsEveConjuration4"), (int)(projectile.damage * 0.75f), 3f, projectile.owner);
 							}
 						}
 					}

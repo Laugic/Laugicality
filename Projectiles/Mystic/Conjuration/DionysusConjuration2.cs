@@ -38,7 +38,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 			
 			projectile.alpha -= 20;
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;

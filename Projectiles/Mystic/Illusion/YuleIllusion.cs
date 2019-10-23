@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -42,7 +43,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
         public override void AI()
         {
             projectile.rotation += .1f;
-            if (Main.rand.Next(2) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(2) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
 
         public override void Kill(int timeLeft)

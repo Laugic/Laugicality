@@ -27,14 +27,14 @@ namespace Laugicality.Items.Useables
 
         public override bool CanUseItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             return !modPlayer.zCool;
         }
 
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {
                 Laugicality.zaWarudo = modPlayer.zaWarudoDuration;
@@ -43,9 +43,9 @@ namespace Laugicality.Items.Useables
             foreach ( Player player2 in Main.player){
                 
             if (modPlayer.AndioChestguard == true)
-                player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
+                player.AddBuff(ModContent.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
             else
-                player.AddBuff(mod.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
+                player.AddBuff(ModContent.BuffType("TimeExhausted"), modPlayer.zCoolDown, true);
             }
             return true;
         }

@@ -35,7 +35,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode != 1)
                 return true;
             else return false;
@@ -48,7 +48,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             LuxCost = 0;
         }
 
@@ -59,7 +59,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 20;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("HadesIllusion");
+            item.shoot = ModContent.ProjectileType("HadesIllusion");
             VisCost = 8;
         }
 
@@ -70,17 +70,17 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 65;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("HadesConjuration");
+            item.shoot = ModContent.ProjectileType("HadesConjuration");
             MundusCost = 20;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             LuxCost = 16;
             if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
             {
-                Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, mod.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X + 32, target.Center.Y + 32, 0f, 0f, ModContent.ProjectileType("HadesExplosion"), damage, knockback, Main.myPlayer);
                 
                 modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
                 if (modPlayer.Lux < 0)

@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
 {
@@ -32,7 +33,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
                 else
                     dir = 1;
             }
-            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             if (projectile.velocity.Y < 2)
                 projectile.velocity.Y += .1f;
             if(dir == 1)

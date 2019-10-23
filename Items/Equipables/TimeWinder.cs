@@ -23,7 +23,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if(Laugicality.zaWarudo > 0)
             {
                 player.allDamage += 0.15f;

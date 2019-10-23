@@ -30,7 +30,7 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Chair");
             AddMapEntry(new Color(200, 200, 200), name);
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Chairs };
         }
@@ -42,7 +42,7 @@ namespace Laugicality.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 16, 32, mod.ItemType<ObsidiumChair>());
+            Item.NewItem(i * 16, j * 16, 16, 32, ModContent.ItemType<ObsidiumChair>());
         }
     }
 }

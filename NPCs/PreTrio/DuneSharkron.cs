@@ -43,7 +43,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/DuneSharkron");
-            bossBag = mod.ItemType("DuneSharkronTreasureBag");
+            bossBag = ModContent.ItemType("DuneSharkronTreasureBag");
             npc.scale = 1.25f;
         }
 
@@ -342,7 +342,7 @@ namespace Laugicality.NPCs.PreTrio
 
         private void SandnadoSpawn()
         {
-            Projectile.NewProjectile(npc.Center, new Vector2(0, -4), mod.ProjectileType<Sandnado>(), npc.damage / 4, 3f, npc.target, 0, 1);
+            Projectile.NewProjectile(npc.Center, new Vector2(0, -4), ModContent.ProjectileType<Sandnado>(), npc.damage / 4, 3f, npc.target, 0, 1);
         }
 
         private void CrystalRain()
@@ -353,13 +353,13 @@ namespace Laugicality.NPCs.PreTrio
                 float theta = Main.rand.NextFloat() * (float)Math.PI;
                 float mag = Main.rand.NextFloat() * 3 + 3;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
+                    Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), ModContent.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
                 if (npc.life < npc.lifeMax / 2)
                 {
                     theta = Main.rand.NextFloat() * (float)Math.PI;
                     mag = Main.rand.NextFloat() * 3 + 3;
                     if (Main.netMode != 1)
-                        Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
+                        Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), ModContent.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
                 }
                 AttackCounter = 0;
             }
@@ -373,7 +373,7 @@ namespace Laugicality.NPCs.PreTrio
             {
                 float theta = Main.rand.NextFloat() * (float)Math.PI;
                 float mag = Main.rand.NextFloat() * 3 + 3;
-                Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), mod.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
+                Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * -mag), ModContent.ProjectileType<SharkronCrystalShard>(), npc.damage / 4, 3f);
             }
         }
 
@@ -398,19 +398,19 @@ namespace Laugicality.NPCs.PreTrio
         private void MakeDust()
         {
             if(Main.tile[(int)npc.Center.X / 16, (int)npc.Center.Y / 16].type != 0)
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<White>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<White>(), 0f, 0f);
         }
 
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Etheramind"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("Etheramind"), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("AncientShard"), Main.rand.Next(1, 3));
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Crystilla"), Main.rand.Next(4, 11));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("AncientShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("Crystilla"), Main.rand.Next(4, 11));
 
                 int ran = Main.rand.Next(1, 8);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandstorminaBottle, 1);

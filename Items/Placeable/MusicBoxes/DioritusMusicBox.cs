@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable.MusicBoxes
 {
     public class DioritusMusicBox : LaugicalityItem
@@ -20,7 +22,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType<Tiles.MusicBoxes.DioritusMusicBox>();
+            item.createTile = ModContent.TileType<Tiles.MusicBoxes.DioritusMusicBox>();
             item.accessory = true;
         }
     }

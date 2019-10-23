@@ -22,7 +22,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType("ObsidiumChest");
+            item.createTile = ModContent.TileType("ObsidiumChest");
         }
 
         public override void AddRecipes()

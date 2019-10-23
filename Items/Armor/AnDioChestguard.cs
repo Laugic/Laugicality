@@ -24,19 +24,19 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.zImmune = true;
         }
 
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return head.type == mod.ItemType("DioritusHelmet") && legs.type == mod.ItemType("AndesiaLeggings");
+            return head.type == ModContent.ItemType("DioritusHelmet") && legs.type == ModContent.ItemType("AndesiaLeggings");
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "50% more Potentia discharges to other Potentias when used\nDioritus Mystic Burst\nDecreases Mystic Burst cooldown" +
                 "\nGreatly increased Potentia Regen when time is stopped\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
             modPlayer.GlobalAbsorbRate *= 1.5f;

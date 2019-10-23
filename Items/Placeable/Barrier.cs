@@ -1,5 +1,6 @@
 ﻿using Laugicality.Tiles;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
@@ -22,7 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType<BarrierTile>();
+            item.createTile = ModContent.TileType<BarrierTile>();
         }
 
         public override void HoldItem(Player player)

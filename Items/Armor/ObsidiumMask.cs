@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("ObsidiumLongcoat") && legs.type == mod.ItemType("ObsidiumPants");
+			return body.type == ModContent.ItemType("ObsidiumLongcoat") && legs.type == ModContent.ItemType("ObsidiumPants");
         }
 
 
@@ -47,7 +47,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "+3 Max Minions \nAttacks inflict 'On Fire!' ";
             modPlayer.Obsidium = true;
             player.maxMinions += 3;
@@ -56,8 +56,8 @@ namespace Laugicality.Items.Armor
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<ObsidiumBar>(), 10);
-            recipe.AddIngredient(mod.ItemType<LavaGem>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

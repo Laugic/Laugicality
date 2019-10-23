@@ -3,6 +3,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Buffs;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -23,7 +24,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.scale *= .85f;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            buffID = mod.BuffType<OrbitalBuff>();
+            buffID = ModContent.BuffType<OrbitalBuff>();
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
@@ -45,7 +46,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             {
                 delay = 0;
                 if ( Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 2, -projectile.velocity.Y / 2, mod.ProjectileType("SaturnIllusion2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 2, -projectile.velocity.Y / 2, ModContent.ProjectileType("SaturnIllusion2"), projectile.damage, 3f, Main.myPlayer);
             }
         }
     }

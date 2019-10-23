@@ -23,7 +23,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.ConjurationDamage += .1f;
             modPlayer.MundusOverflow += .25f;
             modPlayer.MundusAbsorbRate += .25f;

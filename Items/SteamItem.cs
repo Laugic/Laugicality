@@ -35,7 +35,7 @@ namespace Laugicality.Items
 
         public override void GetWeaponDamage(Player player, ref int damage)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             damage = (int)(damage * modPlayer.steamDamage);
         }
 
@@ -50,7 +50,7 @@ namespace Laugicality.Items
         public override bool CanUseItem(Player player)
         {
 
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (steam)
             {
                 if (modPlayer.connected >= steamTier && LaugicalityWorld.power >= steamCost)
@@ -63,7 +63,7 @@ namespace Laugicality.Items
 
         public override bool UseItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (steam)
             {
                 LaugicalityWorld.power -= steamCost;

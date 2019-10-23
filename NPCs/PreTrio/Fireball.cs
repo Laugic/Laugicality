@@ -42,7 +42,7 @@ namespace Laugicality.NPCs.PreTrio
             float mag = (float)Main.rand.NextDouble() * 2;
             newVel.X += (float)Math.Cos(theta) * mag;
             newVel.Y += (float)Math.Sin(theta) * mag;
-            Dust.NewDust(projectile.position - projectile.velocity, projectile.width, projectile.height, mod.DustType("SuperMagma"), newVel.X, newVel.Y);
+            Dust.NewDust(projectile.position - projectile.velocity, projectile.width, projectile.height, ModContent.DustType("SuperMagma"), newVel.X, newVel.Y);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) - 1.57f;
             if (spawned == 0) { 
             Vector2 move = Vector2.Zero;

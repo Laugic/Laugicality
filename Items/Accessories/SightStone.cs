@@ -23,7 +23,7 @@ namespace Laugicality.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.spelunker)
                 player.findTreasure = true;
             Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 0.8f, 0.95f, 1f);

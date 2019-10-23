@@ -59,7 +59,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void HoldItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -71,7 +71,7 @@ namespace Laugicality.Items.Weapons.Range
             if (theta >= 3.14158265f * 2)
                 theta -= 3.14158265f * 2;
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("BysmalBlast"), (int)(item.damage), 3, Main.myPlayer);
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("BysmalBlast"), (int)(item.damage), 3, Main.myPlayer);
 
             //Normal shot
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
@@ -83,7 +83,7 @@ namespace Laugicality.Items.Weapons.Range
             if (reload <= 0)
             {
                 reload = reloadMax;
-                if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+                if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
                     reload /= 2;
 
                 int numberProjectiles = Main.rand.Next(3, 6);

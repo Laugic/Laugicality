@@ -13,7 +13,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).GlobalOverflow += .5f;
+            LaugicalityPlayer.Get(player).GlobalOverflow += .5f;
         }
         
 	}

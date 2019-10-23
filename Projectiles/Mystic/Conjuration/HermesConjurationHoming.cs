@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
@@ -65,9 +66,9 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 }
             }
             /*Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             mystDur = modPlayer.MysticDuration;*/
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
 

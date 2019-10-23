@@ -23,7 +23,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
 
         public override void AI()
         {
-            int dustID = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f * projectile.scale);
+            int dustID = Dust.NewDust(new Vector2(projectile.position.X + projectile.velocity.X, projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), projectile.velocity.X, projectile.velocity.Y, 100, default(Color), 3f * projectile.scale);
             Main.dust[dustID].noGravity = true;
         }
     }

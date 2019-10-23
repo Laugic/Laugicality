@@ -37,8 +37,8 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
+            if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 modPlayer.MysticDamage += .25f;
                 modPlayer.GlobalAbsorbRate *= 1.5f;
@@ -53,7 +53,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
                     if (Main.player[Main.myPlayer] == player)
-                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
+                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("PlutoIllusion"), damage, knockBack, player.whoAmI);
                 }
 
             }
@@ -67,7 +67,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 6;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType("PlutoDestruction");
+            item.shoot = ModContent.ProjectileType("PlutoDestruction");
             LuxCost = 5;
         }
 
@@ -78,7 +78,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType("PlutoIllusion");
+            item.shoot = ModContent.ProjectileType("PlutoIllusion");
             item.noUseGraphic = false;
             VisCost = 6;
         }
@@ -90,7 +90,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 24f;
-            item.shoot = mod.ProjectileType("PlutoConjuration");
+            item.shoot = ModContent.ProjectileType("PlutoConjuration");
             item.noUseGraphic = false;
             MundusCost = 16;
         }

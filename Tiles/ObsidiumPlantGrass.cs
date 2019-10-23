@@ -19,7 +19,7 @@ namespace Laugicality.Tiles
             name.SetDefault("Lycoris Radiata");
             //AddMapEntry(new Color(200, 30, 0), name);
             disableSmartCursor = true;
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             Main.tileCut[Type] = true;
             soundType = 6;
             //adjTiles = new int[] { TileID.WorkBenches };

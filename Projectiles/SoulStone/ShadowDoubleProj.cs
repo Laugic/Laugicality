@@ -40,7 +40,7 @@ namespace Laugicality.Projectiles.SoulStone
         public override void AI()
         {
             for(int i = 0; i < 2; i++)
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Black>(), 0, -Main.rand.NextFloat() * 2 - 2);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Black>(), 0, -Main.rand.NextFloat() * 2 - 2);
 
             float dist = Vector2.Distance(Main.player[projectile.owner].Center + Main.player[projectile.owner].velocity * 20, projectile.Center);
             if(dist != 0)

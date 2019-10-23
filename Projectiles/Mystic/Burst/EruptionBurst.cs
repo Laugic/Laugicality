@@ -27,12 +27,12 @@ namespace Laugicality.Projectiles.Mystic.Burst
 		public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
             
             projectile.rotation += 0.02f;
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
             if (Main.rand.Next(2) == 0 && Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + -5+Main.rand.Next(0,11), -Main.rand.Next(5,10),  mod.ProjectileType("EruptionBurstUp"), (int)(30 * modPlayer.MysticDamage * modPlayer.MysticBurstDamage), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + -5+Main.rand.Next(0,11), -Main.rand.Next(5,10),  ModContent.ProjectileType("EruptionBurstUp"), (int)(30 * modPlayer.MysticDamage * modPlayer.MysticBurstDamage), 3, Main.myPlayer);
             
         }
         

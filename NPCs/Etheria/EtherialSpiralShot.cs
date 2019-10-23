@@ -71,7 +71,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialEssence>());
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>());
         }
 
         public override Color? GetAlpha(Color drawColor)

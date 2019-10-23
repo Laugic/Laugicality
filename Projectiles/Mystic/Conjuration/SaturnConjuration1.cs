@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -85,7 +86,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             {
                 for (int k = 0; k < 8; k++)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), mod.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next((int)-10f, (int)10f), Main.rand.Next((int)-10f, (int)10f), ModContent.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
                 }
                 projectile.Kill();
             }
@@ -98,8 +99,8 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 Vector2 direction = projectile.DirectionTo(Main.player[projectile.owner].Center);
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (int)(direction.X * mag / 16), (int)(direction.Y * mag / 16), mod.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (int)(direction.X * -mag / 16), (int)(direction.Y * -mag / 16), mod.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (int)(direction.X * mag / 16), (int)(direction.Y * mag / 16), ModContent.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (int)(direction.X * -mag / 16), (int)(direction.Y * -mag / 16), ModContent.ProjectileType("SaturnConjuration2"), projectile.damage, 3f, Main.myPlayer);
                 }
             }
         }

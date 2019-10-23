@@ -1,6 +1,7 @@
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -21,7 +22,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + .785f;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hades"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Hades"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
     }
 }

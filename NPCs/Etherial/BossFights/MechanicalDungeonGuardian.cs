@@ -63,7 +63,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 for (int i = 0; i < 8; i++)
                 {
                     if (Main.netMode != 1)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(Math.PI / 4 * i) * 12, (float)Math.Sin(Math.PI / 4 * i) * 12, mod.ProjectileType("EtherialYeet"), (int)(80), 3, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(Math.PI / 4 * i) * 12, (float)Math.Sin(Math.PI / 4 * i) * 12, ModContent.ProjectileType("EtherialYeet"), (int)(80), 3, Main.myPlayer);
                 }
                 shootDelay = 0;
             }

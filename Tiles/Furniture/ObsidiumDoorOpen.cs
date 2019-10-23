@@ -62,10 +62,10 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Door");
             AddMapEntry(new Color(100, 100, 50), name);
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.OpenDoor };
-            closeDoorID = mod.TileType<ObsidiumDoorClosed>();
+            closeDoorID = ModContent.TileType<ObsidiumDoorClosed>();
         }
 
         public override bool HasSmartInteract()
@@ -80,7 +80,7 @@ namespace Laugicality.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 48, mod.ItemType<ObsidiumDoor>());
+            Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<ObsidiumDoor>());
         }
 
         public override void MouseOver(int i, int j)
@@ -88,7 +88,7 @@ namespace Laugicality.Tiles.Furniture
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = mod.ItemType<ObsidiumDoor>();
+            player.showItemIcon2 = ModContent.ItemType<ObsidiumDoor>();
         }
     }
 }

@@ -108,7 +108,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RockPhase3");
             damage = 32;
-            //bossBag = mod.ItemType("RagnarTreasureBag");
+            //bossBag = ModContent.ItemType("RagnarTreasureBag");
             //npc.scale = 2f;
         }
 
@@ -380,12 +380,12 @@ namespace Laugicality.NPCs.RockTwins
                 delay = reload;
                 laser--;
                 if(Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("AndeLaser3"), damage / 2, 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("AndeLaser3"), damage / 2, 3, Main.myPlayer);
             }
             if (shoot == 2)//Spiral Orbs
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("AndeEnergy"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("AndeEnergy"), damage / 2, 3, Main.myPlayer);
                 spiralDur++;
             }
             if (spiralDur > 0)
@@ -397,21 +397,21 @@ namespace Laugicality.NPCs.RockTwins
                 if (spiralDelay >= 20)
                 {
                     if (Main.netMode != 1)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("AndeEnergy"), damage / 2, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("AndeEnergy"), damage / 2, 3f, Main.myPlayer);
                     spiralDelay = 0;
                 }
             }
             if (shoot == 3 && Main.netMode != 1)//8 way
             {
                 int dist = 3;
-                Projectile.NewProjectile(Main.player[npc.target].position.X + 140 * dist, Main.player[npc.target].position.Y, -.7f, 0, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X + 100 * dist, Main.player[npc.target].position.Y + 100 * dist, -.5f, -.5f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y + 140 * dist, 0, -.7f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - 100 * dist, Main.player[npc.target].position.Y + 100 * dist, .5f, -.5f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - 140 * dist, Main.player[npc.target].position.Y, .7f, 0, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - 100 * dist, Main.player[npc.target].position.Y - 100 * dist, .5f, .5f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - 140 * dist, 0, .7f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X + 100 * dist, Main.player[npc.target].position.Y - 100 * dist, -.5f, .5f, mod.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X + 140 * dist, Main.player[npc.target].position.Y, -.7f, 0, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X + 100 * dist, Main.player[npc.target].position.Y + 100 * dist, -.5f, -.5f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y + 140 * dist, 0, -.7f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - 100 * dist, Main.player[npc.target].position.Y + 100 * dist, .5f, -.5f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - 140 * dist, Main.player[npc.target].position.Y, .7f, 0, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - 100 * dist, Main.player[npc.target].position.Y - 100 * dist, .5f, .5f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - 140 * dist, 0, .7f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X + 100 * dist, Main.player[npc.target].position.Y - 100 * dist, -.5f, .5f, ModContent.ProjectileType("AndeBall"), damage / 2, 3f, Main.myPlayer);
                 shoot = 0;
             }
 
@@ -420,26 +420,26 @@ namespace Laugicality.NPCs.RockTwins
                 int rng = 480;
                 int yHeight = -480;
                 shoot = 0;
-                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("AndeShard"), damage / 2, 3, Main.myPlayer);
             }
             npc.netUpdate = true;
         }

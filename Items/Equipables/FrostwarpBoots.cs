@@ -61,7 +61,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<White>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<White>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -79,7 +79,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<White>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<White>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -97,7 +97,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = 2 * dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<White>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<White>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         player.immune = true;
@@ -116,7 +116,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<White>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<White>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         jumpDashes++;
@@ -141,7 +141,7 @@ namespace Laugicality.Items.Equipables
             if (trail > 0)
             {
                 trail--;
-                player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<White>(), 1);
+                player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<White>(), 1);
             }
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0)
                 jumpDashes = 0;
@@ -152,10 +152,10 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<WarpburstBoots>());
-            recipe.AddIngredient(mod.ItemType<FrostburstBoots>());
-            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 4);
-            recipe.AddIngredient(mod.ItemType<SoulOfHaught>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<WarpburstBoots>());
+            recipe.AddIngredient(ModContent.ItemType<FrostburstBoots>());
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 4);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

@@ -20,7 +20,7 @@ namespace Laugicality.Projectiles.Magic
 		public override void AI()
 		{
 			projectile.velocity.Y += projectile.ai[0] + 0.1f;
-			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Sandy"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Sandy"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 			
 		}
 
@@ -52,7 +52,7 @@ namespace Laugicality.Projectiles.Magic
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Sandy"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Sandy"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
 			Main.PlaySound(SoundID.Item10, projectile.position);
 		}

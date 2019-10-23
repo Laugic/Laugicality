@@ -21,7 +21,7 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Bed");
             AddMapEntry(new Color(200, 200, 200), name);
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Beds };
             bed = true;
@@ -39,7 +39,7 @@ namespace Laugicality.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 64, 32, mod.ItemType<ObsidiumBed>());
+            Item.NewItem(i * 16, j * 16, 64, 32, ModContent.ItemType<ObsidiumBed>());
         }
 
         public override void RightClick(int i, int j)
@@ -71,7 +71,7 @@ namespace Laugicality.Tiles.Furniture
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.showItemIcon = true;
-            player.showItemIcon2 = mod.ItemType<ObsidiumBed>();
+            player.showItemIcon2 = ModContent.ItemType<ObsidiumBed>();
         }
     }
 }

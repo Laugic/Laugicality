@@ -47,7 +47,7 @@ namespace Laugicality.NPCs.Obsidium
                 if (npc.velocity.Y > 0)
                     npc.velocity.Y *= .9f;
                 else if (Main.rand.Next(5) == 0)
-                    Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
+                    Dust.NewDust(npc.Center, npc.width / 2, 4, ModContent.DustType<Magma>(), 0f, 0f);
                 npc.velocity.Y -= .2f;
             }
             else if (npc.Center.Y - Main.player[npc.target].Center.Y < -36)
@@ -55,7 +55,7 @@ namespace Laugicality.NPCs.Obsidium
                 if (npc.velocity.Y < 0)
                     npc.velocity.Y *= .9f;
                 else if (Main.rand.Next(5) == 0)
-                    Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
+                    Dust.NewDust(npc.Center, npc.width / 2, 4, ModContent.DustType<Magma>(), 0f, 0f);
                 npc.velocity.Y += .2f;
             }
             else
@@ -68,7 +68,7 @@ namespace Laugicality.NPCs.Obsidium
                         if (npc.velocity.X > 0)
                             npc.velocity.X *= .9f;
                         else if (Main.rand.Next(5) == 0)
-                            Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
+                            Dust.NewDust(npc.Center, npc.width / 2, 4, ModContent.DustType<Magma>(), 0f, 0f);
                         npc.velocity.X -= .5f;
                     }
                     if (Main.player[npc.target].Center.X > npc.Center.X)
@@ -76,7 +76,7 @@ namespace Laugicality.NPCs.Obsidium
                         if (npc.velocity.X < 0)
                             npc.velocity.X *= .9f;
                         else if (Main.rand.Next(5) == 0)
-                            Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
+                            Dust.NewDust(npc.Center, npc.width / 2, 4, ModContent.DustType<Magma>(), 0f, 0f);
                         npc.velocity.X += .5f;
                     }
                 }
@@ -99,12 +99,12 @@ namespace Laugicality.NPCs.Obsidium
         {
             if (LaugicalityWorld.downedRagnar && Main.rand.Next(2) == 0)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumChunk"));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumChunk"));
             }
             else
             {
                 if (NPC.downedBoss2)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumOre"), Main.rand.Next(1, 4));
                 else
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 173, Main.rand.Next(4));
             }

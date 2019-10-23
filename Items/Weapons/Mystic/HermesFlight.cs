@@ -28,13 +28,13 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("HermesDestruction");
+			item.shoot = ModContent.ProjectileType("HermesDestruction");
 			item.shootSpeed = 6f;
 		}
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
                 int numberProjectiles = Main.rand.Next(2, 4);
@@ -43,7 +43,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("HermesDestruction"), damage, knockBack, player.whoAmI);
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("HermesDestruction"), damage, knockBack, player.whoAmI);
                 }
 
             }
@@ -57,7 +57,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12;
-            item.shoot = mod.ProjectileType("HermesDestruction");
+            item.shoot = ModContent.ProjectileType("HermesDestruction");
             LuxCost = 8;
         }
 
@@ -68,7 +68,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 16;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("HermesIllusion");
+            item.shoot = ModContent.ProjectileType("HermesIllusion");
             VisCost = 4;
         }
 
@@ -79,7 +79,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 22;
             item.knockBack = 5;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("HermesConjuration1");
+            item.shoot = ModContent.ProjectileType("HermesConjuration1");
             MundusCost = 8;
         }
 

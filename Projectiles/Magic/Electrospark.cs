@@ -30,10 +30,10 @@ namespace Laugicality.Projectiles.Magic
             delay += 1;
             if(delay == 25 && Main.myPlayer == projectile.owner)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, mod.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, mod.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectrosparkP2"), projectile.damage, 3f, Main.myPlayer);
             }
         }
     }

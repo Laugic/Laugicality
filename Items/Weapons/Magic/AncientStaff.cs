@@ -32,7 +32,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.knockBack = 5;
             item.value = 10000;
             item.rare = ItemRarityID.Orange;
-            item.shoot = mod.ProjectileType<CrystillaShardProjectile>();
+            item.shoot = ModContent.ProjectileType<CrystillaShardProjectile>();
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
             item.shootSpeed = 4f;
@@ -42,10 +42,10 @@ namespace Laugicality.Items.Weapons.Magic
         {
             float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f / 180f;
             float mag = 600;
-            Projectile.NewProjectile((int)(Main.MouseWorld.X + Main.rand.Next(-40, 40)) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), mod.ProjectileType<CrystillaShardProjectile>(), damage, 3, Main.myPlayer);
+            Projectile.NewProjectile((int)(Main.MouseWorld.X + Main.rand.Next(-40, 40)) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), ModContent.ProjectileType<CrystillaShardProjectile>(), damage, 3, Main.myPlayer);
             theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f / 180f;
             mag = 700;
-            Projectile.NewProjectile((int)(Main.MouseWorld.X + Main.rand.Next(-40, 40)) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), mod.ProjectileType<CrystillaShardProjectile>(), damage, 3, Main.myPlayer);
+            Projectile.NewProjectile((int)(Main.MouseWorld.X + Main.rand.Next(-40, 40)) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), ModContent.ProjectileType<CrystillaShardProjectile>(), damage, 3, Main.myPlayer);
             return false;
         }
 

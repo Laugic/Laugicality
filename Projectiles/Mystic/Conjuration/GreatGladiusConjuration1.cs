@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -26,7 +27,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             if (Main.rand.Next(4) == 0)
             {
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(projectile.Center.X - 64, projectile.Center.Y, -4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("GreatGladiusConjuration2"), (int)(projectile.damage) / 4, 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X - 64, projectile.Center.Y, -4 + Main.rand.Next(9), -Main.rand.Next(6, 9), ModContent.ProjectileType("GreatGladiusConjuration2"), (int)(projectile.damage) / 4, 3, Main.myPlayer);
             }
         }
     }

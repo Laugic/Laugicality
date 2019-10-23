@@ -13,7 +13,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).MysticDamage += 0.1f;
+			LaugicalityPlayer.Get(player).MysticDamage += 0.1f;
         }
         
 	}

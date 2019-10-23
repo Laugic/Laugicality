@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable.MusicBoxes
 {
     public class GreatShadowMusicBox : LaugicalityItem
@@ -20,7 +22,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType<Tiles.MusicBoxes.GreatShadowMusicBox>();
+            item.createTile = ModContent.TileType<Tiles.MusicBoxes.GreatShadowMusicBox>();
             item.accessory = true;
         }
     }

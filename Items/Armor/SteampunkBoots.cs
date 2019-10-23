@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.moveSpeed += 0.10f;
-            player.buffImmune[mod.BuffType("Steamy")] = true;
+            player.buffImmune[ModContent.BuffType("Steamy")] = true;
             player.buffImmune[144] = true;
         }
         

@@ -35,11 +35,11 @@ namespace Laugicality.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Obsidium Chest");
 			AddMapEntry(new Color(200, 100, 0), name);
-			dustType = mod.DustType("Magma");
+			dustType = ModContent.DustType<Magma>();
 			disableSmartCursor = true;
 			adjTiles = new int[] { TileID.Containers };
 			chest = "Obsidium Chest";
-			chestDrop = mod.ItemType("ObsidiumChest");
+			chestDrop = ModContent.ItemType("ObsidiumChest");
 		}
 
 		public override bool HasSmartInteract()
@@ -179,7 +179,7 @@ namespace Laugicality.Tiles
 				player.showItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : "Obsidium Chest";
 				if (player.showItemIconText == "Obsidium Chest")
 				{
-					player.showItemIcon2 = mod.ItemType("ObsidiumChest");
+					player.showItemIcon2 = ModContent.ItemType("ObsidiumChest");
 					player.showItemIconText = "";
 				}
 			}

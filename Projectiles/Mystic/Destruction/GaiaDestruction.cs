@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
 {
@@ -20,7 +21,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Rainbow"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             for (int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];

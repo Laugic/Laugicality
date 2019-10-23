@@ -30,13 +30,13 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = ItemRarityID.Blue;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType<Nothing>();
+			item.shoot = ModContent.ProjectileType<Nothing>();
 			item.shootSpeed = 6f;
 		}
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
                 int numberProjectiles = Main.rand.Next(1, 3);
@@ -53,14 +53,14 @@ namespace Laugicality.Items.Weapons.Mystic
                             Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 566, (int)(damage * 1.5), knockBack, player.whoAmI);
                     }
                     else
-                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("FriggDestruction"), damage, knockBack, player.whoAmI);
+                        Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("FriggDestruction"), damage, knockBack, player.whoAmI);
                 }
             }
             if(modPlayer.MysticMode == 2)
             {
                 float theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                 float mag = 360;
-                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -4 * (float)Math.Cos(theta), -4 * (float)Math.Sin(theta), mod.ProjectileType("FriggIllusion"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(Main.MouseWorld.Y) + (int)(mag * Math.Sin(theta)), -4 * (float)Math.Cos(theta), -4 * (float)Math.Sin(theta), ModContent.ProjectileType("FriggIllusion"), damage, 3, Main.myPlayer);
             }
             return true;
         }
@@ -72,7 +72,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1f;
             item.shootSpeed = 10;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             LuxCost = 6;
         }
 
@@ -83,7 +83,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 15;
             item.knockBack = 1;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             VisCost = 5;
         }
 
@@ -94,7 +94,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = mod.ProjectileType("FriggConjuration");
+            item.shoot = ModContent.ProjectileType("FriggConjuration");
             MundusCost = 16;
         }
 

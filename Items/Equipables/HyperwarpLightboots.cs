@@ -208,7 +208,7 @@ namespace Laugicality.Items.Equipables
             {
                 float mag = Main.rand.NextFloat() * 4 + 2;
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType<CrystalliteOrb>(), (int)(28 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<CrystalliteOrb>(), (int)(28 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
             }
         }
 
@@ -238,10 +238,10 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<ShadowarpFlameboots>());
+            recipe.AddIngredient(ModContent.ItemType<ShadowarpFlameboots>());
             recipe.AddIngredient(ItemID.HallowedBar, 10);
             recipe.AddIngredient(ItemID.SoulofLight, 8);
-            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 8);
             recipe.AddIngredient(ItemID.CrystalShard, 12);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

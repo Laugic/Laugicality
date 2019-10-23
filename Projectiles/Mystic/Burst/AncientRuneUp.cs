@@ -22,7 +22,7 @@ namespace Laugicality.Projectiles.Mystic.Burst
         public override void AI()
         {
             bitherial = true;
-            if (Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Sandy"), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Sandy"), projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.5f);
             projectile.rotation += 0.02f;
 
         }

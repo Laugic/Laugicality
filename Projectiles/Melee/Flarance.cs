@@ -21,7 +21,7 @@ namespace Laugicality.Projectiles.Melee
 		{
             if(projectile.velocity.Y < 12)
                 projectile.velocity.Y += .15f;
-			if(Main.rand.Next(6) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if(Main.rand.Next(6) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
             if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
             {
@@ -57,7 +57,7 @@ namespace Laugicality.Projectiles.Melee
             Main.PlaySound(SoundID.Item14, projectile.position);
             for (int k = 0; k < 18; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
@@ -22,15 +23,15 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType("BrassFANRight");
+            item.createTile = ModContent.TileType("BrassFANRight");
         }
 
         public override void UpdateInventory(Player player)
         {
             if (player.direction == 1)
-                item.createTile = mod.TileType("BrassFANRight");
+                item.createTile = ModContent.TileType("BrassFANRight");
             else
-                item.createTile = mod.TileType("BrassFAN");
+                item.createTile = ModContent.TileType("BrassFAN");
         }
         /*
         public override void AddRecipes()

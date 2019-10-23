@@ -23,13 +23,13 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType("AncientArmor") && legs.type == mod.ItemType("AncientGreaves");
+            return body.type == ModContent.ItemType("AncientArmor") && legs.type == ModContent.ItemType("AncientGreaves");
         }
 
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDamage += 0.10f;
             player.minionDamage += .1f;
             player.magicDamage += .1f;
@@ -37,7 +37,7 @@ namespace Laugicality.Items.Armor
         
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "Innate Sandstorm in a Bottle\n+15% Increased Potentia Conversion\n+60 Mana\nIncreased Max Minions";
             modPlayer.GlobalAbsorbRate += .15f;
             player.statManaMax2 += 60;

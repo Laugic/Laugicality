@@ -28,14 +28,14 @@ namespace Laugicality.Items.Useables
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
-            player.GetModPlayer<LaugicalityPlayer>(mod).BysmalAbsorbDisabled = !player.GetModPlayer<LaugicalityPlayer>(mod).BysmalAbsorbDisabled;
-            if (player.GetModPlayer<LaugicalityPlayer>(mod).BysmalAbsorbDisabled)
+            LaugicalityPlayer.Get(player).BysmalAbsorbDisabled = !LaugicalityPlayer.Get(player).BysmalAbsorbDisabled;
+            if (LaugicalityPlayer.Get(player).BysmalAbsorbDisabled)
                 Main.NewText("Your Bysmal Armor has been locked, and won't absorb any more bonuses.", 0, 100, 150);
             else
                 Main.NewText("Your Bysmal Armor has been unlocked, and will absorb bonuses again.", 0, 100, 150);
             for (int i = 0; i < 12; i++)
             {
-                Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Etherial>(), 0f, 0f);
             }
             return true;
         }

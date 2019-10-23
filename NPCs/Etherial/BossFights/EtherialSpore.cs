@@ -102,7 +102,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         }
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(mod.BuffType("Frostbite"), 5 * 60, true);
+            player.AddBuff(ModContent.BuffType("Frostbite"), 5 * 60, true);
         }
 
     }

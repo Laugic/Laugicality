@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Summon
 {
@@ -28,7 +29,7 @@ namespace Laugicality.Projectiles.Summon
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			inertia = 20f;
-			shoot = mod.ProjectileType("Shroom");
+			shoot = ModContent.ProjectileType("Shroom");
             shootCool = 30f;
 			shootSpeed = 12f;
 		}
@@ -36,7 +37,7 @@ namespace Laugicality.Projectiles.Summon
 		public override void CheckActive()
 		{
 			Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 			if (player.dead)
 			{
 				modPlayer.ShroomCopterSummon = false;
@@ -53,7 +54,7 @@ namespace Laugicality.Projectiles.Summon
 			{
 				if (Main.rand.Next(5) == 0)
 				{
-					int dust = Dust.NewDust(projectile.position, projectile.width/2, projectile.height / 2, mod.DustType("Shroom"));
+					int dust = Dust.NewDust(projectile.position, projectile.width/2, projectile.height / 2, ModContent.DustType("Shroom"));
 					Main.dust[dust].velocity.Y -= 1.2f;
 				}
 			}
@@ -66,7 +67,7 @@ namespace Laugicality.Projectiles.Summon
 					{
 						dustVel.Normalize();
 					}
-					int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType("Shroom"));
+					int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("Shroom"));
 					Main.dust[dust].velocity -= 1.2f * dustVel;
 				}
 			}

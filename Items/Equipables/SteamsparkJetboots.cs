@@ -65,7 +65,7 @@ namespace Laugicality.Items.Equipables
         {
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.X) > 4)
             {
-                int newDust = Dust.NewDust(new Vector2(player.Center.X + player.velocity.X, player.position.Y + 4 + (float)player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<Steam>(), 0f, 0f, 0, default(Color), 1.5f);
+                int newDust = Dust.NewDust(new Vector2(player.Center.X + player.velocity.X, player.position.Y + 4 + (float)player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<Steam>(), 0f, 0f, 0, default(Color), 1.5f);
                 Main.dust[newDust].scale = 4;
             }
         }
@@ -102,7 +102,7 @@ namespace Laugicality.Items.Equipables
             {
                 if (i == 0)
                 {
-                    int newDust = Dust.NewDust(new Vector2(player.position.X - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<SteamTrailDust>(), 0f, 0f, alpha, default(Color), 1.5f);
+                    int newDust = Dust.NewDust(new Vector2(player.position.X - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<SteamTrailDust>(), 0f, 0f, alpha, default(Color), 1.5f);
                     Main.dust[newDust].shader = GameShaders.Armor.GetSecondaryShader(player.cShoe, player);
                     Main.dust[newDust].velocity.X = (Main.dust[newDust].velocity.X * 1f - 2f - player.velocity.X * 0.3f) / 2;
                     Main.dust[newDust].velocity.Y = (Main.dust[newDust].velocity.Y * 1f + 2f * player.gravDir - player.velocity.Y * 0.3f) / 2;
@@ -110,7 +110,7 @@ namespace Laugicality.Items.Equipables
                 }
                 else
                 {
-                    int newDust = Dust.NewDust(new Vector2(player.position.X + (float)player.width - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<SteamTrailDust>(), 0f, 0f, alpha, default(Color), 1.5f);
+                    int newDust = Dust.NewDust(new Vector2(player.position.X + (float)player.width - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<SteamTrailDust>(), 0f, 0f, alpha, default(Color), 1.5f);
                     Main.dust[newDust].shader = GameShaders.Armor.GetSecondaryShader(player.cShoe, player);
                     Main.dust[newDust].velocity.X = (Main.dust[newDust].velocity.X * 1f + 2f - player.velocity.X * 0.3f) / 2;
                     Main.dust[newDust].velocity.Y = (Main.dust[newDust].velocity.Y * 1f + 2f * player.gravDir - player.velocity.Y * 0.3f) / 2;
@@ -137,7 +137,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<SteamTrailDust>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<SteamTrailDust>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -156,7 +156,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<SteamTrailDust>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<SteamTrailDust>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -175,7 +175,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = 2 * dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<SteamTrailDust>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<SteamTrailDust>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         player.immune = true;
@@ -195,7 +195,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<SteamTrailDust>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<SteamTrailDust>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         jumpDashes++;
@@ -219,7 +219,7 @@ namespace Laugicality.Items.Equipables
             {
                 float mag = Main.rand.NextFloat() * 4 + 2;
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType<SteamTrailProj>(), (int)(32 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<SteamTrailProj>(), (int)(32 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
             }
         }
 
@@ -232,7 +232,7 @@ namespace Laugicality.Items.Equipables
             if (trail > 0)
             {
                 trail--;
-                player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<SteamTrailDust>(), 2);
+                player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<SteamTrailDust>(), 2);
             }
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.Y) < .25f)
             {
@@ -251,7 +251,7 @@ namespace Laugicality.Items.Equipables
             if (_calMod != null)
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(_calMod.ItemType("AngelTreads"), 1);
+                recipe.AddIngredient(_calModContent.ItemType("AngelTreads"), 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
                 recipe.AddIngredient(mod, nameof(SteamBar), 16);
                 recipe.AddIngredient(mod, nameof(Gear), 25);
@@ -262,20 +262,20 @@ namespace Laugicality.Items.Equipables
                 ModRecipe srecipe = new ModRecipe(mod);
                 srecipe.AddRecipeGroup("WingsGroup");
                 srecipe.AddIngredient(null, "SteamsparkJetboots", 1);
-                srecipe.AddIngredient(_calMod.ItemType("CoreofCalamity"), 3);
-                srecipe.AddIngredient(_calMod.ItemType("BarofLife"), 5);
+                srecipe.AddIngredient(_calModContent.ItemType("CoreofCalamity"), 3);
+                srecipe.AddIngredient(_calModContent.ItemType("BarofLife"), 5);
                 srecipe.AddIngredient(ItemID.LunarBar, 5);
                 srecipe.AddTile(TileID.LunarCraftingStation);
-                srecipe.SetResult(_calMod.ItemType("InfinityBoots"));
+                srecipe.SetResult(_calModContent.ItemType("InfinityBoots"));
                 srecipe.AddRecipe();
             }
             else
             {
                 ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(mod.ItemType<HyperwarpLightboots>(), 1);
+                recipe.AddIngredient(ModContent.ItemType<HyperwarpLightboots>(), 1);
                 recipe.AddIngredient(ItemID.Jetpack, 1);
-                recipe.AddIngredient(mod.ItemType<SteamBar>(), 16);
-                recipe.AddIngredient(mod.ItemType<Gear>(), 25);
+                recipe.AddIngredient(ModContent.ItemType<SteamBar>(), 16);
+                recipe.AddIngredient(ModContent.ItemType<Gear>(), 25);
                 recipe.AddTile(TileID.MythrilAnvil);
                 recipe.SetResult(this);
                 recipe.AddRecipe();

@@ -21,9 +21,9 @@ namespace Laugicality.Tiles
                 if(i % 2 == 0 && j % 2 == 0)
                 {
                     if(WorldGen.shadowOrbSmashed)
-                        Item.NewItem(i * 16, j * 16, 8, 8, mod.ItemType<DarkfootBoots>(), 1);
+                        Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<DarkfootBoots>(), 1);
                     else
-                        Item.NewItem(i * 16, j * 16, 8, 8, mod.ItemType<BloodfootBoots>(), 1);
+                        Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<BloodfootBoots>(), 1);
                 }
                 return false;
             }

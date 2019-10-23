@@ -14,7 +14,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            player.GetModPlayer<LaugicalityPlayer>(mod).HalfDef = true;
+            LaugicalityPlayer.Get(player).HalfDef = true;
             player.allDamage += 0.15f;
         }
         

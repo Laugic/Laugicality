@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Consumables.Potions
 {
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Consumables.Potions
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(mod.BuffType("MysticPower"), 3*60*60, true);
+            player.AddBuff(ModContent.BuffType("MysticPower"), 3*60*60, true);
             return true;
         }
         /*

@@ -27,7 +27,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             switch (modPlayer.MysticMode)
             {
@@ -49,10 +49,10 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<FaeryInABottle>(), 1);
-            recipe.AddIngredient(mod.ItemType<GreaterMysticaPotion>(), 1);
-            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 5);
-            recipe.AddTile(mod.TileType<MineralEnchanter>());
+            recipe.AddIngredient(ModContent.ItemType<FaeryInABottle>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<GreaterMysticaPotion>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 5);
+            recipe.AddTile(ModContent.TileType<MineralEnchanter>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

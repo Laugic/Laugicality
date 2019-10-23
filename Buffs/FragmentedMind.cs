@@ -18,12 +18,12 @@ namespace Laugicality.Buffs
         
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).EtherialBrainCooldown = true;
+			LaugicalityPlayer.Get(player).EtherialBrainCooldown = true;
 		}
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).damageMult * 1.5f;
+            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>().damageMult * 1.5f;
         }
     }
 }

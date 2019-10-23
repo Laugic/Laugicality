@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType("AnDioDestruction1");
+            item.shoot = ModContent.ProjectileType("AnDioDestruction1");
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
             LuxCost = 8;
@@ -50,7 +50,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("AnDioIllusion");
+            item.shoot = ModContent.ProjectileType("AnDioIllusion");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
@@ -64,7 +64,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType("AnDioConjuration1");
+            item.shoot = ModContent.ProjectileType("AnDioConjuration1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;

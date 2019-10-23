@@ -26,7 +26,7 @@ namespace Laugicality.Items.Accessories
             player.wallSpeed += 0.25f;
             player.blockRange++;
             player.pickSpeed -= 0.25f;
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.SoulStoneMovement)
             {
                 if (modPlayer.feather)

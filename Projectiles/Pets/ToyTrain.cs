@@ -33,7 +33,7 @@ namespace Laugicality.Projectiles.Pets
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+			LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
 			if (player.dead)
 				modPlayer.ToyTrain = false;
@@ -49,12 +49,12 @@ namespace Laugicality.Projectiles.Pets
                     dist = -24;
                 else
                     dist = 24;
-                Dust.NewDust(new Vector2(rect.X + projectile.width / 2 + dist, rect.Y), 0, 0, mod.DustType("TrainSteam"));
+                Dust.NewDust(new Vector2(rect.X + projectile.width / 2 + dist, rect.Y), 0, 0, ModContent.DustType("TrainSteam"));
             }
             /*if (Math.Abs(projectile.velocity.Y) > 1f)
             {
                 Rectangle rect = projectile.getRect();
-                Dust.NewDust(new Vector2(rect.X, rect.Y+projectile.height), projectile.width, 0, mod.DustType<Steam>());
+                Dust.NewDust(new Vector2(rect.X, rect.Y+projectile.height), projectile.width, 0, ModContent.DustType<Steam>());
             }*/
         }
         

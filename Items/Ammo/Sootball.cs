@@ -23,7 +23,7 @@ namespace Laugicality.Items.Ammo
             item.knockBack = 7f;
             item.value = 0;
             item.rare = ItemRarityID.White;
-            item.shoot = mod.ProjectileType("SootballProjectile");
+            item.shoot = ModContent.ProjectileType("SootballProjectile");
             item.shootSpeed = 14f;
             item.ammo = AmmoID.Snowball;
         }
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Ammo
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<Soot>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<Soot>(), 1);
             recipe.SetResult(this, 15);
             recipe.AddRecipe();
         }

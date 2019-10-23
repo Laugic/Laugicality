@@ -28,15 +28,15 @@ namespace Laugicality.Items.Weapons.Summon
             item.value = Item.buyPrice(0, 25, 0, 0);
             item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item44;
-            item.shoot = mod.ProjectileType("ArcticHydraHead");
+            item.shoot = ModContent.ProjectileType("ArcticHydraHead");
             item.shootSpeed = 0;
-            item.buffType = mod.BuffType("ArcticHydra");
+            item.buffType = ModContent.BuffType("ArcticHydra");
             item.buffTime = 60;
         }
 
         public override void HoldItem(Player player)
         {
-            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 item.damage = 200;
             }

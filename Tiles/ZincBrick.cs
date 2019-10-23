@@ -14,7 +14,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(80, 130, 100));
             mineResist = 1f;
             minPick = 20;
-            drop = mod.ItemType("ZincBrick");
+            drop = ModContent.ItemType<ZincBrick>();
             soundType = 21;
             dustType = 1;
         }

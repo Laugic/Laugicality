@@ -1,5 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			projectile.friendly = true;
             projectile.ignoreWater = true;
 			projectile.extraUpdates = 10;
-            buffID = mod.BuffType("CosmicDisarray");
+            buffID = ModContent.BuffType("CosmicDisarray");
         }
 
         public override void AI()

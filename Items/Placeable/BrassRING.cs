@@ -26,7 +26,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType("BrassRING");
+            item.createTile = ModContent.TileType("BrassRING");
         }
 
         public override void AddRecipes()

@@ -42,8 +42,8 @@ namespace Laugicality.SoulStones
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Amethyst);
-            recipe.AddIngredient(mod.ItemType<ArcaneShard>(), 3);
-            recipe.AddTile(mod.TileType<AlchemicalInfuser>());
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 3);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

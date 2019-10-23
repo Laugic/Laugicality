@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -63,7 +64,7 @@ namespace Laugicality.Items.Loot
                             player.QuickSpawnItem(ItemID.OrichalcumBar, Main.rand.Next(2, 7));
                             break;
                         default:
-                            player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(8, 15));
+                            player.QuickSpawnItem(ModContent.ItemType("ObsidiumBar"), Main.rand.Next(8, 15));
                             break;
                     }
                     if (Main.rand.Next(1, 4) == 0) player.QuickSpawnItem(173, Main.rand.Next(4, 12));
@@ -71,7 +72,7 @@ namespace Laugicality.Items.Loot
                 else
                 {
                     if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(175, Main.rand.Next(6, 13));
-                    else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(6, 13));
+                    else player.QuickSpawnItem(ModContent.ItemType("ObsidiumBar"), Main.rand.Next(6, 13));
                 }
 
                 int ran = Main.rand.Next(1, 8);
@@ -81,7 +82,7 @@ namespace Laugicality.Items.Loot
                 if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(2, 4));
                 if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(2, 4));
                 if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(2, 4));
-                if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(2, 4));
+                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType("LavaGem"), Main.rand.Next(2, 4));
                 
             }
             else
@@ -90,12 +91,12 @@ namespace Laugicality.Items.Loot
                 {
                     if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(173, Main.rand.Next(2, 6));
                     if (Main.rand.Next(1, 4) == 2) player.QuickSpawnItem(174, Main.rand.Next(3, 5));
-                    if (Main.rand.Next(1, 4) == 3) player.QuickSpawnItem(mod.ItemType("ObsidiumOre"), Main.rand.Next(2, 6));
+                    if (Main.rand.Next(1, 4) == 3) player.QuickSpawnItem(ModContent.ItemType("ObsidiumOre"), Main.rand.Next(2, 6));
                 }
                 else
                 {
                     if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(175, Main.rand.Next(1, 4));
-                    else player.QuickSpawnItem(mod.ItemType("ObsidiumBar"), Main.rand.Next(1, 4));
+                    else player.QuickSpawnItem(ModContent.ItemType("ObsidiumBar"), Main.rand.Next(1, 4));
                 }
 
                 int ran = Main.rand.Next(1, 8);
@@ -105,7 +106,7 @@ namespace Laugicality.Items.Loot
                 if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(1, 3));
                 if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(1, 3));
                 if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(1, 3));
-                if (ran == 7) player.QuickSpawnItem(mod.ItemType("LavaGem"), Main.rand.Next(1, 3));
+                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType("LavaGem"), Main.rand.Next(1, 3));
 
                 if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(2701, Main.rand.Next(6, 13));
             }

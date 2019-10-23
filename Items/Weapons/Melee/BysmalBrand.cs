@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("Borealis");
+            item.shoot = ModContent.ProjectileType("Borealis");
             item.shootSpeed = 18f;
         }
 
@@ -48,7 +48,7 @@ namespace Laugicality.Items.Weapons.Melee
             {
                 target.GetGlobalNPC<EtherialGlobalNPC>(mod).etherial = true;
             }
-            target.AddBuff(mod.BuffType("Frostbite"), 2 * 60);
+            target.AddBuff(ModContent.BuffType("Frostbite"), 2 * 60);
         }*/
     }
 }

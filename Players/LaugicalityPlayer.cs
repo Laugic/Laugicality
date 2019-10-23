@@ -14,7 +14,13 @@ using Laugicality.NPCs;
 using Laugicality.Items.Consumables.Potions;
 using Laugicality.Dusts;
 using Laugicality.Items.Equipables;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Laugicality.Projectiles.Accessory;
+using Laugicality.Projectiles.Magic;
+using Laugicality.Projectiles.Mystic.Burst;
+using Laugicality.Projectiles.SoulStone;
 
 namespace Laugicality
 {
@@ -225,7 +231,7 @@ namespace Laugicality
                 return;
             }
 
-            if (zoneObsidium && liquidType == 1 && bait.type == mod.ItemType("LavaGem") && fishingRod.type == ItemID.HotlineFishingHook)
+            if (zoneObsidium && liquidType == 1 && bait.type == ModContent.ItemType<LavaGem>() && fishingRod.type == ItemID.HotlineFishingHook)
             {
                 if (Main.rand.Next(3) == 0)
                 {
@@ -257,19 +263,19 @@ namespace Laugicality
                 if (NPC.downedBoss2)
                 {
                     if (Main.rand.Next(3) == 0)
-                        caughtType = mod.ItemType("ObsidiumOre");
+                        caughtType = ModContent.ItemType<ObsidiumOre>();
 
                     if (Main.rand.Next(4) == 0)
-                        caughtType = mod.ItemType("ObsidiumBar");
+                        caughtType = ModContent.ItemType<ObsidiumBar>();
                 }
 
                 if (LaugicalityWorld.downedRagnar)
                 {
                     if (Main.rand.Next(5) == 0)
-                        caughtType = mod.ItemType("MagmaSnapper");
+                        caughtType = ModContent.ItemType<MagmaSnapper>();
 
                     else if (Main.rand.Next(4) == 0)
-                        caughtType = mod.ItemType("ObsidiumChunk");
+                        caughtType = ModContent.ItemType<ObsidiumChunk>();
                 }
 
                 if (Main.rand.Next(5) == 0)
@@ -285,22 +291,22 @@ namespace Laugicality
                             caughtType = ItemID.LavaCharm;
                             break;
                         case 1:
-                            caughtType = mod.ItemType<ObsidiumLily>();
+                            caughtType = ModContent.ItemType<ObsidiumLily>();
                             break;
                         case 2:
-                            caughtType = mod.ItemType<FireDust>();
+                            caughtType = ModContent.ItemType<FireDust>();
                             break;
                         case 3:
-                            caughtType = mod.ItemType<Eruption>();
+                            caughtType = ModContent.ItemType<Eruption>();
                             break;
                         case 4:
-                            caughtType = mod.ItemType<CrystalizedMagma>();
+                            caughtType = ModContent.ItemType<CrystalizedMagma>();
                             break;
                         case 5:
-                            caughtType = mod.ItemType<Ragnashia>();
+                            caughtType = ModContent.ItemType<Ragnashia>();
                             break;
                         default:
-                            caughtType = mod.ItemType<MagmaHeart>();
+                            caughtType = ModContent.ItemType<MagmaHeart>();
                             break;
                     }
                 }
@@ -337,7 +343,7 @@ namespace Laugicality
         {
             if (Laugicality.zaWarudo > 0 && zImmune == false)
             {
-                player.AddBuff(mod.BuffType("TrueCurse"), 1, true);
+                player.AddBuff(ModContent.BuffType<TrueCurse>(), 1, true);
                 if (!zMove)
                 {
                     player.velocity.X = 0;
@@ -386,7 +392,7 @@ namespace Laugicality
             if (MysticErupting > 0)
             {
                 if (Main.rand.Next(4) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), mod.ProjectileType("EruptionProjectile"), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), ModContent.ProjectileType<EruptionProjectile>(), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
             }
 
             if (MysticSpiralBurst > 0)
@@ -396,7 +402,7 @@ namespace Laugicality
                 if (MysticSpiralDelay > 2)
                 {
                     MysticSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), mod.ProjectileType("AnDioChestguardBurst"), (int)(32 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), ModContent.ProjectileType<AnDioChestguardBurst>(), (int)(32 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                 }
             }
 
@@ -407,8 +413,8 @@ namespace Laugicality
                 if (MysticSteamSpiralDelay > 5)
                 {
                     MysticSteamSpiralDelay = 0;
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), mod.ProjectileType("SteamBurst"), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta), 6 * (float)Math.Sin(theta), ModContent.ProjectileType<SteamBurst>(), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 * (float)Math.Cos(theta + 3.14f), 6 * (float)Math.Sin(theta + 3.14f), ModContent.ProjectileType<SteamBurst>(), (int)(40 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                 }
             }
         }
@@ -429,7 +435,7 @@ namespace Laugicality
 
         private void CheckVent()
         {
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("SteamVENT"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("SteamVENT"))
             {
                 if (player.velocity.Y >= 0)
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/BrassFAN"));
@@ -444,7 +450,7 @@ namespace Laugicality
             float minVSpeed = 10;
             float maxVSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassRING") && vSpeed < 0)
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassRING") && vSpeed < 0)
             {
                 if (_ringBoost == 0 && Math.Abs(player.velocity.Y) > 1)
                 {
@@ -471,7 +477,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFAN"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassFAN"))
             {
                 if (_fanBoost == 0)
                 {
@@ -498,7 +504,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("BrassFANRight"))
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("BrassFANRight"))
             {
                 if (_fanBoost == 0)
                 {
@@ -522,11 +528,11 @@ namespace Laugicality
         /*
         private void CheckRepCore()
         {
-            if (Main.tile[(int)(player.Center.X / 16 + player.velocity.X / 16), (int)(player.Center.Y / 16)].type == mod.TileType("RepulsionCore") && Math.Abs(player.velocity.X) > 4)
+            if (Main.tile[(int)(player.Center.X / 16 + player.velocity.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType("RepulsionCore") && Math.Abs(player.velocity.X) > 4)
             {
                 player.velocity.X = -player.velocity.X;
             }
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16 + player.velocity.Y / 16)].type == mod.TileType("RepulsionCore") && Math.Abs(player.velocity.Y) > 4)
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16 + player.velocity.Y / 16)].type == ModContent.TileType("RepulsionCore") && Math.Abs(player.velocity.Y) > 4)
             {
                 player.velocity.Y = -player.velocity.Y;
             }
@@ -643,13 +649,13 @@ namespace Laugicality
 
         public override bool CustomBiomesMatch(Player other)
         {
-            LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modOther = LaugicalityPlayer.Get(other);
             return zoneObsidium == modOther.zoneObsidium;
         }
 
         public override void CopyCustomBiomesTo(Player other)
         {
-            LaugicalityPlayer modOther = other.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modOther = LaugicalityPlayer.Get(other);
             modOther.zoneObsidium = zoneObsidium;
         }
 
@@ -786,25 +792,25 @@ namespace Laugicality
                 target.AddBuff(BuffID.CursedInferno, (int)((4 * 60 + 60 * rand)), false);
 
             if (Steamified)
-                target.AddBuff(mod.BuffType("Steamy"), (int)((180 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<Steamy>(), (int)((180 + 60 * rand)), false);
 
             if (Lovestruck)
-                target.AddBuff(mod.BuffType<Lovestruck>(), (int)((4 * 60 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<Lovestruck>(), (int)((4 * 60 + 60 * rand)), false);
 
             if (Slimey)
-                target.AddBuff(mod.BuffType("Slimed"), (int)((180 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<Slimed>(), (int)((180 + 60 * rand)), false);
 
             if (JunglePlague)
             {
-                target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
                 target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
             }
 
             if (EtherialFrost)
-                target.AddBuff(mod.BuffType("Frostbite"), (int)((12 * 60 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<Frostbite>(), (int)((12 * 60 + 60 * rand)), false);
 
             if (EtherialPipes)
-                target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<Steamified>(), (int)((12 * 60 + 60 * rand)), false);
 
             if (target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult < DebuffMult)
                 target.GetGlobalNPC<LaugicalGlobalNPCs>().DebuffDamageMult = DebuffMult;
@@ -835,37 +841,37 @@ namespace Laugicality
             if (FireTrail && Math.Abs(player.velocity.X) > 3)
             {
                 if (Main.rand.Next(12) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 2 - Main.rand.Next(4), Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodFireball>(), (int)(8 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 2 - Main.rand.Next(4), Math.Abs(player.velocity.Y) / 4, ModContent.ProjectileType<GoodFireball>(), (int)(8 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (TrueFireTrail && Math.Abs(player.velocity.X) > 2)
             {
                 if (Main.rand.Next(12) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<TrueGoodFireball>(), (int)(15 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, ModContent.ProjectileType<TrueGoodFireball>(), (int)(15 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (ShadowflameTrail && Math.Abs(player.velocity.X) > 2)
             {
                 if (Main.rand.Next(15) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, mod.ProjectileType<GoodShadowflame>(), (int)(18 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, Math.Abs(player.velocity.Y) / 4, ModContent.ProjectileType<GoodShadowflame>(), (int)(18 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (CrystalliteTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
                 if (Main.rand.Next(14) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<CrystalliteOrb>(), (int)(24 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, ModContent.ProjectileType<CrystalliteOrb>(), (int)(24 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (SteamTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
                 if (Main.rand.Next(10) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<SteamTrailProj>(), (int)(26 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, ModContent.ProjectileType<SteamTrailProj>(), (int)(26 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (BysmalTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
             {
                 if (Main.rand.Next(10) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, mod.ProjectileType<BysmalTrailProj>(), (int)(30 * GetGlobalDamage()), 0, player.whoAmI);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, ModContent.ProjectileType<BysmalTrailProj>(), (int)(30 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
             if (MysticHold > 0)
@@ -880,7 +886,7 @@ namespace Laugicality
 
             if (Main.rand.Next(0, 4) == 0)
             {
-                Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType<EtherialDust>(), 0f, 0f);
+                Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
             }
         }
 
@@ -907,7 +913,8 @@ namespace Laugicality
             if (Main.rand.Next(13) == 0 && drawInfo.shadow == 0f)
             {
                 int dust = Dust.NewDust(drawInfo.position - new Vector2(2f, 2f), player.width + 4, player.height + 4,
-                    mod.DustType("TrainSteam"), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
+                    ModContent.DustType<TrainSteam>(), player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 100, default(Color), 3f);
+
                 Main.dust[dust].noGravity = false;
                 Main.dust[dust].velocity *= 1.8f;
                 Main.dust[dust].velocity.Y -= 0.5f;
@@ -941,7 +948,7 @@ namespace Laugicality
             if (Math.Abs(player.velocity.X) > 14f && SoulStoneVisuals)
             {
                 Rectangle rect = player.getRect();
-                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, mod.DustType("TrainSteam"));
+                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, ModContent.DustType<TrainSteam>());
             }
         }
 
@@ -960,7 +967,7 @@ namespace Laugicality
 
                 foreach (Item item in player.inventory)
                 {
-                    if (item.type == mod.ItemType<SupremeMysticaPotion>())
+                    if (item.type == ModContent.ItemType<SupremeMysticaPotion>())
                     {
                         mysticaPotion = true;
                         item.stack -= 1;
@@ -974,7 +981,7 @@ namespace Laugicality
                         if (Mundus < (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2))
                             Mundus = (MundusMax + MundusMaxPermaBoost) * (1 + (MundusOverflow - 1) / 2);
 
-                        player.AddBuff(mod.BuffType<Mysticality3>(), 60 * Constants.TICKS_PER_SECONDS, true);
+                        player.AddBuff(ModContent.BuffType<Mysticality3>(), 60 * Constants.TICKS_PER_SECONDS, true);
                     }
 
                     if (mysticaPotion)
@@ -985,7 +992,7 @@ namespace Laugicality
                 {
                     foreach (Item item in player.inventory)
                     {
-                        if (item.type == mod.ItemType<GreaterMysticaPotion>())
+                        if (item.type == ModContent.ItemType<GreaterMysticaPotion>())
                         {
                             mysticaPotion = true;
                             item.stack -= 1;
@@ -1001,7 +1008,7 @@ namespace Laugicality
                             if (Mundus < MundusMax + MundusMaxPermaBoost)
                                 Mundus = MundusMax + MundusMaxPermaBoost;
 
-                            player.AddBuff(mod.BuffType<Mysticality2>(), 60 * Constants.TICKS_PER_SECONDS, true);
+                            player.AddBuff(ModContent.BuffType<Mysticality2>(), 60 * Constants.TICKS_PER_SECONDS, true);
                         }
 
                         if (mysticaPotion)
@@ -1013,7 +1020,7 @@ namespace Laugicality
                 {
                     foreach (Item item in player.inventory)
                     {
-                        if (item.type == mod.ItemType("MysticaPotion"))
+                        if (item.type == ModContent.ItemType<MysticaPotion>())
                         {
                             mysticaPotion = true;
                             item.stack -= 1;
@@ -1021,7 +1028,7 @@ namespace Laugicality
                             Lux = LuxMax + LuxMaxPermaBoost;
                             Vis = VisMax + VisMaxPermaBoost;
                             Mundus = MundusMax + MundusMaxPermaBoost;
-                            player.AddBuff(mod.BuffType("Mysticality"), 60 * 60, true);
+                            player.AddBuff(ModContent.BuffType<Mysticality>(), 60 * 60, true);
                         }
 
                         if (mysticaPotion)
@@ -1170,13 +1177,13 @@ namespace Laugicality
         private void AccessoryEffectOnHurt()
         {
             if (Carapace)
-                player.AddBuff(mod.BuffType<CarapaceDamageBuff>(), 8 * 60);
+                player.AddBuff(ModContent.BuffType<CarapaceDamageBuff>(), 8 * 60);
         }
 
         private void ZaWarudo()
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-            player.AddBuff(mod.BuffType("TimeExhausted"), zCoolDown, true);
+            player.AddBuff(ModContent.BuffType<TimeExhausted>(), zCoolDown, true);
 
             if (Laugicality.zaWarudo < zaWarudoDuration)
             {
@@ -1206,7 +1213,7 @@ namespace Laugicality
 
         private void ApplyBloodRage()
         {
-            player.AddBuff(mod.BuffType("BloodRage"), 420);
+            player.AddBuff(ModContent.BuffType<BloodRage>(), 420);
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 0, 565, 16, 3f, player.whoAmI);
         }
@@ -1214,39 +1221,39 @@ namespace Laugicality
         private void SpawnMiniEye()
         {
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
+                ModContent.ProjectileType<MiniEye>(), 12, 3f, player.whoAmI);
 
             if (Main.rand.Next(0, 2) == 0)
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                    mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
+                    ModContent.ProjectileType<MiniEye>(), 12, 3f, player.whoAmI);
 
             if (Main.rand.Next(0, 2) == 0)
                 Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                    mod.ProjectileType("MiniEye"), 12, 3f, player.whoAmI);
+                    ModContent.ProjectileType<MiniEye>(), 12, 3f, player.whoAmI);
         }
 
         private void SpawnSandBall()
         {
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, mod.ProjectileType("Sandball"), 18, 5,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, 4, ModContent.ProjectileType<Sandball>(), 18, 5,
                 Main.myPlayer);
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, mod.ProjectileType("Sandball"), 18, 5,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 4, -4, ModContent.ProjectileType<Sandball>(), 18, 5,
                 Main.myPlayer);
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, mod.ProjectileType("Sandball"), 18, 5,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, -4, ModContent.ProjectileType<Sandball>(), 18, 5,
                 Main.myPlayer);
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, mod.ProjectileType("Sandball"), 18, 5,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -4, 4, ModContent.ProjectileType<Sandball>(), 18, 5,
                 Main.myPlayer);
         }
 
         private void SpawnIceShard()
         {
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+                ModContent.ProjectileType<IceShardF>(), 16, 3f, player.whoAmI);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, 6 - Main.rand.Next(12), 6 - Main.rand.Next(12),
-                mod.ProjectileType("IceShardF"), 16, 3f, player.whoAmI);
+                ModContent.ProjectileType<IceShardF>(), 16, 3f, player.whoAmI);
         }
 
         private void SpawnSpore()
@@ -1273,29 +1280,29 @@ namespace Laugicality
 
         private void SpawnRockShard()
         {
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, mod.ProjectileType("RockShard"), 20, 3,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 8, 0, ModContent.ProjectileType<RockShard>(), 20, 3,
                 Main.myPlayer);
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, mod.ProjectileType("RockShard"), 20, 3,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, -8, 0, ModContent.ProjectileType<RockShard>(), 20, 3,
                 Main.myPlayer);
 
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, mod.ProjectileType("RockShard"), 20, 3,
+            Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 8, ModContent.ProjectileType<RockShard>(), 20, 3,
                 Main.myPlayer);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
-                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                ModContent.ProjectileType<RockShard>(), 20, 3, Main.myPlayer);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
-                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                ModContent.ProjectileType<RockShard>(), 20, 3, Main.myPlayer);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
-                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                ModContent.ProjectileType<RockShard>(), 20, 3, Main.myPlayer);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
-                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                ModContent.ProjectileType<RockShard>(), 20, 3, Main.myPlayer);
 
             Projectile.NewProjectile(player.Center.X, player.Center.Y, -8 + Main.rand.Next(0, 17), -8 + Main.rand.Next(0, 17),
-                mod.ProjectileType("RockShard"), 20, 3, Main.myPlayer);
+                ModContent.ProjectileType<RockShard>(), 20, 3, Main.myPlayer);
         }
 
         public void DamageBoost(float amount)

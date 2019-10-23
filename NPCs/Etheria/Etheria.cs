@@ -285,7 +285,7 @@ namespace Laugicality.NPCs.Etheria
                 if(attackRel > 2)
                 {
                     attackRel = 0;
-                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta), npc.Center.Y + 48 * (float)Math.Sin(_theta), 8 * (float)Math.Cos(_theta), 8 * (float)Math.Sin(_theta), mod.ProjectileType("EtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta), npc.Center.Y + 48 * (float)Math.Sin(_theta), 8 * (float)Math.Cos(_theta), 8 * (float)Math.Sin(_theta), ModContent.ProjectileType("EtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }
                 _attackDur++;
                 if(_attackDur > 150)
@@ -301,7 +301,7 @@ namespace Laugicality.NPCs.Etheria
                 {
                     _attackDur++;
                     attackRel = 0;
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }
                 if (_attackDur >= 4)
                 {
@@ -327,7 +327,7 @@ namespace Laugicality.NPCs.Etheria
             if (attack == 4 && Main.netMode != 1 && _attacking)
             {
                 float dir = (float)Math.Atan2(npc.DirectionTo(Main.player[npc.target].Center).Y, npc.DirectionTo(Main.player[npc.target].Center).X);
-                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), mod.ProjectileType("QuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType("QuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 _attacking = false;
             }
             if (attack == 5 && Main.netMode != 1 && _attacking)
@@ -349,8 +349,8 @@ namespace Laugicality.NPCs.Etheria
                 if (attackRel > 2)
                 {
                     attackRel = 0;
-                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta), npc.Center.Y + 48 * (float)Math.Cos(_theta), 8 * (float)Math.Cos(_theta), 8 * (float)Math.Sin(_theta), mod.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta + 3.14), npc.Center.Y + 48 * (float)Math.Sin(_theta + 3.14), 8 * (float)Math.Cos(_theta + 3.14), 8 * (float)Math.Sin(_theta + 3.14), mod.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta), npc.Center.Y + 48 * (float)Math.Cos(_theta), 8 * (float)Math.Cos(_theta), 8 * (float)Math.Sin(_theta), ModContent.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X + 48 * (float)Math.Cos(_theta + 3.14), npc.Center.Y + 48 * (float)Math.Sin(_theta + 3.14), 8 * (float)Math.Cos(_theta + 3.14), 8 * (float)Math.Sin(_theta + 3.14), ModContent.ProjectileType("TrueEtherialPulse"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }
                 _attackDur++;
                 if (_attackDur > 240)
@@ -366,7 +366,7 @@ namespace Laugicality.NPCs.Etheria
                 {
                     _attackDur++;
                     attackRel = 0;
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 }
                 if (_attackDur >= 4)
                 {
@@ -392,8 +392,8 @@ namespace Laugicality.NPCs.Etheria
             if (eattack == 4 && Main.netMode != 1 && _attacking)
             {
                 float dir = (float)Math.Atan2(npc.DirectionTo(Main.player[npc.target].Center).Y, npc.DirectionTo(Main.player[npc.target].Center).X);
-                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), mod.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
-                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir + 3.14), 8 * (float)Math.Sin(dir + 3.14), mod.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir), 8 * (float)Math.Sin(dir), ModContent.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
+                //Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8 * (float)Math.Cos(dir + 3.14), 8 * (float)Math.Sin(dir + 3.14), ModContent.ProjectileType("TrueQuadroBurst"), (int)(npc.damage / projMod), 3, Main.myPlayer);
                 _attacking = false;
             }
             if (eattack == 5 && Main.netMode != 1 && _attacking)
@@ -454,7 +454,7 @@ namespace Laugicality.NPCs.Etheria
                 plays = 1;
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EssenceOfEtheria"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EssenceOfEtheria"), 1);
                 LaugicalityWorld.downedEtheria = false;
                 LaugicalityWorld.downedTrueEtheria = true;
             }

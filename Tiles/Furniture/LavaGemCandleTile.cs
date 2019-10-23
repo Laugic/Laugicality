@@ -30,7 +30,7 @@ namespace Laugicality.Tiles.Furniture
             name.SetDefault("Lava Gem Candle");
             AddMapEntry(new Color(170, 200, 120), name);
 
-            drop = mod.ItemType<LavaGemCandle>();
+            drop = ModContent.ItemType<LavaGemCandle>();
         }
 
         public override void HitWire(int i, int j)

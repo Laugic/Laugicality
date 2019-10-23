@@ -1,4 +1,5 @@
 using Laugicality.Tiles;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
@@ -21,7 +22,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType<ObsidiumOreBlock>();
+            item.createTile = ModContent.TileType<ObsidiumOreBlock>();
         }
     }
 }

@@ -43,11 +43,11 @@ namespace Laugicality.Projectiles.Thrown
                 {
                     theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                     mag = 120;
-                    Projectile.NewProjectile(target.Center.X + (int)(mag * Math.Cos(theta)), target.Center.Y + (int)(mag * Math.Sin(theta)), -8 * (float)Math.Cos(theta), -8 * (float)Math.Sin(theta), mod.ProjectileType("BysmalRipperShadow"), damage, 3, Main.myPlayer);
+                    Projectile.NewProjectile(target.Center.X + (int)(mag * Math.Cos(theta)), target.Center.Y + (int)(mag * Math.Sin(theta)), -8 * (float)Math.Cos(theta), -8 * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalRipperShadow"), damage, 3, Main.myPlayer);
                 }
                 theta = (float)Main.rand.NextDouble() * 3.14f * 2;
                 mag = 120;
-                Projectile.NewProjectile(target.Center.X + (int)(mag * Math.Cos(theta)), target.Center.Y + (int)(mag * Math.Sin(theta)), -8 * (float)Math.Cos(theta), -8 * (float)Math.Sin(theta), mod.ProjectileType("BysmalRipperShadow"), damage, 3, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X + (int)(mag * Math.Cos(theta)), target.Center.Y + (int)(mag * Math.Sin(theta)), -8 * (float)Math.Cos(theta), -8 * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalRipperShadow"), damage, 3, Main.myPlayer);
             }
         }
     }

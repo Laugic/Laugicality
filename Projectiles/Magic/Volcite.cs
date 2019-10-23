@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -20,7 +21,7 @@ namespace Laugicality.Projectiles.Magic
 		public override void AI()
 		{
 			projectile.velocity.Y += projectile.ai[0];
-			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
@@ -51,7 +52,7 @@ namespace Laugicality.Projectiles.Magic
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
 			Main.PlaySound(SoundID.Item10, projectile.position);
 		}

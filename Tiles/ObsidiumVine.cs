@@ -16,7 +16,7 @@ namespace Laugicality.Tiles
             ModTranslation name = CreateMapEntryName();
             //AddMapEntry(new Color(150, 0, 0), name);
             soundType = 6;
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -39,9 +39,9 @@ namespace Laugicality.Tiles
             frameXOffset = 0;
             if (j > 2 && j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type != mod.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type != ModContent.TileType("ObsidiumVine"))
                     frameYOffset = 36;
-                else if (Main.tile[i, j - 1].type == mod.TileType("Lycoris") || Main.tile[i, j - 1].type == mod.TileType("Radiata"))
+                else if (Main.tile[i, j - 1].type == ModContent.TileType("Lycoris") || Main.tile[i, j - 1].type == ModContent.TileType("Radiata"))
                     frameYOffset = 0;
                 else
                     frameYOffset = 18;
@@ -63,7 +63,7 @@ namespace Laugicality.Tiles
         {
             if(j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type == mod.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
         }

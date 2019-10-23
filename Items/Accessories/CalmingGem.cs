@@ -31,8 +31,8 @@ namespace Laugicality.Items.Accessories
         }
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).calm = !player.GetModPlayer<LaugicalityPlayer>(mod).calm;
-            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).calm.ToString(), 250, 250, 0);
+            LaugicalityPlayer.Get(player).calm = !LaugicalityPlayer.Get(player).calm;
+            Main.NewText(LaugicalityPlayer.Get(player).calm.ToString(), 250, 250, 0);
             return true;
         }
 

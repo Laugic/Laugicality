@@ -38,19 +38,19 @@ namespace Laugicality.NPCs.Etheria
         public override void AI()
         {
             bitherial = true;
-            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
             delay += 1;
                 projectile.velocity *= .95f;
             if(delay >= 100 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("TrueEtherialPulse"), damage, 3f, Main.myPlayer);
                 projectile.Kill();
             }
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;

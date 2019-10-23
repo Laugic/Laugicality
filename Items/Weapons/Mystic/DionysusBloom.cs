@@ -41,7 +41,7 @@ namespace Laugicality.Items.Weapons.Mystic
             {
                 position += muzzleOffset;
             }
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 2)
             {
 
@@ -51,7 +51,7 @@ namespace Laugicality.Items.Weapons.Mystic
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10)); 
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("DionysusIllusion"), damage, knockBack, player.whoAmI);
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("DionysusIllusion"), damage, knockBack, player.whoAmI);
                 }
                 return false;
             }
@@ -65,7 +65,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType("DionysusDestruction");
+            item.shoot = ModContent.ProjectileType("DionysusDestruction");
             item.UseSound = SoundID.Item1;
             item.scale = 1.25f;
             LuxCost = 6;
@@ -78,7 +78,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -92,7 +92,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 20f;
-            item.shoot = mod.ProjectileType("DionysusConjuration");
+            item.shoot = ModContent.ProjectileType("DionysusConjuration");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

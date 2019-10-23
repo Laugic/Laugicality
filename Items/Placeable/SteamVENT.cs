@@ -25,7 +25,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType("SteamVENT");
+            item.createTile = ModContent.TileType("SteamVENT");
         }
 
         public override void AddRecipes()

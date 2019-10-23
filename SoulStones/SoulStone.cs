@@ -140,8 +140,8 @@ namespace Laugicality.SoulStones
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LifeCrystal);
-            recipe.AddIngredient(mod.ItemType<ArcaneShard>(), 10);
-            recipe.AddTile(mod.TileType<AlchemicalInfuser>());
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 10);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

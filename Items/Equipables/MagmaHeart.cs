@@ -1,6 +1,7 @@
 using Laugicality.Buffs;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if(player.lavaWet)
-                player.AddBuff(mod.BuffType<MagmaticVeins>(), 60 * 15);
+                player.AddBuff(ModContent.BuffType<MagmaticVeins>(), 60 * 15);
         }
     }
 }

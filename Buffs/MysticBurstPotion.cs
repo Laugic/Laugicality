@@ -13,7 +13,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            player.GetModPlayer<LaugicalityPlayer>(mod).MysticSwitchCoolRate += 1;
+            LaugicalityPlayer.Get(player).MysticSwitchCoolRate += 1;
         }
         
 	}

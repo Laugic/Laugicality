@@ -96,7 +96,7 @@ namespace Laugicality.NPCs.RockTwins
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RockPhase3");
             damage = 32;
-            //bossBag = mod.ItemType("RagnarTreasureBag");
+            //bossBag = ModContent.ItemType("RagnarTreasureBag");
             //npc.scale = 2f;
             if (NPC.CountNPCS(mod.NPCType<AnDio3>()) > 1)
             {
@@ -281,31 +281,31 @@ namespace Laugicality.NPCs.RockTwins
             if(shoot == 1 && Main.netMode != 1)//Homing Ball
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioEnergyHoming"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioEnergyHoming"), damage / 2, 3, Main.myPlayer);
             }
             if (shoot == 2 && Main.netMode != 1)//Split Ball
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioEnergy"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioEnergy"), damage / 2, 3, Main.myPlayer);
             }
             if (shoot == 3 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
                 shoot = 0;
                 attackDuration = 1;
             }
 
             if (attackDuration == 30 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
             }
             if (attackDuration == 60 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
             }
             if (attackDuration == 90 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("DioBallShot"), damage / 2, 3f, Main.myPlayer);
             }
             if (attackDuration > 0)
                 attackDuration++;
@@ -318,26 +318,26 @@ namespace Laugicality.NPCs.RockTwins
                 int rng = 480;
                 int yHeight = 480;
                 shoot = 0;
-                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
-                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, mod.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X, Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
+                Projectile.NewProjectile(Main.player[npc.target].position.X - rng + Main.rand.Next(rng * 2), Main.player[npc.target].position.Y - yHeight, 0, 0, ModContent.ProjectileType("DioShard"), damage / 2, 3, Main.myPlayer);
             }
             npc.netUpdate = true;
         }

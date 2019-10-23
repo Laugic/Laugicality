@@ -13,8 +13,8 @@ namespace Laugicality.Mounts.SteamTrain
 		public override void SetDefaults()
 		{
             boosted = false;
-			mountData.spawnDust = mod.DustType<Steam>();
-			mountData.buff = mod.BuffType<SteamTrainMountBuff>();
+			mountData.spawnDust = ModContent.DustType<Steam>();
+			mountData.buff = ModContent.BuffType<SteamTrainMountBuff>();
 			mountData.heightBoost = 20;
 			mountData.fallDamage = 0.5f;
 			mountData.runSpeed = 25f;
@@ -71,7 +71,7 @@ namespace Laugicality.Mounts.SteamTrain
             if (Math.Abs(player.velocity.X) > 3f)
             {
                 Rectangle rect = player.getRect();
-                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, mod.DustType<TrainSteam>());
+                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, ModContent.DustType<TrainSteam>());
 
                 if (boosted == false)
                 {

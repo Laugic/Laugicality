@@ -99,7 +99,7 @@ namespace Laugicality.Focuses
         private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.lavaWet)
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<LavaDefenseBuff>(), 60 * 15);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<LavaDefenseBuff>(), 60 * 15);
         }
 
         private static void DownedSkeletronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -143,12 +143,12 @@ namespace Laugicality.Focuses
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.immune = true;
             laugicalityPlayer.player.immuneTime += 4 * 60;
 
-            laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 60 * 60);
+            laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 60 * 60);
         }
 
         private static void DownedSlybertronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

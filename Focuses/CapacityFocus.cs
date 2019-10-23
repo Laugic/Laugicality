@@ -132,11 +132,11 @@ namespace Laugicality.Focuses
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.Hurt(PlayerDeathReason.ByOther(2), 1, 0);
 
-            laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 5 * 60);
+            laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 5 * 60);
         }
 
         private static void DownedSlybertronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

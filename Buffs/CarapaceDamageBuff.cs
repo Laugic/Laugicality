@@ -14,7 +14,7 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).DamageBoost(.15f);
+            LaugicalityPlayer.Get(player).DamageBoost(.15f);
         }
     }
 }

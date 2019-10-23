@@ -1,4 +1,6 @@
-﻿namespace Laugicality.Items.Placeable
+﻿using Terraria.ModLoader;
+
+namespace Laugicality.Items.Placeable
 {
     public class RepulsionCore : LaugicalityItem
     {
@@ -19,7 +21,7 @@
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("RepulsionCore");
+            item.createTile = ModContent.TileType("RepulsionCore");
         }
         /*
         public override void AddRecipes()

@@ -17,7 +17,7 @@ namespace Laugicality.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).incineration = true;
+            npc.GetGlobalNPC<LaugicalGlobalNPCs>().incineration = true;
         }
     }
 }

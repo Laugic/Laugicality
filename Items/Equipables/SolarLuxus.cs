@@ -24,7 +24,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.DestructionDamage += .15f;
             modPlayer.MysticDamage += .15f;
             modPlayer.LuxAbsorbRate += .25f;
@@ -33,7 +33,7 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<MagmaticCrystal>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<MagmaticCrystal>(), 8);
             recipe.AddIngredient(ItemID.LunarTabletFragment, 12);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

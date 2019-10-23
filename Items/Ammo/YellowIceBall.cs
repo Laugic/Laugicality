@@ -22,7 +22,7 @@ namespace Laugicality.Items.Ammo
             item.knockBack = 7f;
             item.value = 0;
             item.rare = ItemRarityID.White;
-            item.shoot = mod.ProjectileType("YellowIceBall");
+            item.shoot = ModContent.ProjectileType("YellowIceBall");
             item.shootSpeed = 10f;
             item.ammo = AmmoID.Snowball;
         }

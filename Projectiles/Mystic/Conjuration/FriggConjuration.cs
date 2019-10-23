@@ -30,7 +30,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         {
             projectile.rotation = 0;
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             projectile.velocity.X *= .95f;
             projectile.velocity.Y *= .975f;
 			

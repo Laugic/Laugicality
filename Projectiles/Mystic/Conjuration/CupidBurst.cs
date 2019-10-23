@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -27,7 +28,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             projectile.rotation = (float)(3.14*3/2);
             bitherial = true;
             if(Main.rand.Next(4) == 0)
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Pink"), 0f, 0f);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Pink"), 0f, 0f);
             delay++;
             if (delay > 30)
             {
@@ -35,14 +36,14 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     power++;
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("CupidConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
                 projectile.Kill();
             }

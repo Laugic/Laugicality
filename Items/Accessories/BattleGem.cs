@@ -32,8 +32,8 @@ namespace Laugicality.Items.Accessories
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).battle = !player.GetModPlayer<LaugicalityPlayer>(mod).battle;
-            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).battle.ToString(), 250, 250, 0);
+            LaugicalityPlayer.Get(player).battle = !LaugicalityPlayer.Get(player).battle;
+            Main.NewText(LaugicalityPlayer.Get(player).battle.ToString(), 250, 250, 0);
             return true;
         }
 

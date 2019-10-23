@@ -24,7 +24,7 @@ namespace Laugicality.Projectiles.Thrown
         {
             if (Main.rand.Next(2) == 0)
             {
-                Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, mod.ItemType("TheSnowflake"), 1);
+                Item.NewItem((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height, ModContent.ItemType("TheSnowflake"), 1);
             }
         }
 

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -33,7 +34,7 @@ namespace Laugicality.Items.Weapons.Mystic
         
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode != 1)
                 return true;
             else return false;
@@ -46,7 +47,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.scale = 2.25f;
         }
 
@@ -68,19 +69,19 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 45;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.scale = 2f;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if(modPlayer.MysticMode == 2)
                 target.AddBuff(BuffID.Daybreak, (int)(4 * 60 * modPlayer.MysticDuration));
             if (modPlayer.MysticMode == 3)
             {
-                if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[mod.ProjectileType("GreatGladiusConjuration1")] < 2)
-                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);
+                if(Main.player[Main.myPlayer] == player && player.ownedProjectileCounts[ModContent.ProjectileType("GreatGladiusConjuration1")] < 2)
+                    Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType("GreatGladiusConjuration1"), damage, knockback, Main.myPlayer);
             }
         }
         /*

@@ -161,7 +161,7 @@ namespace Laugicality.Focuses
 
         private static void DownedAnnihilatorEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             foreach(Projectile projectile in Main.projectile)
             {
@@ -171,7 +171,7 @@ namespace Laugicality.Focuses
                     projectile.Kill();
             }
 
-            laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 90 * 60);
+            laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 90 * 60);
         }
 
         private static void DownedSlybertronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -181,7 +181,7 @@ namespace Laugicality.Focuses
 
         private static void DownedSteamTrainEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Steamy>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Steamy>()] = true;
             laugicalityPlayer.Steamified = true;
         }
 
@@ -191,7 +191,7 @@ namespace Laugicality.Focuses
             {
                 laugicalityPlayer.player.immune = true;
                 laugicalityPlayer.player.immuneTime = 2;
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<TrueCurse>(), 2);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<TrueCurse>(), 2);
             }
         }
 
@@ -218,7 +218,7 @@ namespace Laugicality.Focuses
 
         private static void DownedEtheriaEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Frostbite>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Frostbite>()] = true;
             laugicalityPlayer.player.npcTypeNoAggro[Laugicality.Instance.NPCType<EtherialSpirit>()] = true;
         }
 
@@ -263,15 +263,15 @@ namespace Laugicality.Focuses
             laugicalityPlayer.player.buffImmune[BuffID.Summoning] = true;
             laugicalityPlayer.player.buffImmune[BuffID.Swiftness] = true;
             laugicalityPlayer.player.buffImmune[BuffID.Warmth] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<DestructionBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<IllusionBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<ConjurationBoost>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Albus>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Aquos>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Aura>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Rubrum>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Regis>()] = true;
-            laugicalityPlayer.player.buffImmune[Laugicality.Instance.BuffType<Verdi>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<DestructionBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<IllusionBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<ConjurationBoost>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Albus>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Aquos>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Aura>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Rubrum>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Regis>()] = true;
+            laugicalityPlayer.player.buffImmune[ModContent.BuffType<Verdi>()] = true;
         }
     }
 }

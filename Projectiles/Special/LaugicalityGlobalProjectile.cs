@@ -109,7 +109,7 @@ namespace Laugicality.Projectiles.Special
                 eDmg = projectile.damage;
             
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             if (bitherial)
             {
@@ -188,7 +188,7 @@ namespace Laugicality.Projectiles.Special
                 }
                 if (modPlayer.Steamified && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
-                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
                 if (modPlayer.Slimey && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
@@ -196,7 +196,7 @@ namespace Laugicality.Projectiles.Special
                 }
                 if (modPlayer.EtherialFrost && rand == 0 && modPlayer.SoulStoneVisuals)
                 {
-                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Etherial"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                    Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Etherial>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 }
             }*/
 
@@ -313,48 +313,48 @@ namespace Laugicality.Projectiles.Special
                 }
                 if (modPlayer.Steamified)
                 {
-                    target.AddBuff(mod.BuffType("Steamy"), (int)(3 * 60 + 60 * rand), false);
+                    target.AddBuff(ModContent.BuffType("Steamy"), (int)(3 * 60 + 60 * rand), false);
                 }
                 if (modPlayer.Lovestruck)
                 {
-                    target.AddBuff(mod.BuffType<Lovestruck>(), (int)(4 * 60 + 60 * rand), false);
+                    target.AddBuff(ModContent.BuffType<Lovestruck>(), (int)(4 * 60 + 60 * rand), false);
                 }
                 if (modPlayer.Slimey)
                 {
-                    target.AddBuff(mod.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
+                    target.AddBuff(ModContent.BuffType("Slimed"), (int)(3 * 60 + 60 * rand), false);
                 }
-                if (modPlayer.JunglePlague && projectile.type != mod.ProjectileType<JunglePlagueSpore>())
+                if (modPlayer.JunglePlague && projectile.type != ModContent.ProjectileType<JunglePlagueSpore>())
                 {
-                    target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)(3 * 60 + 60 * rand), false);
+                    target.AddBuff(ModContent.BuffType<JunglePlagueBuff>(), (int)(3 * 60 + 60 * rand), false);
                     target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
                 }
                 if (modPlayer.EtherialFrost && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
                 {
-                    target.AddBuff(mod.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
+                    target.AddBuff(ModContent.BuffType("Frostbite"), (int)(12 * 60 + 60 * rand), false);
                 }
                 if (modPlayer.EtherialPipes && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
                 {
-                    target.AddBuff(mod.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
+                    target.AddBuff(ModContent.BuffType("Steamified"), (int)((12 * 60 + 60 * rand)), false);
                 }
                 if (modPlayer.EtherCog && (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0))
                 {
                     target.GetGlobalNPC<LaugicalGlobalNPCs>(mod).attacker = projectile.owner;
                 }
                 /*
-                if (modPlayer.critExplosion && projectile.type != mod.ProjectileType("ObsidiumArrowHead"))
+                if (modPlayer.critExplosion && projectile.type != ModContent.ProjectileType("ObsidiumArrowHead"))
                 {
                     if (crit)
                     {
                         float mag = 6f;
                         float theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         if (Main.myPlayer == projectile.owner)
-                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
                         theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         if (Main.myPlayer == projectile.owner)
-                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
                         theta2 = (float)(Main.rand.NextDouble() * 2 * Math.PI);
                         if (Main.myPlayer == projectile.owner)
-                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                            Projectile.NewProjectile(target.Center.X, target.Center.Y, (float)Math.Cos(theta2) * mag, (float)Math.Sin(theta2) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
                     }
                 }*/
 
@@ -367,7 +367,7 @@ namespace Laugicality.Projectiles.Special
         {
             if(projectile.type == ProjectileID.PhantasmalDeathray && LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(mod.BuffType("TrueCurse"), 5 * 60);
+                target.AddBuff(ModContent.BuffType("TrueCurse"), 5 * 60);
             }
             base.OnHitPlayer(projectile, target, damage, crit);
         }

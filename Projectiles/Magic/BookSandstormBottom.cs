@@ -87,7 +87,7 @@ namespace Laugicality.Projectiles.Magic
                 if (delay > 5)
                 {
                     delay = 0;
-                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<BookSandstormUp>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, num + 1);
+                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), ModContent.ProjectileType<BookSandstormUp>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, num + 1);
                     num++;
                 }
             }

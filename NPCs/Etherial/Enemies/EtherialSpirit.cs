@@ -78,7 +78,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
 
             if (Main.netMode != 1 && Main.rand.Next(280) == 0)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 6), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 6), 3, Main.myPlayer);
             }
         }
 
@@ -108,7 +108,7 @@ namespace Laugicality.NPCs.Etherial.Enemies
         
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(3, 5));            
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), Main.rand.Next(3, 5));            
         }
     }
 }

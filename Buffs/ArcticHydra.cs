@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
@@ -14,8 +15,8 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
-            if (player.ownedProjectileCounts[mod.ProjectileType("ArcticHydraHead")] > 0)
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
+            if (player.ownedProjectileCounts[ModContent.ProjectileType("ArcticHydraHead")] > 0)
             {
                 modPlayer.ArcticHydraSummon = true;
             }

@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
             dAccel += 0.5f;
             projectile.direction += (int)dAccel;
             bitherial = true;

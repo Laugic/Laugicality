@@ -44,7 +44,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Black>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
                     }
                     else
                     {
@@ -59,7 +59,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Black>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
                     }
                     else
                     {
@@ -75,21 +75,21 @@ namespace Laugicality.Items.Equipables
             if(trail > 0)
             {
                 trail--;
-                player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<Black>(), 2);
+                player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<Black>(), 2);
             }
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DarkfootBoots>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<DarkfootBoots>(), 1);
             recipe.AddIngredient(ItemID.BandofStarpower, 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<BloodfootBoots>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<BloodfootBoots>(), 1);
             recipe.AddIngredient(ItemID.PanicNecklace, 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

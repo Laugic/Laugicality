@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable
 {
     public class ObsidiumCore : LaugicalityItem
@@ -19,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("ObsidiumCore");
+            item.createTile = ModContent.TileType("ObsidiumCore");
         }
         
     }

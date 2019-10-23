@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
 
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
                 charge++;
@@ -67,7 +68,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType("SaturnDestruction");
+            item.shoot = ModContent.ProjectileType("SaturnDestruction");
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -78,7 +79,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType("SaturnIllusion1");
+            item.shoot = ModContent.ProjectileType("SaturnIllusion1");
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -89,7 +90,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("SaturnConjuration1");
+            item.shoot = ModContent.ProjectileType("SaturnConjuration1");
         }
     }
 }

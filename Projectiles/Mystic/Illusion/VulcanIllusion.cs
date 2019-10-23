@@ -1,5 +1,6 @@
 using Terraria;
 using Laugicality.Dusts;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -14,12 +15,12 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            buffID = mod.BuffType("Steamy");
+            buffID = ModContent.BuffType("Steamy");
         }
 
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
         
     }

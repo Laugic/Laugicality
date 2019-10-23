@@ -58,7 +58,7 @@ namespace Laugicality.Items.Weapons.Range
         public override bool CanUseItem(Player player)
         {
 
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (steam)
             {
                 if (modPlayer.connected >= steamTier && LaugicalityWorld.power >= steamCost)
@@ -71,7 +71,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override bool UseItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             LaugicalityWorld.power -= steamCost;
             if (LaugicalityWorld.power < 0)
                 LaugicalityWorld.power = 0;
@@ -88,7 +88,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void HoldItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             //Main.NewText("Steam Tier: " + steamTier.ToString(), 0, 250, 0);
         }
@@ -103,11 +103,11 @@ namespace Laugicality.Items.Weapons.Range
 
             float scale = 1f - (Main.rand.NextFloat() * .2f);
             perturbedSpeed = perturbedSpeed * scale;
-            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
             
             if(type == ProjectileID.WoodenArrowFriendly)
             {
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("BrassArrow"), damage, knockBack, player.whoAmI);
                 return false;
             }
             return true;

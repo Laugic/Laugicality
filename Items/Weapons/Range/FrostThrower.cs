@@ -47,7 +47,7 @@ namespace Laugicality.Items.Weapons.Range
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
                 if(type == ProjectileID.SnowBallFriendly) 
-                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("Frostball"), damage, knockBack, player.whoAmI);
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("Frostball"), damage, knockBack, player.whoAmI);
                 else
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             }
@@ -62,7 +62,7 @@ namespace Laugicality.Items.Weapons.Range
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<SMG>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<SMG>(), 1);
             recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddTile(TileID.MythrilAnvil);
@@ -70,7 +70,7 @@ namespace Laugicality.Items.Weapons.Range
             recipe.AddRecipe();
 
             recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<FrostCannon>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<FrostCannon>(), 1);
             recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
             recipe.AddIngredient(ItemID.FrostCore, 1);
             recipe.AddTile(TileID.MythrilAnvil);

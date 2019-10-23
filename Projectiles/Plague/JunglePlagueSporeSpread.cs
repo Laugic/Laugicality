@@ -36,7 +36,7 @@ namespace Laugicality.Projectiles.Plague
             int rand = Main.rand.Next(5);
             if (target.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlagueDuration < 180 + 60 * rand)
             {
-                target.AddBuff(mod.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
+                target.AddBuff(ModContent.BuffType<JunglePlagueBuff>(), (int)((180 + 60 * rand)), false);
                 target.AddBuff(BuffID.Poisoned, (int)(3 * 60 + 60 * rand), false);
             }
         }

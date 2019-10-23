@@ -40,7 +40,7 @@ namespace Laugicality.Items.Consumables.Potions
                 modPlayer.Vis = (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * (1 + (modPlayer.VisOverflow * modPlayer.GlobalOverflow - 1) / 2);
             if (modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2))
                 modPlayer.Mundus = (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * (1 + (modPlayer.MundusOverflow * modPlayer.GlobalOverflow - 1) / 2);
-            player.AddBuff(mod.BuffType<Mysticality3>(), 60 * 60, true);
+            player.AddBuff(ModContent.BuffType<Mysticality3>(), 60 * 60, true);
             return true;
         }
 
@@ -48,8 +48,8 @@ namespace Laugicality.Items.Consumables.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "GreaterMysticaPotion", 2);
-            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 2);
-            recipe.AddIngredient(mod.ItemType<MagmaticCrystal>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<MagmaticCrystal>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this, 2);
             recipe.AddRecipe();

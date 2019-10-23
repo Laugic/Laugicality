@@ -22,7 +22,7 @@ namespace Laugicality.Items.Armor
 			item.defense = 14;
 		}
 
-	    public override bool IsArmorSet(Item head, Item body, Item legs) => base.IsArmorSet(head, body, legs) && body.type == mod.ItemType<SteampunkJacket>() && legs.type == mod.ItemType<SteampunkBoots>();
+	    public override bool IsArmorSet(Item head, Item body, Item legs) => base.IsArmorSet(head, body, legs) && body.type == ModContent.ItemType<SteampunkJacket>() && legs.type == ModContent.ItemType<SteampunkBoots>();
 
 	    public override bool DrawHead() => true;
 
@@ -39,7 +39,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.Steamified = true;
             player.setBonus = "+18% Minion damage \nAttacks inflict 'Steamy!' ";
             player.minionDamage += 0.18f;

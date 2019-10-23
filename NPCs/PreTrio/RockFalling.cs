@@ -43,14 +43,14 @@ namespace Laugicality.NPCs.PreTrio
                 delay += 1;
             if(delay >= delMax && Main.netMode != 1)
             {
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, mod.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType("MiniRock"), (int)(projectile.damage / 1.27f), 3, Main.myPlayer);
                 projectile.Kill();
             }
         }

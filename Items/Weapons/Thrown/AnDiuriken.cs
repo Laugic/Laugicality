@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = mod.ProjectileType("AnDiuriken");
+            item.shoot = ModContent.ProjectileType("AnDiuriken");
             item.shootSpeed = 16f;     
             item.useTurn = true;
             item.maxStack = 4;       
@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Thrown
 
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[mod.ProjectileType("AnDiuriken")] < item.stack;
+            return player.ownedProjectileCounts[ModContent.ProjectileType("AnDiuriken")] < item.stack;
         }
 
         public override void AddRecipes()  

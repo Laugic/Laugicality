@@ -115,17 +115,17 @@ namespace Laugicality.Focuses
 
         private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.Center = Main.MouseWorld;
             if(LaugicalityWorld.downedAnnihilator)
             {
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 8 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 8 * 60);
                 laugicalityPlayer.player.immune = true;
                 laugicalityPlayer.player.immuneTime = 2 * 60;
             }
             else
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 15 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 15 * 60);
         }
 
         private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

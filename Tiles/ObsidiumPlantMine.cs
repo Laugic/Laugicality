@@ -11,8 +11,8 @@ namespace Laugicality.Tiles
             Main.tileSolid[Type] = false;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
-            dustType = mod.DustType("Magma");
-            //drop = mod.ItemType("LavaGem");
+            dustType = ModContent.DustType<Magma>();
+            //drop = ModContent.ItemType("LavaGem");
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lycoris Radiata");
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
@@ -22,8 +22,8 @@ namespace Laugicality.Tiles
             soundType = 6;
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
-				mod.TileType<Lycoris>(),
-                mod.TileType<Radiata>()
+				ModContent.TileType<Lycoris>(),
+                ModContent.TileType<Radiata>()
             };
             TileObjectData.addTile(Type);
         }
@@ -49,7 +49,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 64, 64, mod.ItemType("ObsidiumPlant"));
+            Item.NewItem(i * 16, j * 16, 64, 64, ModContent.ItemType("ObsidiumPlant"));
         }
     }
 }

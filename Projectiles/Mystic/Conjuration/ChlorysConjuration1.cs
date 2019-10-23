@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -27,7 +28,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 delay = 0;
                 if (Main.myPlayer == projectile.owner)
                 {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -8, mod.ProjectileType<ChlorysConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -8, ModContent.ProjectileType<ChlorysConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
             }
         }

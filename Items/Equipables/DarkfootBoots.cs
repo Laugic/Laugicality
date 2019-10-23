@@ -1,6 +1,7 @@
 ﻿using Laugicality.Dusts;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
@@ -38,7 +39,7 @@ namespace Laugicality.Items.Equipables
                     {
                         dashCooldown = dashCooldownMax;
                         player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Black>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
                     }
                     else
                     {
@@ -52,7 +53,7 @@ namespace Laugicality.Items.Equipables
                     {
                         dashCooldown = dashCooldownMax;
                         player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Black>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
                     }
                     else
                     {

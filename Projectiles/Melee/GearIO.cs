@@ -43,7 +43,7 @@ namespace Laugicality.Projectiles.Melee
                 float theta = Main.rand.NextFloat() * (float)Math.PI;
                 float mag = Main.rand.NextFloat() * 4 + 8;
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("GearIO2"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("GearIO2"), projectile.damage, 3f, Main.myPlayer);
             }
         }
     }

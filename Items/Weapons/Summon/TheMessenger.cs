@@ -29,10 +29,10 @@ namespace Laugicality.Items.Weapons.Summon
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item44;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.shootSpeed = 10f;
             item.summon = true;
-            item.buffType = mod.BuffType("RockTwins");
+            item.buffType = ModContent.BuffType("RockTwins");
             item.buffTime = 3600;
         }
     
@@ -69,8 +69,8 @@ namespace Laugicality.Items.Weapons.Summon
 		    num79 = 0f;
 		    vector2.X = (float)Main.mouseX + Main.screenPosition.X;
 		    vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
-            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, mod.ProjectileType("AndesiaProbe"), num73, num74, i, 0f, 0f);
-            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, mod.ProjectileType("DioritusProbe"), num73, num74, i, 0f, 0f);
+            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType("AndesiaProbe"), num73, num74, i, 0f, 0f);
+            Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, ModContent.ProjectileType("DioritusProbe"), num73, num74, i, 0f, 0f);
             
 		    return player.altFunctionUse != 2;
         }

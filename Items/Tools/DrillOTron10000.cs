@@ -31,7 +31,7 @@ namespace Laugicality.Items.Tools
             item.rare = ItemRarityID.Purple;
             item.UseSound = SoundID.Item23;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("DrillOTron10000");
+            item.shoot = ModContent.ProjectileType("DrillOTron10000");
             item.shootSpeed = 40f;
         }
 

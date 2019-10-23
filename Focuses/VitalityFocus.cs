@@ -82,7 +82,7 @@ namespace Laugicality.Focuses
             if (laugicalityPlayer.player.lavaWet)
             {
                 laugicalityPlayer.player.lifeRegen += 4;
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<LavaRegen>(), 15 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<LavaRegen>(), 15 * 60);
             }
         }
 
@@ -94,14 +94,14 @@ namespace Laugicality.Focuses
 
         private static void DownedWallOfFleshEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>())) return;
+            if (!Laugicality.soulStoneAbility.JustPressed || laugicalityPlayer.player.HasBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>())) return;
 
             laugicalityPlayer.player.statLife += (int)(laugicalityPlayer.player.statLifeMax2 * 0.15f);
 
             if (LaugicalityWorld.downedAnnihilator)
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 20 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 20 * 60);
             else
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<SoulStoneAbilityCooldownBuff>(), 30 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<SoulStoneAbilityCooldownBuff>(), 30 * 60);
         }
 
         private static void DownedTwinsEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

@@ -1,4 +1,6 @@
-﻿namespace Laugicality.Items.Placeable
+﻿using Terraria.ModLoader;
+
+namespace Laugicality.Items.Placeable
 {
     public class GodRay : LaugicalityItem
     {
@@ -19,7 +21,7 @@
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("GodRay");
+            item.createTile = ModContent.TileType("GodRay");
         }
         /*
         public override void AddRecipes()

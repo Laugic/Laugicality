@@ -1,5 +1,7 @@
 using System;
+using Laugicality.Dusts;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -42,7 +44,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 else growing = true;
             }
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             projectile.velocity.X *= .92f;
             projectile.velocity.Y *= .92f;
             if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.Y) <= .2)
@@ -54,10 +56,10 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 if (Main.myPlayer == projectile.owner)
                 {
                     if(Main.rand.Next(5) == 0)
-                        Projectile.NewProjectile(projectile.Center.X - projectile.width / 2 + Main.rand.Next(projectile.width + 1), projectile.Center.Y - projectile.height / 2 + Main.rand.Next(projectile.height + 1), 0, 8, mod.ProjectileType("PlutoConjuration3"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X - projectile.width / 2 + Main.rand.Next(projectile.width + 1), projectile.Center.Y - projectile.height / 2 + Main.rand.Next(projectile.height + 1), 0, 8, ModContent.ProjectileType<PlutoConjuration3>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
             }
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Frost>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
     }
 }

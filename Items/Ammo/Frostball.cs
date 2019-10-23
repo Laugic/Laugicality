@@ -23,7 +23,7 @@ namespace Laugicality.Items.Ammo
             item.knockBack = 7f;
             item.value = 0;
             item.rare = ItemRarityID.White;
-            item.shoot = mod.ProjectileType("Frostball");
+            item.shoot = ModContent.ProjectileType("Frostball");
             item.shootSpeed = 14f;
             item.ammo = AmmoID.Snowball;
         }
@@ -32,7 +32,7 @@ namespace Laugicality.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SnowBlock, 5);
-            recipe.AddIngredient(mod.ItemType<SoulOfSought>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 1);
             recipe.SetResult(this, 50);
             recipe.AddRecipe();
         }

@@ -49,7 +49,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Magma>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Magma>(), 20);
                         dashDir = 0;
                     }
                     else
@@ -65,7 +65,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = dashCooldownMax;
                         trail = trailLength;
                         player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Magma>(), 20);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Magma>(), 20);
                         dashDir = 0;
                     }
                     else
@@ -81,7 +81,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = 2 * dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Magma>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Magma>(), 40);
                         player.fallStart = (int)player.position.Y / 16;
                         dashDir = 0;
                     }
@@ -98,7 +98,7 @@ namespace Laugicality.Items.Equipables
                         dashCooldown = verticalCooldownMax;
                         trail = trailLength;
                         player.velocity.Y = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<Magma>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Magma>(), 40);
                         player.fallStart = (int)player.position.Y / 16;
                         jumpDashes++;
                         dashDir = 0;
@@ -117,7 +117,7 @@ namespace Laugicality.Items.Equipables
             if (trail > 0)
             {
                 trail--;
-                player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<Magma>(), 1);
+                player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<Magma>(), 1);
             }
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0)
                 jumpDashes = 0;
@@ -128,9 +128,9 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<DemonrushBoots>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<DemonrushBoots>(), 1);
             recipe.AddIngredient(ItemID.HellstoneBar, 8);
-            recipe.AddIngredient(mod.ItemType<LavaGem>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 8);
             recipe.AddTile(TileID.Hellforge);
             recipe.SetResult(this);
             recipe.AddRecipe();

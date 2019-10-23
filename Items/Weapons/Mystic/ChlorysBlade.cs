@@ -38,7 +38,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = (int)(item.useTime / 2);
             item.knockBack = 3;
             item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType<ChlorysDestruction>();
+            item.shoot = ModContent.ProjectileType<ChlorysDestruction>();
             item.UseSound = SoundID.Item1;
             LuxCost = 6;
         }
@@ -50,7 +50,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType<ChlorysIllusion>();
+            item.shoot = ModContent.ProjectileType<ChlorysIllusion>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -64,7 +64,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType<ChlorysConjuration1>();
+            item.shoot = ModContent.ProjectileType<ChlorysConjuration1>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

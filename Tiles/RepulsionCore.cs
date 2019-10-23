@@ -15,8 +15,8 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(0, 50, 150), name);
             mineResist = .5f;
             minPick = 100;
-            dustType = mod.DustType("Etherial");
-            drop = mod.ItemType("RepulsionCore");
+            dustType = ModContent.DustType<Dusts.EtherialDust>();
+            drop = ModContent.ItemType<Items.Placeable.RepulsionCore>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

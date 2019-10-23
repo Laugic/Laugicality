@@ -36,14 +36,14 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
 
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 3)
             {
                 for (int p = 0; p < 1000; p++)
                 {
-                    if (Main.projectile[p].type == mod.ProjectileType("CupidConjurationAngel"))
+                    if (Main.projectile[p].type == ModContent.ProjectileType("CupidConjurationAngel"))
                     {
-                        if (player.ownedProjectileCounts[mod.ProjectileType("CupidConjurationAngel")] >= modPlayer.MysticDuration * 4)
+                        if (player.ownedProjectileCounts[ModContent.ProjectileType("CupidConjurationAngel")] >= modPlayer.MysticDuration * 4)
                         {
                             Main.projectile[p].Kill();
                             break;
@@ -62,7 +62,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("CupidDestruction");
+            item.shoot = ModContent.ProjectileType("CupidDestruction");
             item.noUseGraphic = true;
             LuxCost = 4;
         }
@@ -75,7 +75,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("CupidIllusion");
+            item.shoot = ModContent.ProjectileType("CupidIllusion");
             item.noUseGraphic = false;
             VisCost = 5;
         }
@@ -88,7 +88,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 0f;
-            item.shoot = mod.ProjectileType("CupidConjurationAngel");
+            item.shoot = ModContent.ProjectileType("CupidConjurationAngel");
             item.noUseGraphic = false;
             MundusCost = 24;
         }

@@ -47,13 +47,13 @@ namespace Laugicality.Items.Weapons.Melee
 		{
 			if (Main.rand.Next(2) == 0)
 			{
-				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, mod.DustType<Steam>());
+				int dust = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ModContent.DustType<Steam>());
 			}
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(mod.BuffType("Steamy"), 2 * 60);
+			target.AddBuff(ModContent.BuffType("Steamy"), 2 * 60);
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            player.GetModPlayer<LaugicalityPlayer>(mod).MysticDuration += 1f;
+            LaugicalityPlayer.Get(player).MysticDuration += 1f;
         }
         
 	}

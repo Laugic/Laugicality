@@ -15,7 +15,7 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(60, 50, 60), name);
             mineResist = .5f;
             minPick = 0;
-            drop = mod.ItemType<Soot>();
+            drop = ModContent.ItemType<Soot>();
             dustType = 1;
         }
 

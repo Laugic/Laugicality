@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item33;
             item.autoReuse = true;
-			item.shoot = mod.ProjectileType("Electrospark");
+			item.shoot = ModContent.ProjectileType("Electrospark");
 			item.shootSpeed = 14f;
 		}
 

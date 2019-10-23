@@ -22,7 +22,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("EtherialTile");
+            item.createTile = ModContent.TileType("EtherialTile");
         }
 
         public override void AddRecipes()

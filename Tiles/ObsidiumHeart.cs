@@ -30,7 +30,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 36, 36, mod.ItemType("ObsidiumHeart"));
+            Item.NewItem(i * 16, j * 16, 36, 36, ModContent.ItemType("ObsidiumHeart"));
         }
     }
 }

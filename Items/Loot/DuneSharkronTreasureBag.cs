@@ -1,6 +1,7 @@
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -32,9 +33,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("AncientShard"), Main.rand.Next(2,4));
-            player.QuickSpawnItem(mod.ItemType("Crystilla"), Main.rand.Next(8, 15));
-            player.QuickSpawnItem(mod.ItemType("Pyramind"), 1);
+            player.QuickSpawnItem(ModContent.ItemType("AncientShard"), Main.rand.Next(2,4));
+            player.QuickSpawnItem(ModContent.ItemType("Crystilla"), Main.rand.Next(8, 15));
+            player.QuickSpawnItem(ModContent.ItemType("Pyramind"), 1);
             int ran = Main.rand.Next(1, 8);
             if (ran == 1) player.QuickSpawnItem(ItemID.SandstorminaBottle, 1);
             if (ran == 2) player.QuickSpawnItem(ItemID.FlyingCarpet, 1);

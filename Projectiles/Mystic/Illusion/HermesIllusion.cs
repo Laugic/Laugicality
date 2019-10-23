@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -14,12 +15,12 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.penetrate = 2;
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
-            buffID = mod.BuffType("Hermes");
+            buffID = ModContent.BuffType("Hermes");
         }
         
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Hermes"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

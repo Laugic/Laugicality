@@ -58,7 +58,7 @@ namespace Laugicality.Projectiles.Magic
                 originV.Y = projectile.velocity.Y;
             }
             bitherial = true;
-            if(Main.rand.Next(8) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            if(Main.rand.Next(8) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
             theta += 3.14f / 30 * projectile.ai[0];
             mag += .025;

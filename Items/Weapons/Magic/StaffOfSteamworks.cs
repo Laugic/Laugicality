@@ -32,7 +32,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.autoReuse = true;
             item.shootSpeed = 14f;
             item.mana = 3;
-            item.shoot = mod.ProjectileType("SteamOfSteamworks");
+            item.shoot = ModContent.ProjectileType("SteamOfSteamworks");
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -48,7 +48,7 @@ namespace Laugicality.Items.Weapons.Magic
                 Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
                 float scale = 1f - (Main.rand.NextFloat() * .3f);
                 perturbedSpeed = perturbedSpeed * scale;
-                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, mod.ProjectileType("SteamOfSteamworks"), damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType("SteamOfSteamworks"), damage, knockBack, player.whoAmI);
             }
             return true;
         }

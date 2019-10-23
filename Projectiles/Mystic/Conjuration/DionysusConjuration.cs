@@ -1,5 +1,6 @@
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -25,7 +26,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         {
             projectile.rotation = 0;
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             projectile.velocity *= .9f;
             if(Math.Abs(projectile.velocity.X) <= .2 && Math.Abs(projectile.velocity.Y) <= .2)
             {
@@ -39,7 +40,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     delay = 0;
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-16, 16), projectile.Center.Y - 6 + Main.rand.Next(16), 0, 10, mod.ProjectileType("DionysusConjuration2"), (int)(projectile.damage), 3f, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X + Main.rand.Next(-16, 16), projectile.Center.Y - 6 + Main.rand.Next(16), 0, 10, ModContent.ProjectileType("DionysusConjuration2"), (int)(projectile.damage), 3f, Main.myPlayer);
                     }
                 }
             }

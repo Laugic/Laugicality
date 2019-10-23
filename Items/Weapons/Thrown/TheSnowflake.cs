@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Blue;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       
-            item.shoot = mod.ProjectileType("TheSnowflake"); 
+            item.shoot = ModContent.ProjectileType("TheSnowflake"); 
             item.shootSpeed = 6f;     
             item.useTurn = true;
             item.maxStack = 999;       

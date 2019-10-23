@@ -73,13 +73,13 @@ namespace Laugicality.Projectiles.Thrown
                 if (counter > 20 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && counter > 10))
                 {
                     counter = 0;
-                    Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), mod.ProjectileType("Hail"), origDmg, 0, projectile.owner);
+                    Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), ModContent.ProjectileType("Hail"), origDmg, 0, projectile.owner);
                 }
             }
             else if(counter > 10 || ((LaugicalityWorld.downedEtheria || Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria && counter > 5))
             {
                 counter = 0;
-                Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), mod.ProjectileType("Hail"), origDmg, 0, projectile.owner);
+                Projectile.NewProjectile(projectile.Center, new Vector2(0, 0), ModContent.ProjectileType("Hail"), origDmg, 0, projectile.owner);
             }
         }
 

@@ -31,8 +31,8 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<FlamesparkWaders>(), 1);
-            recipe.AddIngredient(mod.ItemType<CrystalizedMagma>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<FlamesparkWaders>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<CrystalizedMagma>(), 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

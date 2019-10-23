@@ -61,7 +61,7 @@ namespace Laugicality.Projectiles.Accessory
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType<Steamy>(), 5 * 60);
+            target.AddBuff(ModContent.BuffType<Steamy>(), 5 * 60);
         }
     }
 }

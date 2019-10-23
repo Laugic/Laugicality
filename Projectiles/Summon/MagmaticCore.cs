@@ -35,10 +35,10 @@ namespace Laugicality.Projectiles.Summon
             if (projectile.velocity.X < 0) projectile.frame = 1;
             else projectile.frame = 0;
 
-            if (Main.rand.Next(6) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), 0, Math.Abs(projectile.velocity.Y) * -0.1f);
+            if (Main.rand.Next(6) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), 0, Math.Abs(projectile.velocity.Y) * -0.1f);
 
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (player.dead)
             {
                 modPlayer.MoltenCoreSummon = false;

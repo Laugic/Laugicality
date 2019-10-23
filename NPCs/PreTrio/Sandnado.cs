@@ -89,7 +89,7 @@ namespace Laugicality.NPCs.PreTrio
                 if (delay > 15)
                 {
                     delay = 0;
-                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), mod.ProjectileType<SandnadoUp>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, num + 1);
+                    Projectile.NewProjectile(new Vector2(projectile.Center.X, projectile.Center.Y - projectile.height * projectile.scale), new Vector2(0, 0), ModContent.ProjectileType<SandnadoUp>(), projectile.damage, 0, projectile.owner, projectile.whoAmI, num + 1);
                     num++;
                 }
             }

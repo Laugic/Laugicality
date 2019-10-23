@@ -56,7 +56,7 @@ namespace Laugicality.SoulStones
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer mPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer mPlayer = LaugicalityPlayer.Get(player);
             int Class = mPlayer.Class;
 
             
@@ -265,7 +265,7 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             Player ttPlayer = Main.player[Main.myPlayer];
-            int Class = ttPlayer.GetModPlayer<LaugicalityPlayer>(mod).Class;
+            int Class = ttLaugicalityPlayer.Get(player).Class;
             //Tooltips
             /*if (KS > 0)
             {

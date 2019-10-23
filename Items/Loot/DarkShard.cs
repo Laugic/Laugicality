@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Loot
 {
     public class DarkShard : LaugicalityItem
@@ -20,7 +22,7 @@ namespace Laugicality.Items.Loot
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("MagmaVeins");
+            item.createTile = ModContent.TileType("MagmaVeins");
         }
         /*
         public override void AddRecipes()

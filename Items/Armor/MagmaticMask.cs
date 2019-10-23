@@ -24,12 +24,12 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == mod.ItemType("MagmaticLongcoat") && legs.type == mod.ItemType("MagmaticBoots");
+            return body.type == ModContent.ItemType("MagmaticLongcoat") && legs.type == ModContent.ItemType("MagmaticBoots");
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "Eruption & Magmatic Mystic Bursts\n+25% Mystic Burst Damage & Decreased Mystic Burst cooldown\n+15%Throwing Crit Chance\nAttacks inflict 'On Fire!'\nIncreased stats after being submerged in Lava";
             modPlayer.Obsidium = true;
             modPlayer.Magmatic = true;
@@ -38,13 +38,13 @@ namespace Laugicality.Items.Armor
             modPlayer.MysticSwitchCoolRate += 2;
 
             if (player.lavaWet)
-                player.AddBuff(mod.BuffType("Magmatic"), 60 * 15);
+                player.AddBuff(ModContent.BuffType("Magmatic"), 60 * 15);
         }
 
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDamage += 0.15f;
             player.thrownDamage += .15f;
         }

@@ -26,7 +26,7 @@ namespace Laugicality.Projectiles.Plague
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (target.damage > 0)
-                target.AddBuff(mod.BuffType("Bubbly"), 4 * 60);
+                target.AddBuff(ModContent.BuffType("Bubbly"), 4 * 60);
 		}
 	}
 }

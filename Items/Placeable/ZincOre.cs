@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable
 {
     public class ZincOre : LaugicalityItem
@@ -19,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("Zinc");
+            item.createTile = ModContent.TileType<Zinc>();
         }
     }
 }

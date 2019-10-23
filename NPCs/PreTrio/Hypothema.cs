@@ -44,7 +44,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Hypothema");
-            bossBag = mod.ItemType("HypothemaTreasureBag");
+            bossBag = ModContent.ItemType("HypothemaTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -58,7 +58,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             DespawnCheck(npc);
             for(int i = 0; i < 3; i++)
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Frost>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Frost>(), 0f, 0f);
             npc.dontTakeDamage = !Main.player[npc.target].ZoneSnow;
             Movement();
             Attacks();
@@ -262,7 +262,7 @@ namespace Laugicality.NPCs.PreTrio
         private void Hail()
         {
             if (Main.rand.Next(4) == 0 && Main.netMode != 1)
-                Projectile.NewProjectile(new Vector2(npc.Center.X - 12 + Main.rand.Next(24), npc.Center.Y - 12 + Main.rand.Next(24)), new Vector2(0, 9), mod.ProjectileType<HailProj>(), npc.damage / 4, 1);
+                Projectile.NewProjectile(new Vector2(npc.Center.X - 12 + Main.rand.Next(24), npc.Center.Y - 12 + Main.rand.Next(24)), new Vector2(0, 9), ModContent.ProjectileType<HailProj>(), npc.damage / 4, 1);
         }
 
         private void Burst()
@@ -272,10 +272,10 @@ namespace Laugicality.NPCs.PreTrio
                 for(int i = 0; i < 12; i++)
                 {
                     float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                    Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * 8, (float)Math.Sin(theta) * 8), mod.ProjectileType<HailProj>(), npc.damage / 4, 1);
+                    Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos(theta) * 8, (float)Math.Sin(theta) * 8), ModContent.ProjectileType<HailProj>(), npc.damage / 4, 1);
                 }
                 if(npc.life < npc.lifeMax / 2)
-                    Projectile.NewProjectile(npc.Center, new Vector2(0, 0), mod.ProjectileType<IceShard>(), npc.damage / 4, 1);
+                    Projectile.NewProjectile(npc.Center, new Vector2(0, 0), ModContent.ProjectileType<IceShard>(), npc.damage / 4, 1);
             }
         }
 
@@ -306,7 +306,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(mod.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
             }
             if (Main.expertMode)
             {
@@ -317,14 +317,14 @@ namespace Laugicality.NPCs.PreTrio
 
         public override void NPCLoot()
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalLaugicalityPlayer.Get(player);
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialFrost"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialFrost"), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FrostShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("FrostShard"), Main.rand.Next(1, 3));
                 if (Main.rand.Next(0, 3) != 0)
                 {
                     int ran = Main.rand.Next(1, 7);
@@ -338,7 +338,7 @@ namespace Laugicality.NPCs.PreTrio
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowBlock, Main.rand.Next(30, 60));
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IceBlock, Main.rand.Next(30, 60));
 
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ChilledBar"), Main.rand.Next(16, 25));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ChilledBar"), Main.rand.Next(16, 25));
             }
 
             if (Main.expertMode)

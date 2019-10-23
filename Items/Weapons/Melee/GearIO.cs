@@ -37,7 +37,7 @@ namespace Laugicality.Items.Weapons.Melee
 
             item.UseSound = SoundID.Item1;
             item.value = Item.sellPrice(silver: 1);
-            item.shoot = mod.ProjectileType("GearIO");
+            item.shoot = ModContent.ProjectileType("GearIO");
         }
 
         public override void AddRecipes()

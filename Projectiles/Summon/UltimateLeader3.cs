@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using System;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Summon
 {
@@ -43,7 +44,7 @@ namespace Laugicality.Projectiles.Summon
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
             inertia = 12f;
-            shoot = mod.ProjectileType("UltimateLeader4");
+            shoot = ModContent.ProjectileType("UltimateLeader4");
             shootCool = 30f;
             shootSpeed = 18f;
         }
@@ -51,7 +52,7 @@ namespace Laugicality.Projectiles.Summon
         public override void CheckActive()
         {
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (player.dead)
             {
                 modPlayer.UltraBoisSummon = false;
@@ -71,7 +72,7 @@ namespace Laugicality.Projectiles.Summon
         public override void Behavior()
         {
             Player player = Main.player[projectile.owner];
-            index = player.ownedProjectileCounts[mod.ProjectileType("UltimateLeader2")];
+            index = player.ownedProjectileCounts[ModContent.ProjectileType("UltimateLeader2")];
 
             theta += 3.14f / 60f;
             float mag = index / 2f + 2;
@@ -88,7 +89,7 @@ namespace Laugicality.Projectiles.Summon
                 if(reload <= 0)
                 {
                     reload = reloadMax;
-                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y, 0, 0, mod.ProjectileType("UltimateLeader4"), (int)(projectile.damage * index / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y, 0, 0, ModContent.ProjectileType("UltimateLeader4"), (int)(projectile.damage * index / 2), 3, Main.myPlayer);
 
                 }
             }
@@ -98,7 +99,7 @@ namespace Laugicality.Projectiles.Summon
                 if (reload <= 0)
                 {
                     reload = reloadMax;
-                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y, 0, 0, mod.ProjectileType("UltimateLeader5"), (int)(projectile.damage * index / 3), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y, 0, 0, ModContent.ProjectileType("UltimateLeader5"), (int)(projectile.damage * index / 3), 3, Main.myPlayer);
 
                 }
             }
@@ -108,7 +109,7 @@ namespace Laugicality.Projectiles.Summon
                 if (reload <= 0)
                 {
                     reload = reloadMax;
-                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y - 5 + Main.rand.Next(10), 0, 0, mod.ProjectileType("UltimateLeader6"), (int)(projectile.damage * index / 4), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X + projectile.width * 2 - 5 + Main.rand.Next(10), projectile.Center.Y - 5 + Main.rand.Next(10), 0, 0, ModContent.ProjectileType("UltimateLeader6"), (int)(projectile.damage * index / 4), 3, Main.myPlayer);
 
                 }
             }

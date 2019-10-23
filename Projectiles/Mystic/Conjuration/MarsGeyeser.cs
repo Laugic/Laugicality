@@ -1,5 +1,6 @@
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -43,7 +44,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     float mag = 12f;
                     for(int i = 0; i < 5; i++)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)(Math.Cos(rot + (float)(Math.PI * 2 * i / 5))) * mag, (float)(Math.Sin(rot + (float)(Math.PI * 2 * i / 5))) * mag, mod.ProjectileType("MarsGeyeserBurst"), projectile.damage / 2, 3f, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)(Math.Cos(rot + (float)(Math.PI * 2 * i / 5))) * mag, (float)(Math.Sin(rot + (float)(Math.PI * 2 * i / 5))) * mag, ModContent.ProjectileType("MarsGeyeserBurst"), projectile.damage / 2, 3f, Main.myPlayer);
                     }
                 }
             }

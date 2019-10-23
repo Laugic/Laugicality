@@ -1,6 +1,8 @@
 ﻿using System;
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -30,7 +32,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.UsingMysticItem == 0 || modPlayer.MysticMode != 3)
             {
                 projectile.Kill();
@@ -54,12 +56,12 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             position.Y = projectile.Center.Y + (float)Math.Sin(theta) * radius;
             float speedX = (float)Math.Cos(theta + Math.PI) * 4;
             float speedY = (float)Math.Sin(theta + Math.PI) * 4;
-            Dust.NewDust(position, 0, 0, mod.DustType("GalacticLight"), speedX, speedY);
+            Dust.NewDust(position, 0, 0, ModContent.DustType<GalacticLight>(), speedX, speedY);
             position.X = projectile.Center.X + (float)Math.Cos(theta + Math.PI) * radius;
             position.Y = projectile.Center.Y + (float)Math.Sin(theta + Math.PI) * radius;
             speedX = (float)Math.Cos(theta) * 4;
             speedY = (float)Math.Sin(theta) * 4;
-            Dust.NewDust(position, 0, 0, mod.DustType("GalacticLight"), speedX, speedY);
+            Dust.NewDust(position, 0, 0, ModContent.DustType<GalacticLight>(), speedX, speedY);
         }
 
         private void DustDarkPulse()
@@ -73,7 +75,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     Vector2 position;
                     position.X = projectile.Center.X + (float)Math.Cos(thetaDark) * darkRadius;
                     position.Y = projectile.Center.Y + (float)Math.Sin(thetaDark) * darkRadius;
-                    Dust.NewDust(position, 0, 0, mod.DustType("GalacticDark"));
+                    Dust.NewDust(position, 0, 0, ModContent.DustType<GalacticDark>());
                 }
             }
             else if (darkRadius > 540)
@@ -93,7 +95,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     Vector2 position;
                     position.X = projectile.Center.X + (float)Math.Cos(thetaLight) * lightRadius;
                     position.Y = projectile.Center.Y + (float)Math.Sin(thetaLight) * lightRadius;
-                    Dust.NewDust(position, 0, 0, mod.DustType("GalacticLight"));
+                    Dust.NewDust(position, 0, 0, ModContent.DustType<GalacticLight>());
                 }
             }
             else if(lightRadius <= 0)

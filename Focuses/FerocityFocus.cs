@@ -77,7 +77,7 @@ namespace Laugicality.Focuses
         private static void DownedRagnarEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.lavaWet)
-                laugicalityPlayer.player.AddBuff(Laugicality.Instance.BuffType<LavaDamageBuff>(), 15 * 60);
+                laugicalityPlayer.player.AddBuff(ModContent.BuffType<LavaDamageBuff>(), 15 * 60);
         }
 
         private static void DownedSkeletronEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

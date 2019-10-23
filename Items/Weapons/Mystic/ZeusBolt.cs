@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -38,16 +39,16 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
                 if(Main.rand.Next(2) == 0)
                 {
-					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("ZuesBoltDestruction2"), damage, 3f, player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("ZuesBoltDestruction2"), damage, 3f, player.whoAmI, 0f, 0f);
                 }
                 else
                 {
-                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("ZuesBoltDestruction1"), damage, 3f, player.whoAmI, 0f, 0f);
+                    Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType("ZuesBoltDestruction1"), damage, 3f, player.whoAmI, 0f, 0f);
                 }
             }
             if (modPlayer.MysticMode == 3)
@@ -64,7 +65,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = (int)(item.useTime);
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.UseSound = SoundID.Item1;
             item.scale = 1.5f;
         }
@@ -76,7 +77,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType("ZuesBoltIllusion1");
+            item.shoot = ModContent.ProjectileType("ZuesBoltIllusion1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -89,7 +90,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("HallowsEveConjuration1");
+            item.shoot = ModContent.ProjectileType("HallowsEveConjuration1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

@@ -30,12 +30,12 @@ namespace Laugicality.NPCs.Obsidium
         {
             npc.rotation = 0;
             if (Main.rand.Next(3) == 0)
-                Dust.NewDust(npc.Center, npc.width / 2, 4, mod.DustType("Magma"), 0f, 0f);
+                Dust.NewDust(npc.Center, npc.width / 2, 4, ModContent.DustType<Magma>(), 0f, 0f);
             shootDel--;
             if (shootDel <= 0)
             {
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("MagmaBallLaunched"), (int)(npc.damage / 4f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("MagmaBallLaunched"), (int)(npc.damage / 4f), 3, Main.myPlayer);
                 shootDel = 60 * 5;
             }
         }
@@ -47,7 +47,7 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MagmaticCrystal"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MagmaticCrystal"));
         }
     }
 }

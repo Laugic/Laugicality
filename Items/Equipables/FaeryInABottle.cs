@@ -27,7 +27,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             switch (modPlayer.MysticMode)
             {
@@ -50,9 +50,9 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.FireflyinaBottle);
-            recipe.AddIngredient(mod.ItemType<ArcaneShard>(), 5);
-            recipe.AddIngredient(mod.ItemType<MysticaPotion>(), 1);
-            recipe.AddTile(mod.TileType<AlchemicalInfuser>());
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<MysticaPotion>(), 1);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

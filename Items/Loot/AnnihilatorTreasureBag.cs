@@ -1,6 +1,7 @@
 using Laugicality.NPCs.Bosses;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -32,9 +33,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("SteamBar"), Main.rand.Next(20, 35));
-            player.QuickSpawnItem(mod.ItemType("SoulOfThought"), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(mod.ItemType("CogOfKnowledge"), 1);
+            player.QuickSpawnItem(ModContent.ItemType("SteamBar"), Main.rand.Next(20, 35));
+            player.QuickSpawnItem(ModContent.ItemType("SoulOfThought"), Main.rand.Next(25, 40));
+            player.QuickSpawnItem(ModContent.ItemType("CogOfKnowledge"), 1);
             player.QuickSpawnItem(499, Main.rand.Next(10, 15));
         }
 

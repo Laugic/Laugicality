@@ -18,8 +18,8 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).Mysticality = 2;
-            player.GetModPlayer<LaugicalityPlayer>(mod).GlobalOverflow += .2f;
+            LaugicalityPlayer.Get(player).Mysticality = 2;
+            LaugicalityPlayer.Get(player).GlobalOverflow += .2f;
         }
     }
 }

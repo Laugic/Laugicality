@@ -13,8 +13,8 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(250, 100, 50));
             mineResist = 1f;
             minPick = 60;
-            drop = mod.ItemType("DarkShard");
-            dustType = mod.DustType("Magma");
+            drop = ModContent.ItemType("DarkShard");
+            dustType = ModContent.DustType<Magma>();
             //soundType = 21;
             //soundStyle = 1;
         }
@@ -40,7 +40,7 @@ namespace Laugicality.Tiles
             if (Main.tile[i, j - 1].type == 0 && Main.tile[i + 1, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.tile[i + 1, j - 2].type == 0 && Main.tile[i, j].active())
             {
                 if (Main.rand.Next(16) == 0)
-                    WorldGen.PlaceObject(i, j - 1, mod.TileType<ObsidiumHeart>(), true, 0, -1, -1);
+                    WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumHeart>(), true, 0, -1, -1);
             }
         }
     }

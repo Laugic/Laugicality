@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item34;
             item.autoReuse = true;
-			item.shoot = mod.ProjectileType("TrainScythe");
+			item.shoot = ModContent.ProjectileType("TrainScythe");
 			item.shootSpeed = 14f;
 		}
 

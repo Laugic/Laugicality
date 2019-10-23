@@ -10,8 +10,8 @@ namespace Laugicality.Tiles
         public override void SetDefaults()
         {
             Main.tileSolid[Type] = true;
-            //Main.tileMerge[56][mod.TileType("ObsidiumOreBlock")] = true;
-            //Main.tileMerge[mod.TileType("ObsidiumOreBlock")][56] = true;
+            //Main.tileMerge[56][ModContent.TileType<ObsidiumOreBlock>()] = true;
+            //Main.tileMerge[ModContent.TileType<ObsidiumOreBlock>()][56] = true;
             //Main.tileSpelunker[Type] = true;
             Main.tileLighted[Type] = true;
             //ModTranslation name = CreateMapEntryName();
@@ -20,8 +20,8 @@ namespace Laugicality.Tiles
             mineResist = 2.5f;
             minPick = 225;
             soundType = 21;
-            dustType = mod.DustType<EtherialDust>();
-            drop = mod.ItemType("Bysmal");
+            dustType = ModContent.DustType<EtherialDust>();
+            drop = ModContent.ItemType("Bysmal");
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)

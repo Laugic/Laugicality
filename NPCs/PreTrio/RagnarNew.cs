@@ -73,7 +73,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.buffImmune[24] = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
             damage = 32;
-            bossBag = mod.ItemType("RagnarTreasureBag");
+            bossBag = ModContent.ItemType("RagnarTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -94,7 +94,7 @@ namespace Laugicality.NPCs.PreTrio
             bitherial = true;
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
             player = Main.player[npc.target];
-            var modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            var modPlayer = LaugicalityPlayer.Get(player);
 
             Retarget();
             DespawnCheck();
@@ -274,7 +274,7 @@ namespace Laugicality.NPCs.PreTrio
                 velocity.X = 0;
                 velocity.Y = 0;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, velocity, mod.ProjectileType("RockLooseMini"), damage, 5f);
+                    Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType("RockLooseMini"), damage, 5f);
             }
         }
 
@@ -284,7 +284,7 @@ namespace Laugicality.NPCs.PreTrio
             velocity.X = 0;
             velocity.Y = 0;
             if (Main.netMode != 1)
-                Projectile.NewProjectile(npc.Center, velocity, mod.ProjectileType("LavaGeyeser"), damage, 5f);
+                Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType("LavaGeyeser"), damage, 5f);
         }
 
         private void FollowAttack()
@@ -300,7 +300,7 @@ namespace Laugicality.NPCs.PreTrio
                 velocity.X = 0;
                 velocity.Y = 0;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, velocity, mod.ProjectileType("Fireball"), damage, 5f);
+                    Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType("Fireball"), damage, 5f);
             }
         }
 
@@ -317,7 +317,7 @@ namespace Laugicality.NPCs.PreTrio
                 velocity.X = 0;
                 velocity.Y = 10;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center, velocity, mod.ProjectileType("RockFalling"), damage, 5f);
+                    Projectile.NewProjectile(npc.Center, velocity, ModContent.ProjectileType("RockFalling"), damage, 5f);
             }
         }
 
@@ -338,12 +338,12 @@ namespace Laugicality.NPCs.PreTrio
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedEtheria)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MoltenEtheria"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MoltenEtheria"), 1);
             if (Main.expertMode)
                 npc.DropBossBags();
             else
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("DarkShard"), Main.rand.Next(1, 3));
                 int ran = Main.rand.Next(1, 7);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 49, 1);
                 if (ran == 2) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicMirror, 1);

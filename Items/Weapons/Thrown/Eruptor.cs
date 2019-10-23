@@ -31,7 +31,7 @@ namespace Laugicality.Items.Weapons.Thrown
 			item.UseSound = SoundID.Item19;
 			item.autoReuse = true;
 			item.shootSpeed = 20f;
-            item.shoot = mod.ProjectileType("Eruptor");
+            item.shoot = ModContent.ProjectileType("Eruptor");
             item.noUseGraphic = true;
         }
 

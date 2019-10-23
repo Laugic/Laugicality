@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using System.IO;
+using Terraria.ModLoader;
 
 namespace Laugicality.NPCs.Obsidium
 {
@@ -122,7 +123,7 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MagmaticCrystal"));
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MagmaticCrystal"));
         }
     }
     

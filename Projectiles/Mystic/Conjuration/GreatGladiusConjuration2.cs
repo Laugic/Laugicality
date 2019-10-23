@@ -1,5 +1,6 @@
 using Terraria;
 using System;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
 
         public override void AI()
         {
-            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("White"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             projectile.velocity.Y += .15f;
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }

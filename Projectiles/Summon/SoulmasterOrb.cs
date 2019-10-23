@@ -58,7 +58,7 @@ namespace Laugicality.Projectiles.Summon
 					Vector2 dustPos = Vector2.UnitX * 0f;
 					dustPos += -Vector2.UnitY.RotatedBy((double)((float)i * (6.28318548f / 20)), default(Vector2)) * new Vector2(3f, 8f);
 					dustPos = dustPos.RotatedBy((double)projectile.velocity.ToRotation(), default(Vector2));
-					int dust = Dust.NewDust(projectile.Center, 0, 0, mod.DustType<EtherialDust>(), 0f, 0f, 75, default(Color), 1f);
+					int dust = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<EtherialDust>(), 0f, 0f, 75, default(Color), 1f);
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].position = projectile.Center + dustPos;
 					Main.dust[dust].velocity = projectile.velocity * 0f + dustPos.SafeNormalize(Vector2.UnitY) * 1f;
@@ -98,7 +98,7 @@ namespace Laugicality.Projectiles.Summon
 		{
 			for (int k = 0; k < 10; k++)
 			{
-				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType<EtherialDust>(), Main.rand.Next((int)-3f, (int)3f), Main.rand.Next((int)-3f, (int)3f), 75, default(Color), 0.75f);
+				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), Main.rand.Next((int)-3f, (int)3f), Main.rand.Next((int)-3f, (int)3f), 75, default(Color), 0.75f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

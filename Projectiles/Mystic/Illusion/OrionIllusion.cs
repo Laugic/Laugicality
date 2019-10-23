@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using System;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -22,7 +23,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             Main.projFrames[projectile.type] = 5;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            buffID = mod.BuffType("CosmicDisarray");
+            buffID = ModContent.BuffType("CosmicDisarray");
             baseDuration = 6 * 60;
         }
 
@@ -35,7 +36,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
         {
             for (int k = 0; k < 8; k++)
             {
-                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType("GalacticLight"), Main.rand.Next((int)-4f, (int)4f), Main.rand.Next((int)-4f, (int)4f), 125, default(Color), 1f);
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("GalacticLight"), Main.rand.Next((int)-4f, (int)4f), Main.rand.Next((int)-4f, (int)4f), 125, default(Color), 1f);
                 Main.dust[dust].noGravity = true;
             }
         }

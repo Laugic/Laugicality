@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType("Frostball");
+            item.shoot = ModContent.ProjectileType("Frostball");
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

@@ -39,7 +39,7 @@ namespace Laugicality.NPCs.RockTwins
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Blue"), 0f, 0f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
                 theta -= 3.14f / 60;
             vel += .1f;
@@ -50,7 +50,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(mod.BuffType("ForHonor"), 300, true);
+            player.AddBuff(ModContent.BuffType("ForHonor"), 300, true);
         }
 
     }

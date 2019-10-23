@@ -35,7 +35,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void AI()
         {
-            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            if (Main.rand.Next(0, 14) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
 
             bitherial = true;
             _delay++;
@@ -44,7 +44,7 @@ namespace Laugicality.NPCs.Etheria
                 _spawned++;
                 _delay = 0;
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 4, -projectile.velocity.Y / 4, mod.ProjectileType("TrueEtherialPulsar"), (int)(projectile.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -projectile.velocity.X / 4, -projectile.velocity.Y / 4, ModContent.ProjectileType("TrueEtherialPulsar"), (int)(projectile.damage), 3, Main.myPlayer);
             }
             if(_spawned >=5)
                 projectile.Kill();

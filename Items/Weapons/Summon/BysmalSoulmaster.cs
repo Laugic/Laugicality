@@ -32,13 +32,13 @@ namespace Laugicality.Items.Weapons.Summon
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item122;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("SoulmasterOrb");
+            item.shoot = ModContent.ProjectileType("SoulmasterOrb");
             item.shootSpeed = 14f;
         }
 
         public override void HoldItem(Player player)
         {
-            if ((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if ((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 item.useTime = 30;
                 item.useAnimation = 30;
@@ -56,7 +56,7 @@ namespace Laugicality.Items.Weapons.Summon
             float mag = 8;
             for(int i = 0; i < 8; i++)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("SoulmasterOrb"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("SoulmasterOrb"), damage, 3f, player.whoAmI);
                 theta += (float)Math.PI / 4;
             }
             return false;

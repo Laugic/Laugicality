@@ -37,19 +37,19 @@ namespace Laugicality.Items.Weapons.Mystic
         
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if(_counter > 0)
                 _counter--;
             if (modPlayer.MysticMode == 2 && _counter <= 0)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, mod.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, ModContent.ProjectileType("MarsIllusion"), damage, 3f, player.whoAmI);
                 _counter = 6;
             }
             return true;
@@ -63,7 +63,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 4f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -74,7 +74,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 10;
             item.knockBack = 4;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             VisCost = 4;
         }
 
@@ -86,17 +86,17 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 38;
             item.knockBack = 2;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("MarsConjuration");
+            item.shoot = ModContent.ProjectileType("MarsConjuration");
             MundusCost = 20;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             LuxCost = 8;
             if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
             {
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("MarsDestruction"), damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType("MarsDestruction"), damage, knockback, Main.myPlayer);
 
                 modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
                 if (modPlayer.Lux < 0)

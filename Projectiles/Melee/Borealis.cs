@@ -28,7 +28,7 @@ namespace Laugicality.Projectiles.Melee
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
 
-            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
 
@@ -43,7 +43,7 @@ namespace Laugicality.Projectiles.Melee
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();
@@ -63,7 +63,7 @@ namespace Laugicality.Projectiles.Melee
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("BysmalBlast"), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();

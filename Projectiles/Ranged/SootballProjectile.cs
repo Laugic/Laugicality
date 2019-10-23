@@ -20,7 +20,7 @@ namespace Laugicality.Projectiles.Ranged
         {
             projectile.velocity.Y += projectile.ai[0];
             projectile.ai[0] += 0.01f;
-            if(Main.rand.NextBool(8)) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if(Main.rand.NextBool(8)) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

@@ -24,7 +24,7 @@ namespace Laugicality.Items.Accessories
         {
             player.manaRegenBonus += 25;
             player.magicDamage += 0.20f;
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.kbBuff = true;
             player.ammoCost80 = true;
             player.rangedDamage += 0.10f;

@@ -30,7 +30,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item33;
             item.autoReuse = true;
-			item.shoot = mod.ProjectileType("LightningBall");
+			item.shoot = ModContent.ProjectileType("LightningBall");
 			item.shootSpeed = 14f;
 		}
 

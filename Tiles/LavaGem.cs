@@ -1,3 +1,4 @@
+using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,18 +14,21 @@ namespace Laugicality.Tiles
             Main.tileSolid[Type] = false;
             Main.tileBlockLight[Type] = false;
             Main.tileLighted[Type] = true;
-            dustType = mod.DustType("Magma");
-            drop = mod.ItemType("LavaGem");
+
+            dustType = ModContent.DustType<Magma>();
+            drop = ModContent.ItemType<Items.Placeable.LavaGem>();
+
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lava Gem");
             AddMapEntry(new Color(180, 50, 0), name);
+
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = false;
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
                 56, //TileID.Obsidian
-				mod.TileType<ObsidiumRock>()
+				ModContent.TileType<ObsidiumRock>()
             };
             TileObjectData.addTile(Type);
         }

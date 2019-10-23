@@ -39,7 +39,7 @@ namespace Laugicality.NPCs.Etheria
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), 0f, 0f);
             if (projectile.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref projectile.velocity);
@@ -105,7 +105,7 @@ namespace Laugicality.NPCs.Etheria
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(mod.BuffType("Frostbite"), 300, true);
+            player.AddBuff(ModContent.BuffType("Frostbite"), 300, true);
         }
 
     }

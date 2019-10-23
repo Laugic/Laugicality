@@ -17,12 +17,12 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).frostbite = true;
+			LaugicalityPlayer.Get(player).frostbite = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).frostbite = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>().frostbite = true;
 		}
 	}
 }

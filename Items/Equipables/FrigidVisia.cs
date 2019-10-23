@@ -24,7 +24,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.IllusionDamage += .15f;
             modPlayer.MysticDuration += .25f;
             modPlayer.VisAbsorbRate += .25f;
@@ -33,7 +33,7 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<RoyalIce>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<RoyalIce>(), 2);
             recipe.AddIngredient(ItemID.FrostCore, 2);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

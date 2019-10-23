@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -26,7 +27,7 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddBuff(mod.BuffType("ForHonor"), 1, true);
+            player.AddBuff(ModContent.BuffType("ForHonor"), 1, true);
         }
 
         /*

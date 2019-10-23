@@ -36,7 +36,7 @@ namespace Laugicality.Projectiles.Melee
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
             Player projOwner = Main.player[projectile.owner];
-            projOwner.AddBuff(mod.BuffType("ForGlory"), 120);
+            projOwner.AddBuff(ModContent.BuffType("ForGlory"), 120);
             delay -= 1;
             if(delay <= 0 && reverse == false)
             {
@@ -77,7 +77,7 @@ namespace Laugicality.Projectiles.Melee
         /*
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("Steamy"), 120);       //Add Onfire buff to the NPC for 1 second
+            target.AddBuff(ModContent.BuffType("Steamy"), 120);       //Add Onfire buff to the NPC for 1 second
         }*/
     }
 }

@@ -17,8 +17,8 @@ namespace Laugicality.Buffs
         
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).steamified = true;
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).damageMult * 1.15f;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>().steamified = true;
+            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>().damageMult * 1.15f;
         }
 	}
 }

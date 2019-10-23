@@ -35,7 +35,7 @@ namespace Laugicality.Projectiles.Magic
 				Main.PlaySound(SoundID.Item20, projectile.position);
 				projectile.localAI[0] = 1f;
 			}
-			int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType("Lightning"), 0f, 0f, 100, new Color(255, 255, 255), 1.5f);
+			int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<Lightning>(), 0f, 0f, 100, new Color(255, 255, 255), 1.5f);
 			if (projectile.velocity == Vector2.Zero)
 			{
 				Main.dust[dust].velocity.Y -= 1f;

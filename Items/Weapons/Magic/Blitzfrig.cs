@@ -31,7 +31,7 @@ namespace Laugicality.Items.Weapons.Magic
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item122;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("BlitzBolt1");
+            item.shoot = ModContent.ProjectileType("BlitzBolt1");
             item.shootSpeed = 14f;
         }
 

@@ -85,7 +85,7 @@ namespace Laugicality.NPCs.RockTwins
             
             for (int k = 0; k < 2; k++)
             {                                                                                               
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Blue"), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType("Blue"), 0f, 0f);
             }
 		}
     }

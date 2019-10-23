@@ -15,7 +15,7 @@ namespace Laugicality.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).JunglePlague = true;
+            npc.GetGlobalNPC<LaugicalGlobalNPCs>().JunglePlague = true;
         }
 
     }

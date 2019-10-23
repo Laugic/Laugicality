@@ -34,7 +34,7 @@ namespace Laugicality.NPCs.RockTwins
         public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Red"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Red"), 0f, 0f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
             if (projectile.localAI[0] == 0f)
             {
@@ -80,7 +80,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(mod.BuffType("ForGlory"), 300, true);
+            player.AddBuff(ModContent.BuffType("ForGlory"), 300, true);
         }
 
     }

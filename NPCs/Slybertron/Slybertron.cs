@@ -1,4 +1,6 @@
 using System;
+using Laugicality.Buffs;
+using Laugicality.Items.Loot;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -91,7 +93,7 @@ namespace Laugicality.NPCs.Slybertron
             npc.noTileCollide = false;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Slybertron");
             damage = 40;
-            bossBag = mod.ItemType("SlybertronTreasureBag");
+            bossBag = ModContent.ItemType("SlybertronTreasureBag");
 
         }
 
@@ -108,7 +110,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void AI()
         {
             npc.spriteDirection = 0;
-            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("TrainSteam"), 0f, 0f);
+            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType("TrainSteam"), 0f, 0f);
             bitherial = true;
             //Despawn check
             if (Main.player[npc.target].statLife == 0) { spawned = 0; npc.aiStyle = 0; npc.noTileCollide = true; }
@@ -205,22 +207,22 @@ namespace Laugicality.NPCs.Slybertron
             //Attacks
             if (attack1 == 1 && Main.netMode != 1)//Gearikans
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), mod.ProjectileType("Gearikan"), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4 + Main.rand.Next(4), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -1 * (4 + Main.rand.Next(4)), 1 - Main.rand.Next(8), ModContent.ProjectileType<Gearikan>(), damage / 2, 3f, Main.myPlayer);
                 attack1 = 0;
                 gearikanShots += 1;
                 attackDelay = attackReload;
@@ -228,17 +230,17 @@ namespace Laugicality.NPCs.Slybertron
             }
             if (attack1 == 2 && Main.netMode != 1)//Coginator
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("Coginator"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<Coginator>(), damage, 3f, Main.myPlayer);
                 attack1 = 0;
                 coginatorShots += 1;
                 attackDelay = attackReload;
             }
             if (attack1 == 3 && Main.netMode != 1)//Steam Stream
             {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
                     attackDuration = 1;
                     attack1 = 0;
                     steamStreamShots += 1;
@@ -250,26 +252,26 @@ namespace Laugicality.NPCs.Slybertron
             if (attackDuration == 30)
                 {
                     Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
                 }
                 if (attackDuration == 60)
                 {
                     Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
                 }
                 if (attackDuration == 90)
                 {
                     Main.PlaySound(SoundID.Item34, (int)npc.position.X, (int)npc.position.Y);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, mod.ProjectileType("SteamStream"), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -3, -10, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -3, ModContent.ProjectileType<SteamStream>(), damage, 3f, Main.myPlayer);
                 }
                 if (attackDuration > 90)
                 {
@@ -278,30 +280,30 @@ namespace Laugicality.NPCs.Slybertron
             
             if (attack1 == 4 && Main.netMode != 1)//Electroshock
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, 2, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 4, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, 6, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 8, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 2, 10, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 12, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -2, 10, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 8, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, 6, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 4, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, 2, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -12, 0, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -2, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, -4, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, -6, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -8, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 2, -10, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -12, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -2, -10, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -8, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, -6, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, -4, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -2, mod.ProjectileType("Electroshock"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 12, 0, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, 2, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, 4, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, 6, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 8, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 2, 10, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 12, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -2, 10, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 8, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, 6, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, 4, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, 2, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -12, 0, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 10, -2, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 8, -4, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, -6, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -8, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 2, -10, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -12, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -2, -10, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -8, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 6, -6, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -8, -4, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -10, -2, ModContent.ProjectileType<Electroshock>(), damage, 3f, Main.myPlayer);
                 attack1 = 0;
                 electroShockShots += 1;
                 attackDelay = attackReload;
@@ -312,7 +314,7 @@ namespace Laugicality.NPCs.Slybertron
             //Attack Layer 2
             if (attack2 == 1 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<CogLoose>(), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attackDurationCl = 1;
                 attack2Delay = attack2Reload;
@@ -320,15 +322,15 @@ namespace Laugicality.NPCs.Slybertron
 
             if (attackDurationCl == 30)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<CogLoose>(), damage, 3f, Main.myPlayer);
             }
             if (attackDurationCl == 60)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<CogLoose>(), damage, 3f, Main.myPlayer);
             }
             if (attackDurationCl == 90)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("CogLoose"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<CogLoose>(), damage, 3f, Main.myPlayer);
             }
             if (attackDurationCl > 90)
             {
@@ -336,17 +338,17 @@ namespace Laugicality.NPCs.Slybertron
             }
             if (attack2 == 2 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X+120, npc.Center.Y, 0, 0, mod.ProjectileType("SteamyShadow"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X-120, npc.Center.Y, 0, 0, mod.ProjectileType("SteamyShadow"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X+120, npc.Center.Y, 0, 0, ModContent.ProjectileType<SteamyShadow>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X-120, npc.Center.Y, 0, 0, ModContent.ProjectileType<SteamyShadow>(), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
             if (attack2 == 3 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, mod.ProjectileType("XOut"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, 4, ModContent.ProjectileType<XOut>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 4, -4, ModContent.ProjectileType<XOut>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, -4, ModContent.ProjectileType<XOut>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, -4, 4, ModContent.ProjectileType<XOut>(), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
@@ -355,8 +357,8 @@ namespace Laugicality.NPCs.Slybertron
 
             if (attack2 == 4 && Main.netMode != 1)
             {
-                Projectile.NewProjectile(npc.Center.X + 120, npc.Center.Y, 8, 0, mod.ProjectileType("GasBall"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(npc.Center.X - 120, npc.Center.Y, -8, 0, mod.ProjectileType("GasBall"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X + 120, npc.Center.Y, 8, 0, ModContent.ProjectileType<GasBall>(), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X - 120, npc.Center.Y, -8, 0, ModContent.ProjectileType<GasBall>(), damage, 3f, Main.myPlayer);
                 attack2 = 0;
                 attack2Delay = attack2Reload;
             }
@@ -370,7 +372,7 @@ namespace Laugicality.NPCs.Slybertron
         {
                 if (Main.expertMode)
             {
-                int debuff = mod.BuffType("Steamy");
+                int debuff = ModContent.BuffType<Steamy>();
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -380,17 +382,17 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void NPCLoot()
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(Main.LocalPlayer);
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Etherworks"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Etherworks>(), 1);
             }
             spawned = 0;
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SteamBar>(), Main.rand.Next(15, 30));
                
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfFraught"), Main.rand.Next(20, 40));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfFraught>(), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)

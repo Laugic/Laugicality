@@ -34,7 +34,7 @@ namespace Laugicality.Projectiles.NPCProj
         {
             bitherial = true;
             projectile.rotation -= 6;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), 0f, 0f);
             if (spawned == 0) { 
             Vector2 move = Vector2.Zero;
             float distance = 1400f;

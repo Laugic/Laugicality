@@ -28,7 +28,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.shootSpeed = 6f;
         }
 
@@ -39,7 +39,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 1;
             item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType("FreyaDestruction");
+            item.shoot = ModContent.ProjectileType("FreyaDestruction");
             LuxCost = 3;
         }
 
@@ -51,7 +51,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 35;
             item.knockBack = 1;
             item.shootSpeed = 12f;
-            item.shoot = mod.ProjectileType("FreyaIllusion");
+            item.shoot = ModContent.ProjectileType("FreyaIllusion");
             VisCost = 10;
         }
 
@@ -62,7 +62,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 50;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = mod.ProjectileType("FreyaConjuration1");
+            item.shoot = ModContent.ProjectileType("FreyaConjuration1");
             MundusCost = 14;
         }
 

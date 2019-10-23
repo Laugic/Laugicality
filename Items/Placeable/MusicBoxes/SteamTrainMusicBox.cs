@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable.MusicBoxes
 {
     public class SteamTrainMusicBox : LaugicalityItem
@@ -20,7 +22,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType<Tiles.MusicBoxes.SteamTrainMusicBox>();
+            item.createTile = ModContent.TileType<Tiles.MusicBoxes.SteamTrainMusicBox>();
             item.accessory = true;
         }
     }

@@ -31,13 +31,13 @@ namespace Laugicality.NPCs.Slybertron
 		public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), 0f, 0f);
         }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.steamStreamHits += 1;
-            int debuff = mod.BuffType("Steamy");
+            int debuff = ModContent.BuffType("Steamy");
             if (debuff >= 0)
             {
                 player.AddBuff(debuff, 90, true);

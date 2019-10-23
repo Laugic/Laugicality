@@ -29,20 +29,20 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.rare = ItemRarityID.Blue;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType<Nothing>();
+			item.shoot = ModContent.ProjectileType<Nothing>();
 			item.shootSpeed = 6f;
 		}
 
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 3)
             {
                 for(int i = 0; i < 3; i++)
                 {
                     if(Main.player[Main.myPlayer] == player)
-                        Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, mod.ProjectileType("YuleConjuration"), (int)(item.damage), 3, Main.myPlayer);
+                        Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, ModContent.ProjectileType("YuleConjuration"), (int)(item.damage), 3, Main.myPlayer);
                 }
             }
             return true;
@@ -55,7 +55,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 10;
-            item.shoot = mod.ProjectileType("YuleDestruction");
+            item.shoot = ModContent.ProjectileType("YuleDestruction");
             LuxCost = 4;
         }
 
@@ -66,7 +66,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 25;
             item.knockBack = 1;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("YuleIllusion");
+            item.shoot = ModContent.ProjectileType("YuleIllusion");
             VisCost = 8;
         }
 
@@ -77,7 +77,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = 10;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             MundusCost = 4;
         }
 

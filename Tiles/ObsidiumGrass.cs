@@ -12,8 +12,8 @@ namespace Laugicality.Tiles
             Main.tileSolid[Type] = false;
             Main.tileBlockLight[Type] = true;
             Main.tileLighted[Type] = true;
-            dustType = mod.DustType("Magma");
-            //drop = mod.ItemType("LavaGem");
+            dustType = ModContent.DustType<Magma>();
+            //drop = ModContent.ItemType("LavaGem");
             ModTranslation name = CreateMapEntryName();
             //name.SetDefault("LavaGem");
             //AddMapEntry(new Color(180, 50, 0), name);
@@ -23,8 +23,8 @@ namespace Laugicality.Tiles
             soundType = 6;
             TileObjectData.newTile.AnchorValidTiles = new int[]
             {
-                mod.TileType<Lycoris>(),
-                mod.TileType<Radiata>()
+                ModContent.TileType<Lycoris>(),
+                ModContent.TileType<Radiata>()
             };
             TileObjectData.addTile(Type);
         }

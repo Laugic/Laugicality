@@ -11,7 +11,7 @@ namespace Laugicality.Walls
 			Main.wallHouse[Type] = true;
 			dustType = 1;
 			AddMapEntry(new Color(20, 60, 30));
-            drop = mod.ItemType("ZincBrickWall");
+            drop = ModContent.ItemType("ZincBrickWall");
         }
 
 		public override void NumDust(int i, int j, bool fail, ref int num)

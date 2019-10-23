@@ -30,7 +30,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.statManaMax2 += 20;
             modPlayer.MysticDuration += 1f;
         }
@@ -43,7 +43,7 @@ namespace Laugicality.Items.Armor
         
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nIncreased regen for Potentia you aren't using.";
             modPlayer.MysticDamage += .12f;
             modPlayer.LuxMax += player.statManaMax2 / 3;

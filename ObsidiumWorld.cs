@@ -6,6 +6,7 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality
 {
@@ -64,13 +65,13 @@ namespace Laugicality
                 sign = (int)(Math.Abs(i) / i);
             if (Distance(xO + sign * 100 * sizeMult, yO - 150 * sizeMult, xO + i, yO + j) < 100 * sizeMult)
             {
-                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>(), mod.WallType("ObsidiumRockWall"));
             }
             else if (Distance(xO + sign * 100 * sizeMult, yO - (int)(150 * sizeMult), xO + i, yO + j) < 100 * sizeMult + 6)
             {
                 if (Main.rand.Next(6) < 100 * sizeMult + 6 - Distance(xO + sign * 100 * sizeMult, yO - 150 * sizeMult, xO + i, yO + j))
                 {
-                    PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                    PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>());
                 }
             }
         }
@@ -79,13 +80,13 @@ namespace Laugicality
         {
             if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - (int)(j * 2 / 3)))
             {
-                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>(), mod.WallType("ObsidiumRockWall"));
             }
             else if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - (int)(j * 2 / 3)) + 6)
             {
                 if (Main.rand.Next(6) < -Distance(xO + i, yO + j, xO, yO) + 6 + (int)(150 * sizeMult - (int)(j * 2 / 3)))
                 {
-                    PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                    PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>());
                 }
             }
         }
@@ -94,13 +95,13 @@ namespace Laugicality
         {
             if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - .47 * j))
             {
-                PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>(), mod.WallType("ObsidiumRockWall"));
             }
             else if (Distance(xO + i, yO + j, xO, yO) < (int)(150 * sizeMult - .47 * j) + 6)
             {
                 if (Main.rand.Next(6) < -Distance(xO + i, yO + j, xO, yO) + 6 + (int)(150 * sizeMult - .47 * j))
                 {
-                    PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                    PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>());
                 }
             }
         }
@@ -112,13 +113,13 @@ namespace Laugicality
             {
                 if (Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) > radius)
                 {
-                    PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                    PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>(), mod.WallType("ObsidiumRockWall"));
                 }
                 else if (Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) < radius + 6)
                 {
                     if (Main.rand.Next(6) < Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) - 6 - radius)
                     {
-                        PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                        PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>());
                     }
                 }
             }
@@ -126,13 +127,13 @@ namespace Laugicality
             {
                 if (Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) > radius)
                 {
-                    PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"), mod.WallType("ObsidiumRockWall"));
+                    PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>(), mod.WallType("ObsidiumRockWall"));
                 }
                 else if (Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) < radius + 6)
                 {
                     if (Main.rand.Next(6) < Distance(xO + i, yO + j, xO + (int)(25 * sizeMult) + radius, yO + (int)(100 * sizeMult)) - 6 - radius)
                     {
-                        PlaceTile(xO + i, yO + j, mod.TileType("ObsidiumRock"));
+                        PlaceTile(xO + i, yO + j, ModContent.TileType<ObsidiumRock>());
                     }
                 }
             }
@@ -162,12 +163,12 @@ namespace Laugicality
 
         private void GenerateObsidiumFeatures(int xO, int yO)
         {
-            GenerateFeature(xO, yO, 25, (ushort)mod.TileType("Radiata"), 2, 6, 180 * sizeMult);
-            GenerateFeature(xO, yO, 50, (ushort)mod.TileType("Lycoris"), 3, 6, 140 * sizeMult);
-            GenerateFeature(xO, yO, 75, (ushort)mod.TileType("Radiata"), 3, 5, 180 * sizeMult);
-            GenerateFeature(xO, yO, 75, (ushort)mod.TileType("Lycoris"), 3, 5, 140 * sizeMult);
-            GenerateFeature(xO, yO, 100, (ushort)mod.TileType<SootTile>(), 12, 18, 25 * sizeMult);
-            GenerateFeature(xO, yO, 300, (ushort)mod.TileType("ObsidiumOreBlock"), 6, 14, 8);
+            GenerateFeature(xO, yO, 25, (ushort)ModContent.TileType("Radiata"), 2, 6, 180 * sizeMult);
+            GenerateFeature(xO, yO, 50, (ushort)ModContent.TileType("Lycoris"), 3, 6, 140 * sizeMult);
+            GenerateFeature(xO, yO, 75, (ushort)ModContent.TileType("Radiata"), 3, 5, 180 * sizeMult);
+            GenerateFeature(xO, yO, 75, (ushort)ModContent.TileType("Lycoris"), 3, 5, 140 * sizeMult);
+            GenerateFeature(xO, yO, 100, (ushort)ModContent.TileType<SootTile>(), 12, 18, 25 * sizeMult);
+            GenerateFeature(xO, yO, 300, (ushort)ModContent.TileType<ObsidiumOreBlock>(), 6, 14, 8);
         }
         
         private void GenerateCave(int xO, int yO, int numSteps, ushort tileType, int minSize, int maxSize, int length)
@@ -176,7 +177,7 @@ namespace Laugicality
             {
                 int x = xO + Main.rand.Next(-200 * sizeMult, 200 * sizeMult);
                 int y = yO + Main.rand.Next(-250 * sizeMult, 250 * sizeMult);
-                if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)mod.TileType("Lycoris") || Main.tile[x, y].type == (ushort)mod.TileType("Radiata"))
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<ObsidiumRock>() || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)ModContent.TileType("Lycoris") || Main.tile[x, y].type == (ushort)ModContent.TileType("Radiata"))
                     WorldGen.TileRunner(x, y, Main.rand.Next(minSize, maxSize), length, tileType, false, 0f, 0f, false, true);
             }
         }
@@ -187,7 +188,7 @@ namespace Laugicality
             {
                 int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
                 int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
-                if (Main.tile[x, y].type == (ushort)mod.TileType("ObsidiumRock") || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)mod.TileType("Lycoris") || Main.tile[x, y].type == (ushort)mod.TileType("Radiata"))
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<ObsidiumRock>() || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)ModContent.TileType("Lycoris") || Main.tile[x, y].type == (ushort)ModContent.TileType("Radiata"))
                     WorldGen.TileRunner(x, y, Main.rand.Next(minSize, maxSize), length, tileType, false, 0f, 0f, false, true);
             }
         }
@@ -420,14 +421,14 @@ namespace Laugicality
                 {
                     if (TileCheckSafe(i, j) && TileCheckSafe(i, j + 1))
                     {
-                        if (Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j + 1].type == (ushort)mod.TileType("ObsidiumRock") && Main.tile[i, j].type == 0 && Main.tile[i, j].active() == false)
+                        if (Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j + 1].type == (ushort)ModContent.TileType<ObsidiumRock>() && Main.tile[i, j].type == 0 && Main.tile[i, j].active() == false)
                         {
                             if(Main.rand.Next(8) == 0)
                             {
-                                WorldGen.PlaceTile(i, j, mod.TileType("LavaGem"), true);
+                                WorldGen.PlaceTile(i, j, ModContent.TileType("LavaGem"), true);
                             }
                         }
-                        else if(Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j].type == (ushort)mod.TileType("ObsidiumRock"))
+                        else if(Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j].type == (ushort)ModContent.TileType<ObsidiumRock>())
                         {
                             if (Main.rand.Next(3) == 0)
                             {
@@ -444,17 +445,17 @@ namespace Laugicality
         {
             if (Main.tile[i, j - 1].type == 0 && Main.rand.Next(4) == 0)
             {
-                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumRocks"), true);
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType("ObsidiumRocks"), true);
                 return true;
             }
             else if (Main.tile[i, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.rand.Next(3) == 0)
             {
-                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumStalagmites"), true);
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType("ObsidiumStalagmites"), true);
                 return true;
             }
             else if (Main.tile[i, j + 1].type == 0 && Main.tile[i, j + 2].type == 0 && Main.rand.Next(2) == 0)
             {
-                WorldGen.PlaceTile(i, j + 1, mod.TileType("ObsidiumStalactites"), true);
+                WorldGen.PlaceTile(i, j + 1, ModContent.TileType("ObsidiumStalactites"), true);
                 return true;
             }
             return false;

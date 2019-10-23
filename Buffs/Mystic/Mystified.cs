@@ -17,12 +17,12 @@ namespace Laugicality.Buffs.Mystic
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).Mystified = true;
+			LaugicalityPlayer.Get(player).Mystified = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).mFied = true;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>().mFied = true;
 		}
 	}
 }

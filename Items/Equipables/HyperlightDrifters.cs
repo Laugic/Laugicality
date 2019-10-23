@@ -5,6 +5,7 @@ using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
@@ -61,7 +62,7 @@ namespace Laugicality.Items.Equipables
         {
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.X) > 4 && Main.rand.Next(3) == 0)
             {
-                int newDust = Dust.NewDust(new Vector2(player.Center.X + player.velocity.X, player.position.Y + 4 + player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<EtherialDust>(), 0f, 0f, 0, default(Color), 1.5f);
+                int newDust = Dust.NewDust(new Vector2(player.Center.X + player.velocity.X, player.position.Y + 4 + player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<EtherialDust>(), 0f, 0f, 0, default(Color), 1.5f);
                 Main.dust[newDust].scale = 4;
             }
         }
@@ -98,7 +99,7 @@ namespace Laugicality.Items.Equipables
             {
                 if (i == 0)
                 {
-                    int newDust = Dust.NewDust(new Vector2(player.position.X - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<EtherialDust>(), 0f, 0f, alpha, default(Color), 1.5f);
+                    int newDust = Dust.NewDust(new Vector2(player.position.X - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<EtherialDust>(), 0f, 0f, alpha, default(Color), 1.5f);
                     Main.dust[newDust].shader = GameShaders.Armor.GetSecondaryShader(player.cShoe, player);
                     Main.dust[newDust].velocity.X = (Main.dust[newDust].velocity.X * 1f - 2f - player.velocity.X * 0.3f) / 2;
                     Main.dust[newDust].velocity.Y = (Main.dust[newDust].velocity.Y * 1f + 2f * player.gravDir - player.velocity.Y * 0.3f) / 2;
@@ -106,7 +107,7 @@ namespace Laugicality.Items.Equipables
                 }
                 else
                 {
-                    int newDust = Dust.NewDust(new Vector2(player.position.X + (float)player.width - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, mod.DustType<EtherialDust>(), 0f, 0f, alpha, default(Color), 1.5f);
+                    int newDust = Dust.NewDust(new Vector2(player.position.X + (float)player.width - 4f + player.velocity.X, player.position.Y + (float)player.height - 10f + player.velocity.Y), 8, 8, ModContent.DustType<EtherialDust>(), 0f, 0f, alpha, default(Color), 1.5f);
                     Main.dust[newDust].shader = GameShaders.Armor.GetSecondaryShader(player.cShoe, player);
                     Main.dust[newDust].velocity.X = (Main.dust[newDust].velocity.X * 1f + 2f - player.velocity.X * 0.3f) / 2;
                     Main.dust[newDust].velocity.Y = (Main.dust[newDust].velocity.Y * 1f + 2f * player.gravDir - player.velocity.Y * 0.3f) / 2;
@@ -134,7 +135,7 @@ namespace Laugicality.Items.Equipables
                         trail = trailLength;
                         player.velocity.X = dashSpeed;
                         player.position.X += warpDist;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<EtherialDust>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<EtherialDust>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -154,7 +155,7 @@ namespace Laugicality.Items.Equipables
                         trail = trailLength;
                         player.velocity.X = -dashSpeed;
                         player.position.X += -warpDist;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<EtherialDust>(), 40);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<EtherialDust>(), 40);
                         dashDir = 0;
                         player.immune = true;
                         player.immuneTime = immuneTime;
@@ -174,7 +175,7 @@ namespace Laugicality.Items.Equipables
                         trail = trailLength;
                         player.velocity.Y = 2 * dashSpeed;
                         player.position.Y += warpDist;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<EtherialDust>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<EtherialDust>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         player.immune = true;
@@ -195,7 +196,7 @@ namespace Laugicality.Items.Equipables
                         trail = trailLength;
                         player.velocity.Y = -dashSpeed;
                         player.position.Y += -warpDist;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(mod.DustType<EtherialDust>(), 50);
+                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<EtherialDust>(), 50);
                         dashDir = 0;
                         player.fallStart = (int)player.position.Y / 16;
                         player.immune = true;
@@ -218,7 +219,7 @@ namespace Laugicality.Items.Equipables
             {
                 float mag = Main.rand.NextFloat() * 4 + 2;
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType<BysmalTrailProj>(), (int)(36 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<BysmalTrailProj>(), (int)(36 * player.GetModPlayer<LaugicalityPlayer>().GetGlobalDamage()), 0, player.whoAmI);
             }
         }
 
@@ -231,7 +232,7 @@ namespace Laugicality.Items.Equipables
             if (trail > 0)
             {
                 trail--;
-                player.GetModPlayer<LaugicalityPlayer>().DustTrail(mod.DustType<EtherialDust>(), 2);
+                player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<EtherialDust>(), 2);
             }
             if (Main.tileSolid[Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type] && Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16) + 2].type != 0 && Math.Abs(player.velocity.Y) < .25f)
             {
@@ -246,9 +247,9 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<BysmaliteWarpers>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<BysmaliteWarpers>(), 1);
             recipe.AddIngredient(ItemID.LunarBar, 16);
-            recipe.AddIngredient(mod.ItemType<GalacticFragment>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<GalacticFragment>(), 12);
             recipe.AddTile(TileID.LunarCraftingStation);
             recipe.SetResult(this);
             recipe.AddRecipe();

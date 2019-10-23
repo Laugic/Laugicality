@@ -25,13 +25,13 @@ namespace Laugicality.Items.Consumables
 			item.useTime = 45;
 			item.useStyle = ItemUseStyleID.HoldingUp;
 			item.consumable = true;
-			item.shoot = mod.ProjectileType<Nothing>();
+			item.shoot = ModContent.ProjectileType<Nothing>();
 		}
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType<GeneralBossSpawn>(), NPCID.Retinazer, knockBack, player.whoAmI);
-            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType<GeneralBossSpawn>(), NPCID.Spazmatism, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), NPCID.Retinazer, knockBack, player.whoAmI);
+            Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<GeneralBossSpawn>(), NPCID.Spazmatism, knockBack, player.whoAmI);
             return false;
         }
 

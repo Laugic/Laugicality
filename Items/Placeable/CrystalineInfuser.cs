@@ -23,7 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType("CrystalineInfuser");
+            item.createTile = ModContent.TileType("CrystalineInfuser");
         }
 
         public override void AddRecipes()

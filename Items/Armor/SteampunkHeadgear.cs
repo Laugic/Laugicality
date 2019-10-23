@@ -24,7 +24,7 @@ public override void SetStaticDefaults()
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("SteampunkJacket") && legs.type == mod.ItemType("SteampunkBoots");
+			return body.type == ModContent.ItemType("SteampunkJacket") && legs.type == ModContent.ItemType("SteampunkBoots");
         }
 
 
@@ -36,7 +36,7 @@ public override void SetStaticDefaults()
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "+33% Throwing Velocity, \nAttacks inflict 'Steamy!' ";
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.Steamified = true;
             player.thrownVelocity += .33f;
         }

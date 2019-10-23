@@ -40,13 +40,13 @@ namespace Laugicality.Projectiles.Ranged
             float theta = (float)(Main.rand.NextDouble() * 2 * Math.PI);
             float mag = 6f;
             if(Main.rand.Next(2) == 0 && Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
             theta = (float)(Main.rand.NextDouble() * 2 * Math.PI);
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
             theta = (float)(Main.rand.NextDouble() * 2 * Math.PI);
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("ObsidiumArrowHead"), damage, 3f, Main.myPlayer);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

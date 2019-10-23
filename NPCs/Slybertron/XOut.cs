@@ -39,10 +39,10 @@ namespace Laugicality.NPCs.Slybertron
             if (delay == 30 && Main.netMode != 1)
             {
                 Main.PlaySound(SoundID.Item33, (int)projectile.position.X, (int)projectile.position.Y);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, mod.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, mod.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, mod.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X + 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y - 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X - 3, projectile.velocity.Y + 3, ModContent.ProjectileType("ElectroshockP2"), damage, 3f, Main.myPlayer);
                 delay = 0;
             }
         }
@@ -50,7 +50,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.steamStreamHits += 1;
-            int debuff = mod.BuffType("Steamy");
+            int debuff = ModContent.BuffType("Steamy");
             if (debuff >= 0)
             {
                 player.AddBuff(debuff, 90, true);

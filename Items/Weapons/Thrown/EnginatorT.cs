@@ -28,7 +28,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.reuseDelay = 20;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("EnginatorTProj");
+            item.shoot = ModContent.ProjectileType("EnginatorTProj");
             item.shootSpeed = 16f;
             item.useTurn = true;
             item.maxStack = 1;

@@ -38,17 +38,17 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, mod.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
-				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, mod.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, ModContent.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, ModContent.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, ModContent.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, ModContent.ProjectileType("HallowsEveDestruction1"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, ModContent.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, ModContent.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, ModContent.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
+				Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, ModContent.ProjectileType("HallowsEveDestruction2"), damage, 3f, player.whoAmI);
                 return false;
             }
             return true;
@@ -61,7 +61,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = (int)(item.useTime);
             item.knockBack = 0;
             item.shootSpeed = 14f;
-            item.shoot = mod.ProjectileType<Nothing>();
+            item.shoot = ModContent.ProjectileType<Nothing>();
             item.UseSound = SoundID.Item1;
             LuxCost = 10;
         }
@@ -73,7 +73,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType("HallowsEveIllusion1");
+            item.shoot = ModContent.ProjectileType("HallowsEveIllusion1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             VisCost = 8;
@@ -86,7 +86,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("HallowsEveConjuration1");
+            item.shoot = ModContent.ProjectileType("HallowsEveConjuration1");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             MundusCost = 15;

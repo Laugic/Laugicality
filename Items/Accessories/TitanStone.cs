@@ -24,7 +24,7 @@ namespace Laugicality.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.endurance += 0.10f;
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.SoulStoneVisuals)
             {
                 if (modPlayer.inf)

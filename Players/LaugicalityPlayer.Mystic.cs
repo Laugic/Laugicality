@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality
 {
@@ -143,14 +144,14 @@ namespace Laugicality
             {
                 if (MysticShroomBurst)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -5, -5, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, -6.25f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -3.75f, -5.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f / 2, -6.75f, mod.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f, -6.25f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 5, -5, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -5, -5, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f, -6.25f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 2.5f / 2, -6.75f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, 3.75f, -5.75f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -3.75f, -5.75f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y, -2.5f / 2, -6.75f, ModContent.ProjectileType("ShroomBurst"), (int)(10 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
 
                     MysticSwitchCool += 1 * 60;
                 }
@@ -169,16 +170,16 @@ namespace Laugicality
 
                 if (MysticSandBurst)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -2, 0, mod.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 2, 0, ModContent.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -2, 0, ModContent.ProjectileType("AncientRune"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
 
                     MysticSwitchCool += 3 * 60;
                 }
 
                 if (MysticEruptionBurst)
                 {
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -4, 0, mod.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, 4, 0, ModContent.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 16, -4, 0, ModContent.ProjectileType("EruptionBurst"), (int)(12 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                     MysticErupting += 45;
 
                     MysticSwitchCool += 4 * 60;
@@ -198,7 +199,7 @@ namespace Laugicality
                     for (int i = 0; i < 16; i++)
                     {
                         theta += (float)Math.PI / 8;
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("ObsidiumMysticBurst"), (int)(24 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
+                        Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("ObsidiumMysticBurst"), (int)(24 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                     }
 
                     MysticSwitchCool += 4 * 60;
@@ -212,8 +213,8 @@ namespace Laugicality
 
                 if (MysticMarblite)
                 {
-                    player.AddBuff(mod.BuffType("ForGlory"), 180 + (int)(120 * MysticDuration));
-                    player.AddBuff(mod.BuffType("ForHonor"), 180 + (int)(120 * MysticDuration));
+                    player.AddBuff(ModContent.BuffType("ForGlory"), 180 + (int)(120 * MysticDuration));
+                    player.AddBuff(ModContent.BuffType("ForHonor"), 180 + (int)(120 * MysticDuration));
                 }
                 if(MysticSwitchCool > 0)
                     PostBurstEffects();

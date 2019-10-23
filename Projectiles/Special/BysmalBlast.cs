@@ -31,7 +31,7 @@ namespace Laugicality.Projectiles.Special
 
         public override void AI()
         {
-            if(Main.rand.Next(8) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
+            if(Main.rand.Next(8) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), projectile.velocity.X * 0f, projectile.velocity.Y * 0f);
             if (!stopped)
             {
                 projectile.velocity.X *= .9f;

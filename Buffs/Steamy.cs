@@ -17,13 +17,13 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<LaugicalityPlayer>(mod).Electrified = true;
+			LaugicalityPlayer.Get(player).Electrified = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).eFied = true;
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).damageMult * 1.1f;
+			npc.GetGlobalNPC<LaugicalGlobalNPCs>().eFied = true;
+            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>().damageMult * 1.1f;
         }
 	}
 }

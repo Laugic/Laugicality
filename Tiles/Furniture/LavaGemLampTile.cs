@@ -32,7 +32,7 @@ namespace Laugicality.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 16, 48, mod.ItemType<LavaGemLamp>());
+            Item.NewItem(i * 16, j * 16, 16, 48, ModContent.ItemType<LavaGemLamp>());
         }
 
         public override void HitWire(int i, int j)

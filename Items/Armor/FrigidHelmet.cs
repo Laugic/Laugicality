@@ -23,7 +23,7 @@ namespace Laugicality.Items.Armor
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("FrigidChestplate") && legs.type == mod.ItemType("FrigidLeggings");
+			return body.type == ModContent.ItemType("FrigidChestplate") && legs.type == ModContent.ItemType("FrigidLeggings");
         }
 
 
@@ -35,7 +35,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "+4 Defense\n+25% Snowball Damage\nUnleash Ice Shards when struck.";
             modPlayer.Frigid = true;
             modPlayer.SnowDamage += .25f;

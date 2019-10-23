@@ -41,7 +41,7 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void HoldItem(Player player)
         {
-            if((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
+            if((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria)
             {
                 item.scale = 3.5f;
                 item.useTime = 12;
@@ -57,7 +57,7 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-            target.AddBuff(mod.BuffType("Frostbite"), 5 * 60);
+            target.AddBuff(ModContent.BuffType("Frostbite"), 5 * 60);
         }
 	}
 }

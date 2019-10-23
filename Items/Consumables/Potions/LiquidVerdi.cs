@@ -26,7 +26,7 @@ namespace Laugicality.Items.Consumables.Potions
 
         public override bool UseItem(Player player)
         {
-            player.AddBuff(mod.BuffType("Verdi"), 5*60*60, true);
+            player.AddBuff(ModContent.BuffType("Verdi"), 5*60*60, true);
             return true;
         }
 

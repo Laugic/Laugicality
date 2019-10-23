@@ -36,7 +36,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 {
                     float theta = (float)Math.Atan2((double)(npc.position.X - Main.player[npc.target].position.X), (double)(npc.position.Y - Main.player[npc.target].position.Y));
                     float mag = 12;
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, mod.ProjectileType("GasBallUp"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, -8, ModContent.ProjectileType("GasBallUp"), (int)(npc.damage / 2), 3, Main.myPlayer);
                 }
             }
             MovementCheck();

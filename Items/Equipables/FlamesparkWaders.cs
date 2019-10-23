@@ -32,7 +32,7 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LavaWaders, 1);
-            recipe.AddIngredient(mod.ItemType<FireDust>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<FireDust>(), 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

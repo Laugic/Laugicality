@@ -36,11 +36,11 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Dresser");
             AddMapEntry(new Color(200, 200, 200), name);
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Dressers };
             dresser = "Obsidium Dresser";
-            dresserDrop = mod.ItemType<ObsidiumDresser>();
+            dresserDrop = ModContent.ItemType<ObsidiumDresser>();
         }
 
         public override bool HasSmartInteract()
@@ -166,7 +166,7 @@ namespace Laugicality.Tiles.Furniture
                 }
                 if (player.showItemIconText == chest)
                 {
-                    player.showItemIcon2 = mod.ItemType<ObsidiumDresser>();
+                    player.showItemIcon2 = ModContent.ItemType<ObsidiumDresser>();
                     player.showItemIconText = "";
                 }
             }
@@ -208,7 +208,7 @@ namespace Laugicality.Tiles.Furniture
                 }
                 if (player.showItemIconText == chest)
                 {
-                    player.showItemIcon2 = mod.ItemType<ObsidiumDresser>();
+                    player.showItemIcon2 = ModContent.ItemType<ObsidiumDresser>();
                     player.showItemIconText = "";
                 }
             }

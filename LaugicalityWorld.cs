@@ -209,7 +209,7 @@ namespace Laugicality
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            obsidiumTiles = tileCounts[56] + tileCounts[mod.TileType("ObsidiumRock")] +  tileCounts[mod.TileType("Lycoris")] + tileCounts[mod.TileType("Radiata")];
+            obsidiumTiles = tileCounts[56] + tileCounts[ModContent.TileType<ObsidiumRock>()] +  tileCounts[ModContent.TileType("Lycoris")] + tileCounts[ModContent.TileType("Radiata")];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

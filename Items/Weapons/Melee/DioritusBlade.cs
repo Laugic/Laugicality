@@ -41,7 +41,7 @@ namespace Laugicality.Items.Weapons.Melee
         {
             if (player.altFunctionUse == 2)
             {
-                item.shoot = mod.ProjectileType("DioritusBlade");
+                item.shoot = ModContent.ProjectileType("DioritusBlade");
                 item.noUseGraphic = true;
             }
             else
@@ -49,7 +49,7 @@ namespace Laugicality.Items.Weapons.Melee
                 item.shoot = 0;
                 item.noUseGraphic = false;
             }
-            return player.ownedProjectileCounts[mod.ProjectileType("DioritusBlade")] < 1;
+            return player.ownedProjectileCounts[ModContent.ProjectileType("DioritusBlade")] < 1;
         }
         
 

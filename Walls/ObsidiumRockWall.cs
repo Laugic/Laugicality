@@ -10,7 +10,7 @@ namespace Laugicality.Walls
 		{
 			dustType = 1;
 			AddMapEntry(new Color(20, 20, 32));
-            drop = mod.ItemType("ObsidiumRockWall");
+            drop = ModContent.ItemType("ObsidiumRockWall");
         }
 
 		public override void NumDust(int i, int j, bool fail, ref int num)

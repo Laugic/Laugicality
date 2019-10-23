@@ -37,7 +37,7 @@ namespace Laugicality.Items
                 switch (rand)
                 {
                     case 1:
-                        player.QuickSpawnItem(mod.ItemType<DarkfootBoots>(), 1);
+                        player.QuickSpawnItem(ModContent.ItemType<DarkfootBoots>(), 1);
                         break;
                     case 2:
                         player.QuickSpawnItem(ItemID.ShadowOrb, 1);
@@ -63,7 +63,7 @@ namespace Laugicality.Items
                 switch (rand)
                 {
                     case 1:
-                        player.QuickSpawnItem(mod.ItemType<BloodfootBoots>(), 1);
+                        player.QuickSpawnItem(ModContent.ItemType<BloodfootBoots>(), 1);
                         break;
                     case 2:
                         player.QuickSpawnItem(ItemID.CrimsonHeart, 1);
@@ -151,7 +151,7 @@ namespace Laugicality.Items
                     MeleeDmg = 1;
             }
             
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (NPC.CountNPCS(mod.NPCType("ZaWarudo")) >= 1 && modPlayer.zImmune)
             {
                 if (!modPlayer.zProjImmune && MeleeDmg == 1)

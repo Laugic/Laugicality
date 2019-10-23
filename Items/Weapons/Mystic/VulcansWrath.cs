@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
                 int numberProjectiles = Main.rand.Next(2, 5);
@@ -73,7 +73,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 18f;
-            item.shoot = mod.ProjectileType("VulcanIllusion");
+            item.shoot = ModContent.ProjectileType("VulcanIllusion");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
@@ -87,7 +87,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 20f;
-            item.shoot = mod.ProjectileType("VulcanConjuration");
+            item.shoot = ModContent.ProjectileType("VulcanConjuration");
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;

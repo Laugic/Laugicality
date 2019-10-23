@@ -20,7 +20,7 @@ namespace Laugicality.Tiles
             //AddMapEntry(new Color(200, 30, 0), name);
             disableSmartCursor = true;
             Main.tileCut[Type] = true;
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             soundType = 6;
             //adjTiles = new int[] { TileID.WorkBenches };
         }

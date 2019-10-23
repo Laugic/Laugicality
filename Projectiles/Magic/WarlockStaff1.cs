@@ -55,10 +55,10 @@ namespace Laugicality.Projectiles.Magic
                 originV.X = projectile.velocity.X;
                 originV.Y = projectile.velocity.Y;
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, mod.ProjectileType("WarlockStaff2"), projectile.damage, 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.position.X, projectile.position.Y, projectile.velocity.X, projectile.velocity.Y, ModContent.ProjectileType("WarlockStaff2"), projectile.damage, 3, Main.myPlayer);
             }
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Blue"), 0f, 0f);
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
             theta -= 3.14f / 30;
             mag += 1.5;

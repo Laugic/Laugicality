@@ -23,7 +23,7 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticBurstDamage += .2f;
             modPlayer.MysticSwitchCoolRate += 1;
             if(modPlayer.MysticSwitchCool > 0)

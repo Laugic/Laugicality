@@ -1,6 +1,7 @@
 using Laugicality.NPCs.Slybertron;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -31,9 +32,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("SteamBar"), Main.rand.Next(20, 35));
-            player.QuickSpawnItem(mod.ItemType("SoulOfFraught"), Main.rand.Next(25, 40));
-            player.QuickSpawnItem(mod.ItemType("Pipeworks"), 1);
+            player.QuickSpawnItem(ModContent.ItemType("SteamBar"), Main.rand.Next(20, 35));
+            player.QuickSpawnItem(ModContent.ItemType("SoulOfFraught"), Main.rand.Next(25, 40));
+            player.QuickSpawnItem(ModContent.ItemType("Pipeworks"), 1);
             player.QuickSpawnItem(499, Main.rand.Next(10, 15));
         }
 

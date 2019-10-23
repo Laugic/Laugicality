@@ -1,5 +1,6 @@
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -34,7 +35,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     float theta = (float)(Main.rand.Next(45)) / 7;
                     int mag = Main.rand.Next(6, 17);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta)*mag, (float)Math.Sin(theta) * mag, mod.ProjectileType("VulcanConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta)*mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType("VulcanConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
                 }
             }
         }

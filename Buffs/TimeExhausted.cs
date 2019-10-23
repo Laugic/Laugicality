@@ -18,7 +18,7 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			    player.GetModPlayer<LaugicalityPlayer>(mod).zCool = true;
+			    LaugicalityPlayer.Get(player).zCool = true;
 		}
 	}
 }

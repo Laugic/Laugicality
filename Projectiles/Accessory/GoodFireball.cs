@@ -31,7 +31,7 @@ namespace Laugicality.Projectiles.Accessory
         public override void AI()
         {
             if (Main.rand.Next((int)(8 / projectile.scale)) == 0)
-                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Magma>(), -2 + Main.rand.NextFloat() * 4, -Main.rand.NextFloat() * 4);
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), -2 + Main.rand.NextFloat() * 4, -Main.rand.NextFloat() * 4);
             if (stopped)
             {
                 projectile.velocity.X *= .8f;

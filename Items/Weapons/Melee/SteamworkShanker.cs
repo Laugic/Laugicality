@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.useTurn = true;
             item.noUseGraphic = true;
             item.shootSpeed = 8f;
-            item.shoot = mod.ProjectileType("SteamworkShanker");
+            item.shoot = ModContent.ProjectileType("SteamworkShanker");
         }
 
         public override bool CanUseItem(Player player)

@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Magic
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
-			item.shoot = mod.ProjectileType("Volcite");
+			item.shoot = ModContent.ProjectileType("Volcite");
 			item.shootSpeed = 18f;
 		}
 

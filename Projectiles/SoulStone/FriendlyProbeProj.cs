@@ -69,7 +69,7 @@ namespace Laugicality.Projectiles.SoulStone
             {
                 counter = Main.rand.Next(100, 160);
                 Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 33, 1f, 0f);
-                Projectile.NewProjectile(projectile.position, new Vector2(projectile.DirectionTo(npc.Center).X * 12, projectile.DirectionTo(npc.Center).Y * 12), mod.ProjectileType<FriendlyProbeLaserProj>(), projectile.damage, 4, projectile.owner);
+                Projectile.NewProjectile(projectile.position, new Vector2(projectile.DirectionTo(npc.Center).X * 12, projectile.DirectionTo(npc.Center).Y * 12), ModContent.ProjectileType<FriendlyProbeLaserProj>(), projectile.damage, 4, projectile.owner);
             }
             else
                 counter--;

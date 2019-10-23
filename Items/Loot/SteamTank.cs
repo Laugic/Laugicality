@@ -22,7 +22,7 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.jumpSpeedBoost += 2f;
             player.moveSpeed += 0.5f;
             modPlayer.MysticDamage += 0.12f;

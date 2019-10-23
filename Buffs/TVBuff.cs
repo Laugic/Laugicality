@@ -1,5 +1,6 @@
 using Laugicality.Projectiles.Summon;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Buffs
 {
@@ -15,9 +16,9 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
-			if (player.ownedProjectileCounts[mod.ProjectileType<TV>()] > 0)
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<TV>()] > 0)
 				modPlayer.TVSummon = true;
 
             if (!modPlayer.TVSummon)

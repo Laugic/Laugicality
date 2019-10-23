@@ -34,7 +34,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
                 if (Main.netMode != 1)
                 {
                     for(int i = 0; i < 4; i++)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-4, 4), -3 - Main.rand.Next(3), mod.ProjectileType("Gearikan"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-4, 4), -3 - Main.rand.Next(3), ModContent.ProjectileType<Gearikan>(), (int)(npc.damage / 2), 3, Main.myPlayer);
                 }
             }
             MovementCheck();

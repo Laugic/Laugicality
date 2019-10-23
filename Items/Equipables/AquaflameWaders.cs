@@ -36,9 +36,9 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<FlareburstWaders>(), 1);
-            recipe.AddIngredient(mod.ItemType<MagmaCrystal>(), 1);
-            recipe.AddIngredient(mod.ItemType<WasserCrystal>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<FlareburstWaders>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<MagmaCrystal>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<WasserCrystal>(), 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

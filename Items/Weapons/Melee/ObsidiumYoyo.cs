@@ -36,7 +36,7 @@ namespace Laugicality.Items.Weapons.Melee
 
 			item.UseSound = SoundID.Item1;
 			item.value = Item.sellPrice(silver: 1);
-			item.shoot = mod.ProjectileType("ObsidiumYoyo");
+			item.shoot = ModContent.ProjectileType("ObsidiumYoyo");
 		}
 
 		public override void AddRecipes()

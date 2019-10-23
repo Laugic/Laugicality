@@ -6,6 +6,7 @@ using Laugicality.Extensions;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality
 {
@@ -42,7 +43,7 @@ namespace Laugicality
             EtheriaEffect = false;
             CancelNoKnockback = false;
 
-            if (!player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()))
+            if (!player.HasBuff(ModContent.BuffType<MoonLordSoulCooldownBuff>()))
                 MoonLordLifeMult = 1f;
 
             AnDioCapacityEffect = false;
@@ -77,19 +78,19 @@ namespace Laugicality
             {
                 if (Focus.IsCapacity())
                 {
-                    if (SkeletronPrimeEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    if (SkeletronPrimeEffect && player.ownedProjectileCounts[ModContent.ProjectileType<FriendlyDungeonGuardianPrime>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
                     {
-                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardianPrime>(), 99, 4, player.whoAmI);
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<FriendlyDungeonGuardianPrime>(), 99, 4, player.whoAmI);
                     }
 
-                    if (GolemEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    if (GolemEffect && player.ownedProjectileCounts[ModContent.ProjectileType<FriendlyGolemProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
                     {
-                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyGolemProj>(), 0, 4, player.whoAmI);
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<FriendlyGolemProj>(), 0, 4, player.whoAmI);
                     }
 
-                    if (MoonLordEffect && player.ownedProjectileCounts[mod.ProjectileType<FriendlyTrueEyeProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
+                    if (MoonLordEffect && player.ownedProjectileCounts[ModContent.ProjectileType<FriendlyTrueEyeProj>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
                     {
-                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyTrueEyeProj>(), (int)(150 * GetGlobalDamage()), 4, player.whoAmI);
+                        Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<FriendlyTrueEyeProj>(), (int)(150 * GetGlobalDamage()), 4, player.whoAmI);
                     }
                 }
             }
@@ -135,7 +136,7 @@ namespace Laugicality
 
             if (DestroyerEffect && !DestroyerCooldown && damage >= 50 && damage > player.statLife)
             {
-                player.AddBuff(mod.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
 
@@ -144,12 +145,12 @@ namespace Laugicality
 
             if (Focus.IsVitality())
             {
-                if (SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()))
+                if (SteamTrainEffect && !player.HasBuff(ModContent.BuffType<SteamTrainSoulCooldownBuff>()))
                 {
                     if (player.statLife < player.statLifeMax2)
                     {
                         player.statLife = player.statLifeMax2;
-                        player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 150 * Constants.TICKS_PER_SECONDS);
+                        player.AddBuff(ModContent.BuffType<SteamTrainSoulCooldownBuff>(), 150 * Constants.TICKS_PER_SECONDS);
                         player.immune = true;
                         player.immuneTime = 2 * 60;
 
@@ -162,7 +163,7 @@ namespace Laugicality
                     MoonLordLifeMult *= .5f;
                     player.statLifeMax2 = (int) (MoonLordLifeMult * player.statLifeMax2);
                     player.statLife = player.statLifeMax2;
-                    player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
+                    player.AddBuff(ModContent.BuffType<MoonLordSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                     player.immune = true;
                     player.immuneTime = 2 * 60;
 
@@ -170,9 +171,9 @@ namespace Laugicality
                 }
             }
 
-            if (MoonLordEffect && !player.HasBuff(Laugicality.Instance.BuffType<MoonLordSoulCooldownBuff>()) && Focus.IsTenacity())
+            if (MoonLordEffect && !player.HasBuff(ModContent.BuffType<MoonLordSoulCooldownBuff>()) && Focus.IsTenacity())
             {
-                player.AddBuff(mod.BuffType<MoonLordSoulCooldownBuff>(), 30 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<MoonLordSoulCooldownBuff>(), 30 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
 
@@ -186,14 +187,14 @@ namespace Laugicality
         {
             if (CapacityCurse1)
                 damage += 5;
-            if(WallOfFleshEffect && !player.HasBuff(Laugicality.Instance.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
+            if(WallOfFleshEffect && !player.HasBuff(ModContent.BuffType<WallOfFleshEffectCooldownBuff>()) && damage > 1)
             {
                 damage = 1;
-                player.AddBuff(mod.BuffType<WallOfFleshEffectCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<WallOfFleshEffectCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
             }
             if (EtheriaEffect)
             {
-                player.AddBuff(mod.BuffType<EtherialEffectCooldownBuff>(), 20 * 60, false);
+                player.AddBuff(ModContent.BuffType<EtherialEffectCooldownBuff>(), 20 * 60, false);
             }
         }
 
@@ -203,7 +204,7 @@ namespace Laugicality
                 return;
 
             if(MobilityCurse2)
-                player.AddBuff(mod.BuffType<MobilityCurseBuff>(), 4 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<MobilityCurseBuff>(), 4 * Constants.TICKS_PER_SECONDS);
 
             /*if (QueenBeeEffect && Focus.IsTenacity())
             {
@@ -230,7 +231,7 @@ namespace Laugicality
         internal void CapacityPostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (CapacityCurse2)
-                player.AddBuff(mod.BuffType<CapacityCurseBuff>(), 10 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<CapacityCurseBuff>(), 10 * Constants.TICKS_PER_SECONDS);
             if(CapacityCurse4 && !CapacityCurse4Applied && player.immune)
             {
                 CapacityCurse4Applied = true;
@@ -241,20 +242,20 @@ namespace Laugicality
                 MoonLordEffectApplied = true;
                 player.immuneTime *= 2;
             }
-            if (QueenBeeEffect && player.ownedProjectileCounts[mod.ProjectileType<CapacityThornsProj>()] <= 0)
+            if (QueenBeeEffect && player.ownedProjectileCounts[ModContent.ProjectileType<CapacityThornsProj>()] <= 0)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<CapacityThornsProj>(), (int)(15 * GetGlobalDamage()), 5f, player.whoAmI, (float)(Math.PI / 4) * i);
+                    Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<CapacityThornsProj>(), (int)(15 * GetGlobalDamage()), 5f, player.whoAmI, (float)(Math.PI / 4) * i);
                 }
             }
-            if (TwinsEffect && player.ownedProjectileCounts[mod.ProjectileType<ShadowDoubleProj>()] <= 0)
+            if (TwinsEffect && player.ownedProjectileCounts[ModContent.ProjectileType<ShadowDoubleProj>()] <= 0)
             {
-                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<ShadowDoubleProj>(), (int)(60 * GetGlobalDamage()), 0, player.whoAmI);
+                Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<ShadowDoubleProj>(), (int)(60 * GetGlobalDamage()), 0, player.whoAmI);
             }
             if (DestroyerCapacityEffect && player.statLife < player.statLifeMax2 * .66)
             {
-                Projectile.NewProjectile(player.Center, new Vector2(0, 0), mod.ProjectileType<FriendlyProbeProj>(), (int)(60 * GetGlobalDamage()), 4f, player.whoAmI);
+                Projectile.NewProjectile(player.Center, new Vector2(0, 0), ModContent.ProjectileType<FriendlyProbeProj>(), (int)(60 * GetGlobalDamage()), 4f, player.whoAmI);
             }
             if (FishronEffect)
             {
@@ -267,7 +268,7 @@ namespace Laugicality
             }
             if (EtheriaEffect)
             {
-                player.AddBuff(mod.BuffType<EtherialEffectCooldownBuff>(), 20 * 60, false);
+                player.AddBuff(ModContent.BuffType<EtherialEffectCooldownBuff>(), 20 * 60, false);
             }
         }
 
@@ -320,16 +321,16 @@ namespace Laugicality
             if (Focus.IsCapacity())
                 CapacityHitByNPC(npc, ref damage, ref crit);
 
-            if (SteamTrainEffect && !player.HasBuff(Laugicality.Instance.BuffType<SteamTrainSoulCooldownBuff>()) && Focus.IsCapacity())
+            if (SteamTrainEffect && !player.HasBuff(ModContent.BuffType<SteamTrainSoulCooldownBuff>()) && Focus.IsCapacity())
             {
-                player.AddBuff(mod.BuffType<SteamTrainSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<SteamTrainSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
             }
 
-            if (EvilBossEffect && !player.HasBuff(Laugicality.Instance.BuffType<EvilBossCooldownBuff>()) && Focus.IsUtility())
+            if (EvilBossEffect && !player.HasBuff(ModContent.BuffType<EvilBossCooldownBuff>()) && Focus.IsUtility())
             {
-                player.AddBuff(mod.BuffType<EvilBossCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
+                player.AddBuff(ModContent.BuffType<EvilBossCooldownBuff>(), 120 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;
                 player.immuneTime = 2 * 60;
             }
@@ -363,7 +364,7 @@ namespace Laugicality
                 float theta = Main.rand.NextFloat() * 2 * (float)Math.PI;
                 float mag = 700;
 
-                Projectile.NewProjectile(player.Center + new Vector2((float)(Math.Cos(theta) * mag), (float)(Math.Sin(theta) * mag)), new Vector2(0, 0), mod.ProjectileType<FriendlyDungeonGuardian>(), 999, 5f, player.whoAmI, npc.whoAmI);
+                Projectile.NewProjectile(player.Center + new Vector2((float)(Math.Cos(theta) * mag), (float)(Math.Sin(theta) * mag)), new Vector2(0, 0), ModContent.ProjectileType<FriendlyDungeonGuardian>(), 999, 5f, player.whoAmI, npc.whoAmI);
             }
         }
 

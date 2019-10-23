@@ -61,13 +61,13 @@ namespace Laugicality
 
             if (EtherialBrain && !EtherialBrainCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
             {
-                npc.AddBuff(mod.BuffType("FragmentedMind"), 15 * 60, false);
+                npc.AddBuff(ModContent.BuffType("FragmentedMind"), 15 * 60, false);
 
                 if (damage >= player.statLife)
                 {
                     if (EtherialBrain && !EtherialBrainCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
                     {
-                        player.AddBuff(mod.BuffType("FragmentedMind"), 60 * 60 * 3, true);
+                        player.AddBuff(ModContent.BuffType("FragmentedMind"), 60 * 60 * 3, true);
                         player.immune = true;
                         player.immuneTime = 2 * 60;
                         player.statLife += 300;
@@ -75,7 +75,7 @@ namespace Laugicality
                         Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
 
                         for (int i = 0; i < 20; i++)
-                            Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+                            Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Etherial>(), 0f, 0f);
                     }
                 }
             }
@@ -100,13 +100,13 @@ namespace Laugicality
 
             if (EtherialBones)
             {
-                player.AddBuff(mod.BuffType<EtherBones>(), 10 * 60, true);
+                player.AddBuff(ModContent.BuffType<EtherBones>(), 10 * 60, true);
                 EtherBonesDamageBoost += ((float)damage / (float)player.statLifeMax2);
             }
 
             if(EtherialTwins && !JusticeCooldown)
             {
-                player.AddBuff(mod.BuffType("JusticeCooldown"), 90 * 60, true);
+                player.AddBuff(ModContent.BuffType("JusticeCooldown"), 90 * 60, true);
                 player.statLife += damage;
                 player.immune = true;
                 player.immuneTime = 2 * 60;
@@ -118,11 +118,11 @@ namespace Laugicality
             {
                 if (EtherialScarf && !EtherialScarfCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
                 {
-                    player.AddBuff(mod.BuffType("EtherialScarfCooldown"), 60 * 60 * 1, true);
+                    player.AddBuff(ModContent.BuffType("EtherialScarfCooldown"), 60 * 60 * 1, true);
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/EtherialChange"));
 
                     for (int i = 0; i < 20; i++)
-                        Dust.NewDust(player.position + player.velocity, player.width, player.height, mod.DustType("Etherial"), 0f, 0f);
+                        Dust.NewDust(player.position + player.velocity, player.width, player.height, ModContent.DustType<Etherial>(), 0f, 0f);
 
                     player.immune = true;
                     player.immuneTime = 2 * 60;
@@ -200,7 +200,7 @@ namespace Laugicality
 
         private void GetEtherialAccessories()
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             if(EtherialGel)
             {
@@ -210,7 +210,7 @@ namespace Laugicality
             }
 
             if (EtherialMagma && player.lavaWet)
-                player.AddBuff(mod.BuffType("EtherialRagnar"), 15 * 60);
+                player.AddBuff(ModContent.BuffType("EtherialRagnar"), 15 * 60);
 
             if (EtherialAnDio)
                 modPlayer.zProjImmune = true;
@@ -250,7 +250,7 @@ namespace Laugicality
 
         private void GetEtherialAccessoriesPost()
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             if (EtherialBees && player.honey)
             {

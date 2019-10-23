@@ -23,7 +23,7 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Obsidium Workbench");
             AddMapEntry(new Color(200, 200, 200), name);
-            dustType = mod.DustType("Magma");
+            dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.WorkBenches };
         }
@@ -35,7 +35,7 @@ namespace Laugicality.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType<ObsidiumWorkbench>());
+            Item.NewItem(i * 16, j * 16, 32, 16, ModContent.ItemType<ObsidiumWorkbench>());
         }
     }
 }

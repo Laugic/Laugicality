@@ -21,7 +21,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("CoginatorP");
+            item.shoot = ModContent.ProjectileType("CoginatorP");
             item.shootSpeed = 16f;
             item.useTurn = true;
             item.maxStack = 999;

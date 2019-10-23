@@ -36,7 +36,7 @@ namespace Laugicality.Projectiles.Ranged
 
             projectile.velocity.Y += projectile.ai[0];
             projectile.ai[0] += 0.04f;
-            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }
 
@@ -49,7 +49,7 @@ namespace Laugicality.Projectiles.Ranged
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("Frostball"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("Frostball"), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();
@@ -61,14 +61,14 @@ namespace Laugicality.Projectiles.Ranged
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, 2 * 60);
-            target.AddBuff(mod.BuffType("Frostbite"), 2 * 60);
+            target.AddBuff(ModContent.BuffType("Frostbite"), 2 * 60);
             while (power > 0)
             {
                 power -= 1;
                 float theta = (float)Main.rand.Next(440) / 70f;
                 float mag = (float)(Main.rand.Next(4, 7));
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), mod.ProjectileType("Frostball"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType("Frostball"), projectile.damage, 3f, Main.myPlayer);
             }
 
             projectile.Kill();

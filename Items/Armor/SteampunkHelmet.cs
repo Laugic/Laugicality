@@ -25,20 +25,20 @@ public override void SetStaticDefaults()
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("SteampunkJacket") && legs.type == mod.ItemType("SteampunkBoots");
+			return body.type == ModContent.ItemType("SteampunkJacket") && legs.type == ModContent.ItemType("SteampunkBoots");
         }
 
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDamage += .17f;
         }
 
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "+200% Mystic Duration\nSwitching Mysticisms unleashes a burst of Steam\nDecreased Mystic Burst cooldown\nAttacks inflict 'Steamy!', which makes enemies take more damage";
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.Steamified = true;
             modPlayer.MysticSteamBurst = true;
             modPlayer.MysticDuration += 2f;

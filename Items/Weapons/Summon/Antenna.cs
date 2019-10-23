@@ -30,9 +30,9 @@ namespace Laugicality.Items.Weapons.Summon
 			item.value = Item.buyPrice(0, 25, 0, 0);
 			item.rare = ItemRarityID.Lime;
 			item.UseSound = SoundID.Item44;
-			item.shoot = mod.ProjectileType<TV>();
+			item.shoot = ModContent.ProjectileType<TV>();
 			item.shootSpeed = 12f;
-			item.buffType = mod.BuffType(nameof(TVBuff));
+			item.buffType = ModContent.BuffType(nameof(TVBuff));
 			item.buffTime = 3600;
 		}
 		

@@ -17,8 +17,8 @@ namespace Laugicality.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-            if(player.GetModPlayer<LaugicalityPlayer>(mod).Connected <= 1)
-			    player.GetModPlayer<LaugicalityPlayer>(mod).Connected = 1;
+            if(LaugicalityPlayer.Get(player).Connected <= 1)
+			    LaugicalityPlayer.Get(player).Connected = 1;
 		}
 	}
 }

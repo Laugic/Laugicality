@@ -21,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("ObsidiumRock");
+            item.createTile = ModContent.TileType<ObsidiumRock>();
         }
         
         public override void AddRecipes()

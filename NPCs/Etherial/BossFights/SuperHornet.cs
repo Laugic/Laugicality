@@ -90,13 +90,13 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 counter = 0;
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
             }
         }
 
         public override void NPCLoot()
         {
-            if (Main.rand.Next(6) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), 1);
+            if (Main.rand.Next(6) == 0) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), 1);
         }
 
         private void MirrorTeleport(NPC npc, bool burst)

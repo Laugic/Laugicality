@@ -1,3 +1,5 @@
+using Terraria.ModLoader;
+
 namespace Laugicality.Items.Placeable
 {
     public class LavaGem : LaugicalityItem
@@ -19,7 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("LavaGem");
+            item.createTile = ModContent.TileType("LavaGem");
             item.bait = 20;
         }
         /*

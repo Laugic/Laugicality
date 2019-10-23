@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("BysmalRipper");
+            item.shoot = ModContent.ProjectileType("BysmalRipper");
             item.shootSpeed = 26f;
             item.useTurn = true;
             item.maxStack = 1;

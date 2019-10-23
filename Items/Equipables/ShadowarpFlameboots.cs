@@ -222,9 +222,9 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType<FrostwarpBoots>());
-            recipe.AddIngredient(mod.ItemType<AquaflameWaders>());
-            recipe.AddIngredient(mod.ItemType<Shadowflame>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<FrostwarpBoots>());
+            recipe.AddIngredient(ModContent.ItemType<AquaflameWaders>());
+            recipe.AddIngredient(ModContent.ItemType<Shadowflame>(), 4);
             recipe.AddIngredient(ItemID.SoulofFlight, 10);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

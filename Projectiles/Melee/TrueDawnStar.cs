@@ -23,7 +23,7 @@ namespace Laugicality.Projectiles.Melee
 
 		public override void AI()
 		{
-			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Dawn"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Dawn"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
             projectile.rotation = projectile.timeLeft * (float)Math.PI / 10f;
 
@@ -48,7 +48,7 @@ namespace Laugicality.Projectiles.Melee
             Main.PlaySound(SoundID.Item14, projectile.position);
             for (int k = 0; k < 18; k++)
             {
-                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, mod.DustType("Dawn"), Main.rand.Next((int)-15f, (int)15f), Main.rand.Next((int)-15f, (int)15f), 50, default(Color), 1.5f);
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType("Dawn"), Main.rand.Next((int)-15f, (int)15f), Main.rand.Next((int)-15f, (int)15f), 50, default(Color), 1.5f);
                 Main.dust[dust].noGravity = true;
             }
             projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
@@ -61,7 +61,7 @@ namespace Laugicality.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("TrueDawn"), 6 * 60 + Main.rand.Next(6 * 60));
+            target.AddBuff(ModContent.BuffType("TrueDawn"), 6 * 60 + Main.rand.Next(6 * 60));
             projectile.timeLeft = 4;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

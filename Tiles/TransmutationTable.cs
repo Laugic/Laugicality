@@ -32,7 +32,7 @@ namespace Laugicality.Tiles
             if (closer)
             {
                 Player player = Main.LocalPlayer;
-                player.AddBuff(mod.BuffType("Connected"), 60, true);
+                player.AddBuff(ModContent.BuffType("Connected"), 60, true);
             }*/
         }
 
@@ -66,7 +66,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 64, 64, mod.ItemType("TransmutationTable"));
+            Item.NewItem(i * 16, j * 16, 64, 64, ModContent.ItemType("TransmutationTable"));
         }
     }
 }

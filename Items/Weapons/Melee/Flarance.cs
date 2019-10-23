@@ -25,7 +25,7 @@ namespace Laugicality.Items.Weapons.Melee
             item.rare = ItemRarityID.Green;              
             item.UseSound = SoundID.Item1;    
             item.autoReuse = true;
-            item.shoot = mod.ProjectileType("Flarance");
+            item.shoot = ModContent.ProjectileType("Flarance");
             item.shootSpeed = 14f;
         }
 

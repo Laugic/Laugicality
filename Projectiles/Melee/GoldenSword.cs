@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using System;
+using Laugicality.Dusts;
 
 namespace Laugicality.Projectiles.Melee
 {
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Melee
 
 		public override void AI()
 		{
-			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Dawn"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Dawn>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f / 2;
         }
@@ -27,7 +28,7 @@ namespace Laugicality.Projectiles.Melee
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Dawn"), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Dawn>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
 			}
 		}
         

@@ -42,7 +42,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             
 			for (int k = 0; k < 2; k++)
             {

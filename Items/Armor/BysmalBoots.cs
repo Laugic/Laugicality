@@ -25,7 +25,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             player.moveSpeed += 0.15f;
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if(modPlayer.Etherable > 0 || LaugicalityWorld.downedEtheria)
             {
                 player.moveSpeed += 0.25f;

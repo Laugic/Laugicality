@@ -74,7 +74,7 @@ namespace Laugicality
         public static readonly HashSet<int> ezProjectiles =
             new HashSet<int>
             {
-                Mod.ProjectileType<AndeBall>(), Mod.ProjectileType<AndeEnergy>(), Mod.ProjectileType<AndeLaser3>(), Mod.ProjectileType<AndeShard>(), Mod.ProjectileType<AnDioEnergy>(), Mod.ProjectileType<AnDioSpiral>(), Mod.ProjectileType<AnDioSpiral2>(), Mod.ProjectileType<DioBall>(), Mod.ProjectileType<DioBallShot>(), Mod.ProjectileType<DioEnergy>(), Mod.ProjectileType<DioEnergyHoming>(), Mod.ProjectileType<DioShard>(),
+                ModContent.ProjectileType<AndeBall>(), ModContent.ProjectileType<AndeEnergy>(), ModContent.ProjectileType<AndeLaser3>(), ModContent.ProjectileType<AndeShard>(), ModContent.ProjectileType<AnDioEnergy>(), ModContent.ProjectileType<AnDioSpiral>(), ModContent.ProjectileType<AnDioSpiral2>(), ModContent.ProjectileType<DioBall>(), ModContent.ProjectileType<DioBallShot>(), ModContent.ProjectileType<DioEnergy>(), ModContent.ProjectileType<DioEnergyHoming>(), ModContent.ProjectileType<DioShard>(),
             };
 
         //Bosses that are immune to time stop
@@ -107,7 +107,7 @@ namespace Laugicality
         public static readonly HashSet<int> obsidiumTiles =
             new HashSet<int>
             {
-                 Mod.TileType<ObsidiumRock>(), Mod.TileType<ObsidiumBrick>(), Mod.TileType<Lycoris>(), Mod.TileType<Radiata>(), Mod.TileType<ObsidiumOreBlock>(), TileID.Obsidian,
+                 ModContent.TileType<ObsidiumRock>(), ModContent.TileType<ObsidiumBrick>(), ModContent.TileType<Lycoris>(), ModContent.TileType<Radiata>(), ModContent.TileType<ObsidiumOreBlock>(), TileID.Obsidian,
             };
 
         /* -------------- SLIMEKING -------------- */

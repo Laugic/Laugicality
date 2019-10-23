@@ -51,8 +51,8 @@ namespace Laugicality.Items.Weapons.Range
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SnowballCannon);
-            recipe.AddIngredient(mod.ItemType<FrostShard>());
-            recipe.AddIngredient(mod.ItemType<ChilledBar>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<FrostShard>());
+            recipe.AddIngredient(ModContent.ItemType<ChilledBar>(), 12);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

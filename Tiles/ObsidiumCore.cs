@@ -16,8 +16,8 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(200, 150, 50), name);
             mineResist = .5f;
             minPick = 50;
-            dustType = mod.DustType("Magma");
-            drop = mod.ItemType("ObsidiumCore");
+            dustType = ModContent.DustType<Magma>();
+            drop = ModContent.ItemType("ObsidiumCore");
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)

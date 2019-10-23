@@ -36,7 +36,7 @@ namespace Laugicality.NPCs.RockTwins
         {
             zImmune = true;
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Blue"), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Blue"), 0f, 0f);
             if (projectile.localAI[0] == 0f)
             {
                 AdjustMagnitude(ref projectile.velocity);
@@ -83,7 +83,7 @@ namespace Laugicality.NPCs.RockTwins
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
-            player.AddBuff(mod.BuffType("ForHonor"), 300, true);
+            player.AddBuff(ModContent.BuffType("ForHonor"), 300, true);
         }
 
         public override void DrawBehind(int index, List<int> drawCacheProjsBehindNpCsAndTiles, List<int> drawCacheProjsBehindNpCs, List<int> drawCacheProjsBehindProjectiles, List<int> drawCacheProjsOverWiresUI)

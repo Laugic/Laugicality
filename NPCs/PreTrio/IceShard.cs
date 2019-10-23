@@ -82,7 +82,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if(LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(mod.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
             }
             if (Main.expertMode)
             {

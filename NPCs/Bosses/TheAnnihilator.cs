@@ -57,7 +57,7 @@ namespace Laugicality.NPCs.Bosses
             npc.noGravity = true;
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
-            bossBag = mod.ItemType("AnnihilatorTreasureBag");
+            bossBag = ModContent.ItemType("AnnihilatorTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -240,14 +240,14 @@ namespace Laugicality.NPCs.Bosses
             {
                 poof = false;
 
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
-                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
+                Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Steam>(), 0f, 0f);
             }
 
             delay++;
@@ -269,7 +269,7 @@ namespace Laugicality.NPCs.Bosses
         {
             if (Main.expertMode)
             {
-                int debuff = mod.BuffType("Steamy");
+                int debuff = ModContent.BuffType("Steamy");
                 if (debuff >= 0)
                 {
                     player.AddBuff(debuff, 90, true);
@@ -290,13 +290,13 @@ namespace Laugicality.NPCs.Bosses
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CogOfEtheria"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("CogOfEtheria"), 1);
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SteamBar"), Main.rand.Next(15, 30));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SteamBar"), Main.rand.Next(15, 30));
                
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("SoulOfThought"), Main.rand.Next(20, 40));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("SoulOfThought"), Main.rand.Next(20, 40));
             }
 
             if (Main.expertMode)

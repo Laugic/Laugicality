@@ -11,7 +11,7 @@ namespace Laugicality.Tiles
         {
             Main.tileSolid[Type] = true;
             dustType = 0;
-            drop = mod.ItemType<Barrier>();
+            drop = ModContent.ItemType<Barrier>();
             minPick = 225;
         }
 

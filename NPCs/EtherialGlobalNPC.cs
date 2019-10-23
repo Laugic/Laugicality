@@ -169,7 +169,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 50000;
                 npc.life = npc.lifeMax;
                 npc.defense = 40;
-                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>().zImmune = true;
             }
 
             if (npc.type == mod.NPCType("Andesia"))
@@ -178,7 +178,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 50000;
                 npc.life = npc.lifeMax;
                 npc.defense = 40;
-                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>().zImmune = true;
             }
 
             if (npc.type == mod.NPCType<AnDio3>())
@@ -187,7 +187,7 @@ namespace Laugicality.NPCs
                 npc.lifeMax = 120000;
                 npc.life = npc.lifeMax;
                 npc.defense = 60;
-                npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).zImmune = true;
+                npc.GetGlobalNPC<LaugicalGlobalNPCs>().zImmune = true;
             }
 
             if (npc.type == NPCID.WallofFlesh)
@@ -619,7 +619,7 @@ namespace Laugicality.NPCs
                 if (Main.netMode != 1)
                 {
                     if (Main.rand.Next(2) == 0)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialStinger"), (int)(npc.damage * .7), 3, Main.myPlayer);
                     else
                         NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SuperBee"));
                 }
@@ -876,7 +876,7 @@ namespace Laugicality.NPCs
             }
             if (npc.life < npc.lifeMax / 2)
             {
-                Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
+                Main.player[npc.target].AddBuff(ModContent.BuffType("WingClip"), 2, true);
             }
         }
 
@@ -890,15 +890,15 @@ namespace Laugicality.NPCs
                 {
                     float mag = 32;
                     _theta = (float)Math.PI * 2 * Main.rand.NextFloat();
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(_theta) * mag, (float)Math.Sin(_theta) * mag, mod.ProjectileType("EtherialSpore"), (int)(npc.damage * .5), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(_theta) * mag, (float)Math.Sin(_theta) * mag, ModContent.ProjectileType("EtherialSpore"), (int)(npc.damage * .5), 3, Main.myPlayer);
                     _theta = (float)Math.PI * 2 * Main.rand.NextFloat();
                     if (npc.life <= npc.lifeMax / 2)
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(_theta) * mag, (float)Math.Sin(_theta) * mag, mod.ProjectileType("EtherialSpore"), (int)(npc.damage * .5), 3, Main.myPlayer);
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)Math.Cos(_theta) * mag, (float)Math.Sin(_theta) * mag, ModContent.ProjectileType("EtherialSpore"), (int)(npc.damage * .5), 3, Main.myPlayer);
                 }
             }
             if (npc.life <= npc.lifeMax / 2)
             {
-                Main.player[npc.target].AddBuff(mod.BuffType("WingClip"), 2, true);
+                Main.player[npc.target].AddBuff(ModContent.BuffType("WingClip"), 2, true);
             }
         }
 
@@ -1060,7 +1060,7 @@ namespace Laugicality.NPCs
                     player.AddBuff(BuffID.Confused, 4 * 60, true);
                 }
                 if (npc.type == mod.NPCType<TheAnnihilator>() || npc.type == mod.NPCType("MechanicalCrawler") || npc.type == mod.NPCType("MechanicalMimic") || npc.type == mod.NPCType("MechanicalShelly") || npc.type == mod.NPCType("MechanicalSlimer") || npc.type == mod.NPCType("MehcanicalCreeper"))
-                    player.AddBuff(mod.BuffType("Frostbite"), 8 * 60, true);
+                    player.AddBuff(ModContent.BuffType("Frostbite"), 8 * 60, true);
                 if (npc.type == NPCID.DukeFishron && _counter <= 0)
                 {
                     Projectile.NewProjectile(player.Center, new Vector2(0, 0), ProjectileID.SharknadoBolt, npc.damage, 8);
@@ -1075,26 +1075,26 @@ namespace Laugicality.NPCs
 
             if (LaugicalityWorld.downedEtheria)
             {
-                if (npc.boss && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != NPCID.EaterofWorldsHead) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), Main.rand.Next(5, 11));
+                if (npc.boss && npc.type != NPCID.EaterofWorldsBody && npc.type != NPCID.EaterofWorldsTail && npc.type != NPCID.EaterofWorldsHead) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), Main.rand.Next(5, 11));
 
                 if (npc.type == 4)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EyeOfEtheria"), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EyeOfEtheria"), 1);
                 }
 
                 if (npc.type == 113)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEnergy"), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEnergy"), 1);
                 }
 
                 if (npc.type == 50)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialGel"), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialGel"), 1);
                 }
 
                 if (npc.type == 35)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialSkull"), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialSkull"), 1);
                     foreach (NPC dungeonGuardian in Main.npc)
                     {
                         if (dungeonGuardian.type == NPCID.DungeonGuardian)
@@ -1106,8 +1106,8 @@ namespace Laugicality.NPCs
                 {
                     if (NPC.CountNPCS(13) < 2 && NPC.CountNPCS(14) < 2)
                     {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialScarf>(), 1);
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialEssence>(), Main.rand.Next(5, 11));
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialScarf>(), 1);
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialEssence>(), Main.rand.Next(5, 11));
 
                         if (laugicalityPlayer.fullBysmal > 0)
                             laugicalityPlayer.CycleBysmalPowers(13);
@@ -1122,37 +1122,37 @@ namespace Laugicality.NPCs
 
                 if (npc.type == NPCID.BrainofCthulhu)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<BrainOfEtheria>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BrainOfEtheria>(), 1);
                 }
 
                 if (npc.type == NPCID.QueenBee)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialPack>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialPack>(), 1);
                 }
 
                 if (npc.type == NPCID.Golem)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<StoneOfEtheria>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<StoneOfEtheria>(), 1);
                 }
 
                 if (npc.type == NPCID.Plantera)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialSac>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialSac>(), 1);
                 }
 
                 if (npc.type == NPCID.MoonLordCore)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialGlobe>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialGlobe>(), 1);
                 }
 
                 if (npc.type == NPCID.TheDestroyer)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialDestructionCore>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialDestructionCore>(), 1);
                 }
 
                 if (npc.type == 125 && NPC.CountNPCS(126) == 0 || npc.type == 126 && NPC.CountNPCS(125) == 0)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialConjurationCore>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialConjurationCore>(), 1);
 
                     if (laugicalityPlayer.fullBysmal > 0)
                         laugicalityPlayer.CycleBysmalPowers(125);
@@ -1160,12 +1160,12 @@ namespace Laugicality.NPCs
 
                 if (npc.type == NPCID.SkeletronPrime)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialIllusionCore>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialIllusionCore>(), 1);
                 }
 
                 if (npc.type == NPCID.DukeFishron)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType<EtherialTruffle>(), 1);
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtherialTruffle>(), 1);
                 }
 
                 if (!laugicalityPlayer.BysmalAbsorbDisabled)
@@ -1260,9 +1260,9 @@ namespace Laugicality.NPCs
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                if (npc.type == NPCID.ScorpionBlack && Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).EtherVision)
+                if (npc.type == NPCID.ScorpionBlack && Main.LocalLaugicalityPlayer.Get(player).EtherVision)
                     return true;
-                if (Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod).EtherVision)
+                if (Main.LocalLaugicalityPlayer.Get(player).EtherVision)
                     return base.CanChat(npc);
                 return false;
             }
@@ -1299,7 +1299,7 @@ namespace Laugicality.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Color drawColor)
         {
-            LaugicalityPlayer modPlayer = Main.LocalPlayer.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = Main.LocalLaugicalityPlayer.Get(player);
             if (!bitherial)
             {
                 if (!friend || !_invin)

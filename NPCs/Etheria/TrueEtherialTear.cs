@@ -87,7 +87,7 @@ namespace Laugicality.NPCs.Etheria
 
                 if (Main.netMode != 1)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("TrueEtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
                 }
             }
 

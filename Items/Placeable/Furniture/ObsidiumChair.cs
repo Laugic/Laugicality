@@ -18,14 +18,14 @@ namespace Laugicality.Items.Placeable.Furniture
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType<ObsidiumChairTile>();
+            item.createTile = ModContent.TileType<ObsidiumChairTile>();
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.WorkBenches);
-            recipe.AddIngredient(mod.ItemType<ObsidiumRock>(), 6);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 6);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

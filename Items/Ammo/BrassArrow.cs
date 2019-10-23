@@ -22,7 +22,7 @@ namespace Laugicality.Items.Ammo
 			item.knockBack = 4f;
 			item.value = 10;
 			item.rare = ItemRarityID.LightPurple;
-			item.shoot = mod.ProjectileType("BrassArrow");
+			item.shoot = ModContent.ProjectileType("BrassArrow");
 			item.shootSpeed = 14f;
 			item.ammo = AmmoID.Arrow;
 		}

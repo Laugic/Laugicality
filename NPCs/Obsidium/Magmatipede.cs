@@ -126,9 +126,9 @@ namespace Laugicality.NPCs.Obsidium
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedRagnar && Main.rand.Next(2) == 0)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumChunk"));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumChunk"));
             else
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ObsidiumOre"), Main.rand.Next(2, 5));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("ObsidiumOre"), Main.rand.Next(2, 5));
         }
     }
 

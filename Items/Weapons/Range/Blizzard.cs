@@ -50,7 +50,7 @@ namespace Laugicality.Items.Weapons.Range
             int numberProjectiles = 1;
             if (Main.rand.Next(8) == 0)
                 numberProjectiles++;
-            if (((LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>(mod).Etherable > 0) && LaugicalityWorld.downedTrueEtheria))
+            if (((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria))
                 numberProjectiles++;
             for (int i = 0; i < numberProjectiles; i++)
             {

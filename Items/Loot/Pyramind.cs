@@ -22,7 +22,7 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.maxMinions += 1;
             player.statManaMax2 += 40;
             modPlayer.LuxRegen += .02f;

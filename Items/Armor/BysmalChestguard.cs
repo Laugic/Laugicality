@@ -29,7 +29,7 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.Etherable > 0 || LaugicalityWorld.downedEtheria)
                 item.defense = 40;
             else
@@ -39,12 +39,12 @@ namespace Laugicality.Items.Armor
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return head.type == mod.ItemType("BysmalMask") && legs.type == mod.ItemType("BysmalBoots");
+            return head.type == ModContent.ItemType("BysmalMask") && legs.type == ModContent.ItemType("BysmalBoots");
         }
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "Absorb the power of up to 3 Etherial creatures";
             if (modPlayer.BysmalAbsorbDisabled)
                 player.setBonus += "\nLocked- Will not absorb any new bonuses";

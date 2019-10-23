@@ -73,7 +73,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.buffImmune[24] = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
             damage = 32;
-            bossBag = mod.ItemType("RagnarTreasureBag");
+            bossBag = ModContent.ItemType("RagnarTreasureBag");
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -94,7 +94,7 @@ namespace Laugicality.NPCs.PreTrio
             bitherial = true;
             Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
             Player player = Main.player[npc.target];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (Main.player[npc.target].statLife <= 0) npc.position.Y += 60;
             if (modPlayer.zoneObsidium == false)
                 npc.dontTakeDamage = true;
@@ -250,15 +250,15 @@ namespace Laugicality.NPCs.PreTrio
             if (shoot == 1 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, mod.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ModContent.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
                 if (Main.expertMode)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("RockLooseMini"), damage / 2, 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("RockLooseMini"), damage / 2, 3, Main.myPlayer);
             }
             //Big Boom
             if (shoot == 2 && Main.netMode != 1)
             {
                 shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, mod.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
+                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, ModContent.ProjectileType("RockFalling"), (int)(damage * .7), 3, Main.myPlayer);
 
                 if (Main.expertMode && npc.life < npc.lifeMax * 2 / 3)
                 {
@@ -299,7 +299,7 @@ namespace Laugicality.NPCs.PreTrio
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MoltenEtheria"), 1);
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("MoltenEtheria"), 1);
             }
 
             if (Main.expertMode)
@@ -308,7 +308,7 @@ namespace Laugicality.NPCs.PreTrio
             }
             if (!Main.expertMode)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("DarkShard"), Main.rand.Next(1, 3));
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("DarkShard"), Main.rand.Next(1, 3));
                 int ran = Main.rand.Next(1, 7);
                 if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 49, 1);
                 if (ran == 2) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicMirror, 1);

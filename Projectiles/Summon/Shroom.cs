@@ -33,7 +33,7 @@ namespace Laugicality.Projectiles.Summon
                 else
                     dir = 1;
             }
-            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Shroom"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             if (projectile.velocity.Y < 2)
                 projectile.velocity.Y += .1f;
             if(dir == 1)
@@ -53,7 +53,7 @@ namespace Laugicality.Projectiles.Summon
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("Spored"), 90, true);
+            target.AddBuff(ModContent.BuffType("Spored"), 90, true);
         }
     }
 }

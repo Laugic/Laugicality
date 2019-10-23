@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
 {
@@ -33,7 +34,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 
             Player player = Main.player[projectile.owner];
             if (index == 0)
-                index = player.ownedProjectileCounts[mod.ProjectileType("MarsDestruction")];
+                index = player.ownedProjectileCounts[ModContent.ProjectileType("MarsDestruction")];
             projectile.tileCollide = false;
             theta += (float)(Math.PI / 40);
             float mag = 32 + index * 12;

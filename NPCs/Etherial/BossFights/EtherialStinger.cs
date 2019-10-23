@@ -84,7 +84,7 @@ namespace Laugicality.NPCs.Etherial.BossFights
         {
             if (LaugicalityWorld.downedEtheria)
             {
-                target.AddBuff(mod.BuffType("Frostbite"), 4 * 60, true);
+                target.AddBuff(ModContent.BuffType("Frostbite"), 4 * 60, true);
             }
         }
     }

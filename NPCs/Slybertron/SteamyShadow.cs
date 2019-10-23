@@ -33,8 +33,8 @@ namespace Laugicality.NPCs.Slybertron
 		public override void AI()
         {
             bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), 0f, 0f);
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType<Steam>(), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), 0f, 0f);
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Steam>(), 0f, 0f);
             projectile.rotation += 6;
             if (projectile.localAI[0] == 0f)
             {
@@ -81,7 +81,7 @@ namespace Laugicality.NPCs.Slybertron
         public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
         {
             //NPCs.Slybertron.Slybertron.coginatorHits += 1;
-            int debuff = mod.BuffType("Steamy");
+            int debuff = ModContent.BuffType("Steamy");
             if (debuff >= 0)
             {
                 target.AddBuff(debuff, 90, true);

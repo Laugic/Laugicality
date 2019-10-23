@@ -1,4 +1,6 @@
-﻿namespace Laugicality.Items.Placeable
+﻿using Terraria.ModLoader;
+
+namespace Laugicality.Items.Placeable
 {
     public class Holystone : LaugicalityItem
     {
@@ -19,7 +21,7 @@
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType("Holystone");
+            item.createTile = ModContent.TileType("Holystone");
         }
     }
 }

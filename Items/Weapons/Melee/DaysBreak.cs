@@ -29,20 +29,20 @@ namespace Laugicality.Items.Weapons.Melee
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
-            item.shoot = mod.ProjectileType("GoldenSword");
+            item.shoot = ModContent.ProjectileType("GoldenSword");
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             float theta = (float)Main.rand.NextDouble() * 3.14f / 6 + 3.14f * 255f/180f;
             float mag = 600;
-            Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), mod.ProjectileType("DawnStar"), damage, 3, Main.myPlayer);
+            Projectile.NewProjectile((int)(Main.MouseWorld.X) + (int)(mag * Math.Cos(theta)), (int)(player.position.Y) + (int)(mag * Math.Sin(theta)), -15 * (float)Math.Cos(theta), -15 * (float)Math.Sin(theta), ModContent.ProjectileType("DawnStar"), damage, 3, Main.myPlayer);
             return true;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(mod.BuffType("Dawn"), 5 * 60 + Main.rand.Next(3 * 60));
+            target.AddBuff(ModContent.BuffType("Dawn"), 5 * 60 + Main.rand.Next(3 * 60));
         }
 
         public override void AddRecipes()
@@ -50,8 +50,8 @@ namespace Laugicality.Items.Weapons.Melee
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Starfury);
             recipe.AddIngredient(ItemID.EnchantedSword);
-            recipe.AddIngredient(mod.ItemType("Flarance"));
-            recipe.AddIngredient(mod.ItemType("Mariana"));
+            recipe.AddIngredient(ModContent.ItemType("Flarance"));
+            recipe.AddIngredient(ModContent.ItemType("Mariana"));
             recipe.AddTile(TileID.SkyMill);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

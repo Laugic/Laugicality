@@ -10,27 +10,27 @@ namespace Laugicality.Tiles
         {
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileMerge[56][mod.TileType("ObsidiumRock")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumRock")][56] = true;
-            Main.tileMerge[mod.TileType("ObsidiumRock")][mod.TileType("ObsidiumOreBlock")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumOreBlock")][mod.TileType("ObsidiumRock")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumRock")][mod.TileType("ObsidiumBrick")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumBrick")][mod.TileType("ObsidiumRock")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumOreBlock")][mod.TileType("ObsidiumBrick")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumBrick")][mod.TileType("ObsidiumOreBlock")] = true;
-            Main.tileMerge[56][mod.TileType("ObsidiumBrick")] = true;
-            Main.tileMerge[mod.TileType("ObsidiumBrick")][56] = true;
-            Main.tileMerge[mod.TileType("ObsidiumBrick")][58] = true;
-            Main.tileMerge[mod.TileType("ObsidiumOreBlock")][58] = true;
-            Main.tileMerge[mod.TileType("ObsidiumRock")][58] = true;
-            Main.tileMerge[58][mod.TileType("ObsidiumBrick")] = true;
-            Main.tileMerge[58][mod.TileType("ObsidiumOreBlock")] = true;
-            Main.tileMerge[58][mod.TileType("ObsidiumRock")] = true;
+            Main.tileMerge[56][ModContent.TileType<ObsidiumRock>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumRock>()][56] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumRock>()][ModContent.TileType<ObsidiumOreBlock>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumOreBlock>()][ModContent.TileType<ObsidiumRock>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumRock>()][ModContent.TileType<ObsidiumBrick>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumBrick>()][ModContent.TileType<ObsidiumRock>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumOreBlock>()][ModContent.TileType<ObsidiumBrick>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumBrick>()][ModContent.TileType<ObsidiumOreBlock>()] = true;
+            Main.tileMerge[56][ModContent.TileType<ObsidiumBrick>()] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumBrick>()][56] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumBrick>()][58] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumOreBlock>()][58] = true;
+            Main.tileMerge[ModContent.TileType<ObsidiumRock>()][58] = true;
+            Main.tileMerge[58][ModContent.TileType<ObsidiumBrick>()] = true;
+            Main.tileMerge[58][ModContent.TileType<ObsidiumOreBlock>()] = true;
+            Main.tileMerge[58][ModContent.TileType<ObsidiumRock>()] = true;
             Main.tileLighted[Type] = false;
             AddMapEntry(new Color(50, 50, 50));
             mineResist = 1f;
             minPick = 20;
-            drop = mod.ItemType("ObsidiumRock");
+            drop = ModContent.ItemType<Items.Placeable.ObsidiumRock>();
             soundType = 21;
             dustType = 1;
             //soundStyle = 1;
@@ -60,7 +60,7 @@ namespace Laugicality.Tiles
             {
                 if (Main.rand.Next(4) == 0)
                 {
-                    WorldGen.PlaceTile(i, j - 1, mod.TileType("LavaGem"), true);
+                    WorldGen.PlaceTile(i, j - 1, ModContent.TileType("LavaGem"), true);
                     return true;
                 }
             }
@@ -71,17 +71,17 @@ namespace Laugicality.Tiles
         {
             if (Main.tile[i, j - 1].type == 0 && Main.rand.Next(4) == 0)
             {
-                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumRocks"), true);
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ObsidiumRocks>(), true);
                 return true;
             }
             else if(Main.tile[i, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.rand.Next(3) == 0)
             {
-                WorldGen.PlaceTile(i, j - 1, mod.TileType("ObsidiumStalagmites"), true);
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<ObsidiumStalagmites>(), true);
                 return true;
             }
             else if (Main.tile[i, j + 1].type == 0 && Main.tile[i, j + 2].type == 0 && Main.rand.Next(2) == 0)
             {
-                WorldGen.PlaceTile(i, j + 1, mod.TileType("ObsidiumStalactites"), true);
+                WorldGen.PlaceTile(i, j + 1, ModContent.TileType<ObsidiumStalactites>(), true);
                 return true;
             }
             return false;
@@ -93,7 +93,7 @@ namespace Laugicality.Tiles
             {
                 if(Main.rand.Next(12) == 0)
                 {
-                    WorldGen.PlaceTile(i, j - 1, mod.TileType("LargeLavaGem"), true);
+                    WorldGen.PlaceTile(i, j - 1, ModContent.TileType<LargeLavaGem>(), true);
                     return true;
                 }
             }

@@ -18,8 +18,8 @@ namespace Laugicality.Buffs
         {
             if (npc.boss)
                 return;
-            npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).Orbital = true;
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>(mod).damageMult * 1.1f;
+            npc.GetGlobalNPC<LaugicalGlobalNPCs>().Orbital = true;
+            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>().damageMult * 1.1f;
         }
     }
 }

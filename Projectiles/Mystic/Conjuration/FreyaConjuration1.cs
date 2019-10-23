@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -40,7 +41,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 			
 			Lighting.AddLight(projectile.position, 0.1f, 0.1f, 0.4f);
 			
@@ -55,7 +56,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
-                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, mod.ProjectileType("FreyaConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, ModContent.ProjectileType("FreyaConjuration2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
 					}
 					sporeTimer = 0;
                 }

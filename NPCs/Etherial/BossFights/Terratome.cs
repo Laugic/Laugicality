@@ -143,13 +143,13 @@ namespace Laugicality.NPCs.Etherial.BossFights
             {
                 shootDelay = Main.rand.Next(0, 60);
                 if (Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, mod.ProjectileType("EtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
+                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType("EtherialYeet"), (int)(npc.damage / 2), 3, Main.myPlayer);
             }
         }
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EtherialEssence"), 5);
+            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType("EtherialEssence"), 5);
         }
 
         private void MirrorTeleport(NPC npc, bool burst)

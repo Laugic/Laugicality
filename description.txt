@@ -9,6 +9,11 @@ Over 420 new Items, including a new way to use Potions
 A new biome- The Obsidium
 7 and 1/3 new Armor sets
 And lots more planned features!
+
+-----
+v0.14.1
+Updated to tModLoader 0.11.5 (by Webmilio)
+
 -----
 v0.14
 Revamped the Soul Stone!

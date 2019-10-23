@@ -2,6 +2,7 @@ using Laugicality.Items.Equipables;
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
 {
@@ -32,9 +33,9 @@ namespace Laugicality.Items.Loot
 
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType<DarkShard>(), Main.rand.Next(2, 4));
-            player.QuickSpawnItem(mod.ItemType<MoltenCore>(), 1);
-            player.QuickSpawnItem(mod.ItemType<ObsidiumChunk>(), Main.rand.Next(3, 5));
+            player.QuickSpawnItem(ModContent.ItemType<DarkShard>(), Main.rand.Next(2, 4));
+            player.QuickSpawnItem(ModContent.ItemType<MoltenCore>(), 1);
+            player.QuickSpawnItem(ModContent.ItemType<ObsidiumChunk>(), Main.rand.Next(3, 5));
             
             int obsidiumItem = 0;
             int rand = Main.rand.Next(7);
@@ -44,22 +45,22 @@ namespace Laugicality.Items.Loot
                     obsidiumItem = ItemID.LavaCharm;
                     break;
                 case 1:
-                    obsidiumItem = mod.ItemType<ObsidiumLily>();
+                    obsidiumItem = ModContent.ItemType<ObsidiumLily>();
                     break;
                 case 2:
-                    obsidiumItem = mod.ItemType<FireDust>();
+                    obsidiumItem = ModContent.ItemType<FireDust>();
                     break;
                 case 3:
-                    obsidiumItem = mod.ItemType<Eruption>();
+                    obsidiumItem = ModContent.ItemType<Eruption>();
                     break;
                 case 4:
-                    obsidiumItem = mod.ItemType<CrystalizedMagma>();
+                    obsidiumItem = ModContent.ItemType<CrystalizedMagma>();
                     break;
                 case 5:
-                    obsidiumItem = mod.ItemType<Ragnashia>();
+                    obsidiumItem = ModContent.ItemType<Ragnashia>();
                     break;
                 default:
-                    obsidiumItem = mod.ItemType<MagmaHeart>();
+                    obsidiumItem = ModContent.ItemType<MagmaHeart>();
                     break;
             }
             player.QuickSpawnItem(obsidiumItem, 1);

@@ -24,13 +24,13 @@ namespace Laugicality.Items.Armor
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("ShroomChest") && legs.type == mod.ItemType("ShroomPants");
+			return body.type == ModContent.ItemType("ShroomChest") && legs.type == ModContent.ItemType("ShroomPants");
         }
 
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDamage += .04f;
         }
 
@@ -45,7 +45,7 @@ namespace Laugicality.Items.Armor
         }
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             player.setBonus = "Attacks cast using Overflow can pass through walls\nWhen at Max Potentia, Overflow slowly accrues over time";
             modPlayer.ShroomOverflow = 2;
 

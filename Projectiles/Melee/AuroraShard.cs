@@ -21,7 +21,7 @@ namespace Laugicality.Projectiles.Melee
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            if(Main.rand.Next(5) ==  0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if(Main.rand.Next(5) ==  0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("Frost"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             projectile.ai[0] += .01f;
             projectile.velocity.Y += projectile.ai[0];
             projectile.velocity.X *= .98f;

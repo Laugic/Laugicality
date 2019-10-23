@@ -1,5 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -18,7 +19,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			projectile.friendly = true;
             projectile.ignoreWater = true;
 			projectile.extraUpdates = 10;
-            buffID = mod.BuffType("CosmicDisarray");
+            buffID = ModContent.BuffType("CosmicDisarray");
         }
 
         public override void AI()
@@ -43,7 +44,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 			{
 				if (Main.myPlayer == projectile.owner)
 				{
-					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(0.15f, 1.6f), projectile.velocity.Y * Main.rand.NextFloat(0.15f, 1.5f), mod.ProjectileType("ZuesBoltIllusion2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
+					Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X * Main.rand.NextFloat(0.15f, 1.6f), projectile.velocity.Y * Main.rand.NextFloat(0.15f, 1.5f), ModContent.ProjectileType("ZuesBoltIllusion2"), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
 				}
 				timer = 0;
             }

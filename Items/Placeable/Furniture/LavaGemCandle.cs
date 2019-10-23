@@ -18,15 +18,15 @@ namespace Laugicality.Items.Placeable.Furniture
             item.useStyle = 1;
             item.consumable = true;
             item.value = 150;
-            item.createTile = mod.TileType<LavaGemCandleTile>();
+            item.createTile = ModContent.TileType<LavaGemCandleTile>();
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.WorkBenches);
-            recipe.AddIngredient(mod.ItemType<ObsidiumRock>(), 4);
-            recipe.AddIngredient(mod.ItemType<LavaGem>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 1);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

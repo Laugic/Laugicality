@@ -20,7 +20,7 @@ namespace Laugicality.Tiles
             name.SetDefault("Steam V.E.N.T.");
             AddMapEntry(new Color(200, 200, 100), name);
             disableSmartCursor = false;
-            dustType = mod.DustType("Brass");
+            dustType = ModContent.DustType("Brass");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -30,7 +30,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 112, 64, mod.ItemType("SteamVENT"));
+            Item.NewItem(i * 16, j * 16, 112, 64, ModContent.ItemType<Items.Placeable.SteamVENT>());
         }
     }
 }

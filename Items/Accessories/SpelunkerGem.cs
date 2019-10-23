@@ -32,8 +32,8 @@ namespace Laugicality.Items.Accessories
 
         public override bool UseItem(Player player)
         {
-            player.GetModPlayer<LaugicalityPlayer>(mod).spelunker = !player.GetModPlayer<LaugicalityPlayer>(mod).spelunker;
-            Main.NewText(player.GetModPlayer<LaugicalityPlayer>(mod).spelunker.ToString(), 250, 250, 0);
+            LaugicalityPlayer.Get(player).spelunker = !LaugicalityPlayer.Get(player).spelunker;
+            Main.NewText(LaugicalityPlayer.Get(player).spelunker.ToString(), 250, 250, 0);
             return true;
         }
 

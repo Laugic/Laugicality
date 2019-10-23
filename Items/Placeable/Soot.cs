@@ -2,6 +2,7 @@
 using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
 {
@@ -25,7 +26,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
-            item.createTile = mod.TileType<SootTile>();
+            item.createTile = ModContent.TileType<SootTile>();
         }
 
         public override void ExtractinatorUse(ref int resultType, ref int resultStack)
@@ -92,7 +93,7 @@ namespace Laugicality.Items.Placeable
                     resultType = ItemID.PlatinumOre;
                     break;
                 default:
-                    resultType = mod.ItemType<ObsidiumOre>();
+                    resultType = ModContent.ItemType<ObsidiumOre>();
                     break;
             }
             if (Main.rand.NextBool(8))
@@ -122,7 +123,7 @@ namespace Laugicality.Items.Placeable
                     resultType = ItemID.Diamond;
                     break;
                 default:
-                    resultType = mod.ItemType<LavaGem>();
+                    resultType = ModContent.ItemType<LavaGem>();
                     break;
             }
             if (Main.rand.NextBool(8))
@@ -144,22 +145,22 @@ namespace Laugicality.Items.Placeable
                         resultType = ItemID.LavaCharm;
                         break;
                     case 1:
-                        resultType = mod.ItemType<ObsidiumLily>();
+                        resultType = ModContent.ItemType<ObsidiumLily>();
                         break;
                     case 2:
-                        resultType = mod.ItemType<FireDust>();
+                        resultType = ModContent.ItemType<FireDust>();
                         break;
                     case 3:
-                        resultType = mod.ItemType<Eruption>();
+                        resultType = ModContent.ItemType<Eruption>();
                         break;
                     case 4:
-                        resultType = mod.ItemType<CrystalizedMagma>();
+                        resultType = ModContent.ItemType<CrystalizedMagma>();
                         break;
                     case 5:
-                        resultType = mod.ItemType<Ragnashia>();
+                        resultType = ModContent.ItemType<Ragnashia>();
                         break;
                     default:
-                        resultType = mod.ItemType<MagmaHeart>();
+                        resultType = ModContent.ItemType<MagmaHeart>();
                         break;
                 }
             }

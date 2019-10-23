@@ -149,7 +149,7 @@ namespace Laugicality.Items
 
         public override void GetWeaponDamage(Player player, ref int damage)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             float damageMult = 1f;
             damageMult = modPlayer.MysticDamage + (player.allDamage - 1);
 
@@ -186,7 +186,7 @@ namespace Laugicality.Items
 
         public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             mult += modPlayer.MysticDamage - 1;
 
             switch (modPlayer.MysticMode)
@@ -222,20 +222,20 @@ namespace Laugicality.Items
 
         public override void HoldItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             switch (modPlayer.MysticMode)
             {
                 case 1 :
-                    player.AddBuff(mod.BuffType("Destruction"), 1, true);
+                    player.AddBuff(ModContent.BuffType("Destruction"), 1, true);
                     Destruction(modPlayer);
                     break;
                 case 2:
-                    player.AddBuff(mod.BuffType("Illusion"), 1, true);
+                    player.AddBuff(ModContent.BuffType("Illusion"), 1, true);
                     Illusion(modPlayer);
                     break;
                 case 3:
-                    player.AddBuff(mod.BuffType("Conjuration"), 1, true);
+                    player.AddBuff(ModContent.BuffType("Conjuration"), 1, true);
                     Conjuration(modPlayer);
                     break;
             }
@@ -284,7 +284,7 @@ namespace Laugicality.Items
 
         /*public override bool CanUseItem(Player player)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             switch (modPlayer.MysticMode)
             {
                 case 1:
@@ -299,7 +299,7 @@ namespace Laugicality.Items
         
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             switch (modPlayer.MysticMode)
             {

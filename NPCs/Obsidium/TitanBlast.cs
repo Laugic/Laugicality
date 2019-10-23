@@ -39,7 +39,7 @@ namespace Laugicality.NPCs.Obsidium
         
         public override void AI()
         {
-            Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, mod.DustType("Magma"), 0f, 0f);
+            Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<Magma>(), 0f, 0f);
             if (_theta == -1)
                 _theta = npc.ai[1] * 6.28f / 8;
             _theta += 3.14f / 80;

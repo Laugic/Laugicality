@@ -36,12 +36,12 @@ namespace Laugicality.Projectiles.Magic
         {
             projectile.rotation =  -1.57f / 2;
             Player projOwner = Main.player[projectile.owner];
-            projOwner.AddBuff(mod.BuffType("ForHonor"), 120);
+            projOwner.AddBuff(ModContent.BuffType("ForHonor"), 120);
             delay -= 1;
             if (delay % 10 == 0 && !reverse && Main.myPlayer == projectile.owner)
             {
-                    Projectile.NewProjectile(projectile.Center.X - 3 + Main.rand.Next(0, 6), projectile.Center.Y - 360 - 3 + Main.rand.Next(0, 6), 0, 0, mod.ProjectileType("Dioritite"), (int)(projectile.damage), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X - 3 + Main.rand.Next(0, 6), projectile.Center.Y + 360 - 3 + Main.rand.Next(0, 6), 0, 0, mod.ProjectileType("Andesimite"), (int)(projectile.damage), 3, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X - 3 + Main.rand.Next(0, 6), projectile.Center.Y - 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType("Dioritite"), (int)(projectile.damage), 3, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X - 3 + Main.rand.Next(0, 6), projectile.Center.Y + 360 - 3 + Main.rand.Next(0, 6), 0, 0, ModContent.ProjectileType("Andesimite"), (int)(projectile.damage), 3, Main.myPlayer);
             }
             if(delay <= 0 && reverse == false)
             {

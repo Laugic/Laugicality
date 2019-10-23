@@ -40,7 +40,7 @@ namespace Laugicality.Projectiles.Thrown
             float dist = Vector2.Distance(Main.player[projectile.owner].Center, projectile.Center);
             if (reverse)
             {
-                if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("White"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+                if (Main.rand.Next(4) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType("White"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
                 projectile.tileCollide = false;
                 tVel = dist / 15;
                 if (vMag < vMax && vMag < tVel)

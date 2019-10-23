@@ -49,7 +49,7 @@ namespace Laugicality.NPCs
 			int num = npc.life > 0 ? 1 : 5;
 			for (int k = 0; k < num; k++)
 			{
-				Dust.NewDust(npc.position, npc.width, npc.height, mod.DustType<Steam>());
+				Dust.NewDust(npc.position, npc.width, npc.height, ModContent.DustType<Steam>());
 			}
 		}
 
@@ -149,10 +149,10 @@ namespace Laugicality.NPCs
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
-            shop.item[nextSlot].SetDefaults(mod.ItemType("Gear"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType("Gear"));
             nextSlot++;
 
-			shop.item[nextSlot].SetDefaults(mod.ItemType("ToyTrain"));
+			shop.item[nextSlot].SetDefaults(ModContent.ItemType("ToyTrain"));
 			nextSlot++;
 
             shop.item[nextSlot].SetDefaults(544);
@@ -167,15 +167,15 @@ namespace Laugicality.NPCs
             shop.item[nextSlot].value = 50000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(mod.ItemType("MechanicalMonitor"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType("MechanicalMonitor"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(mod.ItemType("SteamCrown"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType("SteamCrown"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
 
-            shop.item[nextSlot].SetDefaults(mod.ItemType("SuspiciousTrainWhistle"));
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType("SuspiciousTrainWhistle"));
             shop.item[nextSlot].value = 60000;
             nextSlot++;
         }
@@ -194,7 +194,7 @@ namespace Laugicality.NPCs
 
 		public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
 		{
-			projType = mod.ProjectileType("ConductorProjectile");
+			projType = ModContent.ProjectileType("ConductorProjectile");
 			attackDelay = 1;
 		}
 

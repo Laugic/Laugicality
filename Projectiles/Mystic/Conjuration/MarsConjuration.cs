@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -20,18 +21,18 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + .785f;
-            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, mod.DustType("Magma"), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if(Main.rand.Next(4) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             if(projectile.timeLeft <= 2)
             {
                 if (Main.myPlayer == projectile.owner)
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
                 projectile.Kill();
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
             projectile.Kill();
             return false;
         }
@@ -39,7 +40,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.myPlayer == projectile.owner)
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, mod.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType("MarsGeyeser"), projectile.damage, 3f, Main.myPlayer);
             projectile.Kill();
         }
     }

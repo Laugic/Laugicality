@@ -14,8 +14,8 @@ namespace Laugicality.Tiles
             AddMapEntry(new Color(160, 15, 0));
             mineResist = .5f;
             minPick = 10;
-            drop = mod.ItemType("Radiata");
-            dustType = mod.DustType("Magma");
+            drop = ModContent.ItemType("Radiata");
+            dustType = ModContent.DustType<Magma>();
             //soundType = 21;
             //soundStyle = 1;
         }
@@ -32,16 +32,16 @@ namespace Laugicality.Tiles
             {
                 if (CheckTile(i, j + 1))
                 {
-                    Terraria.WorldGen.PlaceTile(i, j + 1, mod.TileType("ObsidiumVine"), true);
+                    Terraria.WorldGen.PlaceTile(i, j + 1, ModContent.TileType("ObsidiumVine"), true);
                 }
-                else if (Main.tile[i, j + 1].type == mod.TileType("ObsidiumVine"))
+                else if (Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
                 {
                     for(int k = 1; k < 12; k++)
                     {
-                        if (Main.tile[i, j + k].type != mod.TileType("ObsidiumVine"))
+                        if (Main.tile[i, j + k].type != ModContent.TileType("ObsidiumVine"))
                         {
                             if(Main.tile[i, j + k].type == 0)
-                                Terraria.WorldGen.PlaceTile(i, j + k, mod.TileType("ObsidiumVine"), true);
+                                Terraria.WorldGen.PlaceTile(i, j + k, ModContent.TileType("ObsidiumVine"), true);
                             break;
                         }
                     }
@@ -52,7 +52,7 @@ namespace Laugicality.Tiles
         {
             if (j < Main.maxTilesY - 4)
             {
-                if (Main.tile[i, j + 1].type == mod.TileType("ObsidiumVine"))
+                if (Main.tile[i, j + 1].type == ModContent.TileType("ObsidiumVine"))
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
         }

@@ -22,7 +22,7 @@ namespace Laugicality.Items.Loot
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>(mod);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (LaugicalityWorld.downedEtheria || modPlayer.Etherable > 0)
             {
                 modPlayer.EtherialMagma = true;
