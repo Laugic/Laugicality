@@ -5,7 +5,7 @@ using Terraria.ObjectData;
 
 namespace Laugicality.Tiles
 {
-    public class MineralEnchanterProjectile : ModTile
+    public class MineralEnchanterTile : ModTile
     {
         public override void SetDefaults()
         {

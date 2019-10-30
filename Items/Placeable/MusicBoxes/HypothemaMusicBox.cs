@@ -1,3 +1,5 @@
+using Laugicality.Items.Materials;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable.MusicBoxes
@@ -25,17 +27,16 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.createTile = ModContent.TileType<Tiles.MusicBoxes.HypothemaMusicBox>();
             item.accessory = true;
         }
-        /*
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(null, "LaugicalWorkbench");
-            recipe.AddIngredient(ItemID.HallowedBar, 20);
-            recipe.AddIngredient(1006, 8);
-            recipe.AddIngredient(2766, 8);
-            recipe.AddIngredient(1508, 4);
+            recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
+            recipe.AddIngredient(ItemID.MusicBox, 1);
+            recipe.AddIngredient(ModContent.ItemType<ChilledBar>(), 5);
+            recipe.AddIngredient(ItemID.IceBlock, 20);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

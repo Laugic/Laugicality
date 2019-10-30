@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,7 +38,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(null, "IllusionCore", 1);
             recipe.AddIngredient(null, "ConjurationCore", 1);
             recipe.AddIngredient(mod, nameof(SoulOfWrought), 8);
-            recipe.AddTile(null, "MineralEnchanter");
+            recipe.AddTile(null, nameof(MineralEnchanterTile));
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

@@ -19,7 +19,7 @@ namespace Laugicality.Tiles
             //name.SetDefault("Obsidium Ore");
             //AddMapEntry(new Color(150, 50, 50), name);
             mineResist = 2.5f;
-            minPick = 225;
+            minPick = 200;
             soundType = 21;
             dustType = ModContent.DustType<EtherialDust>();
             drop = ModContent.ItemType<Bysmal>();

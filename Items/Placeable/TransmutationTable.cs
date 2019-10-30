@@ -1,3 +1,4 @@
+using Laugicality.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -163,7 +164,7 @@ namespace Laugicality.Items.Placeable
             ModRecipe pCrecipe = new ModRecipe(mod);
             pCrecipe.AddIngredient(ItemID.PlatinumOre, 6);
             pCrecipe.AddTile(null, "TransmutationTable");
-            pCrecipe.AddTile(null, "MineralEnchanter");
+            pCrecipe.AddTile(null, nameof(MineralEnchanterTile));
             pCrecipe.SetResult(ItemID.CobaltOre, 4);
             pCrecipe.AddRecipe();
 
@@ -347,7 +348,7 @@ namespace Laugicality.Items.Placeable
             ModRecipe pcBrecipe = new ModRecipe(mod);
             pcBrecipe.AddIngredient(ItemID.PlatinumBar, 6);
             pcBrecipe.AddTile(null, "TransmutationTable");
-            pcBrecipe.AddTile(null, "MineralEnchanter");
+            pcBrecipe.AddTile(null, nameof(MineralEnchanterTile));
             pcBrecipe.SetResult(ItemID.CobaltBar, 4);
             pcBrecipe.AddRecipe();
 

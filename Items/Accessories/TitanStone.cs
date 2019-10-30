@@ -1,3 +1,4 @@
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -46,7 +47,7 @@ namespace Laugicality.Items.Accessories
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "PanzerCrystal", 1);
             recipe.AddIngredient(null, "MachtCrystal", 1);
-            recipe.AddTile(null, "MineralEnchanter");
+            recipe.AddTile(null, nameof(MineralEnchanterTile));
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

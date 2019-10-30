@@ -52,7 +52,7 @@ namespace Laugicality.Items.Equipables
             recipe.AddIngredient(ModContent.ItemType<FaeryInABottle>(), 1);
             recipe.AddIngredient(ModContent.ItemType<GreaterMysticaPotion>(), 1);
             recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 5);
-            recipe.AddTile(ModContent.TileType<MineralEnchanterProjectile>());
+            recipe.AddTile(ModContent.TileType<MineralEnchanterTile>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

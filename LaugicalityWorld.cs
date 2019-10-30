@@ -69,6 +69,8 @@ namespace Laugicality
                 Main.dayTime = false;
                 Main.time = 16200.0;
             }
+
+            Ameldera = Main.raining;
         }
 
         public override TagCompound Save()
@@ -339,5 +341,7 @@ namespace Laugicality
             if (NPC.downedMoonlord) count++;
             return count;
         }
+
+        public static bool Ameldera { get; private set; }
     }
 }

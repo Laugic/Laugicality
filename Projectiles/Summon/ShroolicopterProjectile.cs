@@ -29,7 +29,7 @@ namespace Laugicality.Projectiles.Summon
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 			inertia = 20f;
-			shoot = ModContent.ProjectileType<Shroom>();
+			shoot = ModContent.ProjectileType<ShroomProjectile>();
             shootCool = 30f;
 			shootSpeed = 12f;
 		}

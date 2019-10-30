@@ -1,3 +1,5 @@
+using Laugicality.Items.Materials;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable.MusicBoxes
@@ -24,6 +26,27 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.value = 150;
             item.createTile = ModContent.TileType<Tiles.MusicBoxes.AnDioMusicBox>();
             item.accessory = true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
+            recipe.AddIngredient(ItemID.MusicBox, 1);
+            recipe.AddIngredient(ItemID.Granite, 20);
+            recipe.AddIngredient(ItemID.Marble, 20);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
+            recipe.AddIngredient(ItemID.Wood, 20);
+            recipe.anyWood = true;
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 5);
+            recipe.anyIronBar = true;
+            recipe.AddIngredient(ItemID.IronBar, 4);
+            recipe.SetResult(ItemID.MusicBox);
+            recipe.AddRecipe();
         }
     }
 }

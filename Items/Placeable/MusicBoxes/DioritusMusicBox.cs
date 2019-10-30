@@ -1,3 +1,4 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable.MusicBoxes
@@ -24,6 +25,16 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.value = 150;
             item.createTile = ModContent.TileType<Tiles.MusicBoxes.DioritusMusicBox>();
             item.accessory = true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
+            recipe.AddIngredient(ItemID.MusicBox, 1);
+            recipe.AddIngredient(ItemID.Marble, 40);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

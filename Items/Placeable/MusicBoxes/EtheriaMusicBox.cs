@@ -1,3 +1,6 @@
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable.MusicBoxes
@@ -24,6 +27,17 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.value = 150;
             item.createTile = ModContent.TileType<Tiles.MusicBoxes.EtheriaMusicBox>();
             item.accessory = true;
+        }
+
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
+            recipe.AddIngredient(ItemID.MusicBox, 1);
+            recipe.AddIngredient(ModContent.ItemType<EtherialEssence>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<BysmalBar>(), 4);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

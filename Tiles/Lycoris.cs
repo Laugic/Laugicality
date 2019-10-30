@@ -1,5 +1,7 @@
 using Laugicality.Dusts;
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -7,6 +9,8 @@ namespace Laugicality.Tiles
 {
     public class Lycoris : ModTile
     {
+
+        public Texture2D obsidiumTexture, amelderaTexture;
         public override void SetDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -18,8 +22,9 @@ namespace Laugicality.Tiles
             minPick = 10;
             drop = ModContent.ItemType<Items.Placeable.Lycoris>();
             dustType = ModContent.DustType<Magma>();
-            //soundType = 21;
-            //soundStyle = 1;
+
+            obsidiumTexture = this.GetType().GetTexture();
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + '/' + "ElderlilyTile");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -30,8 +35,12 @@ namespace Laugicality.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0.6f;
+            if (LaugicalityWorld.Ameldera)
+                r = 0.1f;
             g = 0.5f;
             b = 0f;
+            if (LaugicalityWorld.Ameldera)
+                b = 0.6f;
         }
 
         public override void RandomUpdate(int i, int j)
@@ -82,25 +91,6 @@ namespace Laugicality.Tiles
                 else if (CheckTile(i, j - 1))
                     Terraria.WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumGrass>(), true, 0, -1, -1);
             }
-            /*randm = Main.rand.Next(60);
-            if (randm < 9)
-            {
-                if (CheckTile(i, j + 1))
-                {
-                    Terraria.WorldGen.PlaceTile(i, j + 1, ModContent.TileType<ObsidiumVine>(), true);
-                }
-                else if(Main.tile[i, j + 1].type == ModContent.TileType<ObsidiumVine>())
-                {
-                    for (int k = 1; k < 12; k++)
-                    {
-                        if (Main.tile[i, j + k].type != ModContent.TileType<ObsidiumVine>() && Main.tile[i, j + k].type == 0)
-                        {
-                            Terraria.WorldGen.PlaceTile(i, j + k, ModContent.TileType<ObsidiumVine>(), true);
-                            break;
-                        }
-                    }
-                }
-            }*/
         }
 
         private bool Check4Tiles(int i, int j)
@@ -144,6 +134,23 @@ namespace Laugicality.Tiles
                 if (Main.tile[i, j + 1].type == ModContent.TileType<ObsidiumVine>())
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
+        }
+        public override bool Drop(int i, int j)
+        {
+            if (LaugicalityWorld.Ameldera)
+            {
+                Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<ElderlilyItem>(), 1);
+                return false;
+            }
+                return base.Drop(i, j);
+        }
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            if(LaugicalityWorld.Ameldera)
+                Main.tileTexture[Type] = amelderaTexture;
+            else
+                Main.tileTexture[Type] = obsidiumTexture;
+            return base.PreDraw(i, j, spriteBatch);
         }
     }
 }

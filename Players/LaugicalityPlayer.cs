@@ -235,7 +235,7 @@ namespace Laugicality
                 return;
             }
 
-            if (zoneObsidium && liquidType == 1 && bait.type == ModContent.ItemType<LavaGem>() && fishingRod.type == ItemID.HotlineFishingHook)
+            if (zoneObsidium && liquidType == 1 && fishingRod.type == ItemID.HotlineFishingHook)
             {
                 if (Main.rand.Next(3) == 0)
                 {
@@ -508,7 +508,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFAN>())
+            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFANRight>())
             {
                 if (_fanBoost == 0)
                 {

@@ -28,6 +28,9 @@ namespace Laugicality.Items.Equipables
                 modPlayer.DamageBoost(.1f);
                 player.statDefense += 5;
             }
+            player.lavaImmune = true;
+            player.fireWalk = true;
+            player.buffImmune[BuffID.OnFire] = true;
         }
     }
 }

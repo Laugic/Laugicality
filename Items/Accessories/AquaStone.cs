@@ -1,3 +1,4 @@
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,7 +43,7 @@ namespace Laugicality.Items.Accessories
             recipe.AddIngredient(null, "WasserCrystal", 1);
             recipe.AddIngredient(null, "MagmaCrystal", 1);
             recipe.AddIngredient(null, "AngelnCrystal", 1);
-            recipe.AddTile(null, "MineralEnchanter");
+            recipe.AddTile(null, nameof(MineralEnchanterTile));
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

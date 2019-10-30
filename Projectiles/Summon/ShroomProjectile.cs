@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Summon
 {
-	public class Shroom : ModProjectile
+	public class ShroomProjectile : ModProjectile
 	{
         public int dir = 0;
 		public override void SetStaticDefaults()
