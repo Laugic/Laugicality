@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
@@ -24,7 +25,7 @@ namespace Laugicality.Tiles
             dustType = ModContent.DustType<Magma>();
 
             obsidiumTexture = this.GetType().GetTexture();
-            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + '/' + "ElderlilyTile");
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderlilyTile");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
