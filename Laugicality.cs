@@ -166,6 +166,8 @@ namespace Laugicality
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ModContent.ItemType<SteamTrainMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SteamTrainMusicBox>());
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ModContent.ItemType<EtheriaMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.EtheriaMusicBox>());
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ModContent.ItemType<GreatShadowMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GreatShadowMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera"), ModContent.ItemType<AmelderaMusicBoxItem>(), ModContent.TileType<Tiles.MusicBoxes.AmelderaMusicBox>());
+                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface"), ModContent.ItemType<AmelderaSurfaceMusicBoxItem>(), ModContent.TileType<Tiles.MusicBoxes.AmelderaSurfaceMusicBox>());
 
 
                 MysticaUI = new LaugicalityUI();
@@ -234,10 +236,20 @@ namespace Laugicality
             {
                 if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneObsidium)
                 {
-                    if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
-                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
+                    if(!LaugicalityWorld.Ameldera)
+                    {
+                        if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
+                        else
+                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+                    }
                     else
-                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
+                    {
+                        if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface");
+                        else
+                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera");
+                    }
 
                     musicPriority = MusicPriority.BiomeHigh;
                 }

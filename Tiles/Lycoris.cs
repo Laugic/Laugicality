@@ -8,10 +8,8 @@ using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class Lycoris : ModTile
+    public class Lycoris : AmelderaTile
     {
-
-        public Texture2D obsidiumTexture, amelderaTexture;
         public override void SetDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -24,7 +22,6 @@ namespace Laugicality.Tiles
             drop = ModContent.ItemType<Items.Placeable.Lycoris>();
             dustType = ModContent.DustType<Magma>();
 
-            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderlilyTile");
         }
 
@@ -144,14 +141,6 @@ namespace Laugicality.Tiles
                 return false;
             }
                 return base.Drop(i, j);
-        }
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            if(LaugicalityWorld.Ameldera)
-                Main.tileTexture[Type] = amelderaTexture;
-            else
-                Main.tileTexture[Type] = obsidiumTexture;
-            return base.PreDraw(i, j, spriteBatch);
         }
     }
 }

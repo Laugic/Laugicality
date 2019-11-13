@@ -1,12 +1,14 @@
 using Laugicality.Dusts;
 using Laugicality.Items.Placeable;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class ObsidiumPlantBulbs : ModTile
+    public class ObsidiumPlantBulbs : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -28,6 +30,8 @@ namespace Laugicality.Tiles
                 ModContent.TileType<Tiles.Radiata>()
             };
             TileObjectData.addTile(Type);
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/Elderbulbs");
         }
         
 

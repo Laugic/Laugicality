@@ -1,11 +1,14 @@
 using Laugicality.Dusts;
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class Radiata : ModTile
+    public class Radiata : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -17,8 +20,8 @@ namespace Laugicality.Tiles
             minPick = 10;
             drop = ModContent.ItemType<Items.Placeable.Radiata>();
             dustType = ModContent.DustType<Magma>();
-            //soundType = 21;
-            //soundStyle = 1;
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderootTile");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -57,12 +60,21 @@ namespace Laugicality.Tiles
                     Terraria.WorldGen.KillTile(i, j + 1);
             }
         }
-
         private bool CheckTile(int i, int j)
         {
             if (Main.tile[i, j].type != 0)
                 return false;
             return true;
+        }
+
+        public override bool Drop(int i, int j)
+        {
+            if (LaugicalityWorld.Ameldera)
+            {
+                Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<ElderootItem>(), 1);
+                return false;
+            }
+            return base.Drop(i, j);
         }
     }
 }

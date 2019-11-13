@@ -1,12 +1,14 @@
 using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class ObsidiumCore : ModTile
+    public class ObsidiumCore : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -19,6 +21,8 @@ namespace Laugicality.Tiles
             minPick = 50;
             dustType = ModContent.DustType<Magma>();
             drop = ModContent.ItemType<Items.Placeable.ObsidiumCore>();
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaCoreTile");
         }
         
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -29,8 +33,12 @@ namespace Laugicality.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = 0.9f;
+            if (LaugicalityWorld.Ameldera)
+                r = 0;
             g = 0.6f;
             b = 0f;
+            if (LaugicalityWorld.Ameldera)
+                b = .9f;
         }
 
         public override void RandomUpdate(int i, int j)

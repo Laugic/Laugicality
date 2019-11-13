@@ -1,13 +1,15 @@
 using Laugicality.Dusts;
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class LavaGem : ModTile
+    public class LavaGem : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -31,6 +33,8 @@ namespace Laugicality.Tiles
 				ModContent.TileType<Tiles.ObsidiumRock>()
             };
             TileObjectData.addTile(Type);
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ArcanaGemTile");
         }
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
@@ -59,9 +63,22 @@ namespace Laugicality.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = .2f;
+            if (LaugicalityWorld.Ameldera)
+                r = .05f;
             g = 0.08f;
             b = 0.0f;
+            if (LaugicalityWorld.Ameldera)
+                b = .2f;
         }
-        
+
+        public override bool Drop(int i, int j)
+        {
+            if (LaugicalityWorld.Ameldera)
+            {
+                Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<ElderockItem>(), 1);
+                return false;
+            }
+            return base.Drop(i, j);
+        }
     }
 }

@@ -2,10 +2,11 @@ using Laugicality.Dusts;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class ObsidiumPlantGrass2 : ModTile
+    public class ObsidiumPlantGrass2 : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -24,6 +25,8 @@ namespace Laugicality.Tiles
             dustType = ModContent.DustType<Magma>();
             soundType = 6;
             //adjTiles = new int[] { TileID.WorkBenches };
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/EldergrassPlant2");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

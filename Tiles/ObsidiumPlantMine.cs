@@ -3,10 +3,11 @@ using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class ObsidiumPlantMine : ModTile
+    public class ObsidiumPlantMine : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -28,6 +29,8 @@ namespace Laugicality.Tiles
                 ModContent.TileType<Tiles.Radiata>()
             };
             TileObjectData.addTile(Type);
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/Eldermine");
         }
         
 

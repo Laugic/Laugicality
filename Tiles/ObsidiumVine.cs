@@ -2,10 +2,11 @@ using Laugicality.Dusts;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class ObsidiumVine : ModTile
+    public class ObsidiumVine : AmelderaTile
     {
         public override void SetDefaults()
         {
@@ -18,6 +19,8 @@ namespace Laugicality.Tiles
             //AddMapEntry(new Color(150, 0, 0), name);
             soundType = 6;
             dustType = ModContent.DustType<Magma>();
+
+            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaVineTile");
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -33,21 +36,6 @@ namespace Laugicality.Tiles
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
         }
-        
-        /*
-        public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
-        {
-            frameXOffset = 0;
-            if (j > 2 && j < Main.maxTilesY - 4)
-            {
-                if (Main.tile[i, j + 1].type != ModContent.TileType<ObsidiumVine>())
-                    frameYOffset = 36;
-                else if (Main.tile[i, j - 1].type == ModContent.TileType<Lycoris>() || Main.tile[i, j - 1].type == ModContent.TileType<Tiles.Radiata>())
-                    frameYOffset = 0;
-                else
-                    frameYOffset = 18;
-            }
-        }*/
 
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
         {
@@ -56,8 +44,12 @@ namespace Laugicality.Tiles
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
             r = .1f;
+            if (LaugicalityWorld.Ameldera)
+                r = 0;
             g = 0.05f;
             b = 0.0f;
+            if (LaugicalityWorld.Ameldera)
+                b = .1f;
         }
 
         public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)

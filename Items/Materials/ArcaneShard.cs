@@ -29,7 +29,7 @@ namespace Laugicality.Items.Materials
             recipe.AddRecipe();
             
             ModRecipe recipe2 = new ModRecipe(mod);
-            recipe2.AddIngredient(ItemID.Cloud, 5);
+            recipe2.AddIngredient(ItemID.Cloud, 10);
             recipe2.AddIngredient(null, "ArcaneShard");
             recipe2.AddTile(null, "AlchemicalInfuser");
             recipe2.SetResult(ItemID.FallenStar);
