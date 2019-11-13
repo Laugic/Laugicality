@@ -21,6 +21,7 @@ using Laugicality.Projectiles.Accessory;
 using Laugicality.Projectiles.Magic;
 using Laugicality.Projectiles.Mystic.Burst;
 using Laugicality.Projectiles.SoulStone;
+using WebmilioCommons.Extensions;
 using BrassFAN = Laugicality.Tiles.BrassFAN;
 using BrassFANRight = Laugicality.Tiles.BrassFANRight;
 using BrassRING = Laugicality.Tiles.BrassRING;
@@ -481,7 +482,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFAN>())
+            if (player.GetTileOnCenter().type == ModContent.TileType<BrassFAN>())
             {
                 if (_fanBoost == 0)
                 {
@@ -508,7 +509,7 @@ namespace Laugicality
             float minHSpeed = 10;
             float maxHSpeed = 50;
 
-            if (Main.tile[(int)(player.Center.X / 16), (int)(player.Center.Y / 16)].type == ModContent.TileType<BrassFANRight>())
+            if (player.GetTileOnCenter().type == ModContent.TileType<BrassFANRight>())
             {
                 if (_fanBoost == 0)
                 {

@@ -48,5 +48,8 @@ namespace Laugicality.Tiles
         {
             Item.NewItem(i * 16, j * 16, 112, 64, ModContent.ItemType<Items.Placeable.BrassFAN>());
         }
+
+
+
     }
 }
