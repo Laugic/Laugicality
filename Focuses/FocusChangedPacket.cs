@@ -6,7 +6,7 @@ namespace Laugicality.Focuses
 {
     public class FocusChangedPacket : ModPlayerNetworkPacket<LaugicalityPlayer>
     {
-        public override bool PostReceive(BinaryReader reader, int fromWho)
+        protected override bool PostReceive(BinaryReader reader, int fromWho)
         {
             Main.NewText($"Player {Player.name} now has focus {ModPlayer.Focus.DisplayName}");
 
