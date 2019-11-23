@@ -8,7 +8,7 @@ namespace Laugicality
 {
     public class LaugicalityPlayerSynchronizationPacket : ModPlayerNetworkPacket<LaugicalityPlayer>
     {
-        public override bool PostReceive(BinaryReader reader, int fromWho)
+        protected override bool PostReceive(BinaryReader reader, int fromWho)
         {
             if (!IsResponse && Main.netMode == NetmodeID.MultiplayerClient)
             {
