@@ -34,6 +34,7 @@ namespace Laugicality.Tiles
             };
             TileObjectData.addTile(Type);
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/Elderheart");
         }
         

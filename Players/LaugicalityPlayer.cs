@@ -88,6 +88,7 @@ namespace Laugicality
 
         //Music
         public bool zoneObsidium;
+        public bool zoneAmeldera;
         public bool etherialMusic;
 
         //Camera Effects
@@ -649,6 +650,11 @@ namespace Laugicality
         public override void UpdateBiomes()
         {
             zoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
+            if(zoneObsidium && LaugicalityWorld.Ameldera)
+            {
+                zoneObsidium = false;
+                zoneAmeldera = true;
+            }
             etherialMusic = etherial;
         }
 

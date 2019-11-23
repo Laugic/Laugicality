@@ -24,6 +24,7 @@ namespace Laugicality.Tiles
             drop = ModContent.ItemType<ObsidiumOre>();
             dustType = 1;
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaOreTile");
         }
 

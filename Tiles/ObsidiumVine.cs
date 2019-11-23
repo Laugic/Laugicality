@@ -20,6 +20,7 @@ namespace Laugicality.Tiles
             soundType = 6;
             dustType = ModContent.DustType<Magma>();
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaVineTile");
         }
 

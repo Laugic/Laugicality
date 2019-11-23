@@ -22,6 +22,7 @@ namespace Laugicality.Tiles
             dustType = ModContent.DustType<Magma>();
             drop = ModContent.ItemType<Items.Placeable.ObsidiumCore>();
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaCoreTile");
         }
         

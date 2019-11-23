@@ -22,6 +22,7 @@ namespace Laugicality.Tiles
             drop = ModContent.ItemType<Items.Placeable.Lycoris>();
             dustType = ModContent.DustType<Magma>();
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderlilyTile");
         }
 

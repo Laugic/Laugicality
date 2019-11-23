@@ -26,6 +26,7 @@ namespace Laugicality.Tiles
             soundType = 6;
             //adjTiles = new int[] { TileID.WorkBenches };
 
+            obsidiumTexture = this.GetType().GetTexture();
             amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/EldergrassPlant");
         }
 

@@ -7,6 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Frosted Flake");
             Tooltip.SetDefault("Attacks inflict 'Frostburn'\n+25% Snowball Damage");
         }
 

@@ -33,7 +33,7 @@ namespace Laugicality.Projectiles
             if (left && projectile.velocity.X < MAX_SPEED * directionMultiplier || !left && projectile.velocity.X > MAX_SPEED * directionMultiplier)
                 return;
 
-            if (!projectile.minion)
+            if (!projectile.minion && projectile.aiStyle != 99)
             {
                 projectile.hostile = true;
                 projectile.friendly = true;
