@@ -236,22 +236,19 @@ namespace Laugicality
             {
                 if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneObsidium)
                 {
-                    if(!LaugicalityWorld.Ameldera)
-                    {
-                        if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
-                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
-                        else
-                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
-                    }
+                    if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface");
                     else
-                    {
-                        if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
-                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface");
-                        else
-                            music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera");
-                    }
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Obsidium");
 
                     musicPriority = MusicPriority.BiomeHigh;
+                }
+                if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneAmeldera)
+                {
+                    if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface");
+                    else
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera");
                 }
 
                 if (LaugicalityWorld.downedEtheria)
