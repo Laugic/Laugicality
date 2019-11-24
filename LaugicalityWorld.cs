@@ -70,7 +70,7 @@ namespace Laugicality
                 Main.time = 16200.0;
             }
 
-            Ameldera = Main.raining;
+            Ameldera = false;// Main.raining;
         }
 
         public override TagCompound Save()

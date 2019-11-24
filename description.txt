@@ -11,6 +11,10 @@ A new biome- The Obsidium
 And lots more planned features!
 
 -----
+v0.14.2
+Misc changes & bug fixes
+
+-----
 v0.14.1
 Updated to tModLoader 0.11.5 (by Webmilio)
 
