@@ -26,8 +26,11 @@ namespace Laugicality.Tiles
             soundType = 6;
             //adjTiles = new int[] { TileID.WorkBenches };
 
-            obsidiumTexture = this.GetType().GetTexture();
-            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/EldergrassPlant");
+            if (!Main.dedServ)
+            {
+                obsidiumTexture = this.GetType().GetTexture();
+                amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/EldergrassPlant");
+            }
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

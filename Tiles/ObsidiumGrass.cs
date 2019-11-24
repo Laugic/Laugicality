@@ -30,8 +30,11 @@ namespace Laugicality.Tiles
             };
             TileObjectData.addTile(Type);
 
-            obsidiumTexture = this.GetType().GetTexture();
-            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/Eldergrass");
+            if (!Main.dedServ)
+            {
+                obsidiumTexture = this.GetType().GetTexture();
+                amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/Eldergrass");
+            }
         }
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)

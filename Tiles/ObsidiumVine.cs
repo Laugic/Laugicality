@@ -20,8 +20,11 @@ namespace Laugicality.Tiles
             soundType = 6;
             dustType = ModContent.DustType<Magma>();
 
-            obsidiumTexture = this.GetType().GetTexture();
-            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaVineTile");
+            if (!Main.dedServ)
+            {
+                obsidiumTexture = this.GetType().GetTexture();
+                amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/AmelderaVineTile");
+            }
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

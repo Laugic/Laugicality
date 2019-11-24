@@ -21,8 +21,11 @@ namespace Laugicality.Tiles
             drop = ModContent.ItemType<Items.Placeable.Radiata>();
             dustType = ModContent.DustType<Magma>();
 
-            obsidiumTexture = this.GetType().GetTexture();
-            amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderootTile");
+            if (!Main.dedServ)
+            {
+                obsidiumTexture = this.GetType().GetTexture();
+                amelderaTexture = mod.GetTexture(this.GetType().GetRootPath() + "/ElderootTile");
+            }
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

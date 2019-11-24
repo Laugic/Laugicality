@@ -16,7 +16,8 @@ namespace Laugicality.Tiles
 
         public override void SetDefaults()
         {
-            obsidiumTexture = this.GetType().GetTexture();
+            if(!Main.dedServ)
+                obsidiumTexture = this.GetType().GetTexture();
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
