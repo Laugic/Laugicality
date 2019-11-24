@@ -10,7 +10,7 @@ using WebmilioCommons.Extensions;
 
 namespace Laugicality.Tiles
 {
-    public class AmelderaTile : ModTile
+    public abstract class AmelderaTile : ModTile
     {
         public Texture2D obsidiumTexture, amelderaTexture;
 
