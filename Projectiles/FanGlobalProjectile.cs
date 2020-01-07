@@ -45,13 +45,7 @@ namespace Laugicality.Projectiles
             return true;
         }
 
-        public override bool InstancePerEntity
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool InstancePerEntity => true;
 
         private void BoostLeft(Projectile projectile)
         {
