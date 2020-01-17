@@ -44,7 +44,12 @@ namespace Laugicality.Tiles
             g = 0.2f;
             b = 0f;
             if (LaugicalityWorld.Ameldera)
+            {
                 b = .4f;
+                minPick = 200;
+            }
+            else
+                minPick = 60;
         }
         
         public override bool CanExplode(int i, int j)
@@ -52,5 +57,14 @@ namespace Laugicality.Tiles
             return false;
         }
 
+        public override bool Drop(int i, int j)
+        {
+            if (LaugicalityWorld.Ameldera)
+            {
+                Item.NewItem(i * 16, j * 16, 8, 8, ModContent.ItemType<AmelderaOreItem>(), 1);
+                return false;
+            }
+            return base.Drop(i, j);
+        }
     }
 }

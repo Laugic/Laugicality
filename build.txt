@@ -1,7 +1,7 @@
 author = Laugic 
-version = 0.14.2.1
+version = 0.15
 displayName = [c/85C1E9:The Enigma Mod!]
-homepage = https://discord.gg/qa6QnZs
+homepage = https://discord.gg/gfmKFRZ
 hideCode = false
 hideResources = false
 includeSource = true

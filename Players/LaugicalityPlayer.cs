@@ -231,11 +231,7 @@ namespace Laugicality
 
         public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
         {
-            if (junk)
-            {
-                caughtType = ItemID.Obsidian;
-                return;
-            }
+            
 
             if (zoneObsidium && liquidType == 1 && fishingRod.type == ItemID.HotlineFishingHook)
             {
@@ -315,6 +311,12 @@ namespace Laugicality
                             caughtType = ModContent.ItemType<MagmaHeart>();
                             break;
                     }
+                }
+
+                if (junk)
+                {
+                    caughtType = ItemID.Obsidian;
+                    return;
                 }
             }
         }

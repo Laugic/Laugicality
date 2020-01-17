@@ -23,6 +23,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
+            item.rare = ItemRarityID.Blue;
             item.createTile = ModContent.TileType<Tiles.Radiata>();
         }
 

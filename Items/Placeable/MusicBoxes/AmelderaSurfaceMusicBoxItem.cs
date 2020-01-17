@@ -8,7 +8,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Music Box (Calm Obsidium Surface)");
+            DisplayName.SetDefault("Music Box (Ameldera Surface)");
             Tooltip.SetDefault("");
         }
 
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             item.createTile = ModContent.TileType<Tiles.MusicBoxes.AmelderaSurfaceMusicBox>();
             item.accessory = true;
         }
-        /*
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -37,6 +37,6 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 20);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

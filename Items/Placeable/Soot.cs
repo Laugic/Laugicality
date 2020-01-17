@@ -21,8 +21,8 @@ namespace Laugicality.Items.Placeable
             item.maxStack = 999;
             item.useTurn = true;
             item.autoReuse = true;
-            item.useAnimation = 15;
-            item.useTime = 2;
+            item.useAnimation = 8;
+            item.useTime = 8;
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;

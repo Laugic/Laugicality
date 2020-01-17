@@ -7,7 +7,7 @@ namespace Laugicality.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Elderlily");
-            Tooltip.SetDefault("An ancient bloom");
+            Tooltip.SetDefault("'An ancient bloom'");
         }
         public override void SetDefaults()
         {
@@ -21,6 +21,7 @@ namespace Laugicality.Items.Placeable
             item.useStyle = 1;
             item.consumable = true;
             item.value = 0;
+            item.rare = ItemRarityID.Blue;
             item.createTile = Terraria.ModLoader.ModContent.TileType<Tiles.Lycoris>();
         }
     }
