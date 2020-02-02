@@ -185,42 +185,44 @@ namespace Laugicality
             restockNearby = RegisterHotKey("Restock from Nearby Chests", "N");
         }
 
-        public override void PostSetupContent()
-        {
-            #region BossChecklist
+		public override void PostSetupContent()
+		{
+			#region BossChecklist
 
-            Mod bossChecklist = ModLoader.GetMod("BossChecklist");
+			Mod bossChecklist = ModLoader.GetMod("BossChecklist");
 
-            if (bossChecklist != null)
-            {
-                bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ModContent.ItemType<MechanicalMonitor>()));
-                bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ModContent.ItemType<SteamCrown>()));
-                bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ModContent.ItemType<SuspiciousTrainWhistle>()));
-                bossChecklist.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ModContent.ItemType<TastyMorsel>()));
-                bossChecklist.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ModContent.ItemType<ChilledMesh>()));
-                bossChecklist.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ModContent.ItemType<MoltenMess>()));
-                bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ModContent.ItemType<EmblemOfEtheria>()));
-                bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ModContent.ItemType<AncientAwakener>()));
-                bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
-            }
+			bossChecklist?.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ModContent.ItemType<MechanicalMonitor>()));
+			bossChecklist?.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ModContent.ItemType<SteamCrown>()));
+			bossChecklist?.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ModContent.ItemType<SuspiciousTrainWhistle>()));
+			bossChecklist?.Call("AddBossWithInfo", "Dune Sharkron", 2.3f, (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron), string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ModContent.ItemType<TastyMorsel>()));
+			bossChecklist?.Call("AddBossWithInfo", "Hypothema", 3.8f, (Func<bool>)(() => LaugicalityWorld.downedHypothema), string.Format("There's a chill in the air... [i:{0}]", ModContent.ItemType<ChilledMesh>()));
+			bossChecklist?.Call("AddBossWithInfo", "Ragnar", 4.5f, (Func<bool>)(() => LaugicalityWorld.downedRagnar), string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ModContent.ItemType<MoltenMess>()));
+			bossChecklist?.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ModContent.ItemType<EmblemOfEtheria>()));
+			bossChecklist?.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ModContent.ItemType<AncientAwakener>()));
+			bossChecklist?.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
 
-            #endregion
+			#endregion
 
-            #region AchMod
+			#region AchievementLibs
 
-            Mod achMod = ModLoader.GetMod("AchievementLibs");
+			Mod achMod = ModLoader.GetMod("AchievementLibs");
 
-            int[] rewardsBleedingHeart = { ModContent.ItemType<ObsidiumHeart>() };
-            int[] rewardsBleedingHeartCount = { 1 };
+			int[] rewardsBleedingHeart = { ModContent.ItemType<ObsidiumHeart>() };
+			int[] rewardsBleedingHeartCount = { 1 };
 
-            if (achMod != null)
-            {
-                achMod.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
-                //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
-            }
+			achMod?.Call("AddAchievementWithoutAction", this, "A Bleeding Heart", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType<MoltenMess>()), "Achievements/ragChieve2", rewardsBleedingHeart, rewardsBleedingHeartCount, (Func<bool>)(() => LaugicalityWorld.downedRagnar));
+			//achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
 
-            #endregion
-        }
+			#endregion
+
+			#region Census
+
+			Mod censusMod = ModLoader.GetMod("Census");
+
+			censusMod?.Call("TownNPCCondition", ModContent.NPCType<Laugicality.NPCs.Conductor>(), "Defeat all Steam Trio bosses.");
+
+			#endregion
+		}
 
         public override void Unload()
         {
