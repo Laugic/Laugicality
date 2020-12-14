@@ -1,4 +1,5 @@
 using Terraria.ID;
+using Terraria;
 
 namespace Laugicality.Items.Materials
 {
@@ -19,18 +20,9 @@ namespace Laugicality.Items.Materials
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
-            item.value = 0;
+            item.value = Item.sellPrice(silver: 15);
             item.rare = ItemRarityID.Blue;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.AddIngredient(null, "NullShard", 4);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
         
     }
 }

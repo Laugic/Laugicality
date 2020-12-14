@@ -6,124 +6,93 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
-	public class AnDioConjuration1 : ConjurationProjectile
+	public class AnDioConjuration1 : PrimaryConjurationProjectile
     {
-        public bool bitherial = true;
-        public int delay = 0;
-        public int power = 0;
-        int homeDelay = 0;
 
+        public int vMax = 0;
+        public float vAccel = 0;
+        public float tVel = 0;
+        public float vMag = 0;
+        public int delay = 0;
+        float theta = 0;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Loki Blast");
+            DisplayName.SetDefault("Energy Ball");
         }
 
         public override void SetDefaults()
         {
-            power = 0;
             LaugicalityVars.eProjectiles.Add(projectile.type);
-            delay = 0;
-            projectile.width = 24;
-            projectile.height = 24;
-            projectile.penetrate = 2;
+            projectile.width = 20;
+            projectile.height = 20;
+            projectile.penetrate = -1;
             projectile.friendly = true;
-            projectile.timeLeft = 180;
+            projectile.timeLeft = 10 * 60;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
+            theta = 0;
+            vMax = 28;
+            vAccel = .1f;
+            delay = 0;
+        }
+
+
+        public override void AI()
+        {
+            if(Main.rand.Next(4) == 0)
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Blue>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            projectile.tileCollide = false;
+
+            Player player = Main.player[projectile.owner];
+
+            if (projectile.ai[0] == 0)
+                projectile.ai[0] = player.ownedProjectileCounts[ModContent.ProjectileType<AnDioConjuration1>()];
+
+            projectile.tileCollide = false;
+            theta += (float)(Math.PI / 40);
+            float mag = 32 + projectile.ai[0] * 4;
+            Vector2 rot = projectile.position;
+            rot.X = (float)Math.Cos(theta) * mag;
+            rot.Y = (float)Math.Sin(theta) * mag;
+            Vector2 targetPos = player.Center + rot;
+            Vector2 direction = targetPos - projectile.Center;
+            float dist = Vector2.Distance(targetPos, projectile.Center);
+            tVel = dist / 15;
+            if (vMag < vMax && vMag < tVel)
+                vMag += vAccel;
+
+            if (vMag > tVel)
+                vMag = tVel;
+
+            if (dist != 0)
+                projectile.velocity = projectile.DirectionTo(targetPos) * vMag;
+
+            CreateStalags();
+        }
+
+        private void CreateStalags()
+        {
+            delay++;
+            Player player = Main.player[projectile.owner];
+            if (delay > 90)
+            {
+                if(Main.myPlayer == projectile.owner)
+                {
+                    Projectile.NewProjectile(player.Center.X - 400 + Main.rand.Next(800), player.Center.Y - 500, 0, 0, ModContent.ProjectileType<AnDioStalactite>(), projectile.damage, 5f, projectile.owner);
+                    Projectile.NewProjectile(player.Center.X - 400 + Main.rand.Next(800), player.Center.Y + 500, 0, 0, ModContent.ProjectileType<AnDioStalagmite>(), projectile.damage, 5f, projectile.owner);
+                }
+                delay = 0;
+            }
         }
 
         public override void Kill(int timeLeft)
         {
-            if (Main.myPlayer == projectile.owner)
-            {
-				float num102 = 30f;
-				int num103 = 0;
-				while ((float)num103 < num102)
-				{
-					Vector2 vector12 = Vector2.UnitX * 0f;
-					vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(10f, 10f);
-					vector12 = vector12.RotatedBy((double)projectile.velocity.ToRotation(), default(Vector2));
-					int num104 = Dust.NewDust(projectile.Center, 0, 0, ModContent.DustType<White>(), 0f, 0f, 75, default(Color), 1.25f);
-					Main.dust[num104].scale = 1.75f;
-					Main.dust[num104].noGravity = true;
-					Main.dust[num104].position = projectile.Center + vector12;
-					Main.dust[num104].velocity = -1 * (projectile.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 2.5f);
-					int num = num103;
-					num103 = num + 1;
-				}
-				
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-            }
-        }
+            base.Kill(timeLeft);
 
-        public override void AI()
-        {
-            bitherial = true;
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<White>(), 0f, 0f);
-            delay++;
-            Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (delay > 30)
+            for (int i = 0; i < 1000; i++)
             {
-                    delay = 0;
-                if (Main.myPlayer == projectile.owner)
-                {
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, 0, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -7, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, 5, ModContent.ProjectileType<AnDioConjuration2>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
-                }
-            }
-
-            homeDelay -= 1;
-            if (homeDelay <= 0)
-            {
-                homeDelay = 4;
-                Vector2 move = Vector2.Zero;
-                bool target = false;
-                float distance = 1400f;
-                for (int i = 0; i < 200; i++)
-                {
-                    NPC npcT = Main.npc[i];
-                    if (!npcT.friendly)
-                    {
-                        Vector2 newMove = npcT.Center - projectile.Center;
-                        float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                        if (distanceTo < distance)
-                        {
-                            move = newMove;
-                            distance = distanceTo;
-                            target = true;
-
-                        }
-                    }
-                }
-                if (target)
-                {
-                    AdjustMagnitude(ref move);
-                    projectile.velocity = (20 * projectile.velocity + move) / 11f;
-                    AdjustMagnitude(ref projectile.velocity);
-                }
-            }
-        }
-
-        private void AdjustMagnitude(ref Vector2 vector)
-        {
-            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
-            if (magnitude > 6f)
-            {
-                vector *= 6f / magnitude;
+                if (Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<AnDioConjuration1>() && Main.projectile[i].ai[0] > projectile.ai[0])
+                    Main.projectile[i].ai[0]--;
             }
         }
     }

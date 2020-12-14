@@ -3,6 +3,8 @@ using Laugicality.Projectiles.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+using Terraria;
+
 namespace Laugicality.Items.Ammo
 {
 	public class BrassArrow : LaugicalityItem
@@ -21,8 +23,8 @@ namespace Laugicality.Items.Ammo
 			item.maxStack = 999;
 			item.consumable = true;
 			item.knockBack = 4f;
-			item.value = 10;
-			item.rare = ItemRarityID.LightPurple;
+            item.value = Item.sellPrice(copper: 16);
+            item.rare = ItemRarityID.LightPurple;
 			item.shoot = ModContent.ProjectileType<BrassArrowProjectile>();
 			item.shootSpeed = 14f;
 			item.ammo = AmmoID.Arrow;

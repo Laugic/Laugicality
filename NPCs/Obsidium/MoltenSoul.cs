@@ -50,7 +50,8 @@ namespace Laugicality.NPCs.Obsidium
 
         public override void NPCLoot()
         {
-            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<MagmaticCrystal>());
+            if(Main.rand.Next(2) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SoulOfHaught>());
         }
     }
 }

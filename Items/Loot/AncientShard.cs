@@ -1,3 +1,6 @@
+using Terraria;
+using Terraria.ID;
+
 namespace Laugicality.Items.Loot
 {
     public class AncientShard : LaugicalityItem
@@ -18,17 +21,8 @@ namespace Laugicality.Items.Loot
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
-            item.value = 0;
+            item.value = Item.sellPrice(silver: 25);
+            item.rare = ItemRarityID.Blue;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(77);
-            recipe.AddIngredient(null, "ObsidiumOre", 3);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
-        
     }
 }

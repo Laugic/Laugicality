@@ -1,3 +1,4 @@
+using Laugicality.Items.Loot;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,9 +17,9 @@ namespace Laugicality.Items.Armor
 		{
 			item.width = 34;
 			item.height = 22;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
-			item.defense = 16;
+            item.value = Item.sellPrice(gold: 4);
+            item.rare = ItemRarityID.Pink;
+            item.defense = 16;
         }
 
         public override void UpdateEquip(Player player)
@@ -35,7 +36,7 @@ namespace Laugicality.Items.Armor
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "ObsidiumLongcoat", 1);
             recipe.AddRecipeGroup("TitaniumBars", 18);
-            recipe.AddIngredient(null, "MagmaticCrystal", 3);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 6);
             recipe.AddIngredient(null, "MagmaticCluster", 1);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);

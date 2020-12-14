@@ -26,20 +26,22 @@ namespace Laugicality
         public static bool downedDioritus = false;
         public static bool downedAndesia = false;
         public static bool downedAnDio = false;
+        public static bool downedNecrodon = false;
         public static int obsidiumTiles = 0;
         public static int power = 0;
         public static bool obEnf = false; //obsidiumEnfused
         public static bool bysmal = false;
         public static int obsidiumPosition = 0;
+        public static int ObsidiumHeartGrowth { get; set; } = 0;
 
-        public static int sizeMult = (int)(Math.Round(Main.maxTilesX / 4200f)); //Small = 2; Medium = ~3; Large = 4;
+        public static int sizeMult = (int)(Math.Round(Main.maxTilesY / 1200f)); //Small = 1; Medium = 1.5; Large = 2;
 
         public static int zawarudo = 0;
         public static int dungeonSide = 1;
 
         public override void Initialize()
         {
-            sizeMult = (int)(Math.Floor(Main.maxTilesX / 4200f));
+            sizeMult = (int)(Math.Floor(Main.maxTilesY / 1200f));
             power = 0;
             downedAnnihilator = false;
             downedSlybertron = false;
@@ -53,11 +55,13 @@ namespace Laugicality
             downedDioritus = false;
             downedAndesia = false;
             downedAnDio = false;
+            downedNecrodon = false;
             zawarudo = 0;
             obEnf = false;
             obsidiumHeart = false;
             bysmal = false;
             obsidiumPosition = 0;
+            ObsidiumHeartGrowth = 0;
         }
 
         public override void PostUpdate()
@@ -70,7 +74,6 @@ namespace Laugicality
                 Main.time = 16200.0;
             }
 
-            Ameldera = Main.raining;
         }
 
         public override TagCompound Save()
@@ -89,6 +92,7 @@ namespace Laugicality
             if (downedDioritus) downed.Add("dioritus");
             if (downedAndesia) downed.Add("andesia");
             if (downedAnDio) downed.Add("andio");
+            if (downedNecrodon) downed.Add("necrodon");
             if (obEnf) obs = true;
             pwr = power;
 
@@ -116,6 +120,7 @@ namespace Laugicality
             downedDioritus = downed.Contains("dioritus");
             downedAndesia = downed.Contains("andesia");
             downedAnDio = downed.Contains("andio");
+            downedNecrodon = downed.Contains("necrodon");
             obEnf = tag.GetBool("obsidium");
             downedEtheria = tag.GetBool("etherial");
             obsidiumHeart = tag.GetBool("obsidiumHeart");
@@ -212,7 +217,7 @@ namespace Laugicality
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            obsidiumTiles = tileCounts[56] + tileCounts[ModContent.TileType<Tiles.ObsidiumCore>()] + tileCounts[ModContent.TileType<Tiles.ObsidiumRock>()] +  tileCounts[ModContent.TileType<Lycoris>()] + tileCounts[ModContent.TileType<Tiles.Radiata>()];
+            obsidiumTiles = tileCounts[56] + tileCounts[ModContent.TileType<Tiles.ObsidiumCore>()] + tileCounts[ModContent.TileType<Tiles.ObsidiumRock>()] + tileCounts[ModContent.TileType<Tiles.ObsidiumOreBlock>()] + tileCounts[ModContent.TileType<Lycoris>()] + tileCounts[ModContent.TileType<Tiles.Radiata>()];
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
@@ -253,8 +258,10 @@ namespace Laugicality
 
         private static bool TileCheckSafe(int i, int j)
         {
-            if (i > 0 && i < Main.maxTilesX - 1 && j > 0 && j < Main.maxTilesY - 1)
+            if (i > 0 && i < Main.tile.GetLength(0) - 1 && j > 0 && j < Main.tile.GetLength(1) - 1)
             {
+                if (Main.tile[i, j] == null)
+                    return false;
                 if (TileID.Sets.BasicChest[Main.tile[i, j].type])
                     return false;
                 return true;
@@ -262,7 +269,7 @@ namespace Laugicality
             return false;
         }
 
-        private float Distance(int x1, int y1, int x2, int y2)
+        public static float Distance(double x1, double y1, double x2, double y2)
         {
             return (float)(Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
         }
@@ -302,6 +309,8 @@ namespace Laugicality
 
         public static int GetCurseCount()
         {
+            if (downedNecrodon)
+                return 0;
             int count = 0;
             int numBosses = CountDownedBosses();
             if (numBosses >= 5)

@@ -14,6 +14,12 @@ using Laugicality.Items.Placeable.MusicBoxes;
 using Laugicality.UI;
 using Terraria.Graphics.Shaders;
 using WebmilioCommons.Networking;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Placeable;
+using Laugicality.Items.Weapons.Range;
+using Laugicality.Items.Useables;
+using Microsoft.Xna.Framework.Graphics;
+using Laugicality.Items;
 
 namespace Laugicality
 {
@@ -23,6 +29,7 @@ namespace Laugicality
         public const string EVIL_BARS_GROUP = "EnigmaEvilBars";
         public const string DOUBLE_JUMP_GROUP = "EnigmaDoubleJump";
         public const string COLORED_BALLOON_GROUP = "EnigmaColoredBalloon";
+        public static Texture2D MysticWeaponIcon;
 
         internal static ModHotKey toggleMystic, toggleSoulStoneV, toggleSoulStoneM, quickMystica, soulStoneAbility, restockNearby;
 
@@ -166,9 +173,9 @@ namespace Laugicality
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/SteamTrain"), ModContent.ItemType<SteamTrainMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.SteamTrainMusicBox>());
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Etheria"), ModContent.ItemType<EtheriaMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.EtheriaMusicBox>());
                 AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/ObsidiumSurface"), ModContent.ItemType<GreatShadowMusicBox>(), ModContent.TileType<Tiles.MusicBoxes.GreatShadowMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera"), ModContent.ItemType<AmelderaMusicBoxItem>(), ModContent.TileType<Tiles.MusicBoxes.AmelderaMusicBox>());
-                AddMusicBox(GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface"), ModContent.ItemType<AmelderaSurfaceMusicBoxItem>(), ModContent.TileType<Tiles.MusicBoxes.AmelderaSurfaceMusicBox>());
 
+
+                MysticWeaponIcon = Laugicality.Instance.GetTexture("UI/MysticIcon");
 
                 MysticaUI = new LaugicalityUI();
                 MysticaUI.Activate();
@@ -183,6 +190,45 @@ namespace Laugicality
             quickMystica = RegisterHotKey("Quick Mystica", "G");
             soulStoneAbility = RegisterHotKey("Soul Stone Ability", "Mouse3");
             restockNearby = RegisterHotKey("Restock from Nearby Chests", "N");
+
+
+            //Boss Info
+            ModTranslation text = CreateTranslation("EnigmaStuff");
+            text = CreateTranslation("BossSpawnInfo.DuneSharkron");
+            text.SetDefault(string.Format("A Tasty Morsel [i:{0}] in the desert will attract this Shark's attention.", ModContent.ItemType<TastyMorsel>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Hypothema");
+            text.SetDefault(string.Format("There's a chill in the air... [i:{0}]", ModContent.ItemType<ChilledMesh>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Ragnar");
+            text.SetDefault(string.Format("This Molten Mess [i:{0}] guards the Obsidium.", ModContent.ItemType<MoltenMess>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Dioritus");
+            text.SetDefault(string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ModContent.ItemType<AncientAwakener>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Andesia");
+            text.SetDefault(string.Format("The brother calls for his sister."));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Annihilator");
+            text.SetDefault(string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ModContent.ItemType<MechanicalMonitor>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Slybertron");
+            text.SetDefault(string.Format("The Steam Crown [i:{0}] calls to its King", ModContent.ItemType<SteamCrown>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.SteamTrain");
+            text.SetDefault(string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ModContent.ItemType<SuspiciousTrainWhistle>()));
+            AddTranslation(text);
+
+            text = CreateTranslation("BossSpawnInfo.Etheria");
+            text.SetDefault(string.Format("The gate to the Etherial will consume her prey. Can only be called at night.[i:{0}]", ModContent.ItemType<EmblemOfEtheria>()));
+            AddTranslation(text);
         }
 
         public override void PostSetupContent()
@@ -193,6 +239,115 @@ namespace Laugicality
 
             if (bossChecklist != null)
             {
+                bossChecklist.Call(
+                    "AddBoss",
+                    2.3f,
+                    new List<int> { ModContent.NPCType<NPCs.PreTrio.DuneSharkron>() },
+                    this,
+                    "Dune Sharkron",
+                    (Func<bool>)(() => LaugicalityWorld.downedDuneSharkron),
+                    ModContent.ItemType<TastyMorsel>(),
+                    new List<int> { ModContent.ItemType<DuneSharkronTrophy>(), ModContent.ItemType<DuneSharkronMusicBox>() },
+                    new List<int> { ModContent.ItemType<Pyramind>(), ModContent.ItemType<AncientShard>(), ModContent.ItemType<Crystilla>(), ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.HermesBoots, ItemID.EnchantedBoomerang, },
+                    "$Mods.Laugicality.BossSpawnInfo.DuneSharkron"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    3.8f,
+                    new List<int> { ModContent.NPCType<NPCs.PreTrio.Hypothema>() },
+                    this,
+                    "Hypothema",
+                    (Func<bool>)(() => LaugicalityWorld.downedHypothema),
+                    ModContent.ItemType<ChilledMesh>(),
+                    new List<int> { ModContent.ItemType<HypothemaTrophy>(), ModContent.ItemType<HypothemaMusicBox>() },
+                    new List<int> { ModContent.ItemType<FrostEssence>(), ModContent.ItemType<FrostShard>(), ModContent.ItemType<ChilledBar>(), ItemID.BlizzardinaBottle, ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.FlurryBoots, ItemID.SnowBlock, ItemID.IceBlock, },
+                    "$Mods.Laugicality.BossSpawnInfo.Hypothema"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    4.5f,
+                    new List<int> { ModContent.NPCType<NPCs.PreTrio.Ragnar>() },
+                    this,
+                    "Ragnar",
+                    (Func<bool>)(() => LaugicalityWorld.downedRagnar),
+                    ModContent.ItemType<MoltenMess>(),
+                    new List<int> { ModContent.ItemType<RagnarTrophy>(), ModContent.ItemType<RagnarMusicBox>() },
+                    new List<int> { ModContent.ItemType<MoltenCore>(), ModContent.ItemType<DarkShard>(), ModContent.ItemType<ObsidiumChunk>(), ItemID.LavaCharm, ModContent.ItemType<ObsidiumLily>(), ModContent.ItemType<FireDust>(), ModContent.ItemType<Eruption>(), ModContent.ItemType<CrystalizedMagma>(), ModContent.ItemType<Ragnashia>(), ModContent.ItemType<MagmaHeart>(), ModContent.ItemType<BlackIce>(), },
+                    "$Mods.Laugicality.BossSpawnInfo.Ragnar"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    5.991f,
+                    new List<int> { ModContent.NPCType<NPCs.RockTwins.Dioritus>() },
+                    this,
+                    "Dioritus",
+                    (Func<bool>)(() => LaugicalityWorld.downedAnDio),
+                    ModContent.ItemType<AncientAwakener>(),
+                    new List<int> { ModContent.ItemType<DioritusMusicBox>() },
+                    new List<int> { ModContent.ItemType<ZaWarudoWatch>(), ModContent.ItemType<DioritusCore>(), ItemID.Marble, },
+                    "$Mods.Laugicality.BossSpawnInfo.Dioritus"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    5.992f,
+                    new List<int> { ModContent.NPCType<NPCs.RockTwins.Andesia>() },
+                    this,
+                    "Andesia",
+                    (Func<bool>)(() => LaugicalityWorld.downedAnDio),
+                    ModContent.ItemType<AncientAwakener>(),
+                    new List<int> { ModContent.ItemType<AnDioTrophy>(), ModContent.ItemType<AnDioMusicBox>() },
+                    new List<int> { ModContent.ItemType<AndesiaCore>(), ItemID.Granite, },
+                    "$Mods.Laugicality.BossSpawnInfo.Andesia"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    9.991f,
+                    new List<int> { ModContent.NPCType<NPCs.Bosses.TheAnnihilator>() },
+                    this,
+                    "The Annihilator",
+                    (Func<bool>)(() => LaugicalityWorld.downedAnnihilator),
+                    ModContent.ItemType<MechanicalMonitor>(),
+                    new List<int> { ModContent.ItemType<AnnihilatorTrophy>(), ModContent.ItemType<AnnihilatorMusicBox>() },
+                    new List<int> { ModContent.ItemType<CogOfKnowledge>(), ModContent.ItemType<SoulOfThought>(), ModContent.ItemType<SteamBar>() },
+                    "$Mods.Laugicality.BossSpawnInfo.Annihilator"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    9.992f,
+                    new List<int> { ModContent.NPCType<NPCs.Slybertron.Slybertron>() },
+                    this,
+                    "Slybertron",
+                    (Func<bool>)(() => LaugicalityWorld.downedSlybertron),
+                    ModContent.ItemType<SteamCrown>(),
+                    new List<int> { ModContent.ItemType<SlybertronTrophy>(), ModContent.ItemType<SlybertronMusicBox>() },
+                    new List<int> { ModContent.ItemType<Pipeworks>(), ModContent.ItemType<SoulOfFraught>(), ModContent.ItemType<SteamBar>() },
+                    "$Mods.Laugicality.BossSpawnInfo.Slybertron"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    9.993f,
+                    new List<int> { ModContent.NPCType<NPCs.SteamTrain.SteamTrain>() },
+                    this,
+                    "Steam Train",
+                    (Func<bool>)(() => LaugicalityWorld.downedSteamTrain),
+                    ModContent.ItemType<SuspiciousTrainWhistle>(),
+                    new List<int> { ModContent.ItemType<SteamTrainTrophy>(), ModContent.ItemType<SteamTrainMusicBox>() },
+                    new List<int> { ModContent.ItemType<SteamTank>(), ModContent.ItemType<SoulOfWrought>(), ModContent.ItemType<SteamBar>() },
+                    "$Mods.Laugicality.BossSpawnInfo.SteamTrain"
+                );
+                bossChecklist.Call(
+                    "AddBoss",
+                    11.51f,
+                    new List<int> { ModContent.NPCType<NPCs.Etheria.Etheria>() },
+                    this,
+                    "Etheria",
+                    (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria),
+                    ModContent.ItemType<TastyMorsel>(),
+                    new List<int> { ModContent.ItemType<EtheriaTrophy>(), ModContent.ItemType<EtheriaMusicBox>() },
+                    new List<int> { ModContent.ItemType<EssenceOfEtheria>(), ModContent.ItemType<EtherialEssence>(), ModContent.ItemType<BysmalBar>() },
+                    "$Mods.Laugicality.BossSpawnInfo.Etheria"
+                );
+                /*
                 bossChecklist.Call("AddBossWithInfo", "The Annihilator", 9.991f, (Func<bool>)(() => LaugicalityWorld.downedAnnihilator), string.Format("The Steam-O-Vision [i:{0}] will summon it at night", ModContent.ItemType<MechanicalMonitor>()));
                 bossChecklist.Call("AddBossWithInfo", "Slybertron", 9.992f, (Func<bool>)(() => LaugicalityWorld.downedSlybertron), string.Format("The Steam Crown [i:{0}] calls to its King", ModContent.ItemType<SteamCrown>()));
                 bossChecklist.Call("AddBossWithInfo", "Steam Train", 9.993f, (Func<bool>)(() => LaugicalityWorld.downedSteamTrain), string.Format("A Suspicious Train Whistle [i:{0}] might get its attention.", ModContent.ItemType<SuspiciousTrainWhistle>()));
@@ -202,6 +357,7 @@ namespace Laugicality
                 bossChecklist.Call("AddBossWithInfo", "Etheria", 11.51f, (Func<bool>)(() => LaugicalityWorld.downedTrueEtheria), string.Format("The guardian of the Etherial will consume her prey. Can only be called at night.[i:{0}]", ModContent.ItemType<EmblemOfEtheria>()));
                 bossChecklist.Call("AddBossWithInfo", "Dioritus", 5.91f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("This  [i:{0}] calls the brother of the Guardians of the Underground", ModContent.ItemType<AncientAwakener>()));
                 bossChecklist.Call("AddBossWithInfo", "Andesia", 5.92f, (Func<bool>)(() => LaugicalityWorld.downedAnDio), string.Format("The brother calls for his sister."));
+                */
             }
 
             #endregion
@@ -219,6 +375,16 @@ namespace Laugicality
                 //achMod.Call("AddAchievementWithoutReward", this, "The Bleeding Heart Guardian", string.Format("Defeat Ragnar, Guardian of the Obsidium.  [i:{0}]", ModContent.ItemType("MoltenMess")), "Achievements/ragChieve2", (Func<bool>)(() => LaugicalityWorld.downedRagnar));
             }
 
+            #endregion
+
+            #region RecipeBrowser
+
+            Mod RecipeBrowser = ModLoader.GetMod("RecipeBrowser");
+            Predicate<Item> isMystic = item => item.GetGlobalItem<LaugicalityGlobalItem>().Mystic;
+            if (RecipeBrowser != null)
+            {
+                RecipeBrowser.Call("AddItemCategory", "Mystic", "Weapons", MysticWeaponIcon, isMystic);
+            }
             #endregion
         }
 
@@ -243,17 +409,13 @@ namespace Laugicality
 
                     musicPriority = MusicPriority.BiomeHigh;
                 }
-                if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneAmeldera)
-                {
-                    if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
-                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/AmelderaSurface");
-                    else
-                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Ameldera");
-                }
 
                 if (LaugicalityWorld.downedEtheria)
                 {
-                    music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
+                    if(Main.player[Main.myPlayer].ZoneDungeon)
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Necrodungeon");
+                    else
+                        music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
                     musicPriority = MusicPriority.Environment;
                 }
             }

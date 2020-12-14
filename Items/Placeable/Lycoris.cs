@@ -35,7 +35,7 @@ namespace Laugicality.Items.Placeable
 
             recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Hellforge);
-            recipe.AddIngredient(null, "LavaGem");
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 1);
             recipe.AddIngredient(null, "ObsidiumRock", 4);
             recipe.SetResult(null, "Lycoris", 4);
             recipe.AddRecipe();

@@ -12,7 +12,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             projectile.width = 12;
             projectile.height = 12;
             projectile.friendly = true;
-            projectile.penetrate = 3;
+            projectile.penetrate = 1;
             projectile.timeLeft = 60;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;

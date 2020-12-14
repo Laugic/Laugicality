@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
-	public class FreyaConjuration1 : ConjurationProjectile
+	public class FreyaConjuration1 : PrimaryConjurationProjectile
     {
         public bool stopped = false;
         public int damage = 0;
@@ -22,6 +22,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             projectile.timeLeft = 60 * 5;
             Main.projFrames[projectile.type] = 2;
             projectile.ignoreWater = true;
+            LaugicalityVars.ShroomProjectiles.Add(projectile.type);
         }
 
 		public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)

@@ -22,8 +22,9 @@ namespace Laugicality.Items.Consumables
 			item.width = 32;
 			item.height = 32;
 			item.maxStack = 20;
-			item.rare = ItemRarityID.Blue;
-			item.useAnimation = 45;
+            item.value = 0;
+            item.rare = ItemRarityID.Orange;
+            item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = ItemUseStyleID.HoldingUp;
 			item.UseSound = SoundID.Item44;

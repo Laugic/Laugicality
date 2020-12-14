@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +15,7 @@ namespace Laugicality.Items.Accessories
         {
             item.width = 16;
             item.height = 28;
-            item.value = 100;
+            item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.lifeRegen = 2;

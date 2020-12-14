@@ -26,9 +26,9 @@ namespace Laugicality.Items.Weapons.Range
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
-            item.value = 1000;
+            item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Green;
-            item.UseSound = SoundID.Item34;
+            item.UseSound = SoundID.Item11;
             item.autoReuse = true;
             item.shootSpeed = 13f;
             item.useAmmo = AmmoID.Snowball;
@@ -51,8 +51,8 @@ namespace Laugicality.Items.Weapons.Range
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SnowballCannon);
-            recipe.AddIngredient(ModContent.ItemType<FrostShard>());
             recipe.AddIngredient(ModContent.ItemType<ChilledBar>(), 12);
+            recipe.AddIngredient(ModContent.ItemType<FrostShard>());
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

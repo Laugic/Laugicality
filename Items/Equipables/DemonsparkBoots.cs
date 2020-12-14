@@ -130,7 +130,7 @@ namespace Laugicality.Items.Equipables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<DemonrushBoots>(), 1);
             recipe.AddIngredient(ItemID.HellstoneBar, 8);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 8);
             recipe.AddTile(TileID.Hellforge);
             recipe.SetResult(this);
             recipe.AddRecipe();

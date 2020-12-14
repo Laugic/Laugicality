@@ -8,18 +8,18 @@ namespace Laugicality.Projectiles.Ranged
     {
         public override void SetDefaults()
         {
+            LaugicalityVars.SnowballProjectiles.Add(projectile.type);
             projectile.width = 14;
             projectile.height = 14;
             projectile.friendly = true;
-            projectile.magic = true;
+            projectile.ranged = true;
             projectile.penetrate = 2;
             projectile.timeLeft = 600;
         }
 
         public override void AI()
         {
-            projectile.velocity.Y += projectile.ai[0];
-            projectile.ai[0] += 0.02f;
+            projectile.velocity.Y += .6f;
             projectile.velocity.X *= .975f;
         }
 
@@ -32,7 +32,6 @@ namespace Laugicality.Projectiles.Ranged
             }
             else
             {
-                projectile.ai[0] = 0.1f;
                 if (projectile.velocity.X != oldVelocity.X)
                 {
                     projectile.velocity.X = -oldVelocity.X;

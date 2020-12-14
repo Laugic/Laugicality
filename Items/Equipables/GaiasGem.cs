@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gaia's Gem");
-            Tooltip.SetDefault("+25% Mystic Duration\nReduces Cooldown between Mystic Bursts");
+            Tooltip.SetDefault("+50% Mystic Duration\nReduces Cooldown between Mystic Bursts");
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDuration += .25f;
+            modPlayer.MysticDuration += .5f;
             modPlayer.MysticSwitchCoolRate += 1;
         }
         

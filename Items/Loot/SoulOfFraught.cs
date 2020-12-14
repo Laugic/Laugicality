@@ -12,7 +12,7 @@ namespace Laugicality.Items.Loot
 			DisplayName.SetDefault("Soul of Fraught");
 			Tooltip.SetDefault("'The essence of fear'");
 			// ticksperframe, frameCount
-			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
+			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 5));
 			ItemID.Sets.AnimatesAsSoul[item.type] = true;
 			ItemID.Sets.ItemIconPulse[item.type] = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
@@ -26,7 +26,7 @@ namespace Laugicality.Items.Loot
 			item.width = refItem.width;
 			item.height = refItem.height;
 			item.maxStack = 999;
-			item.value = 1000;
+			item.value = 40000;
 			item.rare = ItemRarityID.Orange;
             item.scale *= 1.5f;
         }

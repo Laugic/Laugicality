@@ -22,7 +22,8 @@ namespace Laugicality.Items.Consumables.Potions
             item.useStyle = 2;
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
-		}
+            item.value = Item.sellPrice(silver: 2);
+        }
         
 
         public override bool UseItem(Player player)

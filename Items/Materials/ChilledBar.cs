@@ -1,4 +1,5 @@
 ﻿using Terraria.ID;
+using Terraria;
 
 namespace Laugicality.Items.Materials
 {
@@ -13,10 +14,11 @@ namespace Laugicality.Items.Materials
 			item.width = 30;
 			item.height = 30;
 			item.maxStack = 99;
-			item.rare = ItemRarityID.Blue;
 			item.useAnimation = 1;
 			item.useTime = 15;
 			item.useStyle = 1;
-		}
+            item.value = Item.sellPrice(silver: 24);
+			item.rare = ItemRarityID.Blue;
+        }
 	}
 }

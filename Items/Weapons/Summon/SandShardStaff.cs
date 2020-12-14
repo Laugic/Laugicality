@@ -27,7 +27,7 @@ namespace Laugicality.Items.Weapons.Summon
             item.useStyle = 1;
             item.noMelee = true; 
             item.knockBack = 2f;
-            item.value = 25000;
+            item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.Item44;
             item.autoReuse = true;

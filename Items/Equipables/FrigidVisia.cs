@@ -10,14 +10,14 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+15% Illusion Damage\n+25% Vis Absorption and Mystic Duration");
+            Tooltip.SetDefault("+25% Mystic Duration\n+15% Illusion Damage\n+50 Vis");
         }
 
         public override void SetDefaults()
         {
             item.width = 32;
             item.height = 32;
-            item.value = 100;
+            item.value = Item.sellPrice(gold: 4);
             item.rare = ItemRarityID.Cyan;
             item.accessory = true;
         }
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Equipables
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.IllusionDamage += .15f;
             modPlayer.MysticDuration += .25f;
-            modPlayer.VisAbsorbRate += .25f;
+            modPlayer.VisMax += 50;
         }
 
         public override void AddRecipes()

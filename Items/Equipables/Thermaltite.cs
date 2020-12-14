@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Laugicality.Items.Placeable;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -32,7 +33,7 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "LavaGem", 15);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 15);
             recipe.AddIngredient(null, "ObsidiumRock", 10);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

@@ -28,6 +28,8 @@ namespace Laugicality.Tiles.Furniture
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lava Gem Lantern");
             AddMapEntry(new Color(170, 200, 120), name);
+            adjTiles = new int[] { TileID.HangingLanterns};
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

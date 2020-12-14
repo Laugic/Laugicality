@@ -15,9 +15,7 @@ namespace Laugicality.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense -= 10;
-            if (player.statDefense < 0)
-                player.statDefense = 0;
+            LaugicalityPlayer.Get(player).WeakenedDefense += 10;
         }
     }
 }

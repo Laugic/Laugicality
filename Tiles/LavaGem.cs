@@ -18,7 +18,7 @@ namespace Laugicality.Tiles
             Main.tileLighted[Type] = true;
 
             dustType = ModContent.DustType<Magma>();
-            drop = ModContent.ItemType<Items.Placeable.LavaGem>();
+            drop = ModContent.ItemType<Items.Placeable.LavaGemItem>();
 
             ModTranslation name = CreateMapEntryName();
             name.SetDefault("Lava Gem");

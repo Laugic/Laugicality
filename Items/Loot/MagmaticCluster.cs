@@ -1,3 +1,6 @@
+using Terraria;
+using Terraria.ID;
+
 namespace Laugicality.Items.Loot
 {
     public class MagmaticCluster : LaugicalityItem
@@ -17,8 +20,8 @@ namespace Laugicality.Items.Loot
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
-            item.value = 0;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
         }
-        
     }
 }

@@ -1,70 +1,75 @@
 using Laugicality.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Destruction
 {
 	public class GaiaDestruction : DestructionProjectile
     {
-        float distanceTo = 800;
+		public Color colorType;
 
         public override void SetDefaults()
         {
-            distanceTo = 800;
-            projectile.width = 18;
-            projectile.height = 18;
+            projectile.width = 12;
+            projectile.height = 12;
             projectile.friendly = true;
-            projectile.penetrate = 3;
-            projectile.timeLeft = 600;
+            projectile.penetrate = 1;
+            projectile.timeLeft = 3 * 60;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            Main.projFrames[projectile.type] = 6;
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            projectile.ai[0] += 0.1f;
+            if (projectile.velocity.X != oldVelocity.X)
+            {
+                projectile.velocity.X = -oldVelocity.X;
+            }
+            if (projectile.velocity.Y != oldVelocity.Y)
+            {
+                projectile.velocity.Y = -oldVelocity.Y;
+            }
+            projectile.velocity *= 0.9f;
+            return false;
+        }
         public override void AI()
         {
-            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Rainbow>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
-            for (int i = 0; i < 200; i++)
+            projectile.frame = (int)(projectile.ai[1]);
+
+            projectile.velocity.Y += projectile.ai[0] + .15f;
+
+            if (projectile.velocity.X > 0f)
             {
-                NPC target = Main.npc[i];
-                //If the npc is hostile
-                if (!target.friendly && target.damage > 0)
-                {
-                    //Get the shoot trajectory from the projectile and target
-                    float shootToX = target.position.X + (float)target.width * 0.5f - projectile.Center.X;
-                    float shootToY = target.position.Y - projectile.Center.Y;
-                    float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                projectile.rotation += 0.25f;
+            }
+            else
+            {
+                projectile.rotation -= 0.25f;
+            }
 
-                    //If the distance between the live targeted npc and the projectile is less than 480 pixels
-                    if (distance < 480f && distance < distanceTo && !target.friendly && target.active && target.damage > 0)
-                    {
-                        distanceTo = distance;
-                        //Divide the factor, 3f, which is the desired velocity
-                        distance = 1f / distance;
+            if (projectile.ai[1] == 0) { colorType = new Color(255, 0, 0); }
+            if (projectile.ai[1] == 1) { colorType = new Color(255, 226, 0); }
+            if (projectile.ai[1] == 2) { colorType = new Color(8, 255, 0); }
+            if (projectile.ai[1] == 3) { colorType = new Color(0, 217, 255); }
+            if (projectile.ai[1] == 4) { colorType = new Color(209, 0, 255); }
+            if (projectile.ai[1] == 5) { colorType = new Color(255, 255, 255); }
 
-                        //Multiply the distance by a multiplier if you wish the projectile to have go faster
-                        shootToX *= distance * 5;
-                        shootToY *= distance * 5;
+            if (projectile.timeLeft < 20)
+            {
+                projectile.alpha += 8;
+            }
+        }
 
-                        //Set the velocities to the shoot values
-                        int mag = 5;
-                        if (projectile.velocity.X < shootToX)
-                        {
-                            projectile.velocity.X += (shootToX - projectile.velocity.X) / mag;
-                        }
-                        if (projectile.velocity.Y < shootToY)
-                        {
-                            projectile.velocity.Y += (shootToY - projectile.velocity.Y) / mag;
-                        }
-                        if (projectile.velocity.X > shootToX)
-                        {
-                            projectile.velocity.X -= (projectile.velocity.X - shootToX) / mag;
-                        }
-                        if (projectile.velocity.Y > shootToY)
-                        {
-                            projectile.velocity.Y -= (projectile.velocity.Y - shootToY) / mag;
-                        }
-                    }
-                }
+        public override void Kill(int timeLeft)
+        {
+            for (int k = 0; k < 5; k++)
+            {
+                int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 16, Main.rand.Next((int)-2f, (int)2f), Main.rand.Next((int)-2f, (int)2f), 0, colorType, 0.75f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].noLight = true;
             }
         }
     }

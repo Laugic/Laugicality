@@ -12,8 +12,8 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 		
         public override void SetDefaults()
         {
-            projectile.width = 48;
-            projectile.height = 48;
+            projectile.width = 30;
+            projectile.height = 30;
             projectile.friendly = true;
             projectile.penetrate = 8;
             projectile.timeLeft = 300;
@@ -23,11 +23,17 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.tileCollide = true;
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            projectile.timeLeft -= 2;
+            projectile.velocity *= .92f;
+            return false;
+        }
+
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
-            projectile.velocity.X *= .97f;
-            projectile.velocity.Y *= .97f;
+            projectile.velocity *= .97f;
             
 			if (Main.rand.Next(2) == 0)
 			{
@@ -35,7 +41,6 @@ namespace Laugicality.Projectiles.Mystic.Illusion
 				Main.dust[DustID].noGravity = true;
 			}
 
-			projectile.rotation += 0.05f;
 			if (projectile.timeLeft > 20)
 			{
 				if (!shift)

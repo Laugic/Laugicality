@@ -16,6 +16,7 @@ namespace Laugicality.Projectiles.Ranged
 
         public override void SetDefaults()
         {
+            LaugicalityVars.SnowballProjectiles.Add(projectile.type);
             power = 3;
             powered = false;
             projectile.width = 30;
@@ -23,6 +24,7 @@ namespace Laugicality.Projectiles.Ranged
             projectile.friendly = true;
             projectile.penetrate = 1;
             projectile.timeLeft = 600;
+            projectile.ranged = true;
             projectile.ignoreWater = true;
         }
 
@@ -35,8 +37,7 @@ namespace Laugicality.Projectiles.Ranged
                 powered = true;
             }
 
-            projectile.velocity.Y += projectile.ai[0];
-            projectile.ai[0] += 0.04f;
+            projectile.velocity.Y += .8f;
             if (Main.rand.Next(2) == 0) Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<EtherialDust>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
         }

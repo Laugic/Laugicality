@@ -2,6 +2,7 @@ using System;
 using Laugicality.Dusts;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -406,9 +407,8 @@ namespace Laugicality.NPCs.PreTrio
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedEtheria)
-            {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Etheramind>(), 1);
-            }
+
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AncientShard>(), Main.rand.Next(1, 3));
@@ -425,9 +425,9 @@ namespace Laugicality.NPCs.PreTrio
             }
 
             if (Main.expertMode)
-            {
                 npc.DropBossBags();
-            }
+            if(Main.rand.Next(10) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DuneSharkronTrophy>(), 1);
 
             LaugicalityWorld.downedDuneSharkron = true;
         }

@@ -25,7 +25,6 @@ namespace Laugicality.Items.Placeable
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
             item.createTile = ModContent.TileType<ObsidiumPlantBulbs>();
             item.rare = ItemRarityID.Blue;
         }
@@ -47,7 +46,7 @@ namespace Laugicality.Items.Placeable
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Hellforge);
             recipe.AddIngredient(this);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 4);
             recipe.AddIngredient(ModContent.ItemType<ObsidiumOre>(), 8);
             recipe.AddIngredient(ModContent.ItemType<RubrumDust>(), 4);
             recipe.SetResult(ItemID.LifeCrystal);
@@ -56,7 +55,7 @@ namespace Laugicality.Items.Placeable
             recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.Hellforge);
             recipe.AddIngredient(this);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 4);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 4);
             recipe.AddIngredient(ItemID.Hellstone, 8);
             recipe.AddIngredient(ModContent.ItemType<RubrumDust>(), 4);
             recipe.SetResult(ItemID.LifeCrystal);

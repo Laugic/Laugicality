@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
-	public class HadesGeyser : ConjurationProjectile
+	public class HadesGeyser : PrimaryConjurationProjectile
     {
         public double rot = 0.0;
         public int delay = 0;
@@ -29,11 +29,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         public override void AI()
         {
             if (dir == 0)dir = -1 + 2*Main.rand.Next(0, 2);
-            rot += dir*0.02;
-            if(Main.rand.Next(3) == 0)
-                rot += dir * 0.04;
-            if (Main.rand.Next(3) == 0)
-                rot += dir * 0.04;
+            rot += dir * 0.04; 
             projectile.rotation = (float)rot;
             delay++;
             if (delay >= delayMax)

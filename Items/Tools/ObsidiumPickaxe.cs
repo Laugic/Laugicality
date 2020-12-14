@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,9 +23,9 @@ namespace Laugicality.Items.Tools
 			item.pick = 100;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item1;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
+            item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
 

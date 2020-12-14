@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,9 +23,9 @@ namespace Laugicality.Items.Tools
 			item.pick = 160;
 			item.useStyle = 1;
 			item.knockBack = 6;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item1;
+            item.value = Item.sellPrice(gold: 2);
+            item.rare = ItemRarityID.Pink;
+            item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 		}
 
@@ -33,9 +34,8 @@ namespace Laugicality.Items.Tools
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "FrigidPickaxe", 1);
             recipe.AddIngredient(null, "ObsidiumPickaxe", 1);
-            recipe.AddIngredient(null, "MagmaticCrystal", 1);
-            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
-            recipe.AddIngredient(mod, nameof(SoulOfHaught), 4);
+            recipe.AddIngredient(mod, nameof(SoulOfSought), 8);
+            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

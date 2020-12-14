@@ -58,13 +58,10 @@ namespace Laugicality.Items.Weapons.Thrown
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, nameof(ObsidiumBar), 12);
-            recipe.AddRecipeGroup("TitaniumBars", 6);
+            recipe.AddIngredient(ModContent.ItemType<Obshardian>(), 222);
+            recipe.AddRecipeGroup("TitaniumBars", 8);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 8);
             recipe.AddIngredient(null, "MagmaticCluster");
-            recipe.AddIngredient(null, "MagmaticCrystal", 4);
-            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
-            recipe.AddIngredient(null, "VerdiDust", 4);
-            recipe.AddIngredient(null, "AlbusDust", 2);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

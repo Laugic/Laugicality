@@ -23,6 +23,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             projectile.hostile = false;
             projectile.ignoreWater = true;
             projectile.penetrate = 2;
+            LaugicalityVars.ShroomProjectiles.Add(projectile.type);
         }
 
         public override void AI()

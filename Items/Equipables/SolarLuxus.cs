@@ -10,14 +10,14 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+15% Destruction and Mystic Damage\n+25% Lux Absorption");
+            Tooltip.SetDefault("+15% Mystic Damage\n+15% Destruction Damage\n+50 Lux");
         }
 
         public override void SetDefaults()
         {
             item.width = 32;
             item.height = 32;
-            item.value = 100;
+            item.value = Item.sellPrice(gold: 4);
             item.rare = ItemRarityID.Cyan;
             item.accessory = true;
         }
@@ -27,14 +27,14 @@ namespace Laugicality.Items.Equipables
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.DestructionDamage += .15f;
             modPlayer.MysticDamage += .15f;
-            modPlayer.LuxAbsorbRate += .25f;
+            modPlayer.LuxMax += 50;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ModContent.ItemType<MagmaticCrystal>(), 8);
             recipe.AddIngredient(ItemID.LunarTabletFragment, 12);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 8);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

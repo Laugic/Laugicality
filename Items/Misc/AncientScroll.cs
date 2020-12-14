@@ -7,8 +7,9 @@ namespace Laugicality.Items.Misc
 {
     public class AncientScroll : LaugicalityItem
     {
-        string TableOfContents = "'A window into Mystica'\nGives information on the Mystic Class!\nInformation given is based on the amount of scrolls you have in a stack.\nTable of Contents:\n" +
-                                 "1: Table of Contents (This page!)\n2: The Mystic Class\n3: Mysticism\n4: Potentia\n5: Duration\n6: Overflow\n7: Bursts\n8: Potentia Conversion\n9: The Origins";
+        string Intro = "'A window into Mystica'\nGives information on the Mystic Class!\nInformation given is based on the amount of scrolls you have in a stack.";
+        string TableOfContents = "Table of Contents:\n" +
+                                 "1: Ancient Scrolls\n2: Table of Contents (This page!)\n3: The Mystic Class\n4: Mysticism\n5: Potentia\n6: Duration\n7: Overflow\n8: The Origins";
         string TheMysticClass = "- The Mystic Class -\nThe Mystic Class is an ancient class from long ago. In order to harness its power,\nyou have to be able to change between the different Mysticisms at will, and channel their energy\n" + 
                                 "through the artifacts of old. In order to do this, set a hotkey for 'Toggle Mysticism' (Right click is recommended).\nThen, when you are holding a Mystic weapon, you should see the magic in action!";
         string Mysticisms = "- Mysticism -\nThe three Mysticisms are Destruction, Conjuration, and Illusion.\nDestruction finds its power through raw destructive strength.\nConjuration spawns many recurring projectiles to overwhelm your foes.\n" +
@@ -40,10 +41,12 @@ namespace Laugicality.Items.Misc
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            Player ttPlayer = Main.player[Main.myPlayer];
-            string toolTip = "";
-            switch(item.stack)
+            string toolTip;
+            switch (item.stack - 1)
             {
+                case 0:
+                    toolTip = Intro;
+                    break;
                 case 1:
                     toolTip = TableOfContents;
                     break;
@@ -63,12 +66,6 @@ namespace Laugicality.Items.Misc
                     toolTip = Overflow;
                     break;
                 case 7:
-                    toolTip = MysticBursts;
-                    break;
-                case 8:
-                    toolTip = PotentiaConversion;
-                    break;
-                case 9:
                     toolTip = Origins;
                     break;
                 default:
@@ -77,7 +74,7 @@ namespace Laugicality.Items.Misc
             }
             TooltipLine linePage = new TooltipLine(mod, "", toolTip); tooltips.Add(linePage);
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -87,6 +84,6 @@ namespace Laugicality.Items.Misc
             recipe.anyWood = true;
             recipe.SetResult(this, 1);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

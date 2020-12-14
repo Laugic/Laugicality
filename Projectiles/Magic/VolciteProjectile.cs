@@ -7,21 +7,27 @@ using Terraria.ModLoader;
 namespace Laugicality.Projectiles.Magic
 {
 	public class VolciteProjectile : ModProjectile
-	{
-		public override void SetDefaults()
+    {
+        bool boosted = false;
+        public override void SetDefaults()
 		{
 			projectile.width = 16;
 			projectile.height = 16;
 			projectile.friendly = true;
 			projectile.magic = true;
-			projectile.penetrate = 4;
+			projectile.penetrate = 2;
 			projectile.timeLeft = 600;
 		}
 
 		public override void AI()
 		{
 			projectile.velocity.Y += projectile.ai[0];
-			Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+            if (!boosted)
+            {
+                projectile.penetrate += (int)projectile.ai[1];
+                boosted = true;
+            }
+            Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
@@ -61,7 +67,7 @@ namespace Laugicality.Projectiles.Magic
 		{
 			projectile.ai[0] += 0.1f;
 			projectile.velocity *= 0.75f;
-			target.AddBuff(BuffID.OnFire, 80);
-		}
+            target.AddBuff(BuffID.OnFire, 2 * 60 + Main.rand.Next(60));
+        }
 	}
 }

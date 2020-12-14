@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,30 +10,31 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+33% Mystic Duration\n+10% Overflow Damage");
+            Tooltip.SetDefault("+33% Mystic Duration\n+15% Overflow Damage");
         }
 
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
-            item.value = 100;
-            item.rare = ItemRarityID.Blue;
+            item.defense = 4;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDuration += .25f;
+            modPlayer.MysticDuration += .33f;
             modPlayer.OverflowDamage += .1f;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(mod, nameof(ObsidiumBar), 10);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 12);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 8);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

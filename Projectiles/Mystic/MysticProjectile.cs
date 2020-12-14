@@ -10,7 +10,7 @@ namespace Laugicality.Projectiles.Mystic
         public float duration = 1;
         public bool overflowed = false;
         public int buffID = 0;
-        public int baseDuration = 4 * 60;
+        public int baseDuration = 6 * 60;
 
 
         public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace Laugicality.Projectiles.Mystic
             {
                 duration = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>().MysticDuration;
                 durationed = true;
-                projectile.timeLeft = (int)(projectile.timeLeft * duration);
+                Durationed(duration);
                 overflowed = CheckOverflow();
             }
             if (overflowed)
@@ -56,6 +56,11 @@ namespace Laugicality.Projectiles.Mystic
                 projectile.tileCollide = false;
         }
 
+        public virtual void Durationed(float dur)
+        {
+
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
@@ -63,9 +68,9 @@ namespace Laugicality.Projectiles.Mystic
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
 
             if (modPlayer.Incineration > 0)
-                target.AddBuff(ModContent.BuffType<Incineration>(), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
+                target.AddBuff(ModContent.BuffType<Incineration>(), (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
             if (modPlayer.SporeShard > 0)
-                target.AddBuff(ModContent.BuffType<Spored>(), (int)(4 * 60 * duration) + Main.rand.Next(1 * 60));
+                target.AddBuff(ModContent.BuffType<Spored>(), (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
         }
     }
 }

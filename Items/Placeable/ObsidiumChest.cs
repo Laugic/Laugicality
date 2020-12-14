@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -21,7 +22,7 @@ namespace Laugicality.Items.Placeable
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
+            item.value = Item.sellPrice(silver: 1);
             item.createTile = ModContent.TileType<Tiles.ObsidiumChest>();
         }
 

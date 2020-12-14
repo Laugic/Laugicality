@@ -33,7 +33,7 @@ namespace Laugicality.Items.Placeable.MusicBoxes
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(ModContent.TileType<Tiles.LaugicalWorkbench>());
             recipe.AddIngredient(ItemID.MusicBox, 1);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 5);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 5);
             recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 20);
             recipe.SetResult(this);
             recipe.AddRecipe();

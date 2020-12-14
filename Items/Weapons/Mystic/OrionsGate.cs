@@ -7,6 +7,7 @@ using Laugicality.Projectiles.Mystic.Illusion;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
 using Terraria.ModLoader;
+using Laugicality.Items.Materials;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -16,6 +17,7 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             DisplayName.SetDefault("Orion's Gate");
             Tooltip.SetDefault("'Open the path to the stars'\nIllusion inflicts 'Cosmic Disarray', which drains life and makes enemies take more damage.\nFires different projectiles based on Mysticism\nConsuming enemies increases the Gate's power.");
+            Item.staff[item.type] = true;
         }
         
         public override void SetMysticDefaults()
@@ -25,11 +27,11 @@ namespace Laugicality.Items.Weapons.Mystic
             item.height = 56;
             item.useTime = 18;
             item.useAnimation = 18;
-            item.useStyle = 1;
+            item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
             item.value = 10000;
-            item.rare = ItemRarityID.Lime;
+            item.rare = ItemRarityID.Red;
             item.UseSound = SoundID.Item105;
             item.autoReuse = true;
             item.shootSpeed = 6f;
@@ -81,7 +83,6 @@ namespace Laugicality.Items.Weapons.Mystic
         
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 48;
             item.useTime = 20;
             item.useAnimation = item.useTime;
@@ -93,7 +94,6 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 42;
             item.useTime = 90;
             item.useAnimation = item.useTime;
@@ -105,7 +105,6 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.useStyle = ItemUseStyleID.HoldingUp;
             item.damage = 35;
             item.useTime = 40;
             item.useAnimation = item.useTime;
@@ -114,18 +113,13 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = ModContent.ProjectileType<Nothing>();
             item.noUseGraphic = false;
         }
-        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Pearlwood, 24);
-            recipe.AddRecipeGroup("SilverBars", 8);
-            recipe.AddIngredient(ItemID.SoulofLight, 6);
-            recipe.AddIngredient(mod, nameof(SoulOfSought), 4);
-            recipe.AddIngredient(ItemID.CrystalShard, 4);
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(mod, nameof(GalacticFragment), 15);
+            recipe.AddTile(412);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Laugicality.SoulStones
         {
             base.SetStaticDefaults();
 
-            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures\nAn otherwordly entity seems to have sealed some of its power...");
+            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures");
         }
 
         public override void SetDefaults()
@@ -29,6 +29,7 @@ namespace Laugicality.SoulStones
             item.rare = ItemRarityID.Expert;
 
             item.accessory = true;
+            Cursed = true;
         }
 
         public override bool CanEquipAccessory(Player player, int slot) => base.CanEquipAccessory(player, slot) && player.GetModPlayer<LaugicalityPlayer>().Focus != null;
@@ -36,7 +37,12 @@ namespace Laugicality.SoulStones
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(tooltips);
+
             LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            Cursed = !LaugicalityWorld.downedNecrodon;
+            if (Cursed)
+                tooltips.Add(new TooltipLine(mod, "SoulStoneNoPlayerFocus", "--An otherwordly entity seems to have sealed some of its power--"));
 
             if (laugicalityPlayer.Focus == null)
             {
@@ -67,6 +73,11 @@ namespace Laugicality.SoulStones
 
                 GetCurseTooltips(tooltips);
             }
+            if(!Cursed)
+                tooltips.Add(new TooltipLine(mod, "SoulStoneNoPlayerFocus", "--The Curse has been lifted--")
+                {
+                    overrideColor = Color.Gold
+                });
         }
 
         private static void GetCurseTooltips(List<TooltipLine> tooltips)
@@ -145,5 +156,7 @@ namespace Laugicality.SoulStones
             recipe.SetResult(this);
             recipe.AddRecipe();
         }
+
+        public bool Cursed { get; set; }
     }
 }

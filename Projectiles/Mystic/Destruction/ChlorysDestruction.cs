@@ -13,6 +13,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             projectile.penetrate = 2;
             projectile.timeLeft = 120;
             projectile.ignoreWater = true;
+            LaugicalityVars.SeedProjectiles.Add(projectile.type);
         }
 
         public override void AI()

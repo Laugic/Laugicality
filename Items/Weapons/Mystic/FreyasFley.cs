@@ -13,9 +13,27 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Freya's Fley");
-            Tooltip.SetDefault("Spores of the gods\nIllusion inflicts 'Shroomed', which slowly drains enemy life\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("Spores of the gods");
             Item.staff[item.type] = true;
         }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Rapidly shoots shrooms";
+                case 2:
+                    return "Shoots a spore cloud that inflict 'Spored', which makes Shrooms become Mega Shrooms on hit";
+                case 3:
+                    return "Spawns a shroom cap that launches spores into the sky";
+                default:
+                    return "";
+            }
+        }
+
 
         public override void SetMysticDefaults()
         {
@@ -61,8 +79,8 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 12;
-            item.useTime = 50;
-            item.useAnimation = 50;
+            item.useTime = 45;
+            item.useAnimation = 45;
             item.knockBack = 5;
             item.shootSpeed = 2f;
             item.shoot = ModContent.ProjectileType<FreyaConjuration1>();
@@ -72,9 +90,8 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(183, 12);
-            recipe.AddIngredient(176, 10);
-            recipe.AddIngredient(ItemID.FallenStar, 2);
+            recipe.AddIngredient(183, 16);
+            recipe.AddIngredient(ItemID.ManaCrystal, 1);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

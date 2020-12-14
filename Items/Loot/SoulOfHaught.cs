@@ -12,7 +12,7 @@ namespace Laugicality.Items.Loot
 			DisplayName.SetDefault("Soul of Haught");
 			Tooltip.SetDefault("'The essence of hot creatures'");
 			// ticksperframe, frameCount
-			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 8));
+			Main.RegisterItemAnimation(item.type, new DrawAnimationVertical(5, 4));
 			//ItemID.Sets.AnimatesAsSoul[item.type] = true;
 			ItemID.Sets.ItemIconPulse[item.type] = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;

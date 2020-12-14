@@ -10,7 +10,7 @@ namespace Laugicality.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroom Cap");
-            Tooltip.SetDefault("+4% Mystic Damage");
+            Tooltip.SetDefault("+8% Mystic Damage");
 		}
 
 		public override void SetDefaults()
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += .04f;
+            modPlayer.MysticDamage += .08f;
         }
 
         public override bool DrawHead()

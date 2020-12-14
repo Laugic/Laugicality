@@ -1,3 +1,5 @@
+using Laugicality.Items.Materials;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +11,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Conjuration Damage\n+25% Conjuration Overflow\nAbsorb 25% more Mundus when using Vis and Lux");
+            Tooltip.SetDefault("+10% Conjuration Damage\n+50 Mundus");
         }
 
         public override void SetDefaults()
@@ -25,18 +27,16 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.ConjurationDamage += .1f;
-            modPlayer.MundusOverflow += .25f;
-            modPlayer.MundusAbsorbRate += .25f;
+            modPlayer.MundusMax += 50;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "AncientShard", 1);
-            recipe.AddIngredient(null, "VerdiDust", 2);
-            recipe.AddIngredient(null, "AlbusDust", 2);
-            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.AddIngredient(ItemID.LargeEmerald, 1);
+            recipe.AddIngredient(ItemID.JungleSpores, 8);
+            recipe.AddIngredient(ModContent.ItemType<AlbusDust>(), 4);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

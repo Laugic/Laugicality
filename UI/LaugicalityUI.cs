@@ -57,6 +57,16 @@ namespace Laugicality.UI
         int targetPosition = 1;
         int mysticBurstCooldownMax = 0;
 
+        //CONFIGURABLES
+        public static int MysticUIType { get; set; }
+        public static bool Animated { get; set; }
+
+        //CONFIG RELATED VALUES
+        private Vector2 CenterPos = new Vector2(0, 0);
+        Vector2 CENTER = new Vector2(Main.screenWidth / 2, Main.screenHeight / 2);
+        Vector2 TOPCIRCLE = new Vector2(Main.screenWidth / 2, 100 / Main.UIScale);
+        Vector2 TOPSTACK = new Vector2(Main.screenWidth / 2, 30 / Main.UIScale);
+
         static LaugicalityUI()
         {
               visible = true;
@@ -168,40 +178,40 @@ namespace Laugicality.UI
             visible = (mysticPlayer.MysticHold > 0);
             float luxTemp = mysticPlayer.Lux;
 
-            if (luxTemp > mysticPlayer.LuxMax)
-                luxTemp = mysticPlayer.LuxMax;
+            if (luxTemp > mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost)
+                luxTemp = mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost;
 
             if (LuxBar != null)
-                LuxBar.DrawSelf(spriteBatch, (int)luxTemp, (int)(mysticPlayer.LuxMax));
+                LuxBar.DrawSelf(spriteBatch, (int)luxTemp, (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost));
 
-            if (OverflowLuxBar != null && mysticPlayer.Lux > mysticPlayer.LuxMax)
-                OverflowLuxBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Lux - mysticPlayer.LuxMax), (int)(mysticPlayer.LuxMax));
+            if (OverflowLuxBar != null && mysticPlayer.Lux > mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost)
+                OverflowLuxBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Lux - mysticPlayer.LuxMax - mysticPlayer.LuxMaxPermaBoost), (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost));
 
             float mundusTemp = mysticPlayer.Mundus;
 
-            if (mundusTemp > mysticPlayer.MundusMax)
-                mundusTemp = mysticPlayer.MundusMax;
+            if (mundusTemp > mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost)
+                mundusTemp = mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost;
 
             if (MundusBar != null)
-                MundusBar.DrawSelf(spriteBatch, (int)mundusTemp, (int)(mysticPlayer.MundusMax));
+                MundusBar.DrawSelf(spriteBatch, (int)mundusTemp, (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost));
 
-            if (OverflowMundusBar != null && mysticPlayer.Mundus > mysticPlayer.MundusMax)
-                OverflowMundusBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Mundus - mysticPlayer.MundusMax), (int)(mysticPlayer.MundusMax));
+            if (OverflowMundusBar != null && mysticPlayer.Mundus > mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost)
+                OverflowMundusBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Mundus - mysticPlayer.MundusMax - mysticPlayer.MundusMaxPermaBoost), (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost));
 
             float visTemp = mysticPlayer.Vis;
 
-            if (visTemp > mysticPlayer.VisMax)
-                visTemp = mysticPlayer.VisMax;
+            if (visTemp > mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost)
+                visTemp = mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost;
 
             if (VisBar != null)
-                VisBar.DrawSelf(spriteBatch, (int)visTemp, (int)(mysticPlayer.VisMax));
+                VisBar.DrawSelf(spriteBatch, (int)visTemp, (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost));
 
-            if (OverflowVisBar != null && mysticPlayer.Vis > mysticPlayer.VisMax)
-                OverflowVisBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Vis - mysticPlayer.VisMax), (int)(mysticPlayer.VisMax));
-
+            if (OverflowVisBar != null && mysticPlayer.Vis > mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost)
+                OverflowVisBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Vis - mysticPlayer.VisMax - mysticPlayer.VisMaxPermaBoost), (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost));
+            /*
             if (MysticBurstBar != null && mysticPlayer.MysticSwitchCool > 0 && mysticBurstCooldownMax >= mysticPlayer.MysticSwitchCool)
                 MysticBurstBar.DrawSelf(spriteBatch, mysticPlayer.MysticSwitchCool, mysticBurstCooldownMax);
-
+            */
             UpdateHover(spriteBatch);
         }
 
@@ -226,7 +236,11 @@ namespace Laugicality.UI
         public void Update()
         {
             UpdateIdle();
-            UpdateRotations();
+            UpdateType();
+            if (MysticUIType < 2)
+                UpdateRotations();
+            else
+                UpdateHeights();
             UpdatePositions();
             UpdateMysticBurst();
         }
@@ -238,7 +252,52 @@ namespace Laugicality.UI
             UpdateBot();
         }
 
+        private void UpdateType()
+        {
+            switch(MysticUIType)
+            {
+                case 1:
+                    CenterPos = TOPCIRCLE;
+                    break;
+                case 2:
+                    CenterPos = TOPSTACK;
+                    break;
+                default:
+                    CenterPos = CENTER;
+                    break;
+            }
+        }
+
         private void UpdateRotations()
+        {
+            if(!Animated)
+            {
+                rotation = rotationGoal;
+                position = targetPosition;
+            }
+            if (rotation < rotationGoal)
+                rotation += (float)(Math.PI / 10f);
+            else
+            {
+                rotation = rotationGoal;
+                position = targetPosition;
+            }
+            if (rotationGoal > (float)Math.PI * 2 && rotation > (float)Math.PI * 2)
+            {
+                rotationGoal -= (float)Math.PI * 2;
+                rotation -= (float)Math.PI * 2;
+            }
+            TopPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 3f / 2f * Math.PI) * 100) / Main.UIScale;
+            TopPosBase.Y = (CenterPos.Y - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 3f / 2f * Math.PI) * 100 + 25) / Main.UIScale;
+            MidPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 5f / 6f * Math.PI) * 100) / Main.UIScale;
+            MidPosBase.Y = (CenterPos.Y - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 5f / 6f * Math.PI) * 100 + 25) / Main.UIScale;
+            BotPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 1f / 6f * Math.PI) * 100) / Main.UIScale;
+            BotPosBase.Y = (CenterPos.Y - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 1f / 6f * Math.PI) * 100 + 25) / Main.UIScale;
+            MysticBurstPos.X = (CenterPos.X - MysticBurstBGTexture.Width / 2) / Main.UIScale;
+            MysticBurstPos.Y = (CenterPos.Y + 125) / Main.UIScale;
+        }
+
+        private void UpdateHeights()
         {
             if (rotation < rotationGoal)
                 rotation += (float)(Math.PI / 10f);
@@ -252,14 +311,12 @@ namespace Laugicality.UI
                 rotationGoal -= (float)Math.PI * 2;
                 rotation -= (float)Math.PI * 2;
             }
-            TopPosBase.X = (Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 3f / 2f * Math.PI) * 100) / Main.UIScale;
-            TopPosBase.Y = (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 3f / 2f * Math.PI) * 100 + 25) / Main.UIScale;
-            MidPosBase.X = (Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 5f / 6f * Math.PI) * 100) / Main.UIScale;
-            MidPosBase.Y = (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 5f / 6f * Math.PI) * 100 + 25) / Main.UIScale;
-            BotPosBase.X = (Main.screenWidth / 2 - LuxBGTexture.Width / 2 + (float)Math.Cos(rotation + 1f / 6f * Math.PI) * 100) / Main.UIScale;
-            BotPosBase.Y = (Main.screenHeight / 2 - LuxBGTexture.Height / 2 + (float)Math.Sin(rotation + 1f / 6f * Math.PI) * 100 + 25) / Main.UIScale;
-            MysticBurstPos.X = (Main.screenWidth / 2 - MysticBurstBGTexture.Width / 2) / Main.UIScale;
-            MysticBurstPos.Y = (Main.screenHeight / 2 + 125) / Main.UIScale;
+            TopPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2) / Main.UIScale;
+            TopPosBase.Y = (CenterPos.Y + LuxBGTexture.Height / 2 + (float)Math.Sin(rotation - .333f * Math.PI) * LuxBGTexture.Height * Main.UIScale + 25) / Main.UIScale;
+            MidPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2) / Main.UIScale;
+            MidPosBase.Y = (CenterPos.Y + LuxBGTexture.Height / 2 + (float)Math.Sin(rotation - 1f * Math.PI) * LuxBGTexture.Height * Main.UIScale + 25) / Main.UIScale;
+            BotPosBase.X = (CenterPos.X - LuxBGTexture.Width / 2) / Main.UIScale;
+            BotPosBase.Y = (CenterPos.Y + LuxBGTexture.Height / 2 + (float)Math.Sin(rotation - 1.667f * Math.PI) * LuxBGTexture.Height * Main.UIScale + 25) / Main.UIScale;
         }
 
         private void UpdateTop()
@@ -280,8 +337,8 @@ namespace Laugicality.UI
                 topMag = 2;
             if (topMag > 5)
                 topMag = 5;
-            TopPos.X = TopPosBase.X + topMag * (float)Math.Cos(topTheta);
-            TopPos.Y = TopPosBase.Y + topMag * (float)Math.Sin(topTheta * 2);
+            TopPos.X = TopPosBase.X + (Animated ? topMag * (float)Math.Cos(topTheta) : 0);
+            TopPos.Y = TopPosBase.Y + (Animated ? topMag * (float)Math.Sin(topTheta * 2) : 0);
         }
 
         private void UpdateMid()
@@ -302,8 +359,8 @@ namespace Laugicality.UI
                 midMag = 2;
             if (midMag > 5)
                 midMag = 5;
-            MidPos.X = MidPosBase.X + midMag * (float)Math.Cos(midTheta);
-            MidPos.Y = MidPosBase.Y + midMag * (float)Math.Sin(midTheta * 2);
+            MidPos.X = MidPosBase.X + (Animated ? midMag * (float)Math.Cos(midTheta) : 0);
+            MidPos.Y = MidPosBase.Y + (Animated ? midMag * (float)Math.Sin(midTheta * 2) : 0);
         }
 
         private void UpdateBot()
@@ -324,8 +381,8 @@ namespace Laugicality.UI
                 botMag = 2;
             if (botMag > 5)
                 botMag = 5;
-            BotPos.X = BotPosBase.X + botMag * (float)Math.Cos(botTheta);
-            BotPos.Y = BotPosBase.Y + botMag * (float)Math.Sin(botTheta * 2);
+            BotPos.X = BotPosBase.X + (Animated ? botMag * (float)Math.Cos(botTheta) : 0);
+            BotPos.Y = BotPosBase.Y + (Animated ? botMag * (float)Math.Sin(botTheta * 2) : 0);
         }
 
         private void UpdatePositions()
@@ -366,11 +423,11 @@ namespace Laugicality.UI
             int heightMod = 8;
 
             if (posX > TopPosBase.X - widthMod && posX < TopPosBase.X + LuxBGTexture.Width + widthMod && posY > TopPosBase.Y - heightMod && posY < TopPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Lux).ToString() + "/" + Math.Round(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost).ToString() + " Lux", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Lux).ToString() + "/" + Math.Round(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost).ToString() + " (" + Math.Round((mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost)*mysticPlayer.LuxOverflow*mysticPlayer.GlobalOverflow).ToString() + ") Lux", drawPos, Color.White);
             if (posX > BotPosBase.X - widthMod && posX < BotPosBase.X + LuxBGTexture.Width + widthMod && posY > BotPosBase.Y - heightMod && posY < BotPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Vis).ToString() + "/" + Math.Round(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost).ToString() + " Vis", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Vis).ToString() + "/" + Math.Round(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost).ToString() + " (" + Math.Round((mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost) * mysticPlayer.VisOverflow * mysticPlayer.GlobalOverflow).ToString() + ") Vis", drawPos, Color.White);
             if (posX > MidPosBase.X - widthMod && posX < MidPosBase.X + LuxBGTexture.Width + widthMod && posY > MidPosBase.Y - heightMod && posY < MidPosBase.Y + LuxBGTexture.Height + heightMod)
-                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Mundus).ToString() + "/" + Math.Round(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost).ToString() + " Mundus", drawPos, Color.White);
+                spriteBatch.DrawString(Main.fontMouseText, Math.Round(mysticPlayer.Mundus).ToString() + "/" + Math.Round(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost).ToString() + " (" + Math.Round((mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost) * mysticPlayer.MundusOverflow * mysticPlayer.GlobalOverflow).ToString() + ") Mundus", drawPos, Color.White);
         }
     }
 }

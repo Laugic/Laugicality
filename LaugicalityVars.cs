@@ -4,6 +4,7 @@ using Laugicality.NPCs.Obsidium;
 using Laugicality.NPCs.PreTrio;
 using Laugicality.NPCs.RockTwins;
 using Laugicality.NPCs.Slybertron;
+using Laugicality.Projectiles.Mystic.Destruction;
 using Laugicality.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -215,5 +216,23 @@ namespace Laugicality
         public static readonly HashSet<int> cultistDamage2 =
             new HashSet<int> { (int)LaugicalityVars.ClassType.Warlock, (int)LaugicalityVars.ClassType.Wizard, (int)LaugicalityVars.ClassType.Mage, (int)LaugicalityVars.ClassType.Necromancer, (int)LaugicalityVars.ClassType.Sorcerer, (int)LaugicalityVars.ClassType.Shaman, (int)LaugicalityVars.ClassType.Destructionist, (int)LaugicalityVars.ClassType.Illusionist, (int)LaugicalityVars.ClassType.Conjurer };
 
+
+        public static readonly HashSet<int> SeedProjectiles =
+        new HashSet<int>
+        {
+            ProjectileID.Seed, ProjectileID.SeedlerNut, ProjectileID.SeedlerThorn,
+        };
+
+        public static readonly HashSet<int> ShroomProjectiles =
+        new HashSet<int>
+        {
+
+        };
+
+        public static readonly HashSet<int> SnowballProjectiles =
+        new HashSet<int>
+        {
+            ProjectileID.SnowBallFriendly,
+        };
     }
 }

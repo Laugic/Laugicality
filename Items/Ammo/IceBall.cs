@@ -23,7 +23,7 @@ namespace Laugicality.Items.Ammo
             item.value = 0;
             item.rare = ItemRarityID.White;
             item.shoot = ModContent.ProjectileType<Projectiles.Ranged.IceBallProjectile>();
-            item.shootSpeed = 14f;
+            item.shootSpeed = 12f;
             item.ammo = AmmoID.Snowball;
         }
 
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.IceBlock, 1);
-            recipe.SetResult(this, 13);
+            recipe.SetResult(this, 15);
             recipe.AddRecipe();
         }
     }

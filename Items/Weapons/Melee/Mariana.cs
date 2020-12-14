@@ -23,7 +23,7 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useStyle = 1;
 			item.knockBack = 4;
 			item.value = 10000;
-			item.rare = ItemRarityID.Green;
+			item.rare = ItemRarityID.Blue;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<Bubbly>(), 4 * 60 + Main.rand.Next(2 * 60));        //Add Onfire buff to the NPC for 1 second
+            target.AddBuff(ModContent.BuffType<Bubbly>(), 4 * 60 + Main.rand.Next(2 * 60));
         }
 
         public override void AddRecipes()

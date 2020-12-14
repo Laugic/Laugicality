@@ -23,9 +23,9 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useAnimation = 30;
 			item.useStyle = 1;
 			item.knockBack = 4;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item1;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Green;
+            item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 10f;
             item.shoot = ModContent.ProjectileType<FrostballProjectile>();

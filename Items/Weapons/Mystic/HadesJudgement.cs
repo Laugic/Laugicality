@@ -7,6 +7,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
+using Laugicality.Items.Placeable;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Consumables;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -28,7 +31,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useStyle = 1;
             item.noMelee = false;
             item.knockBack = 2;
-            item.value = 10000;
+            item.value = Item.sellPrice(gold: 2);
             item.rare = ItemRarityID.Orange;
             item.UseSound = SoundID.Item20;
             item.autoReuse = true;
@@ -106,9 +109,9 @@ namespace Laugicality.Items.Weapons.Mystic
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
-            recipe.AddIngredient(null, "LavaGem", 8);
-            recipe.AddIngredient(null, "DarkShard");
-            recipe.AddTile(16);
+            recipe.AddIngredient(mod, nameof(LavaGemItem), 8);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumHeart>(), 1);
+            recipe.AddTile(TileID.Hellforge);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

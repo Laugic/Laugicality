@@ -1,3 +1,4 @@
+using Laugicality.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroom Amalgam");
-            Tooltip.SetDefault("+2% Mystic Damage\n+20% Overflow");
+            Tooltip.SetDefault("+20% Overflow");
 		}
 
 		public override void SetDefaults()
@@ -25,16 +26,15 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += .02f;
             modPlayer.GlobalOverflow += .2f;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(183, 16);
-            recipe.AddIngredient(176, 12);
-            recipe.AddIngredient(109, 1);
+            recipe.AddIngredient(ItemID.GlowingMushroom, 16);
+            recipe.AddIngredient(ItemID.MudBlock, 12);
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 8);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

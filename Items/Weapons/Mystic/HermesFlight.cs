@@ -13,7 +13,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hermes' Flight");
-            Tooltip.SetDefault("Weild the power of Hermes\nIllusion inflicts 'Hermes' Smite', which drains enemy life\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("Weild the power of Hermes");
 			Item.staff[item.type] = true;
 		}
 
@@ -27,13 +27,30 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 2;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
-			item.UseSound = SoundID.Item20;
+            item.value = Item.sellPrice(silver: 40);
+            item.rare = ItemRarityID.Blue;
+            item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<HermesDestruction>();
 			item.shootSpeed = 6f;
-		}
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots a burst of feathers";
+                case 2:
+                    return "Shoots gusts of wind that inflict 'Aerial weakness',\nwhich makes enemies take more damage when you are above them";
+                case 3:
+                    return "Shoots feathers that orbit you";
+                default:
+                    return "";
+            }
+        }
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -48,7 +65,6 @@ namespace Laugicality.Items.Weapons.Mystic
                     perturbedSpeed = perturbedSpeed * scale;
                     Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<HermesDestruction>(), damage, knockBack, player.whoAmI);
                 }
-
             }
             return true;
         }
@@ -56,34 +72,34 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
             item.damage = 15;
-            item.useTime = 20;
+            item.useTime = 30;
             item.useAnimation = item.useTime;
             item.knockBack = 4;
             item.shootSpeed = 12;
             item.shoot = ModContent.ProjectileType<HermesDestruction>();
-            LuxCost = 8;
+            LuxCost = 10;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 22;
-            item.useTime = 16;
-            item.useAnimation = 16;
+            item.useTime = 30;
+            item.useAnimation = item.useTime;
             item.knockBack = 2;
             item.shootSpeed = 8f;
             item.shoot = ModContent.ProjectileType<HermesIllusion>();
-            VisCost = 4;
+            VisCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 15;
-            item.useTime = 22;
-            item.useAnimation = 22;
+            item.useTime = 15;
+            item.useAnimation = item.useTime;
             item.knockBack = 5;
             item.shootSpeed = 8f;
-            item.shoot = ModContent.ProjectileType<HermesConjuration1>();
-            MundusCost = 8;
+            item.shoot = ModContent.ProjectileType<HermesConjuration>();
+            MundusCost = 5;
         }
 
         public override void AddRecipes()

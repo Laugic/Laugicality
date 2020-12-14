@@ -26,9 +26,9 @@ namespace Laugicality.Items.Weapons.Magic
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 5;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
-			item.UseSound = SoundID.Item20;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Blue;
+            item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<BookSandstormBottom>();
 			item.shootSpeed = 4f;

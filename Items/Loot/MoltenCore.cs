@@ -7,7 +7,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Attacks inflict 'On Fire!'. +4 Defense \n+30% Throwing Velocity and Mystic Duration\nRelease a burst of rocks when hit");
+            Tooltip.SetDefault("Attacks inflict 'On Fire!'\n+30% Throwing Velocity and Mystic Duration\nRelease a burst of rocks when hit");
         }
 
         public override void SetDefaults()
@@ -18,6 +18,7 @@ namespace Laugicality.Items.Loot
             item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
+            item.defense = 4;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -26,7 +27,6 @@ namespace Laugicality.Items.Loot
             modPlayer.Obsidium = true;
             modPlayer.Rocks = true;
             modPlayer.MysticDuration += 0.3f;
-            player.statDefense += 4;
             player.thrownVelocity += 0.3f;
         }
     }

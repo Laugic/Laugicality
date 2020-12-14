@@ -200,7 +200,7 @@ namespace Laugicality.Items
             Yeet = (int)(reader.ReadByte());
         }
 
-        public bool Mystic { get; }
+        public bool Mystic { get; set; }
 
         public int MeleeDmg { get; set; } = -1;
 

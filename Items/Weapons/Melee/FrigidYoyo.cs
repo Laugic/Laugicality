@@ -26,7 +26,6 @@ namespace Laugicality.Items.Weapons.Melee
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
 			item.damage = 38;
-			item.rare = ItemRarityID.Blue;
 
 			item.melee = true;
 			item.channel = true;
@@ -34,8 +33,9 @@ namespace Laugicality.Items.Weapons.Melee
 			item.noUseGraphic = true;
 
 			item.UseSound = SoundID.Item1;
-			item.value = Item.sellPrice(silver: 1);
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.FrigidYoyoProjectile>();
+			item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Green;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.FrigidYoyoProjectile>();
 		}
 
 		public override void AddRecipes()

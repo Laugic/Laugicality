@@ -10,7 +10,7 @@ namespace Laugicality.Items.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frostball");
-            Tooltip.SetDefault("Inflicts 'Frostburn'");
+            Tooltip.SetDefault("Bounces off of enemies\nInflicts 'Frostburn'");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Laugicality.Items.Ammo
             item.consumable = true;
             item.knockBack = 7f;
             item.value = 0;
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Orange;
             item.shoot = ModContent.ProjectileType<FrostballProjectile>();
             item.shootSpeed = 14f;
             item.ammo = AmmoID.Snowball;
@@ -32,9 +32,9 @@ namespace Laugicality.Items.Ammo
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SnowBlock, 5);
-            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 1);
-            recipe.SetResult(this, 50);
+            recipe.AddIngredient(ItemID.FrostCore, 1);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 5);
+            recipe.SetResult(this, 499);
             recipe.AddRecipe();
         }
     }

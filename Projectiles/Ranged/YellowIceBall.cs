@@ -11,11 +11,12 @@ namespace Laugicality.Projectiles.Ranged
 
         public override void SetDefaults()
         {
+            LaugicalityVars.SnowballProjectiles.Add(projectile.type);
             delay = 0;
             projectile.width = 14;
             projectile.height = 14;
             projectile.friendly = true;
-            projectile.magic = true;
+            projectile.ranged = true;
             projectile.timeLeft = 600;
             projectile.tileCollide = true;
         }

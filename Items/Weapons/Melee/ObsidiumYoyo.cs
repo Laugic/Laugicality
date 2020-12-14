@@ -1,4 +1,5 @@
 using Laugicality.Items.Materials;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +28,6 @@ namespace Laugicality.Items.Weapons.Melee
 			item.shootSpeed = 16f;
 			item.knockBack = 2.5f;
 			item.damage = 22;
-			item.rare = ItemRarityID.Blue;
 
 			item.melee = true;
 			item.channel = true;
@@ -35,15 +35,15 @@ namespace Laugicality.Items.Weapons.Melee
 			item.noUseGraphic = true;
 
 			item.UseSound = SoundID.Item1;
-			item.value = Item.sellPrice(silver: 1);
-			item.shoot = ModContent.ProjectileType<Projectiles.Melee.ObsidiumYoyoProjectile>();
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
+            item.shoot = ModContent.ProjectileType<Projectiles.Melee.ObsidiumYoyoProjectile>();
 		}
 
-		public override void AddRecipes()
+        public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod, nameof(ObsidiumBar), 10);
-            recipe.AddIngredient(null, "DarkShard", 1);
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
             recipe.AddTile(16);
             recipe.SetResult(this);
             recipe.AddRecipe();

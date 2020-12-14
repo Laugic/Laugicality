@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 
 namespace Laugicality.Buffs
 {
@@ -7,16 +8,14 @@ namespace Laugicality.Buffs
         public override void SetDefaults()
         {
             DisplayName.SetDefault("Tenacity Curse");
-            Description.SetDefault("You've been weakened!");
+            Description.SetDefault("You've been weakened!\n-12 Defense");
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense -= 10;
-            if (player.statDefense < 0)
-                player.statDefense = 0;
+            LaugicalityPlayer.Get(player).WeakenedDefense += 12;
         }
     }
 }

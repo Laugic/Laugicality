@@ -8,14 +8,14 @@ namespace Laugicality.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+150 Max Life \nGives 1 minute of Potion Sickness");
+            Tooltip.SetDefault("+150 Max Life \nGives constant Potion Sickness");
         }
 
         public override void SetDefaults()
         {
             item.width = 16;
             item.height = 28;
-            item.value = 100;
+            item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.LightRed;
             item.accessory = true;
         }

@@ -1,4 +1,5 @@
 ﻿using Terraria.ID;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
@@ -7,7 +8,7 @@ namespace Laugicality.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Acursed Heat");
+            Tooltip.SetDefault("Accursed Heat");
         }
         public override void SetDefaults()
         {
@@ -15,6 +16,7 @@ namespace Laugicality.Items.Materials
             item.height = 30;
             item.maxStack = 99;
             item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(silver: 12);
         }
 
         public override void AddRecipes()

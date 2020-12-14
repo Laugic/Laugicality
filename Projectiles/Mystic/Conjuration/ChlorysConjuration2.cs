@@ -14,12 +14,13 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             projectile.timeLeft = 200;
             projectile.ignoreWater = true;
             projectile.scale *= 1f;
+            LaugicalityVars.SeedProjectiles.Add(projectile.type);
         }
 
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            projectile.ai[0] += .02f;
+            projectile.ai[0] += .01f;
             projectile.velocity.Y += projectile.ai[0];
         }
 

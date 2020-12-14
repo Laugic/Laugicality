@@ -10,7 +10,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroom Stalk");
-            Tooltip.SetDefault("+2% Mystic Damage\n+8% Movement Speed");
+            Tooltip.SetDefault("+10% Movement Speed");
 		}
 
 		public override void SetDefaults()
@@ -25,8 +25,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += .02f;
-            player.moveSpeed += 0.08f;
+            player.moveSpeed += 0.1f;
         }
         
 

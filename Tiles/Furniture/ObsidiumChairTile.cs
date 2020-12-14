@@ -34,6 +34,7 @@ namespace Laugicality.Tiles.Furniture
             dustType = ModContent.DustType<Magma>();
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Chairs };
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

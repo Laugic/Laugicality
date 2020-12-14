@@ -8,7 +8,7 @@ namespace Laugicality.Buffs
         {
             DisplayName.SetDefault("Steam Train Soul Cooldown");
             Description.SetDefault("Your Steam Train effect is on Cooldown.");
-            Main.debuff[Type] = false;
+            Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             canBeCleared = false;
         }

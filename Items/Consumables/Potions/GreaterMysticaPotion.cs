@@ -17,12 +17,13 @@ namespace Laugicality.Items.Consumables.Potions
             item.width = 24;
             item.height = 24;
             item.maxStack = 30;
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.Orange;
             item.useAnimation = 15;
             item.useTime = 15;
             item.useStyle = 2;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
+            item.value = Item.sellPrice(silver: 10);
         }
 
         public override bool CanUseItem(Player player)

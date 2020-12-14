@@ -24,6 +24,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
             projectile.penetrate = 2;
+            LaugicalityVars.ShroomProjectiles.Add(projectile.type);
         }
 		
 		public override Color? GetAlpha(Color lightColor)

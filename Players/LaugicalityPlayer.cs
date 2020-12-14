@@ -26,6 +26,7 @@ using BrassFAN = Laugicality.Tiles.BrassFAN;
 using BrassFANRight = Laugicality.Tiles.BrassFANRight;
 using BrassRING = Laugicality.Tiles.BrassRING;
 using SteamVENT = Laugicality.Tiles.SteamVENT;
+using Laugicality.Projectiles.Mystic.Conjuration;
 
 namespace Laugicality
 {
@@ -68,13 +69,15 @@ namespace Laugicality
         bool _boosted = false;
         float _ringBoost;
         float _fanBoost;
+        public int ObsidiumHeart { get; set; } = 0;
+        public int WeakenedDefense { get; set; } = 0;
         public float SnowDamage { get; set; } = 1f;
         public bool BysmalAbsorbDisabled { get; set; } = false;
         public bool Poison { get; set; } = false;
         public bool CursedFlame { get; set; } = false;
         public bool JunglePlague { get; set; } = false;
         public float DebuffMult { get; set; } = 1f;
-        public bool NoDebuffDamage { get; set; } = false;
+        public bool NoBuffedDamage { get; set; } = false;
         public bool TrueFireTrail { get; set; } = false;
         public bool ShadowflameTrail { get; set; } = false;
         public bool CrystalliteTrail { get; set; } = false;
@@ -82,6 +85,7 @@ namespace Laugicality
         public bool BysmalTrail { get; set; } = false;
         public bool Blaze { get; set; } = false;
         public bool Carapace { get; set; } = false;
+        public bool Shroud { get; set; } = false;
         public bool PrismVeil { get; set; } = false;
         public bool HoldingBarrier { get; set; } = false;
 
@@ -117,6 +121,7 @@ namespace Laugicality
             owl = true;
             danger = true;
             feather = true;
+            ObsidiumHeart = 0;
             int[] bysmalItems = { 0, 0, 0 };
         }
 
@@ -126,7 +131,6 @@ namespace Laugicality
         public override void ResetEffects()
         {
             MysticReset();
-            ResetSoulStoneEffects();
 
             if (fullBysmal > 0)
                 fullBysmal -= 1;
@@ -199,7 +203,7 @@ namespace Laugicality
             Poison = false;
             CursedFlame = false;
             JunglePlague = false;
-            NoDebuffDamage = false;
+            NoBuffedDamage = false;
             TrueFireTrail = false;
             ShadowflameTrail = false;
             CrystalliteTrail = false;
@@ -207,6 +211,7 @@ namespace Laugicality
             BysmalTrail = false;
             Blaze = false;
             Carapace = false;
+            Shroud = false;
             PrismVeil = false;
             HoldingBarrier = false;
 
@@ -222,6 +227,8 @@ namespace Laugicality
 
             if (!player.extraAccessory && !etherialSlot)
                 player.extraAccessorySlots = 0;
+
+            WeakenedDefense = 0;
 
             SnowDamage = 1f;
             DebuffMult = 1f;
@@ -346,6 +353,13 @@ namespace Laugicality
             PostUpdateMysticBuffs();
             PostUpdateMovementTileChecks();
         }
+        public override void PostUpdateBuffs()
+        {
+            CheckFerocityCurse4();
+            CheckMobilityCurse4();
+
+            ResetSoulStoneEffects();
+        }
 
         private void PostUpdateZaWarudo()
         {
@@ -393,6 +407,9 @@ namespace Laugicality
         {
             if (Verdi > 0)
                 player.maxRunSpeed += .1f;
+
+            CheckFerocityCurse4();
+            CheckMobilityCurse4();
         }
 
         private void PostUpdateMysticBursts()
@@ -550,14 +567,58 @@ namespace Laugicality
         {
             CheckBysmalPowers();
             PostAccessories();
+            CheckProjectiles();
             if (Verdi > 0)
             {
                 player.maxRunSpeed *= 1.1f;
             }
             if (Blaze)
                 BlazeEffect();
+            player.statDefense = Math.Max(0, player.statDefense - WeakenedDefense);
             if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessoriesPost();
+        }
+
+        private void CheckProjectiles()
+        {
+            if(player.ownedProjectileCounts[ModContent.ProjectileType<GaiaConjuration>()] > 0)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if(Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == ModContent.ProjectileType<GaiaConjuration>())
+                    {
+                        switch ((int)Main.projectile[i].ai[1])
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                player.allDamage += .05f;
+                                break;
+                            case 2:
+                                player.moveSpeed += .25f;
+                                player.jumpSpeedBoost += 2;
+                                player.maxRunSpeed += 1;
+                                player.accRunSpeed += 1;
+                                break;
+                            case 3:
+                                player.statDefense += 5;
+                                break;
+                            case 4:
+                                player.magicCrit += 5;
+                                player.meleeCrit += 5;
+                                player.rangedCrit += 5;
+                                player.thrownCrit += 5;
+                                player.maxMinions++;
+                                MysticDuration += .05f;
+                                break;
+                            default:
+                                player.lifeRegen += 2;
+                                player.statLifeMax2 += 25;
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         private void BlazeEffect()
@@ -601,6 +662,7 @@ namespace Laugicality
                 {"Dangersense", danger},
                 {"Featherfall", feather},
                 {"BysmalPowers", BysmalPowers},
+                {"ObsidiumHeart", ObsidiumHeart},
                 {"LuxMaxPermaBoost", LuxMaxPermaBoost},
                 {"VisMaxPermaBoost", VisMaxPermaBoost},
                 {"MundusMaxPermaBoost", MundusMaxPermaBoost},
@@ -636,15 +698,18 @@ namespace Laugicality
             owl = tag.GetBool("NightOwl");
             danger = tag.GetBool("Dangersense");
             feather = tag.GetBool("Featherfall");
+            ObsidiumHeart = tag.GetInt("ObsidiumHeart");
             LuxMaxPermaBoost = tag.GetFloat("LuxMaxPermaBoost");
             VisMaxPermaBoost = tag.GetFloat("VisMaxPermaBoost");
             MundusMaxPermaBoost = tag.GetFloat("MundusMaxPermaBoost");
             MysticBurstDisabled = tag.GetBool("MysticBurstDisabled");
             BysmalAbsorbDisabled = tag.GetBool("BysmalAbsorbDisabled");
             BysmalPowers = (List<int>)tag.GetList<int>("BysmalPowers");
-
             string focus = tag.GetString("Focus");
 
+            Lux = LuxMax + LuxMaxPermaBoost;
+            Vis = VisMax + VisMaxPermaBoost;
+            Mundus = MundusMax + MundusMaxPermaBoost;
             if (!string.IsNullOrWhiteSpace(focus))
                 Focus = FocusManager.Instance[focus];
         }
@@ -652,11 +717,6 @@ namespace Laugicality
         public override void UpdateBiomes()
         {
             zoneObsidium = (LaugicalityWorld.obsidiumTiles > 150 && player.position.Y > WorldGen.rockLayer + 150);
-            if(zoneObsidium && LaugicalityWorld.Ameldera)
-            {
-                zoneObsidium = false;
-                zoneAmeldera = true;
-            }
             etherialMusic = etherial;
         }
 
@@ -776,8 +836,7 @@ namespace Laugicality
         /// </summary>
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (!NoDebuffDamage)
-                InflictDebuffs(item, target, damage, knockback, crit);
+            InflictDebuffs(item, target, damage, knockback, crit);
         }
 
         private void InflictDebuffs(Item item, NPC target, int damage, float knockback, bool crit)
@@ -1177,8 +1236,19 @@ namespace Laugicality
                 ArmorEffectPlayerHurt();
                 MysticSwitchCool = 120;
             }
-            AccessoryEffectOnHurt();
+            AccessoryEffectOnHurt(pvp, quiet, damage, hitDirection, crit);
             SoulStonePostHurt(pvp, quiet, damage, hitDirection, crit);
+            if(player.ownedProjectileCounts[ModContent.ProjectileType<GaiaConjuration>()] > 0)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].type == ModContent.ProjectileType<GaiaConjuration>() && Main.projectile[i].ai[1] == 0)
+                    {
+                        GaiaConjuration gc = (GaiaConjuration)(Main.projectile[i].modProjectile);
+                        gc.Burst();
+                    }
+                }
+            }
         }
 
         private void ArmorEffectPlayerHurt()
@@ -1187,9 +1257,15 @@ namespace Laugicality
                 ZaWarudo();
         }
 
-        private void AccessoryEffectOnHurt()
+        private void AccessoryEffectOnHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (Carapace)
+            {
+                AddLux((float)damage);
+                AddVis((float)damage);
+                AddMundus((float)damage);
+            }
+            if(Shroud)
                 player.AddBuff(ModContent.BuffType<CarapaceDamageBuff>(), 8 * 60);
         }
 

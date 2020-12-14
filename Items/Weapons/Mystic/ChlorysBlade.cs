@@ -11,7 +11,6 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chlorys's Blade");
-            Tooltip.SetDefault("Illusion inflicts 'Poisoned'\nFires different projectiles based on Mysticism");
         }
 
         public override void SetMysticDefaults()
@@ -54,7 +53,7 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            VisCost = 6;
+            VisCost = 12;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
@@ -68,7 +67,24 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item1;
             item.scale = 1f;
-            MundusCost = 10;
+            MundusCost = 25;
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots seeds";
+                case 2:
+                    return "Shoots blooms that inflict 'Fertile', which makes enemies take damage for each seed that hits them";
+                case 3:
+                    return "Shoots sunflowers that drop seeds and sunlight";
+                default:
+                    return "";
+            }
         }
 
         public override void AddRecipes()

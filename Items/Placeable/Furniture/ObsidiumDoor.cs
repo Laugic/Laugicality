@@ -1,4 +1,5 @@
 ﻿using Laugicality.Tiles.Furniture;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Placeable.Furniture
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
+            item.value = Item.sellPrice(silver: 1);
             item.createTile = ModContent.TileType<ObsidiumDoorClosed>();
         }
 

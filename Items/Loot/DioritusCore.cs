@@ -1,5 +1,6 @@
 using Laugicality.Buffs;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Loot
@@ -22,7 +23,8 @@ namespace Laugicality.Items.Loot
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
-            item.value = 0;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
         }
 
@@ -30,16 +32,6 @@ namespace Laugicality.Items.Loot
         {
             player.AddBuff(ModContent.BuffType<ForGlory>(), 1, true);
         }
-
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(77);
-            recipe.AddIngredient(null, "ObsidiumOre", 3);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
 
     }
 }

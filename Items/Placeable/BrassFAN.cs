@@ -25,7 +25,8 @@ namespace Laugicality.Items.Placeable
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
+            item.value = Item.buyPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
             item.createTile = ModContent.TileType<Tiles.BrassFAN>();
         }
 
@@ -35,15 +36,6 @@ namespace Laugicality.Items.Placeable
                 item.createTile = ModContent.TileType<Tiles.BrassFANRight>();
             else
                 item.createTile = ModContent.TileType<Tiles.BrassFAN>();
-        }
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(TileID.MythrilAnvil);
-            recipe.AddIngredient(mod, nameof(SteamBar), 4);
-            recipe.AddIngredient(mod, nameof(Gear), 4);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
         }
     }
 }

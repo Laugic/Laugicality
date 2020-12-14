@@ -15,9 +15,10 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.height = 12;
             projectile.friendly = true;
             projectile.penetrate = 2;
-            projectile.timeLeft = 600;
+            projectile.timeLeft = 5 * 60;
             projectile.ignoreWater = true;
             buffID = ModContent.BuffType<HermesBuff>();
+            baseDuration = 6 * 60;
         }
         
         public override void AI()

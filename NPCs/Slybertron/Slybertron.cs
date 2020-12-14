@@ -63,7 +63,7 @@ namespace Laugicality.NPCs.Slybertron
         {
             LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Slybertron");
-            //Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 8;
         }
 
         public override void SetDefaults()
@@ -77,8 +77,8 @@ namespace Laugicality.NPCs.Slybertron
             attack2Delay = 300;      //Delay before first attack
             attack2Reload = 400;     //Resetting the reload speed
             phase = 1;
-            npc.width = 378;
-            npc.height = 194;
+            npc.width = 382;
+            npc.height = 204;
             npc.damage = 100;
             npc.defense = 30;
             npc.aiStyle = 1;
@@ -110,8 +110,8 @@ namespace Laugicality.NPCs.Slybertron
 
         public override void AI()
         {
+            Visuals();
             npc.spriteDirection = 0;
-            if(Main.rand.Next(6)== 0)Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<TrainSteam>(), 0f, 0f);
             bitherial = true;
             //Despawn check
             if (Main.player[npc.target].statLife == 0) { spawned = 0; npc.aiStyle = 0; npc.noTileCollide = true; }
@@ -368,6 +368,18 @@ namespace Laugicality.NPCs.Slybertron
 
         }
 
+        private void Visuals()
+        {
+            //if (Main.rand.Next(6) == 0) Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, ModContent.DustType<TrainSteam>(), 0f, 0f);
+            if (Main.rand.Next(8) == 0)
+                Dust.NewDust(npc.position + npc.velocity + new Vector2(380, 66), 4, 4, ModContent.DustType<TrainSteam>(), 5f, -2f);
+            if (Main.rand.Next(4) == 0)
+                Dust.NewDust(npc.position + npc.velocity + new Vector2(270, -6), 16, 4, ModContent.DustType<TrainSteam>(), 0f, -6f);
+            if (Main.rand.Next(8) == 0)
+                Dust.NewDust(npc.position + npc.velocity + new Vector2(41, 20), 0, 0, ModContent.DustType<TrainSteam>(), 0f, -4f, 0, default, .5f);
+            if (Main.rand.Next(8) == 0)
+                Dust.NewDust(npc.position + npc.velocity + new Vector2(54, 26), 0, 0, ModContent.DustType<TrainSteam>(), 0f, -4f, 0, default, .5f);
+        }
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
@@ -407,18 +419,14 @@ namespace Laugicality.NPCs.Slybertron
         {
             potionType = 499;
         }
-        /*
+        
         public override void FindFrame(int frameHeight)
         {
-            if (npc.life < npc.lifeMax * .5)
-            {
-                npc.frame.Y = frameHeight;
-            }
-            else
-            {
-                npc.frame.Y = 0;
-            }
-        }*/
+            npc.ai[1]++;
+            if (npc.ai[1] >= 32)
+                npc.ai[1] = 0;
+            npc.frame.Y = frameHeight * (int)(npc.ai[1] / 4);
+        }
 
 
         /*

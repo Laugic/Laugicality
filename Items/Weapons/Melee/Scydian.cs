@@ -11,13 +11,13 @@ namespace Laugicality.Items.Weapons.Melee
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("The power of magma \nInflicts 'On Fire!'");
+			Tooltip.SetDefault("'The power of magma'\nBecomes stronger as you consume Obsidium Hearts");
 		}
 
 		public override void SetDefaults()
 		{
-            item.scale *= 1.25f;
-			item.damage = 66;
+            item.scale = 1.25f;
+			item.damage = 60;
 			item.melee = true;
 			item.width = 64;
 			item.height = 56;
@@ -25,16 +25,24 @@ namespace Laugicality.Items.Weapons.Melee
 			item.useAnimation = 40;
 			item.useStyle = 1;
 			item.knockBack = 5;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item71;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
+            item.UseSound = SoundID.Item71;
 			item.autoReuse = true;
-		}
+        }
 
-		public override void AddRecipes()
+        public override void HoldItem(Player player)
+        {
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
+            item.useAnimation = item.useTime = 40 - modPlayer.ObsidiumHeart * 2;
+            item.scale = 1.25f + .1f * modPlayer.ObsidiumHeart;
+            base.HoldItem(player);
+        }
+
+        public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(mod, nameof(ObsidiumBar), 20);
+			recipe.AddIngredient(mod, nameof(ObsidiumBar), 16);
 			recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
@@ -49,8 +57,10 @@ namespace Laugicality.Items.Weapons.Melee
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-		{
-			target.AddBuff(BuffID.OnFire, 2 * 60);
+        {
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
+            if (modPlayer.ObsidiumHeart > 0)
+			    target.AddBuff(BuffID.OnFire, 2 * 60 + Main.rand.Next(60));
 		}
 	}
 }

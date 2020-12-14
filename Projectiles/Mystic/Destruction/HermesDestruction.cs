@@ -12,8 +12,8 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             projectile.width = 12;
             projectile.height = 12;
             projectile.friendly = true;
-            projectile.penetrate = 2;
-            projectile.timeLeft = 600;
+            projectile.penetrate = 1;
+            projectile.timeLeft = 3 * 60;
             projectile.ignoreWater = true;
         }
 

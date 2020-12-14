@@ -1,4 +1,5 @@
 using Laugicality.Items.Equipables;
+using Laugicality.Items.Weapons.Range;
 using Laugicality.NPCs.PreTrio;
 using Terraria;
 using Terraria.ID;
@@ -64,6 +65,8 @@ namespace Laugicality.Items.Loot
                     break;
             }
             player.QuickSpawnItem(obsidiumItem, 1);
+            if(Main.rand.Next(4) == 0)
+                player.QuickSpawnItem(ModContent.ItemType<BlackIce>(), 1);
 
             player.QuickSpawnItem(188, Main.rand.Next(10, 15));
         }

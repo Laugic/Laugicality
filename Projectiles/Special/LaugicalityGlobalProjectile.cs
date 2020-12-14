@@ -274,9 +274,7 @@ namespace Laugicality.Projectiles.Special
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(Main.player[projectile.owner]);
-            if(!modPlayer.NoDebuffDamage)
-                InflictDebuffs(projectile, target, damage, knockback, crit);
+            InflictDebuffs(projectile, target, damage, knockback, crit);
         }
 
         private void InflictDebuffs(Projectile projectile, NPC target, int damage, float knockback, bool crit)

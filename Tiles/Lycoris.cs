@@ -40,7 +40,7 @@ namespace Laugicality.Tiles
             if (LaugicalityWorld.Ameldera)
                 r = 0.1f;
             g = 0.5f;
-            b = 0f;
+            b = 0.5f;
             if (LaugicalityWorld.Ameldera)
                 b = 0.6f;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
+using Laugicality.Buffs;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -15,13 +16,13 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 200;
             projectile.ignoreWater = true;
             projectile.scale *= 1f;
-            buffID = BuffID.Poisoned;
+            buffID = ModContent.BuffType<Fertile>();
         }
 
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + .785f;
-            projectile.velocity.Y += projectile.ai[0];
+            projectile.velocity.Y += projectile.ai[0] + .1f;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

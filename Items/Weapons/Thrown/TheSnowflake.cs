@@ -22,7 +22,7 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useAnimation = 45;   
             item.useStyle = 1;
             item.knockBack = 6;
-            item.value = 100000;
+            item.value = 0;
             item.rare = ItemRarityID.Blue;   
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;       

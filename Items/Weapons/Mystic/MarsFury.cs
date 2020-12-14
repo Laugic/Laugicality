@@ -30,7 +30,7 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.useStyle = 1;
 			item.noMelee = false;
 			item.knockBack = 2;
-			item.value = 10000;
+			item.value = Item.sellPrice(gold: 3);
 			item.rare = ItemRarityID.Orange;
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
@@ -121,12 +121,9 @@ namespace Laugicality.Items.Weapons.Mystic
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "HadesJudgement", 1);
+            recipe.AddRecipeGroup("TitaniumBars", 8);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 8);
             recipe.AddIngredient(null, "MagmaticCluster");
-            recipe.AddIngredient(null, "MagmaticCrystal", 4);
-            recipe.AddIngredient(mod, nameof(SoulOfHaught), 8);
-            recipe.AddRecipeGroup("TitaniumBars", 6);
-            recipe.AddIngredient(null, "RubrumDust", 4);
-            recipe.AddIngredient(null, "AlbusDust", 2);
             recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -17,7 +17,6 @@ namespace Laugicality.Tiles
             dustType = ModContent.DustType<Magma>();
             //drop = ModContent.ItemType<LavaGem>();
             ModTranslation name = CreateMapEntryName();
-            //name.SetDefault("LavaGem");
             //AddMapEntry(new Color(180, 50, 0), name);
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             Main.tileFrameImportant[Type] = true;

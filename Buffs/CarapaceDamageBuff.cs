@@ -6,7 +6,7 @@ namespace Laugicality.Buffs
     {
         public override void SetDefaults()
         {
-            DisplayName.SetDefault("Fractured Carapace");
+            DisplayName.SetDefault("Broken Shroud");
             Description.SetDefault("Increased Damage!");
             Main.debuff[Type] = false;
             Main.buffNoSave[Type] = true;

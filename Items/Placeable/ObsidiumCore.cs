@@ -1,3 +1,4 @@
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -6,7 +7,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Grows Obsidium Heart Crystals over time");
+            Tooltip.SetDefault("Grows Life Crystals over time");
         }
 
         public override void SetDefaults()
@@ -22,6 +23,7 @@ namespace Laugicality.Items.Placeable
             item.consumable = true;
             item.value = 0;
             item.createTile = ModContent.TileType<Tiles.ObsidiumCore>();
+            item.rare = ItemRarityID.Orange;
         }
         
     }

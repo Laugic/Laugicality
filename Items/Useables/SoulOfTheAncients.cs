@@ -18,8 +18,8 @@ namespace Laugicality.Items.Useables
         {
             item.width = 32;
             item.height = 32;
-            item.value = 100;
-            item.rare = ItemRarityID.Pink;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Blue;
             item.useAnimation = 30;
             item.useTime = 30;
             item.useStyle = ItemUseStyleID.HoldingUp;
@@ -29,6 +29,7 @@ namespace Laugicality.Items.Useables
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/SoulStore"));
             LaugicalityPlayer.Get(player).MysticBurstDisabled = !LaugicalityPlayer.Get(player).MysticBurstDisabled;
+            //LaugicalityWorld.downedNecrodon = !LaugicalityWorld.downedNecrodon;
             if (LaugicalityPlayer.Get(player).MysticBurstDisabled)
                 Main.NewText("You stored part of your Soul in the Vase.", 150, 100, 0);
             else
@@ -44,7 +45,7 @@ namespace Laugicality.Items.Useables
         {
             return new Vector2(20, 0);
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -54,6 +55,6 @@ namespace Laugicality.Items.Useables
             recipe.AddTile(TileID.Hellforge);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

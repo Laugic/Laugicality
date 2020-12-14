@@ -11,7 +11,7 @@ namespace Laugicality.Dusts
             dust.velocity.Y = -1f;
             dust.noGravity = true;
             dust.noLight = true;
-            dust.scale = 4.0f;
+            dust.scale *= 4.0f;
             dust.alpha = 0;
         }
 

@@ -12,7 +12,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Loki's Staff");
-            Tooltip.SetDefault("'Many tricks up his sleeve'\nIllusion inflicts 'Chilled'\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'Many tricks up his sleeve'");
             Item.staff[item.type] = true; 
         }
 
@@ -31,7 +31,24 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
-		}
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "???";
+                case 2:
+                    return "Shoots a homing beam that inflicts 'Time Dilation', which causes enemies to drop Time Capsules.\nTime Capsules reduce the remaining time of active debuffs and increase the remaining time of active buffs.";
+                case 3:
+                    return "Spawns energy orbs that create stalagmites and stalactites.";
+                default:
+                    return "";
+            }
+        }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {

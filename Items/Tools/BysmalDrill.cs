@@ -24,7 +24,7 @@ namespace Laugicality.Items.Tools
             item.channel = true;
             item.noUseGraphic = true;
             item.noMelee = true;
-            item.pick = 2500;
+            item.pick = 250;
             item.tileBoost += 8;
             item.useStyle = 5;
             item.knockBack = 6;
@@ -54,7 +54,7 @@ namespace Laugicality.Items.Tools
         }
         public override void HoldItem(Player player)
         {
-            player.pickSpeed -= 0.25f;
+            player.pickSpeed -= 0.5f;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {

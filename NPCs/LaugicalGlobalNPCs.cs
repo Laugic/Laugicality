@@ -15,6 +15,9 @@ using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.Plague;
 using Laugicality.Projectiles.Ranged;
 using Bubble = Laugicality.Projectiles.Plague.Bubble;
+using Laugicality.Items.Consumables.Buffs;
+using Laugicality.Projectiles.NPCProj;
+using Laugicality.Items.Equipables;
 
 namespace Laugicality.NPCs
 {
@@ -51,8 +54,16 @@ namespace Laugicality.NPCs
         public int attacker = -1;
         public float DebuffDamageMult { get; set; } = 1f;
         public int JunglePlagueDuration { get; set; } = 0;
+        public int NumSeeds { get; set; } = 0;
         public bool JunglePlague { get; set; } = false;
         public bool Orbital { get; set; } = false;
+        public bool Fertile { get; set; } = false;
+        public bool AerialWeakness { get; set; } = false;
+        public bool TimeDilation { get; set; } = false;
+        public bool Refracting { get; set; } = false;
+        public bool DeathMarked { get; set; } = false;
+        public bool Sandy { get; set; } = false;
+        public bool Slushie { get; set; } = false;
 
         public override void SetDefaults(NPC npc)
         {
@@ -98,6 +109,15 @@ namespace Laugicality.NPCs
             mysticCrit = 4;
             Orbital = false;
             JunglePlague = false;
+            AerialWeakness = false;
+            TimeDilation = false;
+            if (!Fertile)
+                NumSeeds = 0;
+            Fertile = false;
+            Refracting = false;
+            DeathMarked = false;
+            Sandy = false;
+            Slushie = false;
 
             npc.takenDamageMultiplier = damageMult;
             if (zTimeInstanced < zTime)
@@ -123,26 +143,30 @@ namespace Laugicality.NPCs
         {
             if (LaugicalityPlayer.Get(spawnInfo.player).zoneObsidium)
             {
+                if (Main.player[Main.myPlayer].ZoneOverworldHeight || Main.player[Main.myPlayer].ZoneSkyHeight)
+                {
+                    pool.Add(ModContent.NPCType<LycorisSlime>(), 0.25f);
+                    return;
+                }
                 pool.Clear();
                 float spawnMod = .25f;
                 if (!Main.hardMode)
                 {
-                    pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.10f * spawnMod);
                     //pool.Add(ModContent.NPCType<ObsidiumDriller>(), 0.05f * spawnMod);
                     pool.Add(NPCID.Skeleton, 0.25f * spawnMod);
-                    pool.Add(NPCID.BlackSlime, 0.2f * spawnMod);
+                    pool.Add(ModContent.NPCType<LycorisSlime>(), 0.25f);
                     pool.Add(NPCID.MotherSlime, 0.2f * spawnMod);
                     pool.Add(NPCID.Hellbat, 0.2f * spawnMod);
 
                     if (LaugicalityWorld.downedRagnar)
                     {
                         pool.Add(ModContent.NPCType<MagmatipedeHead>(), 0.05f * spawnMod);
+                        //pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.10f * spawnMod);
                         //pool.Add(ModContent.NPCType<MagmaCaster>(), 0.30f * spawnMod);
                     }
                 }
                 else
                 {
-                    pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.05f * spawnMod);
                     //pool.Add(ModContent.NPCType<MoltenSlime>(), 0.2f * spawnMod);
                     pool.Add(ModContent.NPCType<MoltiochHead>(), 0.015f * spawnMod);
                     pool.Add(ModContent.NPCType<MoltenSoul>(), 0.015f * spawnMod);
@@ -152,6 +176,7 @@ namespace Laugicality.NPCs
                     if (LaugicalityWorld.downedRagnar)
                     {
                         pool.Add(ModContent.NPCType<MagmatipedeHead>(), 0.015f * spawnMod);
+                        //pool.Add(ModContent.NPCType<ObsidiumSkull>(), 0.05f * spawnMod);
                         //pool.Add(ModContent.NPCType<MagmaCaster>(), 0.20f * spawnMod);
                         pool.Add(ModContent.NPCType<LavaTitan>(), 0.01f * spawnMod);
                     }
@@ -169,16 +194,6 @@ namespace Laugicality.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            if (spored)
-            {
-                if (npc.lifeRegen > 0)
-                    npc.lifeRegen = 0;
-                npc.lifeRegen -= (int)(2);
-                if (damage < 2)
-                {
-                    damage = (2);
-                }
-            }
             if (slimed)
             {
                 if (npc.lifeRegen > 0)
@@ -203,12 +218,19 @@ namespace Laugicality.NPCs
             {
                 if (npc.lifeRegen > 0)
                     npc.lifeRegen = 0;
-                npc.lifeRegen -= (int)(8);
+                npc.lifeRegen -= 8;
                 if (damage < 8)
-                {
-                    damage = (8);
-                }
+                    damage = 8;
             }
+            if (Fertile)
+            {
+                if (npc.lifeRegen > 0)
+                    npc.lifeRegen = 0;
+                npc.lifeRegen -= NumSeeds;
+                if (damage < NumSeeds)
+                    damage = NumSeeds;
+            }
+
             if (hermes)
             {
                 if (npc.lifeRegen > 0)
@@ -294,6 +316,13 @@ namespace Laugicality.NPCs
             {
                 npc.lifeRegen = (int)(npc.lifeRegen * DebuffDamageMult);
             }
+            if (TimeDilation)
+            {
+                if (Main.rand.Next(8) == 0)
+                    Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<CogDust>(), -4 + Main.rand.NextFloat() * 4, -4 + Main.rand.NextFloat() * 4, 100, default(Color), 3.5f);
+                if (Main.rand.Next(16 * 60) == 0 && Main.netMode != 1)
+                    Item.NewItem(npc.Center, ModContent.ItemType<TimeCapsule>());
+            }
             if (damage < npc.lifeRegen)
                 damage = npc.lifeRegen;
         }
@@ -337,6 +366,33 @@ namespace Laugicality.NPCs
                     }
                 }
                 Lighting.AddLight(npc.position, 0.1f, 0.8f, 0.8f);
+            }
+            if (DeathMarked)
+            {
+                if (Main.rand.Next(8) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<DeathMarkDust>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                }
+                Lighting.AddLight(npc.position, 0.5f, 0.5f, 0.5f);
+            }
+            if (Fertile)
+            {
+                if (Main.rand.Next(8) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 31, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.3f, 0.3f, 0.0f);
             }
             if (slimed)
             {
@@ -386,7 +442,7 @@ namespace Laugicality.NPCs
                 }
                 Lighting.AddLight(npc.position, 0.8f, 0.4f, 0f);
             }
-            if (hermes)
+            if (hermes || AerialWeakness)
             {
                 if (Main.rand.Next(4) == 0)
                 {
@@ -456,6 +512,21 @@ namespace Laugicality.NPCs
                 if (Main.rand.Next(4) == 0)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Dusts.Bubble>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 2f;
+                    }
+                }
+            }
+            if (Refracting)
+            {
+                if (Main.rand.Next(4) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Dusts.Rainbow>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -544,6 +615,37 @@ namespace Laugicality.NPCs
                     }
                 }
                 Lighting.AddLight(npc.position, 0.4f, 0.0f, 0.4f);
+            }
+            if (Sandy)
+            {
+                if (Main.rand.Next(4) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<Sandy>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.4f, 0.0f, 0.4f);
+            }
+            if (Slushie)
+            {
+                if (Main.rand.Next(4) == 0)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 37, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 0, default(Color), 1f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
             }
         }
 
@@ -665,7 +767,15 @@ namespace Laugicality.NPCs
                     }
                 }
             }
-            if(attacker != -1)
+            if (TimeDilation)
+            {
+                Item.NewItem(npc.Center, ModContent.ItemType<TimeCapsule>());
+            }
+            if (DeathMarked)
+            {
+                Item.NewItem(npc.Center, ModContent.ItemType<Soul>());
+            }
+            if (attacker != -1)
             {
                 if(LaugicalityPlayer.Get(Main.player[attacker]).EtherCog)
                 {
@@ -712,15 +822,79 @@ namespace Laugicality.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RoyalIce>(), 1);
             if(npc.type == NPCID.GoblinSummoner)
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Shadowflame>(), Main.rand.Next(2, 5));
-            GetWeaponDrops(npc);
+            GetWeaponAndAccDrops(npc);
+        }
+        public override Color? GetAlpha(NPC npc, Color drawColor)
+        {
+            if (Fertile)
+            {
+                drawColor.R = Math.Max((byte)drawColor.R, (byte)255);
+                drawColor.G = Math.Max((byte)drawColor.G, (byte)255);
+                drawColor.B = Math.Min((byte)drawColor.B, (byte)125);
+
+                return drawColor;
+            }
+            return null;
         }
 
-        private void GetWeaponDrops(NPC npc)
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
         {
-            if(npc.type == NPCID.Mothron && Main.rand.Next(4) == 0)
+            base.ModifyHitByItem(npc, player, item, ref damage, ref knockback, ref crit);
+            if (AerialWeakness && player.Center.Y < npc.position.Y)
+                damage += 6;
+            if (Sandy)
+                damage += (int)(player.velocity.Length() / 3);
+            if (Refracting && Main.netMode != 1)
             {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SaturnsRings>(), 1);
+                float theta = (float)(Math.PI * Main.rand.NextDouble() * 2);
+                Vector2 newVel = new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
+                newVel *= 6;
+                int id = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, newVel.X, newVel.Y, ModContent.ProjectileType<GemShard>(), Math.Min(Math.Max(npc.defense, 4), 80), 0, Main.myPlayer);
+                Main.projectile[id].ai[1] = Main.rand.Next(6);
             }
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            base.ModifyHitByProjectile(npc, projectile, ref damage, ref knockback, ref crit, ref hitDirection);
+            if (AerialWeakness && Main.player.GetLength(0) > projectile.owner && Main.player[projectile.owner].Center.Y < npc.position.Y)
+                damage += 6;
+            if (Sandy)
+                damage += (int)(projectile.velocity.Length() / 3);
+            if (Refracting && Main.netMode != 1 && projectile.type != ModContent.ProjectileType<NPCGemShard>())
+            {
+                float theta = (float)(Math.PI * Main.rand.NextDouble() * 2);
+                Vector2 newVel = new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
+                newVel *= 6;
+                int id = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, newVel.X, newVel.Y, ModContent.ProjectileType<NPCGemShard>(), Math.Min(Math.Max(npc.defense, 4), 80), 0, Main.myPlayer);
+                Main.projectile[id].ai[1] = Main.rand.Next(6);
+            }
+            if(Slushie && projectile.type != ModContent.ProjectileType<SlushballProjectile>() && LaugicalityVars.SnowballProjectiles.Contains(projectile.type))
+            {
+                damage += 6;
+            }
+        }
+
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
+        {
+            base.OnHitByProjectile(npc, projectile, damage, knockback, crit);
+            if (Fertile && LaugicalityVars.SeedProjectiles.Contains(projectile.type))
+                NumSeeds++;
+            if (spored && LaugicalityVars.ShroomProjectiles.Contains(projectile.type) && Main.projectile[projectile.whoAmI].ai[0] == 0)
+            {
+                Main.projectile[projectile.whoAmI].scale *= 1.5f;
+                Main.projectile[projectile.whoAmI].penetrate = -1;
+                Main.projectile[projectile.whoAmI].damage = (int)(Main.projectile[projectile.whoAmI].damage * 1.5f);
+                Main.projectile[projectile.whoAmI].ai[0] = 1;
+            }
+        }
+
+        private void GetWeaponAndAccDrops(NPC npc)
+        {
+            if (npc.type == NPCID.Mothron && Main.rand.Next(4) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SaturnsRings>(), 1);
+            if (npc.type == NPCID.IceGolem && Main.rand.Next(6) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CongealedFrostCore>(), 1);
         }
 
         public override bool InstancePerEntity

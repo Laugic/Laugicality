@@ -1,4 +1,7 @@
-﻿namespace Laugicality.Items.Materials
+﻿using Terraria;
+using Terraria.ID;
+
+namespace Laugicality.Items.Materials
 {
     public class Crystilla : LaugicalityItem
     {
@@ -17,7 +20,8 @@
             item.useAnimation = 15;
             item.useTime = 10;
             item.useStyle = 1;
-            item.value = 0;
+            item.value = Item.sellPrice(silver: 3);
+            item.rare = ItemRarityID.Blue;
         }
     }
 }

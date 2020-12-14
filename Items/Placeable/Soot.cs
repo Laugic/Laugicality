@@ -123,7 +123,7 @@ namespace Laugicality.Items.Placeable
                     resultType = ItemID.Diamond;
                     break;
                 default:
-                    resultType = ModContent.ItemType<LavaGem>();
+                    resultType = ModContent.ItemType<LavaGemItem>();
                     break;
             }
             if (Main.rand.NextBool(8))

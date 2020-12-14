@@ -71,7 +71,7 @@ namespace Laugicality.Items.Equipables
         {
             float accelMax = .7f;
 
-            if (player.controlJump && rocketBootTime < rocketBootTimeMax)
+            if (player.controlJump && rocketBootTime < rocketBootTimeMax && !LaugicalityPlayer.Get(player).MobilityCurse4)
             {
                 if (rocketAccel < accelMax)
                     rocketAccel += .075f;

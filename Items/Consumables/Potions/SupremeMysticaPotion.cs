@@ -10,7 +10,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Supreme Potentia Potion");
+            DisplayName.SetDefault("Super Potentia Potion");
             Tooltip.SetDefault("Restores all Potentias to full capacity\nRestores Overflow to half capacity\nOverflow is increased by 20% while the Mysticality debuff is active");
         }
         public override void SetDefaults()
@@ -18,12 +18,13 @@ namespace Laugicality.Items.Consumables.Potions
             item.width = 24;
             item.height = 24;
             item.maxStack = 30;
-            item.rare = ItemRarityID.Blue;
+            item.rare = ItemRarityID.Pink;
             item.useAnimation = 15;
             item.useTime = 15;
             item.useStyle = 2;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
+            item.value = Item.sellPrice(silver: 25);
         }
 
         public override bool CanUseItem(Player player)
@@ -49,7 +50,7 @@ namespace Laugicality.Items.Consumables.Potions
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "GreaterMysticaPotion", 2);
             recipe.AddIngredient(ModContent.ItemType<SoulOfSought>(), 2);
-            recipe.AddIngredient(ModContent.ItemType<MagmaticCrystal>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 2);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this, 2);
             recipe.AddRecipe();

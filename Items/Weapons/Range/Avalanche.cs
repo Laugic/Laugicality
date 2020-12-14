@@ -1,5 +1,7 @@
 using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 using Laugicality.Projectiles.Ranged;
+using Laugicality.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -79,10 +81,9 @@ namespace Laugicality.Items.Weapons.Range
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "FrostThrower", 1);
-            recipe.AddIngredient(null, "BysmalBar", 12);
-            recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
-            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.AddIngredient(ModContent.ItemType<BysmalBar>(), 16);
+            recipe.AddIngredient(ModContent.ItemType<EtherialEssence>(), 8);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

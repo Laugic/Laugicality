@@ -24,7 +24,7 @@ namespace Laugicality.Projectiles.Melee
                 projectile.velocity.Y += .15f;
 			if(Main.rand.Next(6) == 0)Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
 
-            if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
+            if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 1 && projectile.ai[0] >= 5 && projectile.ai[1] == 1)
             {
                 projectile.velocity.X = 0f;
                 projectile.velocity.Y = 0f;
@@ -32,8 +32,8 @@ namespace Laugicality.Projectiles.Melee
                 projectile.alpha = 255;
                 projectile.position.X = projectile.position.X + (float)(projectile.width / 2);
                 projectile.position.Y = projectile.position.Y + (float)(projectile.height / 2);
-                projectile.width = 64;
-                projectile.height = 64;
+                projectile.width = 96;
+                projectile.height = 96;
                 projectile.position.X = projectile.position.X - (float)(projectile.width / 2);
                 projectile.position.Y = projectile.position.Y - (float)(projectile.height / 2);
             }
@@ -41,6 +41,8 @@ namespace Laugicality.Projectiles.Melee
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
+            if (projectile.ai[0] == 0)
+                projectile.Kill();
 			if (projectile.velocity.X != oldVelocity.X)
 			{
 				projectile.velocity.X = -oldVelocity.X;
@@ -55,17 +57,24 @@ namespace Laugicality.Projectiles.Melee
 
 		public override void Kill(int timeLeft)
         {
-            Main.PlaySound(SoundID.Item14, projectile.position);
+            if(projectile.ai[0] >= 5 && projectile.ai[1] == 1)
+                Main.PlaySound(SoundID.Item14, projectile.position);
             for (int k = 0; k < 18; k++)
-			{
-				Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
+            {
+                Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Magma>(), projectile.oldVelocity.X * 0.5f, projectile.oldVelocity.Y * 0.5f);
             }
         }
-
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (projectile.ai[0] >= 5)
+                damage = (int)(damage * 1.5);
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffID.OnFire, 80);
-            projectile.timeLeft = 4;
+            if(projectile.ai[0] >= 3)
+			    target.AddBuff(BuffID.OnFire, 2 * 60 + Main.rand.Next(60));
+            projectile.timeLeft = 2;
+            projectile.ai[1] = 1;
         }
 	}
 }

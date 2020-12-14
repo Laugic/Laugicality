@@ -254,7 +254,7 @@ namespace Laugicality.NPCs.RockTwins
                         attacks += 1;
                     }
                     if (Math.Abs(accel) < maxAccel) { accel += (float)hovDir / 4f; }
-                    else { accel *= .5f; }
+                    else { accel *= .9f; }
 
                     //Vertical Movement
                     npc.velocity.Y = vaccel;
@@ -278,7 +278,7 @@ namespace Laugicality.NPCs.RockTwins
                         }
                         else
                         {
-                            if (Math.Abs(vaccel) > .01f) vaccel *= .5f;
+                            if (Math.Abs(vaccel) > .01f) vaccel *= .9f;
                             else vaccel = 0f;
                         }
                     }
@@ -460,16 +460,18 @@ namespace Laugicality.NPCs.RockTwins
                 }
                 if (laserCharge > 240)
                 {
-                    if (NPC.CountNPCS(ModContent.NPCType<AnDioLaserBall>()) > 1)
-                        Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
-                    if (Main.netMode != 1 && NPC.CountNPCS(ModContent.NPCType<AnDioLaserBall>()) > 1)
+                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+                    if (Main.netMode != 1)
                     {
                         if(Laugicality.zaWarudo < 4 * 60)
                         {
                             Laugicality.zaWarudo += 4 * 60;
                             LaugicalGlobalNPCs.zTime += 4 * 60;
                         }
-                        laser = 120;
+                        if (NPC.CountNPCS(ModContent.NPCType<AnDioLaserBall>()) > 1)
+                            laser = 120;
+                        else
+                            moveType = 1;
                     }
                     else
                     {

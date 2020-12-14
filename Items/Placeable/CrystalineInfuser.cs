@@ -1,4 +1,8 @@
+using Laugicality.Items.Consumables;
+using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Placeable
@@ -22,19 +26,21 @@ namespace Laugicality.Items.Placeable
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
             item.createTile = ModContent.TileType<Tiles.CrystalineInfuser>();
         }
 
         public override void AddRecipes()
         {
-            ModRecipe arecipe = new ModRecipe(mod);
-            arecipe.AddTile(null, "LaugicalWorkbench");
-            arecipe.AddIngredient(mod, nameof(ObsidiumBar), 8);
-            arecipe.AddIngredient(null, "DarkShard", 1);
-            arecipe.AddIngredient(null, "LavaGem", 4);
-            arecipe.SetResult(this);
-            arecipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddTile(null, "LaugicalWorkbench");
+            recipe.AddIngredient(mod, nameof(ObsidiumBar), 8);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<DarkShard>(), 2);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumHeart>(), 1);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

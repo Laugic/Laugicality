@@ -1,5 +1,7 @@
 using System;
+using Laugicality.Items.Equipables;
 using Laugicality.Items.Loot;
+using Laugicality.Items.Weapons.Range;
 using Laugicality.NPCs.Obsidium;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -11,288 +13,339 @@ namespace Laugicality.NPCs.PreTrio
     [AutoloadBossHead]
     public class Ragnar : ModNPC
     {
-
-        public static Random rnd = new Random();
-        public int phase = 0;
-        public int delay = 0;
-        public int maxDelay = 60;
-        public int damage = 0;
-        public int shoot = 0;
-        public int moveType = 1;
-        public bool attacking = false;
-        public bool bitherial = true;
-        public float vel = 0f;
-        public float tVel = 0f;
-        public float vMax = 14f;
-        public float vAccel = .2f;
-        public float vMag = 0f;
-        public double theta = 0;
-        public double theta2 = 0;
-        public int cycle = 0;
-        public int cycle2 = 0;
-        public int rotRate = 60;
-        public int reload = 0;
-        public int reloadMax = 120;
-        public static float sizeMult = Main.maxTilesX / 2600f;
+        private int AIPhase { get; set; }
+        private int PrevAIPhase { get; set; }
+        private int Counter { get; set; }
+        private int Frame { get; set; }
+        private Vector2 TargetPos;
+        private bool Angry { get; set; }
 
         public override void SetStaticDefaults()
         {
             LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
-            //Main.npcFrameCount[npc.type] = 2;
+            Main.npcFrameCount[npc.type] = 2;
         }
-
         public override void SetDefaults()
         {
-            reload = 0;
-            rotRate = 60;
-            cycle2 = 0;
-            cycle = 0;
-            moveType = 1;
-            theta = 0;
-            theta2 = 0;
-            shoot = 0;
-            vMag = 0f;
-            vMax = 14f;
-            tVel = 0f;
-            phase = 0;
-            bitherial = true;
             npc.width = 88;
             npc.height = 96;
-            npc.damage = 28;
+            npc.damage = 35;
             npc.defense = 16;
             npc.aiStyle = 0;
-            npc.lifeMax = 3200;
+            npc.lifeMax = 4200;
             npc.HitSound = SoundID.NPCHit7;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.npcSlots = 15f;
             npc.value = 12f;
-            npc.knockBackResist = 99f;
+            npc.knockBackResist = 0f;
             npc.boss = true;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
-            damage = 32;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar2");
             bossBag = ModContent.ItemType<RagnarTreasureBag>();
+            PrevAIPhase = AIPhase = 0;
+            Counter = 0;
+            TargetPos = npc.Center;
+            Angry = false;
+            npc.ai[0] = -1;
+            Frame = 0;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 4400 + numPlayers * 800;
-            npc.damage = 36;
-            damage = 34;
-        }
-
-        public override bool PreAI()
-        {
-            npc.TargetClosest(true);
-            return true;
+            npc.lifeMax = 8400 + numPlayers * 2000;
+            npc.damage = 70;
         }
 
         public override void AI()
         {
-            bitherial = true;
-            Dust.NewDust(npc.position + npc.velocity, npc.width, npc.height, 127, 0f, 0f);
-            Player player = Main.player[npc.target];
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (Main.player[npc.target].statLife <= 0) npc.position.Y += 60;
-            if (modPlayer.zoneObsidium == false)
-                npc.dontTakeDamage = true;
+            HealthCheck();
+            PickAI();
+            Effects();
+        }
+
+        private void HealthCheck()
+        {
+            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
+            {
+                AIPhase = 6;
+                return;
+            }
+            if (npc.life < (npc.lifeMax * 2) / 3 && !Angry && Counter >= 0)
+            {
+                Counter = -1;
+                AIPhase = 5;
+            }
+        }
+
+        private void Effects()
+        {
+            npc.spriteDirection = (int)(npc.velocity.X / Math.Abs(npc.velocity.X));
+        }
+
+        private void PickAI()
+        {
+            switch(AIPhase)
+            {
+                case 0:
+                    InitializeAI();
+                    break;
+                case 1:
+                    RuneAI();
+                    break;
+                case 2:
+                    FireballAI();
+                    break;
+                case 3:
+                    SmashAI();
+                    break;
+                case 4:
+                    TransitionAI();
+                    break;
+                case 5:
+                    SummonHandAI();
+                    break;
+                default:
+                    DespawnAI();
+                    break;
+            }
+        }
+
+        private void DespawnAI()
+        {
+            npc.TargetClosest();
+            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
+                npc.position.Y += 8;
             else
-                npc.dontTakeDamage = false;
+                Transition();
+        }
 
-
-            Vector2 delta = Main.player[npc.target].Center - npc.Center;
-            float magnitude = (float)Math.Sqrt(delta.X * delta.X + delta.Y * delta.Y);
-
-            float mag = 360;
-            theta -= Math.PI / rotRate;
-            if (theta < -Math.PI * 2)
+        private void TransitionAI()
+        {
+            TargetPos = Main.player[npc.target].Center;
+            MoveTowardsAtSpeed(TargetPos, Angry?5:4 + (Main.expertMode?2:0));
+            Counter++;
+            if ((Counter > 2 * 60 && Main.rand.Next(60) == 0) || Counter > 4 * 60)
             {
-                cycle++;
-                theta += Math.PI * 2;
-            }
-
-
-            Vector2 rot;
-            rot.X = (float)Math.Cos(theta) * mag;
-            rot.Y = (float)Math.Sin(theta) * mag;
-            Vector2 targetPos = player.Center;
-            reload++;
-            if (moveType == 1)
-            {
-                vMax = 10f;
-                rotRate = 120;
-                theta2 -= Math.PI / 140;
-
-                if (theta2 < -Math.PI * 2)
+                Counter = 0;
+                switch(PrevAIPhase)
                 {
-                    theta2 += Math.PI * 2;
-                    cycle2++;
-                }
-                reloadMax = 120;
-                if (reload > reloadMax)
-                {
-                    reload = 0;
-                    shoot = 1;
-                }
-                Vector2 rot1;
-                rot1.X = (float)Math.Cos(theta2) * 320;
-                rot1.Y = (float)Math.Sin(theta) * 120;
-                targetPos = player.Center + rot1;
-                targetPos.Y -= 180;
-                if (cycle2 >= 2)
-                {
-                    if (Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
-                    {
-                        cycle2 = 0;
-                        cycle = 0;
-                        moveType = 2;
-                    }
+                    case 1:
+                        AIPhase = Main.rand.Next(2, 4);
+                        break;
+                    case 2:
+                        AIPhase = 1 + 2 * Main.rand.Next(2);
+                        break;
+                    case 3:
+                        AIPhase = Main.rand.Next(1, 3);
+                        break;
+                    default:
+                        AIPhase = 1;
+                        break;
                 }
             }
-            if (moveType == 3)
+        }
+
+        private void SmashAI()
+        {
+            Counter++;
+            if(Counter < 2 * 60)
             {
-                moveType = 4;
-                vMax = 8f;
-                rotRate = 90;
-                Vector2 rot3;
-                rot3.X = 0;
-                rot3.Y = (float)Math.Sin(theta) * mag;
-                targetPos = player.Center + rot3;
-                if (cycle >= 8)
-                {
-                    moveType++;
-                    cycle = 0;
-                }
-                reloadMax = 90;
-                if (reload > reloadMax)
-                {
-                    reload = 0;
-                    shoot = 1;
-                }
+                TargetPos = Main.player[npc.target].position;
+                TargetPos.Y -= 250;
+                MoveTowards(TargetPos);
             }
-            if (moveType == 4)
+            if(Counter >= 2 * 60 && Counter < 2 * 60 + 30)
             {
-                vMax = 12f;
-                rotRate = 120;
-                targetPos = player.Center + rot;
-                if (npc.life > npc.lifeMax / 2)
-                {
-                    reloadMax = 90;
-                    if (reload > reloadMax)
-                    {
-                        reload = 0;
-                        shoot = 1;
-                    }
-                }
-                else
-                {
-                    reloadMax = 120;
-                    if (reload > reloadMax)
-                    {
-                        reload = 0;
-                        shoot = 2;
-                    }
-                }
-                if (cycle >= 4)
-                {
-                    if (Math.Abs(npc.position.X - player.position.X) < 4 && npc.Center.Y < player.Center.Y)
-                    {
-                        cycle = 0;
-                        moveType++;
-                    }
-                }
+                Frame = 1;
+                QuickSlow();
             }
-            if (moveType == 2 || moveType == 5)
+            if(Counter > 2 * 60 + 30 && Counter < 3 * 60)
             {
-                vMax = 14f;
-                attacking = true;
                 npc.velocity.Y = 14;
                 npc.velocity.X = 0;
-                if (npc.position.Y - Main.player[npc.target].position.Y > 280)
-                {
-                    cycle = 0;
-                    shoot = 2;
-                    moveType += 1;
-                    if (moveType == 6)
-                        moveType = 1;
-                }
+                Frame = 0;
             }
-            else
+            if(Counter == 3 * 60 + 30)
             {
-                float dist = Vector2.Distance(targetPos, npc.Center);
-                tVel = dist / 15;
-                if (vMag < vMax && vMag < tVel)
+                npc.velocity.Y = 0;
+                if(Main.netMode != 1)
                 {
-                    vMag += vAccel;
-                    vMag = tVel;
-                }
-
-                if (vMag > tVel)
-                {
-                    vMag = tVel;
-                }
-
-                if (vMag > vMax)
-                {
-                    vMag = vMax;
-                }
-
-                if (dist != 0)
-                {
-                    npc.velocity = npc.DirectionTo(targetPos) * vMag;
-                }
-            }
-
-            //Attacks
-            //Normal Shot
-            if (shoot == 1 && Main.netMode != 1)
-            {
-                shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 8, ModContent.ProjectileType<RockFalling>(), (int)(damage * .7), 3, Main.myPlayer);
-                if (Main.expertMode)
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 0, ModContent.ProjectileType<RockLooseMini>(), damage / 2, 3, Main.myPlayer);
-            }
-            //Big Boom
-            if (shoot == 2 && Main.netMode != 1)
-            {
-                shoot = 0;
-                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, 0, 5, ModContent.ProjectileType<RockFalling>(), (int)(damage * .7), 3, Main.myPlayer);
-
-                if (Main.expertMode && npc.life < npc.lifeMax * 2 / 3)
-                {
-                    if (attacking)
+                    for(int i = 0; i < 8; i++)
                     {
-                        if (Main.rand.Next(3) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmaCaster>());
-                        else if (Main.rand.Next(2) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmatipedeHead>());
-                    }
-                    else if (Main.rand.Next(5) == 0)
-                    {
-                        if (Main.rand.Next(3) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmaCaster>());
-                        else if (Main.rand.Next(2) == 0)
-                            NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MagmatipedeHead>());
+                        Projectile.NewProjectile(Main.player[npc.target].position.X - 400 + Main.rand.Next(800), Main.player[npc.target].position.Y - 400 - Main.rand.Next(100), Angry?(-1 + 2 * Main.rand.NextFloat()):0, 8 + 4 * Main.rand.NextFloat(), ModContent.ProjectileType<Ragnarock>(), npc.damage / 4, 3, Main.myPlayer);
                     }
                 }
-                attacking = false;
             }
+            if(Counter > 3 * 60 + 30)
+                Transition();
         }
 
-
-
-        public override void OnHitPlayer(Player target, int dmgDealt, bool crit)
+        private void SummonHandAI()
         {
-            if (Main.expertMode)
+            if(!Main.expertMode)
             {
-                target.AddBuff(BuffID.OnFire, 90, true);
+                Angry = true;
+                Transition();
+                return;
+            }
+            Slow();
+            Frame = 1;
+            if(Counter == -1)
+            {
+                if (Main.netMode != 1)
+                {
+                    int n = NPC.NewNPC((int)npc.Center.X + 1200, (int)npc.Center.Y, ModContent.NPCType<RagnarHand>());
+                    Main.npc[n].ai[0] = 0;
+                    Main.npc[n].ai[1] = npc.whoAmI;
+                    n = NPC.NewNPC((int)npc.Center.X - 1200, (int)npc.Center.Y, ModContent.NPCType<RagnarHand>());
+                    Main.npc[n].ai[0] = 1;
+                    Main.npc[n].ai[1] = npc.whoAmI;
+                }
+            }
+            Counter--;
+            if(Counter < -3 * 60)
+            {
+                Angry = true;
+                Transition();
             }
         }
 
+        private void FireballAI()
+        {
+            Slow();
+            Frame = 1;
+            Counter++;
+            if(Counter > 60 && Counter < 4 * 60)
+            {
+                double theta = Math.PI + Main.rand.NextDouble() * Math.PI;
+                float mag = 4 + Main.rand.NextFloat() * 2;
+                if(Counter % 6 == 0 && Main.netMode != 1)
+                    Projectile.NewProjectile(npc.Center.X - 10 + Main.rand.Next(20), npc.Center.Y - 20 - Main.rand.Next(10), (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType<GravityFireball>(), (int)(npc.damage / 4), 3, Main.myPlayer);
+
+            }
+            if (Counter > 4 * 60)
+                Frame = 0;
+            if (Counter > 5 * 60)
+                Transition();
+        }
+
+        private void RuneAI()
+        {
+            if(npc.ai[0] != -1 && Main.npc[(int)npc.ai[0]].active)
+            {
+                ExplodeRune();
+                return;
+            }
+            if (Counter == 0)
+            {
+                TargetPos = Main.player[npc.target].Center;
+                Counter++;
+            }
+            MoveTowards(TargetPos);
+            if (Vector2.Distance(npc.Center, TargetPos) < 40)
+                SummonRune();
+        }
+
+        private void SummonRune()
+        {
+            Slow();
+            Counter++;
+            Frame = 1;
+
+            if (Counter >= 60)
+            {
+                if (Main.netMode != 1)
+                    npc.ai[0] = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<Ragnarune>());
+                Main.npc[(int)npc.ai[0]].ai[0] = npc.whoAmI;
+                Transition();
+            }
+        }
+
+        private void ExplodeRune()
+        {
+            QuickSlow();
+            Counter++;
+            Frame = 1;
+            if (npc.ai[0] == -1)
+            {
+                npc.ai[0] = -1;
+                Counter = 0;
+                Frame = 0;
+            }
+            NPC rune = Main.npc[(int)npc.ai[0]];
+            rune.ai[2] = 1;
+            if (Counter >= 90 && rune.active)
+            {
+                float numBalls = 8 + Main.rand.Next(4) + (Main.expertMode ? 2 : 0) + (Angry ? 4 : 0);
+                double thetaInit = Math.PI * 2 * Main.rand.NextDouble();
+                for(int i = 0; i < numBalls; i++)
+                {
+                    float mag = 5 + Main.rand.NextFloat() * 2 + (Angry ? 2 : 0);
+                    if (Main.netMode != 1)
+                        Projectile.NewProjectile(rune.Center.X + 40, rune.Center.Y + 40, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
+                            ModContent.ProjectileType<GravityFireball>(), (int)(npc.damage / 4), 3, Main.myPlayer);
+                }
+                rune.active = false;
+                npc.ai[0] = -1;
+                Counter = 0;
+                Frame = 0;
+            }
+            if (!rune.active)
+            {
+                npc.ai[0] = -1;
+                Counter = 0;
+                Frame = 0;
+            }
+        }
+
+        private void InitializeAI()
+        {
+            npc.TargetClosest(false);
+            TargetPos = Main.player[npc.target].Center;
+            AIPhase = 1;
+            Counter = 0;
+        }
+
+        private void Slow()
+        {
+            npc.velocity *= .95f;
+        }
+
+        private void QuickSlow()
+        {
+            npc.velocity *= .9f;
+        }
+
+        private void MoveTowards(Vector2 targetPos)
+        {
+            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
+            newVel *= Math.Min(Vector2.Distance(npc.Center, targetPos) / 4, npc.velocity.Length() + .6f);
+            npc.velocity = newVel;
+        }
+
+        private void MoveTowardsAtSpeed(Vector2 targetPos, float mag)
+        {
+            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
+            newVel *= Math.Min(mag, npc.velocity.Length() + .6f);
+            npc.velocity = newVel;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            npc.frame.Y = frameHeight * Frame;
+        }
+
+        private void Transition()
+        {
+            PrevAIPhase = AIPhase;
+            AIPhase = 4;
+            Counter = 0;
+            Frame = 0;
+        }
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedEtheria)
@@ -307,34 +360,40 @@ namespace Laugicality.NPCs.PreTrio
             if (!Main.expertMode)
             {
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<DarkShard>(), Main.rand.Next(1, 3));
-                int ran = Main.rand.Next(1, 7);
-                if (ran == 1) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 49, 1);
-                if (ran == 2) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicMirror, 1);
-                if (ran == 3) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 53, 1);
-                if (ran == 4) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HermesBoots, 1);
-                if (ran == 5) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EnchantedBoomerang, 1);
-                if (ran == 6) Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LavaCharm, 1);
-
+                int obsidiumItem = 0;
+                int rand = Main.rand.Next(7);
+                switch (rand)
+                {
+                    case 0:
+                        obsidiumItem = ItemID.LavaCharm;
+                        break;
+                    case 1:
+                        obsidiumItem = ModContent.ItemType<ObsidiumLily>();
+                        break;
+                    case 2:
+                        obsidiumItem = ModContent.ItemType<FireDust>();
+                        break;
+                    case 3:
+                        obsidiumItem = ModContent.ItemType<Eruption>();
+                        break;
+                    case 4:
+                        obsidiumItem = ModContent.ItemType<CrystalizedMagma>();
+                        break;
+                    case 5:
+                        obsidiumItem = ModContent.ItemType<Ragnashia>();
+                        break;
+                    default:
+                        obsidiumItem = ModContent.ItemType<MagmaHeart>();
+                        break;
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, obsidiumItem, 1);
+                if(Main.rand.Next(4) == 0)
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BlackIce>(), 1);
             }
-            if(!LaugicalityWorld.downedRagnar)
+            if (!LaugicalityWorld.downedRagnar)
                 Main.NewText("Fury runs through the Obsidium Caverns.", 250, 150, 50);
             LaugicalityWorld.downedRagnar = true;
         }
-
-        /*
-        public override void FindFrame(int frameHeight)
-        {
-            frameHeight = 96;
-            if (attacking)
-            {
-                npc.frame.Y = frameHeight;
-            }
-            else
-            {
-                npc.frame.Y = 0;
-            }
-        }*/
-
 
         public override void BossLoot(ref string name, ref int potionType)
         {

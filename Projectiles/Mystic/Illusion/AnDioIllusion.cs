@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,7 +30,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.tileCollide = false;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            buffID = BuffID.Chilled;
+            buffID = ModContent.BuffType<TimeDilation>();
         }
 		
 		public override Color? GetAlpha(Color lightColor)

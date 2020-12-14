@@ -36,7 +36,7 @@ namespace Laugicality.Focuses
             new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse1", "-5% Damage") { overrideColor = Color.Red }),
             new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse2", "Your critical strike chance is halved") { overrideColor = Color.Red }),
             new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse3", "-20% Damage when above 50% Life") { overrideColor = Color.Red }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse4", "You cannot inflict special debuffs") { overrideColor = Color.Red }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "FerocityFocusCurse4", "You cannot buff your damage") { overrideColor = Color.Red }),
         })
         {
 
@@ -218,7 +218,35 @@ namespace Laugicality.Focuses
 
         private static void CurseEffect4(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.NoDebuffDamage = true;
+            laugicalityPlayer.NoBuffedDamage = true;
+            if (laugicalityPlayer.player.allDamage > 1)
+                laugicalityPlayer.player.allDamage = 1;
+            if (laugicalityPlayer.player.meleeDamage > 1)
+                laugicalityPlayer.player.meleeDamage = 1;
+            if (laugicalityPlayer.player.rangedDamage > 1)
+                laugicalityPlayer.player.rangedDamage = 1;
+            if (laugicalityPlayer.player.minionDamage > 1)
+                laugicalityPlayer.player.minionDamage = 1;
+            if (laugicalityPlayer.player.magicDamage > 1)
+                laugicalityPlayer.player.magicDamage = 1;
+            if (laugicalityPlayer.player.thrownDamage > 1)
+                laugicalityPlayer.player.thrownDamage = 1;
+            if (laugicalityPlayer.MysticDamage > 1)
+                laugicalityPlayer.MysticDamage = 1;
+            if (laugicalityPlayer.player.allDamageMult > 1)
+                laugicalityPlayer.player.allDamageMult = 1;
+            if (laugicalityPlayer.player.meleeDamageMult > 1)
+                laugicalityPlayer.player.meleeDamageMult = 1;
+            if (laugicalityPlayer.player.rangedDamageMult > 1)
+                laugicalityPlayer.player.rangedDamageMult = 1;
+            if (laugicalityPlayer.player.minionDamageMult > 1)
+                laugicalityPlayer.player.minionDamageMult = 1;
+            if (laugicalityPlayer.player.magicDamageMult > 1)
+                laugicalityPlayer.player.magicDamageMult = 1;
+            if (laugicalityPlayer.player.thrownDamageMult > 1)
+                laugicalityPlayer.player.thrownDamageMult = 1;
+            if (laugicalityPlayer.MysticDamage > 1)
+                laugicalityPlayer.MysticDamage = 1;
         }
 
         private static void CritBoost(LaugicalityPlayer laugicalityPlayer, int Boost)

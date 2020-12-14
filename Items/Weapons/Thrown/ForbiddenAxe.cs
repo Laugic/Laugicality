@@ -1,6 +1,7 @@
 ﻿using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Laugicality.Projectiles.Thrown;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,8 +25,8 @@ namespace Laugicality.Items.Weapons.Thrown
             item.useAnimation = 30;
             item.useStyle = 1;
             item.knockBack = 6;
-            item.value = 10;
-            item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = ModContent.ProjectileType<ForbiddenAxeProj>();

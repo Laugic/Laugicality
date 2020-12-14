@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +27,19 @@ namespace Laugicality.Projectiles.Melee
 			projectile.scale = 1f;
 		}
 
+        public override void AI()
+        {
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(Main.player[projectile.owner]);
+            if (modPlayer.ObsidiumHeart > 0 && Main.rand.Next(4 * 60 - (3 * 60 * (int)(modPlayer.ObsidiumHeart / 5f))) == 0 && Main.myPlayer == projectile.owner)
+            {
+                float theta = Main.rand.NextFloat() * (float)Math.PI;
+                float mag = Main.rand.NextFloat() * 4 + 8;
+                if (Main.myPlayer == projectile.owner)
+                    Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType<ObsidiumYoyoFireball>(), projectile.damage, 3f, Main.myPlayer);
+            }
+            base.AI();
+        }
+
         public Vector2 GetPosition()
         {
             return projectile.position;
@@ -33,7 +47,9 @@ namespace Laugicality.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 80);
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(Main.player[projectile.owner]);
+            if (modPlayer.ObsidiumHeart > 0)
+                target.AddBuff(BuffID.OnFire, 2 * 60 + Main.rand.Next(60));
         }
     }
 }

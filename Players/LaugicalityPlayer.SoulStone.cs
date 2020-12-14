@@ -60,6 +60,13 @@ namespace Laugicality
             UtilityCurse3 = false;
             VitalityCurse3 = false;
             VitalityCurse4 = false;
+            if(MobilityCurse4Check > 0)
+            {
+                MobilityCurse4 = true;
+                MobilityCurse4Check--;
+            }
+            else
+                MobilityCurse4 = false;
             CapacityCurse4 = false;
         }
 
@@ -203,8 +210,11 @@ namespace Laugicality
             if (Focus == null)
                 return;
 
-            if(MobilityCurse2)
+            if (MobilityCurse2)
                 player.AddBuff(ModContent.BuffType<MobilityCurseBuff>(), 4 * Constants.TICKS_PER_SECONDS);
+
+            if (TenacityCurse2)
+                player.AddBuff(ModContent.BuffType<TenacityCurseBuff>(), 4 * Constants.TICKS_PER_SECONDS);
 
             /*if (QueenBeeEffect && Focus.IsTenacity())
             {
@@ -341,6 +351,50 @@ namespace Laugicality
             }
         }
 
+        internal void CheckMobilityCurse4()
+        {
+            if(MobilityCurse4)
+            {
+                player.wingTime = -1;
+                player.wingTimeMax = -1;
+                player.rocketTimeMax = -1;
+                player.rocketTime = -1;
+            }
+        }
+
+        internal void CheckFerocityCurse4()
+        {
+            if (NoBuffedDamage)
+            {
+                if (player.allDamage > 1)
+                    player.allDamage = 1;
+                if (player.meleeDamage > 1)
+                    player.meleeDamage = 1;
+                if (player.rangedDamage > 1)
+                    player.rangedDamage = 1;
+                if (player.minionDamage > 1)
+                    player.minionDamage = 1;
+                if (player.magicDamage > 1)
+                    player.magicDamage = 1;
+                if (player.thrownDamage > 1)
+                    player.thrownDamage = 1;
+                if (MysticDamage > 1)
+                    MysticDamage = 1;
+                if (player.allDamageMult > 1)
+                    player.allDamageMult = 1;
+                if (player.meleeDamageMult > 1)
+                    player.meleeDamageMult = 1;
+                if (player.rangedDamageMult > 1)
+                    player.rangedDamageMult = 1;
+                if (player.minionDamageMult > 1)
+                    player.minionDamageMult = 1;
+                if (player.magicDamageMult > 1)
+                    player.magicDamageMult = 1;
+                if (player.thrownDamageMult > 1)
+                    player.thrownDamageMult = 1;
+            }
+        }
+
         internal void CapacityHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
             if(player.statLife > player.statLifeMax2 / 2 && CapacityCurse3)
@@ -404,6 +458,8 @@ namespace Laugicality
         public bool CapacityCurse1 { get; set; }
         public bool CapacityCurse2 { get; set; }
         public bool MobilityCurse2 { get; set; }
+        public bool MobilityCurse4 { get; set; }
+        public int MobilityCurse4Check { get; set; } = 0;
         public bool VitalityCurse2 { get; set; }
         public bool TenacityCurse2 { get; set; }
         public bool CapacityCurse3 { get; set; }

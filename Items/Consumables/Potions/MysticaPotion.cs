@@ -1,4 +1,5 @@
 using Laugicality.Buffs;
+using Laugicality.Items.Placeable;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +24,7 @@ namespace Laugicality.Items.Consumables.Potions
             item.useStyle = 2;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
+            item.value = Item.sellPrice(silver: 2);
         }
 
         public override bool CanUseItem(Player player)
@@ -46,7 +48,7 @@ namespace Laugicality.Items.Consumables.Potions
             recipe.AddIngredient(ItemID.BottledWater, 1);
             recipe.AddIngredient(null, "ArcaneShard", 1);
             recipe.AddIngredient(null, "VerdiDust", 1);
-            recipe.AddIngredient(null, "LavaGem", 1);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);
             recipe.AddRecipe();

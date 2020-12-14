@@ -1,4 +1,5 @@
 ﻿using Laugicality.Tiles.Furniture;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,7 +18,7 @@ namespace Laugicality.Items.Placeable.Furniture
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 150;
+            item.value = Item.sellPrice(silver: 1);
             item.createTile = ModContent.TileType<LavaGemCandleTile>();
         }
 
@@ -26,7 +27,7 @@ namespace Laugicality.Items.Placeable.Furniture
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddTile(TileID.WorkBenches);
             recipe.AddIngredient(ModContent.ItemType<ObsidiumRock>(), 4);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 1);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

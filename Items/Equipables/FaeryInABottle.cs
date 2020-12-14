@@ -20,7 +20,7 @@ namespace Laugicality.Items.Equipables
         {
             item.width = 32;
             item.height = 32;
-            item.value = 1000;
+            item.value = Item.buyPrice(gold: 1);
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
@@ -45,7 +45,7 @@ namespace Laugicality.Items.Equipables
                     break;
             }
         }
-
+        /*
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -55,6 +55,6 @@ namespace Laugicality.Items.Equipables
             recipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }
+        }*/
     }
 }

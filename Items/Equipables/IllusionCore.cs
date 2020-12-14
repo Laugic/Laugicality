@@ -1,3 +1,5 @@
+using Laugicality.Items.Materials;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +11,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Illusion Damage\n+25% Illusion Overflow\nAbsorb 25% more Vis when using Mundus and Lux");
+            Tooltip.SetDefault("+10% Illusion Damage\n+50 Vis");
         }
 
         public override void SetDefaults()
@@ -25,18 +27,16 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.IllusionDamage += .1f;
-            modPlayer.VisOverflow += .25f;
-            modPlayer.VisAbsorbRate += .25f;
+            modPlayer.VisMax += 50;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "FrostShard", 1);
-            recipe.AddIngredient(null, "RegisDust", 2);
-            recipe.AddIngredient(null, "AlbusDust", 2);
-            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.AddIngredient(ItemID.LargeAmethyst, 1);
+            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<AlbusDust>(), 4);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

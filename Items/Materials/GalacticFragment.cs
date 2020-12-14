@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality.Items.Materials
@@ -20,6 +21,7 @@ namespace Laugicality.Items.Materials
 			item.useAnimation = 1;
 			item.useTime = 15;
 			item.useStyle = 1;
+            item.value = Item.buyPrice(silver: 20) * 5;
 		}
         
         public override void AddRecipes()

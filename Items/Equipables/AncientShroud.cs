@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,55 +9,24 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ancient Shroud");
-            Tooltip.SetDefault("Your Potentia is added to your Max Life\nIncreased Life Regen as Potentia drops\nIncreased Mystic Damage as Life drops");
+            DisplayName.SetDefault("Blood Shroud");
+            Tooltip.SetDefault("Increased life regen\nIncreased Mystic Damage for a time after taking damage");
         }
 
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
-            item.value = 100;
+            item.value = Item.sellPrice(gold: 1);
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
+            item.lifeRegen = 4;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-
-            int minPotentia = (int)(modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost);
-
-            if(modPlayer.VisMax + modPlayer.VisMaxPermaBoost < minPotentia)
-                minPotentia = (int)(modPlayer.VisMax + modPlayer.VisMaxPermaBoost);
-
-            if (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost < minPotentia)
-                minPotentia = (int)(modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost);
-
-            player.statLifeMax2 += minPotentia;
-            float currPotentia = 1;
-            float currMaxPotentia = 1;
-
-            switch (modPlayer.MysticMode)
-            {
-                case 1:
-                    currPotentia = modPlayer.Lux;
-                    currMaxPotentia = modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost;
-                    break;
-                case 2:
-                    currPotentia = modPlayer.Vis;
-                    currMaxPotentia = modPlayer.VisMax + modPlayer.VisMaxPermaBoost;
-                    break;
-                default:
-                    currPotentia = modPlayer.Mundus;
-                    currMaxPotentia = modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost;
-                    break;
-            }
-            if (currMaxPotentia == 0)
-                currMaxPotentia = 1;
-
-            player.lifeRegen += (int)(6 * (1 - (currPotentia / currMaxPotentia)));
-            modPlayer.MysticDamage += .2f * (1-((float)player.statLife / (float)player.statLifeMax2));
+            modPlayer.Shroud = true;
         }
 
         public override void AddRecipes()

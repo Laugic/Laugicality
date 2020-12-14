@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Enums;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -31,6 +32,8 @@ namespace Laugicality.Tiles.Furniture
             AddMapEntry(new Color(170, 200, 120), name);
 
             drop = ModContent.ItemType<LavaGemCandle>();
+            adjTiles = new int[] { TileID.Candles };
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
         }
 
         public override void HitWire(int i, int j)

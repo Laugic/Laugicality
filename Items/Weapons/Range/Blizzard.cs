@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Range
             item.knockBack = 4;
             item.value = 10000;
             item.rare = ItemRarityID.LightRed;
-            item.UseSound = SoundID.Item34;
+            item.UseSound = SoundID.Item11;
             item.autoReuse = true;
             item.shootSpeed = 18f;
             item.useAmmo = AmmoID.Snowball;

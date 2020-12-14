@@ -1,5 +1,6 @@
 ﻿using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,12 +10,12 @@ namespace Laugicality.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("'Crystil barrage'");
+            Tooltip.SetDefault("'Crystal barrage'");
         }
 
         public override void SetDefaults()
         {
-            item.damage = 32;
+            item.damage = 26;
             item.melee = true;
             item.width = 42;
             item.height = 48;
@@ -22,8 +23,8 @@ namespace Laugicality.Items.Weapons.Melee
             item.useAnimation = 25;
             item.useStyle = 1;
             item.knockBack = 5;
-            item.value = 10000;
-            item.rare = ItemRarityID.Green;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shoot = ProjectileID.CrystalBullet;

@@ -18,9 +18,9 @@ namespace Laugicality.Items.Armor
 		{
 			item.width = 34;
 			item.height = 22;
-			item.value = 10000;
-			item.rare = ItemRarityID.Pink;
-			item.defense = 14;
+            item.value = Item.sellPrice(gold: 5);
+            item.rare = ItemRarityID.Lime;
+            item.defense = 14;
 		}
 
         public override void UpdateEquip(Player player)

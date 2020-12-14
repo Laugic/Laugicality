@@ -29,6 +29,7 @@ namespace Laugicality.Items
             LuxCost = 10;
             VisCost = 10;
             MundusCost = 10;
+            item.GetGlobalItem<LaugicalityGlobalItem>().Mystic = true;
             SetMysticDefaults();
         }
 
@@ -48,9 +49,12 @@ namespace Laugicality.Items
 
             TooltipLine tt2 = new TooltipLine(mod, "PlayerMysticChanneling", GetMysticType());
             TooltipLine tt3 = new TooltipLine(mod, "PlayerMysticChanneling", GetMysticaType());
+            TooltipLine tt4 = new TooltipLine(mod, "PlayerMysticChanneling", GetExtraTooltip());
 
-            tooltips.Insert(index + 1, tt2);
-            tooltips.Insert(index + 2, tt3);
+            tooltips.Insert(++index, tt2);
+            tooltips.Insert(++index, tt3);
+            if(GetExtraTooltip() != "")
+                tooltips.Insert(++index, tt4);
             /*if (!item.social && item.prefix > 0)
             {
                 if (destruction == 1f)
@@ -368,7 +372,10 @@ namespace Laugicality.Items
             return true;
         }
 
-        public bool Mystic { get; } = true;
+        public virtual string GetExtraTooltip()
+        {
+            return "";
+        }
 
         public int LuxCost { get; set; } = 10;
 

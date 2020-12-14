@@ -29,8 +29,8 @@ namespace Laugicality.Items.Weapons.Range
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 3;
-            item.value = 10000;
-            item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Blue;
             item.UseSound = SoundID.Item41;
             item.autoReuse = true;
             item.channel = true;

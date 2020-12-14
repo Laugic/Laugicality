@@ -1,5 +1,7 @@
 using Laugicality.Tiles;
 using Terraria.ModLoader;
+using Terraria;
+using Terraria.ID;
 
 namespace Laugicality.Items.Loot
 {
@@ -8,7 +10,7 @@ namespace Laugicality.Items.Loot
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magma Shard");
-            Tooltip.SetDefault("");
+            Tooltip.SetDefault("Grows Obsidium Hearts over time when placed");
         }
 
         public override void SetDefaults()
@@ -22,18 +24,9 @@ namespace Laugicality.Items.Loot
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 0;
             item.createTile = ModContent.TileType<MagmaVeins>();
+            item.value = Item.sellPrice(silver: 50);
+            item.rare = ItemRarityID.Orange;
         }
-        /*
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(77);
-            recipe.AddIngredient(null, "ObsidiumOre", 3);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
-        }*/
-        
     }
 }

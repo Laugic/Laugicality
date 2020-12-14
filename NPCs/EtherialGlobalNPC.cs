@@ -16,7 +16,7 @@ using Terraria.ModLoader;
 
 namespace Laugicality.NPCs
 {
-    class EtherialGlobalNPC : GlobalNPC
+    public class EtherialGlobalNPC : GlobalNPC
     {
         private bool _grew = false;
         private int _counter = 0;
@@ -656,7 +656,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.netMode != 1)
                 {
-                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<RagnarHand>());
+                    int n = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<EtherialRagnarHand>());
                     Main.npc[n].ai[0] = i;
                     Main.npc[n].ai[1] = npc.whoAmI;
                 }
@@ -1366,7 +1366,7 @@ namespace Laugicality.NPCs
                 if (_dmg == 0)
                 {
                     _dmg = npc.damage;
-                    friend = npc.friendly;
+                    friend = (npc.friendly || npc.townNPC);
                 }
                 if (!friend)
                 {
@@ -1425,6 +1425,20 @@ namespace Laugicality.NPCs
             return false;
         }
 
+        public override bool? CanHitNPC(NPC npc, NPC target)
+        {
+            if (LaugicalityWorld.downedEtheria && (target.townNPC || npc.townNPC))
+                return false;
+            return base.CanHitNPC(npc, target);
+        }
+        /*
+        public override void ModifyHitNPC(NPC npc, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            if (LaugicalityWorld.downedEtheria && (target.townNPC || npc.townNPC))
+                damage = 0;
+            base.ModifyHitNPC(npc, target, ref damage, ref knockback, ref crit);
+        }
+        */
         public override void PostAI(NPC npc)
         {
             if (LaugicalityWorld.downedEtheria && (npc.type >= 430 && npc.type <= 436))

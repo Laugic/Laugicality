@@ -23,6 +23,12 @@ namespace Laugicality.Tiles
             //adjTiles = new int[] { TileID.WorkBenches };
         }
 
+
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height)
+        {
+            offsetY = 4;
+        }
+
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
             num = fail ? 1 : 3;
@@ -30,7 +36,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 36, 36, ModContent.ItemType<Items.Equipables.ObsidiumHeart>());
+            Item.NewItem(i * 16, j * 16, 36, 36, ModContent.ItemType<Items.Consumables.ObsidiumHeart>());
         }
     }
 }

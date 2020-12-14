@@ -1,5 +1,7 @@
 using Laugicality.Tiles;
 using Terraria.ModLoader;
+using Terraria;
+using Terraria.ID;
 
 namespace Laugicality.Items.Placeable
 {
@@ -21,8 +23,9 @@ namespace Laugicality.Items.Placeable
             item.useTime = 10;
             item.useStyle = 1;
             item.consumable = true;
-            item.value = 0;
+            item.value = Item.sellPrice(silver: 12);
             item.createTile = ModContent.TileType<ObsidiumOreBlock>();
+            item.rare = ItemRarityID.Green;
         }
     }
 }

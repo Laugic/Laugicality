@@ -2,6 +2,7 @@ using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Laugicality.Items.Placeable;
 using Laugicality.Projectiles.Thrown;
+using Laugicality.Tiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WebmilioCommons.Extensions;

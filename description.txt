@@ -3,27 +3,11 @@ Current features:
 =========
 A new class- The Mystic Class!
 A new dimension- The Etherial
-8 Boss fights
+8 Bosses
 A new level-up system in the form of the Soul Stone
-Over 420 new Items, including a new way to use Potions
+A new Alchemy System involving Crystallizing Potions
 A new biome- The Obsidium
-7 and 1/3 new Armor sets
-And lots more planned features!
-
+And more!
 -----
-v0.14.2
-Misc changes & bug fixes
+v1.0
 
------
-v0.14.1
-Updated to tModLoader 0.11.5 (by Webmilio)
-
------
-v0.14
-Revamped the Soul Stone!
-Added Focus Stones that benefit different playstyles instead of different classes.
-All Enigma and Vanilla bosses give unique bonuses based on which Focus Stone you pick.
-Added new Curse System
-Revamped Dune Sharkron & Hypothema, added more Dune Sharkron loot
-
-NOTICE: The new Soul Stone doesnt work well in multiplayer yet- use at your own risk!

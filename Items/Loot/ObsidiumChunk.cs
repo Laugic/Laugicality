@@ -10,7 +10,7 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Pulsing with heat. \nRight Click to open");
+            Tooltip.SetDefault("Pulsing with heat\nRight Click to open");
         }
 
         public override void SetDefaults()
@@ -84,7 +84,7 @@ namespace Laugicality.Items.Loot
                 if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(2, 4));
                 if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(2, 4));
                 if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(2, 4));
-                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType<LavaGem>(), Main.rand.Next(2, 4));
+                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType<LavaGemItem>(), Main.rand.Next(2, 4));
                 
             }
             else
@@ -108,7 +108,7 @@ namespace Laugicality.Items.Loot
                 if (ran == 4) player.QuickSpawnItem(177, Main.rand.Next(1, 3));
                 if (ran == 5) player.QuickSpawnItem(180, Main.rand.Next(1, 3));
                 if (ran == 6) player.QuickSpawnItem(181, Main.rand.Next(1, 3));
-                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType<LavaGem>(), Main.rand.Next(1, 3));
+                if (ran == 7) player.QuickSpawnItem(ModContent.ItemType<LavaGemItem>(), Main.rand.Next(1, 3));
 
                 if (Main.rand.Next(1, 4) == 1) player.QuickSpawnItem(2701, Main.rand.Next(6, 13));
             }

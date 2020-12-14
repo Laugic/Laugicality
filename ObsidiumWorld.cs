@@ -17,9 +17,84 @@ namespace Laugicality
         {
             CreateObsidiumRock(xO, yO);
 
-            CreateObsidiumCaverns(xO, yO);
+            //CreateWallVeins(xO, yO);
 
-            GenerateObsidiumFeatures(xO, yO);
+            GenerateObsidiumVeins(xO, yO);
+
+            CreateObsidiumCaverns(xO, yO);
+        }
+
+
+
+        public void GenVein(double x, double y, double direction, double curve, double jerk, double growth, double wiggle, int length, int thiccness, int branches, double initialThicc, ushort tile)
+        {
+            double curThicc = initialThicc;
+            bool genBranch = false;
+            for (int i = 0; i < length * 2; i++)
+            {
+                GenBumpyCircle(x, y, curThicc / 2, tile);
+                x += Math.Cos(direction);
+                y += Math.Sin(direction);
+                direction += curve;
+                curve = curve / Math.Abs(curve) * Math.Min(Math.Abs(curve) * jerk, Math.PI / length);
+                if (Main.rand.NextDouble() < wiggle)
+                    curve = -curve;
+                if (curThicc < thiccness)
+                    curThicc += growth;
+                if (Main.rand.NextDouble() < wiggle * 2)
+                    curThicc -= growth * 2;
+                if(curThicc > length * 2 - i && !genBranch && branches > 0)
+                {
+                    GenBranches(branches, x, y, direction - Math.PI / 3 + Main.rand.NextDouble() * Math.PI * .667, curve * (Main.rand.Next(2) * 2 - 1) / 2, jerk, growth, wiggle, length / 2, Math.Max(2, thiccness - 2), curThicc, tile);
+                    genBranch = true;
+                }
+                curThicc = Math.Min(curThicc, length * 2 - i);
+            }
+        }
+
+        private void GenBranches(int branches, double x, double y, double direction, double curve, double jerk, double growth, double wiggle, int length, int thiccness, double curThicc, ushort tile)
+        {
+            for (int i = 0; i < branches; i++)
+                GenVein(x, y, direction - Math.PI / 3 + Main.rand.NextDouble() * Math.PI * .667, curve * (Main.rand.Next(2) * 2 - 1) / 2, jerk, growth, wiggle, length / 2, Math.Max(2, thiccness - 2), curThicc, tile);
+        }
+
+        private void GenBumpyCircle(double x, double y, double radius, ushort tile)
+        {
+            for (int i = -(int)radius; i <= radius; i++)
+            {
+                for (int j = -(int)radius; j <= radius; j++)
+                {
+                    if (TileCheckSafe((int)x + i, (int)y + j))
+                    {
+                        var dist = Distance(x + i, y + j, x, y);
+                        if (dist <= radius)
+                        {
+                            Main.tile[(int)x + i, (int)y + j].liquid = 0;
+                            WorldGen.PlaceTile((int)x + i, (int)y + j, tile, true, true);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void GenVein(double x, double y, double direction, double curve, double jerk, double growth, double wiggle, int length, int thiccness, double initialThicc, ushort tile)
+        {
+            GenVein(x, y, direction, curve, jerk, growth, wiggle, length, thiccness, 0, initialThicc, tile);
+        }
+
+        public void GenVein(double x, double y, int length, int thiccness, int branches, double initialThicc, ushort tile)
+        {
+            GenVein(x, y,
+                    Math.PI * 2 * Main.rand.NextDouble(),
+                    (Main.rand.NextDouble() * Math.PI / length + .05) * (Main.rand.Next(2) * 2 - 1),
+                    (.975 + Main.rand.NextDouble() * .05),
+                    .5 + Main.rand.NextDouble() / 2,
+                    Main.rand.NextDouble() / 5,
+                    length,
+                    thiccness,
+                    branches,
+                    initialThicc,
+                    tile);
         }
 
         private void CreateObsidiumRock(int xO, int yO)
@@ -29,6 +104,26 @@ namespace Laugicality
                 for (int j = (int)(-275 * sizeMult); j <= (int)(275 * sizeMult); j++)
                 {
                     CreateObsidiumTileCheck(xO, yO, i, j);
+                }
+            }
+        }
+
+        private void CreateWallVeins(int xO, int yO)
+        {
+            GenerateFeature(xO, yO, 80, (ushort)ModContent.TileType<Lycoris>(), 5, 8, 140 * sizeMult);
+
+
+            for (int i = (int)(-250 * sizeMult); i <= (int)(250 * sizeMult); i++)
+            {
+                for (int j = (int)(-325 * sizeMult); j <= (int)(325 * sizeMult); j++)
+                {
+                    if (TileCheckSafe(xO + i, yO + j))
+                    {
+                        if (Main.tile[xO + i, yO + j].type == (ushort)ModContent.TileType<Lycoris>())
+                        {
+                            PlaceTile(xO + i, yO + j, ModContent.TileType<Tiles.ObsidiumRock>(), WallID.Lavafall);
+                        }
+                    }
                 }
             }
         }
@@ -51,7 +146,7 @@ namespace Laugicality
                     {
                         GenerateCavernMid(xO, yO, i, j);
                     }
-                    else if (yO + j < Main.maxTilesY - 200)
+                    else if (j < 200 * sizeMult && yO + j < Main.maxTilesY - 200)
                     {
                         GenerateCavernBottom(xO, yO, i, j);
                     }
@@ -109,7 +204,9 @@ namespace Laugicality
 
         private void GenerateCavernBottom(int xO, int yO, int i, int j)
         {
-            int radius = (Main.maxTilesY - 200) - (yO + (int)(100 * sizeMult));
+            int radius = 100 * sizeMult;//(Main.tile.GetLength(1) - 200) - (yO + (int)(100 * sizeMult));
+            if (!TileCheckSafe(xO + i, yO + j))
+                return;
             if (i < 0 && i > -radius)
             {
                 if (Distance(xO + i, yO + j, xO - (int)(25 * sizeMult) - radius, yO + (int)(100 * sizeMult)) > radius)
@@ -145,7 +242,7 @@ namespace Laugicality
             GenerateCave(xO, yO, 100 * sizeMult, (ushort)TileID.BubblegumBlock, 9 * sizeMult, 15 * sizeMult, 3 * sizeMult);
             GenerateCave(xO, yO, 50 * sizeMult, (ushort)TileID.BubblegumBlock, 16, 25, 140 * sizeMult);
             GenerateCave(xO, yO, 50 * sizeMult, (ushort)TileID.BubblegumBlock, 25, 30, 25 * sizeMult);
-
+            
             for (int i = (int)(-250 * sizeMult); i <= (int)(250 * sizeMult); i++)
             {
                 for (int j = (int)(-325 * sizeMult); j <= (int)(325 * sizeMult); j++)
@@ -162,23 +259,29 @@ namespace Laugicality
         }
 
 
-        private void GenerateObsidiumFeatures(int xO, int yO)
+        private void GenerateObsidiumVeins(int xO, int yO)
         {
+            /*
+            GenerateVeins(xO, yO, 100, (ushort)ModContent.TileType<SootTile>(), 16, 32, 2, 4, 2, 3);
+            GenerateVeins(xO, yO, 100, (ushort)ModContent.TileType<Radiata>(), 16, 32, 2, 4, 2, 3);
+            GenerateVeins(xO, yO, 120, (ushort)ModContent.TileType<Lycoris>(), 16, 32, 2, 4, 2, 3);
+            GenerateVeins(xO, yO, 160, (ushort)ModContent.TileType<ObsidiumOreBlock>(), 12, 20, 2, 3, 0, 2);*/
             GenerateFeature(xO, yO, 25, (ushort)ModContent.TileType<Tiles.Radiata>(), 2, 6, 180 * sizeMult);
             GenerateFeature(xO, yO, 50, (ushort)ModContent.TileType<Lycoris>(), 3, 6, 140 * sizeMult);
             GenerateFeature(xO, yO, 75, (ushort)ModContent.TileType<Tiles.Radiata>(), 3, 5, 180 * sizeMult);
             GenerateFeature(xO, yO, 75, (ushort)ModContent.TileType<Lycoris>(), 3, 5, 140 * sizeMult);
             GenerateFeature(xO, yO, 100, (ushort)ModContent.TileType<SootTile>(), 12, 18, 25 * sizeMult);
-            GenerateFeature(xO, yO, 300, (ushort)ModContent.TileType<ObsidiumOreBlock>(), 6, 14, 8);
+            GenerateFeature(xO, yO, 80, (ushort)ModContent.TileType<ObsidiumOreBlock>(), 3, 6, 50 * sizeMult);
+            GenerateFeature(xO, yO, 40, (ushort)ModContent.TileType<ObsidiumOreBlock>(), 6, 9, 30 * sizeMult);
         }
-        
+
         private void GenerateCave(int xO, int yO, int numSteps, ushort tileType, int minSize, int maxSize, int length)
         {
             for (int k = 0; k < numSteps * sizeMult; k++)
             {
                 int x = xO + Main.rand.Next(-200 * sizeMult, 200 * sizeMult);
                 int y = yO + Main.rand.Next(-250 * sizeMult, 250 * sizeMult);
-                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)ModContent.TileType<Lycoris>() || Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Radiata>())
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() || (Main.tile[x, y].active() == false && (Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall") || Main.tile[x, y].wall == WallID.Lavafall)) || Main.tile[x, y].type == (ushort)ModContent.TileType<Lycoris>() || Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Radiata>())
                     WorldGen.TileRunner(x, y, Main.rand.Next(minSize, maxSize), length, tileType, false, 0f, 0f, false, true);
             }
         }
@@ -189,8 +292,19 @@ namespace Laugicality
             {
                 int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
                 int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
-                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() || (Main.tile[x, y].active() == false && Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall")) || Main.tile[x, y].type == (ushort)ModContent.TileType<Lycoris>() || Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Radiata>())
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() || (Main.tile[x, y].active() == false && (Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall") || Main.tile[x, y].wall == WallID.Lavafall)) || Main.tile[x, y].type == (ushort)ModContent.TileType<Lycoris>() || Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Radiata>())
                     WorldGen.TileRunner(x, y, Main.rand.Next(minSize, maxSize), length, tileType, false, 0f, 0f, false, true);
+            }
+        }
+
+        private void GenerateVeins(int xO, int yO, int numSteps, ushort tileType, int minLength, int maxLength, int minThicc, int maxThicc, int minBranches, int maxBranches)
+        {
+            for (int k = 0; k < numSteps * sizeMult; k++)
+            {
+                int x = xO + Main.rand.Next(-225 * sizeMult, 225 * sizeMult);
+                int y = yO + Main.rand.Next(-275 * sizeMult, 275 * sizeMult);
+                if (Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() || (Main.tile[x, y].active() == false && (Main.tile[x, y].wall == mod.WallType("ObsidiumRockWall") || Main.tile[x, y].wall == WallID.Lavafall)) || Main.tile[x, y].type == (ushort)ModContent.TileType<Lycoris>() || Main.tile[x, y].type == (ushort)ModContent.TileType<Tiles.Radiata>())
+                    GenVein(x, y, Main.rand.Next(minLength, maxLength + 1), Main.rand.Next(minThicc, maxThicc + 1), Main.rand.Next(minBranches, maxBranches + 1), 0, tileType);
             }
         }
 
@@ -223,7 +337,7 @@ namespace Laugicality
         {
             if (TileCheckSafe(structX, structY))
             {
-                if (Main.tile[structX, structY].wall == (ushort)mod.WallType("ObsidiumRockWall"))
+                if (Main.tile[structX, structY].wall == mod.WallType("ObsidiumRockWall") || Main.tile[structX, structY].wall == WallID.Lavafall)
                 {
                     bool mirrored = false;
                     if (Main.rand.Next(2) == 0)
@@ -300,7 +414,7 @@ namespace Laugicality
         {
             if (TileCheckSafe(structX, structY))
             {
-                if (Main.tile[structX, structY].wall == (ushort)mod.WallType("ObsidiumRockWall"))
+                if (Main.tile[structX, structY].wall == mod.WallType("ObsidiumRockWall") || Main.tile[structX, structY].wall == WallID.Lavafall)
                 {
                     ObsidiumHouses.GenerateHouse(structX, structY);
                 }
@@ -383,8 +497,8 @@ namespace Laugicality
         private static int[] GetObsidiumMiscLoot()
         {
             int[] mscLoot = new int[] {
-                ModContent.ItemType<Items.Placeable.LavaGem>(), ModContent.ItemType<ArcaneShard>(),
-                ModContent.ItemType<Items.Placeable.LavaGem>(), ModContent.ItemType<RubrumDust>(),
+                ModContent.ItemType<Items.Placeable.LavaGemItem>(), ModContent.ItemType<ArcaneShard>(),
+                ModContent.ItemType<Items.Placeable.LavaGemItem>(), ModContent.ItemType<RubrumDust>(),
                 ModContent.ItemType<AlbusDust>(), ModContent.ItemType<VerdiDust>() };
 
             int mscPos = Main.rand.Next(mscLoot.GetLength(0));
@@ -405,7 +519,7 @@ namespace Laugicality
         {
             for(int i = 0; i < Main.maxTilesX - 2; i++)
             {
-                for (int j = 0; j < Main.maxTilesY - 2; j++)
+                for (int j = 0; j < Main.maxTilesX - 2; j++)
                 {
                     if(TileCheckSafe(i, j))
                     {
@@ -422,18 +536,18 @@ namespace Laugicality
         {
             for (int i = 0; i < Main.maxTilesX - 2; i++)
             {
-                for (int j = 0; j < Main.maxTilesY - 2; j++)
+                for (int j = 0; j < Main.maxTilesX - 2; j++)
                 {
                     if (TileCheckSafe(i, j) && TileCheckSafe(i, j + 1))
                     {
-                        if (Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j + 1].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() && Main.tile[i, j].type == 0 && Main.tile[i, j].active() == false)
+                        if ((Main.tile[i, j].wall == mod.WallType("ObsidiumRockWall") || Main.tile[i, j].wall == WallID.Lavafall) && Main.tile[i, j + 1].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>() && Main.tile[i, j].type == 0 && Main.tile[i, j].active() == false)
                         {
                             if(Main.rand.Next(8) == 0)
                             {
                                 WorldGen.PlaceTile(i, j, ModContent.TileType<LavaGem>(), true);
                             }
                         }
-                        else if(Main.tile[i, j].wall == (ushort)mod.WallType("ObsidiumRockWall") && Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>())
+                        else if((Main.tile[i, j].wall == mod.WallType("ObsidiumRockWall") || Main.tile[i, j].wall == WallID.Lavafall) && Main.tile[i, j].type == (ushort)ModContent.TileType<Tiles.ObsidiumRock>())
                         {
                             if (Main.rand.Next(3) == 0)
                             {

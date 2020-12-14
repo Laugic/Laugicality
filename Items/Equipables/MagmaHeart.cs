@@ -17,8 +17,8 @@ namespace Laugicality.Items.Equipables
         {
             item.width = 24;
             item.height = 24;
-            item.value = 100;
-            item.rare = ItemRarityID.Green;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
             item.accessory = true;
         }
 

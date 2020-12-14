@@ -23,6 +23,7 @@ namespace Laugicality.Tiles.Furniture
             AddMapEntry(new Color(220, 200, 160), name);
             disableSmartCursor = true;
             adjTiles = new int[] { TileID.Tables };
+            AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

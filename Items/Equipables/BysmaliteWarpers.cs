@@ -52,7 +52,8 @@ namespace Laugicality.Items.Equipables
             player.gills = true;
             player.ignoreWater = true;
             player.accFlipper = true;
-            player.GetModPlayer<LaugicalityPlayer>().BysmalTrail = true;
+            if (!hideVisual)
+                player.GetModPlayer<LaugicalityPlayer>().BysmalTrail = true;
             if(LaugicalityWorld.downedEtheria || player.GetModPlayer<LaugicalityPlayer>().Etherable > 0)
             {
                 player.GetModPlayer<LaugicalityPlayer>().DamageBoost(.1f);
@@ -78,7 +79,7 @@ namespace Laugicality.Items.Equipables
         {
             float accelMax = .6f;
 
-            if (player.controlJump && rocketBootTime < rocketBootTimeMax)
+            if (player.controlJump && rocketBootTime < rocketBootTimeMax && !LaugicalityPlayer.Get(player).MobilityCurse4)
             {
                 if (rocketAccel < accelMax)
                     rocketAccel += .075f;

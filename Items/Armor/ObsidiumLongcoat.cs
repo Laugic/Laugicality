@@ -1,3 +1,4 @@
+using Laugicality.Items.Consumables;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
 using Laugicality.Items.Placeable;
@@ -19,8 +20,8 @@ namespace Laugicality.Items.Armor
 		{
 			item.width = 34;
 			item.height = 22;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(gold: 1);
+            item.rare = ItemRarityID.Orange;
 			item.defense = 8;
         }
 
@@ -36,8 +37,8 @@ namespace Laugicality.Items.Armor
 		{
 			ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<ObsidiumBar>(), 20);
-            recipe.AddIngredient(ModContent.ItemType<LavaGem>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<DarkShard>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumHeart>(), 1);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

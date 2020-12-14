@@ -17,7 +17,7 @@ namespace Laugicality.Items.Armor
 		{
 			item.width = 34;
 			item.height = 22;
-			item.value = 10000;
+			item.value = Item.sellPrice(silver: 90);
 			item.rare = ItemRarityID.Orange;
 			item.defense = 4;
 		}

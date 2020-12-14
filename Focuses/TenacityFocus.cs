@@ -1,6 +1,7 @@
 ﻿using Laugicality.Buffs;
 using Laugicality.SoulStones;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,10 +35,10 @@ namespace Laugicality.Focuses
             new FocusEffect(p => NPC.downedMoonlord, DownedMoonLordEffect, new TooltipLine(Laugicality.Instance, "TenacityFocusDownedMoonLord", "Negate a hit of damage once every 30 seconds") { overrideColor = new Color(0x37, 0xCC, 0x8B) }),
         }, new FocusEffect[]
         {
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse1", "-5% Defense") { overrideColor = Color.Silver }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse2", "Taking damage makes you lose 10 defense for a time") { overrideColor = Color.Silver }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse3", "You take 15% more damage above 50% Life") { overrideColor = Color.Silver }),
-            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse4", "Your defense is halved.") { overrideColor = Color.Silver }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect1, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse1", "-4 Defense") { overrideColor = Color.Silver }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect2, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse2", "Taking damage makes you lose 12 defense for a time") { overrideColor = Color.Silver }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect3, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse3", "You take 25% more damage above 50% Life") { overrideColor = Color.Silver }),
+            new FocusEffect(p => LaugicalityWorld.GetCurseCount() >= 1, CurseEffect4, new TooltipLine(Laugicality.Instance, "TenacityFocusCurse4", "Your defense is halved") { overrideColor = Color.Silver }),
         })
         {
 
@@ -202,7 +203,7 @@ namespace Laugicality.Focuses
         //Curses
         private static void CurseEffect1(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.statDefense = (int)(laugicalityPlayer.player.statDefense * .95f);
+            laugicalityPlayer.player.statDefense = Math.Max(laugicalityPlayer.player.statDefense - 4, 0);
         }
 
         private static void CurseEffect2(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
@@ -213,7 +214,7 @@ namespace Laugicality.Focuses
         private static void CurseEffect3(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             if (laugicalityPlayer.player.statLife > laugicalityPlayer.player.statLifeMax2 / 2)
-                laugicalityPlayer.player.endurance *= .85f;
+                laugicalityPlayer.player.endurance -= .25f;
         }
 
         private static void CurseEffect4(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)

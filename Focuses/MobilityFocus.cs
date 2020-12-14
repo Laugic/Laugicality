@@ -248,7 +248,7 @@ namespace Laugicality.Focuses
 
         private static void CurseEffect4(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            laugicalityPlayer.player.wingTimeMax = 1;
+            laugicalityPlayer.MobilityCurse4Check = 2;
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Laugicality.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(i * 16, j * 16, 108, 54, ModContent.ItemType<Items.Placeable.AlchemicalInfuser>());
+            Item.NewItem(i * 16, j * 16, 108, 54, ModContent.ItemType<Items.Placeable.AlchemicalInfuserItem>());
         }
     }
 }

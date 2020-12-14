@@ -21,7 +21,7 @@ namespace Laugicality.Items.Ammo
             item.consumable = true;
             item.knockBack = 7f;
             item.value = 0;
-            item.rare = ItemRarityID.White;
+            item.rare = ItemRarityID.Blue;
             item.shoot = ModContent.ProjectileType<Projectiles.Ranged.PinkIceBallProjectile>();
             item.shootSpeed = 16f;
             item.ammo = AmmoID.Snowball;
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Ammo
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.PinkIceBlock, 1);
-            recipe.SetResult(this, 12);
+            recipe.SetResult(this, 15);
             recipe.AddRecipe();
         }
     }

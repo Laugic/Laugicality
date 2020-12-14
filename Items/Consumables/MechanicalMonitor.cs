@@ -37,7 +37,7 @@ namespace Laugicality.Items.Consumables
             return false;
         }
 
-        public override bool CanUseItem(Player player) => !Main.dayTime && NPC.CountNPCS(ModContent.NPCType<TheAnnihilator>()) < 1;
+        public override bool CanUseItem(Player player) => NPC.CountNPCS(ModContent.NPCType<TheAnnihilator>()) < 1;
 
         public override void AddRecipes()
 		{

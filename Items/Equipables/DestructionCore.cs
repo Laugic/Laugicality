@@ -1,3 +1,6 @@
+using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
+using Laugicality.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +12,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Destruction Damage\n+25% Destruction Overflow\nAbsorb 25% more Lux when using Vis and Mundus");
+            Tooltip.SetDefault("+10% Destruction Damage\n+50 Lux");
         }
 
         public override void SetDefaults()
@@ -25,18 +28,16 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.DestructionDamage += .1f;
-            modPlayer.LuxOverflow += .25f;
-            modPlayer.LuxAbsorbRate += .25f;
+            modPlayer.LuxMax += 50;
         }
         
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "DarkShard", 1);
-            recipe.AddIngredient(null, "AuraDust", 2);
-            recipe.AddIngredient(null, "AlbusDust", 2);
-            recipe.AddTile(null, "AlchemicalInfuser");
+            recipe.AddIngredient(ItemID.LargeTopaz, 1);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 8);
+            recipe.AddIngredient(ModContent.ItemType<AlbusDust>(), 4);
+            recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

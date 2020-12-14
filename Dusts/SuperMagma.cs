@@ -10,7 +10,7 @@ namespace Laugicality.Dusts
         {
             dust.noGravity = true;
             dust.noLight = true;
-            dust.scale *= 3.0f;
+            dust.scale *= 2.0f;
             counter = 0;
         }
 
@@ -18,19 +18,13 @@ namespace Laugicality.Dusts
         {
             dust.position += dust.velocity;
             dust.rotation += dust.velocity.X * 0.15f;
-            float light = 0.35f * dust.scale;
-            Lighting.AddLight(dust.position, light, light, light);
-            dust.scale *= 1.01f;
-            if (dust.scale > 4.0f)
+            dust.scale *= .95f;
+            if (dust.scale < .25f)
             {
                 if (dust.alpha < 255)
-                {
                     dust.alpha += 12;
-                }
                 else
-                {
                     dust.active = false;
-                }
             }
             return false;
         }

@@ -3,6 +3,7 @@ using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Materials;
+using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -348,6 +349,9 @@ namespace Laugicality.NPCs.PreTrio
             {
                 npc.DropBossBags();
             }
+
+            if(Main.rand.Next(10) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<HypothemaTrophy>(), 1);
 
             LaugicalityWorld.downedHypothema = true;
         }

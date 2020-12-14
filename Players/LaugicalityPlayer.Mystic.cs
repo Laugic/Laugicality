@@ -2,6 +2,7 @@ using System;
 using Laugicality.Buffs;
 using Laugicality.Projectiles.Mystic.Burst;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Laugicality
@@ -252,6 +253,20 @@ namespace Laugicality
             }
         }
 
+        public void AddLux(float amount)
+        {
+            Lux = Math.Min(Lux + amount, (LuxMax + LuxMaxPermaBoost) * LuxOverflow * GlobalOverflow);
+        }
+
+        public void AddVis(float amount)
+        {
+            Vis = Math.Min(Vis + amount, (VisMax + VisMaxPermaBoost) * VisOverflow * GlobalOverflow);
+        }
+
+        public void AddMundus(float amount)
+        {
+            Mundus = Math.Min(Mundus + amount, (MundusMax + MundusMaxPermaBoost) * MundusOverflow * GlobalOverflow);
+        }
 
         public int SporeShard { get; set; } = 0;
 

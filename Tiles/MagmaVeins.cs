@@ -12,7 +12,9 @@ namespace Laugicality.Tiles
         {
             Main.tileSolid[Type] = true;
             Main.tileLighted[Type] = false;
-            AddMapEntry(new Color(250, 100, 50));
+            ModTranslation name = CreateMapEntryName();
+            name.SetDefault("Magma Shard");
+            AddMapEntry(new Color(150, 100, 50));
             mineResist = 1f;
             minPick = 60;
             drop = ModContent.ItemType<DarkShard>();
@@ -39,10 +41,15 @@ namespace Laugicality.Tiles
 
         public override void RandomUpdate(int i, int j)
         {
+            if (Main.rand.Next(2) == 0)
+                LaugicalityWorld.ObsidiumHeartGrowth++;
             if (Main.tile[i, j - 1].type == 0 && Main.tile[i + 1, j - 1].type == 0 && Main.tile[i, j - 2].type == 0 && Main.tile[i + 1, j - 2].type == 0 && Main.tile[i, j].active())
             {
-                if (Main.rand.Next(16) == 0)
+                if (LaugicalityWorld.ObsidiumHeartGrowth > 20 && Main.rand.Next(4) == 0)
+                {
+                    LaugicalityWorld.ObsidiumHeartGrowth = 0;
                     WorldGen.PlaceObject(i, j - 1, ModContent.TileType<ObsidiumHeart>(), true, 0, -1, -1);
+                }
             }
         }
     }

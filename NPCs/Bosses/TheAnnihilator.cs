@@ -13,19 +13,11 @@ namespace Laugicality.NPCs.Bosses
     [AutoloadBossHead]
     public class TheAnnihilator : ModNPC
     {
-        public static Random rnd = new Random();
-        public int spawn = 0;
-        public bool stage2 = false;
-        public float vel = 1f;
-        public int velMult = 1;
+        int Phase { get; set; }
+        int FrameDelay { get; set; } = 0;
+        int Delay { get; set; } = 0;
+        bool Attacking { get; set; } = false;
         public static bool on = false;
-        public bool poof = false;
-        public bool bitherial = true;
-        public int plays = 0;
-        public int frame = 0;
-        public int delay = 0;
-        public int fHeight = 10;
-
         public override void SetStaticDefaults()
         {
             LaugicalityVars.eNPCs.Add(npc.type);
@@ -35,20 +27,11 @@ namespace Laugicality.NPCs.Bosses
 
         public override void SetDefaults()
         {
-            fHeight = 0;
-            delay = 0;
-            frame = 0;
-            plays = 1;
-            bitherial = true;
-            poof = false;
-            on = true;
-            spawn = 0;
             npc.width = 200;
             npc.height = 240;
-            npc.damage = 100;
+            npc.damage = 80;
             npc.defense = 32;
-            npc.aiStyle = 5;
-            npc.lifeMax = 60000;
+            npc.lifeMax = 30000;
             npc.HitSound = SoundID.NPCHit4;
             npc.DeathSound = SoundID.NPCDeath14;
             npc.npcSlots = 15f;
@@ -60,17 +43,226 @@ namespace Laugicality.NPCs.Bosses
             npc.noTileCollide = true;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Annihilator");
             bossBag = ModContent.ItemType<AnnihilatorTreasureBag>();
+            npc.buffImmune[ModContent.BuffType<Steamy>()] = true;
+            Phase = 0;
+            FrameDelay = 0;
+            Delay = 0;
+            Attacking = false;
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            plays = numPlayers;
-            bitherial = true;
-            npc.lifeMax = 80000 + numPlayers * 8000;
-            npc.damage = 140;
+            npc.lifeMax = 60000 + numPlayers * 30000;
+            npc.damage = 120;
         }
-        
 
+        public override void AI()
+        {
+            Calculations();
+            PhaseChecks();
+            if(Attacking)
+                Attacks();
+            Movement();
+            Visuals();
+        }
+
+        private void Visuals()
+        {
+            Lighting.AddLight(npc.position, .5f, .6f, .8f);
+        }
+
+        private void Movement()
+        {
+            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
+            {
+                DespawnAI();
+                return;
+            }
+            if (!Attacking || npc.life < npc.lifeMax * .33)
+                FollowAI();
+            else
+                Slow();
+            if (npc.life < npc.lifeMax * .75)
+                Teleportation();
+        }
+
+        private void Teleportation()
+        {
+            npc.ai[2]++;
+            if(npc.ai[2] > (15 - Phase) * 60 && npc.velocity.Length() > 2)
+            {
+                npc.ai[2] = 0;
+                npc.velocity *= 0;
+                Vector2 warp = (Main.player[npc.target].Center - npc.Center).RotatedByRandom(MathHelper.ToRadians(90));
+                warp.Normalize();
+                warp *= 600;
+                npc.Teleport(Main.player[npc.target].Center + warp, 1);
+                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
+            }
+        }
+
+        private void Slow()
+        {
+            npc.velocity *= .95f;
+        }
+
+        private void FollowAI()
+        {
+            Vector2 TargetPos = Main.player[npc.target].Center;
+            MoveTowardsAtSpeed(TargetPos, 3 + Phase + (Main.expertMode ? 2 : 0));
+        }
+
+        private void MoveTowardsAtSpeed(Vector2 targetPos, float mag)
+        {
+            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
+            newVel *= Math.Min(mag, npc.velocity.Length() + .3f);
+            npc.velocity = newVel;
+        }
+
+        private void Attacks()
+        {
+            Delay++;
+            float numBalls = 0;
+            double thetaInit = 0;
+            if(Delay == 1 * 60)
+            {
+                var attack = Main.rand.Next(4);
+                switch (attack)
+                {
+                    case 1:
+                        Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
+                        numBalls = 2;
+                        thetaInit = 0;
+                        for (int i = 0; i < numBalls; i++)
+                        {
+                            float mag = 5;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 80, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
+                                    ModContent.ProjectileType<ElectroKnowledge>(), (int)(npc.damage / 4), 3);
+                        }
+                        break;
+                    case 2:
+                        Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
+                        numBalls = 10 + Main.rand.Next(6);
+                        thetaInit = Math.PI;
+                        for (int i = 0; i < numBalls; i++)
+                        {
+                            float mag = 12 + Main.rand.NextFloat() * 8;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, mag * (float)Math.Cos(thetaInit + (Math.PI) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI) * (i / numBalls)),
+                                    ModContent.ProjectileType<KnowledgeBolt>(), (int)(npc.damage / 4), 3, npc.target, .3f);
+                        }
+                        break;
+                    default:
+                        Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
+                        numBalls = 20 + Main.rand.Next(12);
+                        thetaInit = Math.PI * 2 * Main.rand.NextDouble();
+                        for (int i = 0; i < numBalls; i++)
+                        {
+                            float mag = 6 + Main.rand.NextFloat() * 4;
+                            if (Main.netMode != 1)
+                                Projectile.NewProjectile(npc.Center.X, npc.Center.Y, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
+                                    ModContent.ProjectileType<KnowledgeBolt>(), (int)(npc.damage / 4), 3);
+                        }
+                        break;
+                }
+            }
+            if (Delay > 2 * 60)
+                Attacking = false;
+        }
+
+        private void PhaseChecks()
+        {
+            if(Phase == 0)
+            {
+                Phase = 1;
+                PhaseChanges(Phase);
+            }
+            if (Phase == 1 && npc.life < npc.lifeMax * .75)
+            {
+                Phase = 2;
+                PhaseChanges(Phase);
+            }
+            if (Phase == 2 && npc.life < npc.lifeMax * .5)
+            {
+                Phase = 3;
+                PhaseChanges(Phase);
+            }
+            if (Phase == 3 && npc.life < npc.lifeMax * .25)
+            {
+                Phase = 4;
+                PhaseChanges(Phase);
+            }
+            if (Phase == 4 && npc.life < npc.lifeMax * .1 && Main.expertMode)
+            {
+                Phase = 5;
+                PhaseChanges(Phase);
+            }
+        }
+
+        private void DespawnAI()
+        {
+            npc.TargetClosest();
+            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
+                npc.position.Y += 8;
+            else
+                FollowAI();
+        }
+        private void PhaseChanges(int phase)
+        {
+            Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+            switch (phase)
+            {
+                case 1:
+                    for (int i = 0; i < 4; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkDefender>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkDefender>()));
+                    for (int i = 0; i < 8; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkZapper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkZapper>()));
+                    break;
+                case 2:
+                    for (int i = 0; i < 4; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkDefender>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkDefender>()));
+                    for (int i = 0; i < 8; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkZapper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkZapper>()));
+                    break;
+                case 3:
+                    for (int i = 0; i < 4; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkDefender>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkDefender>()));
+                    for (int i = 0; i < 8; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkZapper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkZapper>()));
+                    break;
+                case 4:
+                    for (int i = 0; i < 4; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkDefender>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkDefender>()));
+                    for (int i = 0; i < 8; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkZapper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkZapper>()));
+                    break;
+                case 5:
+                    for (int i = 0; i < 4; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkDefender>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkDefender>()));
+                    for (int i = 0; i < 8; i++)
+                        NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<SteampunkZapper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<SteampunkZapper>()));
+                    break;
+                default:
+
+                    break;
+            }
+        }
+
+        private void Calculations()
+        {
+            npc.ai[0] += (float)(Math.PI / 60);
+            npc.ai[1] += (float)(Math.PI / 80);
+            if(!Attacking)
+                Delay++;
+            if (Delay > 4 * 60)
+            {
+                Attacking = true;
+                Delay = 0;
+            }
+        }
+
+        /*
         public override void AI()
         {
             npc.rotation = 0;
@@ -87,8 +279,8 @@ namespace Laugicality.NPCs.Bosses
                 Main.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
                 spawn = 1;
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalSlimer>());
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalCreeper>());
-                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalCreeper>());
+                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalCreeper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<MechanicalCreeper>()));
+                NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalCreeper>(), 0, npc.whoAmI, NPC.CountNPCS(ModContent.NPCType<MechanicalCreeper>()));
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalCrawler>());
                 NPC.NewNPC((int)npc.position.X + rnd.Next(0, npc.width), (int)npc.position.Y + rnd.Next(0, npc.height), ModContent.NPCType<MechanicalMimic>());
             }
@@ -265,30 +457,17 @@ namespace Laugicality.NPCs.Bosses
             }
             npc.frame.Y = fHeight * frame;
         }
-
+        */
 
         public override void OnHitPlayer(Player player, int dmgDealt, bool crit)
         {
             if (Main.expertMode)
-            {
-                int debuff = ModContent.BuffType<Steamy>();
-                if (debuff >= 0)
-                {
-                    player.AddBuff(debuff, 90, true);
-                }
-            }
+                player.AddBuff(ModContent.BuffType<Steamy>(), 2 * 60 + Main.rand.Next(60), true);
         }
 
         public override void NPCLoot()
         {
-            MechanicalCreeper.despawn = true;
-            MechanicalSlimer.despawn = true;
-            MechanicalShelly.despawn = true;
-            MechanicalMimic.despawn = true;
-            MechanicalCrawler.despawn = true;
 
-            if (plays < 1)
-                plays = 1;
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
             if (LaugicalityWorld.downedEtheria)
             {
@@ -314,8 +493,11 @@ namespace Laugicality.NPCs.Bosses
         }
         public override void FindFrame(int frameHeight)
         {
-
-            fHeight= frameHeight;
+            npc.spriteDirection = 0;
+            FrameDelay++;
+            if (FrameDelay >= 16)
+                FrameDelay = 0;
+            npc.frame.Y = frameHeight * (((npc.life < npc.lifeMax * .5)?4:0) + FrameDelay / 4);
         }
 
 
@@ -331,12 +513,13 @@ namespace Laugicality.NPCs.Bosses
             }
             Microsoft.Xna.Framework.Rectangle frame6 = npc.frame;
             Microsoft.Xna.Framework.Color alpha15 = npc.GetAlpha(color9);
-            float num212 = 1f - (float)npc.life / (float)npc.lifeMax;
-            num212 *= num212;
-            alpha15.R = (byte)((float)alpha15.R * num212);
-            alpha15.G = (byte)((float)alpha15.G * num212);
-            alpha15.B = (byte)((float)alpha15.B * num212);
-            alpha15.A = (byte)((float)alpha15.A * num212);
+            float alpha = 1.25f * (1f - (float)npc.life / (float)npc.lifeMax);
+            alpha *= alpha;
+            alpha = Math.Min(alpha, 1);
+            alpha15.R = (byte)((float)alpha15.R * alpha);
+            alpha15.G = (byte)((float)alpha15.G * alpha);
+            alpha15.B = (byte)((float)alpha15.B * alpha);
+            alpha15.A = (byte)((float)alpha15.A * alpha);
             for (int num213 = 0; num213 < 4; num213++)
             {
                 Vector2 position9 = npc.position;
