@@ -10,7 +10,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+50% Potentia Overflow\n5 minute duration");
+            Tooltip.SetDefault("+50% Potentia Overflow");
         }
         public override void SetDefaults()
 		{
@@ -24,13 +24,8 @@ namespace Laugicality.Items.Consumables.Potions
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
             item.value = Item.sellPrice(silver: 2);
-        }
-        
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<ConjurationBoost>(), 5*60*60, true);
-            return true;
+            item.buffType = ModContent.BuffType<ConjurationBoost>();
+            item.buffTime = 18000;
         }
 
         public override void AddRecipes()

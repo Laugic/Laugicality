@@ -9,7 +9,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("INSANELY increases jump height\n5 minute duration");
+            Tooltip.SetDefault("INSANELY increases jump height");
         }
         public override void SetDefaults()
 		{
@@ -23,13 +23,8 @@ namespace Laugicality.Items.Consumables.Potions
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
             item.value = Item.sellPrice(gold: 1);
-        }
-        
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<OmegaJumpBoost>(), 5*60*60, true);
-            return true;
+            item.buffType = ModContent.BuffType<OmegaJumpBoost>();
+            item.buffTime = 18000;
         }
 
         public override void AddRecipes()

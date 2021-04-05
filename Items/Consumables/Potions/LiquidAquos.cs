@@ -9,7 +9,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Critical Strike Chance\n5 minute duration");
+            Tooltip.SetDefault("+10% Critical Strike Chance");
         }
         public override void SetDefaults()
 		{
@@ -23,13 +23,8 @@ namespace Laugicality.Items.Consumables.Potions
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
             item.value = Item.sellPrice(silver: 2);
-        }
-        
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<Aquos>(), 5*60*60, true);
-            return true;
+            item.buffType = ModContent.BuffType<Aquos>();
+            item.buffTime = 18000;
         }
 
         public override void AddRecipes()

@@ -9,7 +9,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Life Regen\n5 minute duration");
+            Tooltip.SetDefault("+10% Life Regen");
         }
         public override void SetDefaults()
 		{
@@ -23,13 +23,8 @@ namespace Laugicality.Items.Consumables.Potions
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
             item.value = Item.sellPrice(silver: 2);
-        }
-        
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<Regis>(), 5*60*60, true);
-            return true;
+            item.buffType = ModContent.BuffType<Regis>();
+            item.buffTime = 18000;
         }
 
         public override void AddRecipes()
