@@ -55,10 +55,11 @@ namespace Laugicality
             if(Etherable > 0)
                 Etherable -= 1;
         }
-
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
             CheckBysmalPowers();
+
+            AccHitByNPC(npc, ref damage, ref crit);
 
             if (EtherialBrain && !EtherialBrainCooldown && (LaugicalityWorld.downedEtheria || Etherable > 0))
             {
@@ -95,6 +96,9 @@ namespace Laugicality
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             CheckBysmalPowers();
+
+            if(!AccPreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource))
+                return false;
 
             if (!SoulStonePreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource))
                 return false;

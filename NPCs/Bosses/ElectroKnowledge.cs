@@ -40,7 +40,6 @@ namespace Laugicality.NPCs.Bosses
                     for (int i = 0; i < numBalls; i++)
                     {
                         float mag = 6 + Main.rand.NextFloat() * 4;
-                        if (Main.netMode != 1)
                             Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
                                 ModContent.ProjectileType<KnowledgeBolt>(), (int)(projectile.damage), 3, 0, .4f);
                     }

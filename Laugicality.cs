@@ -398,6 +398,9 @@ namespace Laugicality
 
         public override void UpdateMusic(ref int music, ref MusicPriority musicPriority)
         {
+            if (zaWarudo > 0)
+                zaWarudo--;
+
             if (Main.myPlayer != -1 && !Main.gameMenu)
             {
                 if (Main.player[Main.myPlayer].active && LaugicalityPlayer.Get().zoneObsidium)
@@ -412,16 +415,13 @@ namespace Laugicality
 
                 if (LaugicalityWorld.downedEtheria)
                 {
-                    if(Main.player[Main.myPlayer].ZoneDungeon)
+                    if (Main.player[Main.myPlayer].ZoneDungeon)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Necrodungeon");
                     else
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
                     musicPriority = MusicPriority.Environment;
                 }
             }
-
-            if (zaWarudo > 0)
-                zaWarudo--;
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)

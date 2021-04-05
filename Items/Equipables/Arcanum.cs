@@ -9,14 +9,13 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arcanum");
-            Tooltip.SetDefault("+10% Overflow\n+15% Potentia Conversion");
+            Tooltip.SetDefault("+10% Overflow Capacity\n+20 Potentia");
         }
 
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
-            item.value = 100;
             item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
@@ -26,7 +25,9 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.GlobalOverflow += .1f;
-            modPlayer.GlobalAbsorbRate += .15f;
+            modPlayer.LuxMax += 20;
+            modPlayer.VisMax += 20;
+            modPlayer.MundusMax += 20;
         }
 
         public override void AddRecipes()

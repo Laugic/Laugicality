@@ -9,6 +9,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Alchemical Infuser");
             Tooltip.SetDefault("Infuses Potions into Gems");
         }
 

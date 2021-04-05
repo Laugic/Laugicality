@@ -23,7 +23,7 @@ namespace Laugicality.NPCs.PreTrio
             LaugicalityVars.eProjectiles.Add(projectile.type);
             projectile.width = 160;
 			projectile.height = 42;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 7 * 60;
             projectile.friendly = false;
             projectile.hostile = true;
             projectile.ignoreWater = true;
@@ -44,9 +44,9 @@ namespace Laugicality.NPCs.PreTrio
         private void Movement()
         {
             if (projectile.Center.X < Main.player[projectile.owner].Center.X - 4)
-                projectile.velocity.X = 2;
+                projectile.velocity.X = 4;
             else if (projectile.Center.X > Main.player[projectile.owner].Center.X + 4)
-                projectile.velocity.X = -2;
+                projectile.velocity.X = -4;
             else
                 projectile.velocity.X = 0;
             if(projectile.Center.Y < Main.player[projectile.owner].Center.Y + 12)

@@ -339,7 +339,7 @@ namespace Laugicality.NPCs
             {
                 if (Main.rand.Next(13) == 0)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<TrainSteam>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, ModContent.DustType<TrainSteam>(), npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
@@ -576,6 +576,7 @@ namespace Laugicality.NPCs
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 1.8f;
                     Main.dust[dust].velocity.Y -= 0.5f;
+                    Main.dust[dust].scale *= 0.25f;
                     if (Main.rand.Next(4) == 0)
                     {
                         Main.dust[dust].noGravity = false;
@@ -844,7 +845,7 @@ namespace Laugicality.NPCs
                 damage += 6;
             if (Sandy)
                 damage += (int)(player.velocity.Length() / 3);
-            if (Refracting && Main.netMode != 1)
+            if (Refracting)
             {
                 float theta = (float)(Math.PI * Main.rand.NextDouble() * 2);
                 Vector2 newVel = new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));
@@ -895,6 +896,36 @@ namespace Laugicality.NPCs
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SaturnsRings>(), 1);
             if (npc.type == NPCID.IceGolem && Main.rand.Next(6) == 0)
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<CongealedFrostCore>(), 1);
+            if(Main.player[npc.target] != null && Main.player[npc.target].active && LaugicalityPlayer.Get(Main.player[npc.target]).zoneObsidium && Main.rand.Next(100) == 0)
+            {
+                int obsidiumItem = 0;
+                int rand = Main.rand.Next(7);
+                switch (rand)
+                {
+                    case 0:
+                        obsidiumItem = ItemID.LavaCharm;
+                        break;
+                    case 1:
+                        obsidiumItem = ModContent.ItemType<ObsidiumLily>();
+                        break;
+                    case 2:
+                        obsidiumItem = ModContent.ItemType<FireDust>();
+                        break;
+                    case 3:
+                        obsidiumItem = ModContent.ItemType<Eruption>();
+                        break;
+                    case 4:
+                        obsidiumItem = ModContent.ItemType<CrystalizedMagma>();
+                        break;
+                    case 5:
+                        obsidiumItem = ModContent.ItemType<Ragnashia>();
+                        break;
+                    default:
+                        obsidiumItem = ModContent.ItemType<MagmaHeart>();
+                        break;
+                }
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, obsidiumItem, 1);
+            }
         }
 
         public override bool InstancePerEntity
@@ -904,7 +935,6 @@ namespace Laugicality.NPCs
                 return true;
             }
         }
-
 
     }
 }

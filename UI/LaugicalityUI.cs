@@ -31,6 +31,10 @@ namespace Laugicality.UI
         public static Texture2D OverflowBGTexture;
         public static Texture2D OverflowBarTexture;
         public static Texture2D OverflowFGTexture;
+        public static Texture2D LuxFGOverflowTexture;
+        public static Texture2D VisFGOverflowTexture;
+        public static Texture2D MundusOverflowTexture;
+        public static Texture2D MundusFGOverflowTexture;
         public static SpriteProgressBar MysticBurstBar;
         public static Texture2D MysticBurstBGTexture;
         public static Texture2D MysticBurstBarTexture;
@@ -60,6 +64,7 @@ namespace Laugicality.UI
         //CONFIGURABLES
         public static int MysticUIType { get; set; }
         public static bool Animated { get; set; }
+        public static bool SoundOn { get; set; }
 
         //CONFIG RELATED VALUES
         private Vector2 CenterPos = new Vector2(0, 0);
@@ -86,6 +91,10 @@ namespace Laugicality.UI
             OverflowBGTexture = Laugicality.Instance.GetTexture("UI/OverflowBG");
             OverflowBarTexture = Laugicality.Instance.GetTexture("UI/OverflowBar");
             OverflowFGTexture = Laugicality.Instance.GetTexture("UI/OverflowFG");
+            LuxFGOverflowTexture = Laugicality.Instance.GetTexture("UI/LuxFGOverflow");
+            VisFGOverflowTexture = Laugicality.Instance.GetTexture("UI/VisFGOverflow");
+            MundusOverflowTexture = Laugicality.Instance.GetTexture("UI/MundusOverflow");
+            MundusFGOverflowTexture = Laugicality.Instance.GetTexture("UI/MundusFGOverflow");
             MysticBurstBGTexture = Laugicality.Instance.GetTexture("UI/MysticBurstBG");
             MysticBurstBarTexture = Laugicality.Instance.GetTexture("UI/MysticBurstBar");
 
@@ -102,9 +111,9 @@ namespace Laugicality.UI
             (
                 OverflowBGTexture,
                 OverflowBarTexture,
-                OverflowFGTexture,
+                LuxFGOverflowTexture,
                 TopPos,
-                new Vector2(94, 0)
+                new Vector2(OverflowBarTexture.Width, 0)
             );
 
             MundusBar = new SpriteProgressBar
@@ -120,9 +129,9 @@ namespace Laugicality.UI
             (
                 OverflowBGTexture,
                 OverflowBarTexture,
-                OverflowFGTexture,
+                MundusFGOverflowTexture,
                 MidPos,
-                new Vector2(94, 0)
+                new Vector2(OverflowBarTexture.Width, 0)
             );
 
             VisBar = new SpriteProgressBar
@@ -138,9 +147,9 @@ namespace Laugicality.UI
             (
                 OverflowBGTexture,
                 OverflowBarTexture,
-                OverflowFGTexture,
+                VisFGOverflowTexture,
                 BotPos,
-                new Vector2(94, 0)
+                new Vector2(OverflowBarTexture.Width, 0)
             );
 
             MysticBurstBar = new SpriteProgressBar
@@ -167,6 +176,10 @@ namespace Laugicality.UI
             OverflowBGTexture = null;
             OverflowBarTexture = null;
             OverflowFGTexture = null;
+            VisFGOverflowTexture = null;
+            MundusOverflowTexture = null;
+            MundusFGOverflowTexture = null;
+            LuxFGOverflowTexture = null;
             MysticBurstBGTexture = null;
             MysticBurstBarTexture = null;
         }
@@ -185,7 +198,7 @@ namespace Laugicality.UI
                 LuxBar.DrawSelf(spriteBatch, (int)luxTemp, (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost));
 
             if (OverflowLuxBar != null && mysticPlayer.Lux > mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost)
-                OverflowLuxBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Lux - mysticPlayer.LuxMax - mysticPlayer.LuxMaxPermaBoost), (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost));
+                OverflowLuxBar.DrawSelf(spriteBatch, Math.Min((int)(mysticPlayer.Lux - mysticPlayer.LuxMax - mysticPlayer.LuxMaxPermaBoost), (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost)), (int)(mysticPlayer.LuxMax + mysticPlayer.LuxMaxPermaBoost), true);
 
             float mundusTemp = mysticPlayer.Mundus;
 
@@ -196,7 +209,7 @@ namespace Laugicality.UI
                 MundusBar.DrawSelf(spriteBatch, (int)mundusTemp, (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost));
 
             if (OverflowMundusBar != null && mysticPlayer.Mundus > mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost)
-                OverflowMundusBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Mundus - mysticPlayer.MundusMax - mysticPlayer.MundusMaxPermaBoost), (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost));
+                OverflowMundusBar.DrawSelf(spriteBatch, Math.Min((int)(mysticPlayer.Mundus - mysticPlayer.MundusMax - mysticPlayer.MundusMaxPermaBoost), (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost)), (int)(mysticPlayer.MundusMax + mysticPlayer.MundusMaxPermaBoost), true);
 
             float visTemp = mysticPlayer.Vis;
 
@@ -207,7 +220,7 @@ namespace Laugicality.UI
                 VisBar.DrawSelf(spriteBatch, (int)visTemp, (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost));
 
             if (OverflowVisBar != null && mysticPlayer.Vis > mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost)
-                OverflowVisBar.DrawSelf(spriteBatch, (int)(mysticPlayer.Vis - mysticPlayer.VisMax - mysticPlayer.VisMaxPermaBoost), (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost));
+                OverflowVisBar.DrawSelf(spriteBatch, Math.Min((int)(mysticPlayer.Vis - mysticPlayer.VisMax - mysticPlayer.VisMaxPermaBoost), (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost)), (int)(mysticPlayer.VisMax + mysticPlayer.VisMaxPermaBoost), true);
             /*
             if (MysticBurstBar != null && mysticPlayer.MysticSwitchCool > 0 && mysticBurstCooldownMax >= mysticPlayer.MysticSwitchCool)
                 MysticBurstBar.DrawSelf(spriteBatch, mysticPlayer.MysticSwitchCool, mysticBurstCooldownMax);
@@ -543,6 +556,10 @@ public class SpriteProgressBar : UIElement
     }
     public void DrawSelf(SpriteBatch spriteBatch, int currentValue, int maxValue)
     {
+        DrawSelf(spriteBatch, currentValue, maxValue, false);
+    }
+    public void DrawSelf(SpriteBatch spriteBatch, int currentValue, int maxValue, bool flipped)
+    {
         #region Drawing
         int frameHeight = FrameCount > 1 ? MainTexture.Height / FrameCount : MainTexture.Height;
 
@@ -553,6 +570,8 @@ public class SpriteProgressBar : UIElement
         Rectangle rect2 = new Rectangle(0, 0, CalcLength(currentValue, maxValue, BarTexture.Width), BarTexture.Height);
         if (Widths[1] != 0)
             rect2 = new Rectangle(0, 0, CalcLength(currentValue, maxValue, Widths[1]), Heights[1]);
+        if (flipped)
+            rect2.X = BarTexture.Width - rect2.Width;
 
         spriteBatch.Draw
             (
@@ -570,7 +589,7 @@ public class SpriteProgressBar : UIElement
         spriteBatch.Draw
             (
                 BarTexture,
-                new Vector2((int)Position.X, (int)Position.Y) + new Vector2((int)PosOffset.X, (int)PosOffset.Y),
+                new Vector2((int)Position.X + (flipped?-rect2.Width:0), (int)Position.Y) + new Vector2((int)PosOffset.X, (int)PosOffset.Y),
                 rect2,
                 Colors[1] * Alpha,
                 0f,

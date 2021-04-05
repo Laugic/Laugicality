@@ -67,7 +67,7 @@ namespace Laugicality.Items.Armor
             ModRecipe recipe2 = new ModRecipe(mod);
             recipe2.AddIngredient(null, "ObsidiumBand", 1);
             recipe2.AddRecipeGroup("TitaniumBars", 12);
-            recipe.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 4);
+            recipe2.AddIngredient(ModContent.ItemType<SoulOfHaught>(), 4);
             recipe2.AddIngredient(null, "MagmaticCluster", 1);
             recipe2.AddTile(134);
             recipe2.SetResult(this);

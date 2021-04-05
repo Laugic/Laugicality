@@ -50,10 +50,10 @@ namespace Laugicality.Items.Weapons.Mystic
                     perturbedSpeed = perturbedSpeed * scale;
                     if(Main.rand.Next(2) == 0)
                     {
-                        if(!player.strongBees)
-                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 181, damage, knockBack, player.whoAmI);
-                        else
+                        if(player.strongBees && Main.rand.Next(3) == 0)
                             Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 566, (int)(damage * 1.5), knockBack, player.whoAmI);
+                        else
+                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 181, damage, knockBack, player.whoAmI);
                     }
                     else
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<FriggDestruction>(), damage, knockBack, player.whoAmI);
@@ -70,7 +70,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 28;
+            item.damage = 25;
             item.useTime = 13;
             item.useAnimation = item.useTime;
             item.knockBack = 1f;
@@ -92,7 +92,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 25;
+            item.damage = 20;
             item.useTime = 50;
             item.useAnimation = 50;
             item.knockBack = 5;

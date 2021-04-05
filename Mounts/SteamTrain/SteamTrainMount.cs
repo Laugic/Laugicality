@@ -37,7 +37,7 @@ namespace Laugicality.Mounts.SteamTrain
 			mountData.playerYOffsets = array;
 			mountData.xOffset = 75;
 			mountData.bodyFrame = 3;
-			mountData.yOffset = -2;
+			mountData.yOffset = -8;
 			mountData.playerHeadOffset = 22;
 			mountData.standingFrameCount = 6;
 			mountData.standingFrameDelay = 999999;
@@ -68,10 +68,12 @@ namespace Laugicality.Mounts.SteamTrain
 
 		public override void UpdateEffects(Player player)
 		{
-            if (Math.Abs(player.velocity.X) > 3f)
+            if (Math.Abs(player.velocity.X) > 5f)
             {
                 Rectangle rect = player.getRect();
-                Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, ModContent.DustType<TrainSteam>());
+                var dist = 86 * player.direction;
+                Dust.NewDust(new Vector2(player.Center.X + dist, rect.Y - 26), 0, -6, ModContent.DustType<TrainSteam>());
+                //Dust.NewDust(new Vector2(rect.X, rect.Y), rect.Width, 0, ModContent.DustType<TrainSteam>());
 
                 if (boosted == false)
                 {
