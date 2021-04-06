@@ -27,10 +27,6 @@ using BrassFANRight = Laugicality.Tiles.BrassFANRight;
 using BrassRING = Laugicality.Tiles.BrassRING;
 using SteamVENT = Laugicality.Tiles.SteamVENT;
 using Laugicality.Projectiles.Mystic.Conjuration;
-using Terraria.DataStructures;
-using Laugicality.Projectiles.Special;
-using WebmilioCommons.Time;
-using Laugicality.UI;
 
 namespace Laugicality
 {
@@ -87,15 +83,11 @@ namespace Laugicality
         public bool CrystalliteTrail { get; set; } = false;
         public bool SteamTrail { get; set; } = false;
         public bool BysmalTrail { get; set; } = false;
-        public bool CosmicTrail { get; set; } = false;
         public bool Blaze { get; set; } = false;
         public bool Carapace { get; set; } = false;
         public bool Shroud { get; set; } = false;
         public bool PrismVeil { get; set; } = false;
         public bool HoldingBarrier { get; set; } = false;
-        public bool Crystillium { get; set; } = false;
-        public bool Lily { get; set; } = false;
-        public bool Bloat { get; set; } = false;
 
 
         //Music
@@ -167,7 +159,7 @@ namespace Laugicality
             Slimey = false;
             Magmatic = false;
             FireTrail = false;
-            theta += 3.14f / 60f;
+            theta += 3.14f / 40f;
             UltraBoisSummon = false;
             obsHeart = false;
             zCoolDown = 65 * 60;
@@ -186,7 +178,7 @@ namespace Laugicality
             zMove = false;
             zCool = false;
             etherialMusic = false;
-            MoltenCore--;
+            Rocks = false;
             Sandy = false;
             Frost = false;
             Obsidium = false;
@@ -217,15 +209,11 @@ namespace Laugicality
             CrystalliteTrail = false;
             SteamTrail = false;
             BysmalTrail = false;
-            CosmicTrail = false;
             Blaze = false;
             Carapace = false;
             Shroud = false;
             PrismVeil = false;
             HoldingBarrier = false;
-            Crystillium = false;
-            Lily = false;
-            Bloat = false;
 
             if (player.extraAccessory)
             {
@@ -638,8 +626,13 @@ namespace Laugicality
             foreach (NPC npc in Main.npc)
             {
                 float range = 120;
-                if (npc.active && !npc.friendly && (npc.damage > 0 || npc.type == NPCID.TargetDummy) && !npc.dontTakeDamage && !npc.buffImmune[BuffID.OnFire] && Vector2.Distance(player.Center, npc.Center) <= range && npc.FindBuffIndex(BuffID.OnFire) == -1)
-                    npc.AddBuff(BuffID.OnFire, 2 * 60, false);
+                if (npc.active && !npc.friendly && (npc.damage > 0 || npc.type == NPCID.TargetDummy) && !npc.dontTakeDamage && !npc.buffImmune[BuffID.Frostburn] && Vector2.Distance(player.Center, npc.Center) <= range)
+                {
+                    if (npc.FindBuffIndex(BuffID.OnFire) == -1)
+                    {
+                        npc.AddBuff(BuffID.OnFire, 2 * 60, false);
+                    }
+                }
             }
         }
 
@@ -686,7 +679,7 @@ namespace Laugicality
             player.ManageSpecialBiomeVisuals("Laugicality:Etherial", LaugicalityWorld.downedEtheria);
             player.ManageSpecialBiomeVisuals("Laugicality:Etherial2", !Main.dayTime && LaugicalityWorld.downedEtheria);
 
-            player.ManageSpecialBiomeVisuals("Laugicality:ZaWarudo", TimeManagement.TimeAltered);
+            player.ManageSpecialBiomeVisuals("Laugicality:ZaWarudo", Laugicality.zaWarudo > 0);
         }
 
         public override void Load(TagCompound tag)
@@ -815,13 +808,6 @@ namespace Laugicality
                 player.lifeRegen -= 4;
             }
 
-            if(Bloat && player.statLife >= (int)(player.statLifeMax2 * .5))
-            {
-                player.statLife = (int)(player.statLifeMax2 * .5);
-                player.lifeRegen = 0;
-                player.lifeRegenTime = 0;
-            }
-
             SoulStoneBadLifeRegen();
             if (player.lifeRegen < 0)
                 LosingLife = true;
@@ -833,18 +819,6 @@ namespace Laugicality
         {
             base.UpdateLifeRegen();
 
-
-            if (Bloat && player.statLife >= (int)(player.statLifeMax2 * .5))
-            {
-                player.statLife = (int)(player.statLifeMax2 * .5);
-                player.lifeRegen = 0;
-                player.lifeRegenTime = 0;
-            }
-            if(MoltenCore > 0 && player.ownedProjectileCounts[ModContent.ProjectileType<MoltenCoreHand>()] <= 0 && player.statLife <= player.statLifeMax2 / 2)
-            {
-                Projectile.NewProjectile(new Vector2(player.Center.X + 600, player.Center.Y), new Vector2(0, 0), ModContent.ProjectileType<MoltenCoreHand>(), (int)((12 + 4 * ObsidiumHeart) * player.allDamage), 1, player.whoAmI, 0);
-                Projectile.NewProjectile(new Vector2(player.Center.X - 600, player.Center.Y), new Vector2(0, 0), ModContent.ProjectileType<MoltenCoreHand>(), (int)((12 + 4 * ObsidiumHeart) * player.allDamage), 1, player.whoAmI, 1);
-            }
             UpdateSoulStoneLifeRegen();
         }
 
@@ -972,12 +946,6 @@ namespace Laugicality
                     Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, ModContent.ProjectileType<BysmalTrailProj>(), (int)(30 * GetGlobalDamage()), 0, player.whoAmI);
             }
 
-            if (CosmicTrail && (Math.Abs(player.velocity.X) > 2 || Math.Abs(player.velocity.Y) > 2))
-            {
-                if (Main.rand.Next(10) == 0)
-                    Projectile.NewProjectile(player.Center.X, player.Center.Y + 12, 0, 0, ModContent.ProjectileType<CosmicTrailProj>(), (int)(45 * GetGlobalDamage()), 0, player.whoAmI);
-            }
-
             if (MysticHold > 0)
             {
                 //DrawMysticUI();
@@ -1062,8 +1030,7 @@ namespace Laugicality
             if (Laugicality.toggleMystic.JustPressed && MysticHold > 0)
             {
                 MysticSwitch();
-                if (LaugicalityUI.SoundOn)
-                    Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/MysticSwitch"));
+                Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/MysticSwitch"));
             }
 
             if (Laugicality.quickMystica.JustPressed && Mysticality == 0)
@@ -1258,26 +1225,6 @@ namespace Laugicality
             return (float)Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         }
 
-        private bool AccPreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            return true;
-        }
-
-        public override bool CanBeHitByNPC(NPC npc, ref int cooldownSlot)
-        {
-            if (Lily)
-            {
-                if (npc.defense < player.statDefense && npc.life == npc.lifeMax)
-                    return false;
-            }
-            return base.CanBeHitByNPC(npc, ref cooldownSlot);
-        }
-
-        private bool AccHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            return true;
-        }
-
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             if (MysticSwitchCool <= 0)
@@ -1314,10 +1261,9 @@ namespace Laugicality
         {
             if (Carapace)
             {
-                CombatText.NewText(new Rectangle((int)player.position.X - 12, (int)player.position.Y - 12, player.width, 12), Color.LightSeaGreen, (int)damage / 2);
-                AddLux((float)damage / 2);
-                AddVis((float)damage / 2);
-                AddMundus((float)damage / 2);
+                AddLux((float)damage);
+                AddVis((float)damage);
+                AddMundus((float)damage);
             }
             if(Shroud)
                 player.AddBuff(ModContent.BuffType<CarapaceDamageBuff>(), 8 * 60);
@@ -1349,6 +1295,9 @@ namespace Laugicality
 
             if (Spores)
                 SpawnSpore();
+
+            if (Rocks)
+                SpawnRockShard();
         }
 
         private void ApplyBloodRage()
@@ -1475,7 +1424,7 @@ namespace Laugicality
 
         public bool Frosty { get; set; }
 
-        public int MoltenCore { get; set; } = 0;
+        public bool Rocks { get; set; }
 
         public bool Sandy { get; set; }
 

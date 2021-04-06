@@ -2,8 +2,6 @@ using System;
 using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Laugicality.Items.Loot;
-using Laugicality.Items.Placeable;
-using Laugicality.NPCs.Slybertron;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -80,7 +78,7 @@ namespace Laugicality.NPCs.Bosses
                 DespawnAI();
                 return;
             }
-            if ((!Attacking || npc.life < npc.lifeMax * .33 || (npc.life < npc.lifeMax * .5 && Main.expertMode)) && (npc.ai[2] >= 0 && npc.ai[2] < (15 - Phase) * 60 - 30))
+            if (!Attacking || npc.life < npc.lifeMax * .33)
                 FollowAI();
             else
                 Slow();
@@ -91,16 +89,13 @@ namespace Laugicality.NPCs.Bosses
         private void Teleportation()
         {
             npc.ai[2]++;
-            if (npc.ai[2] == (15 - Phase) * 60 - 30)
-                Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 28);
-            if (npc.ai[2] > (15 - Phase) * 60)
+            if(npc.ai[2] > (15 - Phase) * 60 && npc.velocity.Length() > 2)
             {
-                npc.ai[2] = -30;
+                npc.ai[2] = 0;
                 npc.velocity *= 0;
                 Vector2 warp = (Main.player[npc.target].Center - npc.Center).RotatedByRandom(MathHelper.ToRadians(90));
-                float mag = warp.Length();
                 warp.Normalize();
-                warp *= Math.Max(mag, 600);
+                warp *= 600;
                 npc.Teleport(Main.player[npc.target].Center + warp, 1);
                 Main.PlaySound(2, (int)npc.position.X, (int)npc.position.Y, 8);
             }
@@ -136,39 +131,38 @@ namespace Laugicality.NPCs.Bosses
                 {
                     case 1:
                         Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
-                        numBalls = 2 + ((npc.life < npc.lifeMax / 2)?2:0);
+                        numBalls = 2;
                         thetaInit = 0;
                         for (int i = 0; i < numBalls; i++)
                         {
                             float mag = 5;
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y - 80, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
-                                    ModContent.ProjectileType<XOut>(), (int)(npc.damage / 4), 3);
+                                    ModContent.ProjectileType<ElectroKnowledge>(), (int)(npc.damage / 4), 3);
                         }
                         break;
                     case 2:
                         Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
-                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y + 60, 0, 8, ModContent.ProjectileType<SteamyShadow>(), npc.damage / 3, 3f, npc.target);
-                        /*numBalls = 10 + Main.rand.Next(6);
+                        numBalls = 10 + Main.rand.Next(6);
                         thetaInit = Math.PI;
                         for (int i = 0; i < numBalls; i++)
                         {
                             float mag = 12 + Main.rand.NextFloat() * 8;
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, mag * (float)Math.Cos(thetaInit + (Math.PI) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI) * (i / numBalls)),
-                                    ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 4), 3, npc.target, .3f);
-                        }*/
+                                    ModContent.ProjectileType<KnowledgeBolt>(), (int)(npc.damage / 4), 3, npc.target, .3f);
+                        }
                         break;
                     default:
                         Main.PlaySound(SoundID.Item33, (int)npc.position.X, (int)npc.position.Y);
-                        numBalls = 12 + ((npc.life < npc.lifeMax / 2)?8:0) +  Main.rand.Next(8);
+                        numBalls = 20 + Main.rand.Next(12);
                         thetaInit = Math.PI * 2 * Main.rand.NextDouble();
                         for (int i = 0; i < numBalls; i++)
                         {
                             float mag = 6 + Main.rand.NextFloat() * 4;
                             if (Main.netMode != 1)
                                 Projectile.NewProjectile(npc.Center.X, npc.Center.Y, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
-                                    ModContent.ProjectileType<Electroshock>(), (int)(npc.damage / 4), 3);
+                                    ModContent.ProjectileType<KnowledgeBolt>(), (int)(npc.damage / 4), 3);
                         }
                         break;
                 }
@@ -490,8 +484,6 @@ namespace Laugicality.NPCs.Bosses
             {
                 npc.DropBossBags();
             }
-            if (Main.rand.Next(10) == 0)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AnnihilatorTrophy>(), 1);
             LaugicalityWorld.downedAnnihilator = true;
 
         }

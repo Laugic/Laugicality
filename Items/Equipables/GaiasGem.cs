@@ -32,13 +32,13 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LargeAmethyst);
-            recipe.AddIngredient(ItemID.LargeTopaz);
-            recipe.AddIngredient(ItemID.LargeSapphire);
-            recipe.AddIngredient(ItemID.LargeEmerald);
-            recipe.AddIngredient(ItemID.LargeRuby);
-            recipe.AddIngredient(ItemID.LargeDiamond);
-            recipe.AddIngredient(ModContent.ItemType<Arcanum>());
+            recipe.AddIngredient(ItemID.Amethyst);
+            recipe.AddIngredient(ItemID.Topaz);
+            recipe.AddIngredient(ItemID.Sapphire);
+            recipe.AddIngredient(ItemID.Emerald);
+            recipe.AddIngredient(ItemID.Ruby);
+            recipe.AddIngredient(ItemID.Diamond);
+            recipe.AddIngredient(null, "ArcaneShard", 6);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();

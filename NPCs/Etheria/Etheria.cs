@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Laugicality.Structures;
-using Laugicality.Items.Placeable;
 
 namespace Laugicality.NPCs.Etheria
 {
@@ -451,11 +450,6 @@ namespace Laugicality.NPCs.Etheria
 
         public override void BossLoot(ref string name, ref int potionType)
         {
-            potionType = 188;
-        }
-
-        public override void NPCLoot()
-        {
             EtheriaDecoy.despawn = true;
             if (plays == 0)
                 plays = 1;
@@ -464,8 +458,6 @@ namespace Laugicality.NPCs.Etheria
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EssenceOfEtheria>(), 1);
                 LaugicalityWorld.downedEtheria = false;
                 LaugicalityWorld.downedTrueEtheria = true;
-                if (Main.rand.Next(10) == 0)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<EtheriaTrophy>(), 1);
             }
             else
             {

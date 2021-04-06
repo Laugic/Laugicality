@@ -27,7 +27,6 @@ namespace Laugicality.Items.Equipables
             item.defense = 2;
         }
 
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.moveSpeed += .15f;
@@ -78,6 +77,23 @@ namespace Laugicality.Items.Equipables
                 trail--;
                 player.GetModPlayer<LaugicalityPlayer>().DustTrail(ModContent.DustType<Black>(), 2);
             }
+        }
+        
+        public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<DarkfootBoots>(), 1);
+            recipe.AddIngredient(ItemID.BandofStarpower, 1);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<BloodfootBoots>(), 1);
+            recipe.AddIngredient(ItemID.PanicNecklace, 1);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

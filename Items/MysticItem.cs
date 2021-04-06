@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Laugicality.Buffs.Mystic;
-using Laugicality.Projectiles.Mystic.Overflow;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -227,55 +225,30 @@ namespace Laugicality.Items
             modPlayer.MysticHold = 2;
         }
 
-        public override void UpdateInventory(Player player)
-        {
-            GetCosts();
-            base.UpdateInventory(player);
-        }
-
-        private void GetCosts()
-        {
-
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get();
-
-            switch (modPlayer.MysticMode)
-            {
-                case 1:
-                    Destruction(modPlayer);
-                    break;
-                case 2:
-                    Illusion(modPlayer);
-                    break;
-                case 3:
-                    Conjuration(modPlayer);
-                    break;
-            }
-        }
-
         public override void HoldItem(Player player)
         {
-
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
             switch (modPlayer.MysticMode)
             {
-                case 1:
+                case 1 :
                     player.AddBuff(ModContent.BuffType<Destruction>(), 1, true);
+                    Destruction(modPlayer);
                     break;
                 case 2:
                     player.AddBuff(ModContent.BuffType<Illusion>(), 1, true);
+                    Illusion(modPlayer);
                     break;
                 case 3:
                     player.AddBuff(ModContent.BuffType<Conjuration>(), 1, true);
+                    Conjuration(modPlayer);
                     break;
             }
 
-            GetCosts();
-
-            Hold = 2;
             modPlayer.CurrentLuxCost = LuxCost;
             modPlayer.CurrentVisCost = VisCost;
             modPlayer.CurrentMundusCost = MundusCost;
+            Hold = 2;
 
             Laugicality.Instance.MysticaUI.Update();
         }
@@ -304,11 +277,11 @@ namespace Laugicality.Items
             switch (laugicalityPlayer.MysticMode)
             {
                 case 1:
-                    return "Uses " + (GetLuxCost() * laugicalityPlayer.LuxUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " lux";
+                    return "Uses " + (laugicalityPlayer.CurrentLuxCost * laugicalityPlayer.LuxUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " lux";
                 case 2:
-                    return "Uses " + (GetVisCost() * laugicalityPlayer.VisUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " vis";
+                    return "Uses " + (laugicalityPlayer.CurrentVisCost * laugicalityPlayer.VisUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " vis";
                 case 3:
-                    return "Uses " + (GetMundusCost() * laugicalityPlayer.MundusUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " mundus";
+                    return "Uses " + (laugicalityPlayer.CurrentMundusCost * laugicalityPlayer.MundusUseRate * laugicalityPlayer.GlobalPotentiaUseRate) + " mundus";
             }
 
             return "mystica";
@@ -333,8 +306,6 @@ namespace Laugicality.Items
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
 
-            ModifyMysticShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
-            GetMysticShots(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
             switch (modPlayer.MysticMode)
             {
                 case 1:
@@ -392,24 +363,8 @@ namespace Laugicality.Items
                         return false;
                     break;
             }
+
             return MysticShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
-        }
-
-        private void ModifyMysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(modPlayer.IsOnOverflow())
-            {
-                speedX *= modPlayer.OverflowVelocity;
-                speedY *= modPlayer.OverflowVelocity;
-            }
-        }
-
-        private void GetMysticShots(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(modPlayer.Crystillium && modPlayer.IsOnOverflow())
-                Projectile.NewProjectile(position, new Vector2(speedX / 16f, speedY / 16f), ModContent.ProjectileType<CrystilliumShard>(), damage / 2, knockBack, player.whoAmI);
         }
 
         public virtual bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -420,24 +375,6 @@ namespace Laugicality.Items
         public virtual string GetExtraTooltip()
         {
             return "";
-        }
-
-        private int GetLuxCost()
-        {
-            Destruction(LaugicalityPlayer.Get());
-            return LuxCost;
-        }
-
-        private int GetVisCost()
-        {
-            Illusion(LaugicalityPlayer.Get());
-            return VisCost;
-        }
-
-        private int GetMundusCost()
-        {
-            Conjuration(LaugicalityPlayer.Get());
-            return MundusCost;
         }
 
         public int LuxCost { get; set; } = 10;

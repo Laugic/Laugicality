@@ -15,14 +15,17 @@ namespace Laugicality.Items.Weapons.Range
             Tooltip.SetDefault("33% chance to not consume ammo\nOccasionally shoots Crystal bullets");
         }
 
+        private float theta = 0f;
+        private float rotSp = (float)Math.PI / 4;
+
         public override void SetDefaults()
         {
-            item.damage = 9;
+            item.damage = 12;
             item.ranged = true;
             item.width = 44;
             item.height = 86;
-            item.useTime = 16;
-            item.useAnimation = 16;
+            item.useTime = 12;
+            item.useAnimation = 12;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 3;
@@ -54,7 +57,7 @@ namespace Laugicality.Items.Weapons.Range
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 14f;
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 20f;
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
             {
                 position += muzzleOffset;
@@ -67,10 +70,6 @@ namespace Laugicality.Items.Weapons.Range
                 Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileID.CrystalBullet, (int)(damage * 1.25), knockBack, player.whoAmI);
 
             return true;
-        }
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-8, -4);
         }
     }
 }

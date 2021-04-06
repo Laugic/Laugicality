@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+33% Mystic Duration");
+            Tooltip.SetDefault("+33% Mystic Duration\n+15% Overflow Damage");
         }
 
         public override void SetDefaults()
@@ -27,7 +27,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDuration += .33f;
-            //modPlayer.OverflowDamage += .1f;
+            modPlayer.OverflowDamage += .1f;
         }
         
         public override void AddRecipes()

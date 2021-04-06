@@ -1,7 +1,6 @@
 using System;
 using Laugicality.Items.Equipables;
 using Laugicality.Items.Loot;
-using Laugicality.Items.Placeable;
 using Laugicality.Items.Weapons.Range;
 using Laugicality.NPCs.Obsidium;
 using Microsoft.Xna.Framework;
@@ -85,7 +84,6 @@ namespace Laugicality.NPCs.PreTrio
         private void Effects()
         {
             npc.spriteDirection = (int)(npc.velocity.X / Math.Abs(npc.velocity.X));
-            npc.netUpdate = true;
         }
 
         private void PickAI()
@@ -178,7 +176,7 @@ namespace Laugicality.NPCs.PreTrio
                 {
                     for(int i = 0; i < 8; i++)
                     {
-                        Projectile.NewProjectile(Main.player[npc.target].position.X - 400 + Main.rand.Next(800), Main.player[npc.target].position.Y - 420 - Main.rand.Next(50), Angry?(-1 + 2 * Main.rand.NextFloat()):0, 8 + 4 * Main.rand.NextFloat(), ModContent.ProjectileType<Ragnarock>(), npc.damage / 4, 3, Main.myPlayer);
+                        Projectile.NewProjectile(Main.player[npc.target].position.X - 400 + Main.rand.Next(800), Main.player[npc.target].position.Y - 400 - Main.rand.Next(100), Angry?(-1 + 2 * Main.rand.NextFloat()):0, 8 + 4 * Main.rand.NextFloat(), ModContent.ProjectileType<Ragnarock>(), npc.damage / 4, 3, Main.myPlayer);
                     }
                 }
             }
@@ -391,8 +389,6 @@ namespace Laugicality.NPCs.PreTrio
                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, obsidiumItem, 1);
                 if(Main.rand.Next(4) == 0)
                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<BlackIce>(), 1);
-                if (Main.rand.Next(10) == 0)
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<RagnarTrophy>(), 1);
             }
             if (!LaugicalityWorld.downedRagnar)
                 Main.NewText("Fury runs through the Obsidium Caverns.", 250, 150, 50);

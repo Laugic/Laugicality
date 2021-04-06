@@ -8,7 +8,7 @@ namespace Laugicality.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Magma Heart");
+			DisplayName.SetDefault("Obsidium Heart");
 			Description.SetDefault("'A special kind of love.'");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;
@@ -19,11 +19,11 @@ namespace Laugicality.Buffs
             player.statLifeMax2 += 25;
             LaugicalityPlayer.Get(player).obsHeart = true;
 			player.buffTime[buffIndex] = 18000;
-			bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<MagmaHeartProjectile>()] <= 0;
+			bool petProjectileNotSpawned = player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.Pets.ObsidiumHeartProjectile>()] <= 0;
 			if (petProjectileNotSpawned && player.whoAmI == Main.myPlayer)
 			{
 				Projectile.NewProjectile(player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), 
-                    0f, 0f, ModContent.ProjectileType<MagmaHeartProjectile>(), 0, 0f, player.whoAmI, 0f, 0f);
+                    0f, 0f, ModContent.ProjectileType<ObsidiumHeartProjectile>(), 0, 0f, player.whoAmI, 0f, 0f);
 			}
 		}
 	}

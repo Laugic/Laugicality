@@ -50,15 +50,15 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             if (stopped)
             {
                 delay += 1;
-                if(delay >= 20)
+                if(delay >= 10)
                 {
                     delay = 0;
                     if (Main.myPlayer == projectile.owner)
                     {
-                        if (player.strongBees && Main.rand.Next(3) == 0)
-                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 566, (int)(projectile.damage * 1.5f), 2f, projectile.owner);
-                        else
+                        if (!player.strongBees)
                             Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 181, (int)(projectile.damage), 2f, projectile.owner);
+                        else
+                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 566, (int)(projectile.damage * 1.5f), 2f, projectile.owner);
 
                         for (int k = 0; k < 5; k++)
 						{

@@ -29,7 +29,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 case 2:
                     return "Shoots large gemstones that inflict 'Refracting', which makes enemies break off gem shards upon being hit,\ndealing damage based on their defense";
                 case 3:
-                    return "Spawns Sigils with different effects based on their Focus";
+                    return "Spawns Sigils that buff you in different ways based on their Focus";
                 default:
                     return "";
             }
@@ -40,7 +40,7 @@ namespace Laugicality.Items.Weapons.Mystic
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
-                int numberProjectiles = Main.rand.Next(4, 7);
+                int numberProjectiles = Main.rand.Next(6, 10);
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
@@ -63,7 +63,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void SetMysticDefaults()
         {
-            item.damage = 15;
+            item.damage = 25;
             item.width = 40;
             item.height = 40;
             item.useTime = 18;
@@ -81,7 +81,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 10;
+            item.damage = 20;
             item.useAnimation = item.useTime = 30;
             item.knockBack = 6;
             item.shootSpeed = 10;
@@ -91,7 +91,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 15;
+            item.damage = 25;
             item.useTime = item.useAnimation = 30;
             item.knockBack = 4;
             item.shootSpeed = 12f;
@@ -101,7 +101,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 20;
+            item.damage = 25;
             item.useTime = item.useAnimation = 30;
             item.knockBack = 3;
             item.shootSpeed = 8f;

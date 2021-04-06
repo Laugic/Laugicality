@@ -15,12 +15,12 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.damage = 80;
+            item.damage = 100;
             item.ranged = true;
             item.width = 72;
             item.height = 36;
-            item.useTime = 6;
-            item.useAnimation = 6;
+            item.useTime = 5;
+            item.useAnimation = 5;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 4;

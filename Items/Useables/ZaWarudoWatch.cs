@@ -3,7 +3,6 @@ using Laugicality.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WebmilioCommons.Time;
 
 namespace Laugicality.Items.Useables
 {
@@ -29,21 +28,26 @@ namespace Laugicality.Items.Useables
 
         public override bool CanUseItem(Player player)
         {
-            return !player.HasBuff(ModContent.BuffType<TimeExhausted>());
+            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
+            return !modPlayer.zCool;
         }
 
         public override bool UseItem(Player player)
         {
             Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            TimeManagement.TryAlterTime(new TimeAlterationRequest(player, modPlayer.zaWarudoDuration, 0));
-            /*if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
+            if(Laugicality.zaWarudo < modPlayer.zaWarudoDuration)
             {
                 Laugicality.zaWarudo = modPlayer.zaWarudoDuration;
                 LaugicalGlobalNPCs.zTime = modPlayer.zaWarudoDuration;
-            }*/
-            foreach ( Player player2 in Main.player)
-               player.AddBuff(ModContent.BuffType<TimeExhausted>(), modPlayer.zCoolDown, true);
+            }
+            foreach ( Player player2 in Main.player){
+                
+            if (modPlayer.AndioChestguard == true)
+                player.AddBuff(ModContent.BuffType<TimeExhausted>(), modPlayer.zCoolDown, true);
+            else
+                player.AddBuff(ModContent.BuffType<TimeExhausted>(), modPlayer.zCoolDown, true);
+            }
             return true;
         }
     }

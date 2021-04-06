@@ -4,19 +4,18 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class FrostburstBoots : BootItem
+    public class FrostburstBoots : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
-            LaugicalityVars.RocketBoots.Add(item.type);
-            Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice\nGrants the ability to double jump\nIncreases jump height and negates fall damage\n15% increased movement speed");
+            Tooltip.SetDefault("Allows flight, super fast running, and extra mobility on ice\nGrants the ability to double jump\nNegates fall damage\n15% increased movement speed");
         }
 
         public override void SetDefaults()
         {
             item.width = 28;
             item.height = 28;
-            item.value = Item.sellPrice(gold: 8);
+            item.value = 100;
             item.rare = ItemRarityID.Lime;
             item.accessory = true;
         }
@@ -30,17 +29,6 @@ namespace Laugicality.Items.Equipables
             player.doubleJumpBlizzard = true;
             player.noFallDmg = true;
             player.jumpSpeedBoost += 3;
-        }
-
-
-        public override bool CanEquipAccessory(Player player, int slot)
-        {
-            for (int j = 0; j < player.armor.Length; j++)
-            {
-                if (j != slot && LaugicalityVars.RocketBoots.Contains(player.armor[j].type))
-                    return false;
-            }
-            return true;
         }
 
         public override void AddRecipes()

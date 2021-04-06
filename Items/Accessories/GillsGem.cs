@@ -33,15 +33,6 @@ namespace Laugicality.Items.Accessories
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();
-
-            recipe = new ModRecipe(mod);
-            recipe.anyIronBar = true;
-            recipe.AddIngredient(this);
-            recipe.AddIngredient(ItemID.IronBar, 8);
-            recipe.AddIngredient(ItemID.SharkFin, 2);
-            recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.SetResult(ItemID.DivingHelmet);
-            recipe.AddRecipe();
         }
     }
 }

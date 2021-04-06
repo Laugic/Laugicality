@@ -1,6 +1,5 @@
 using System;
 using Laugicality.Items.Loot;
-using Laugicality.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -622,8 +621,6 @@ namespace Laugicality.NPCs.RockTwins
             {
                 npc.DropBossBags();
             }
-            if (Main.rand.Next(10) == 0)
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<AnDioTrophy>(), 1);
             LaugicalityWorld.downedAnDio = true;
         }
         /*

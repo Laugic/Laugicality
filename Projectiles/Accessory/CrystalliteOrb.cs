@@ -24,7 +24,7 @@ namespace Laugicality.Projectiles.Accessory
             projectile.penetrate = -1;
             projectile.timeLeft = 160;
             projectile.ignoreWater = true;
-            projectile.tileCollide = true;
+            projectile.tileCollide = false;
             projectile.light = .5f;
             delay = 20;
         }

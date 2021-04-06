@@ -9,25 +9,37 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Dark of Old");
-            Tooltip.SetDefault("+25 Potentia");
+            Tooltip.SetDefault("+8% Mystic Damage.\nAn Additional +8% Mystic Damage when below 50% of your current Potentia");
         }
 
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
-            item.value = Item.sellPrice(silver: 50);
+            item.value = 100;
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
-            item.defense = 4;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.LuxMax += 25;
-            modPlayer.VisMax += 25;
-            modPlayer.MundusMax += 25;
+            modPlayer.MysticDamage += .08f;
+            switch(modPlayer.MysticMode)
+            {
+                case 1:
+                    if(modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
+                    break;
+                case 2:
+                    if (modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
+                    break;
+                default:
+                    if (modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) / 2)
+                        modPlayer.MysticDamage += .08f;
+                    break;
+            }
         }
 
         public override void AddRecipes()

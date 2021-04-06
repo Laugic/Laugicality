@@ -7,24 +7,27 @@ namespace Laugicality.Items.Loot
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+50 Max Life\nSummon Ragnar Hands when below 50% life");
+            Tooltip.SetDefault("Attacks inflict 'On Fire!'\n+30% Throwing Velocity and Mystic Duration\nRelease a burst of rocks when hit");
         }
 
         public override void SetDefaults()
         {
             item.width = 28;
             item.height = 44;
-            item.value = Item.sellPrice(gold:4);
-            item.rare = ItemRarityID.Orange;
+            item.value = 100;
+            item.rare = ItemRarityID.Green;
             item.accessory = true;
             item.expert = true;
+            item.defense = 4;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 50;
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MoltenCore = 2;
+            modPlayer.Obsidium = true;
+            modPlayer.Rocks = true;
+            modPlayer.MysticDuration += 0.3f;
+            player.thrownVelocity += 0.3f;
         }
     }
 }

@@ -141,7 +141,7 @@ namespace Laugicality
                 }
             }
 
-            if (DestroyerEffect && !player.HasBuff(ModContent.BuffType<DestroyerSoulCooldownBuff>()) && damage >= 50 && damage > player.statLife)
+            if (DestroyerEffect && !DestroyerCooldown && damage >= 50 && damage > player.statLife)
             {
                 player.AddBuff(ModContent.BuffType<DestroyerSoulCooldownBuff>(), 90 * Constants.TICKS_PER_SECONDS);
                 player.immune = true;

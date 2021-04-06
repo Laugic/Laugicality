@@ -74,7 +74,7 @@ namespace Laugicality.Items.Weapons.Range
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Stynger, 1);
+            recipe.AddIngredient(ItemID.Stinger, 1);
             recipe.AddIngredient(ItemID.EyeoftheGolem, 1);
             recipe.AddIngredient(ModContent.ItemType<Slinger>(), 3);
             recipe.AddTile(TileID.MythrilAnvil);

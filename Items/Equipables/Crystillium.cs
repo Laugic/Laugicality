@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystillium");
-            Tooltip.SetDefault("+10% Overflow\nOverflow attacks shoot crystal shards");
+            Tooltip.SetDefault("+10% Overflow\n+10% Overflow Damage");
         }
 
         public override void SetDefaults()
@@ -26,7 +26,7 @@ namespace Laugicality.Items.Equipables
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.GlobalOverflow += .1f;
-            modPlayer.Crystillium = true;
+            modPlayer.OverflowDamage += .1f;
         }
 
         public override void AddRecipes()

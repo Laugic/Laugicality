@@ -27,7 +27,7 @@ namespace Laugicality.Items.Equipables
             player.lavaMax += 8 * 60;
             player.GetModPlayer<LaugicalityPlayer>().Obsidium = true;
         }
-        /*
+
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
@@ -43,6 +43,6 @@ namespace Laugicality.Items.Equipables
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();
-        }*/
+        }
     }
 }

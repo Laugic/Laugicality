@@ -108,7 +108,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
         {
             if(Main.myPlayer == projectile.owner)
             {
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     theta = (float)(Math.PI * Main.rand.NextDouble() * 2);
                     Vector2 newVel = new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta));

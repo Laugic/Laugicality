@@ -24,14 +24,15 @@ namespace Laugicality.Items.Loot
             item.useTime = 10;
             item.useStyle = 1;
             item.value = Item.sellPrice(gold: 1);
-            item.rare = ItemRarityID.LightRed;
+            item.rare = ItemRarityID.Green;
+            item.accessory = true;
         }
-        /*
+
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.AddBuff(ModContent.BuffType<ForHonor>(), 1, true);
         }
-        */
+
 
     }
 }

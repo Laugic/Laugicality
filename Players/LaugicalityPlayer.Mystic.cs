@@ -1,11 +1,9 @@
 using System;
 using Laugicality.Buffs;
 using Laugicality.Projectiles.Mystic.Burst;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using WebmilioCommons.Tinq;
 
 namespace Laugicality
 {
@@ -76,7 +74,6 @@ namespace Laugicality
             GlobalAbsorbRate = .5f;
             GlobalOverflow = 1f;
             OverflowDamage = 1f;
-            OverflowVelocity = 1f;
             AntiflowDamage = 1f;
 
             LuxMax = 100;
@@ -228,81 +225,6 @@ namespace Laugicality
             Laugicality.Instance.MysticaUI.CyclePositions(MysticMode);
         }
 
-        private void Blink()
-        {
-            var rect = GenerateAngledHitbox(player.Center + (Main.MouseWorld - player.Center).SafeNormalize(Vector2.UnitY) * 10, Main.MouseWorld, 36f, 400f);
-            var target = Main.npc.WhereActive(n =>
-            {
-                return !n.friendly && CheckWithinAngledRectangle(n.Center, rect);
-            });
-
-            foreach (NPC npc in target)
-            {
-                npc.AddBuff(BuffID.OnFire, 2);
-            }
-        }
-
-        private Vector2[] GenerateAngledHitbox(Vector2 center, Vector2 target, float width, float length)
-        {
-            var dirTo = Direction(center, target);// (float)Math.Atan2((center.X - target.X), (center.Y - target.Y)) + (float)Math.PI / 2;
-            var b1 = center + new Vector2((float)Math.Cos(dirTo - Math.PI / 2), (float)Math.Sin(dirTo - Math.PI / 2)) * width;
-            var b2 = b1 + new Vector2((float)Math.Cos(dirTo), (float)Math.Sin(dirTo)) * length;
-            var t1 = center + new Vector2((float)Math.Cos(dirTo + Math.PI / 2), (float)Math.Sin(dirTo + Math.PI / 2)) * width;
-            var t2 = t1 + new Vector2((float)Math.Cos(dirTo), (float)Math.Sin(dirTo)) * length;
-
-            var bTtheta = dirTo + (float)Math.PI / 2;// Direction(b1, t1);// (float)Math.Atan2((b1.X - t1.X), (b1.Y - t1.Y));
-
-            Vector2[] angles = new Vector2[]{
-                b1,
-                b2,
-                t1, 
-                t2,
-                new Vector2(length, width * 2)
-            };
-            return angles;
-        }
-
-        private bool CheckWithinAngledRectangle(Vector2 pos, Vector2[] rect)
-        {
-            if (rect.Length != 5)
-                return false;
-
-            int dust = Dust.NewDust(rect[0], 0, 0, DustID.Smoke);
-            Main.dust[dust].velocity *= 0;
-            dust = Dust.NewDust(rect[1], 0, 0, DustID.Smoke);
-            Main.dust[dust].velocity *= 0;
-            dust = Dust.NewDust(rect[2], 0, 0, DustID.Fire);
-            Main.dust[dust].velocity *= 0;
-            /*dust = Dust.NewDust(rect[0] + rect[2] - rect[1], 0, 0, DustID.Smoke);
-            Main.dust[dust].velocity *= 0;*/
-            dust = Dust.NewDust(rect[3], 0, 0, DustID.Fire);
-            Main.dust[dust].velocity *= 0;
-
-            var result = Direction(rect[0], pos) + 
-                Direction(rect[1], pos) + 
-                Direction(rect[2], pos) + 
-                Direction(rect[3], pos);
-            result = Distance(rect[0], pos) +
-                 Distance(rect[1], pos) +
-                 Distance(rect[2], pos) +
-                 Distance(rect[3], pos);
-            result -= 2 * (float)Math.Sqrt(rect[4].X * rect[4].X + rect[4].Y * rect[4].Y);
-            Main.NewText((result).ToString());
-            var newResult = Math.Abs(result) < (float)(Math.Sqrt(rect[4].Y * rect[4].X)) / 2 && (Direction(rect[0], pos) >= Direction(rect[0], rect[1])) && (Direction(rect[2], pos) <= Direction(rect[2], rect[3]));
-            Main.NewText((newResult).ToString());
-            return newResult;
-        }
-
-        private float Distance(Vector2 pos1, Vector2 pos2)
-        {
-            return (float)Math.Sqrt((pos2.Y - pos1.Y) * (pos2.Y - pos1.Y) + (pos2.X - pos1.X) * (pos2.X - pos1.X));
-        }
-
-        private float Direction(Vector2 pos1, Vector2 pos2)
-        {
-            return (float)Math.Atan2((pos2.Y - pos1.Y), (pos2.X - pos1.X));
-        }
-
         private void PostBurstEffects()
         {
             if (PrismVeil)
@@ -312,17 +234,6 @@ namespace Laugicality
                 player.immune = true;
                 player.immuneTime = 60;
             }
-        }
-
-        public bool IsOnOverflow()
-        {
-            if (MysticMode == 1 && Lux > LuxMax + LuxMaxPermaBoost)
-                return true;
-            if (MysticMode == 2 && Vis > VisMax + VisMaxPermaBoost)
-                return true;
-            if (MysticMode == 3 && Mundus > MundusMax + MundusMaxPermaBoost)
-                return true;
-            return false;
         }
 
         private void PostUpdateMysticBuffs()
@@ -474,7 +385,6 @@ namespace Laugicality
         public float GlobalPotentiaUseRate { get; set; } = 1f;
         public float GlobalOverflow { get; set; } = 1f;
         public float OverflowDamage { get; set; } = 1f;
-        public float OverflowVelocity { get; set; } = 1f;
 
         #endregion
 

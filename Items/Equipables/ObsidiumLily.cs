@@ -1,21 +1,18 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    [AutoloadEquip(EquipType.Face)]
     public class ObsidiumLily : LaugicalityItem
     {
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Obsidium Lily");
-            Tooltip.SetDefault("You are immune to contact damage from enemies that\nare at max life and have less defense than you\n'A calming aura'");
+            Tooltip.SetDefault("Immunity to Lava, Burning, and 'On Fire!'\n+10% Damage and +5 Defense in the Obsidium and Underworld");
         }
 
         public override void SetDefaults()
         {
-            //item.CloneDefaults(ItemID.NaturesGift);
             item.width = 24;
             item.height = 24;
             item.value = Item.sellPrice(gold: 1);
@@ -26,7 +23,14 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = player.GetModPlayer<LaugicalityPlayer>();
-            modPlayer.Lily = true;
+            if(player.ZoneUnderworldHeight || modPlayer.zoneObsidium)
+            {
+                modPlayer.DamageBoost(.1f);
+                player.statDefense += 5;
+            }
+            player.lavaImmune = true;
+            player.fireWalk = true;
+            player.buffImmune[BuffID.OnFire] = true;
         }
     }
 }

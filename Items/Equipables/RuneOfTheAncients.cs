@@ -10,14 +10,14 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rune of the Ancients");
-            Tooltip.SetDefault("+15% Overflow damage and velocity\nIncreased movement speed when on Overflow");
+            Tooltip.SetDefault("Release a sandstorm when changing Mysticism.");
         }
 
         public override void SetDefaults()
         {
             item.width = 22;
             item.height = 36;
-            item.value = Item.sellPrice(gold: 1);
+            item.value = 10000;
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
         }
@@ -25,15 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(modPlayer.IsOnOverflow())
-            {
-                modPlayer.OverflowDamage += .15f;
-                modPlayer.OverflowVelocity += .15f;
-                player.moveSpeed += .15f;
-                player.jumpSpeedBoost += 3;
-                player.maxRunSpeed += 2;
-                player.accRunSpeed += 2;
-            }
+            modPlayer.MysticSandBurst = true;
         }
         
         public override void AddRecipes()

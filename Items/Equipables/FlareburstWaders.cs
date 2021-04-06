@@ -8,7 +8,6 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Flamespark Waders");
             Tooltip.SetDefault("Provides the ability to walk on water and lava\nGrants immunity to fire blocks and 10 seconds of immunity to lava\nLeave a trail of True Fire as you move");
         }
 
@@ -16,7 +15,7 @@ namespace Laugicality.Items.Equipables
         {
             item.width = 28;
             item.height = 28;
-            item.value = Item.sellPrice(gold: 10);
+            item.value = 100;
             item.rare = ItemRarityID.Lime;
             item.accessory = true;
         }
@@ -26,14 +25,13 @@ namespace Laugicality.Items.Equipables
             player.waterWalk = true;
             player.fireWalk = true;
             player.lavaMax += 10 * 60;
-            if (!hideVisual)
-                player.GetModPlayer<LaugicalityPlayer>().TrueFireTrail = true;
+            player.GetModPlayer<LaugicalityPlayer>().TrueFireTrail = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.LavaWaders, 1);
+            recipe.AddIngredient(ModContent.ItemType<FlamesparkWaders>(), 1);
             recipe.AddIngredient(ModContent.ItemType<CrystalizedMagma>(), 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);

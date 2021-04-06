@@ -1,7 +1,6 @@
 using Laugicality.Items.Equipables;
 using Laugicality.Prefixes;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +11,6 @@ namespace Laugicality.Items
 {
 	public class LaugicalityGlobalItem : GlobalItem
 	{
-
         public LaugicalityGlobalItem()
 		{
             Yeet = 0;

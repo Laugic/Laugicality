@@ -1,4 +1,4 @@
-/*using Terraria.ModLoader;
+using Terraria.ModLoader;
 
 namespace Laugicality.Backgrounds
 {
@@ -18,4 +18,4 @@ namespace Laugicality.Backgrounds
 			textureSlots[3] = mod.GetBackgroundSlot($"{BACKGROUNDS_PATH}/ExampleBiomeUG3");
 		}
 	}
-}*/
+}
