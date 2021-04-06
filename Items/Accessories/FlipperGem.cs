@@ -34,6 +34,13 @@ namespace Laugicality.Items.Accessories
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(this);
+            recipe.AddIngredient(ItemID.Silk, 10);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.SetResult(ItemID.Flipper);
+            recipe.AddRecipe();
         }
     }
 }

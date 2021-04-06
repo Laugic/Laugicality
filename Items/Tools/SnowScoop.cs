@@ -45,10 +45,8 @@ namespace Laugicality.Items.Tools
                     x = (int)Main.MouseWorld.X / 16;
                     y = (int)Main.MouseWorld.Y / 16;
                 }
-                if (Main.tile[x, y] != null && Main.tile[x, y].type == TileID.SnowBlock && Main.netMode != 1 && LaugicalityWorld.Distance(x, y, player.position.X / 16, player.position.Y / 16) <= player.lastTileRangeX + .25)
-                {
+                if (Main.tile[x, y] != null && Main.tile[x, y].type == TileID.SnowBlock && LaugicalityWorld.Distance(x, y, player.position.X / 16, player.position.Y / 16) <= player.lastTileRangeX + .25)
                     Item.NewItem(new Vector2(x * 16 + 4, y * 16), ItemID.Snowball, Main.rand.Next(1, 3));
-                }
             }
         }
 

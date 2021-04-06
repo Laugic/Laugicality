@@ -17,8 +17,8 @@ namespace Laugicality.NPCs.PreTrio
         public override void SetDefaults()
         {
             LaugicalityVars.eProjectiles.Add(projectile.type);
-            projectile.width = 16;
-            projectile.height = 16;
+            projectile.width = 12;
+            projectile.height = 12;
             projectile.alpha = 0;
             projectile.timeLeft = 240;
             projectile.friendly = false;

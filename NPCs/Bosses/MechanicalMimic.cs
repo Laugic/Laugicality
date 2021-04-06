@@ -42,11 +42,15 @@ namespace Laugicality.NPCs.Bosses
         public override void AI()
         {
             bitherial = true;
-            if (Main.player[npc.target].statLife == 0) { npc.position.Y += 100; }
-            if (Main.dayTime) { npc.position.Y += 300; }
-            if (despawn) { npc.position.Y += 300; }
-            if (!TheAnnihilator.on) { npc.position.Y += 300; }
+            CheckDespawn();
         }
+
+        private void CheckDespawn()
+        {
+            if (!Main.npc[(int)npc.ai[0]].active || Main.npc[(int)npc.ai[0]].life < 1 || Main.npc[(int)npc.ai[0]].type != ModContent.NPCType<TheAnnihilator>())
+                npc.active = false;
+        }
+
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
@@ -60,12 +64,13 @@ namespace Laugicality.NPCs.Bosses
             }
             Microsoft.Xna.Framework.Rectangle frame6 = npc.frame;
             Microsoft.Xna.Framework.Color alpha15 = npc.GetAlpha(color9);
-            float num212 = 1f - (float)npc.life / (float)npc.lifeMax;
-            num212 *= num212;
-            alpha15.R = (byte)((float)alpha15.R * num212);
-            alpha15.G = (byte)((float)alpha15.G * num212);
-            alpha15.B = (byte)((float)alpha15.B * num212);
-            alpha15.A = (byte)((float)alpha15.A * num212);
+            float alpha = 1.25f * (1f - (float)Main.npc[(int)npc.ai[0]].life / (float)Main.npc[(int)npc.ai[0]].lifeMax);
+            alpha *= alpha;
+            alpha = Math.Min(alpha, 1);
+            alpha15.R = (byte)((float)alpha15.R * alpha);
+            alpha15.G = (byte)((float)alpha15.G * alpha);
+            alpha15.B = (byte)((float)alpha15.B * alpha);
+            alpha15.A = (byte)((float)alpha15.A * alpha);
             for (int num213 = 0; num213 < 4; num213++)
             {
                 Vector2 position9 = npc.position;

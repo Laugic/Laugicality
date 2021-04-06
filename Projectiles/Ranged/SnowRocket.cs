@@ -31,7 +31,7 @@ namespace Laugicality.Projectiles.Ranged
 
         public override void AI()
         {
-            projectile.velocity *= 1.01f;
+            projectile.velocity *= 1.02f;
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
 
             if (Main.rand.Next(4) == 0)

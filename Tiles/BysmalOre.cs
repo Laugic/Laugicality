@@ -32,9 +32,12 @@ namespace Laugicality.Tiles
         
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 0f;
-            g = 0.2f;
-            b = 0.3f;
+            if (LaugicalityWorld.downedEtheria == true)
+            {
+                r = 0f;
+                g = 0.2f;
+                b = 0.3f;
+            }
         }
         
         public override bool CanExplode(int i, int j)
