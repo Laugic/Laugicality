@@ -1,6 +1,7 @@
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
+using Laugicality.Items.Placeable;
 
 namespace Laugicality.Items.Materials
 {
@@ -28,9 +29,10 @@ namespace Laugicality.Items.Materials
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddTile(77);
-            recipe.AddIngredient(null, "ObsidiumOre", 3);
+            recipe.AddIngredient(ModContent.ItemType<ObsidiumOre>(), 3);
+            recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 1);
             recipe.SetResult(this);
+            recipe.AddTile(TileID.Hellforge);
             recipe.AddRecipe();
         }
         

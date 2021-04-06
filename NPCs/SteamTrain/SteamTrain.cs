@@ -1,6 +1,7 @@
 using System;
 using Laugicality.Buffs;
 using Laugicality.Items.Loot;
+using Laugicality.Items.Placeable;
 using Laugicality.NPCs.Slybertron;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -357,6 +358,8 @@ namespace Laugicality.NPCs.SteamTrain
             {
                 npc.DropBossBags();
             }
+            if (Main.rand.Next(10) == 0)
+                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<SteamTrainTrophy>(), 1);
             LaugicalityWorld.downedSteamTrain = true;
 
         }

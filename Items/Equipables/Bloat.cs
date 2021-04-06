@@ -24,8 +24,12 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.statLifeMax2 *= 2;
+            LaugicalityPlayer.Get(player).Bloat = true;
             if (player.statLife > (int)(player.statLifeMax2 * .5))
+            {
                 player.statLife = (int)(player.statLifeMax2 * .5);
+                player.lifeRegen = 0;
+            }
         }
 
         public override void AddRecipes()

@@ -5,14 +5,11 @@ using Terraria.ModLoader;
 
 namespace Laugicality.Items.Equipables
 {
-    public class DarkfootBoots : LaugicalityItem
+    public class DarkfootBoots : BootItem
     {
-        int dashDelay = 0;
-        int dashCooldown = 0;
-        int dashDir = 0;
-
         public override void SetStaticDefaults()
         {
+            LaugicalityVars.DashBoots.Add(item.type);
             DisplayName.SetDefault("Ebonfoot Boots");
             Tooltip.SetDefault("Allows the wearer to dash");
         }
@@ -26,46 +23,13 @@ namespace Laugicality.Items.Equipables
             item.accessory = true;
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
+        public override void SetBootVars()
         {
-            int dashCooldownMax = 90;
-            float dashSpeed = 11;
+            DashCooldownMax = 45;
+            DashSpeed = 11;
 
-            if (!player.mount.Active && player.grappling[0] == -1 && dashCooldown <= 0)
-            {
-                if (player.controlRight && player.releaseRight)
-                {
-                    if (dashDelay > 0 && dashDir == 1)
-                    {
-                        dashCooldown = dashCooldownMax;
-                        player.velocity.X = dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
-                    }
-                    else
-                    {
-                        dashDelay = 15;
-                        dashDir = 1;
-                    }
-                }
-                if (player.controlLeft && player.releaseLeft)
-                {
-                    if (dashDelay > 0 && dashDir == 2)
-                    {
-                        dashCooldown = dashCooldownMax;
-                        player.velocity.X = -dashSpeed;
-                        player.GetModPlayer<LaugicalityPlayer>().DustBurst(ModContent.DustType<Black>(), 20);
-                    }
-                    else
-                    {
-                        dashDelay = 15;
-                        dashDir = 2;
-                    }
-                }
-            }
-            if (dashDelay > 0)
-                dashDelay--;
-            if (dashCooldown > 0)
-                dashCooldown--;
+            DustType = ModContent.DustType<Black>();
+            TrailLength = 15;
         }
     }
 }

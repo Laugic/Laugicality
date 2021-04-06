@@ -12,7 +12,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solid Potentia");
-            Tooltip.SetDefault("+20 Potentia");
+            Tooltip.SetDefault("+50 Potentia");
         }
 
         public override void SetDefaults()
@@ -27,9 +27,9 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.LuxMax += 20;
-            modPlayer.VisMax += 20;
-            modPlayer.MundusMax += 20;
+            modPlayer.LuxMax += 50;
+            modPlayer.VisMax += 50;
+            modPlayer.MundusMax += 50;
         }
         /*
         public override void AddRecipes()

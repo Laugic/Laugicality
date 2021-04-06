@@ -1,4 +1,5 @@
 using Laugicality.Items.Loot;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,22 +12,30 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rune of Eruption");
-            Tooltip.SetDefault("Release a storm of lava when changing Mysticism.");
+            Tooltip.SetDefault("+20% Overflow damage and velocity\nIncreased movement and jump speed when on Overflow");
         }
 
         public override void SetDefaults()
         {
             item.width = 22;
             item.height = 36;
-            item.value = 10000;
-            item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(gold: 4);
+            item.rare = ItemRarityID.LightRed;
             item.accessory = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticEruptionBurst = true;
+            if (modPlayer.IsOnOverflow())
+            {
+                modPlayer.OverflowDamage += .2f;
+                modPlayer.OverflowVelocity += .2f;
+                player.moveSpeed += .25f;
+                player.jumpSpeedBoost += 3;
+                player.maxRunSpeed += 3;
+                player.accRunSpeed += 3;
+            }
         }
         
         public override void AddRecipes()

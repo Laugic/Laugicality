@@ -9,14 +9,14 @@ namespace Laugicality.Items.Equipables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Dominion over liquids\nLeave a trail of True Fire as you move");
+            Tooltip.SetDefault("Dominion over liquids and fire\nLeave a trail of True Fire as you move");
         }
 
         public override void SetDefaults()
         {
             item.width = 28;
             item.height = 28;
-            item.value = 100;
+            item.value = Item.sellPrice(gold: 10);
             item.rare = ItemRarityID.Yellow;
             item.accessory = true;
         }
@@ -30,16 +30,17 @@ namespace Laugicality.Items.Equipables
             player.gills = true;
             player.ignoreWater = true;
             player.accFlipper = true;
-            player.GetModPlayer<LaugicalityPlayer>().TrueFireTrail = true;
+            if (!hideVisual)
+                player.GetModPlayer<LaugicalityPlayer>().TrueFireTrail = true;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ModContent.ItemType<FlareburstWaders>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<MagmaCrystal>(), 1);
-            recipe.AddIngredient(ModContent.ItemType<WasserCrystal>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.AddIngredient(ModContent.ItemType<MagmaHeart>(), 1);
+            recipe.AddIngredient(ItemID.DivingGear, 1);
+            recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

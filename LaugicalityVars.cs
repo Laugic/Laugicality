@@ -234,5 +234,17 @@ namespace Laugicality
         {
             ProjectileID.SnowBallFriendly,
         };
+
+        public static readonly HashSet<int> DashBoots =
+        new HashSet<int>
+        {
+
+        };
+
+        public static readonly HashSet<int> RocketBoots =
+        new HashSet<int>
+        {
+
+        };
     }
 }

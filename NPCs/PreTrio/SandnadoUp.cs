@@ -20,7 +20,7 @@ namespace Laugicality.NPCs.PreTrio
             LaugicalityVars.eProjectiles.Add(projectile.type);
             projectile.width = 160;
             projectile.height = 42;
-            projectile.timeLeft = 300;
+            projectile.timeLeft = 7 * 60;
             projectile.friendly = false;
             projectile.hostile = true;
             projectile.ignoreWater = true;

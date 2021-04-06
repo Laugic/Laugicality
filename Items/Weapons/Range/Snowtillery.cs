@@ -32,7 +32,7 @@ namespace Laugicality.Items.Weapons.Range
             item.rare = ItemRarityID.Green;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.shootSpeed = .15f;
+            item.shootSpeed = .01f;
             item.useAmmo = AmmoID.Snowball;
             item.shoot = ModContent.ProjectileType<SnowRocket>();
         }
@@ -52,7 +52,7 @@ namespace Laugicality.Items.Weapons.Range
             {
                 Main.PlaySound(2, player.Center, 11);
                 type = ModContent.ProjectileType<SnowRocket>();
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, type, damage, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX * .25f, speedY * .25f, type, damage, knockBack, player.whoAmI);
             }
             return false;
         }

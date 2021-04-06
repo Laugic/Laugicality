@@ -27,7 +27,8 @@ namespace Laugicality.Projectiles
 
             if (!projectile.active)
                 return true;
-
+            if (projectile.position.X < 0 || projectile.position.Y < 0 || projectile.position.X > Main.maxTilesX * 16 || projectile.position.Y > Main.maxTilesY * 16 || double.IsNaN(projectile.position.X)|| double.IsNaN(projectile.position.Y))
+                return true;
             Tile tile = projectile.GetTileOnCenter();
 
             if (tile.type == ModContent.TileType<BrassFAN>())

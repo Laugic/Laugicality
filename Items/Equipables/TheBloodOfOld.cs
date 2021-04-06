@@ -9,24 +9,23 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Blood of Old");
-            Tooltip.SetDefault("+8% Mystic Damage.\nAn Additional +8% Mystic Damage when below 50% Life");
+            Tooltip.SetDefault("Increased life regen\n+10% mystic damage");
         }
 
         public override void SetDefaults()
         {
             item.width = 24;
             item.height = 24;
-            item.value = 100;
+            item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Blue;
             item.accessory = true;
+            item.lifeRegen = 2;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += .08f;
-            if(player.statLife <= player.statLifeMax2 / 2)
-                modPlayer.MysticDamage += .08f;
+            modPlayer.MysticDamage += .1f;
         }
 
         public override void AddRecipes()
