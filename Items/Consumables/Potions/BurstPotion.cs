@@ -10,7 +10,7 @@ namespace Laugicality.Items.Consumables.Potions
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Decreases Mystic Burst cooldown\n5 minute duration");
+            Tooltip.SetDefault("Decreases Mystic Burst cooldown");
         }
         public override void SetDefaults()
 		{
@@ -24,13 +24,9 @@ namespace Laugicality.Items.Consumables.Potions
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
             item.value = Item.sellPrice(silver: 2);
-		}
-        
+            item.buffType = ModContent.BuffType<MysticBurstPotion>();
+            item.buffTime = 18000;
 
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(ModContent.BuffType<MysticBurstPotion>(), 5*60*60, true);
-            return true;
         }
 
         public override void AddRecipes()
