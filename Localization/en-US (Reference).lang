@@ -1,0 +1,1717 @@
+
+// Laugicality.Buffs
+
+
+BuffName.BloodRage=Blood Rage
+BuffDescription.BloodRage=Increased Damage and Crit chance \n'Samson would be proud'
+
+BuffName.BurningFragrance=Burning Fragrance
+BuffDescription.BurningFragrance=Increased attack stats
+
+BuffName.ChestplateSwitch=Unstable Mysticism
+BuffDescription.ChestplateSwitch=Your Mysticism is unstable, and you've temporarily lost power
+
+BuffName.ConjurationBoost=Conjuration Power
+BuffDescription.ConjurationBoost='Otherworldly energy strengthens you.'\n+10% Conjuration Damage, +1 Conjuration Power
+
+BuffName.Connected=Connected
+BuffDescription.Connected=You are connected to the grid!
+
+BuffName.DartCopter=Dart Copter
+BuffDescription.DartCopter=One darty boi is fighting for you
+
+BuffName.DestructionBoost=Destruction Power
+BuffDescription.DestructionBoost='Hell's energy strengthens you.'\n+10% Destruction Damage, +1 Destruction Power
+
+BuffName.Etheramind=Etheramind
+BuffDescription.Etheramind=The Truth, Incarnate
+
+BuffName.ForGlory=For Glory
+BuffDescription.ForGlory=+15% Damage \nNo life Regen
+
+BuffName.ForHonor=For Honor
+BuffDescription.ForHonor=+15% Damage \nDefense Halved
+
+BuffName.Frigid=Frigid
+BuffDescription.Frigid='Freeze!'
+
+BuffName.Frostbite=Frostbite
+BuffDescription.Frostbite=The cold bites back!
+
+BuffName.Furious=Furious
+BuffDescription.Furious=Losing life.\nExplode upon death
+
+BuffName.IllusionBoost=Illusion Power
+BuffDescription.IllusionBoost='The mind's energy strengthens you.'\n+10% Illusion Damage, +1 Illusion Power
+
+BuffName.JumpBoost=Jump Boost
+BuffDescription.JumpBoost='Reach for the sky.'
+
+BuffName.Lovestruck=Lovestruck
+
+BuffName.Magmatic=Magmatic
+BuffDescription.Magmatic=Increased stats from being in lava!
+
+BuffName.MagmaticCore=Magmatic Core
+BuffDescription.MagmaticCore=This ball of hardened magma will fight for you
+
+BuffName.MagmaticVeins=Magmatic Veins
+BuffDescription.MagmaticVeins=Greatly increased movement speed
+
+BuffName.Midnight=Midnight
+BuffDescription.Midnight='Midnight's Moon glows bright on you.'\nUnleash a Midnight Burst when changing Mysticism
+
+BuffName.MysticBurstPotion=Burst Power
+BuffDescription.MysticBurstPotion='Mystical energy swells within you.'\nDecreases Mystic Burst cooldown
+
+BuffName.MysticPower=Mystic Power
+BuffDescription.MysticPower='The energy of the cosmos strengthens you.'\n+10% Mystic Damage
+
+BuffName.ObsidiumHeart=Obsidium Heart
+BuffDescription.ObsidiumHeart='A special kind of love.'
+
+BuffName.OmegaJumpBoost=Omega Jump Boost
+BuffDescription.OmegaJumpBoost='Reach for the next dimension.'
+
+BuffName.RockTwins=Rock Twins
+BuffDescription.RockTwins=The rulers of the caverns will protect you!
+
+BuffName.SandyShark=Sandy Shark
+BuffDescription.SandyShark=It looks a bit pouty
+
+BuffName.Shroolicopter=Shroolicopter
+BuffDescription.Shroolicopter='Rain Shrooms upon them.'
+
+BuffName.Slimed=Slimed
+BuffDescription.Slimed=Slowly losing life
+
+BuffName.Spored=Spored
+BuffDescription.Spored=Smokin hot!
+
+BuffName.Steamy=Steamy
+BuffDescription.Steamy=Smokin hot!
+
+BuffName.TimeExhausted=Out of Time
+BuffDescription.TimeExhausted=You cannot use Time Stop for a while
+
+BuffName.ToyTrain=Toy Train
+BuffDescription.ToyTrain=Choo Choo!
+
+BuffName.TrainMount=Train
+BuffDescription.TrainMount=Choo Choo!
+
+BuffName.TrueCurse=True Curse
+BuffDescription.TrueCurse=You truly can do nothing
+
+BuffName.TV=TV
+BuffDescription.TV=Don't watch- it's just fake news.
+
+BuffName.UltimateLeader=Ultimate Leader
+BuffDescription.UltimateLeader=This nebula swarm will fight for you
+
+BuffName.UltraJumpBoost=Ultra Jump Boost
+BuffDescription.UltraJumpBoost='Reach for the stars.'
+
+
+// Laugicality.Buffs.Mystic
+
+
+BuffName.Conjuration=Conjuration
+BuffDescription.Conjuration=Draw energy from other worlds
+
+BuffName.Destruction=Destruction
+BuffDescription.Destruction=Hell is your catalyst
+
+BuffName.Hermes=Hermes
+BuffDescription.Hermes=Be smitten
+
+BuffName.Illusion=Illusion
+BuffDescription.Illusion=The power of the mind is yours
+
+BuffName.Mystified=Mystified
+BuffDescription.Mystified=Disintegrating!
+
+
+// Laugicality.Items.Accessories
+
+
+===UNKNWN===
+ItemName.AggressionStone=
+ItemTooltip.AggressionStone=+10% Ranged damage \n20% Chance to not use ammo \nIncreases knockback, magic damage, and mana regen \nIncreased Enemy Spawns
+
+===UNKNWN===
+ItemName.AlterationStone=
+ItemTooltip.AlterationStone=Mastery of land and air
+
+===UNKNWN===
+ItemName.AmmoReservationGem=
+ItemTooltip.AmmoReservationGem=+20% Ammo Reduction
+
+===UNKNWN===
+ItemName.AncientRelic=
+ItemTooltip.AncientRelic=Mastery of the world
+
+===UNKNWN===
+ItemName.AngelnCrystal=
+ItemTooltip.AngelnCrystal=Improved fishing skills
+
+===UNKNWN===
+ItemName.AquaStone=
+ItemTooltip.AquaStone=Mastery of liquids
+
+===UNKNWN===
+ItemName.ArcheryGem=
+ItemTooltip.ArcheryGem=+10% Ranged Damage
+
+===UNKNWN===
+ItemName.ArtifactOfEnhancement=
+ItemTooltip.ArtifactOfEnhancement=Mastery of all
+
+===UNKNWN===
+ItemName.ArtifactOfRestoration=
+ItemTooltip.ArtifactOfRestoration=+600 Max Life \n+160 Mana \nNo longer gives Potion Sickness
+
+===UNKNWN===
+ItemName.BattleGem=
+ItemTooltip.BattleGem=Increases enemy spawn rate\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.BewungCrystal=
+ItemTooltip.BewungCrystal=Slows falling speed \n+25% Movement speed
+
+===UNKNWN===
+ItemName.BuilderGem=
+ItemTooltip.BuilderGem=Increases placement speed and +1 range
+
+===UNKNWN===
+ItemName.CalmingGem=
+ItemTooltip.CalmingGem=Decreases enemy spawn rate\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.CrateGem=
+ItemTooltip.CrateGem=Greater chance of fishing up a crate
+
+===UNKNWN===
+ItemName.CursedRelic=
+ItemTooltip.CursedRelic=Cursed? \nMastery of violence
+
+===UNKNWN===
+ItemName.DangersenseGem=
+ItemTooltip.DangersenseGem=Highlights traps\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.DeinstCrystal=
+ItemTooltip.DeinstCrystal=Increases placement speed and +1 range \n+25% Mining speed
+
+===UNKNWN===
+ItemName.EnduranceGem=
+ItemTooltip.EnduranceGem=Reduces damage taken by 10%
+
+===UNKNWN===
+ItemName.FeatherfallGem=
+ItemTooltip.FeatherfallGem=Slows falling speed\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.FishingGem=
+ItemTooltip.FishingGem=Increases fishing power by 15
+
+===UNKNWN===
+ItemName.FlipperGem=
+ItemTooltip.FlipperGem=Lets you move swiftly in liquids
+
+===UNKNWN===
+ItemName.GillsGem=
+ItemTooltip.GillsGem=Breathe water instead of air
+
+===UNKNWN===
+ItemName.GravitationGem=
+ItemTooltip.GravitationGem=Allows the control of gravity
+
+===UNKNWN===
+ItemName.GreaterHealingGem=
+ItemTooltip.GreaterHealingGem=+150 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.GreaterManaGem=
+ItemTooltip.GreaterManaGem=+60 Mana
+
+===UNKNWN===
+ItemName.HallowedRelic=
+ItemTooltip.HallowedRelic=You feel Blessed
+
+===UNKNWN===
+ItemName.HealingCrystal=
+ItemTooltip.HealingCrystal=+150 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.HealingGem=
+ItemTooltip.HealingGem=+100 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.HeartreachGem=
+ItemTooltip.HeartreachGem=Increases heart pickup range
+
+===UNKNWN===
+ItemName.HolyStone=
+ItemTooltip.HolyStone=Decreased enemy spawn rate \nTake less damage from cold sources \nIncreases heart pickup range \nIncreases life regeneration \n+1 Max Minion \nIncreases max life by 20% \nEquip in last slot for maximum effectiveness
+
+===UNKNWN===
+ItemName.HunterGem=
+ItemTooltip.HunterGem=Shows the location of enemies\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.InfernoGem=
+ItemTooltip.InfernoGem=Ignites nearby enemies\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.InvisibilityGem=
+ItemTooltip.InvisibilityGem='You can't see me.'
+
+===UNKNWN===
+ItemName.IronskinGem=
+
+===UNKNWN===
+ItemName.KekCrystal=
+ItemTooltip.KekCrystal=Increases knockback, magic damage, and mana regen
+
+===UNKNWN===
+ItemName.LebenCrystal=
+ItemTooltip.LebenCrystal=Increases heart pickup range \nIncreases life regeneration \nIncreases max life by 20% \nEquip in last slot for maximum effectiveness
+
+===UNKNWN===
+ItemName.LesserHealingGem=
+ItemTooltip.LesserHealingGem=+50 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.LesserManaGem=
+ItemTooltip.LesserManaGem=+20 Mana
+
+===UNKNWN===
+ItemName.LichtCrystal=
+ItemTooltip.LichtCrystal=Increases Light Vision
+
+===UNKNWN===
+ItemName.LifeforceGem=
+ItemTooltip.LifeforceGem=Increases max life by 20% \nEquip in last slot for maximum effectiveness
+
+===UNKNWN===
+ItemName.MachtCrystal=
+ItemTooltip.MachtCrystal=+10% Damage and critical strike chance \nSet your enemies ablaze
+
+===UNKNWN===
+ItemName.MagicPowerGem=
+ItemTooltip.MagicPowerGem=20% increased magic damage
+
+===UNKNWN===
+ItemName.MagmaCrystal=
+ItemTooltip.MagmaCrystal=Provides immunity to lava \nYou can walk on liquids
+
+===UNKNWN===
+ItemName.ManaCrystal=
+ItemTooltip.ManaCrystal=+60 Mana
+
+===UNKNWN===
+ItemName.ManaGem=
+ItemTooltip.ManaGem=+40 Mana
+
+===UNKNWN===
+ItemName.ManaRegenerationGem=
+ItemTooltip.ManaRegenerationGem=Increases mana regeneration
+
+===UNKNWN===
+ItemName.MegaHealingStone=
+ItemTooltip.MegaHealingStone=+350 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.MegaManaStone=
+ItemTooltip.MegaManaStone=+100 Mana
+
+===UNKNWN===
+ItemName.MiningGem=
+ItemTooltip.MiningGem=Increases mining speed by 25%
+
+===UNKNWN===
+ItemName.NightOwlGem=
+ItemTooltip.NightOwlGem=Increases Night Vision\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.ObsidianSkinGem=
+ItemTooltip.ObsidianSkinGem=Grants immunity to lava
+
+===UNKNWN===
+ItemName.PanzerCrystal=
+ItemTooltip.PanzerCrystal=+10% Damage reduction \n Attackers take damage
+
+===UNKNWN===
+ItemName.RageGem=
+ItemTooltip.RageGem=Increases critical strike chance by 10%
+
+===UNKNWN===
+ItemName.RecallGem=
+ItemTooltip.RecallGem='It's power isn't complete yet'
+
+===UNKNWN===
+ItemName.RegenerationGem=
+ItemTooltip.RegenerationGem=Increases life regeneration
+
+===UNKNWN===
+ItemName.ReichCrystal=
+ItemTooltip.ReichCrystal=+10% Ranged damage \n20% Chance to not use ammo \nIncreased Enemy Spawns
+
+===UNKNWN===
+ItemName.ShineGem=
+ItemTooltip.ShineGem=Gives an aura of light
+
+===UNKNWN===
+ItemName.SichtCrystal=
+ItemTooltip.SichtCrystal='I see all.'
+
+===UNKNWN===
+ItemName.SightStone=
+ItemTooltip.SightStone=Mastery of light
+
+===UNKNWN===
+ItemName.SonarGem=
+ItemTooltip.SonarGem=Allows detection of hooked fish
+
+===UNKNWN===
+ItemName.SpelunkerGem=
+ItemTooltip.SpelunkerGem=Shows the location of treasures and ore\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.SummoningGem=
+ItemTooltip.SummoningGem=Increases your max number of minions
+
+===UNKNWN===
+ItemName.SuperHealingGem=
+ItemTooltip.SuperHealingGem=+200 Max Life \nGives 1 minute of Potion Sickness
+
+===UNKNWN===
+ItemName.SuperManaGem=
+ItemTooltip.SuperManaGem=+80 Mana
+
+===UNKNWN===
+ItemName.SwiftnessGem=
+ItemTooltip.SwiftnessGem=+25% Movement speed
+
+===UNKNWN===
+ItemName.ThornsGem=
+ItemTooltip.ThornsGem=Attackers also take damage
+
+===UNKNWN===
+ItemName.TitanGem=
+ItemTooltip.TitanGem=Increases knockback
+
+===UNKNWN===
+ItemName.TitanStone=
+ItemTooltip.TitanStone=+10% Damage reduction \n+10% Damage and critical strike chance \n Attackers take damage \nSet your enemies ablaze
+
+===UNKNWN===
+ItemName.UltraHealingRelic=
+ItemTooltip.UltraHealingRelic=+500 Max Life
+
+===UNKNWN===
+ItemName.UltraManaRelic=
+ItemTooltip.UltraManaRelic=+120 Mana
+
+===UNKNWN===
+ItemName.VerteCrystal=
+ItemTooltip.VerteCrystal=Decreased enemy spawn rate \nTake less damage from cold sources \n +1 Max Minion
+
+===UNKNWN===
+ItemName.WarmthGem=
+ItemTooltip.WarmthGem=Reduces damage from cold sources
+
+===UNKNWN===
+ItemName.WasserCrystal=
+ItemTooltip.WasserCrystal=Mastery of water
+
+===UNKNWN===
+ItemName.WaterWalkingGem=
+ItemTooltip.WaterWalkingGem=Allows the ability to walk on water\nUse to toggle this effect in higher tier gems.
+
+===UNKNWN===
+ItemName.WrathGem=
+ItemTooltip.WrathGem=+10% damage
+
+
+// Laugicality.Items.Ammo
+
+
+===UNKNWN===
+ItemName.BrassArrow=
+ItemTooltip.BrassArrow=Inflicts 'Steamy'
+
+
+// Laugicality.Items.Armor
+
+
+===UNKNWN===
+ItemName.AndesiaLeggings=
+ItemTooltip.AndesiaLeggings=+150% Mystic Duration\n+15% Movement Speed
+
+ItemName.AnDioChestguard=AnDio Chestguard
+ItemTooltip.AnDioChestguard='Generalist'\nYou are immune to Time Stop
+
+ItemName.AnDioChestplate=AnDio Chestplate
+ItemTooltip.AnDioChestplate='Specialist'\nYou are immune to Time Stop
+
+===UNKNWN===
+ItemName.DioritusHelmet=
+ItemTooltip.DioritusHelmet=+18% Mystic Damage
+
+===UNKNWN===
+ItemName.FrigidChestplate=
+ItemTooltip.FrigidChestplate=+7% Melee Speed and Range Crit Chance
+
+===UNKNWN===
+ItemName.FrigidHelmet=
+ItemTooltip.FrigidHelmet=+10% Melee and Ranged Damage
+
+===UNKNWN===
+ItemName.FrigidLeggings=
+ItemTooltip.FrigidLeggings=Immunity to Frostburn, Chilled, and Frozen \n+10% Movement Speed
+
+ItemName.JungleMask=Jungle Hood
+ItemTooltip.JungleMask=Increases maximum mana by 20\n+125% Mystic Duration
+
+===UNKNWN===
+ItemName.MagmaticBoots=
+ItemTooltip.MagmaticBoots=+100% Mystic Duration\n+50%Throwing Velocity\n+15% Movement Speed\nProvides waterwalking and free movement in liquids
+
+===UNKNWN===
+ItemName.MagmaticLongcoat=
+ItemTooltip.MagmaticLongcoat=Immunity to lava, 'On Fire!', and 'Burning'\n+10% Throwing critical strike chance
+
+===UNKNWN===
+ItemName.MagmaticMask=
+ItemTooltip.MagmaticMask=+15% Mystic and Throwing Damage
+
+===UNKNWN===
+ItemName.ObsidiumBand=
+ItemTooltip.ObsidiumBand=+15% Throwing Damage
+
+===UNKNWN===
+ItemName.ObsidiumHat=
+ItemTooltip.ObsidiumHat=+15% Magic Damage
+
+===UNKNWN===
+ItemName.ObsidiumHeadgear=
+ItemTooltip.ObsidiumHeadgear=+15% Ranged Damage
+
+===UNKNWN===
+ItemName.ObsidiumHeadguard=
+ItemTooltip.ObsidiumHeadguard=+15% Melee Damage
+
+===UNKNWN===
+ItemName.ObsidiumHelmet=
+ItemTooltip.ObsidiumHelmet=+15% Mystic Damage
+
+===UNKNWN===
+ItemName.ObsidiumLongcoat=
+ItemTooltip.ObsidiumLongcoat=Immunity to lava, 'On Fire!', and 'Burning'
+
+===UNKNWN===
+ItemName.ObsidiumMask=
+ItemTooltip.ObsidiumMask=+15% Summoning Damage
+
+===UNKNWN===
+ItemName.ObsidiumPants=
+ItemTooltip.ObsidiumPants=Provides waterwalking and free movement in liquids \n+10% Movement Speed
+
+ItemName.ShroomChest=Shroom Amalgam
+ItemTooltip.ShroomChest=+2% Mystic Damage\n+20 Max Mana
+
+ItemName.ShroomHelmet=Shroom Top
+ItemTooltip.ShroomHelmet=+4% Mystic Damage
+
+ItemName.ShroomPants=Shroom Stalk
+ItemTooltip.ShroomPants=+2% Mystic Damage\n+8% Movement Speed
+
+===UNKNWN===
+ItemName.SteampunkBoots=
+ItemTooltip.SteampunkBoots=Insulated- Immune to 'Steamy' \n +10% Movement Speed
+
+===UNKNWN===
+ItemName.SteampunkHeadgear=
+ItemTooltip.SteampunkHeadgear=+20% Throwing Damage
+
+ItemName.SteampunkHelmet=Steampunk Hat
+ItemTooltip.SteampunkHelmet=+20% Mystic Damage
+
+===UNKNWN===
+ItemName.SteampunkJacket=
+ItemTooltip.SteampunkJacket=8% Increased damage and critical strike chance
+
+===UNKNWN===
+ItemName.SteampunkMask=
+ItemTooltip.SteampunkMask=+4 Minion capacity
+
+
+// Laugicality.Items.Consumables
+
+
+===UNKNWN===
+ItemName.AncientAwakener=
+ItemTooltip.AncientAwakener=Summons Dioritus\n'The rulers of the caverns are fearsome foes'
+
+===UNKNWN===
+ItemName.ChilledMesh=
+ItemTooltip.ChilledMesh=Summons Hypothema\n'It's almost freezing your fingers off.'
+
+ItemName.EmblemOfEtheria=Emblem of Etheria
+ItemTooltip.EmblemOfEtheria=Calls Etheria\n'This seems like a terrible idea.'
+
+===UNKNWN===
+ItemName.EtherialAwakener=
+ItemTooltip.EtherialAwakener=Summons Dioritus
+
+===UNKNWN===
+ItemName.EtherialBone=
+ItemTooltip.EtherialBone=Summons Skeletron
+
+===UNKNWN===
+ItemName.EtherialBulb=
+ItemTooltip.EtherialBulb=Summons Plantera
+
+===UNKNWN===
+ItemName.EtherialCell=
+ItemTooltip.EtherialCell=Summons Golem
+
+===UNKNWN===
+ItemName.EtherialCrown=
+ItemTooltip.EtherialCrown=Summons King Slime
+
+===UNKNWN===
+ItemName.EtherialEnergy=
+ItemTooltip.EtherialEnergy=Imbues your body with Etherial energy
+
+===UNKNWN===
+ItemName.EtherialEye=
+ItemTooltip.EtherialEye=Summons the Eye of Cthulhu
+
+===UNKNWN===
+ItemName.EtherialEyes=
+ItemTooltip.EtherialEyes=Summons the Twins
+
+ItemName.EtherialMechanicalSkull=Etherial Skull
+ItemTooltip.EtherialMechanicalSkull=Summons Skeletron Prime
+
+===UNKNWN===
+ItemName.EtherialMesh=
+ItemTooltip.EtherialMesh=Summons Hypothema
+
+===UNKNWN===
+ItemName.EtherialMess=
+ItemTooltip.EtherialMess=Summons Ragnar
+
+===UNKNWN===
+ItemName.EtherialMonitor=
+ItemTooltip.EtherialMonitor=Summons the Annihilator
+
+===UNKNWN===
+ItemName.EtherialMorsel=
+ItemTooltip.EtherialMorsel=Summons Dune Sharkron
+
+===UNKNWN===
+ItemName.EtherialSigil=
+ItemTooltip.EtherialSigil=Summons Moon Lord
+
+===UNKNWN===
+ItemName.EtherialSpine=
+ItemTooltip.EtherialSpine=Summons the Brain of Cthulhu
+
+===UNKNWN===
+ItemName.EtherialSteamCrown=
+ItemTooltip.EtherialSteamCrown=Summons Slybertron
+
+===UNKNWN===
+ItemName.EtherialTrainWhistle=
+ItemTooltip.EtherialTrainWhistle=Summons Steam Train
+
+ItemName.EtherialVooDooDoll=Etherial VooDoo Doll
+ItemTooltip.EtherialVooDooDoll=Summons the Wall of Flesh in the Etherial
+
+===UNKNWN===
+ItemName.EtherialWorm=
+ItemTooltip.EtherialWorm=Summons the Destroyer
+
+===UNKNWN===
+ItemName.EtherialWormFood=
+ItemTooltip.EtherialWormFood=Summons the Eater of Worlds
+
+===UNKNWN===
+ItemName.Etherination=
+ItemTooltip.Etherination=Summons Queen Bee
+
+ItemName.MechanicalMonitor=Steam-O-Vision
+ItemTooltip.MechanicalMonitor=Summons The Annihilator
+
+===UNKNWN===
+ItemName.MoltenMess=
+ItemTooltip.MoltenMess=Summons Ragnar\n'Chilled Lava.' \nGuardian of the Obsidium.
+
+===UNKNWN===
+ItemName.SteamCrown=
+ItemTooltip.SteamCrown=Summons Slybertron
+
+===UNKNWN===
+ItemName.SuspiciousTrainWhistle=
+ItemTooltip.SuspiciousTrainWhistle=Summons the Steam Train
+
+===UNKNWN===
+ItemName.TastyMorsel=
+ItemTooltip.TastyMorsel=Summons Dune Sharkron in the daylight \n'Mmm... Looks delicious.'
+
+
+// Laugicality.Items.Consumables.Potions
+
+
+===UNKNWN===
+ItemName.BurstPotion=
+ItemTooltip.BurstPotion=Decreases Mystic Burst cooldown
+
+===UNKNWN===
+ItemName.ConjurationPotion=
+ItemTooltip.ConjurationPotion=+10% Conjuration Damage, +1 Conjuration Power
+
+===UNKNWN===
+ItemName.DestructionPotion=
+ItemTooltip.DestructionPotion=+10% Destruction Damage, +1 Destruction Power
+
+===UNKNWN===
+ItemName.IllusionPotion=
+ItemTooltip.IllusionPotion=+10% Illusion Damage, +1 Illusion Power
+
+===UNKNWN===
+ItemName.JumpBoostPotion=
+ItemTooltip.JumpBoostPotion=Increases jump height
+
+===UNKNWN===
+ItemName.MysticPowerPotion=
+ItemTooltip.MysticPowerPotion=+10% Mystic Damage
+
+===UNKNWN===
+ItemName.OmegaJumpBoostPotion=
+ItemTooltip.OmegaJumpBoostPotion=INSANELY increases jump height
+
+===UNKNWN===
+ItemName.UltraJumpBoostPotion=
+ItemTooltip.UltraJumpBoostPotion=GREATLY increases jump height
+
+
+// Laugicality.Items.Equipables
+
+
+ItemName.AncientJewelry=Ancient Jewelry
+ItemTooltip.AncientJewelry=Increases life and mana regeneration \n+40 Mana
+
+ItemName.AncientNecklace=Ancient Necklace
+ItemTooltip.AncientNecklace=Increases life and mana regeneration
+
+===UNKNWN===
+ItemName.AncientWax=
+ItemTooltip.AncientWax=Increases your minion capacity 
+
+ItemName.BandOfAncients=Band of Ancients
+ItemTooltip.BandOfAncients=+40 Mana
+
+ItemName.Clockface=Clockface
+ItemTooltip.Clockface=Reduces the cooldown between Time Stops
+
+===UNKNWN===
+ItemName.ConjurationCore=
+ItemTooltip.ConjurationCore=+10% Conjuration Damage \n+1 Conjuration Power
+
+ItemName.CoreOfAnDio=Sands of Time
+ItemTooltip.CoreOfAnDio=You are immune to Time Stop
+
+ItemName.CoreOfMysticism=Core of Mysticism
+ItemTooltip.CoreOfMysticism=+1 to all Mysticism Powers
+
+ItemName.CrystalizedMagma=Crystallized Magma
+ItemTooltip.CrystalizedMagma=Critical strikes release magma shards
+
+===UNKNWN===
+ItemName.DestructionCore=
+ItemTooltip.DestructionCore=+10% Destruction Damage \n+1 Destruction Power
+
+ItemName.Eruption=Eruption
+ItemTooltip.Eruption=Release an Eruption when changing Mysticism.
+
+ItemName.FatherTime=Father Time
+ItemTooltip.FatherTime=Increases Movement Speed when Time is stopped\nReduces cooldown between Time Stops\nIncreases Duration of Time Stop\n'Mastery of Time'
+
+ItemName.FireDust=Fire Dust
+ItemTooltip.FireDust=All attacks inflict 'On Fire!'
+
+ItemName.GaiasGem=Gaia's Gem
+ItemTooltip.GaiasGem=+100% Mystic Duration\nReduces Cooldown between Mystic Bursts
+
+ItemName.HandsOfTime=The Hands of Time
+ItemTooltip.HandsOfTime=Increases the duration of Time Stop
+
+===UNKNWN===
+ItemName.IllusionCore=
+ItemTooltip.IllusionCore=+10% Illusion Damage \n+1 Illusion Power
+
+ItemName.MagmaHeart=Magma Heart
+ItemTooltip.MagmaHeart=Movement Speed is greatly increased for a time after being submerged in Lava
+
+ItemName.Marblite=Marblite
+ItemTooltip.Marblite=+10% Mystic Damage\nGet 'For Honor' and 'For Glory' when switching Mysticism.
+
+===UNKNWN===
+ItemName.MoltenTank=
+ItemTooltip.MoltenTank=+10% Throwing Damage and Velocity
+
+===UNKNWN===
+ItemName.MysticEmblem=
+ItemTooltip.MysticEmblem=+15% mystic damage
+
+===UNKNWN===
+ItemName.NinjaEmblem=
+ItemTooltip.NinjaEmblem=+15% throwing damage
+
+===UNKNWN===
+ItemName.ObsidiumHeart=
+ItemTooltip.ObsidiumHeart='A special kind of love.'\nHave a Heart from a Heart in a Heart in a Heart
+
+ItemName.ObsidiumLily=Obsidium Lily
+ItemTooltip.ObsidiumLily=Attack stats are increased for a time after being submerged in Lava
+
+ItemName.RuneOfEruption=Rune of Eruption
+ItemTooltip.RuneOfEruption=Release a storm of lava when changing Mysticism.
+
+ItemName.RuneOfTheAncients=Rune of the Ancients
+ItemTooltip.RuneOfTheAncients=Release a sandstorm when changing Mysticism.
+
+ItemName.ShroomSpore=Spore Cloud
+ItemTooltip.ShroomSpore=Unleash Spores when changing Mysticism.
+
+===UNKNWN===
+ItemName.SteamsparkJetboots=
+ItemTooltip.SteamsparkJetboots=Steam powered! \nWearer can run super fast \nImmunity to lava, can walk on liquids \nIncreases flight time and flight acceleration if worn under wings
+
+===UNKNWN===
+ItemName.SupremeEmblem=
+ItemTooltip.SupremeEmblem='The power of all'\nIncreases damage by 20%
+
+===UNKNWN===
+ItemName.SupremeMysticEmblem=
+ItemTooltip.SupremeMysticEmblem=+20% mystic damage
+
+===UNKNWN===
+ItemName.SupremeNinjaEmblem=
+ItemTooltip.SupremeNinjaEmblem=+20% throwing damage
+
+===UNKNWN===
+ItemName.SupremeRangerEmblem=
+ItemTooltip.SupremeRangerEmblem=+20% ranged damage
+
+===UNKNWN===
+ItemName.SupremeSorcererEmblem=
+ItemTooltip.SupremeSorcererEmblem=+20% magic damage
+
+===UNKNWN===
+ItemName.SupremeSummonerEmblem=
+ItemTooltip.SupremeSummonerEmblem=+20% minion damage
+
+===UNKNWN===
+ItemName.SupremeWarriorEmblem=
+ItemTooltip.SupremeWarriorEmblem=+20% melee damage
+
+===UNKNWN===
+ItemName.SweetstarNecklace=
+ItemTooltip.SweetstarNecklace=Increased invincibility time and movement speed after taking damage \nRelease stars and bees after taking damage
+
+ItemName.TimeWinder=Time Winder
+ItemTooltip.TimeWinder=Greatly increased mobility while time is stopped
+
+ItemName.ToyTrain=Miniature Train Whistle
+ItemTooltip.ToyTrain=Summons a Toy Train that follows you
+
+===UNKNWN===
+ItemName.TrainWhistle=
+ItemTooltip.TrainWhistle=Calls a Train for you to ride! \n'Not so suspicious'
+
+
+// Laugicality.Items.Loot
+
+
+ItemName.AncientShard=Ancient Shard
+
+ItemName.AndesiaCore=Andesia Core
+ItemTooltip.AndesiaCore=For Honor!
+
+ItemName.AnDioTreasureBag=Treasure Bag
+
+ItemName.AnnihilatorTreasureBag=Treasure Bag
+
+===UNKNWN===
+ItemName.BrainOfEtheria=
+ItemTooltip.BrainOfEtheria=+1 to all Mystic powers while in the Etherial
+
+ItemName.CogOfEtheria=Cog of Etheria
+ItemTooltip.CogOfEtheria=Increases your max number of minions by 4 while in the Etherial
+
+ItemName.CogOfKnowledge=Cog of Knowledge
+ItemTooltip.CogOfKnowledge=Increases your max number of minions by 2
+
+ItemName.DarkShard=Magmatic Shard
+
+ItemName.DioritusCore=Dioritus Core
+ItemTooltip.DioritusCore=For Glory!
+
+===UNKNWN===
+ItemName.DuneSharkronTreasureBag=
+
+===UNKNWN===
+ItemName.Etheramind=
+ItemTooltip.Etheramind='Rule from above'
+
+===UNKNWN===
+ItemName.EtherialConjurationCore=
+ItemTooltip.EtherialConjurationCore=+20% Conjuration Damage and +2 Conjuration Power while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialDestructionCore=
+ItemTooltip.EtherialDestructionCore=+20% Destruction Damage and +2 Destruction Power while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialEssence=
+ItemTooltip.EtherialEssence=From the world beyond.
+
+===UNKNWN===
+ItemName.EtherialFrost=
+ItemTooltip.EtherialFrost=+30% Melee and Ranged crit when in the Etherial
+
+===UNKNWN===
+ItemName.EtherialGel=
+ItemTooltip.EtherialGel=Super Jump Boost while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialGlobe=
+ItemTooltip.EtherialGlobe=Allows the use of Etherial accessories outside the Etherial. \nPut above Etherial accessories to work
+
+===UNKNWN===
+ItemName.EtherialIllusionCore=
+ItemTooltip.EtherialIllusionCore=+20% Illusion Damage and +2 Illusion Power while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialPack=
+ItemTooltip.EtherialPack=+30% Movement Speed and Max Run Speed while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialSac=
+ItemTooltip.EtherialSac=+30% Crit Chance while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialScarf=
+ItemTooltip.EtherialScarf=35% Damage Reduction while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialSkull=
+ItemTooltip.EtherialSkull=+20% Damage while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialTank=
+ItemTooltip.EtherialTank=+30% Mystic Damage while in the Etherial
+
+===UNKNWN===
+ItemName.EtherialTruffle=
+ItemTooltip.EtherialTruffle=Increased mobility while in the Etherial
+
+===UNKNWN===
+ItemName.Etherworks=
+ItemTooltip.Etherworks=+30% Throwing damage and +50% Throwing Velocity while in the Etherial
+
+ItemName.EyeOfEtheria=Eye of Etheria
+ItemTooltip.EyeOfEtheria=Allows you to see all creatures, no matter which dimension you are in.
+
+===UNKNWN===
+ItemName.FrigidEssence=
+
+===UNKNWN===
+ItemName.FrostEssence=
+ItemTooltip.FrostEssence=Unleashes Ice Shards when struck. +8% Melee and Ranged crit
+
+===UNKNWN===
+ItemName.FrostShard=
+
+===UNKNWN===
+ItemName.HypothemaTreasureBag=
+
+===UNKNWN===
+ItemName.MagmaticCluster=
+ItemTooltip.MagmaticCluster='A Titan's Soul'
+
+===UNKNWN===
+ItemName.MagmaticCrystal=
+
+===UNKNWN===
+ItemName.MoltenCore=
+ItemTooltip.MoltenCore=Attacks inflict 'On Fire!'. +4 Defense \n+30% Throwing Velocity and Mystic Duration\nRelease a burst of rocks when hit
+
+===UNKNWN===
+ItemName.MoltenEtheria=
+ItemTooltip.MoltenEtheria=+8 Defense, +60% Throwing Velocity and Mystic Duration while in the Etherial
+
+===UNKNWN===
+ItemName.ObsidiumChunk=
+ItemTooltip.ObsidiumChunk=Pulsing with heat. \nRight Click to open
+
+===UNKNWN===
+ItemName.Pipeworks=
+ItemTooltip.Pipeworks=+15% Throwing damage \n+25% Throwing Velocity
+
+===UNKNWN===
+ItemName.Pyramind=
+ItemTooltip.Pyramind=Increases your minion capacity \n+40 Mana \nUnleash a Sandstorm when struck
+
+===UNKNWN===
+ItemName.RagnarTreasureBag=
+
+===UNKNWN===
+ItemName.SlybertronTreasureBag=
+
+ItemName.SoulOfFraught=Soul of Fraught
+ItemTooltip.SoulOfFraught='The essence of fear'
+
+ItemName.SoulOfHaught=Soul of Haught
+ItemTooltip.SoulOfHaught='The essence of hot creatures'
+
+ItemName.SoulOfSought=Soul of Sought
+ItemTooltip.SoulOfSought='The essence of space creatures'
+
+ItemName.SoulOfThought=Soul of Thought
+ItemTooltip.SoulOfThought='The essence of intelligence'
+
+ItemName.SoulOfWrought=Soul of Wrought
+ItemTooltip.SoulOfWrought='The essence of havoc'
+
+===UNKNWN===
+ItemName.SteamBar=
+
+===UNKNWN===
+ItemName.SteamTank=
+ItemTooltip.SteamTank=Steam powered!\nIncreases Mystic damage by 12% \nIncreases movement speed by 50% and jump height by 2\nReduces the cooldown between Mystic Bursts.
+
+===UNKNWN===
+ItemName.SteamTrainTreasureBag=
+
+===UNKNWN===
+ItemName.StoneOfEtheria=
+ItemTooltip.StoneOfEtheria=Greatly increased life regeneration while in the Etherial
+
+ItemName.TheWorldOfEtheria=The World of Etheria
+ItemTooltip.TheWorldOfEtheria=Your projectiles are immune to Time Stop when in the Etherial
+
+
+// Laugicality.Items.Materials
+
+
+===UNKNWN===
+ItemName.AlbusDust=
+ItemTooltip.AlbusDust='A whiff of the mystical'
+
+===UNKNWN===
+ItemName.ArcaneShard=
+ItemTooltip.ArcaneShard=Used as a catalyst in many transmutations\n'A sliver of Magic'
+
+===UNKNWN===
+ItemName.AuraDust=
+ItemTooltip.AuraDust='A puff of loyalty'
+
+===UNKNWN===
+ItemName.BottledGel=
+ItemTooltip.BottledGel=The gels will mesh together over time
+
+===UNKNWN===
+ItemName.BottledPinkGel=
+ItemTooltip.BottledPinkGel=The Pink Gel has consumed the normal gel.\nRight Click to open.
+
+===UNKNWN===
+ItemName.BysmalBar=
+ItemTooltip.BysmalBar='Tangibly intangible'
+
+===UNKNWN===
+ItemName.CaerulumDust=
+ItemTooltip.CaerulumDust='A shadow's soul'
+
+===UNKNWN===
+ItemName.ChilledBar=
+ItemTooltip.ChilledBar=Very Cold
+
+===UNKNWN===
+ItemName.GalacticFragment=
+ItemTooltip.GalacticFragment='The secrets of the universe swirl around this fragment'
+
+===UNKNWN===
+ItemName.Gear=
+ItemTooltip.Gear='Like a Cog, but better.'
+
+===UNKNWN===
+ItemName.MagmaSnapper=
+ItemTooltip.MagmaSnapper='Don't get your hand too close.'
+
+===UNKNWN===
+ItemName.NovaFragment=
+ItemTooltip.NovaFragment='Cosmic entropy bursts from this fragment'
+
+===UNKNWN===
+ItemName.NullEmblem=
+
+===UNKNWN===
+ItemName.NullShard=
+
+===UNKNWN===
+ItemName.ObsidiumBar=
+
+===UNKNWN===
+ItemName.RegisDust=
+ItemTooltip.RegisDust='The wealth of knowledge'
+
+===UNKNWN===
+ItemName.RubrumDust=
+ItemTooltip.RubrumDust='A pinch of rage'
+
+===UNKNWN===
+ItemName.VerdiDust=
+ItemTooltip.VerdiDust='A lump of potential'
+
+
+// Laugicality.Items.Placeable
+
+
+===UNKNWN===
+ItemName.AlchemicalInfuser=
+ItemTooltip.AlchemicalInfuser=Infuses Potions into Gems
+
+===UNKNWN===
+ItemName.AncientEnchanter=
+ItemTooltip.AncientEnchanter=Combines Stones into Relics
+
+===UNKNWN===
+ItemName.AntitherialBlock=
+
+===UNKNWN===
+ItemName.Bysmal=
+ItemTooltip.Bysmal='Painful to even touch'
+
+ItemName.CrystalineInfuser=Crystalline Infuser
+ItemTooltip.CrystalineInfuser=Combines Gems into Crystals
+
+===UNKNWN===
+ItemName.EtherialBlock=
+
+===UNKNWN===
+ItemName.LaugicalWorkbench=
+ItemTooltip.LaugicalWorkbench=For crafting things to craft things. \n'It's completely logical!'
+
+===UNKNWN===
+ItemName.LavaGem=
+ItemTooltip.LavaGem=Grows on Obsidium Rock
+
+===UNKNWN===
+ItemName.Lycoris=
+ItemTooltip.Lycoris='Plants of hell'
+
+===UNKNWN===
+ItemName.MineralEnchanter=
+ItemTooltip.MineralEnchanter=Combines Crystals into Stones
+
+===UNKNWN===
+ItemName.ObsidiumBrick=
+
+===UNKNWN===
+ItemName.ObsidiumBrickWall=
+
+===UNKNWN===
+ItemName.ObsidiumChest=
+
+===UNKNWN===
+ItemName.ObsidiumCore=
+ItemTooltip.ObsidiumCore=Grows Obsidium Heart Crystals over time
+
+===UNKNWN===
+ItemName.ObsidiumOre=
+
+ItemName.ObsidiumPlant=Lycoris Radiata
+ItemTooltip.ObsidiumPlant='Plants of hell'
+
+===UNKNWN===
+ItemName.ObsidiumRock=
+ItemTooltip.ObsidiumRock=Grows Lava Gems over time
+
+===UNKNWN===
+ItemName.ObsidiumRockWall=
+
+===UNKNWN===
+ItemName.Radiata=
+ItemTooltip.Radiata='Roots of hell'
+
+ItemName.Transmutable=Transmutable
+ItemTooltip.Transmutable=For basic metal transmutations
+
+===UNKNWN===
+ItemName.TransmutationTable=
+ItemTooltip.TransmutationTable=Transmutes items of equal value
+
+===UNKNWN===
+ItemName.ZincBrick=
+
+===UNKNWN===
+ItemName.ZincBrickWall=
+
+===UNKNWN===
+ItemName.ZincOre=
+ItemTooltip.ZincOre=A crucial component of Brass
+
+
+// Laugicality.Items.Placeable.MusicBoxes
+
+
+ItemName.AnDioMusicBox=Music Box (AnDio)
+
+ItemName.AnnihilatorMusicBox=Music Box (Annihilator)
+
+ItemName.DioritusMusicBox=Music Box (Dioritus)
+
+ItemName.DuneSharkronMusicBox=Music Box (Dune Sharkron)
+
+ItemName.EtheriaMusicBox=Music Box (Etheria)
+
+ItemName.GreatShadowMusicBox=Music Box (Great Shadow)
+
+ItemName.HypothemaMusicBox=Music Box (Hypothema)
+
+ItemName.ObsidiumMusicBox=Music Box (Obsidium)
+
+ItemName.RagnarMusicBox=Music Box (Ragnar)
+
+ItemName.SlybertronMusicBox=Music Box (Slybertron)
+
+ItemName.SteamTrainMusicBox=Music Box (Steam Train)
+
+
+// Laugicality.Items.SoulStone
+
+
+===UNKNWN===
+ItemName.AssassinStone=
+ItemTooltip.AssassinStone=Enfuses your soul with the essence of an Assassin \nThrowing and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.ConjurerStone=
+ItemTooltip.ConjurerStone=Enfuses your soul with the essence of a Conjurer \nMystic and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.DestructionistStone=
+ItemTooltip.DestructionistStone=Enfuses your soul with the essence of a Destructionist \nMystic and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.HunterStone=
+ItemTooltip.HunterStone=Enfuses your soul with the essence of a Hunter \nRange and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.IllusionistStone=
+ItemTooltip.IllusionistStone=Enfuses your soul with the essence of an Illusionist \nMystic and Mobility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.MageStone=
+ItemTooltip.MageStone=Enfuses your soul with the essence of a Mage \nMagic and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.NecromancerStone=
+ItemTooltip.NecromancerStone=Enfuses your soul with the essence of a Necromancer \nSummon and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.NinjaStone=
+ItemTooltip.NinjaStone=Enfuses your soul with the essence of a Ninja \nThrowing and Mobility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.PaladinStone=
+ItemTooltip.PaladinStone=Enfuses your soul with the essence of a Paladin \nMelee and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.RogueStone=
+ItemTooltip.RogueStone=Enfuses your soul with the essence of a Rogue \nRange and Mobility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.ShamanStone=
+ItemTooltip.ShamanStone=Enfuses your soul with the essence of a Shaman \nSummon and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.SharpshooterStone=
+ItemTooltip.SharpshooterStone=Enfuses your soul with the essence of a Sharpshooter \nRange and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.SorcererStone=
+ItemTooltip.SorcererStone=Enfuses your soul with the essence of a Sorcerer \nSummon and Magic focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.SoulStone=
+ItemTooltip.SoulStone=Absorbs the souls of powerful fallen creatures\nAn otherworldly entitiy seems to have sealed some of its power...
+
+===UNKNWN===
+ItemName.TankStone=
+ItemTooltip.TankStone=Enfuses your soul with the essence of a Tank \nMelee and Defense focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.ThiefStone=
+ItemTooltip.ThiefStone=Enfuses your soul with the essence of a Thief \nThrowing and Utility focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.WarlockStone=
+ItemTooltip.WarlockStone=Enfuses your soul with the essence of a Warlock \nMagic and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.WarriorStone=
+ItemTooltip.WarriorStone=Enfuses your soul with the essence of a Warrior \nMelee and Damage focus \nRight click to bind your Soul
+
+===UNKNWN===
+ItemName.WizardStone=
+ItemTooltip.WizardStone=Enfuses your soul with the essence of a Wizard \nMagic and Mana focus \nRight click to bind your Soul
+
+
+// Laugicality.Items.Tools
+
+
+ItemName.BysmalDrill=Drill-o-Tron 5000
+ItemTooltip.BysmalDrill='To the core.'
+
+ItemName.Drillinator=The Chariot
+ItemTooltip.Drillinator='To the sun.'
+
+ItemName.DrillOTron10000=Drillinator
+ItemTooltip.DrillOTron10000='To the moon.'
+
+===UNKNWN===
+ItemName.FrigidPickaxe=
+ItemTooltip.FrigidPickaxe='Slow and steady'
+
+===UNKNWN===
+ItemName.FrostburnPickaxe=
+ItemTooltip.FrostburnPickaxe='The best of both worlds'
+
+===UNKNWN===
+ItemName.ObsidiumPickaxe=
+ItemTooltip.ObsidiumPickaxe='Not quite Molten'
+
+
+// Laugicality.Items.Useables
+
+
+ItemName.EssenceOfEtheria=The High Priestess
+ItemTooltip.EssenceOfEtheria=Allows you to enter and leave the Etherial at will, as long as no powerful creatures are present to stop you.
+
+ItemName.SteampunkWatch=Steampunk Watch
+ItemTooltip.SteampunkWatch=You tell the time.
+
+ItemName.ZaWarudoWatch=The World
+ItemTooltip.ZaWarudoWatch='ZA WARUDO!'
+
+
+// Laugicality.Items.Weapons
+
+
+===UNKNWN===
+ItemName.Andeshiard=
+
+ItemName.AndesiaStaff=Staff of Honor
+ItemTooltip.AndesiaStaff=Right click to place \n'Onto War!'
+
+ItemName.AnDioYo=AnDio-Yo
+ItemTooltip.AnDioYo=A marball of fun
+
+ItemName.AnDiuriken=AnDiuriken
+ItemTooltip.AnDiuriken=Stacks up to 4
+
+===UNKNWN===
+ItemName.Antenna=
+ItemTooltip.Antenna=Summons a TV to fight for you.
+
+ItemName.Aurora=Aurora
+ItemTooltip.Aurora='Chill them into submission'
+
+ItemName.BookOfKnowledge=Book of Knowledge
+ItemTooltip.BookOfKnowledge=Rain Lightning upon them
+
+===UNKNWN===
+ItemName.BysmalBlade=
+ItemTooltip.BysmalBlade=Tears a hole through dimensions. \nBanishes weak creatures to the Etherial.
+
+ItemName.ChakramOfTheViciousAssassin=Chakram of The Vicious Assassin
+ItemTooltip.ChakramOfTheViciousAssassin='Surround and eliminate'
+
+===UNKNWN===
+ItemName.Coginator=
+
+===UNKNWN===
+ItemName.Daggoritus=
+
+ItemName.DioritusBlade=Blade of Glory
+ItemTooltip.DioritusBlade=Right click to throw \n'Into Battle!'
+
+===UNKNWN===
+ItemName.Electrospark=
+ItemTooltip.Electrospark=Zap your enemies to dust
+
+ItemName.EnginatorM=Enginator
+ItemTooltip.EnginatorM=CHOO CHOO
+
+ItemName.EnginatorT=Enginator
+ItemTooltip.EnginatorT=CHOO CHOO
+
+===UNKNWN===
+ItemName.Eruptor=
+ItemTooltip.Eruptor='For Fury'
+
+ItemName.FrigidYoyo=Frigid Yoyo
+
+===UNKNWN===
+ItemName.FrostBlade=
+ItemTooltip.FrostBlade=Frostular Fragments
+
+===UNKNWN===
+ItemName.FrostCannon=
+ItemTooltip.FrostCannon=Fires a blast of frost
+
+===UNKNWN===
+ItemName.FrostThrower=
+ItemTooltip.FrostThrower=Fires a blast of frost
+
+===UNKNWN===
+ItemName.Geodizer=
+ItemTooltip.Geodizer='For Fury'
+
+ItemName.HolyBlade=Blade of The Holy Knight
+ItemTooltip.HolyBlade='Call down the sky'
+
+===UNKNWN===
+ItemName.MagmaticaStaff=
+ItemTooltip.MagmaticaStaff=Summons a Magmatic Core to fight for you.
+
+===UNKNWN===
+ItemName.Obshardian=
+
+===UNKNWN===
+ItemName.ObsidiumGreatbow=
+ItemTooltip.ObsidiumGreatbow='Molten Frenzy' \nTurns Wooden Arrows into Obsidium Arrows\n20% chance to not consume ammo
+
+ItemName.ObsidiumYoyo=Obsidium Yoyo
+
+===UNKNWN===
+ItemName.SandShardStaff=
+ItemTooltip.SandShardStaff=Summons a Sandy Shark to fight for you.
+
+ItemName.SandstormInABook=Sandstorm in a Book
+ItemTooltip.SandstormInABook=Don't try to read it
+
+===UNKNWN===
+ItemName.Scydian=
+ItemTooltip.Scydian=The power of magma \n Inflicts 'On Fire!'
+
+===UNKNWN===
+ItemName.Shroolipad=
+ItemTooltip.Shroolipad=Summons a Shroolicopter to fight for you.
+
+ItemName.StarHunter=Bow of The Star Hunter
+ItemTooltip.StarHunter=Shoot a supernova\n50% chance to not consume ammo
+
+===UNKNWN===
+ItemName.Stationator=
+ItemTooltip.Stationator=Here they come
+
+===UNKNWN===
+ItemName.Steamstring=
+ItemTooltip.Steamstring='Steaming Frenzy' \nTurns all Arrows into Brass Arrows\n20% chance to not consume ammo
+
+===UNKNWN===
+ItemName.TheMessenger=
+ItemTooltip.TheMessenger=Summons the rulers of the caverns to fight for you.
+
+ItemName.TheSnowflake=Snowflake
+
+===UNKNWN===
+ItemName.TrainScythe=
+ItemTooltip.TrainScythe=CHOO CHOO! \n Inflicts 'Steamy'
+
+ItemName.UltimateCall=Call of the Ultimate Leader
+ItemTooltip.UltimateCall=Conjur the cosmos to fight for you.
+
+===UNKNWN===
+ItemName.Volcite=
+ItemTooltip.Volcite=Volcanic Eruption
+
+ItemName.WarlockStaff=Staff of The Enlightened Warlock
+ItemTooltip.WarlockStaff=Ion Blast
+
+
+// Laugicality.Items.Weapons.Mystic
+
+
+ItemName.CupidsBow=Cupid's Bow
+ItemTooltip.CupidsBow='Make them fall for you' \nArrows inflict 'Lovestruck', which makes enemies drop Hearts on death\nFires different projectiles based on Mysticism\nThe amount of angels that can be conjured is your Conjuration Power * your Max Minions + 1
+
+ItemName.DionysusBloom=Dionysus' Bloom
+ItemTooltip.DionysusBloom='Grow his strength' \nIllusion inflicts 'Venom'\nFires different projectiles based on Mysticism
+
+ItemName.FreyasFley=Freya's Fley
+ItemTooltip.FreyasFley=Spores of the gods\nIllusion inflicts 'Shroomed', which slowly drains enemy life\nFires different projectiles based on Mysticism
+
+ItemName.FriggsPhalanx=Frigg's Phalanx
+ItemTooltip.FriggsPhalanx='The swarm cometh'\nIllusion inflicts 'Poison'\nFires different projectiles based on Mysticism
+
+ItemName.GaiasWorld=Gaia's World
+ItemTooltip.GaiasWorld=The World is in your hands\nIllusion inflicts a random elemental debuff\nFires different projectiles based on Mysticism
+
+ItemName.GreatGladius=Gladius of The Great Moldyrian
+ItemTooltip.GreatGladius=Praise the gods\nIlusion inflicts 'Daybroken'\nAttacks differently projectiles based on Mysticism
+
+ItemName.HadesJudgement=Hades' Judgement
+ItemTooltip.HadesJudgement=Cleanse your sins\nIllusion inflicts 'Shadowflame'\nFires different projectiles based on Mysticism
+
+ItemName.HermesFlight=Hermes' Flight
+ItemTooltip.HermesFlight=Weild the power of Hermes\nIllusion inflicts 'Hermes' Smite', which drains enemy life\nFires different projectiles based on Mysticism
+
+ItemName.MarsFury=Mars' Fury
+ItemTooltip.MarsFury=A Furious War\nIllusion inflicts 'Furious', which deals damage over time and makes enemies explode into Magma Shards upon death\nFires different projectiles based on Mysticism
+
+ItemName.PlutosFrost=Pluto's Frost
+ItemTooltip.PlutosFrost='Harness the void of Space' \nIllusion inflicts 'Frigid', which stops enemies in their tracks\nFires different projectiles based on Mysticism
+
+ItemName.StaffOfAnDio=Loki's Staff
+ItemTooltip.StaffOfAnDio='Many tricks up his sleeve'\nIllusion locks the player in place\nFires different projectiles based on Mysticism
+
+ItemName.VulcansWrath=Vulcan's Wrath
+
+ItemName.Yuletide=Yuletide
+ItemTooltip.Yuletide='Holiday Cheer'\nIllusion inflicts 'Frostburn'\nFires different projectiles based on Mysticism
+
+
+// Laugicality
+
+
+===UNKNWN===
+ItemName.MysticItem=
+
+===UNKNWN===
+ItemName.SteamItem=
+
+
+// Laugicality.NPCs.Bosses
+
+
+NPCName.MechanicalCrawler=Mechanical Charger
+
+NPCName.MechanicalMimic=Mechanical Mimic
+
+NPCName.MechanicalShelly=Mechanical Copter
+
+NPCName.MechanicalSlimer=Mechanical Creeper
+
+NPCName.MechanicalCreeper=Mechanical Spikinator
+
+NPCName.TheAnnihilator=The Annihilator
+
+
+// Laugicality.NPCs.Etheria
+
+
+NPCName.Etheria=Etheria
+
+NPCName.EtheriaDecoy=Etherial Shadow
+
+NPCName.EtherialSpiralShot=Etherial Pulse
+
+NPCName.EtherialTear=Etherial Tear
+
+NPCName.TrueEtherialSpiralShot=True Etherial Pulse
+
+NPCName.TrueEtherialTear=True Etherial Tear
+
+
+// Laugicality.NPCs.Etherial.BossFights
+
+
+===UNKNWN===
+NPCName.SuperServant=
+
+===UNKNWN===
+NPCName.SuperSlime=
+
+
+// Laugicality.NPCs.Etherial.Enemies
+
+
+===UNKNWN===
+NPCName.EtherialSpirit=
+
+
+// Laugicality.NPCs
+
+
+NPCName.Conductor=Conductor
+
+
+// Laugicality.NPCs.Obsidium
+
+
+===UNKNWN===
+NPCName.LavaTitan=
+
+===UNKNWN===
+NPCName.MagmaCaster=
+
+===UNKNWN===
+NPCName.Worm=
+
+NPCName.Magmatipede=Magmatipede
+
+===UNKNWN===
+NPCName.MagmatipedeHead=
+
+===UNKNWN===
+NPCName.MagmatipedeBody=
+
+===UNKNWN===
+NPCName.MagmatipedeTail=
+
+===UNKNWN===
+NPCName.MoltenSoul=
+
+NPCName.Moltioch=Moltioch
+
+===UNKNWN===
+NPCName.MoltiochHead=
+
+===UNKNWN===
+NPCName.MoltiochBody=
+
+===UNKNWN===
+NPCName.MoltiochTail=
+
+===UNKNWN===
+NPCName.ObsidiumDriller=
+
+===UNKNWN===
+NPCName.ObsidiumElemental=
+
+===UNKNWN===
+NPCName.ObsidiumSkull=
+
+===UNKNWN===
+NPCName.TitanBlast=
+
+
+// Laugicality.NPCs.PreTrio
+
+
+NPCName.DuneSharkron=Dune Sharkron
+
+NPCName.Hypothema=Hypothema
+
+NPCName.Ragnar=Ragnar
+
+
+// Laugicality.NPCs.RockTwins
+
+
+NPCName.Andesia=Andesia
+
+===UNKNWN===
+NPCName.AnDio1=
+
+===UNKNWN===
+NPCName.AnDio2=
+
+NPCName.AnDio3=AnDio
+
+NPCName.AnDioLaserBall=Laser Ball
+
+NPCName.Dioritus=Dioritus
+
+NPCName.LaserBall=LaserBall
+
+
+// Laugicality.NPCs.Slybertron
+
+
+NPCName.Slybertron=Slybertron
+
+
+// Laugicality.NPCs.SteamTrain
+
+
+NPCName.SteamTrain=Steam Train
+
+
+// Laugicality.Tiles
+
+
+MapObject.AlchemicalInfuser=Alchemical Infuser
+
+MapObject.AncientEnchanter=Ancient Enchanter
+
+MapObject.CrystalineInfuser=Crystalline Infuser
+
+MapObject.LaugicalWorkbench=Laugical Workbench
+
+MapObject.LavaGem=Lava Gem
+
+MapObject.MineralEnchanter=Mineral Enchanter
+
+MapObject.ObsidiumChest=Obsidium Chest
+
+MapObject.ObsidiumCore=Obsidium Core
+
+MapObject.ObsidiumHeart=ObsidiumHeart
+
+MapObject.ObsidiumOreBlock=Obsidium Ore
+
+MapObject.ObsidiumPlantBulbs=Lycoris Radiata
+
+MapObject.ObsidiumPlantGrass=Lycoris Radiata
+
+MapObject.ObsidiumPlantGrass2=Lycoris Radiata
+
+MapObject.ObsidiumPlantHeart=Lycoris Radiata
+
+MapObject.ObsidiumPlantLeaves=Lycoris Radiata
+
+MapObject.ObsidiumPlantMine=Lycoris Radiata
+
+MapObject.Transmutable=Transmutation Table
+
+MapObject.TransmutationTable=Transmutation Table
+
+MapObject.Zinc=Zinc
+
+
+// Laugicality.Tiles.MusicBoxes
+
+
+MapObject.AnDioMusicBox=AnDio Music Box
+
+MapObject.AnnihilatorMusicBox=Annihilator Music Box
+
+MapObject.DioritusMusicBox=Dioritus Music Box
+
+MapObject.DuneSharkronMusicBox=Dune Sharkron Music Box
+
+MapObject.EtheriaMusicBox=Etheria Music Box
+
+MapObject.GreatShadowMusicBox=Great Shadow Music Box
+
+MapObject.HypothemaMusicBox=Hypothema Music Box
+
+MapObject.ObsidiumMusicBox=Obsidium Music Box
+
+MapObject.RagnarMusicBox=Ragnar Music Box
+
+MapObject.SlybertronMusicBox=Slybertron Music Box
+
+MapObject.SteamTrainMusicBox=Steam Train Music Box
+
