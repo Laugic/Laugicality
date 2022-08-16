@@ -20,7 +20,7 @@ namespace Laugicality.Items.Weapons.Range
             item.ranged = true;
             item.width = 50;
             item.height = 26;
-            item.useAnimation = item.useTime = 20;
+            item.useAnimation = item.useTime = 26;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;

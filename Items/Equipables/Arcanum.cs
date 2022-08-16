@@ -9,7 +9,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Arcanum");
-            Tooltip.SetDefault("+10% Overflow Capacity\n+20 Potentia");
+            Tooltip.SetDefault("+40 mana\n+15% Overflow");
         }
 
         public override void SetDefaults()
@@ -23,11 +23,9 @@ namespace Laugicality.Items.Equipables
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.statManaMax2 += 40;
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.GlobalOverflow += .1f;
-            modPlayer.LuxMax += 20;
-            modPlayer.VisMax += 20;
-            modPlayer.MundusMax += 20;
+            modPlayer.GlobalOverflow += .15f;
         }
 
         public override void AddRecipes()

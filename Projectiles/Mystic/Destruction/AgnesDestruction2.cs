@@ -20,11 +20,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
         public override void AI()
         {
             projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X) + 1.57f;
-            delay++;
-            if(delay > 18)
-            {
                 projectile.alpha = Math.Max(projectile.alpha - 20, 0);
-            }
         }
     }
 }

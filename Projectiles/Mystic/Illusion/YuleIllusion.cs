@@ -1,3 +1,4 @@
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -17,7 +18,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 600;
             projectile.ignoreWater = true;
             projectile.tileCollide = true;
-            buffID = BuffID.Frostburn;
+            buffID = ModContent.BuffType<BrittleBuff>();
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

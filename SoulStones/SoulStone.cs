@@ -16,7 +16,7 @@ namespace Laugicality.SoulStones
         {
             base.SetStaticDefaults();
 
-            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures");
+            Tooltip.SetDefault("Absorbs the souls of powerful fallen creatures\nWorks from your Inventory");
         }
 
         public override void SetDefaults()
@@ -28,11 +28,11 @@ namespace Laugicality.SoulStones
             item.value = Item.buyPrice(silver: 20);
             item.rare = ItemRarityID.Expert;
 
-            item.accessory = true;
+            //item.accessory = true;
             Cursed = true;
         }
 
-        public override bool CanEquipAccessory(Player player, int slot) => base.CanEquipAccessory(player, slot) && player.GetModPlayer<LaugicalityPlayer>().Focus != null;
+        //public override bool CanEquipAccessory(Player player, int slot) => base.CanEquipAccessory(player, slot) && player.GetModPlayer<LaugicalityPlayer>().Focus != null;
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -103,6 +103,28 @@ namespace Laugicality.SoulStones
             }
         }
 
+        public override void UpdateInventory(Player player)
+        {
+            if (Main.LocalPlayer != player)
+                return;
+
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get(Main.LocalPlayer);
+
+            if (laugicalityPlayer.Focus == null)
+                return;
+
+            for (int i = 0; i < laugicalityPlayer.Focus.EffectsCount; i++)
+            {
+                if (laugicalityPlayer.Focus.GetEffect(i).Condition(laugicalityPlayer))
+                    laugicalityPlayer.Focus.GetEffect(i).Effect(laugicalityPlayer, item.favorited);
+            }
+
+            if (LaugicalityWorld.GetCurseCount() > 0)
+                GetCurseEffects(player, item.favorited);
+            base.UpdateInventory(player);
+        }
+
+        /*
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (Main.LocalPlayer != player)
@@ -122,7 +144,7 @@ namespace Laugicality.SoulStones
             if(LaugicalityWorld.GetCurseCount() > 0)
                 GetCurseEffects(player, hideVisual);
             base.UpdateAccessory(player, hideVisual);
-        }
+        }*/
 
         private static void GetCurseEffects(Player player, bool hideVisual)
         {

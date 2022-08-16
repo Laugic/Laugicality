@@ -14,7 +14,7 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gaia's World");
-            Tooltip.SetDefault("The World is in your hands\nIllusion inflicts a random elemental debuff\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("The World is in your hands");
             Item.staff[item.type] = true;
         }
 

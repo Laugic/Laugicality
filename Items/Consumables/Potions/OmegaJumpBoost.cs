@@ -38,9 +38,9 @@ namespace Laugicality.Items.Consumables.Potions
             recipe.AddIngredient(ItemID.BottledWater, 1);
             recipe.AddIngredient(ItemID.Feather, 1);
             recipe.AddIngredient(ItemID.PinkGel, 1);
-            recipe.AddIngredient(575, 1); //Soul of Flight
-            recipe.AddIngredient(1516, 1); //GiantHarpyFeather
-            recipe.AddIngredient(null, "VerdiDust", 1);
+            recipe.AddIngredient(ItemID.SoulofFlight, 1);
+            recipe.AddIngredient(ItemID.GiantHarpyFeather, 1);
+            recipe.AddIngredient(ItemID.LargeEmerald, 1);
             recipe.AddTile(13);
             recipe.SetResult(this);
             recipe.AddRecipe();

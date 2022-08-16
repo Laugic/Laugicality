@@ -32,6 +32,7 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<TheBloodOfOld>());
             recipe.AddIngredient(ItemID.TissueSample, 16);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

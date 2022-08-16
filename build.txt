@@ -1,6 +1,6 @@
 author = Laugic 
 version = 1.0
-displayName = [c/85C1E9:The Enigma Mod!]
+displayName = [c/f1c232:The Enigma Mod!]
 homepage = https://discord.gg/gfmKFRZ
 hideCode = false
 hideResources = false
@@ -8,4 +8,4 @@ includeSource = true
 includePDB = true
 buildIgnore = *.csproj, *.zip, *.user, obj\*, bin\*, .vs\*, .git\*, *.gitignore
 languageVersion = 6
-modReferences = WebmilioCommons@0.1.7.10
+modReferences = WebmilioCommons@0.1.7.10,SubworldLibrary

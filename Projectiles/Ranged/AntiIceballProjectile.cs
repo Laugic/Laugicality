@@ -5,6 +5,7 @@ namespace Laugicality.Projectiles.Ranged
 {
     public class AntiIceballProjectile : ModProjectile
     {
+        int delay = 0;
         public override void SetDefaults()
         {
             LaugicalityVars.SnowballProjectiles.Add(projectile.type);
@@ -14,11 +15,14 @@ namespace Laugicality.Projectiles.Ranged
             projectile.ranged = true;
             projectile.timeLeft = 300;
             projectile.tileCollide = true;
+            delay = 0;
         }
 
         public override void AI()
         {
-            projectile.velocity.Y -= .6f;
+            delay++;
+            if(delay > 10)
+                projectile.velocity.Y -= .6f;
             projectile.velocity.X *= .975f;
         }
 

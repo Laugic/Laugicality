@@ -1,5 +1,6 @@
 bin
 obj
+obj/
 *.user
 .sin/
 .vs/

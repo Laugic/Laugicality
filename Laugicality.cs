@@ -21,6 +21,7 @@ using Laugicality.Items.Useables;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Items;
 using Laugicality.NPCs;
+using Microsoft.Xna.Framework;
 
 namespace Laugicality
 {
@@ -325,7 +326,7 @@ namespace Laugicality
             bossChecklist?.Call(
                 "AddBoss",
                 9.993f,
-                new List<int> { ModContent.NPCType<NPCs.SteamTrain.SteamTrain>() },
+                new List<int> { ModContent.NPCType<NPCs.SteamTrain.SteamTrainOld>() },
                 this,
                 "Steam Train",
                 (Func<bool>)(() => LaugicalityWorld.downedSteamTrain),
@@ -415,9 +416,9 @@ namespace Laugicality
 
                 if (LaugicalityWorld.downedEtheria)
                 {
-                    if (Main.player[Main.myPlayer].ZoneDungeon)
+                    /*if (Main.player[Main.myPlayer].ZoneDungeon)
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Necrodungeon");
-                    else
+                    else*/
                         music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Etherial");
                     musicPriority = MusicPriority.Environment;
                 }
@@ -465,11 +466,123 @@ namespace Laugicality
             base.Close();
         }
 
+        public static void DrawChainOld(SpriteBatch spriteBatch, Texture2D texture, Color lightColor, Vector2 curPos, Vector2 nextPos, float rotationOffset = 1.57f)
+        {
+            var dist = nextPos - curPos;
+            float distance = dist.Length();
+            float rotation = dist.ToRotation() + rotationOffset;
+            var num = Math.Floor(distance / texture.Height) + 1;
+            if (float.IsNaN(distance))
+                return;
+
+            var shift = dist;
+            shift.Normalize();
+            shift *= texture.Height;
+            curPos += shift / 2;
+            for (int i = 0; i < num; i++)
+            {
+                dist = nextPos - curPos;
+                distance = dist.Length();
+
+                if (float.IsNaN(distance))
+                    return;
+
+                spriteBatch.Draw(texture, new Vector2(curPos.X - Main.screenPosition.X, curPos.Y - Main.screenPosition.Y),
+                    new Rectangle(0, 0, texture.Width, Math.Min(texture.Height, (int)distance)), lightColor, rotation,
+                    new Vector2(texture.Width * 0.5f, 0), 1f, SpriteEffects.None, 0f);
+
+                curPos += shift;
+            }
+        }
+
+
+
+        public static void DrawChain(SpriteBatch spriteBatch, Texture2D texture, Vector2 start, Vector2 end, float startOrMult = .5f, Color color = default(Color), int frames = 1, int curFrame = 0, float rotationOffset = 1.57f, float scale = 1f, float maxDist = 2000f, int transDist = 50)
+        {
+            var dist = end - start;
+            var fullChain = texture.Height / Math.Max(frames, 1);
+            var normDist = dist;
+            normDist.Normalize();
+            float rotation = dist.ToRotation() + rotationOffset;
+            float distance = dist.Length();
+
+            for (float i = fullChain * startOrMult; i <= distance; i += fullChain)
+            {
+                var origin = start + i * normDist;
+                Color drawCol;
+                if (color == default(Color))
+                    drawCol = Lighting.GetColor((int)origin.X / 16, (int)(origin.Y / 16f));
+                else
+                    drawCol = color;
+                spriteBatch.Draw(texture, origin - Main.screenPosition,
+                    new Rectangle(0, (texture.Height * curFrame) * (fullChain - (int)Math.Min(fullChain, distance - i)) / fullChain, texture.Width, fullChain), drawCol, rotation,
+                    new Vector2(texture.Width * .5f, fullChain * .5f), scale, 0, 0);
+            }
+
+            /*var endOrigin = start + dist - normDist * fullChain / 2;
+            Color endDrawCol;
+            if (color == default(Color))
+                endDrawCol = Lighting.GetColor((int)endOrigin.X / 16, (int)(endOrigin.Y / 16f));
+            else
+                endDrawCol = color;
+            spriteBatch.Draw(texture, endOrigin - Main.screenPosition,
+                new Rectangle(0, fullChain * curFrame, texture.Width, fullChain), endDrawCol, rotation,
+                new Vector2(texture.Width * .5f, fullChain * .5f), scale, 0, 0);*/
+        }
+
+        public static void VanillaDrawChain(Projectile projectile, Texture2D texture)
+        {
+            var mountedCenter = Main.player[projectile.owner].MountedCenter;
+            var start = projectile.Center;
+            var vel = projectile.velocity;
+            var velDist = vel.Length();
+            velDist = 4f / velDist;
+            if (projectile.ai[0] == 0f)
+            {
+                start.X -= projectile.velocity.X * velDist;
+                start.Y -= projectile.velocity.Y * velDist;
+            }
+            else
+            {
+                start.X += projectile.velocity.X * velDist;
+                start.Y += projectile.velocity.Y * velDist;
+            }
+            Vector2 curPos = new Vector2(start.X, start.Y);
+            vel.X = mountedCenter.X - curPos.X;
+            vel.Y = mountedCenter.Y - curPos.Y;
+            float rotation18 = (float)Math.Atan2((double)vel.Y, (double)vel.X) - 1.57f;
+            bool flag16 = true;
+            while (flag16)
+            {
+                float num112 = vel.Length();
+                if (num112 < texture.Height)
+                {
+                    flag16 = false;
+                }
+                else if (float.IsNaN(num112))
+                {
+                    flag16 = false;
+                }
+                else
+                {
+                    num112 = 12f / num112;
+                    vel.X *= num112;
+                    vel.Y *= num112;
+                    curPos.X += vel.X;
+                    curPos.Y += vel.Y;
+                    vel.X = mountedCenter.X - curPos.X;
+                    vel.Y = mountedCenter.Y - curPos.Y;
+                    Color color20 = Lighting.GetColor((int)curPos.X / 16, (int)(curPos.Y / 16f));
+                    Main.spriteBatch.Draw(texture, new Vector2(curPos.X - Main.screenPosition.X, curPos.Y - Main.screenPosition.Y), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, texture.Width, texture.Height)), color20, rotation18, new Vector2((float)texture.Width * 0.5f, (float)texture.Height * 0.5f), 1f, SpriteEffects.None, 0f);
+                }
+            }
+        }
+
 
         public static Laugicality Instance { get; private set; }
 
-        public UserInterface MysticaUserInterface { get; private set; }
-        public LaugicalityUI MysticaUI { get; private set; }
+        public static UserInterface MysticaUserInterface { get; private set; }
+        public static LaugicalityUI MysticaUI { get; private set; }
     }
 
 }

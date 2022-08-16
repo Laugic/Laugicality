@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Items.Equipables
 {
@@ -24,7 +25,7 @@ namespace Laugicality.Items.Equipables
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(Laugicality.zaWarudo > 0)
+            if(Laugicality.zaWarudo > 0 || TimeManagement.TimeAltered)
             {
                 player.allDamage += 0.15f;
             }

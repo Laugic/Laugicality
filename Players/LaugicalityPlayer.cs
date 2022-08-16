@@ -31,6 +31,9 @@ using Terraria.DataStructures;
 using Laugicality.Projectiles.Special;
 using WebmilioCommons.Time;
 using Laugicality.UI;
+using Laugicality.Items.Weapons.Mystic;
+using Laugicality.Projectiles.Mystic.Illusion;
+using Laugicality.Projectiles.Mystic.Misc;
 
 namespace Laugicality
 {
@@ -94,8 +97,10 @@ namespace Laugicality
         public bool PrismVeil { get; set; } = false;
         public bool HoldingBarrier { get; set; } = false;
         public bool Crystillium { get; set; } = false;
+        public bool OverflowFire { get; set; } = false;
         public bool Lily { get; set; } = false;
         public bool Bloat { get; set; } = false;
+        public bool ThorCharge { get; set; } = false;
 
 
         //Music
@@ -224,6 +229,7 @@ namespace Laugicality
             PrismVeil = false;
             HoldingBarrier = false;
             Crystillium = false;
+            OverflowFire = false;
             Lily = false;
             Bloat = false;
 
@@ -352,10 +358,34 @@ namespace Laugicality
                 player.position.Y = shakeO.Y - shakeMag + (float)random.NextDouble() * shakeMag * 2;
             }
 
-            CheckBysmalPowers();
+            if (((Main.tileSolid[Main.tile[(int)(player.position.X / 16), (int)(player.position.Y / 16) + 3].type] && Main.tile[(int)(player.position.X / 16), (int)(player.position.Y / 16) + 3].type != 0) ||
+                (Main.tileSolid[Main.tile[(int)(player.position.X / 16) + 1, (int)(player.position.Y / 16) + 3].type] && Main.tile[(int)(player.position.X / 16) + 1, (int)(player.position.Y / 16) + 3].type != 0)) &&
+                player.velocity.Y >= 0)
+                Grounded();
+
+            if(player.HeldItem.type == ModContent.ItemType<ThorsHammer>() && MysticMode == 2)
+            {
+                player.maxFallSpeed += 80;
+                if(player.velocity.Y > 0)
+                    player.velocity.Y += .25f;
+            }
+
+                CheckBysmalPowers();
 
             if (LaugicalityWorld.downedEtheria || Etherable > 0)
                 GetEtherialAccessories();
+        }
+
+        private void Grounded()
+        {
+            if (player.HeldItem.type == ModContent.ItemType<ThorsHammer>() && player.itemAnimation > 0 && player.velocity.Y > 4 && !ThorCharge && MysticMode == 2)
+            {
+                ThorCharge = true;
+                Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 122);
+                Projectile.NewProjectile(player.Center.X + (player.direction * 40), player.Center.Y - 70, 0, 0, ModContent.ProjectileType<ThorSmashIllusion>(), (int)(player.HeldItem.damage), 8, Main.myPlayer);
+            }
+            if (player.HeldItem.type != ModContent.ItemType<ThorsHammer>() || player.itemAnimation == 0 || MysticMode != 2)
+                ThorCharge = false;
         }
 
         public override void PostUpdate()
@@ -375,7 +405,7 @@ namespace Laugicality
 
         private void PostUpdateZaWarudo()
         {
-            if (Laugicality.zaWarudo > 0 && zImmune == false)
+            if (TimeManagement.TimeAltered && zImmune == false)
             {
                 player.AddBuff(ModContent.BuffType<TrueCurse>(), 1, true);
                 if (!zMove)
@@ -432,7 +462,7 @@ namespace Laugicality
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, player.velocity.X - 4 + Main.rand.Next(9), -Main.rand.Next(6, 9), ModContent.ProjectileType<EruptionProjectile>(), (int)(30 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
             }
 
-            if (MysticSpiralBurst > 0)
+            /*if (MysticSpiralBurst > 0)
             {
                 MysticSpiralDelay++;
 
@@ -442,7 +472,7 @@ namespace Laugicality
                     Projectile.NewProjectile(player.Center.X, player.Center.Y, 4 * (float)Math.Cos(theta * 2), 4 * (float)Math.Sin(theta * 2), ModContent.ProjectileType<AnDioChestguardBurst>(), (int)(32 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
                 }
             }
-
+            */
             if (MysticSteamSpiralBurst > 0)
             {
                 MysticSteamSpiralDelay++;
@@ -1306,7 +1336,7 @@ namespace Laugicality
 
         private void ArmorEffectPlayerHurt()
         {
-            if ((AndioChestguard || AndioChestplate || AnDioCapacityEffect) && player.statLife < player.statLifeMax2 / 4 && zCool == false)
+            if ((AndioChestguard || AnDioCapacityEffect) && player.statLife < player.statLifeMax2 / 4 && zCool == false)
                 ZaWarudo();
         }
 
@@ -1330,8 +1360,7 @@ namespace Laugicality
 
             if (Laugicality.zaWarudo < zaWarudoDuration)
             {
-                Laugicality.zaWarudo = zaWarudoDuration;
-                LaugicalGlobalNPCs.zTime = zaWarudoDuration;
+                TimeManagement.TryAlterTime(new TimeAlterationRequest(player, zaWarudoDuration, 0));
             }
         }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Laugicality.Buffs.Mystic;
+using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.Mystic.Overflow;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -277,7 +278,7 @@ namespace Laugicality.Items
             modPlayer.CurrentVisCost = VisCost;
             modPlayer.CurrentMundusCost = MundusCost;
 
-            Laugicality.Instance.MysticaUI.Update();
+            Laugicality.MysticaUI.Update();
         }
 
         private string GetMysticType()
@@ -408,8 +409,12 @@ namespace Laugicality.Items
         private void GetMysticShots(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(modPlayer.Crystillium && modPlayer.IsOnOverflow())
-                Projectile.NewProjectile(position, new Vector2(speedX / 16f, speedY / 16f), ModContent.ProjectileType<CrystilliumShard>(), damage / 2, knockBack, player.whoAmI);
+            if (modPlayer.Crystillium && modPlayer.IsOnOverflow())
+                Projectile.NewProjectile(position, new Vector2(speedX / 16f, speedY / 16f), ModContent.ProjectileType<CrystilliumShard>(), damage, knockBack, player.whoAmI);
+            if (modPlayer.OverflowFire && modPlayer.IsOnOverflow())
+                Projectile.NewProjectile(position, new Vector2(speedX, speedY), ModContent.ProjectileType<OverflowThermalite>(), (int)(damage / 1.2f), knockBack, player.whoAmI);
+            if (modPlayer.ShroomOverflow > 0 && modPlayer.IsOnOverflow())
+                Projectile.NewProjectile(new Vector2(player.Center.X, player.position.Y), new Vector2(0, -10f), ModContent.ProjectileType<FreyaConjuration2>(), damage, 3, player.whoAmI);
         }
 
         public virtual bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

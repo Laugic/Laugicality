@@ -47,7 +47,7 @@ namespace Laugicality.Items.Consumables.Potions
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.BottledWater, 1);
             recipe.AddIngredient(null, "ArcaneShard", 1);
-            recipe.AddIngredient(null, "VerdiDust", 1);
+            recipe.AddIngredient(ItemID.JungleSpores, 1);
             recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 1);
             recipe.AddTile(TileID.Bottles);
             recipe.SetResult(this);

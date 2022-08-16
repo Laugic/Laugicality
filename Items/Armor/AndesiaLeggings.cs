@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("+100% Mystic Duration\n+15% Movement Speed");
+			Tooltip.SetDefault("+100% Mystic Duration\nIncreased Max Minions\n+15% movement speed");
 		}
 
 		public override void SetDefaults()
@@ -23,9 +23,10 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            player.moveSpeed += 0.15f;
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.MysticDuration += 1f;
+            player.moveSpeed += 0.15f;
+            player.maxMinions += 3;
         }
         
 

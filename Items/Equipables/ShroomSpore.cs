@@ -10,7 +10,7 @@ namespace Laugicality.Items.Equipables
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Spore Cloud");
-            Tooltip.SetDefault("Unleash Spores when changing Mysticism.");
+            Tooltip.SetDefault("Overflow attacks shoot spores on hit");
         }
 
         public override void SetDefaults()

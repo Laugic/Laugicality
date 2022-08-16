@@ -20,6 +20,7 @@ namespace Laugicality.Projectiles.Magic
             projectile.friendly = true;
             projectile.ignoreWater = true;
             projectile.extraUpdates = 10;
+            projectile.magic = true;
         }
 
         public override void AI()

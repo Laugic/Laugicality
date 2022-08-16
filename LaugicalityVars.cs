@@ -61,7 +61,7 @@ namespace Laugicality
         public static readonly HashSet<int> eBosses =
             new HashSet<int>
             {
-                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, ModContent.NPCType<Hypothema>(), NPCID.QueenBee, ModContent.NPCType<Ragnar>(), NPCID.SkeletronHead, ModContent.NPCType<AnDio3>(), NPCID.TheDestroyer, NPCID.SkeletronPrime, ModContent.NPCType<TheAnnihilator>(), ModContent.NPCType<Slybertron>(), ModContent.NPCType<NPCs.SteamTrain.SteamTrain>(), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
+                NPCID.KingSlime, NPCID.EyeofCthulhu, NPCID.BrainofCthulhu, ModContent.NPCType<Hypothema>(), NPCID.QueenBee, ModContent.NPCType<Ragnar>(), NPCID.SkeletronHead, ModContent.NPCType<AnDio3>(), NPCID.TheDestroyer, NPCID.SkeletronPrime, ModContent.NPCType<TheAnnihilator>(), ModContent.NPCType<Slybertron>(), ModContent.NPCType<NPCs.SteamTrain.SteamTrainOld>(), NPCID.Plantera, NPCID.Golem, NPCID.DukeFishron, NPCID.MoonLordCore
             };
 
         //Projectiles that are immune to time stop
@@ -221,6 +221,12 @@ namespace Laugicality
         new HashSet<int>
         {
             ProjectileID.Seed, ProjectileID.SeedlerNut, ProjectileID.SeedlerThorn,
+        };
+
+        public static readonly HashSet<int> BeeProjectiles =
+        new HashSet<int>
+        {
+            ProjectileID.Bee, ProjectileID.GiantBee
         };
 
         public static readonly HashSet<int> ShroomProjectiles =

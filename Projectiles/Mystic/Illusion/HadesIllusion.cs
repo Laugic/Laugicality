@@ -1,4 +1,5 @@
 using System;
+using Laugicality.Buffs;
 using Laugicality.Dusts;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +18,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
             projectile.scale *= 1.5f;
-            buffID = BuffID.ShadowFlame;
+            buffID = ModContent.BuffType<JudgementBuff>();
         }
 
         public override void AI()

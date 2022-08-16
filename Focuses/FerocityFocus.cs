@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Focuses
 {
@@ -87,7 +88,7 @@ namespace Laugicality.Focuses
 
         private static void DownedAnDioEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
-            if(Laugicality.zaWarudo > 0)
+            if(Laugicality.zaWarudo > 0 || TimeManagement.TimeAltered)
                 laugicalityPlayer.DamageBoost(.15f);
         }
 
@@ -125,12 +126,12 @@ namespace Laugicality.Focuses
             {
                 if (NPC.downedMoonlord)
                 {
-                    laugicalityPlayer.DamageBoost(1f * laugicalityPlayer.AbilityCount);
+                    laugicalityPlayer.DamageBoost(1f * (1 + laugicalityPlayer.AbilityCount));
                     laugicalityPlayer.player.endurance -= 2f * laugicalityPlayer.AbilityCount;
                 }
                 else
                 {
-                    laugicalityPlayer.DamageBoost(.25f * laugicalityPlayer.AbilityCount);
+                    laugicalityPlayer.DamageBoost(.25f * (1 + laugicalityPlayer.AbilityCount));
                     laugicalityPlayer.player.endurance -= .8f * laugicalityPlayer.AbilityCount;
                 }
             }

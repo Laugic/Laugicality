@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Items.Armor
 {
@@ -10,7 +11,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("AnDio Chestplate");
-            Tooltip.SetDefault("'Specialist'\nYou are immune to Time Stop");
+            Tooltip.SetDefault("Increased duration of Time Stop\nYou are immune to Time Stop");
 		}
 
 		public override void SetDefaults()
@@ -26,6 +27,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.zImmune = true;
+            modPlayer.zaWarudoDuration += 2 * 60;
         }
 
 
@@ -36,22 +38,10 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "+50 to all Potentias\n25% Reduced Potentia useage\nThe lower your Potentia, the higher your Mystic damage\nPotentia does not decrease when time is stopped\nTime stop lasts longer\nAutomatically stops time after taking a hit below 25% life";
-            modPlayer.zaWarudoDuration += 2 * 60;
-            modPlayer.AndioChestplate = true;
-            modPlayer.LuxMax += 50;
-            modPlayer.VisMax += 50;
-            modPlayer.MundusMax += 50;
-            if (modPlayer.MysticMode == 1 && modPlayer.Lux < (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.Lux / (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost))) / 5;
-            if (modPlayer.MysticMode == 2 && modPlayer.Vis < (modPlayer.VisMax + modPlayer.VisMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.Vis / (modPlayer.VisMax + modPlayer.VisMaxPermaBoost))) / 5;
-            if (modPlayer.MysticMode == 3 && modPlayer.Mundus < (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost))
-                modPlayer.MysticDamage += (1 - (modPlayer.Mundus / (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost))) / 5;
-            modPlayer.GlobalPotentiaUseRate *= .75f;
-            if (Laugicality.zaWarudo > 0)
-                modPlayer.GlobalPotentiaUseRate = 0;
+            player.setBonus = "Deal increased damage while Time is Stopped";
+
+            if (TimeManagement.TimeAltered)
+                player.allDamage += .25f;
         }
 
         public override void AddRecipes()

@@ -17,7 +17,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.damage = 16;
+            item.damage = 20;
             item.ranged = true;
             item.width = 50;
             item.height = 26;
@@ -38,9 +38,9 @@ namespace Laugicality.Items.Weapons.Range
         public override void HoldItem(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            item.useTime = item.useAnimation = 10;
+            item.useTime = item.useAnimation = 8;
             if(player.ZoneDesert || player.ZoneUnderworldHeight || modPlayer.zoneObsidium)
-                item.useTime = item.useAnimation = 8;
+                item.useTime = item.useAnimation = 6;
         }
 
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
@@ -53,18 +53,21 @@ namespace Laugicality.Items.Weapons.Range
                 position.X += -4 + Main.rand.Next(8);
                 position.Y += -4 + Main.rand.Next(8);
             }
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY);
-            int spread = 30;
-            if (player.ZoneDesert || player.ZoneUnderworldHeight || modPlayer.zoneObsidium)
-                perturbedSpeed *= 1.25f;
-            if (player.ZoneSnow || player.ZoneSkyHeight || LaugicalityWorld.downedEtheria)
+            for (int i = 0; i < 2; i++)
             {
-                spread = 12;
+                Vector2 perturbedSpeed = new Vector2(speedX, speedY);
+                int spread = 24;
+                if (player.ZoneDesert || player.ZoneUnderworldHeight || modPlayer.zoneObsidium)
+                    perturbedSpeed *= 1.25f;
+                if (player.ZoneSnow || player.ZoneSkyHeight || LaugicalityWorld.downedEtheria)
+                {
+                    spread = 10;
+                }
+                perturbedSpeed = perturbedSpeed.RotatedByRandom(MathHelper.ToRadians(spread));
+                float scale = 1f - (Main.rand.NextFloat() * .3f);
+                perturbedSpeed = perturbedSpeed * scale;
+                Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             }
-            perturbedSpeed = perturbedSpeed.RotatedByRandom(MathHelper.ToRadians(spread));
-            float scale = 1f - (Main.rand.NextFloat() * .3f);
-            perturbedSpeed = perturbedSpeed * scale;
-            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
             return false;
         }
 

@@ -14,13 +14,13 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Saturn's Rings");
-            Tooltip.SetDefault("'The majesty of Space'\nIllusion inflicts 'Orbital'. Orbital enemies take more damage and knockback.\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'The majesty of Space'");
         }
         
         public override void SetMysticDefaults()
         {
             charge = 0;
-            item.damage = 50;
+            item.damage = 60;
             item.width = 68;
             item.height = 40;
             item.useTime = 18;
@@ -28,17 +28,34 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
-            item.value = 10000;
+            item.value = Item.sellPrice(gold: 13);
             item.rare = ItemRarityID.Yellow;
             item.UseSound = SoundID.Item1;
             item.autoReuse = true;
             item.shootSpeed = 6f;
         }
 
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots a burst of stars after charging 3 times";
+                case 2:
+                    return "Shoots rings that inflict 'Orbital', which\nmakes enemies take 33% more damage when you're in Space";
+                case 3:
+                    return "Creates rings that orbit around you and periodically shoot stars";
+                default:
+                    return "";
+            }
+        }
+
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 50f;
-
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 40f;
+            position += muzzleOffset;
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
@@ -63,10 +80,15 @@ namespace Laugicality.Items.Weapons.Mystic
             return true;
         }
 
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-16, 0);
+        }
+
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
             item.useStyle = 5;
-            item.damage = 85;
+            item.damage = 65;
             item.useTime = 45;
             item.useAnimation = item.useTime;
             item.knockBack = 4;

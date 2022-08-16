@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
+using Laugicality.Items.Materials;
 
 namespace Laugicality.Items.Consumables
 {
@@ -12,7 +13,8 @@ namespace Laugicality.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Summons Hypothema\n'It's almost freezing your fingers off.'");
+            DisplayName.SetDefault("Innocent Child");
+            Tooltip.SetDefault("Summons Hypothema\n'What are you doing to him?'");
         }
 
         public override void SetDefaults()
@@ -44,26 +46,12 @@ namespace Laugicality.Items.Consumables
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 
-            recipe.AddIngredient(ItemID.SnowBlock, 25);
-            recipe.AddIngredient(ItemID.IceBlock, 25);
-            recipe.AddIngredient(ItemID.DemoniteBar, 12);
-
+            recipe.AddIngredient(ItemID.Snowball, 20);
+            recipe.AddIngredient(ModContent.ItemType<Vitasilk>());
             recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(this);
 
 			recipe.AddRecipe();
-
-
-            recipe = new ModRecipe(mod);
-
-            recipe.AddIngredient(ItemID.SnowBlock, 25);
-            recipe.AddIngredient(ItemID.IceBlock, 25);
-            recipe.AddIngredient(ItemID.CrimtaneBar, 12);
-
-            recipe.AddTile(TileID.DemonAltar);
-            recipe.SetResult(this);
-
-            recipe.AddRecipe();
         }
 	}
 }

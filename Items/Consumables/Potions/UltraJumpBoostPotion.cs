@@ -38,8 +38,8 @@ namespace Laugicality.Items.Consumables.Potions
             recipe.AddIngredient(ItemID.BottledWater, 1);
             recipe.AddIngredient(ItemID.Feather, 1);
             recipe.AddIngredient(ItemID.PinkGel, 1);
-            recipe.AddIngredient(575, 1); //Soul of Flight
-            recipe.AddIngredient(null, "VerdiDust", 1);
+            recipe.AddIngredient(ItemID.SoulofFlight, 1);
+            recipe.AddIngredient(ItemID.Emerald, 1);
             recipe.AddTile(13);
             recipe.SetResult(this);
             recipe.AddRecipe();

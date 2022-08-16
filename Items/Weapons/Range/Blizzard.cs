@@ -15,12 +15,12 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.damage = 80;
+            item.damage = 90;
             item.ranged = true;
             item.width = 72;
             item.height = 36;
             item.useTime = 6;
-            item.useAnimation = 6;
+            item.useAnimation = 5;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 4;
@@ -28,7 +28,7 @@ namespace Laugicality.Items.Weapons.Range
             item.rare = ItemRarityID.LightRed;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.shootSpeed = 18f;
+            item.shootSpeed = 20f;
             item.useAmmo = AmmoID.Snowball;
             item.shoot = ProjectileID.SnowBallFriendly;
         }
@@ -72,7 +72,7 @@ namespace Laugicality.Items.Weapons.Range
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "FrostThrower", 1);
+            recipe.AddIngredient(null, "SnowBlower", 1);
             recipe.AddIngredient(null, "BysmalBar", 12);
             recipe.AddIngredient(mod, nameof(EtherialEssence), 5);
             recipe.AddTile(null, "AlchemicalInfuser");

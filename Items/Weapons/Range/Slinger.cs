@@ -16,7 +16,7 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.damage = 16;
+            item.damage = 14;
             item.ranged = true;
             item.width = 50;
             item.height = 26;

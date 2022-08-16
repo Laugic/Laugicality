@@ -26,7 +26,7 @@ namespace Laugicality.Items.Weapons.Mystic
                 case 1:
                     return "Rapidly shoots shrooms";
                 case 2:
-                    return "Shoots a spore cloud that inflict 'Spored', which makes Shrooms become Mega Shrooms on hit";
+                    return "Shoots a spore cloud that inflict 'Spored', which\nmakes Shrooms become Mega Shrooms on hit";
                 case 3:
                     return "Spawns a shroom cap that launches spores into the sky";
                 default:

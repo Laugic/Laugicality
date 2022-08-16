@@ -1,6 +1,7 @@
 using Laugicality.Projectiles.Mystic.Conjuration;
 using Laugicality.Projectiles.Mystic.Destruction;
 using Laugicality.Projectiles.Mystic.Illusion;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,9 +41,9 @@ namespace Laugicality.Items.Weapons.Mystic
             switch (laugicalityPlayer.MysticMode)
             {
                 case 1:
-                    return "???";
+                    return "Shoots a slightly homing orb";
                 case 2:
-                    return "Shoots a homing beam that inflicts 'Time Dilation', which causes enemies to drop Time Capsules.\nTime Capsules reduce the remaining time of active debuffs and increase the remaining time of active buffs.";
+                    return "Shoots a homing beam that inflicts 'Time Dilation', which\ncauses enemies to take a burst of damage when Time is Stopped.";
                 case 3:
                     return "Spawns energy orbs that create stalagmites and stalactites.";
                 default:
@@ -50,10 +51,20 @@ namespace Laugicality.Items.Weapons.Mystic
             }
         }
 
+        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 65f;
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
+            return base.MysticShoot(player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
+        }
+
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 52;
-            item.useTime = 24;
+            item.damage = 42;
+            item.useTime = 20;
             item.useAnimation = item.useTime;
             item.knockBack = 8;
             item.shootSpeed = 14f;
@@ -66,39 +77,37 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
             item.damage = 26;
-            item.useTime = 2;
-            item.useAnimation = item.useTime;
+            item.useAnimation = item.useTime = 4;
             item.knockBack = 5;
             item.shootSpeed = 12f;
             item.shoot = ModContent.ProjectileType<AnDioIllusion>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
-            VisCost = 1;
+            VisCost = 4;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 38;
-            item.useTime = 30;
-            item.useAnimation = item.useTime;
+            item.useAnimation = item.useTime = 15;
             item.knockBack = 2;
             item.shootSpeed = 18f;
             item.shoot = ModContent.ProjectileType<AnDioConjuration1>();
             item.noUseGraphic = false;
             item.UseSound = SoundID.Item20;
             item.scale = 1f;
-            MundusCost = 10;
+            MundusCost = 15;
         }
 
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddRecipeGroup("TitaniumBars", 12);
             recipe.AddIngredient(null, "DioritusCore", 1);
             recipe.AddIngredient(null, "AndesiaCore", 1);
             recipe.AddIngredient(3081, 25);
             recipe.AddIngredient(3086, 25);
-            recipe.AddRecipeGroup("TitaniumBars", 8);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();

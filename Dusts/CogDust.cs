@@ -17,9 +17,9 @@ namespace Laugicality.Dusts
         {
             dust.position += dust.velocity;
             dust.rotation += dust.velocity.X * 0.15f;
-            dust.velocity *= .9f;
-            dust.scale *= 0.95f;
-            if (dust.scale < .2f)
+            dust.velocity *= .95f;
+            dust.scale *= 0.98f;
+            if (dust.scale < .25f)
             {
                 dust.active = false;
             }

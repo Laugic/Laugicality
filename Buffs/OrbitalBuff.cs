@@ -13,13 +13,5 @@ namespace Laugicality.Buffs
             Main.buffNoSave[Type] = true;
             longerExpertDebuff = true;
         }
-
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            if (npc.boss)
-                return;
-            npc.GetGlobalNPC<LaugicalGlobalNPCs>().Orbital = true;
-            npc.takenDamageMultiplier = npc.GetGlobalNPC<LaugicalGlobalNPCs>().damageMult * 1.1f;
-        }
     }
 }

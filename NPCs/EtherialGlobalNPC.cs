@@ -13,6 +13,7 @@ using Laugicality.NPCs.RockTwins;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.NPCs
 {
@@ -55,17 +56,20 @@ namespace Laugicality.NPCs
         //Boss Fights V
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (LaugicalityWorld.downedEtheria && (LaugicalityVars.eNPCs.Contains(npc.type) || etherial || bitherial))
+            if (LaugicalityWorld.downedEtheria)
             {
-                npc.damage = (int)(npc.damage * 1.33 + 40);
-                npc.defense = (int)(npc.defense / 2);
-                if (npc.boss)
-                    npc.lifeMax += 15000;
-                else
-                    npc.lifeMax += 5000;
-                npc.lifeMax = (int)(npc.lifeMax * 1.5);
-                npc.life = npc.lifeMax;
-                ScaleSpecificEtherialStats(npc);
+                if (LaugicalityVars.eNPCs.Contains(npc.type) || etherial || bitherial || npc.boss)
+                {
+                    npc.damage = (int)(npc.damage * 1.33 + 40);
+                    npc.defense = (int)(npc.defense / 2);
+                    if (npc.boss)
+                        npc.lifeMax += 15000;
+                    else
+                        npc.lifeMax += 5000;
+                    npc.lifeMax = (int)(npc.lifeMax * 1.5);
+                    npc.life = npc.lifeMax;
+                    ScaleSpecificEtherialStats(npc);
+                }
             }
         }
 
@@ -264,7 +268,7 @@ namespace Laugicality.NPCs
                 npc.life = npc.lifeMax;
             }
 
-            if (npc.type == ModContent.NPCType<SteamTrain.SteamTrain>())
+            if (npc.type == ModContent.NPCType<SteamTrain.SteamTrainOld>())
             {
                 npc.damage = 275;
                 npc.lifeMax = 200000;
@@ -707,10 +711,9 @@ namespace Laugicality.NPCs
             if (_counter > 16 * 60)
             {
                 _counter = 0;
-                if (Laugicality.zaWarudo < 10 * 60)
+                if (!TimeManagement.TimeAltered)
                 {
-                    Laugicality.zaWarudo = 10 * 60;
-                    LaugicalGlobalNPCs.zTime = 10 * 60;
+                    TimeManagement.TryAlterTime(new TimeAlterationRequest(npc, 10 * 60, 0));
                 }
                 Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zaWarudo"));
             }
@@ -1286,6 +1289,25 @@ namespace Laugicality.NPCs
                 int b = 125;
                 int b2 = 225;
                 int b3 = 255;
+                if (drawColor.R != (byte)b)
+                {
+                    drawColor.R = (byte)b;
+                }
+                if (drawColor.G < (byte)b2)
+                {
+                    drawColor.G = (byte)b2;
+                }
+                if (drawColor.B < (byte)b3)
+                {
+                    drawColor.B = (byte)b3;
+                }
+                return drawColor;
+            }
+            else if (/*Vector2.Distance(npc.Center, Main.LocalPlayer.Center) <= LaugicalGlobalNPCs.JUDGEMENT_DIST &&*/ npc.HasBuff(ModContent.BuffType<JudgementBuff>()))
+            {
+                int b = 225;
+                int b2 = 120;
+                int b3 = 225;
                 if (drawColor.R != (byte)b)
                 {
                     drawColor.R = (byte)b;

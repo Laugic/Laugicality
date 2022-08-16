@@ -6,6 +6,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Laugicality.Projectiles.Special;
+using Laugicality.Items.Loot;
+using Laugicality.Items.Materials;
 
 namespace Laugicality.Items.Weapons.Mystic
 {
@@ -20,7 +22,7 @@ namespace Laugicality.Items.Weapons.Mystic
 
 		public override void SetMysticDefaults()
 		{
-			item.damage = 32;
+			item.damage = 36;
             item.width = 48;
 			item.height = 48;
 			item.useTime = 18;
@@ -34,28 +36,29 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<Nothing>();
 			item.shootSpeed = 6f;
-		}
+        }
 
-
-        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override string GetExtraTooltip()
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (modPlayer.MysticMode == 3)
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
             {
-                for(int i = 0; i < 3; i++)
-                {
-                    if(Main.player[Main.myPlayer] == player)
-                        Projectile.NewProjectile((int)(Main.MouseWorld.X) - 8 + Main.rand.Next(0, 16), (int)(Main.MouseWorld.Y) - 360 - 8 + Main.rand.Next(0, 16), 0, 0, ModContent.ProjectileType<YuleConjuration>(), (int)(item.damage), 3, Main.myPlayer);
-                }
+                case 1:
+                    return "Shoots a stream of icicles that follow your cursor";
+                case 2:
+                    return "Shoots a bouncing snowflake that inflicts 'Brittle', \nwhich makes enemies take more damage based on the speed of what hits them";
+                case 3:
+                    return "Spawns a snowflake that shoots out icicles";
+                default:
+                    return "";
             }
-            return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
             item.damage = 30;
-            item.useTime = 12;
-            item.useAnimation = item.useTime;
+            item.useAnimation = item.useTime = 12;
             item.knockBack = 2;
             item.shootSpeed = 10;
             item.shoot = ModContent.ProjectileType<YuleDestruction>();
@@ -76,21 +79,19 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
             item.damage = 36;
-            item.useTime = 10;
-            item.useAnimation = 10;
+            item.useAnimation = item.useTime = 30;
             item.knockBack = 5;
             item.shootSpeed = 2f;
-            item.shoot = ModContent.ProjectileType<Nothing>();
-            MundusCost = 4;
+            item.shoot = ModContent.ProjectileType<YuleConjuration1>();
+            MundusCost = 12;
         }
 
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.SnowBlock, 25);
-            recipe.AddIngredient(ItemID.IceBlock, 25);
-            recipe.AddIngredient(null, "FrostShard", 1);
-            recipe.AddIngredient(null, "ChilledBar", 6);
+            recipe.AddIngredient(ModContent.ItemType<FrostShard>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<ChilledBar>(), 10);
+            recipe.AddIngredient(ModContent.ItemType<Vitasilk>(), 4);
             recipe.AddTile(16);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

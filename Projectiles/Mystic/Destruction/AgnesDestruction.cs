@@ -9,6 +9,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
 {
     public class AgnesDestruction : DestructionProjectile
     {
+        bool shoot = false;
         public override void SetDefaults()
         {
             projectile.width = 30;
@@ -20,7 +21,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             projectile.tileCollide = false;
             projectile.hide = true;
             projectile.ownerHitCheck = true;
-            projectile.melee = true;
+            shoot = false;
         }
 
         public override void AI()
@@ -44,6 +45,12 @@ namespace Laugicality.Projectiles.Mystic.Destruction
                 if (projectile.localAI[0] == 0f && Main.myPlayer == projectile.owner)
                 {
                     projectile.localAI[0] = 1f;
+                }
+                if (!shoot)
+                {
+                    if (Main.myPlayer == projectile.owner)
+                        Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, projectile.velocity.X, projectile.velocity.Y, ModContent.ProjectileType<AgnesDestruction2>(), projectile.damage, projectile.knockBack, player.whoAmI);
+                    shoot = true;
                 }
             }
             else

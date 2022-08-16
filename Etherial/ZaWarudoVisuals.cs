@@ -3,6 +3,7 @@ using Terraria;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Etherial
 {
@@ -40,7 +41,7 @@ namespace Laugicality.Etherial
 
         private float GetIntensity()
         {
-            if (Laugicality.zaWarudo > 0)
+            if (Laugicality.zaWarudo > 0 || TimeManagement.TimeAltered)
             {
                 return (1f - Utils.SmoothStep(3000f, 6000f, 1)) * 0.66f;
             }

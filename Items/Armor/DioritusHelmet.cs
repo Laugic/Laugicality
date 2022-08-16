@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
 	{
         public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("+18% Mystic Damage");
+			Tooltip.SetDefault("+15% Damage\n+10% critical strike chance");
 		}
 
 		public override void SetDefaults()
@@ -25,8 +25,11 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += 0.18f;
+            player.allDamage += .15f;
+            player.meleeCrit += 10;
+            player.rangedCrit += 10;
+            player.magicCrit += 10;
+            player.thrownCrit += 10;
         }
         
 

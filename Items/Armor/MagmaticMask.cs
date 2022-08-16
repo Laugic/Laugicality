@@ -35,7 +35,7 @@ namespace Laugicality.Items.Armor
             player.setBonus = "Eruption & Magmatic Mystic Bursts\n+25% Mystic Burst Damage & Decreased Mystic Burst cooldown\n+15%Throwing Crit Chance\nAttacks inflict 'On Fire!'\nIncreased stats after being submerged in Lava";
             modPlayer.Obsidium = true;
             modPlayer.Magmatic = true;
-            modPlayer.MysticObsidiumBurst = true;
+            modPlayer.MysticObsidiumSwitch = true;
             player.thrownCrit += 15;
             modPlayer.MysticSwitchCoolRate += 2;
 

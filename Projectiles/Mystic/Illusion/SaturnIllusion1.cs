@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Laugicality.Buffs;
 using Terraria.ModLoader;
+using System;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -24,6 +25,7 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.scale *= .85f;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+            Main.projFrames[projectile.type] = 6;
             buffID = ModContent.BuffType<OrbitalBuff>();
         }
 
@@ -34,13 +36,29 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             {
                 Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor * 0.25f) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, new Rectangle(0, 32 * projectile.frame, 32, 32), color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
             }
             return true;
         }
 
+        public override void PostAI()
+        {
+            projectile.frameCounter++;
+            if (projectile.frameCounter > 5)
+            {
+                projectile.frame++;
+                projectile.frameCounter = 0;
+            }
+            if (projectile.frame >= 5)
+            {
+                projectile.frame = 0;
+                return;
+            }
+        }
+
         public override void AI()
         {
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
             delay++;
             if(delay >= 12)
             {

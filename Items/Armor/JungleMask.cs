@@ -10,7 +10,7 @@ namespace Laugicality.Items.Armor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jungle Hood");
-            Tooltip.SetDefault("Increases maximum mana by 20\n+100% Mystic Duration");
+            Tooltip.SetDefault("Mystic damage increased by 12%\n+100% Mystic Duration");
 		}
 
 		public override void SetDefaults()
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.statManaMax2 += 20;
+            modPlayer.MysticDamage += .12f;
             modPlayer.MysticDuration += 1f;
         }
 
@@ -44,15 +44,16 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "Mystic damage increased by 12%\nYour Max Mana is added to your Potentias\nIncreased regen for Potentia you aren't using.";
-            modPlayer.MysticDamage += .12f;
+            player.setBonus = "Your Max Mana is added to your Potentias\nIncreased Mana and Potentia regen";
             modPlayer.LuxMax += player.statManaMax2 / 3;
             modPlayer.VisMax += player.statManaMax2 / 3;
             modPlayer.MundusMax += player.statManaMax2 / 3;
 
-            modPlayer.LuxUnuseRegen += .03f;
-            modPlayer.VisUnuseRegen += .03f;
-            modPlayer.MundusUnuseRegen += .03f;
+            modPlayer.LuxUnuseRegen += .04f;
+            modPlayer.VisUnuseRegen += .04f;
+            modPlayer.MundusUnuseRegen += .04f;
+
+            player.manaRegen += 15;
         }
 
 		public override void AddRecipes()

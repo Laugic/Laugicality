@@ -108,12 +108,9 @@ namespace Laugicality.Projectiles.Special
             if (eDmg == 0)
                 eDmg = projectile.damage;
             
-            Player player = Main.player[projectile.owner];
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-
             if (bitherial)
             {
-                if (modPlayer.etherial)
+                if (Main.player.Length < projectile.owner && LaugicalityPlayer.Get(Main.player[projectile.owner]).etherial)
                     projectile.damage = eDmg + 25;
                 else
                     projectile.damage = eDmg;
@@ -200,7 +197,7 @@ namespace Laugicality.Projectiles.Special
                 }
             }*/
 
-            bool zProjImmune = false;
+            /*bool zProjImmune = false;
 
             Player projOwner = Main.player[projectile.owner];
             zProjImmune = LaugicalityPlayer.Get(projOwner).zProjImmune;
@@ -251,7 +248,8 @@ namespace Laugicality.Projectiles.Special
                     oldVy = 0f;
                 }
                 return true;
-            }
+            }*/
+            return true;
         }
         
         private void EtherialSpawn(Projectile projectile)

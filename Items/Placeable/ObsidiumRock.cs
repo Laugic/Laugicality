@@ -6,6 +6,7 @@ namespace Laugicality.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Basalt");
             Tooltip.SetDefault("Grows Lava Gems over time");
         }
 

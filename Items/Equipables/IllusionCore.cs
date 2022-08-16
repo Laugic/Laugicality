@@ -34,8 +34,8 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LargeAmethyst, 1);
-            recipe.AddIngredient(ModContent.ItemType<ArcaneShard>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<AlbusDust>(), 4);
+            recipe.AddIngredient(ItemID.LargeDiamond, 1);
+            recipe.AddIngredient(ModContent.ItemType<Arcanum>());
             recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();

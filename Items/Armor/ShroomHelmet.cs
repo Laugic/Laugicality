@@ -46,7 +46,7 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "Attacks cast using Overflow can pass through walls\nWhen at Max Potentia, Overflow slowly accrues over time";
+            player.setBonus = "Overflow attacks shoot Spores from your head\nOverflow slowly accrues over time";
             modPlayer.ShroomOverflow = 2;
 
             if (modPlayer.MysticHold > 0)

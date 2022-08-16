@@ -15,7 +15,6 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Agnes' Inferno");
-            Tooltip.SetDefault("Blaze of Glory\nIllusion inflicts 'On Fire'\nFires different projectiles based on Mysticism");
         }
 
         public override void SetMysticDefaults()
@@ -36,45 +35,38 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = ModContent.ProjectileType<AgnesDestruction>();
             item.scale = 1.5f;
         }
-        /*
-        public override bool CanUseItem(Player player)
+
+
+        public override string GetExtraTooltip()
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (modPlayer.MysticMode != 1)
-                return player.ownedProjectileCounts[item.shoot] < 1;
-            return true;
-        }*/
-        /*
-        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (modPlayer.MysticMode != 1)
-                return true;
-            return false;
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots fireballs";
+                case 2:
+                    return "Shoots orbiting fireballs that inflict 'Infernal', which \nmakes enemies take damage over time based on their defense";
+                case 3:
+                    return "Shoots Javelins that spawn a stream of fireballs";
+                default:
+                    return "";
+            }
         }
-        */
 
         public override bool CanUseItem(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
                 return player.ownedProjectileCounts[item.shoot] < 1;
-            return true;
-        }
-        public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
-        {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost)
-            {
-                Projectile.NewProjectile(position.X, position.Y, speedX, speedY, ModContent.ProjectileType<AgnesDestruction2>(), damage, knockBack, player.whoAmI);
-                return true;
-            }
+            if (modPlayer.MysticMode == 2)
+                return player.ownedProjectileCounts[item.shoot] < 1;
             return true;
         }
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 44;
+            item.damage = 32;
             item.useAnimation = item.useTime = 30;
             item.knockBack = 8;
             item.shootSpeed = 8f;
@@ -82,35 +74,33 @@ namespace Laugicality.Items.Weapons.Mystic
             item.noUseGraphic = true;
             item.useStyle = 5;
             item.shoot = ModContent.ProjectileType<AgnesDestruction>();
-            LuxCost = 4;
+            LuxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 32;
-            item.useTime = 20;
-            item.useAnimation = 20;
-            item.knockBack = 4;
-            item.shootSpeed = 12f;
-            item.useTurn = false;
-            item.noUseGraphic = false;
-            item.useStyle = 1;
-            item.shoot = ModContent.ProjectileType<HadesIllusion>();
-            VisCost = 8;
+            item.damage = 28;
+            item.useAnimation = item.useTime = 21;
+            item.knockBack = 8;
+            item.shootSpeed = 8f;
+            item.useTurn = true;
+            item.noUseGraphic = true;
+            item.useStyle = 5;
+            item.shoot = ModContent.ProjectileType<AgnesIllusion>();
+            VisCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 22;
-            item.useTime = 65;
-            item.useAnimation = 65;
+            item.damage = 24;
+            item.useAnimation = item.useTime = 60;
             item.knockBack = 2;
             item.shootSpeed = 8f;
-            item.useTurn = false;
-            item.noUseGraphic = false;
+            item.useTurn = true;
+            item.noUseGraphic = true;
             item.useStyle = 1;
-            item.shoot = ModContent.ProjectileType<HadesConjuration>();
-            MundusCost = 20;
+            item.shoot = ModContent.ProjectileType<AgnesConjuration>();
+            MundusCost = 25;
         }
 
         public override void AddRecipes()

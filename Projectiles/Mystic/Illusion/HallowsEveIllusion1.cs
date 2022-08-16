@@ -28,11 +28,11 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.tileCollide = true;
             buffID = ModContent.BuffType<SpookedBuff>();
         }
-
+		/*
 		public override Color? GetAlpha(Color lightColor)
 		{
             return ((Color.White * 0.0f) * (0.025f * projectile.timeLeft));
-		}
+		}*/
 
         public override void AI()
         {

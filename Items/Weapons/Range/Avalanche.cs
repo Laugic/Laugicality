@@ -67,7 +67,7 @@ namespace Laugicality.Items.Weapons.Range
             if (((LaugicalityWorld.downedEtheria || LaugicalityPlayer.Get(player).Etherable > 0) && LaugicalityWorld.downedTrueEtheria) || counter >= 2)
             {
                 counter = 0;
-                Projectile.NewProjectile(position.X, position.Y, speedX * 1.5f, speedY * 1.5f, ModContent.ProjectileType<Projectiles.Ranged.AvalancheProjectile>(), damage * 3, knockBack, player.whoAmI);
+                Projectile.NewProjectile(position.X, position.Y, speedX * 1.5f, speedY * 1.5f, ModContent.ProjectileType<Projectiles.Ranged.AvalancheProjectile>(), damage * 2, knockBack, player.whoAmI);
             }
 
             return false;

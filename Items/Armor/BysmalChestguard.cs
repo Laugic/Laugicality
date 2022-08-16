@@ -95,7 +95,7 @@ namespace Laugicality.Items.Armor
                 if (modPlayer.BysmalPowers[i] == (ModContent.NPCType<Slybertron>()))
                     player.setBonus += "\nAttacks in the Etherial inflict 'Steamified', dealing damage over time, making enemies take more damage, and explode into cogs on death.";
 
-                if (modPlayer.BysmalPowers[i] == (ModContent.NPCType<NPCs.SteamTrain.SteamTrain>()))
+                if (modPlayer.BysmalPowers[i] == (ModContent.NPCType<NPCs.SteamTrain.SteamTrainOld>()))
                     player.setBonus += "\nCHOO CHOO! While in the etherial, the faster you move, the higher your damage. Colliding with an enemy deals your movement speed * 500 in damage. Greatly increases Movement Speed.";
 
                 if (modPlayer.BysmalPowers[i] == (NPCID.Plantera))

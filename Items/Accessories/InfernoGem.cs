@@ -14,8 +14,8 @@ namespace Laugicality.Items.Accessories
 
         public override void SetDefaults()
         {
-            item.width = 16;
-            item.height = 28;
+            item.width = 20;
+            item.height = 20;
             item.value = Item.sellPrice(silver: 50);
             item.rare = ItemRarityID.Green;
             item.accessory = true;

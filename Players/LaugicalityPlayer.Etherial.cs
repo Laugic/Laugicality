@@ -186,7 +186,7 @@ namespace Laugicality
                 if (BysmalPowers.Contains(ModContent.NPCType<Slybertron>()))
                     EtherialPipes = true;
 
-                if (BysmalPowers.Contains(ModContent.NPCType<NPCs.SteamTrain.SteamTrain>()))
+                if (BysmalPowers.Contains(ModContent.NPCType<NPCs.SteamTrain.SteamTrainOld>()))
                     EtherialTank = true;
 
                 if (BysmalPowers.Contains(NPCID.Plantera))

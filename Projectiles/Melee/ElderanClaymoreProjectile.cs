@@ -20,7 +20,7 @@ namespace Laugicality.Projectiles.Melee
             reverse = false;
             delay = 20;
             projectile.width = 38;
-            projectile.height = 24;
+            projectile.height = 38;
             projectile.friendly = true;
             projectile.thrown = true;
             projectile.penetrate = -1;
@@ -47,7 +47,7 @@ namespace Laugicality.Projectiles.Melee
             }
             else
             {
-                if (projectile.Distance(player.Center) > 800)
+                if (projectile.Distance(player.Center) > 1000)
                     reverse = true;
                 else
                 {
@@ -75,7 +75,8 @@ namespace Laugicality.Projectiles.Melee
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Vector2 playerCenter = Main.player[projectile.owner].MountedCenter;
+            Laugicality.DrawChain(spriteBatch, mod.GetTexture("Projectiles/Melee/ElderanClaymoreChain"), Main.player[projectile.owner].MountedCenter, projectile.Center);
+            /*Vector2 playerCenter = Main.player[projectile.owner].MountedCenter;
             Vector2 center = projectile.Center;
             Vector2 distToProj = playerCenter - projectile.Center;
             float projRotation = distToProj.ToRotation() + 1.57f;
@@ -94,7 +95,7 @@ namespace Laugicality.Projectiles.Melee
                 spriteBatch.Draw(chainTexture, new Vector2(center.X - Main.screenPosition.X, center.Y - Main.screenPosition.Y),
                     new Rectangle(0, 0, chainTexture.Width, chainTexture.Height), drawColor, projRotation,
                     new Vector2(chainTexture.Width * 0.5f, chainTexture.Height * 0.5f), 1f, SpriteEffects.None, 0f);
-            }
+            }*/
             return true;
         }
     }

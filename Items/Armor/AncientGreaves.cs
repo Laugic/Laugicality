@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Increased jump height\n+15% Movement Speed and Max Run Speed");
+            Tooltip.SetDefault("Innate Sandstorm in a Bottle\n+15% Movement Speed");
         }
 
         public override void SetDefaults()
@@ -23,9 +23,8 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
+            player.doubleJumpSandstorm = true;
             player.moveSpeed += 0.15f;
-            player.maxRunSpeed += .15f;
-            player.jumpSpeedBoost += 4;
         }
         
         public override void AddRecipes()

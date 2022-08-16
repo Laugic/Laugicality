@@ -1,4 +1,5 @@
 using Laugicality.Items.Equipables;
+using Laugicality.Items.Weapons.Mystic;
 using Laugicality.Prefixes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -84,6 +85,11 @@ namespace Laugicality.Items
                         player.QuickSpawnItem(ItemID.MusketBall, 100);
                         break;
                 }
+            }
+            if(arg == ItemID.FishronBossBag)
+            {
+                if(Main.rand.Next(6) == 0)
+                    player.QuickSpawnItem(ModContent.ItemType<PoseidonsTide>(), 1);
             }
         }
 

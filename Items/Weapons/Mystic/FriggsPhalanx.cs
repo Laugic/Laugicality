@@ -15,7 +15,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frigg's Phalanx");
-            Tooltip.SetDefault("'The swarm cometh'\nIllusion inflicts 'Poison'\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("'The swarm cometh'");
 			Item.staff[item.type] = true;
 		}
 
@@ -35,25 +35,42 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.autoReuse = true;
 			item.shoot = ModContent.ProjectileType<Nothing>();
 			item.shootSpeed = 6f;
-		}
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots a spread of bees and spores";
+                case 2:
+                    return "Shoots spore clouds that inflict 'Pollinated', \nwhich makes bees deal more damage and be consumed on hit";
+                case 3:
+                    return "Spawns a hive that shoots bees";
+                default:
+                    return "";
+            }
+        }
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode == 1)
             {
-                int numberProjectiles = Main.rand.Next(1, 3);
+                int numberProjectiles = 2 + Main.rand.Next(1, 4);
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
                     float scale = 1f - (Main.rand.NextFloat() * .3f);
                     perturbedSpeed = perturbedSpeed * scale;
-                    if(Main.rand.Next(2) == 0)
+                    if(Main.rand.Next(3) == 0)
                     {
                         if(player.strongBees && Main.rand.Next(3) == 0)
-                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 566, (int)(damage * 1.5), knockBack, player.whoAmI);
+                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileID.GiantBee, (int)(damage * 1.5), knockBack, player.whoAmI);
                         else
-                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, 181, damage, knockBack, player.whoAmI);
+                            Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileID.Bee, damage, knockBack, player.whoAmI);
                     }
                     else
                         Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<FriggDestruction>(), damage, knockBack, player.whoAmI);
@@ -70,13 +87,13 @@ namespace Laugicality.Items.Weapons.Mystic
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 25;
-            item.useTime = 13;
+            item.damage = 20;
+            item.useTime = 20;
             item.useAnimation = item.useTime;
             item.knockBack = 1f;
             item.shootSpeed = 10;
             item.shoot = ModContent.ProjectileType<Nothing>();
-            LuxCost = 6;
+            LuxCost = 8;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)

@@ -1,4 +1,5 @@
 using Laugicality.Buffs;
+using Laugicality.Projectiles.Mystic.Overflow;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -10,7 +11,7 @@ namespace Laugicality.Projectiles.Mystic
         public float duration = 1;
         public bool overflowed = false;
         public int buffID = 0;
-        public int baseDuration = 6 * 60;
+        public int baseDuration = 8 * 60;
 
 
         public override void SetDefaults()
@@ -52,8 +53,8 @@ namespace Laugicality.Projectiles.Mystic
         private void OverflowEffects()
         {
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
-            if (modPlayer.ShroomOverflow > 0)
-                projectile.tileCollide = false;
+            //if (modPlayer.ShroomOverflow > 0)
+            //    projectile.tileCollide = false;
         }
 
         public virtual void Durationed(float dur)
@@ -63,7 +64,8 @@ namespace Laugicality.Projectiles.Mystic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
+            if(buffID != 0)
+                target.AddBuff(buffID, (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
 
             LaugicalityPlayer modPlayer = Main.player[projectile.owner].GetModPlayer<LaugicalityPlayer>();
 
@@ -71,6 +73,8 @@ namespace Laugicality.Projectiles.Mystic
                 target.AddBuff(ModContent.BuffType<Incineration>(), (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
             if (modPlayer.SporeShard > 0)
                 target.AddBuff(ModContent.BuffType<Spored>(), (int)(baseDuration * duration) + Main.rand.Next(1 * 60));
+            if (modPlayer.MysticShroomBurst && Main.myPlayer == projectile.owner && projectile.type != ModContent.ProjectileType<OverflowSpore>() && overflowed)
+                Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, -10f, ModContent.ProjectileType<OverflowSpore>(), (int)(projectile.damage / 1.2f), 3, Main.myPlayer);
         }
     }
 }

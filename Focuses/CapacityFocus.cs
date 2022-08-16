@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Focuses
 {
@@ -103,7 +104,7 @@ namespace Laugicality.Focuses
         private static void DownedAnDioEffect(LaugicalityPlayer laugicalityPlayer, bool hideAccessory)
         {
             laugicalityPlayer.AnDioCapacityEffect = true;
-            if(Laugicality.zaWarudo > 0)
+            if(Laugicality.zaWarudo > 0 || TimeManagement.TimeAltered)
             {
                 laugicalityPlayer.player.immune = true;
                 laugicalityPlayer.player.immuneTime = 60;

@@ -25,9 +25,9 @@ namespace Laugicality.Items.Armor
         public override void UpdateEquip(Player player)
         {
             float moveSpeed = 0;
-            moveSpeed = (float)Math.Abs(player.velocity.X) / 30f;
-            if (moveSpeed > .2f)
-                moveSpeed = .2f;
+            moveSpeed = (float)player.velocity.Length() / 50f;
+            if (moveSpeed > .25f)
+                moveSpeed = .25f;
             player.allDamage += moveSpeed;
         }
         

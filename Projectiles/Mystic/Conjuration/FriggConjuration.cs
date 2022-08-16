@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace Laugicality.Projectiles.Mystic.Conjuration
 {
@@ -56,9 +57,9 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     if (Main.myPlayer == projectile.owner)
                     {
                         if (player.strongBees && Main.rand.Next(3) == 0)
-                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 566, (int)(projectile.damage * 1.5f), 2f, projectile.owner);
+                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, ProjectileID.GiantBee, (int)(projectile.damage * 1.5f), 2f, projectile.owner);
                         else
-                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, 181, (int)(projectile.damage), 2f, projectile.owner);
+                            Projectile.NewProjectile(projectile.Center.X - 4 + Main.rand.Next(9), projectile.Center.Y - 4 + Main.rand.Next(9), 0, 0.1f, ProjectileID.Bee, (int)(projectile.damage), 2f, projectile.owner);
 
                         for (int k = 0; k < 5; k++)
 						{

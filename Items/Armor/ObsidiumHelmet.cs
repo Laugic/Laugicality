@@ -42,11 +42,9 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "Magmatic Mystic Burst\nDecreased Mystic Burst cooldown\n+20% Mystic Burst damage\nAttacks inflict 'On Fire!'";
+            player.setBonus = "Increased Mystic damage for a time after swapping Mysticisms\nAttacks inflict 'On Fire!'";
             modPlayer.Obsidium = true;
-            modPlayer.MysticObsidiumBurst = true;
-            modPlayer.MysticSwitchCoolRate += 2;
-            modPlayer.MysticBurstDamage += .2f;
+            modPlayer.MysticObsidiumSwitch = true;
         }
 
 		public override void AddRecipes()

@@ -59,7 +59,7 @@ namespace Laugicality
             MysticMarblite = false;
             MysticEruption = false;
             MysticEruptionBurst = false;
-            MysticObsidiumBurst = false;
+            MysticObsidiumSwitch = false;
 
             if (Mysticality > 0)
                 Mysticality -= 1;
@@ -146,6 +146,14 @@ namespace Laugicality
                 default:
                     break;
             }
+
+
+
+            if (MysticObsidiumSwitch)
+            {
+                player.AddBuff(ModContent.BuffType<ObsidiumArmorBuff>(), 6 * 60);
+            }
+
             if (MysticSwitchCool <= 0 && !MysticBurstDisabled)
             {
                 if (MysticShroomBurst)
@@ -191,25 +199,11 @@ namespace Laugicality
                     MysticSwitchCool += 4 * 60;
                 }
 
-                if (AndioChestguard)
-                {
-                    MysticSpiralBurst += 150;
-                    MysticSwitchCool += 4 * 60;
-                }
-
-                if (MysticObsidiumBurst)
-                {
-                    float mag = 12f;
-                    float theta = 0;
-
-                    for (int i = 0; i < 16; i++)
-                    {
-                        theta += (float)Math.PI / 8;
-                        Projectile.NewProjectile(player.Center.X, player.Center.Y, mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta), ModContent.ProjectileType<ObsidiumMysticBurst>(), (int)(24 * MysticDamage * MysticBurstDamage), 3, Main.myPlayer);
-                    }
-
-                    MysticSwitchCool += 4 * 60;
-                }
+                //if (AndioChestguard)
+                //{
+                //    MysticSpiralBurst += 150;
+                //    MysticSwitchCool += 4 * 60;
+                //}
 
                 if (MysticSteamBurst)
                 {
@@ -225,7 +219,7 @@ namespace Laugicality
                 if(MysticSwitchCool > 0)
                     PostBurstEffects();
             }
-            Laugicality.Instance.MysticaUI.CyclePositions(MysticMode);
+            Laugicality.MysticaUI.CyclePositions(MysticMode);
         }
 
         private void Blink()
@@ -437,7 +431,7 @@ namespace Laugicality
 
         public int OrionCharge { get; set; } = 0;
 
-        public bool MysticObsidiumBurst { get; set; } = false;
+        public bool MysticObsidiumSwitch { get; set; } = false;
 
         #endregion
 

@@ -22,7 +22,7 @@ namespace Laugicality.Items.Weapons.Range
             item.ranged = true;
             item.width = 50;
             item.height = 26;
-            item.useAnimation = item.useTime = 15;
+            item.useAnimation = item.useTime = 10;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
@@ -39,10 +39,13 @@ namespace Laugicality.Items.Weapons.Range
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 40f;
             muzzleOffset.Y -= 6;
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(15));
-            perturbedSpeed.Y -= 4;
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(4));
             if (Main.rand.Next(4) == 0)
-                Projectile.NewProjectile(position + muzzleOffset, perturbedSpeed * .85f, ModContent.ProjectileType<BigSnowballProjectile>(), damage, knockBack, player.whoAmI, type);
+            {
+                perturbedSpeed.Y -= 4;
+                position.Y -= 4;
+                Projectile.NewProjectile(position + muzzleOffset, perturbedSpeed, ModContent.ProjectileType<BigSnowballProjectile>(), damage, knockBack, player.whoAmI, type);
+            }
             else
                 Projectile.NewProjectile(position + muzzleOffset, perturbedSpeed, type, damage, knockBack, player.whoAmI);
             return false;

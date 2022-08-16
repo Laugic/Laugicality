@@ -465,7 +465,7 @@ namespace Laugicality
 
         private static int[] GetObsidiumPotionLoot()
         {
-            int[] potLoot = new int[] { ModContent.ItemType<DestructionPotion>(), ModContent.ItemType<IllusionPotion>(), ModContent.ItemType<ConjurationPotion>(), ModContent.ItemType<JumpBoostPotion>(), ItemID.InfernoPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
+            int[] potLoot = new int[] { ModContent.ItemType<JumpBoostPotion>(), ItemID.InfernoPotion, ItemID.ObsidianSkinPotion, ItemID.LifeforcePotion, ItemID.WrathPotion };
             int potPos = Main.rand.Next(potLoot.GetLength(0));
             int potCount = Main.rand.Next(2, 5);
             int[] pot = { 0, 0 };
@@ -497,12 +497,11 @@ namespace Laugicality
         private static int[] GetObsidiumMiscLoot()
         {
             int[] mscLoot = new int[] {
-                ModContent.ItemType<Items.Placeable.LavaGemItem>(), ModContent.ItemType<ArcaneShard>(),
-                ModContent.ItemType<Items.Placeable.LavaGemItem>(), ModContent.ItemType<RubrumDust>(),
-                ModContent.ItemType<AlbusDust>(), ModContent.ItemType<VerdiDust>() };
+                ModContent.ItemType<Items.Placeable.LavaGemItem>(), ModContent.ItemType<Items.Placeable.Lycoris>(),
+                ModContent.ItemType<Items.Placeable.Radiata>() };
 
             int mscPos = Main.rand.Next(mscLoot.GetLength(0));
-            int mscCount = Main.rand.Next(2, 6);
+            int mscCount = Main.rand.Next(4, 9);
             int[] msc = { 0, 0 };
             msc[0] = mscLoot[mscPos];
             msc[1] = mscCount;

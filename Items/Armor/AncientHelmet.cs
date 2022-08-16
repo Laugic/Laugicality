@@ -9,7 +9,7 @@ namespace Laugicality.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("+10% Mystic, Magic, and Summon damage");
+            Tooltip.SetDefault("Increased Max Run Speed and Jump Height");
         }
 
         public override void SetDefaults()
@@ -29,20 +29,20 @@ namespace Laugicality.Items.Armor
 
         public override void UpdateEquip(Player player)
         {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            modPlayer.MysticDamage += 0.10f;
-            player.minionDamage += .1f;
-            player.magicDamage += .1f;
+            player.maxRunSpeed += 6f;
+            player.accRunSpeed += 6f;
+            player.jumpSpeedBoost += 4;
         }
         
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "Innate Sandstorm in a Bottle\n+15% Increased Potentia Conversion\n+60 Mana\nIncreased Max Minions";
-            modPlayer.GlobalAbsorbRate += .15f;
-            player.statManaMax2 += 60;
+            player.setBonus = "Increased Max Minions, Mana, and Potentia";
+            modPlayer.LuxMax += 40;
+            modPlayer.VisMax += 40;
+            modPlayer.MundusMax += 40;
+            player.statManaMax2 += 40;
             player.maxMinions += 2;
-            player.doubleJumpSandstorm = true;
         }
 
         public override void AddRecipes()

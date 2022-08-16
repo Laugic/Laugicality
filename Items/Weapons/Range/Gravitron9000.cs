@@ -19,11 +19,11 @@ namespace Laugicality.Items.Weapons.Range
 
         public override void SetDefaults()
         {
-            item.damage = 42;
+            item.damage = 48;
             item.ranged = true;
             item.width = 50;
             item.height = 26;
-            item.useAnimation = item.useTime = 10;
+            item.useAnimation = item.useTime = 8;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 2;
@@ -31,7 +31,7 @@ namespace Laugicality.Items.Weapons.Range
             item.rare = ItemRarityID.Lime;
             item.UseSound = SoundID.Item11;
             item.autoReuse = true;
-            item.shootSpeed = 12f;
+            item.shootSpeed = 20f;
             item.useAmmo = AmmoID.Snowball;
             item.shoot = ProjectileID.SnowBallFriendly;
         }
@@ -44,14 +44,14 @@ namespace Laugicality.Items.Weapons.Range
         }
         public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 45f;
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 55f;
             if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
             {
                 position += muzzleOffset;
                 position.Y -= 5;
             }
 
-            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(10));
+            Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(5));
             float scale = 1f - (Main.rand.NextFloat() * .2f);
             perturbedSpeed = perturbedSpeed * scale;
             if (type == ProjectileID.SnowBallFriendly || type == ModContent.ProjectileType<IceBallProjectile>())

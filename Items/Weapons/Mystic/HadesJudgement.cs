@@ -18,12 +18,29 @@ namespace Laugicality.Items.Weapons.Mystic
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hades' Judgement");
-            Tooltip.SetDefault("Cleanse your sins\nIllusion inflicts 'Shadowflame'\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("Cleanse your sins");
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots a short range fireball";
+                case 2:
+                    return "Shoots a sword beam that inflicts 'Judgement', which \nmakes enemies take more damage if they are close to you";
+                case 3:
+                    return "Shoots a sword beam that creates a spiral geyser";
+                default:
+                    return "";
+            }
         }
 
         public override void SetMysticDefaults()
         {
-            item.damage = 34;
+            item.damage = 38;
             item.width = 66;
             item.height = 74;
             item.useTime = 18;
@@ -38,48 +55,46 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shootSpeed = 6f;
             item.scale = 1.5f;
         }
-
+        /*
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             if (modPlayer.MysticMode != 1)
                 return true;
             else return false;
-        }
+        }*/
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.damage = 44;
-            item.useTime = 40;
-            item.useAnimation = item.useTime;
+            item.damage = 38;
+            item.useAnimation = item.useTime = 20;
             item.knockBack = 8;
-            item.shootSpeed = 4f;
-            item.shoot = ModContent.ProjectileType<Nothing>();
-            LuxCost = 0;
+            item.shootSpeed = 12f;
+            item.shoot = ModContent.ProjectileType<HadesDestruction>();
+            LuxCost = 10;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
         {
-            item.damage = 32;
-            item.useTime = 20;
-            item.useAnimation = 20;
+            item.damage = 38;
+            item.useAnimation = item.useTime = 20;
             item.knockBack = 4;
             item.shootSpeed = 12f;
             item.shoot = ModContent.ProjectileType<HadesIllusion>();
-            VisCost = 8;
+            VisCost = 10;
         }
 
         public override void Conjuration(LaugicalityPlayer modPlayer)
         {
-            item.damage = 22;
+            item.damage = 20;
             item.useTime = 65;
             item.useAnimation = 65;
             item.knockBack = 2;
             item.shootSpeed = 8f;
             item.shoot = ModContent.ProjectileType<HadesConjuration>();
-            MundusCost = 20;
+            MundusCost = 30;
         }
-
+        /*
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
@@ -103,7 +118,7 @@ namespace Laugicality.Items.Weapons.Mystic
             }
             LuxCost = 0;
 
-        }
+        }*/
 
         public override void AddRecipes()
         {

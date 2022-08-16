@@ -1,13 +1,18 @@
 using System;
+using System.Collections.Generic;
+using Laugicality.Dusts;
 using Laugicality.Items.Equipables;
 using Laugicality.Items.Loot;
 using Laugicality.Items.Placeable;
 using Laugicality.Items.Weapons.Range;
 using Laugicality.NPCs.Obsidium;
+using Laugicality.Particles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Extensions;
 
 namespace Laugicality.NPCs.PreTrio
 {
@@ -19,22 +24,27 @@ namespace Laugicality.NPCs.PreTrio
         private int Counter { get; set; }
         private int Frame { get; set; }
         private Vector2 TargetPos;
+        double rotSpeed = .1;
+
         private bool Angry { get; set; }
+        public List<Particle> Particles;
+        public List<Particle> BkgParticles;
+        public static float HEART_HP = .2f;
+        Texture2D Heart;
 
         public override void SetStaticDefaults()
         {
             LaugicalityVars.eNPCs.Add(npc.type);
             DisplayName.SetDefault("Ragnar");
-            Main.npcFrameCount[npc.type] = 2;
         }
         public override void SetDefaults()
         {
-            npc.width = 88;
-            npc.height = 96;
+            npc.width = 86;
+            npc.height = 132;
             npc.damage = 35;
             npc.defense = 16;
             npc.aiStyle = 0;
-            npc.lifeMax = 4200;
+            npc.lifeMax = 5000;
             npc.HitSound = SoundID.NPCHit7;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.npcSlots = 15f;
@@ -45,7 +55,7 @@ namespace Laugicality.NPCs.PreTrio
             npc.noGravity = true;
             npc.noTileCollide = true;
             npc.buffImmune[24] = true;
-            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar2");
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Ragnar");
             bossBag = ModContent.ItemType<RagnarTreasureBag>();
             PrevAIPhase = AIPhase = 0;
             Counter = 0;
@@ -53,11 +63,19 @@ namespace Laugicality.NPCs.PreTrio
             Angry = false;
             npc.ai[0] = -1;
             Frame = 0;
+            Particles = new List<Particle>();
+            BkgParticles = new List<Particle>();
+            npc.velocity = Vector2.Zero;
+            if (!Main.dedServ)
+            {
+                Heart = mod.GetTexture(this.GetType().GetRootPath() + "/RagnarHeart");
+            }
+
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 8400 + numPlayers * 2000;
+            npc.lifeMax = 10000 + numPlayers * 2000;
             npc.damage = 70;
         }
 
@@ -66,288 +84,225 @@ namespace Laugicality.NPCs.PreTrio
             HealthCheck();
             PickAI();
             Effects();
+            Counter++;
         }
 
-        private void HealthCheck()
-        {
-            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
-            {
-                AIPhase = 6;
-                return;
-            }
-            if (npc.life < (npc.lifeMax * 2) / 3 && !Angry && Counter >= 0)
-            {
-                Counter = -1;
-                AIPhase = 5;
-            }
-        }
-
-        private void Effects()
-        {
-            npc.spriteDirection = (int)(npc.velocity.X / Math.Abs(npc.velocity.X));
-            npc.netUpdate = true;
-        }
-
+        #region behavior AIs
         private void PickAI()
         {
             switch(AIPhase)
             {
-                case 0:
-                    InitializeAI();
-                    break;
                 case 1:
-                    RuneAI();
+                    FireballWave();
                     break;
                 case 2:
-                    FireballAI();
+                    FireballToss();
                     break;
                 case 3:
-                    SmashAI();
-                    break;
-                case 4:
-                    TransitionAI();
-                    break;
-                case 5:
-                    SummonHandAI();
+                    FireballSpiral();
                     break;
                 default:
-                    DespawnAI();
+                    Chase();
                     break;
             }
         }
 
-        private void DespawnAI()
+        private void FireballSpiral()
         {
-            npc.TargetClosest();
-            if (Main.player[(int)npc.target].statLife <= 0 || !Main.player[(int)npc.target].active)
-                npc.position.Y += 8;
-            else
-                Transition();
+            Slow();
+            if (Counter > 1 * 60 && Counter <= 5 * 60)
+            {
+                float mag = 10;
+                double theta = Counter / 30.0;
+                if (Counter % 10 == 0)
+                {
+                    int proj = Projectile.NewProjectile(npc.Center, new Vector2(mag * (float)Math.Cos(theta), mag * (float)Math.Sin(theta)), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 3;
+                    proj = Projectile.NewProjectile(npc.Center, new Vector2(mag * (float)Math.Cos(theta + Math.PI), mag * (float)Math.Sin(theta + Math.PI)), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 3;
+                }
+            }
+            if (Counter >= 6 * 60)
+                ResetAttack();
         }
 
-        private void TransitionAI()
+        private void FireballToss()
+        {
+            Slow();
+            if (Counter > 1 * 60 && Counter <= 4 * 60)
+            {
+                int curOff = (Counter - 1 * 60 - (Counter - 1 * 60) % 15) / 15;
+                
+                if (Counter % 15 == 0)
+                {
+                    int proj = Projectile.NewProjectile(npc.Center, new Vector2(2 * curOff, -4), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 2;
+                    Main.projectile[proj].ai[1] = npc.whoAmI;
+                    proj = Projectile.NewProjectile(npc.Center, new Vector2(-2 * curOff, -4), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 2;
+                    Main.projectile[proj].ai[1] = npc.whoAmI;
+                }
+            }
+            if (Counter >= 5 * 60)
+                ResetAttack();
+        }
+
+        //TODO: Make pick random instead of one attack.
+        private void PickRandomAttack()
+        {
+            Counter = 0;
+            AIPhase = 1;
+        }
+
+        private void ResetAttack()
+        {
+            Counter = 0;
+            AIPhase = 0;
+        }
+
+        private void Chase()
         {
             TargetPos = Main.player[npc.target].Center;
-            MoveTowardsAtSpeed(TargetPos, Angry?5:4 + (Main.expertMode?2:0));
-            Counter++;
-            if ((Counter > 2 * 60 && Main.rand.Next(60) == 0) || Counter > 4 * 60)
-            {
-                Counter = 0;
-                switch(PrevAIPhase)
-                {
-                    case 1:
-                        AIPhase = Main.rand.Next(2, 4);
-                        break;
-                    case 2:
-                        AIPhase = 1 + 2 * Main.rand.Next(2);
-                        break;
-                    case 3:
-                        AIPhase = Main.rand.Next(1, 3);
-                        break;
-                    default:
-                        AIPhase = 1;
-                        break;
-                }
-            }
+            //MoveTowards(TargetPos, 6 + (Main.expertMode ? 2 : 0));//MoveTowards(TargetPos, 4 + (Main.expertMode?2:0));
+            MoveTo(TargetPos, 6 + (Main.expertMode ? 2 : 0), 1.1f);
+            if (Counter >= 6 * 60)
+                PickRandomAttack();
         }
 
-        private void SmashAI()
+        private void FireballWave()
         {
-            Counter++;
-            if(Counter < 2 * 60)
-            {
-                TargetPos = Main.player[npc.target].position;
-                TargetPos.Y -= 250;
-                MoveTowards(TargetPos);
-            }
-            if(Counter >= 2 * 60 && Counter < 2 * 60 + 30)
-            {
-                Frame = 1;
-                QuickSlow();
-            }
-            if(Counter > 2 * 60 + 30 && Counter < 3 * 60)
-            {
-                npc.velocity.Y = 14;
-                npc.velocity.X = 0;
-                Frame = 0;
-            }
-            if(Counter == 3 * 60 + 30)
-            {
-                npc.velocity.Y = 0;
-                if(Main.netMode != 1)
-                {
-                    for(int i = 0; i < 8; i++)
-                    {
-                        Projectile.NewProjectile(Main.player[npc.target].position.X - 400 + Main.rand.Next(800), Main.player[npc.target].position.Y - 420 - Main.rand.Next(50), Angry?(-1 + 2 * Main.rand.NextFloat()):0, 8 + 4 * Main.rand.NextFloat(), ModContent.ProjectileType<Ragnarock>(), npc.damage / 4, 3, Main.myPlayer);
-                    }
-                }
-            }
-            if(Counter > 3 * 60 + 30)
-                Transition();
-        }
-
-        private void SummonHandAI()
-        {
-            if(!Main.expertMode)
-            {
-                Angry = true;
-                Transition();
-                return;
-            }
-            Slow();
-            Frame = 1;
-            if(Counter == -1)
-            {
-                if (Main.netMode != 1)
-                {
-                    int n = NPC.NewNPC((int)npc.Center.X + 1200, (int)npc.Center.Y, ModContent.NPCType<RagnarHand>());
-                    Main.npc[n].ai[0] = 0;
-                    Main.npc[n].ai[1] = npc.whoAmI;
-                    n = NPC.NewNPC((int)npc.Center.X - 1200, (int)npc.Center.Y, ModContent.NPCType<RagnarHand>());
-                    Main.npc[n].ai[0] = 1;
-                    Main.npc[n].ai[1] = npc.whoAmI;
-                }
-            }
-            Counter--;
-            if(Counter < -3 * 60)
-            {
-                Angry = true;
-                Transition();
-            }
-        }
-
-        private void FireballAI()
-        {
-            Slow();
-            Frame = 1;
-            Counter++;
-            if(Counter > 60 && Counter < 4 * 60)
-            {
-                double theta = Math.PI + Main.rand.NextDouble() * Math.PI;
-                float mag = 4 + Main.rand.NextFloat() * 2;
-                if(Counter % 6 == 0 && Main.netMode != 1)
-                    Projectile.NewProjectile(npc.Center.X - 10 + Main.rand.Next(20), npc.Center.Y - 20 - Main.rand.Next(10), (float)Math.Cos(theta) * mag, (float)Math.Sin(theta) * mag, ModContent.ProjectileType<GravityFireball>(), (int)(npc.damage / 4), 3, Main.myPlayer);
-
-            }
-            if (Counter > 4 * 60)
-                Frame = 0;
-            if (Counter > 5 * 60)
-                Transition();
-        }
-
-        private void RuneAI()
-        {
-            if(npc.ai[0] != -1 && Main.npc[(int)npc.ai[0]].active)
-            {
-                ExplodeRune();
-                return;
-            }
-            if (Counter == 0)
+            int xOffset = 60;
+            int yOffset = 500;
+            if(Counter < 2)
             {
                 TargetPos = Main.player[npc.target].Center;
-                Counter++;
+                TargetPos.Y -= 180;
             }
-            MoveTowards(TargetPos);
-            if (Vector2.Distance(npc.Center, TargetPos) < 40)
-                SummonRune();
-        }
-
-        private void SummonRune()
-        {
-            Slow();
-            Counter++;
-            Frame = 1;
-
-            if (Counter >= 60)
+            if (Counter < 1 * 60)
+                MoveTowards(TargetPos, 8 + (Main.expertMode ? 4 : 0));
+            else
+                Slow();
+            if (Counter > 3 * 60)
             {
-                if (Main.netMode != 1)
-                    npc.ai[0] = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, ModContent.NPCType<Ragnarune>());
-                Main.npc[(int)npc.ai[0]].ai[0] = npc.whoAmI;
-                Transition();
-            }
-        }
-
-        private void ExplodeRune()
-        {
-            QuickSlow();
-            Counter++;
-            Frame = 1;
-            if (npc.ai[0] == -1)
-            {
-                npc.ai[0] = -1;
-                Counter = 0;
-                Frame = 0;
-            }
-            NPC rune = Main.npc[(int)npc.ai[0]];
-            rune.ai[2] = 1;
-            if (Counter >= 90 && rune.active)
-            {
-                float numBalls = 8 + Main.rand.Next(4) + (Main.expertMode ? 2 : 0) + (Angry ? 4 : 0);
-                double thetaInit = Math.PI * 2 * Main.rand.NextDouble();
-                for(int i = 0; i < numBalls; i++)
+                int curOff = (Counter - 3 * 60 - (Counter - 3 * 60) % 15) / 15;
+                if(Counter % 3 == 0)
                 {
-                    float mag = 5 + Main.rand.NextFloat() * 2 + (Angry ? 2 : 0);
-                    if (Main.netMode != 1)
-                        Projectile.NewProjectile(rune.Center.X + 40, rune.Center.Y + 40, mag * (float)Math.Cos(thetaInit + (Math.PI * 2) * (i / numBalls)), mag * (float)Math.Sin(thetaInit + (Math.PI * 2) * (i / numBalls)),
-                            ModContent.ProjectileType<GravityFireball>(), (int)(npc.damage / 4), 3, Main.myPlayer);
+                    BkgParticles.Add(new Particle(mod.GetTexture("Particles/Flame"), new Vector2(npc.Center.X + xOffset * curOff - 20 + Main.rand.Next(40), npc.Center.Y + yOffset - 8 + Main.rand.Next(16)), Vector2.Zero, 7));
+                    BkgParticles.Add(new Particle(mod.GetTexture("Particles/Flame"), new Vector2(npc.Center.X - xOffset * curOff - 20 + Main.rand.Next(40), npc.Center.Y + yOffset - 8 + Main.rand.Next(16)), Vector2.Zero, 7));
                 }
-                rune.active = false;
-                npc.ai[0] = -1;
-                Counter = 0;
-                Frame = 0;
+                //Dust.NewDust(new Vector2(npc.Center.X + xOffset * curOff, npc.Center.Y + yOffset), 40, 10, ModContent.DustType<Magma>(), -2 + Main.rand.Next(5), -2 + Main.rand.Next(5));
+                //Dust.NewDust(new Vector2(npc.Center.X - xOffset * curOff, npc.Center.Y + yOffset), 40, 10, ModContent.DustType<Magma>(), -2 + Main.rand.Next(5), -2 + Main.rand.Next(5));
+                if (Counter % 15 == 0)
+                {
+                    int proj = Projectile.NewProjectile(new Vector2(npc.Center.X - xOffset * curOff, npc.Center.Y + yOffset), new Vector2(0, -18), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 1;
+                    proj = Projectile.NewProjectile(new Vector2(npc.Center.X + xOffset * curOff, npc.Center.Y + yOffset), new Vector2(0, -18), ModContent.ProjectileType<RagnarFireball>(), npc.damage / 2, 4f);
+                    Main.projectile[proj].ai[0] = 1;
+                }
             }
-            if (!rune.active)
+            if (Counter >= 8 * 60)
+                ResetAttack();
+        }
+
+        #endregion
+
+
+        private void Effects()
+        {
+            //Particles.Add(new Particle(mod.GetTexture("Particles/Spark"), npc.Center, Vector2.Zero, 8));
+            AddParticles();
+            ParticleManager.UpdateParticles(ref BkgParticles);
+            ParticleManager.UpdateParticles(ref Particles);
+        }
+
+        private void AddParticles()
+        {
+            //Background
+            if (Counter % 15 == 0)
+                BkgParticles.Add(new Particle(mod.GetTexture("Particles/Flame"), npc.Center + new Vector2(-npc.width / 4 + Main.rand.Next(npc.width / 2), 20 - npc.height / 4 + Main.rand.Next(npc.height / 3)), Vector2.Zero, 7));
+            if (Counter % 10 == 0)
             {
-                npc.ai[0] = -1;
-                Counter = 0;
-                Frame = 0;
+                BkgParticles.Add(new Particle(mod.GetTexture("Particles/Blaze"), npc.Center + new Vector2(12 + npc.direction * 4 - 8 + Main.rand.Next(16), 20 + Main.rand.Next(16)), new Vector2(0, -1 - (float)Main.rand.NextDouble()), 6, 1, (float)(Main.rand.NextDouble() * 2 * Math.PI), .02f * (Main.rand.NextBool() ? 1 : -1))); BkgParticles.Add(new Particle(mod.GetTexture("Particles/Blaze"), npc.Center + new Vector2(-30 + Main.rand.Next(60) + npc.direction * 4, 20 - npc.height / 4 + Main.rand.Next(npc.height / 3)), new Vector2(0, -1 - (float)Main.rand.NextDouble()), 6, 1, (float)(Main.rand.NextDouble() * 2 * Math.PI), .02f * (Main.rand.NextBool() ? 1 : -1)));
+                BkgParticles.Add(new Particle(mod.GetTexture("Particles/Blaze"), npc.Center + new Vector2(12 + npc.direction * 4 - 8 + Main.rand.Next(16), 20 + Main.rand.Next(16)), new Vector2(-1 + 2 * (float)Main.rand.NextDouble(), -1 + 2 * (float)Main.rand.NextDouble()), 6, .95f, (float)(Main.rand.NextDouble() * 2 * Math.PI), .02f * (Main.rand.NextBool() ? 1 : -1)));
+            }
+            if (Counter % 5 == 0)
+                BkgParticles.Add(new Particle(mod.GetTexture("Particles/Spark"), npc.Center + new Vector2(12 + npc.direction * 4 - 8 + Main.rand.Next(16), 20 + Main.rand.Next(16)), new Vector2((float)(-1 + 2 * Main.rand.NextDouble()) / 4f, -1 - (float)Main.rand.NextDouble()), 8));
+
+            //Foreground
+            if (Counter % 25 == 0)
+                Particles.Add(new Particle(mod.GetTexture("Particles/Flame"), npc.Center + new Vector2(-npc.width / 2 + Main.rand.Next(npc.width), 20 - npc.height / 4 + Main.rand.Next(npc.height / 2)), Vector2.Zero, 7));
+        }
+
+        private void HealthCheck()
+        {
+            if(npc.life <= (int)(HEART_HP * npc.lifeMax) && Main.expertMode)
+            {
+                if (music != mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RagnarHeart"))
+                    HeartChange();
             }
         }
 
-        private void InitializeAI()
+        private void HeartChange()
         {
-            npc.TargetClosest(false);
-            TargetPos = Main.player[npc.target].Center;
-            AIPhase = 1;
-            Counter = 0;
+            music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/RagnarHeart");
+        }
+
+        private void MoveTowards(Vector2 targetPos, float maxVel = 20)
+        {
+            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
+            newVel *= Math.Min(Math.Min(Vector2.Distance(npc.Center, targetPos) / 4, npc.velocity.Length() + .6f), maxVel);
+            npc.velocity = newVel;
+        }
+
+        private void MoveTo(Vector2 targetVector, float maxVel, float accel)
+        {
+            var tarRot = targetVector.ToRotation();
+            var curRot = npc.velocity.ToRotation();
+            var rotGoal = tarRot - curRot;
+
+            if (rotGoal > Math.PI)
+                rotGoal -= 2 * (float)Math.PI;
+            if (rotGoal < -Math.PI)
+                rotGoal += 2 * (float)Math.PI;
+
+            if (rotGoal > rotSpeed)
+                npc.velocity = npc.velocity.RotatedBy(rotSpeed) / accel;
+            if (rotGoal < -rotSpeed)
+                npc.velocity = npc.velocity.RotatedBy(-rotSpeed) / accel;
+
+            if (npc.velocity.Length() < maxVel)
+            {
+                if (npc.velocity.Length() < maxVel / 10)
+                    npc.velocity.Y = maxVel / 2;
+                npc.velocity *= accel;
+            }
         }
 
         private void Slow()
         {
-            npc.velocity *= .95f;
+            npc.velocity *= .98f;
         }
 
-        private void QuickSlow()
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            npc.velocity *= .9f;
+            ParticleManager.DrawParticles(spriteBatch, Color.White, ref BkgParticles);
+
+            //Draw Heart
+            Rectangle rect = new Rectangle(0, ((int)Math.Floor(Counter / 4.0) % 8) * Heart.Height / 8, Heart.Width, Heart.Height / 8);
+            spriteBatch.Draw(Heart, npc.Center - Main.screenPosition + new Vector2( -28 + npc.direction * 4, -10), rect, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0f);
+
+            return (npc.life > (int)(HEART_HP * npc.lifeMax) && Main.expertMode);
         }
 
-        private void MoveTowards(Vector2 targetPos)
+        public override void PostDraw(SpriteBatch spriteBatch, Color drawColor)
         {
-            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
-            newVel *= Math.Min(Vector2.Distance(npc.Center, targetPos) / 4, npc.velocity.Length() + .6f);
-            npc.velocity = newVel;
+            base.PostDraw(spriteBatch, drawColor);
+            ParticleManager.DrawParticles(spriteBatch, Color.White, ref Particles);
         }
 
-        private void MoveTowardsAtSpeed(Vector2 targetPos, float mag)
-        {
-            Vector2 newVel = Vector2.Normalize(targetPos - npc.Center);
-            newVel *= Math.Min(mag, npc.velocity.Length() + .6f);
-            npc.velocity = newVel;
-        }
 
-        public override void FindFrame(int frameHeight)
-        {
-            npc.frame.Y = frameHeight * Frame;
-        }
 
-        private void Transition()
-        {
-            PrevAIPhase = AIPhase;
-            AIPhase = 4;
-            Counter = 0;
-            Frame = 0;
-        }
         public override void NPCLoot()
         {
             if (LaugicalityWorld.downedEtheria)
@@ -404,5 +359,7 @@ namespace Laugicality.NPCs.PreTrio
             potionType = 188;
         }
 
+
+        public List<int> Fireballs { get; set; }
     }
 }

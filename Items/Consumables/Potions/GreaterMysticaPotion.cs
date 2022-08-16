@@ -48,7 +48,6 @@ namespace Laugicality.Items.Consumables.Potions
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "MysticaPotion", 2);
-            recipe.AddIngredient(null, "LiquidVerdi", 1);
             recipe.AddIngredient(null, "MagmaSnapper", 1);
             recipe.AddIngredient(null, "Crystilla", 1);
             recipe.AddTile(TileID.Bottles);

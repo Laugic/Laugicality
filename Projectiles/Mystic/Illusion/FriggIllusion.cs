@@ -1,5 +1,7 @@
+using Laugicality.Buffs;
 using System;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Laugicality.Projectiles.Mystic.Illusion
 {
@@ -16,7 +18,8 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.friendly = true;
             projectile.ignoreWater = true;
             projectile.tileCollide = false;
-            buffID = BuffID.Poisoned;
+            buffID = ModContent.BuffType<PollinatedBuff>();
+            baseDuration = 8 * 60;
         }
 
         public override void AI()

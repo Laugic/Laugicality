@@ -27,13 +27,20 @@ namespace Laugicality.Projectiles.Mystic.Illusion
             projectile.penetrate = -1;
             projectile.timeLeft = 120;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            projectile.tileCollide = true;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 10;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
             buffID = ModContent.BuffType<TimeDilation>();
         }
-		
-		public override Color? GetAlpha(Color lightColor)
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            projectile.velocity = oldVelocity;
+            projectile.timeLeft -= 6;
+            return false;
+        }
+
+        public override Color? GetAlpha(Color lightColor)
 		{
 			return ((Color.White * 0.45f) * (0.05f * projectile.timeLeft));
 		}

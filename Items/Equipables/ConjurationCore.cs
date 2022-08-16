@@ -34,8 +34,8 @@ namespace Laugicality.Items.Equipables
         {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LargeEmerald, 1);
-            recipe.AddIngredient(ItemID.JungleSpores, 8);
-            recipe.AddIngredient(ModContent.ItemType<AlbusDust>(), 4);
+            recipe.AddIngredient(ItemID.LargeSapphire, 1);
+            recipe.AddIngredient(ModContent.ItemType<Arcanum>());
             recipe.AddTile(ModContent.TileType<AlchemicalInfuser>());
             recipe.SetResult(this);
             recipe.AddRecipe();

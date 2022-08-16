@@ -25,9 +25,9 @@ namespace Laugicality.Items.Weapons.Range
 			item.useStyle = 5;
 			item.noMelee = true;
 			item.knockBack = 8;
-			item.value = 10000;
-			item.rare = ItemRarityID.Green;
-			item.UseSound = SoundID.Item34;
+            item.value = Item.sellPrice(gold: 5);
+            item.rare = ItemRarityID.LightRed;
+            item.UseSound = SoundID.Item34;
 			item.autoReuse = true;
 			item.shootSpeed = 18f;
             item.useAmmo = AmmoID.Snowball;

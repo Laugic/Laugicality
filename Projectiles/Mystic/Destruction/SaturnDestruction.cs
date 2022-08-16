@@ -15,7 +15,7 @@ namespace Laugicality.Projectiles.Mystic.Destruction
             projectile.penetrate = 1;
             projectile.timeLeft = 100;
             projectile.ignoreWater = true;
-            projectile.tileCollide = false;
+            projectile.tileCollide = true;
             projectile.scale *= .8f;
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 12;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;

@@ -100,7 +100,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
             reload++;
             if(reload >= reloadMax)
             {
-                if(attack == 1)
+                //if(attack == 1)
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
@@ -108,7 +108,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                     }
                     reload = 0;
                 }
-                if (attack == 2)
+                /*if (attack == 2)
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
@@ -123,7 +123,7 @@ namespace Laugicality.Projectiles.Mystic.Conjuration
                         Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 0, 0, ModContent.ProjectileType<CupidBurst>(), (int)(projectile.damage / 1f), 3, Main.myPlayer);
                     }
                     reload = 0;
-                }
+                }*/
             }
             if(Main.rand.Next(8) == 0)
                 Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, ModContent.DustType<Pink>(), 0, 0);

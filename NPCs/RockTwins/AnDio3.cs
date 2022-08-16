@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.NPCs.RockTwins
 {
@@ -462,12 +463,11 @@ namespace Laugicality.NPCs.RockTwins
                 if (laserCharge > 240)
                 {
                     Main.PlaySound(SoundLoader.customSoundType, -1, -1, mod.GetSoundSlot(SoundType.Custom, "Sounds/zawarudo"));
+                    TimeManagement.TryAlterTime(new TimeAlterationRequest(npc, 10 * 60, 0));
                     if (Main.netMode != 1)
                     {
-                        if(Laugicality.zaWarudo < 4 * 60)
+                        //if(!TimeManagement.TimeAltered)
                         {
-                            Laugicality.zaWarudo += 4 * 60;
-                            LaugicalGlobalNPCs.zTime += 4 * 60;
                         }
                         if (NPC.CountNPCS(ModContent.NPCType<AnDioLaserBall>()) > 1)
                             laser = 120;

@@ -25,7 +25,7 @@ namespace Laugicality.Projectiles.Ranged
 
         public override void AI()
         {
-            projectile.velocity.Y += .5f;
+            projectile.velocity.Y += .4f;
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 33, projectile.velocity.X * -0.5f, projectile.velocity.Y * -0.5f);
             Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 33, projectile.velocity.X * -0.5f, projectile.velocity.Y * -0.5f);
         }

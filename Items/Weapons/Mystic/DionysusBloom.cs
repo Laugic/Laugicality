@@ -30,8 +30,8 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.useStyle = 5;
 			item.noMelee = true; 
 			item.knockBack = 2;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
+			item.value = Item.sellPrice(gold: 5);
+			item.rare = ItemRarityID.Lime;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;

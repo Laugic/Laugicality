@@ -1,6 +1,8 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WebmilioCommons.Time;
 
 namespace Laugicality.Items.Armor
 {
@@ -10,7 +12,7 @@ namespace Laugicality.Items.Armor
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("AnDio Chestguard");
-            Tooltip.SetDefault("'Generalist'\nYou are immune to Time Stop");
+            Tooltip.SetDefault("Decreased cooldown between Time Stops\nYou are immune to Time Stop");
 		}
 
 		public override void SetDefaults()
@@ -26,6 +28,7 @@ namespace Laugicality.Items.Armor
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
             modPlayer.zImmune = true;
+            modPlayer.zCoolDown -= 10 * 60;
         }
 
 
@@ -37,20 +40,12 @@ namespace Laugicality.Items.Armor
         public override void UpdateArmorSet(Player player)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            player.setBonus = "50% more Potentia discharges to other Potentias when used\nDioritus Mystic Burst\nDecreases Mystic Burst cooldown" +
-                "\nGreatly increased Potentia Regen when time is stopped\n'Out of Time' cooldown is shorter\nAutomatically stops time after taking a hit below 25% life";
-            modPlayer.GlobalAbsorbRate *= 1.5f;
-            if (Laugicality.zaWarudo > 0)
+            player.setBonus = "Automatically stop time after taking a hit below 25% life\nYou are immune while Time is Stopped";
+            if (TimeManagement.TimeAltered)
             {
-                if (modPlayer.Lux < modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost && modPlayer.MysticMode != 1)
-                    modPlayer.Lux += 1f / 4f;
-                if (modPlayer.Vis < modPlayer.VisMax + modPlayer.VisMaxPermaBoost && modPlayer.MysticMode != 2)
-                    modPlayer.Vis += 1f / 4f;
-                if (modPlayer.Mundus < modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost && modPlayer.MysticMode != 3)
-                    modPlayer.Mundus += 1f / 4f;
+                player.immune = true;
+                player.immuneTime = Math.Max(player.immuneTime, 4);
             }
-            modPlayer.MysticSwitchCoolRate += 2;
-            modPlayer.zCoolDown -= 10 * 60;
             modPlayer.AndioChestguard = true;
         }
 

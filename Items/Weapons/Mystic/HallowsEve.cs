@@ -15,9 +15,7 @@ namespace Laugicality.Items.Weapons.Mystic
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Hallow's Eve");
-             Tooltip.SetDefault("'The spirits of the darkness are bent to your will'"
-							+ "\nIllusion inflicts 'Spooked', which drains life rapidly."
-							+ "\nFires different projectiles based on Mysticism");
+             Tooltip.SetDefault("'The spirits of the darkness are bent to your will'");
             Item.staff[item.type] = true;
         }
 
@@ -31,12 +29,29 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.useStyle = 5;
 			item.noMelee = true; 
 			item.knockBack = 2;
-			item.value = 10000;
-			item.rare = ItemRarityID.Orange;
+            item.value = Item.sellPrice(gold: 10);
+            item.rare = ItemRarityID.Yellow;
 			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
             item.scale = .75f;
+        }
+
+        public override string GetExtraTooltip()
+        {
+            LaugicalityPlayer laugicalityPlayer = LaugicalityPlayer.Get();
+
+            switch (laugicalityPlayer.MysticMode)
+            {
+                case 1:
+                    return "Shoots a burst of skulls that follow your mouse";
+                case 2:
+                    return "Shoots an orb with a fire trail that inflicts 'Spooked', which\nmakes enemies take more damage for each unique thing that hits them";
+                case 3:
+                    return "Creates Jack-o-lanterns that shoot at nearby enemies";
+                default:
+                    return "";
+            }
         }
 
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)

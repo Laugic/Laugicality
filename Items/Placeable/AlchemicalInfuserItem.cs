@@ -89,18 +89,18 @@ namespace Laugicality.Items.Placeable
 
             ModRecipe enchrecipe1 = new ModRecipe(mod);
             enchrecipe1.AddIngredient(ItemID.SilverBroadsword);
-            enchrecipe1.AddIngredient(null, "ArcaneShard", 12);
-            enchrecipe1.AddIngredient(null, "AquosDust", 6);
-            enchrecipe1.AddIngredient(null, "RubrumDust", 4);
+            enchrecipe1.AddIngredient(null, "ArcaneShard", 4);
+            enchrecipe1.AddIngredient(ItemID.Sapphire, 2);
+            enchrecipe1.AddIngredient(ItemID.Ruby, 2);
             enchrecipe1.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             enchrecipe1.SetResult(ItemID.EnchantedSword);
             enchrecipe1.AddRecipe();
 
             ModRecipe enchrecipe2 = new ModRecipe(mod);
             enchrecipe2.AddIngredient(ItemID.TungstenBroadsword);
-            enchrecipe2.AddIngredient(null, "ArcaneShard", 12);
-            enchrecipe2.AddIngredient(null, "AquosDust", 6);
-            enchrecipe2.AddIngredient(null, "RubrumDust", 4);
+            enchrecipe2.AddIngredient(null, "ArcaneShard", 4);
+            enchrecipe2.AddIngredient(ItemID.Sapphire, 2);
+            enchrecipe2.AddIngredient(ItemID.Ruby, 2);
             enchrecipe2.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             enchrecipe2.SetResult(ItemID.EnchantedSword);
             enchrecipe2.AddRecipe();
@@ -108,9 +108,9 @@ namespace Laugicality.Items.Placeable
             ModRecipe starfuryrecipe = new ModRecipe(mod);
             starfuryrecipe.AddRecipeGroup(Laugicality.GOLD_BARS_GROUP, 12);
             starfuryrecipe.AddIngredient(ItemID.SunplateBlock, 24);
-            starfuryrecipe.AddIngredient(null, "ArcaneShard", 8);
-            starfuryrecipe.AddIngredient(null, "RegisDust", 6);
-            starfuryrecipe.AddIngredient(null, "AuraDust", 4);
+            starfuryrecipe.AddIngredient(null, "ArcaneShard", 4);
+            starfuryrecipe.AddIngredient(ItemID.Amethyst, 2);
+            starfuryrecipe.AddIngredient(ItemID.Topaz, 2);
             starfuryrecipe.AddTile(ModContent.TileType<Tiles.AlchemicalInfuser>());
             starfuryrecipe.SetResult(ItemID.Starfury);
             starfuryrecipe.AddRecipe();

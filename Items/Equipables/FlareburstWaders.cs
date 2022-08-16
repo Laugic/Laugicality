@@ -35,6 +35,15 @@ namespace Laugicality.Items.Equipables
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.LavaWaders, 1);
             recipe.AddIngredient(ModContent.ItemType<CrystalizedMagma>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<FireDust>(), 1);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+
+            recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.LavaWaders, 1);
+            recipe.AddIngredient(ModContent.ItemType<CrystalizedMagma>(), 1);
+            recipe.AddIngredient(ItemID.MagmaStone, 1);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.SetResult(this);
             recipe.AddRecipe();

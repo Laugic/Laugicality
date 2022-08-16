@@ -15,6 +15,9 @@
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define $(DefineConstants) -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
+    <Reference Include="SubworldLibrary">
+      <HintPath>bin\Debug\net45\SubworldLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="WebmilioCommons">
       <HintPath>bin\Debug\net45\WebmilioCommons.dll</HintPath>
     </Reference>

@@ -12,6 +12,7 @@ namespace Laugicality.Items.Weapons.Range
 	{
 		public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault("Soot Sprayer");
             Tooltip.SetDefault("Converts snowballs into sootballs\nShoots more snowballs as you consume Obsidium Hearts");
 		}
 

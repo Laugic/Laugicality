@@ -12,16 +12,14 @@ namespace Laugicality.Items.Weapons.Mystic
 {
 	public class MarsFury : MysticItem
     {
-        int _counter = 0;
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mars' Fury");
-            Tooltip.SetDefault("A Furious War\nIllusion inflicts 'Furious', which deals damage over time and makes enemies explode into Magma Shards upon death\nFires different projectiles based on Mysticism");
+            Tooltip.SetDefault("A Furious War\nIllusion inflicts 'Furious', which deals damage over time and\nmakes enemies shoot fireballs when hit\nFires different projectiles based on Mysticism");
         }
 
 		public override void SetMysticDefaults()
 		{
-            _counter = 0;
             item.damage = 40;
             item.width = 66;
 			item.height = 74;
@@ -35,38 +33,36 @@ namespace Laugicality.Items.Weapons.Mystic
 			item.UseSound = SoundID.Item20;
 			item.autoReuse = true;
 			item.shootSpeed = 6f;
-            item.scale = 1.5f;
+            item.scale = 1f;
 		}
         
         public override bool MysticShoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            if(_counter > 0)
-                _counter--;
-            if (modPlayer.MysticMode == 2 && _counter <= 0)
+            if (modPlayer.MysticMode == 1)
             {
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, 8f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0f, -8f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 8f, 0f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -8f, 0f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, 6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, -6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, 6f, -6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                Projectile.NewProjectile(player.Center.X, player.Center.Y, -6f, 6f, ModContent.ProjectileType<MarsIllusion>(), damage, 3f, player.whoAmI);
-                _counter = 6;
+                int numberProjectiles = Main.rand.Next(2, 6);
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(20));
+
+                    float scale = 1f - (Main.rand.NextFloat() * .3f);
+                    perturbedSpeed = perturbedSpeed * scale;
+                    Projectile.NewProjectile(position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockBack, player.whoAmI);
+                }
             }
             return true;
         }      
 
         public override void Destruction(LaugicalityPlayer modPlayer)
         {
-            item.scale = 1.5f;
+            item.scale = 1.25f;
             item.damage = 44;
-            item.useTime = 30;
-            item.useAnimation = item.useTime;
+            item.useAnimation = item.useTime = 20;
             item.knockBack = 8;
-            item.shootSpeed = 4f;
-            item.shoot = ModContent.ProjectileType<Nothing>();
+            item.shootSpeed = 16f;
+            item.shoot = ModContent.ProjectileType<MarsDestruction>();
+            LuxCost = 6;
         }
 
         public override void Illusion(LaugicalityPlayer modPlayer)
@@ -76,8 +72,8 @@ namespace Laugicality.Items.Weapons.Mystic
             item.useTime = 10;
             item.useAnimation = 10;
             item.knockBack = 4;
-            item.shootSpeed = 12f;
-            item.shoot = ModContent.ProjectileType<Nothing>();
+            item.shootSpeed = 18f;
+            item.shoot = ModContent.ProjectileType<MarsIllusion>();
             VisCost = 4;
         }
 
@@ -92,31 +88,6 @@ namespace Laugicality.Items.Weapons.Mystic
             item.shoot = ModContent.ProjectileType<MarsConjuration>();
             MundusCost = 20;
         }
-
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-        {
-            LaugicalityPlayer modPlayer = LaugicalityPlayer.Get(player);
-            LuxCost = 8;
-            if (modPlayer.MysticMode == 1 && modPlayer.Lux >= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate)
-            {
-                Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<MarsDestruction>(), damage, knockback, Main.myPlayer);
-
-                modPlayer.Lux -= LuxCost * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
-                if (modPlayer.Lux < 0)
-                    modPlayer.Lux = 0;
-                if (modPlayer.Lux > (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * modPlayer.LuxOverflow * modPlayer.GlobalOverflow)
-                    modPlayer.Lux = (modPlayer.LuxMax + modPlayer.LuxMaxPermaBoost) * modPlayer.LuxOverflow * modPlayer.GlobalOverflow;
-                modPlayer.Vis += LuxCost * modPlayer.GlobalAbsorbRate * modPlayer.VisAbsorbRate * modPlayer.LuxDischargeRate * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
-                if (modPlayer.Vis > (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * modPlayer.VisOverflow * modPlayer.GlobalOverflow)
-                    modPlayer.Vis = (modPlayer.VisMax + modPlayer.VisMaxPermaBoost) * modPlayer.VisOverflow * modPlayer.GlobalOverflow;
-                modPlayer.Mundus += LuxCost * modPlayer.GlobalAbsorbRate * modPlayer.MundusAbsorbRate * modPlayer.LuxDischargeRate * modPlayer.LuxUseRate * modPlayer.GlobalPotentiaUseRate;
-                if (modPlayer.Mundus > (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * modPlayer.MundusOverflow * modPlayer.GlobalOverflow)
-                    modPlayer.Mundus = (modPlayer.MundusMax + modPlayer.MundusMaxPermaBoost) * modPlayer.MundusOverflow * modPlayer.GlobalOverflow;
-
-            }
-            LuxCost = 0;
-        }
-
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

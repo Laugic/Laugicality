@@ -32,6 +32,7 @@ namespace Laugicality.Items.Equipables
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ModContent.ItemType<TheDarkOfOld>());
             recipe.AddIngredient(ItemID.ShadowScale, 16);
             recipe.AddTile(null, "AlchemicalInfuser");
             recipe.SetResult(this);

@@ -48,7 +48,7 @@ namespace Laugicality.Items.Placeable
             recipe.AddIngredient(this);
             recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 4);
             recipe.AddIngredient(ModContent.ItemType<ObsidiumOre>(), 8);
-            recipe.AddIngredient(ModContent.ItemType<RubrumDust>(), 4);
+            recipe.AddIngredient(ItemID.Ruby, 2);
             recipe.SetResult(ItemID.LifeCrystal);
             recipe.AddRecipe();
 
@@ -57,7 +57,7 @@ namespace Laugicality.Items.Placeable
             recipe.AddIngredient(this);
             recipe.AddIngredient(ModContent.ItemType<LavaGemItem>(), 4);
             recipe.AddIngredient(ItemID.Hellstone, 8);
-            recipe.AddIngredient(ModContent.ItemType<RubrumDust>(), 4);
+            recipe.AddIngredient(ItemID.Ruby, 2);
             recipe.SetResult(ItemID.LifeCrystal);
             recipe.AddRecipe();
         }
